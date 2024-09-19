@@ -1,0 +1,32 @@
+.answer {
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.answerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.answerTitle p {
+    font-size: 12px;
+}
+
+.description {
+    visibility: hidden;
+    text-align: center;
+    width: 20%;
+    padding: 16px;
+    border: 2px solid orangered;
+    border-radius: 16px;
+}
+
+.visible {
+    /* Utilized setAttribute method */
+}

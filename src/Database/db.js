@@ -1,0 +1,1 @@
+//Primeiramente criar uma lista de objetos em javascript e testar a dinamicidade
