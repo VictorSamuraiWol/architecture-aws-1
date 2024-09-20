@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+:root {
+  --color-first: blanchedalmond;
+  --color-second: #F5F7F8;
+  --color-third: #45474B;
+  --color-fourth: orangered;
+}

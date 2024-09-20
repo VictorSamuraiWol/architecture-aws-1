@@ -23,7 +23,7 @@
     text-align: center;
     width: 20%;
     padding: 16px;
-    border: 2px solid orangered;
+    border: 2px solid var(--color-fourth);
     border-radius: 16px;
 }
 

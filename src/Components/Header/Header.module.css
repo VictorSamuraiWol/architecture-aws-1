@@ -1,4 +1,7 @@
 .header {
     display: flex;
     justify-content: center;
+    color: var(--color-third);
+    background-color: var(--color-second);
+    padding: 16px 0;
 }

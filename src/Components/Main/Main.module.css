@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--color-first);
+    height: 80vh;
+    gap: 24px;
+}
