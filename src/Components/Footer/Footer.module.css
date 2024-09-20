@@ -1,11 +1,11 @@
 /* Estiliza o rodapé da página */
 .footer {
-    background-color: var(--color-second); /* Cor de fundo do rodapé */
-    color: var(--color-third); /* Cor do texto */
-    text-align: center; /* Alinha o texto ao centro */
-    padding: 16px 0; /* Espaçamento interno */
-    width: 100%; /* Largura total da página */
-    font-size: 1rem; /* Tamanho da fonte */
+    color: var(--color-fourth);
+    background-color: var(--color-second);
+    text-align: center;
+    padding: 16px 0;
+    width: 100%;
+    font-size: 1rem;
 }
 
 .footer img {

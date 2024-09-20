@@ -1,3 +1,9 @@
 .buttonnext {
-
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+    padding: 16px;
+    border: 2px solid var(--color-third);
+    border-radius: 16px;
+    border-style: dashed;
+    cursor: pointer;
 }

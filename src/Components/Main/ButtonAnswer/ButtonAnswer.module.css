@@ -1,4 +1,10 @@
 .button {
+    color: var(--color-fourth);
+    background-color: var(--color-second);
+    padding: 16px;
+    border: 2px solid var(--color-fourth);
+    border-radius: 16px;
+    border-style: dashed;
     cursor: pointer;
 }
 

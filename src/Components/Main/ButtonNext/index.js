@@ -4,7 +4,7 @@ function ButtonNext({ newRequest }) {
 
     return(
         <>
-            <button onClick={newRequest} className={styles.buttonNext}>Next</button>
+            <button onClick={newRequest} className={styles.buttonnext}>Next</button>
         </>
     )
 }

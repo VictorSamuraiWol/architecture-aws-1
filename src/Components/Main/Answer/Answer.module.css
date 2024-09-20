@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: var(--color-fourth);
 }
 
 .answerTitle {
@@ -23,7 +24,7 @@
     text-align: center;
     width: 20%;
     padding: 16px;
-    border: 2px solid var(--color-fourth);
+    border: 2px solid var(--color-third);
     border-radius: 16px;
 }
 
