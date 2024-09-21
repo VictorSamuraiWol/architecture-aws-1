@@ -10,4 +10,5 @@
 
 .visible {
     /* Utilized setAttribute method */
+    visibility: visible;
 }

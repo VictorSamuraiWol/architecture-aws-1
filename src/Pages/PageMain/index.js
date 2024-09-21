@@ -14,11 +14,12 @@ function PageMain() {
       .then(data => {
 
         const randomElement = data[0]
+
         setNewQuestions(randomElement)  
       })
       .catch(e => console.log(e))
     }, [])
-  
+
     return (
       <div className='allquestions' key={Object.values(newQuestions)[5]}>
   
@@ -30,7 +31,7 @@ function PageMain() {
                 answer={Object.values(newQuestions)[2]} 
                 srcImg={Object.values(newQuestions)[3]}
                 descriptionP={Object.values(newQuestions)[4]}
-                elementId={Object.values(newQuestions)[5]} 
+                elementId={Object.values(newQuestions)[5]}
             >
             </Main>            
             <Footer>

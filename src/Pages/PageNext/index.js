@@ -8,7 +8,9 @@ function PageNext() {
 
     const [nextQuestions, setNextQuestions] = useState('');
     const [listQuestions, setListQuestions] = useState([]);
-  
+    const [listNumbers, setListNumbers] = useState([]);    
+    const [indexQuestions, setIndexQuestions] = useState('');
+ 
     useEffect(() => {
       fetch(`http://localhost:3000/questions`)
       .then(res => res.json())
@@ -19,19 +21,28 @@ function PageNext() {
         const randomIndex = Math.floor(Math.random()*data.length);
         const randomElement = data[randomIndex]
 
-        console.log(randomIndex)
-        console.log(randomElement)
         setNextQuestions(randomElement)
+
       })
       .catch(e => console.log(e))
     }, [])
 
-    
-    function funcNewRequest() {
-        const randomIndex = Math.floor(Math.random()*listQuestions.length);
-        const randomElement = listQuestions[randomIndex]
+    function clearAnswer() {
+        document.querySelector('#answerId').setAttribute('style', 'visibility: ""');
+        document.querySelector('#descriptionId').setAttribute('style', 'visibility: ""');
+    }
 
-        setNextQuestions(randomElement)    
+    function funcNewRequest() {        
+
+        //Generating random numbers
+        const randomIndex = Math.floor(Math.random()*listQuestions.length);
+
+        setListNumbers([...listNumbers, randomIndex])
+        const randomElement = listQuestions[randomIndex]
+        setNextQuestions(randomElement)
+        setIndexQuestions(randomIndex)
+
+        clearAnswer()
     }
 
     return(
@@ -47,7 +58,8 @@ function PageNext() {
                     srcImg={Object.values(nextQuestions)[3]}
                     descriptionP={Object.values(nextQuestions)[4]}
                     elementId={Object.values(nextQuestions)[5]}
-                    newRequest={funcNewRequest} 
+                    newRequest={funcNewRequest}
+                    indexQuestions={indexQuestions}
                 >
                 </Main>     
 

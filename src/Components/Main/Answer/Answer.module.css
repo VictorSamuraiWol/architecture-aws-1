@@ -1,6 +1,6 @@
 .answer {
-    display: flex;
     visibility: hidden;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;

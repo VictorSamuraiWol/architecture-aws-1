@@ -1,0 +1,12 @@
+#visible {
+    display: block;
+    background-color: blueviolet;
+}
+
+#invisible {
+    display: none;
+}
+
+.ok{
+    background-color: blueviolet;
+}

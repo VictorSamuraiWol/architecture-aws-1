@@ -7,3 +7,11 @@
     border-style: dashed;
     cursor: pointer;
 }
+
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}

@@ -6,7 +6,6 @@ function Answer({ answer, descriptionP, srcImg }) {
         const descriptionText = document.querySelector('#descriptionId')
 
         if (descriptionText.classList.contains(`${styles.visible}`)) {
-                // descriptionText.setAttribute('style', 'display: none')
                 descriptionText.setAttribute('style', 'visibility: hidden')
                 descriptionText.classList.remove(`${styles.visible}`)
             } else {
@@ -21,7 +20,7 @@ function Answer({ answer, descriptionP, srcImg }) {
             className={styles.answer} 
         >   
             <div
-                onClick={() => description()}
+                onClick={description}
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
