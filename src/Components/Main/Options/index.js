@@ -21,7 +21,7 @@ function Options({ indexQuestions }) {
 
     return(
         <>
-            {(newOptions.length === 0) && <div className={styles.visible} id='optionsMain' key={elementObject0.id}>
+            {(newOptions.length === 0) && <div className={styles.optionsMain} id='optionsMain' key={elementObject0.id}>
                 <p className={styles.option}>{elementObject0.option1}</p>
                 <p className={styles.option}>{elementObject0.option2}</p>
                 <p className={styles.option}>{elementObject0.option3}</p>
