@@ -14,13 +14,14 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
 
             setElementObject0(data[0]);
 
-            data.filter((_, index) => (index === indexQuestions) ?setNewOptions(data[index]) : null)
+            data.filter((_, index) => (index === indexQuestions) ?setNewOptions(data[index]) : console.log(null, 17))
             
         })
         .catch(error => console.log(error))
     }, [])   
 
-    console.log(newOptions)
+    console.log(newOptions, 23)
+    console.log(elementObject0, 24)
 
     return(
         <>
@@ -52,7 +53,7 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
             </div>}
 
             {newOptions && validate==='true' && <div 
-                className={optionsAble || optionsDisablePageMain}  id='options' 
+                className={optionsAble}  id='options' 
                 key={newOptions.id}
             >
             <div className={styles.checkOpt}>
