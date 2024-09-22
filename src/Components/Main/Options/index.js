@@ -7,21 +7,34 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
     const [elementObject0, setElementObject0] = useState('');
 
     useEffect(() => {
-        //obs: using port 3002, mock options's database
-        fetch('http://localhost:3002/options')
-        .then(res => res.json())
-        .then(data => {
+        const fetchData = async () => {
+            try {
+                //obs: usando a porta 3002, mock de database de opções
+                const res = await fetch('http://localhost:3002/options');
+                const data = await res.json();
+                
+                setElementObject0(data[0]);
+    
+                data.filter((_, index) => {
+                    if (index === indexQuestions) {
+                        setNewOptions(data[index]);
+                    }
+                    return null;
+                });
+    
+                console.log(newOptions, 39);
+    
+            } catch (error) {
+                console.log('Erro ao buscar as opções:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
+    
 
-            setElementObject0(data[0]);
-
-            data.filter((_, index) => (index === indexQuestions) ?setNewOptions(data[index]) : console.log(null, 17))
-            
-        })
-        .catch(error => console.log(error))
-    }, [])   
-
-    console.log(newOptions, 23)
-    console.log(elementObject0, 24)
+    // console.log(newOptions, 23)
+    // console.log(elementObject0, 24)
 
     return(
         <>
