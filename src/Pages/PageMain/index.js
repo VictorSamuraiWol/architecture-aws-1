@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 function PageMain() {
   
     const [newQuestions, setNewQuestions] = useState([]);
+    const [optionsDisablePageMain, setOptionsDisablePageMain] = useState(styles.invisible)
+
   
     useEffect(() => {
       //obs: using port 3001, mock questions's database
@@ -33,6 +35,9 @@ function PageMain() {
                 srcImg={Object.values(newQuestions)[3]}
                 descriptionP={Object.values(newQuestions)[4]}
                 elementId={Object.values(newQuestions)[5]}
+
+
+                optionsDisablePageMain={optionsDisablePageMain}
             >
             </Main>            
             <Footer>
