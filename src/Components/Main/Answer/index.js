@@ -25,7 +25,7 @@ function Answer({ answer, descriptionP, srcImg }) {
                 className={styles.answerTitle}
             >
                 <h3>{answer}</h3>
-                <p>Click for more information</p>
+                <p>Click here for more information</p>
             </div>           
             <p id='descriptionId' className={styles.description}>{descriptionP}</p>
         </section>
