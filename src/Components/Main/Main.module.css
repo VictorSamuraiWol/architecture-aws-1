@@ -5,5 +5,6 @@
     flex-direction: column;
     background-color: var(--color-first);
     height: 76.8vh;
-    gap: 24px;
+    gap: 16px;
+    box-sizing: border-box;
 }

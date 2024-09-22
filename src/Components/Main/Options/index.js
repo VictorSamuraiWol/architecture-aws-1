@@ -7,14 +7,14 @@ function Options({ indexQuestions }) {
     const [elementObject0, setElementObject0] = useState('');
 
     useEffect(() => {
-        //obs: using port 3002, mock another database
+        //obs: using port 3002, mock options's database
         fetch('http://localhost:3002/options')
         .then(res => res.json())
         .then(data => {
 
             setElementObject0(data[0]);
 
-            data.filter((_, index) => index === indexQuestions ?setNewOptions(data[index]) : null)
+            data.filter((_, index) => (index === indexQuestions) ?setNewOptions(data[index]) : null)
         })
         .catch(error => console.log(error))
     }, [])   

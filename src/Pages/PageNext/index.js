@@ -12,7 +12,8 @@ function PageNext() {
     const [indexQuestions, setIndexQuestions] = useState('');
  
     useEffect(() => {
-      fetch(`http://localhost:3000/questions`)
+    //obs: using port 3001, mock questions's database
+      fetch(`http://localhost:3001/questions`)
       .then(res => res.json())
       .then(data => {
         

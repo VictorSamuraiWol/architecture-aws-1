@@ -1,4 +1,7 @@
 .buttonnext {
+    position: absolute;
+    bottom: 120px;
+    right: 24px;
     color: var(--color-fourth);
     background-color: var(--color-first);
     padding: 16px;

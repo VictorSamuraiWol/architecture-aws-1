@@ -1,3 +1,5 @@
 .question {
     color: var(--color-fourth);
+    width: 90%;
+    text-align: center;
 }
