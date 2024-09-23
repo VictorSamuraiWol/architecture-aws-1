@@ -1,11 +1,11 @@
-.answer {
+/* .answer {
     visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: var(--color-fourth);
-}
+} */
 
 .answerTitle {
     display: flex;
@@ -19,14 +19,14 @@
     font-size: 12px;
 }
 
-.description {
+/* .description {
     visibility: hidden;
     text-align: center;
     width: 20%;
     padding: 16px;
     border: 2px solid var(--color-third);
     border-radius: 16px;
-}
+} */
 
 .visible {
     /* Utilized setAttribute method */

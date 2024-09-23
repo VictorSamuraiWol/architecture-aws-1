@@ -1,6 +1,6 @@
 import styles from './Answer.module.css';
 
-function Answer({ answer, descriptionP, srcImg }) {
+function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDisplay }) {
 
     function description() {
         const descriptionText = document.querySelector('#descriptionId')
@@ -17,7 +17,8 @@ function Answer({ answer, descriptionP, srcImg }) {
     return(
         <section            
             id='answerId' 
-            className={styles.answer} 
+            // className={styles.answer}
+            className={answerDisplay} 
         >   
             <div
                 onClick={description}
@@ -27,7 +28,13 @@ function Answer({ answer, descriptionP, srcImg }) {
                 <h3>{answer}</h3>
                 <p>Click here for more information</p>
             </div>           
-            <p id='descriptionId' className={styles.description}>{descriptionP}</p>
+            <p 
+                id='descriptionId' 
+                // className={styles.description}
+                className={descriptionDisplay}
+            >
+                {descriptionP}
+            </p>
         </section>
     )
 }

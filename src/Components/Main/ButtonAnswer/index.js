@@ -1,19 +1,12 @@
 import styles from './ButtonAnswer.module.css';
 
-function ButtonAnswer() {
+function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay }) {
 
-    function display() {        
-        const answerDisplay = document.querySelector('#answerId');
-        const descriptionText = document.querySelector('#descriptionId')
+    function display() { 
+        
+        setAnswerDisplay(styles.visibleAnswer)
+        setDescriptionDisplay(styles.visibleDescription)
 
-        if (answerDisplay.classList.contains(`${styles.visible}`)) {
-            answerDisplay.classList.remove(`${styles.visible}`)
-            answerDisplay.setAttribute('style', 'visibility: hidden')
-            descriptionText.setAttribute('style', 'visibility: hidden')
-        } else {
-            answerDisplay.classList.add(`${styles.visible}`)
-            answerDisplay.setAttribute('style', 'visibility: visible')
-    }
     }
 
     return(

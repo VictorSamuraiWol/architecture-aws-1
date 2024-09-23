@@ -8,7 +8,22 @@
     cursor: pointer;
 }
 
-.visible {
-    /* Utilized setAttribute method */
+.visibleAnswer {
     visibility: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--color-fourth);
+    background-color: aqua;
+}
+
+.visibleDescription {
+    visibility: visible;
+    text-align: center;
+    width: 20%;
+    padding: 16px;
+    border: 2px solid var(--color-third);
+    border-radius: 16px;
+    background-color: brown;
 }

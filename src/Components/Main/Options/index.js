@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisablePageMain, validate }) {
+function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions }) {
 
-    const [newOptions, setNewOptions] = useState([]);
+    
+    
     const [elementObject0, setElementObject0] = useState('');
 
     useEffect(() => {
@@ -13,16 +14,11 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
                 const res = await fetch('http://localhost:3002/options');
                 const data = await res.json();
                 
+                //update the firts element
                 setElementObject0(data[0]);
-    
-                data.filter((_, index) => {
-                    if (index === indexQuestions) {
-                        setNewOptions(data[index]);
-                    }
-                    return null;
-                });
-    
-                console.log(newOptions, 39);
+
+                //All options
+                setNewOptions(data)            
     
             } catch (error) {
                 console.log('Erro ao buscar as opções:', error);
@@ -32,13 +28,9 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
         fetchData();
     }, []);
     
-
-    // console.log(newOptions, 23)
-    // console.log(elementObject0, 24)
-
     return(
         <>
-            {(newOptions.length === 0) && <div 
+            {elementObject0 && <div 
                 className={optionsMainAble} 
                 id='optionsMain' 
                 key={elementObject0.id}
@@ -71,23 +63,23 @@ function Options({ indexQuestions, optionsMainAble, optionsAble, optionsDisableP
             >
             <div className={styles.checkOpt}>
                     <input className={styles.inputOptions}  type='radio' name='options' value='opt1' />
-                    <p className={styles.option}>{newOptions.option1}</p>
+                    <p className={styles.option}>{restartOptions.option1}</p>
                 </div>
                 <div className={styles.checkOpt}>
                     <input className={styles.inputOptions} type='radio' name='options' value='opt2' />
-                    <p className={styles.option}>{newOptions.option2}</p>
+                    <p className={styles.option}>{restartOptions.option2}</p>
                 </div>
                 <div className={styles.checkOpt}>
                     <input className={styles.inputOptions} type='radio' name='options' value='opt3' />
-                    <p className={styles.option}>{newOptions.option3}</p>
+                    <p className={styles.option}>{restartOptions.option3}</p>
                 </div>
                 <div className={styles.checkOpt}>
                     <input className={styles.inputOptions} type='radio' name='options' value='opt4' />
-                    <p className={styles.option}>{newOptions.option4}</p>
+                    <p className={styles.option}>{restartOptions.option4}</p>
                 </div>
                 <div className={styles.checkOpt}>
                     <input className={styles.inputOptions} type='radio' name='options' value='opt5' />
-                    <p className={styles.option}>{newOptions.option5}</p>
+                    <p className={styles.option}>{restartOptions.option5}</p>
                 </div>
             </div>}
         </>       

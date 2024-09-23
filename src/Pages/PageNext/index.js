@@ -8,13 +8,16 @@ function PageNext() {
 
     const [nextQuestions, setNextQuestions] = useState('');
     const [listQuestions, setListQuestions] = useState([]);
-    const [listNumbers, setListNumbers] = useState([]);    
-    const [indexQuestions, setIndexQuestions] = useState('');
     const [optionsMainAble, setOptionsMainAble] = useState(styles.invisible)
     const [optionsAble, setOptionsAble] = useState(styles.visible)
     const [validate, setValidate] = useState('false')
 
 
+    const [newOptions, setNewOptions] = useState([]);
+    const [restartOptions, setRestartOptions] = useState([])
+
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
  
     useEffect(() => {
     //obs: using port 3001, mock questions's database
@@ -23,19 +26,16 @@ function PageNext() {
       .then(data => {
         
         setListQuestions(data)
-          
-        const randomIndex = Math.floor(Math.random()*data.length);
-        const randomElement = data[randomIndex]
-
-        setNextQuestions(randomElement)
+        
+        setNextQuestions(data[1])
 
       })
       .catch(e => console.log(e))
-    }, [])
+    }, [])  
 
     function clearAnswer() {
-        document.querySelector('#answerId').setAttribute('style', 'visibility: ""');
-        document.querySelector('#descriptionId').setAttribute('style', 'visibility: ""');
+        setAnswerDisplay(styles.invisible)
+        setDescriptionDisplay(styles.invisible)
     }
 
     function optionsAbled() {
@@ -44,7 +44,7 @@ function PageNext() {
 
         setOptionsAble(styles.visible)
 
-    }
+    }  
 
     function funcNewRequest() { 
         
@@ -53,12 +53,12 @@ function PageNext() {
 
         //Generating random numbers
         const randomIndex = Math.floor(Math.random()*listQuestions.length);
-
-        setListNumbers([...listNumbers, randomIndex])
-        const randomElement = listQuestions[randomIndex]
-        setNextQuestions(randomElement)
-        setIndexQuestions(randomIndex)
         
+        setRestartOptions(newOptions)
+
+        setNextQuestions(listQuestions[randomIndex])
+        setRestartOptions(newOptions[randomIndex])
+
         //validate options
         setValidate('true')
 
@@ -67,7 +67,7 @@ function PageNext() {
 
     return(
         <div>
-            {nextQuestions && <div className='allquestions' key={Object.values(nextQuestions)[5]}>        
+            {newOptions && <div className='allquestions' key={Object.values(nextQuestions)[5]}>        
                 <Header 
                 title={Object.values(nextQuestions)[0]}>
                 </Header>
@@ -79,10 +79,18 @@ function PageNext() {
                     descriptionP={Object.values(nextQuestions)[4]}
                     elementId={Object.values(nextQuestions)[5]}
                     newRequest={funcNewRequest}
-                    indexQuestions={indexQuestions}
                     optionsMainAble={optionsMainAble}
                     optionsAble={optionsAble}
                     validate={validate}
+
+                    newOptions={newOptions}
+                    setNewOptions={setNewOptions}
+                    restartOptions={restartOptions}
+                    
+                    answerDisplay={answerDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setAnswerDisplay={setAnswerDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
 
                 >
                 </Main>     

@@ -1,9 +1,9 @@
-.invisible {
-    display: none;
-}
-
 .visible {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
+}
+
+.invisible {
+    display: none;
 }
