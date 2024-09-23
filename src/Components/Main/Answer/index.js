@@ -1,23 +1,27 @@
 import styles from './Answer.module.css';
 
-function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDisplay }) {
+function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay }) {
 
     function description() {
-        const descriptionText = document.querySelector('#descriptionId')
 
-        if (descriptionText.classList.contains(`${styles.visible}`)) {
-                descriptionText.setAttribute('style', 'visibility: hidden')
-                descriptionText.classList.remove(`${styles.visible}`)
-            } else {
-                descriptionText.setAttribute('style', 'visibility: visible')
-                descriptionText.classList.add(`${styles.visible}`)
-            }
+        if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
+            setDescriptionDisplay(styles.invisible)
+        } else {
+            setDescriptionDisplay(styles.visibleDescription)
         }
+
+        console.log(document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`))
+
+        console.log(descriptionDisplay)
+
+
+
+        }
+
 
     return(
         <section            
             id='answerId' 
-            // className={styles.answer}
             className={answerDisplay} 
         >   
             <div
@@ -31,6 +35,8 @@ function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDispla
             <p 
                 id='descriptionId' 
                 // className={styles.description}
+                // className={descriptionDisplay}
+                // className={descriptionDisplay}
                 className={descriptionDisplay}
             >
                 {descriptionP}

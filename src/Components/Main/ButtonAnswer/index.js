@@ -4,8 +4,12 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay }) {
 
     function display() { 
         
-        setAnswerDisplay(styles.visibleAnswer)
-        setDescriptionDisplay(styles.visibleDescription)
+        if (document.querySelector('#answerId').classList.contains(`${styles.visibleAnswer}`)) {
+            setAnswerDisplay(styles.invisible)
+            setDescriptionDisplay(styles.invisible)
+        } else {
+            setAnswerDisplay(styles.visibleAnswer)
+        }
 
     }
 

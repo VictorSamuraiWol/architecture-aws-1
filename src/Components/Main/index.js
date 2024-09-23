@@ -30,6 +30,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
 
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}
             />
             <Link to={'/next'}>
                 <ButtonNext newRequest={newRequest} />

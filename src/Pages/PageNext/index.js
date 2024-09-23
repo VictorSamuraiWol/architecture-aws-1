@@ -17,7 +17,7 @@ function PageNext() {
     const [restartOptions, setRestartOptions] = useState([])
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
  
     useEffect(() => {
     //obs: using port 3001, mock questions's database
