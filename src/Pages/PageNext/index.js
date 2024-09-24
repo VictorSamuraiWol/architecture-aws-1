@@ -8,16 +8,13 @@ function PageNext() {
 
     const [nextQuestions, setNextQuestions] = useState('');
     const [listQuestions, setListQuestions] = useState([]);
-    const [optionsMainAble, setOptionsMainAble] = useState(styles.invisible)
-    const [optionsAble, setOptionsAble] = useState(styles.visible)
-    const [validate, setValidate] = useState('false')
-
-
+    const [optionsMainAble, setOptionsMainAble] = useState(styles.invisible);
+    const [optionsAble, setOptionsAble] = useState(styles.visible);
+    const [validate, setValidate] = useState('false');
     const [newOptions, setNewOptions] = useState([]);
-    const [restartOptions, setRestartOptions] = useState([])
-
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
+    const [restartOptions, setRestartOptions] = useState([]);
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
  
     useEffect(() => {
     //obs: using port 3001, mock questions's database
@@ -39,25 +36,26 @@ function PageNext() {
     }
 
     function optionsAbled() {
-        console.log(document.querySelector('#optionsMain'))
-        console.log(document.querySelector('#options'))
-
         setOptionsAble(styles.visible)
 
     }  
 
-    function funcNewRequest() { 
-        
-        //Abled options
-        optionsAbled()
-
-        //Generating random numbers
+    function randomQuestionsOptions() {
         const randomIndex = Math.floor(Math.random()*listQuestions.length);
         
         setRestartOptions(newOptions)
 
         setNextQuestions(listQuestions[randomIndex])
         setRestartOptions(newOptions[randomIndex])
+    }
+
+    function funcNewRequest() { 
+        
+        //Abled options
+        optionsAbled()
+        
+        //Generating random numbers
+        randomQuestionsOptions()
 
         //validate options
         setValidate('true')
@@ -82,16 +80,13 @@ function PageNext() {
                     optionsMainAble={optionsMainAble}
                     optionsAble={optionsAble}
                     validate={validate}
-
                     newOptions={newOptions}
                     setNewOptions={setNewOptions}
-                    restartOptions={restartOptions}
-                    
+                    restartOptions={restartOptions}                    
                     answerDisplay={answerDisplay}
                     descriptionDisplay={descriptionDisplay}
                     setAnswerDisplay={setAnswerDisplay}
                     setDescriptionDisplay={setDescriptionDisplay}
-
                 >
                 </Main>     
 

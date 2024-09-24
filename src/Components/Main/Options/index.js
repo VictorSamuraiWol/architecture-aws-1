@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions }) {
-
+function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions }) {    
     
-    
-    const [elementObject0, setElementObject0] = useState('');
+    const [optionMain, setOptionMain] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,7 +13,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                 const data = await res.json();
                 
                 //update the firts element
-                setElementObject0(data[0]);
+                setOptionMain(data[0]);
 
                 //All options
                 setNewOptions(data)            
@@ -30,30 +28,50 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
     
     return(
         <>
-            {elementObject0 && <div 
+            {optionMain && <div 
                 className={optionsMainAble} 
                 id='optionsMain' 
-                key={elementObject0.id}
+                key={optionMain.id}
             >
                 <div className={styles.checkOpt}>
-                    <input type='radio' name='optionsMain' value='opt1' />
-                    <p className={styles.option}>{elementObject0.option1}</p>
+                    <input 
+                        type='radio' 
+                        name='optionsMain' 
+                        value='opt1' 
+                    />
+                    <p className={styles.option}>{optionMain.option1}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input type='radio' name='optionsMain' value='opt2' />
-                    <p className={styles.option}>{elementObject0.option2}</p>
+                    <input 
+                        type='radio' 
+                        name='optionsMain' 
+                        value='opt2' 
+                    />
+                    <p className={styles.option}>{optionMain.option2}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input type='radio' name='optionsMain' value='opt3' />
-                    <p className={styles.option}>{elementObject0.option3}</p>
+                    <input 
+                        type='radio' 
+                        name='optionsMain' 
+                        value='opt3' 
+                    />
+                    <p className={styles.option}>{optionMain.option3}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input type='radio' name='optionsMain' value='opt4' />
-                    <p className={styles.option}>{elementObject0.option4}</p>
+                    <input 
+                        type='radio' 
+                        name='optionsMain' 
+                        value='opt4' 
+                    />
+                    <p className={styles.option}>{optionMain.option4}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input type='radio' name='optionsMain' value='opt5' />
-                    <p className={styles.option}>{elementObject0.option5}</p>
+                    <input 
+                        type='radio' 
+                        name='optionsMain' 
+                        value='opt5' 
+                    />
+                    <p className={styles.option}>{optionMain.option5}</p>
                 </div>
             </div>}
 
@@ -62,23 +80,48 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                 key={newOptions.id}
             >
             <div className={styles.checkOpt}>
-                    <input className={styles.inputOptions}  type='radio' name='options' value='opt1' />
+                    <input 
+                        className={styles.inputOptions}  
+                        type='radio' 
+                        name='options' 
+                        value='opt1' 
+                    />
                     <p className={styles.option}>{restartOptions.option1}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input className={styles.inputOptions} type='radio' name='options' value='opt2' />
+                    <input 
+                        className={styles.inputOptions} 
+                        type='radio' 
+                        name='options' 
+                        value='opt2' 
+                    />
                     <p className={styles.option}>{restartOptions.option2}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input className={styles.inputOptions} type='radio' name='options' value='opt3' />
+                    <input 
+                        className={styles.inputOptions} 
+                        type='radio' 
+                        name='options' 
+                        value='opt3' 
+                    />
                     <p className={styles.option}>{restartOptions.option3}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input className={styles.inputOptions} type='radio' name='options' value='opt4' />
+                    <input 
+                        className={styles.inputOptions} 
+                        type='radio' 
+                        name='options' 
+                        value='opt4' 
+                    />
                     <p className={styles.option}>{restartOptions.option4}</p>
                 </div>
                 <div className={styles.checkOpt}>
-                    <input className={styles.inputOptions} type='radio' name='options' value='opt5' />
+                    <input 
+                        className={styles.inputOptions} 
+                        type='radio' 
+                        name='options' 
+                        value='opt5' 
+                    />
                     <p className={styles.option}>{restartOptions.option5}</p>
                 </div>
             </div>}

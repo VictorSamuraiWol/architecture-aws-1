@@ -5,19 +5,11 @@ function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDispla
     function description() {
 
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
-            setDescriptionDisplay(styles.invisible)
-        } else {
-            setDescriptionDisplay(styles.visibleDescription)
+                setDescriptionDisplay(styles.invisible)
+            } else {
+                setDescriptionDisplay(styles.visibleDescription)
+            }
         }
-
-        console.log(document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`))
-
-        console.log(descriptionDisplay)
-
-
-
-        }
-
 
     return(
         <section            
@@ -34,9 +26,6 @@ function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDispla
             </div>           
             <p 
                 id='descriptionId' 
-                // className={styles.description}
-                // className={descriptionDisplay}
-                // className={descriptionDisplay}
                 className={descriptionDisplay}
             >
                 {descriptionP}
