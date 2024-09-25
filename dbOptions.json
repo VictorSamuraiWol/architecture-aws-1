@@ -3,7 +3,7 @@
         {
             "option1": "a) Storage Gateway - Volume Gateway",
             "option2": "b) Site-to-Site VPN",
-            "option3": "c) Storage Gateway - File Gatewaty",
+            "option3": "c) Storage Gateway - File Gateway",
             "option4": "d) Storage Gateway - Tape Gateway",
             "option5": "e) Instance Store"
         },

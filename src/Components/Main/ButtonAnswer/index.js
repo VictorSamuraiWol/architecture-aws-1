@@ -1,14 +1,19 @@
 import styles from './ButtonAnswer.module.css';
 
-function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay }) {
+function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay }) {
 
     function display() { 
         
         if (document.querySelector('#answerId').classList.contains(`${styles.visibleAnswer}`)) {
-            setAnswerDisplay(styles.invisible)
-            setDescriptionDisplay(styles.invisible)
+            answerDisplay && setAnswerDisplay(styles.invisible)
+            descriptionDisplay && setDescriptionDisplay(styles.invisible)
+            answerMainDisplay && setAnswerMainDisplay(styles.invisible)
+            descriptionMainDisplay && setDescriptionMainDisplay((styles.invisible))
+
         } else {
-            setAnswerDisplay(styles.visibleAnswer)
+            answerDisplay && setAnswerDisplay(styles.visibleAnswer)
+            answerMainDisplay && setAnswerMainDisplay(styles.visibleAnswer)
+
         }
 
     }

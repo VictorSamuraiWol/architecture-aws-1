@@ -1,20 +1,24 @@
 import styles from './Answer.module.css';
 
-function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay }) {
+function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setDescriptionMainDisplay }) {
 
     function description() {
 
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
-                setDescriptionDisplay(styles.invisible)
+                descriptionDisplay && setDescriptionDisplay(styles.invisible)
+                descriptionMainDisplay && setDescriptionMainDisplay(styles.invisible)
+
             } else {
-                setDescriptionDisplay(styles.visibleDescription)
+                descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
+                descriptionMainDisplay && setDescriptionMainDisplay(styles.visibleDescription)
+
             }
         }
 
     return(
         <section            
             id='answerId' 
-            className={answerDisplay} 
+            className={`${answerDisplay} ${answerMainDisplay}` } 
         >   
             <div
                 onClick={description}
@@ -26,7 +30,7 @@ function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDispla
             </div>           
             <p 
                 id='descriptionId' 
-                className={descriptionDisplay}
+                className={`${descriptionDisplay} ${descriptionMainDisplay}`}
             >
                 {descriptionP}
             </p>

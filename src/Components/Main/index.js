@@ -6,7 +6,7 @@ import ButtonNext from './ButtonNext';
 import { Link} from 'react-router-dom';
 import Options from './Options';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay }) {
+function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay }) {
 
     return(
         <div className={styles.main}>
@@ -19,18 +19,26 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setNewOptions={setNewOptions}
                 restartOptions={restartOptions}
             />
-            <ButtonAnswer 
+            <ButtonAnswer            
+                answerDisplay={answerDisplay}
+                descriptionDisplay={descriptionDisplay}
+                answerMainDisplay={answerMainDisplay}
+                descriptionMainDisplay={descriptionMainDisplay}
                 setAnswerDisplay={setAnswerDisplay}
-                setDescriptionDisplay={setDescriptionDisplay} 
+                setDescriptionDisplay={setDescriptionDisplay}
+                setAnswerMainDisplay={setAnswerMainDisplay}
+                setDescriptionMainDisplay={setDescriptionMainDisplay}
             />
             <Answer 
                 answer={answer} 
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
-
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
+                answerMainDisplay={answerMainDisplay}
+                descriptionMainDisplay={descriptionMainDisplay}
+                setDescriptionMainDisplay={setDescriptionMainDisplay}
             />
             <Link to={'/next'}>
                 <ButtonNext newRequest={newRequest} />
