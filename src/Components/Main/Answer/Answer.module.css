@@ -10,11 +10,16 @@
     font-size: 12px;
 }
 
+#descriptionId {
+    /* visibility: hidden; */
+    /* display: flex; */
+}
+
 .visibleDescription {
     visibility: visible;
     text-align: center;
     width: 20%;
-    padding: 16px;
+    padding: 8px;
     border: 2px solid var(--color-third);
     border-radius: 16px;
 }

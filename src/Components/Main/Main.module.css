@@ -1,10 +1,10 @@
 .main {
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
     align-items: center;
     flex-direction: column;
     background-color: var(--color-first);
-    height: 76.8vh;
-    gap: 16px;
+    gap: 12px;
+    height: 75vh;
     padding: 8px;
 }
