@@ -12,27 +12,33 @@ function PageNext() {
     const [optionsAble, setOptionsAble] = useState(styles.visible);
     const [validate, setValidate] = useState('false');
     const [newOptions, setNewOptions] = useState([]);
-    const [restartOptions, setRestartOptions] = useState([]);
+    const [restartOptions, setRestartOptions] = useState({
+        "option1": "a) Requester Pays",
+        "option2": "b) Server Access Logging",
+        "option3": "c) Versioning",
+        "option4": "d) Policies",
+        "option5": "e) Static Website Hosting"
+    });
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
  
     useEffect(() => {
-    //obs: using port 3001, mock questions's database
-      fetch(`http://localhost:3001/questions`)
+      fetch("http://localhost:3001/questions")
       .then(res => res.json())
-      .then(data => {
-        
+      .then(data => {        
         setListQuestions(data)
         
-        setNextQuestions(data[1])
+        //first question on the pageNext
+        setNextQuestions(data[1])        
 
       })
       .catch(e => console.log(e))
-    }, [])  
+    }, [])
 
     function clearAnswer() {
         setAnswerDisplay(styles.invisible)
         setDescriptionDisplay(styles.invisible)
+
     }
 
     function optionsAbled() {
@@ -47,25 +53,26 @@ function PageNext() {
 
         setNextQuestions(listQuestions[randomIndex])
         setRestartOptions(newOptions[randomIndex])
+
     }
 
-    function funcNewRequest() { 
-        
-        //Abled options
-        optionsAbled()
-        
+    function funcNewRequest() {        
         //Generating random numbers
         randomQuestionsOptions()
 
+        //Abled options
+        optionsAbled()
+        
         //validate options
         setValidate('true')
 
         clearAnswer()
+
     }
 
     return(
         <div>
-            {newOptions && <div className='allquestions' key={Object.values(nextQuestions)[5]}>        
+            <div className='allquestions' key={Object.values(nextQuestions)[5]}>        
                 <Header 
                 title={Object.values(nextQuestions)[0]}>
                 </Header>
@@ -82,7 +89,8 @@ function PageNext() {
                     validate={validate}
                     newOptions={newOptions}
                     setNewOptions={setNewOptions}
-                    restartOptions={restartOptions}                    
+                    restartOptions={restartOptions}
+                    setRestartOptions={setRestartOptions}                    
                     answerDisplay={answerDisplay}
                     descriptionDisplay={descriptionDisplay}
                     setAnswerDisplay={setAnswerDisplay}
@@ -91,7 +99,7 @@ function PageNext() {
                 </Main>     
 
                 <Footer />    
-            </div> }           
+            </div>           
 
         </div>
     )

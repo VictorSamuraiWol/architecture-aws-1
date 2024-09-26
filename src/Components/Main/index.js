@@ -6,7 +6,7 @@ import ButtonNext from './ButtonNext';
 import { Link} from 'react-router-dom';
 import Options from './Options';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay }) {
+function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions }) {
 
     return(
         <div className={styles.main}>
@@ -18,6 +18,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 newOptions={newOptions}
                 setNewOptions={setNewOptions}
                 restartOptions={restartOptions}
+                setRestartOptions={setRestartOptions}
             />
             <ButtonAnswer            
                 answerDisplay={answerDisplay}
@@ -41,7 +42,9 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
             />
             <Link to={'/next'}>
-                <ButtonNext newRequest={newRequest} />
+                <ButtonNext 
+                    newRequest={newRequest} 
+                />
             </Link>
         </div>
     )

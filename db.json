@@ -35,5 +35,42 @@
             "srcImg": "",
             "descriptionP": "For the given use case, you can use Amazon EC2 Reserved Instances for the prodution application as it is run 24*7; This way you can get a 72% discount if you avail a 3-year term. You can use on-demand instances for the dev application since it is only used for up to 8 hours per day. On-demand offers the flexibility to only pay for the Amazon EC2 instance when it is being used (0 to 8 hours for the given use case)."
         }
+    ],
+    "options": [
+        {
+            "option1": "a) Storage Gateway - Volume Gateway",
+            "option2": "b) Site-to-Site VPN",
+            "option3": "c) Storage Gateway - File Gateway",
+            "option4": "d) Storage Gateway - Tape Gateway",
+            "option5": "e) Instance Store"
+        },
+        {
+            "option1": "a) Requester Pays",
+            "option2": "b) Server Access Logging",
+            "option3": "c) Versioning",
+            "option4": "d) Policies",
+            "option5": "e) Static Website Hosting"
+        },
+        {
+            "option1": "a) EMR",
+            "option2": "b) Glue",
+            "option3": "c) S3 Glacier Deep Archive",
+            "option4": "d) Amazon FSx for Windows File Server",
+            "option5": "e) Amazon FSx for Lustre"
+        },
+        {
+            "option1": "a) CloudFront",
+            "option2": "b) Third-Party services",
+            "option3": "c) Route 53",
+            "option4": "d) Global Accelerator",
+            "option5": "e) ELB"
+        },
+        {
+            "option1": "a) Use EC2 reserved instance for the production and spot instances for the dev",
+            "option2": "b) Use EC2 reserved instance for the production and spot block intances for the dev",
+            "option3": "c) Use EC2 reserved instance for the production and on-demand instances for the dev",
+            "option4": "d) Use only EC2 on-demand instaces for the production and dev",
+            "option5": "e) Use on-demand EC2 instances for the production and spot intances for the dev"
+        }
     ]
 }

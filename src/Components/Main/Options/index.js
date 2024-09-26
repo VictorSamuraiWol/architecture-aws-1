@@ -3,31 +3,31 @@ import styles from './Options.module.css';
 
 function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions }) {    
     
-    const [optionMain, setOptionMain] = useState('');
+    const [optionMain, setOptionMain] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //obs: usando a porta 3002, mock de database de opções
-                const res = await fetch('http://localhost:3002/options');
+                const res = await fetch("http://localhost:3001/options");
                 const data = await res.json();
-                
+              
                 //update the firts element
                 setOptionMain(data[0]);
 
                 //All options
-                setNewOptions(data)            
+                newOptions && setNewOptions(data)
     
             } catch (error) {
                 console.log('Erro ao buscar as opções:', error);
             }
-        };
+
+        }
     
-        fetchData();
+        fetchData()
     }, []);
-    
+   
     return(
-        <>
+        <>            
             {optionMain && <div 
                 className={optionsMainAble} 
                 id='optionsMain' 
@@ -75,8 +75,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                 </div>
             </div>}
 
-            {newOptions && validate==='true' && <div 
-                className={optionsAble}  id='options' 
+            {restartOptions && <div 
+                className={optionsAble}  
+                id='options' 
                 key={newOptions.id}
             >
             <div className={styles.checkOpt}>

@@ -12,7 +12,7 @@ function PageMain() {
   
     useEffect(() => {
       //obs: using port 3001, mock questions's database
-      fetch(`http://localhost:3001/questions`)
+      fetch("http://localhost:3001/questions")
       .then(res => res.json())
       .then(data => {
 
@@ -35,7 +35,6 @@ function PageMain() {
                 srcImg={Object.values(newQuestions)[3]}
                 descriptionP={Object.values(newQuestions)[4]}
                 elementId={Object.values(newQuestions)[5]}
-
                 answerMainDisplay={answerMainDisplay}
                 descriptionMainDisplay={descriptionMainDisplay}
                 setAnswerMainDisplay={setAnswerMainDisplay}
