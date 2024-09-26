@@ -9,19 +9,23 @@ function PageMain() {
     const [newQuestions, setNewQuestions] = useState([]);
     const [answerMainDisplay, setAnswerMainDisplay] = useState(styles.invisible);
     const [descriptionMainDisplay, setDescriptionMainDisplay] = useState(styles.invisible);
-  
+
+    const validateAnswerMain = Object.values(newQuestions)[2];
+
+
     useEffect(() => {
       //obs: using port 3001, mock questions's database
       fetch("http://localhost:3001/questions")
       .then(res => res.json())
       .then(data => {
-
+        
         const randomElement = data[0]
-
+        
         setNewQuestions(randomElement)  
       })
       .catch(e => console.log(e))
     }, [])
+    
 
     return (
       <div className='allquestions' key={Object.values(newQuestions)[5]}>
@@ -39,6 +43,8 @@ function PageMain() {
                 descriptionMainDisplay={descriptionMainDisplay}
                 setAnswerMainDisplay={setAnswerMainDisplay}
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
+
+                validateAnswerMain={validateAnswerMain}
             >
             </Main>            
             <Footer>

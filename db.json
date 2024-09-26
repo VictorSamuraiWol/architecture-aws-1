@@ -3,7 +3,7 @@
         {
             "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1!",
             "question": "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?",
-            "answer": "AWS Storage Gateway - File Gateway",
+            "answer": "Storage Gateway - File Gateway",
             "srcImg": "",
             "descriptionP": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching."
         },

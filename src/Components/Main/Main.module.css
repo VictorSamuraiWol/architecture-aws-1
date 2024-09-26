@@ -7,3 +7,7 @@
     height: 75vh;
     padding: 8px;
 }
+
+.optionColor {
+    color: var(--color-third);
+}

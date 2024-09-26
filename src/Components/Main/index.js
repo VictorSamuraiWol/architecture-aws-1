@@ -5,8 +5,15 @@ import Question from './Question';
 import ButtonNext from './ButtonNext';
 import { Link} from 'react-router-dom';
 import Options from './Options';
+import { useState } from 'react';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions }) {
+function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions, validateAnswerMain }) {
+
+    const [optionMain, setOptionMain] = useState([]);
+    
+    const [captureValue, setCaptureValue] = useState('')
+    const [optionColor, setOptionColor] = useState(styles.optionColor)
+    
 
     return(
         <div className={styles.main}>
@@ -19,6 +26,13 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setNewOptions={setNewOptions}
                 restartOptions={restartOptions}
                 setRestartOptions={setRestartOptions}
+                
+                optionMain={optionMain}
+                setOptionMain={setOptionMain}
+
+                setCaptureValue={setCaptureValue}
+
+                optionColor={optionColor}
             />
             <ButtonAnswer            
                 answerDisplay={answerDisplay}
@@ -29,6 +43,13 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setDescriptionDisplay={setDescriptionDisplay}
                 setAnswerMainDisplay={setAnswerMainDisplay}
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
+
+                optionMain={optionMain}
+                validateAnswerMain={validateAnswerMain}
+
+                captureValue={captureValue}
+
+                setOptionColor={setOptionColor}
             />
             <Answer 
                 answer={answer} 

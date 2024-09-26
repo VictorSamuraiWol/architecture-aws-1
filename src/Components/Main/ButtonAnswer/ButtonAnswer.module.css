@@ -20,3 +20,14 @@
 .invisible{
     visibility: hidden;
 }
+
+.optionValidate {
+    color: green;
+    padding: 0 8px;
+    border: 2px solid yellowgreen;
+    border-radius: 16px;
+}
+
+.optionInvalidate {
+    color: darkred;
+} 

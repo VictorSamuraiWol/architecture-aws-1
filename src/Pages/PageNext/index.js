@@ -10,7 +10,7 @@ function PageNext() {
     const [listQuestions, setListQuestions] = useState([]);
     const [optionsMainAble, setOptionsMainAble] = useState(styles.invisible);
     const [optionsAble, setOptionsAble] = useState(styles.visible);
-    const [validate, setValidate] = useState('false');
+    const [validate, setValidate] = useState(false);
     const [newOptions, setNewOptions] = useState([]);
     const [restartOptions, setRestartOptions] = useState({
         "option1": "a) Requester Pays",

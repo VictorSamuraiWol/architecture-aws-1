@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions }) {    
+function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, optionMain, setOptionMain, setCaptureValue, optionColor }) {    
     
-    const [optionMain, setOptionMain] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,6 +23,10 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
     
         fetchData()
     }, []);
+
+    function captureValue(e) {
+        setCaptureValue(e.target.value)
+    }
    
     return(
         <>            
@@ -33,43 +35,48 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                 id='optionsMain' 
                 key={optionMain.id}
             >
-                <div className={styles.checkOpt}>
-                    <input 
+                <div className={`option ${optionColor} ${styles.checkOpt}`}>
+                    <input
+                        onClick={captureValue} 
                         type='radio' 
                         name='optionsMain' 
-                        value='opt1' 
+                        value='0' 
                     />
                     <p className={styles.option}>{optionMain.option1}</p>
                 </div>
-                <div className={styles.checkOpt}>
-                    <input 
+                <div className={`option ${optionColor} ${styles.checkOpt}`}>
+                    <input
+                        onClick={captureValue} 
                         type='radio' 
                         name='optionsMain' 
-                        value='opt2' 
+                        value='1' 
                     />
                     <p className={styles.option}>{optionMain.option2}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`option ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         type='radio' 
                         name='optionsMain' 
-                        value='opt3' 
+                        value='2' 
                     />
                     <p className={styles.option}>{optionMain.option3}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`option ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         type='radio' 
                         name='optionsMain' 
-                        value='opt4' 
+                        value='3' 
                     />
                     <p className={styles.option}>{optionMain.option4}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`option ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         type='radio' 
                         name='optionsMain' 
-                        value='opt5' 
+                        value='4' 
                     />
                     <p className={styles.option}>{optionMain.option5}</p>
                 </div>
@@ -85,7 +92,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions}  
                         type='radio' 
                         name='options' 
-                        value='opt1' 
+                        value='0' 
                     />
                     <p className={styles.option}>{restartOptions.option1}</p>
                 </div>
@@ -94,7 +101,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
-                        value='opt2' 
+                        value='1' 
                     />
                     <p className={styles.option}>{restartOptions.option2}</p>
                 </div>
@@ -103,7 +110,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
-                        value='opt3' 
+                        value='2' 
                     />
                     <p className={styles.option}>{restartOptions.option3}</p>
                 </div>
@@ -112,7 +119,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
-                        value='opt4' 
+                        value='3' 
                     />
                     <p className={styles.option}>{restartOptions.option4}</p>
                 </div>
@@ -121,7 +128,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
-                        value='opt5' 
+                        value='4' 
                     />
                     <p className={styles.option}>{restartOptions.option5}</p>
                 </div>
