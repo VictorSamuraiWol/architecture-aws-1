@@ -26,16 +26,25 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
     }
 
+    function alertOption() {
+        if (captureValue === '') {
+            alert('Por favor, selecione alguma opção!')
+            //clean answer
+            setAnswerMainDisplay(styles.invisible)
+        } else {}
+    }
+
     function validateAnswerPageMain() {
+        alertOption();
         cleanOptions();
         for(let i=0; i < 5; i++) {
-            if (`${Object.values(optionMain)[i]}`.includes(`${validateAnswerMain}`)) {
+            if (`${Object.values(optionMain)[i]}`.includes(`${validateAnswerMain}`) && !(captureValue === '')) {
                 //added validate class
                 const correctOption = document.querySelectorAll('.option')[i];
                 correctOption.classList.add(styles.optionValidate)
 
                 //added invalide option class
-                if (!(i === parseInt(captureValue))) {
+                if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
                     //added invalide option class
                     document.querySelectorAll('.option')[parseInt(captureValue)].classList.remove(styles.optionValidate)
 
@@ -47,7 +56,7 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
     }
 
     function validateAnswerPageNext() {
-
+        //incomplete
     }
 
 

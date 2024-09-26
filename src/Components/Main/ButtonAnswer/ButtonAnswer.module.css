@@ -19,6 +19,7 @@
 
 .invisible{
     visibility: hidden;
+    background-color: aquamarine;
 }
 
 .optionValidate {
