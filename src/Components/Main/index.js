@@ -11,11 +11,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
 
     const [optionMain, setOptionMain] = useState([]);    
     const [captureValue, setCaptureValue] = useState('')
-    const [optionColor, setOptionColor] = useState(styles.optionColor)
-
-
-    const [validateAnswerNext, setValidateAnswerNext] = useState('')
-    
+    const [optionColor, setOptionColor] = useState(styles.optionColor)    
 
     return(
         <div className={styles.main}>

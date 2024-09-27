@@ -93,7 +93,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                         className={styles.inputOptions}  
                         type='radio' 
                         name='options' 
-                        value='0' 
+                        value='0'
                     />
                     <p className={styles.option}>{restartOptions.option1}</p>
                 </div>

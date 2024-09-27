@@ -44,12 +44,14 @@ function PageNext() {
     }
 
     function cleanOptions() {
+        document.querySelectorAll('input').forEach(e => e.checked = false)
         for(let w=0; w < 5; w++) {
             if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
                 document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate);
+                console.log(document.querySelectorAll('.inputNext')[0].checked === false, 50)
             } else if ((restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionValidate))) {
                 document.querySelectorAll('.optionNext')[w].classList.remove(optionValidate);
-            } else {}
+            } else {}      
         }
 
     }
