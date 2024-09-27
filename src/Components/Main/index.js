@@ -9,10 +9,12 @@ import { useState } from 'react';
 
 function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions, validateAnswerMain }) {
 
-    const [optionMain, setOptionMain] = useState([]);
-    
+    const [optionMain, setOptionMain] = useState([]);    
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor, setOptionColor] = useState(styles.optionColor)
+
+
+    const [validateAnswerNext, setValidateAnswerNext] = useState('')
     
 
     return(
@@ -25,13 +27,10 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 newOptions={newOptions}
                 setNewOptions={setNewOptions}
                 restartOptions={restartOptions}
-                setRestartOptions={setRestartOptions}
-                
+                setRestartOptions={setRestartOptions}                
                 optionMain={optionMain}
                 setOptionMain={setOptionMain}
-
                 setCaptureValue={setCaptureValue}
-
                 optionColor={optionColor}
             />
             <ButtonAnswer            
@@ -43,13 +42,13 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setDescriptionDisplay={setDescriptionDisplay}
                 setAnswerMainDisplay={setAnswerMainDisplay}
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
-
                 optionMain={optionMain}
                 validateAnswerMain={validateAnswerMain}
-
                 captureValue={captureValue}
-
                 setOptionColor={setOptionColor}
+
+                restartOptions={restartOptions}
+                answer={answer}
             />
             <Answer 
                 answer={answer} 

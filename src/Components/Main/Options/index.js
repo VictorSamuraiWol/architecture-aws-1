@@ -87,8 +87,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                 id='options' 
                 key={newOptions.id}
             >
-            <div className={styles.checkOpt}>
-                    <input 
+                <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
+                    <input
+                        onClick={captureValue} 
                         className={styles.inputOptions}  
                         type='radio' 
                         name='options' 
@@ -96,8 +97,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                     />
                     <p className={styles.option}>{restartOptions.option1}</p>
                 </div>
-                <div className={styles.checkOpt}>
-                    <input 
+                <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
+                    <input
+                        onClick={captureValue} 
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
@@ -105,8 +107,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                     />
                     <p className={styles.option}>{restartOptions.option2}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
@@ -114,8 +117,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                     />
                     <p className={styles.option}>{restartOptions.option3}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 
@@ -123,8 +127,9 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
                     />
                     <p className={styles.option}>{restartOptions.option4}</p>
                 </div>
-                <div className={styles.checkOpt}>
+                <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                     <input 
+                        onClick={captureValue}
                         className={styles.inputOptions} 
                         type='radio' 
                         name='options' 

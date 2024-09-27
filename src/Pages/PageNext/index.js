@@ -21,7 +21,7 @@ function PageNext() {
     });
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
- 
+
     useEffect(() => {
       fetch("http://localhost:3001/questions")
       .then(res => res.json())
