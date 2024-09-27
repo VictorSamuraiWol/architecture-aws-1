@@ -1,6 +1,6 @@
 import styles from './ButtonAnswer.module.css';
 
-function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer }) {
+function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate }) {
 
     function display() {         
         if (document.querySelector('#answerId').classList.contains(`${styles.visibleAnswer}`)) {
@@ -24,8 +24,9 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
         }
 
         for(let w=0; w < 5; w++) {
-            if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(styles.optionInvalidate)) {
-                document.querySelectorAll('.optionNext')[w].classList.remove(styles.optionInvalidate)
+            if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
+                document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate)
+                console.log(document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate), 29)
             } else {}
         }
 
@@ -68,19 +69,18 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
             if (restartOptions && `${Object.values(restartOptions)[i]}`.includes(`${answer}`) && !(captureValue === '')) {
                 //added validate class
                 const correctOption = document.querySelectorAll('.optionNext')[i];
-                correctOption.classList.add(styles.optionValidate)
+                correctOption.classList.add(optionValidate)
 
                 //added invalide option class
                 if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
-                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.remove(styles.optionValidate)
+                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.remove(optionValidate)
 
-                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.add(styles.optionInvalidate)
+                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.add(optionInvalidate)
                 } else {}
             } else {}
         }
 
     }
-
 
     function displayAndValidate () {
         display()

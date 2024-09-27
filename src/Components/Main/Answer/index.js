@@ -7,12 +7,11 @@ function Answer({ answer, descriptionP, srcImg, answerDisplay, descriptionDispla
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
                 descriptionDisplay && setDescriptionDisplay(styles.invisible)
                 descriptionMainDisplay && setDescriptionMainDisplay(styles.invisible)
-
             } else {
                 descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
                 descriptionMainDisplay && setDescriptionMainDisplay(styles.visibleDescription)
-
             }
+
         }
 
     return(

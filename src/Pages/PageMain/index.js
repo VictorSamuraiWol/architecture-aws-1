@@ -9,9 +9,7 @@ function PageMain() {
     const [newQuestions, setNewQuestions] = useState([]);
     const [answerMainDisplay, setAnswerMainDisplay] = useState(styles.invisible);
     const [descriptionMainDisplay, setDescriptionMainDisplay] = useState(styles.invisible);
-
     const validateAnswerMain = Object.values(newQuestions)[2];
-
 
     useEffect(() => {
       //obs: using port 3001, mock questions's database
@@ -24,8 +22,7 @@ function PageMain() {
         setNewQuestions(randomElement)  
       })
       .catch(e => console.log(e))
-    }, [])
-    
+    }, [])    
 
     return (
       <div className='allquestions' key={Object.values(newQuestions)[5]}>

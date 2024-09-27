@@ -31,7 +31,7 @@
         {
             "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 5!",
             "question": "A company has a web application that runs 24*7 in the production environment. The company runs a clone of the same application in the dev environment for up to 8 hours every day. The company wants to build the MOST cost-optimal solution by deploying these applications using the best-fit pricing options for EC2 instances. What would you recommend?",
-            "answer": "Use Amazon EC2 reserved instance for the production application and on-demand instances for the dev application.",
+            "answer": "Use EC2 reserved instance for the production and on-demand instances for the dev",
             "srcImg": "",
             "descriptionP": "For the given use case, you can use Amazon EC2 Reserved Instances for the prodution application as it is run 24*7; This way you can get a 72% discount if you avail a 3-year term. You can use on-demand instances for the dev application since it is only used for up to 8 hours per day. On-demand offers the flexibility to only pay for the Amazon EC2 instance when it is being used (0 to 8 hours for the given use case)."
         }
@@ -66,11 +66,11 @@
             "option5": "e) ELB"
         },
         {
-            "option1": "a) Use EC2 reserved instance for the production and spot instances for the dev application",
-            "option2": "b) Use EC2 reserved instance for the production and spot block intances for the dev application",
-            "option3": "c) Use EC2 reserved instance for the production and on-demand instances for the dev application",
-            "option4": "d) Use only EC2 on-demand instaces for the production and dev application",
-            "option5": "e) Use on-demand EC2 instances for the production and spot intances for the dev application"
+            "option1": "a) Use EC2 reserved instance for the production and spot instances for the dev",
+            "option2": "b) Use EC2 reserved instance for the production and spot block intances for the dev",
+            "option3": "c) Use EC2 reserved instance for the production and on-demand instances for the dev",
+            "option4": "d) Use only EC2 on-demand instaces for the production and dev",
+            "option5": "e) Use on-demand EC2 instances for the production and spot intances for the dev"
         }
     ]
 }

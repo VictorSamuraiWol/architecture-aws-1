@@ -7,7 +7,7 @@ import { Link} from 'react-router-dom';
 import Options from './Options';
 import { useState } from 'react';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions, validateAnswerMain }) {
+function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions, validateAnswerMain, optionValidate, optionInvalidate }) {
 
     const [optionMain, setOptionMain] = useState([]);    
     const [captureValue, setCaptureValue] = useState('')
@@ -49,6 +49,9 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
 
                 restartOptions={restartOptions}
                 answer={answer}
+
+                optionValidate={optionValidate}
+                optionInvalidate={optionInvalidate}
             />
             <Answer 
                 answer={answer} 

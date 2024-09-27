@@ -21,6 +21,8 @@ function PageNext() {
     });
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
+    const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
+    const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
 
     useEffect(() => {
       fetch("http://localhost:3001/questions")
@@ -41,6 +43,17 @@ function PageNext() {
 
     }
 
+    function cleanOptions() {
+        for(let w=0; w < 5; w++) {
+            if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
+                document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate);
+            } else if ((restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionValidate))) {
+                document.querySelectorAll('.optionNext')[w].classList.remove(optionValidate);
+            } else {}
+        }
+
+    }
+
     function optionsAbled() {
         setOptionsAble(styles.visible)
 
@@ -56,7 +69,10 @@ function PageNext() {
 
     }
 
-    function funcNewRequest() {        
+    function funcNewRequest() {
+        //Clean options' styles
+        cleanOptions()
+        
         //Generating random numbers
         randomQuestionsOptions()
 
@@ -95,6 +111,9 @@ function PageNext() {
                     descriptionDisplay={descriptionDisplay}
                     setAnswerDisplay={setAnswerDisplay}
                     setDescriptionDisplay={setDescriptionDisplay}
+
+                    optionValidate={optionValidate}
+                    optionInvalidate={optionInvalidate}
                 >
                 </Main>     
 
