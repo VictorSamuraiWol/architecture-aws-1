@@ -26,7 +26,6 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
         for(let w=0; w < 5; w++) {
             if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
                 document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate)
-                console.log(document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate), 29)
             } else {}
         }
 
