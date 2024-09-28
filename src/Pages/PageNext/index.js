@@ -24,6 +24,12 @@ function PageNext() {
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
 
+
+    const [randomIndex, setRandomIndex] = useState(0)
+    const [arr, setArr] = useState([])
+    const [arrUnicIndex, setArrUnicIndex] = useState([])
+
+
     useEffect(() => {
       fetch("http://localhost:3001/questions")
       .then(res => res.json())
@@ -62,12 +68,29 @@ function PageNext() {
     }  
 
     function randomQuestionsOptions() {
-        const randomIndex = Math.floor(Math.random()*listQuestions.length);
-        
-        setRestartOptions(newOptions)
+        setRandomIndex(Math.floor(Math.random()*listQuestions.length))
+        setArr([...arr, randomIndex])
+        //generate unic index in array
+        setArrUnicIndex([...new Set(arr)])
 
-        setNextQuestions(listQuestions[randomIndex])
-        setRestartOptions(newOptions[randomIndex])
+        if (arrUnicIndex.length === listQuestions.length) {
+            setArr([])
+            setNextQuestions(listQuestions[randomIndex])
+            setRestartOptions(newOptions[randomIndex])
+        } else if (arr.includes(randomIndex)) {
+            setRandomIndex(Math.floor(Math.random()*listQuestions.length))
+            if (arr.includes(randomIndex)) {
+                setNextQuestions(listQuestions[randomIndex])
+                setRestartOptions(newOptions[randomIndex])
+                if (arr.includes(randomIndex)) {
+                    setNextQuestions(listQuestions[randomIndex])
+                    setRestartOptions(newOptions[randomIndex])
+                }
+            }
+        } else {
+            setNextQuestions(listQuestions[randomIndex])
+            setRestartOptions(newOptions[randomIndex])
+        }
 
     }
 
