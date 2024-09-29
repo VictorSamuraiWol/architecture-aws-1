@@ -1,4 +1,7 @@
 import styles from './ButtonAnswer.module.css';
+import errorAudio from '../../../audios/errorAudio.mp3';
+import correctAudio from '../../../audios/correctAudio.mp3';
+
 
 function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate }) {
 
@@ -42,6 +45,10 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
     }
 
     function validateAnswerPageMain() {
+
+        const errorSound = new Audio(errorAudio);
+        const correctSound = new Audio(correctAudio);
+
         validateAnswerMain && alertOption();
         validateAnswerMain && cleanOptions();        
         for(let i=0; i < 5; i++) {
@@ -49,21 +56,33 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
                 //added validate class
                 const correctOption = document.querySelectorAll('.option')[i];
                 correctOption.classList.add(styles.optionValidate)
-
+      
                 //added invalide option class
                 if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
-                    document.querySelectorAll('.option')[parseInt(captureValue)].classList.remove(styles.optionValidate)
 
-                    document.querySelectorAll('.option')[parseInt(captureValue)].classList.add(styles.optionInvalidate)
-                } else {}
+                    const wrongOption = document.querySelectorAll('.option')[parseInt(captureValue)];
+                    wrongOption.classList.remove(styles.optionValidate)
+
+                    wrongOption.classList.add(styles.optionInvalidate)
+
+                    //play error audio
+                    errorSound.play();
+                } else {
+                    //play correct audio
+                    correctSound.play();
+                }
             } else {}
         }
 
     }
 
     function validateAnswerPageNext() {
+
+        const errorSound = new Audio(errorAudio);
+        const correctSound = new Audio(correctAudio);
+
         restartOptions && alertOption();
-        restartOptions && cleanOptions();
+        restartOptions && cleanOptions();        
         for(let i=0; i < 5; i++) {
             if (restartOptions && `${Object.values(restartOptions)[i]}`.includes(`${answer}`) && !(captureValue === '')) {
                 //added validate class
@@ -75,7 +94,13 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
                     document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.remove(optionValidate)
 
                     document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.add(optionInvalidate)
-                } else {}
+
+                    //play error audio
+                    errorSound.play();
+                } else {
+                    //play correct audio
+                    correctSound.play();
+                }
             } else {}
         }
 
