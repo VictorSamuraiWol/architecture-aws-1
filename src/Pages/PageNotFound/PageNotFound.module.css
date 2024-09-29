@@ -1,0 +1,37 @@
+.PaginaNaoEncontrada {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 0 1.5rem 6.5rem;
+    background-color: var(--color-first);
+    height: 100vh;
+}
+
+.texto404 {
+    display: block;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--color-third);
+
+}
+
+.titulo {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--color-third);
+
+}
+
+.paragrafo {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    color: var(--color-third);
+}
+
+.backPage {
+    font-size: 3rem;
+}
