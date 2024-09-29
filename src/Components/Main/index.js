@@ -16,6 +16,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
     return(
         <div className={styles.main}>
             <Question question={question} />
+
             <Options 
                 optionsMainAble={optionsMainAble} 
                 optionsAble={optionsAble} 
@@ -29,6 +30,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 setCaptureValue={setCaptureValue}
                 optionColor={optionColor}
             />
+
             <ButtonAnswer            
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
@@ -42,13 +44,12 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 validateAnswerMain={validateAnswerMain}
                 captureValue={captureValue}
                 setOptionColor={setOptionColor}
-
                 restartOptions={restartOptions}
                 answer={answer}
-
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
             />
+
             <Answer 
                 answer={answer} 
                 srcImg={srcImg} 
@@ -60,13 +61,16 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 descriptionMainDisplay={descriptionMainDisplay}
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
             />
+
             <Link to={'/next'}>
                 <ButtonNext 
                     newRequest={newRequest} 
                 />
             </Link>
+            
         </div>
     )
+
 }
 
 export default Main;

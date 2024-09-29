@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 function PageNext() {
 
-    const [nextQuestions, setNextQuestions] = useState('');
+    const [nextQuestions, setNextQuestions] = useState([]);
     const [listQuestions, setListQuestions] = useState([]);
     const [optionsMainAble, setOptionsMainAble] = useState(styles.invisible);
     const [optionsAble, setOptionsAble] = useState(styles.visible);
@@ -115,8 +115,9 @@ function PageNext() {
         <div>
             <div className='allquestions' key={Object.values(nextQuestions)[5]}>        
                 <Header 
-                title={Object.values(nextQuestions)[0]}>
-                </Header>
+                title={Object.values(nextQuestions)[0]}
+                nextQuestions={nextQuestions}
+                />
 
                 <Main 
                     question={Object.values(nextQuestions)[1]} 

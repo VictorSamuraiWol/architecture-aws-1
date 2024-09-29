@@ -28,8 +28,9 @@ function PageMain() {
       <div className='allquestions' key={Object.values(newQuestions)[5]}>
   
             <Header 
-              title={Object.values(newQuestions)[0]}>
-            </Header>
+              title={Object.values(newQuestions)[0]}
+              newQuestions={newQuestions}
+            />
             <Main 
                 question={Object.values(newQuestions)[1]} 
                 answer={Object.values(newQuestions)[2]} 
@@ -40,13 +41,11 @@ function PageMain() {
                 descriptionMainDisplay={descriptionMainDisplay}
                 setAnswerMainDisplay={setAnswerMainDisplay}
                 setDescriptionMainDisplay={setDescriptionMainDisplay}
-
                 validateAnswerMain={validateAnswerMain}
             >
-            </Main>            
-            <Footer>
+            </Main>
 
-            </Footer>
+            <Footer />
       </div>
     );
   }
