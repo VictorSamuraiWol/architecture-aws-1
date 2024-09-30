@@ -2,11 +2,11 @@ import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
 
-
 function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate }) {
 
-    function display() {         
-        if (document.querySelector('#answerId').classList.contains(`${styles.visibleAnswer}`)) {
+    function display() {  
+        const answerId = document.querySelector('#answerId');        
+        if (answerId.classList.contains(`${styles.visibleAnswer}`)) {
             answerDisplay && setAnswerDisplay(styles.invisible)
             descriptionDisplay && setDescriptionDisplay(styles.invisible)
             answerMainDisplay && setAnswerMainDisplay(styles.invisible)
@@ -21,14 +21,16 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
     function cleanOptions() {
         for(let y=0; y < 5; y++) {
-            if (validateAnswerMain && document.querySelectorAll('.option')[y].classList.contains(styles.optionInvalidate)) {
-                document.querySelectorAll('.option')[y].classList.remove(styles.optionInvalidate)
+            const wrongOptionClean = document.querySelectorAll('.option')[y];
+            if (validateAnswerMain && wrongOptionClean.classList.contains(styles.optionInvalidate)) {
+                wrongOptionClean.classList.remove(styles.optionInvalidate)
             } else {}
         }
 
         for(let w=0; w < 5; w++) {
-            if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
-                document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate)
+            const wrongOptionNextClean = document.querySelectorAll('.optionNext')[w];
+            if (restartOptions && wrongOptionNextClean.classList.contains(optionInvalidate)) {
+                wrongOptionNextClean.classList.remove(optionInvalidate)
             } else {}
         }
 
@@ -45,7 +47,6 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
     }
 
     function validateAnswerPageMain() {
-
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
 
@@ -61,8 +62,8 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
                 if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
 
                     const wrongOption = document.querySelectorAll('.option')[parseInt(captureValue)];
-                    wrongOption.classList.remove(styles.optionValidate)
 
+                    wrongOption.classList.remove(styles.optionValidate)
                     wrongOption.classList.add(styles.optionInvalidate)
 
                     //play error audio
@@ -77,7 +78,6 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
     }
 
     function validateAnswerPageNext() {
-
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
 
@@ -91,9 +91,11 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
                 //added invalide option class
                 if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
-                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.remove(optionValidate)
 
-                    document.querySelectorAll('.optionNext')[parseInt(captureValue)].classList.add(optionInvalidate)
+                    const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
+
+                    wrongOptionNext.classList.remove(optionValidate)
+                    wrongOptionNext.classList.add(optionInvalidate)
 
                     //play error audio
                     errorSound.play();
