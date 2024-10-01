@@ -13,11 +13,11 @@ function PageNext() {
     const [validate, setValidate] = useState(false);
     const [newOptions, setNewOptions] = useState([]);
     const [restartOptions, setRestartOptions] = useState({
-        "option1": "a) Requester Pays",
-        "option2": "b) Server Access Logging",
-        "option3": "c) Versioning",
-        "option4": "d) Policies",
-        "option5": "e) Static Website Hosting"
+        "option1": "a) Requester Pays.",
+        "option2": "b) Server Access Logging.",
+        "option3": "c) Versioning.",
+        "option4": "d) Policies.",
+        "option5": "e) Static Website Hosting."
     });
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);

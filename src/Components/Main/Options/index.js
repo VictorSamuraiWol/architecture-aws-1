@@ -31,7 +31,7 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
     return(
         <>            
             {optionMain && <div 
-                className={optionsMainAble} 
+                className={`${optionsMainAble} ${styles.optionsMainM}`} 
                 id='optionsMain' 
                 key={optionMain.id}
             >
@@ -83,8 +83,8 @@ function Options({ optionsMainAble, optionsAble, validate, newOptions, setNewOpt
             </div>}
 
             {restartOptions && <div 
-                className={optionsAble}  
-                id='options' 
+                className={`${optionsAble} ${styles.optionsNext}`}  
+                id='option' 
                 key={newOptions.id}
             >
                 <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>

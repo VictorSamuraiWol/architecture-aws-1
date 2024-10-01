@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    width: 80%;
     cursor: pointer;
 }
 
@@ -10,18 +11,14 @@
     font-size: 12px;
 }
 
-#descriptionId {
-    /* visibility: hidden; */
-    /* display: flex; */
-}
-
 .visibleDescription {
     visibility: visible;
     text-align: center;
-    width: 50%;
-    padding: 12px;
+    width: 80%;
+    padding: 8px 12px;
     border: 2px solid var(--color-third);
     border-radius: 16px;
+    line-height: 20px;
 }
 
 .invisible {
