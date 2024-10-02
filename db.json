@@ -55,7 +55,36 @@
             "answer": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
             "srcImg": "",
             "descriptionP": "An AMI provides the information required to launch an instance. You must specify an AMI when you launch an instance. When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots. Further, an instance is created from this AMI in Region B. Hence, we have 1 EC2, 1AMI and 1 snapshot in Region B."
+        },
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 9!",
+            "question": "A Fleet of EC2 instances realized a specialized task that must deliver high random I/O performance. Each instance in the fleet would have access to a dataset that is replicated across the instances by the application itself. Because of the resilient application architecture, the specialized task would continue to be processed even if any instance goes down, as the underlying application would ensure the replacement instance has access to the required dataset. Which of the following options is the MOST cost-optimal and resource-efficient solution to build this fleet of EC2 instances?",
+            "answer": "Use Instance Store based EC2 instances.",
+            "srcImg": "",
+            "descriptionP": "An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host instance. Instance store is ideal for the temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers. Instance store volumes are included as part of the instance's usage cost. As Instance Store based volumes provide high random I/O performance at low cost (as the storage is part of the instance's usage cost) and the resilient architecture can adjust for the loss of any instance, therefore you should use Instance Store based EC2 instances for this use-case."
+        },
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 10!",
+            "question": "Multiple microservices running on EC2 instances under an ALB. The team wants ti route traffic to multiple back-end services based on the URL path of the HTTP header. So it wants request for https://www.test.com/orders to go to a specific microservice and request for https://www.test.com/products to go to another microservice. Which of the following features of ALB can be used?",
+            "answer": "Path-based Routing.",
+            "srcImg": "",
+            "descriptionP": "Path-based Routing: you can route a client request based on the URL path of the HTTP header. You can use path conditions to define rules that route request based on the URL in the request (also known as path-based routing). The path pattern is applied only to the URL, not to its query parameters."
+        },
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 11!",
+            "question": "A dynamic website is hosted using on-premises servers in its data center in the USA. The company is lauching its website in ASIA, and it wants to optimize the website loading times for new users in ASIA. The website's backend must remain in the USA. The website is being launched in a few days, and an immediate solutions is needed. What would you recommend?",
+            "answer": "Use CloudFront with a custom origin pointing to the on-premises servers.",
+            "srcImg": "",
+            "descriptionP": "CloudFront is a web service that gives businesses and web application developers an easy cost-effective way to distribute content with low latency and high data transfer speeds. CloudFront uses standard cache control headers you set on your files to identify static and dynamic content. You can use different origins for different types of content on a single site - e.g. S3 for static objects, EC2 for dynamic content, and custom origins for third-party content. An origin server stores the original, definitive version of your objects. If you're serving content over HTTP, your origin server is either an S3 bucket or an HTTP server, such as a web server. Your HTTP server can run on an EC2 instance or on a server that you manage, these servers are also known as custom origins."
+        },
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 12!",
+            "question": "A company maintains the data for the last 100 years. The data has a velocity of 1 GB per minute. You would like to store the data with only the most relevant attributes. What AWS services would you use to build the most cost-effective solution with the LEAST amount of infrastructure maintenance?",
+            "answer": "Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
+            "srcImg": "",
+            "descriptionP": "Amazon Kinesis Data Firehose is the easiest way to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data into S3, Amazon Redshift, Amazon OpenSearch Service, and Splunk, enabling near real-time analytics with existing business intelligence tools and dashboards you're already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. So, ingest the data in Amazon Kinesis Data Firehose and use a AWS Lambda function to filter and transform the incoming data before the output is dumped on S3. This way you only need to store a sliced version of the data with only the relevant data attributes required for your model. Also it should be noted that this solution is entirely serveless and requires no infrastructure maintenance."
         }
+
     ],
     "options": [
         {
@@ -113,6 +142,34 @@
             "option3": "c) 1 EC2 instance, 1 AMI and 2 snapshots.",
             "option4": "d) 1 EC2 instance and 2 AMIs exist in Region B.",
             "option5": "e) 1 EC2 instance, 1 AMI and 1 snapshot exist in Region B."
+        },
+        {
+            "option1": "a) Use EBS based EC2 instances.",
+            "option2": "b) Use EC2 instances with access to S3 based storage.",
+            "option3": "c) Use EC2 instances with EFS mount points.",
+            "option4": "d) Use EC2 instances with EBS and EFS mount points.",
+            "option5": "e) Use Instance Store based EC2 instances."
+        },
+        {
+            "option1": "a) Host-based Routing.",
+            "option2": "b) Query string parameter-based routing.",
+            "option3": "c) Path-based Routing.",
+            "option4": "d) HTTP method-based routing.",
+            "option5": "e) HTTP header-based routing."
+        },
+        {
+            "option1": "a) Leverage a Route 53 geo-proximity routing policy pointing to on-premises servers.",
+            "option2": "b) Migrate the website to S3. Use S3 cross-region replication (S3 CRR) between AWS Regions in the USA and ASIA.",
+            "option3": "c) Use CloudFront with a custom origin pointing to the DNS record of the website on Route 53.",
+            "option4": "d) Use CloudFront with a custom origin pointing to the on-premises servers.",
+            "option5": "e) Migrate the dynamic website to EC2."
+        },
+        {
+            "option1": "a) Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
+            "option2": "b) Ingest the data in a Spark Streaming Cluster on EMR and use Spark Streaming transformations before writing to S3.",
+            "option3": "c) Ingest the data in Amazon Kinesis Data Streams and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
+            "option4": "d) Ingest the data in Amazon Kinesis Data Analytics and use Amazon Kinesis Data Firehose to filter and transform the data before the output is dumped on S3.",
+            "option5": "e) Ingest the data in Amazon Kinesis Data Analytics and use SQL queries to filter and transform the data before writing to S3."
         }
     ]
 }
