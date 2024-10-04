@@ -1,6 +1,6 @@
 <p align="center">
     <img 
-      src="src/imgs/printProjectAws.png"
+      src="src/imgs/readmeImgProjectAws.png"
       width="800" 
       style="border: 1px solid grey; border-radius:5px"
     />
