@@ -19,14 +19,14 @@ function PageMain() {
         
         const randomElement = data[0]
         
-        setNewQuestions(randomElement)  
+        setNewQuestions(randomElement) 
+        
       })
       .catch(e => console.log(e))
     }, [])    
 
     return (
       <div className='allquestions' key={Object.values(newQuestions)[5]}>
-  
             <Header 
               title={Object.values(newQuestions)[0]}
               newQuestions={newQuestions}
@@ -46,8 +46,10 @@ function PageMain() {
             </Main>
 
             <Footer />
+
       </div>
     );
+    
   }
   
   export default PageMain;

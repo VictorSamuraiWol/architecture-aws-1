@@ -3,6 +3,7 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
+import soundNextPage from '../../audios/paperNextPage.mp3';
 
 function PageNext() {
 
@@ -23,11 +24,11 @@ function PageNext() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
-
-
     const [randomIndex, setRandomIndex] = useState(0)
     const [arr, setArr] = useState([])
     const [arrUnicIndex, setArrUnicIndex] = useState([])
+
+   
 
 
     useEffect(() => {
@@ -94,7 +95,16 @@ function PageNext() {
 
     }
 
+    function soundNextPageFunc() {
+        const newSoundNextPage = new Audio(soundNextPage);
+        newSoundNextPage.play()
+
+    }
+
     function funcNewRequest() {
+        //sound when pass the next page
+        soundNextPageFunc()
+
         //Clean options' styles
         cleanOptions()
         
