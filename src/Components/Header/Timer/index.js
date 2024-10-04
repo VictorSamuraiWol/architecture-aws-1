@@ -1,10 +1,16 @@
 import styles from './Timer.module.css';
 import React, { useState, useEffect, useRef } from 'react';
+import timer from '../../../audios/timer-over.mp3';
+import surprise from '../../../audios/surprise-sound.mp3';
+import soundStart from '../../../audios/sound-start.mp3';
 
-const Timer = ({nextQuestions}) => {
+const Timer = () => {
   const [time, setTime] = useState(120); // 2 minutos = 120 segundos
   const [isRunning, setIsRunning] = useState(true);
   const timerRef = useRef(null);
+  const timerOver = new Audio(timer);
+  const surpriseAudio = new Audio(surprise);
+  const soundStartAudio = new Audio(soundStart);
 
   // Function start timer
   const startTimer = () => {
@@ -13,13 +19,14 @@ const Timer = ({nextQuestions}) => {
       timerRef.current = setInterval(() => {
         setTime(prevTime => prevTime - 1);// Every second, the time is decremented by 1
       }, 1000); // 1 second interval (1000 ms)
-    }
+    } soundStartAudio.play() //play audio
   };
 
   // Function pause timer
   const pauseTimer = () => {
     setIsRunning(false); // Stop execution state
     clearInterval(timerRef.current); // Clears the range, sttopping the timer
+    surpriseAudio.play() //play audio
   };
 
   // Effect to start the timer automatically when loading the page
@@ -31,10 +38,12 @@ const Timer = ({nextQuestions}) => {
     return () => clearInterval(timerRef.current); // Clears the range when disassembling the component
    }, []);
 
+
   // Effect to stop the timer when it reaches 0
   useEffect(() => {
     if (time === 0) {
       pauseTimer();
+      timerOver.play(); //play audio
     }
   }, [time]);
 
