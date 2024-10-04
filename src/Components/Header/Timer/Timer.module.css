@@ -1,0 +1,27 @@
+.timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 8px;
+    right: 26px;
+    padding: 6px;
+    border: 2px dotted var(--color-first);
+    border-radius: 26px;
+}
+
+.timer h1 {
+    margin: 8px;
+}
+
+.timer button {
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+    padding: 6px;
+    margin: 0 3px;
+    border: 1px solid var(--color-third);
+    border-radius: 16px;
+    border-style: dashed;
+    cursor: pointer;
+}
