@@ -1,7 +1,6 @@
 import styles from './Timer.module.css';
 import React, { useState, useEffect, useRef } from 'react';
 import timer from '../../../audios/timer-over.mp3';
-import surprise from '../../../audios/surprise-sound.mp3';
 import soundStart from '../../../audios/sound-start.mp3';
 
 const Timer = () => {
@@ -9,7 +8,6 @@ const Timer = () => {
   const [isRunning, setIsRunning] = useState(true);
   const timerRef = useRef(null);
   const timerOver = new Audio(timer);
-  const surpriseAudio = new Audio(surprise);
   const soundStartAudio = new Audio(soundStart);
 
   // Function start timer
@@ -26,7 +24,7 @@ const Timer = () => {
   const pauseTimer = () => {
     setIsRunning(false); // Stop execution state
     clearInterval(timerRef.current); // Clears the range, sttopping the timer
-    surpriseAudio.play() //play audio
+    soundStartAudio.play() //play audio
   };
 
   // Effect to start the timer automatically when loading the page
