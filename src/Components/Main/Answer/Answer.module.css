@@ -26,9 +26,11 @@
 }
 
 .descriptionNewStyleClass {
+    cursor: default;
     font-style: italic;
     font-weight: bold;
     background-color: var(--color-second);
+    box-shadow: 3px 3px 3px var(--color-fourth);
     transform: scale(1.03);
     transition: 0.3s;
 }
