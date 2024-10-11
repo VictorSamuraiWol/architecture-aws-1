@@ -9,7 +9,7 @@ const Timer = () => {
   const timerRef = useRef(null);
   const timerStartSound = new Audio(timerStart);
 
-  
+
   const timerPauseSound = new Audio(timerPause);
 
   // Function start timer
@@ -27,6 +27,12 @@ const Timer = () => {
   const pauseTimer = () => {    
     setIsRunning(false); // Stop execution state
     clearInterval(timerRef.current); // Clears the range, sttopping the timer
+    timerPauseSound.play().then(() => {
+      console.log("TimerPaused played successfully")
+    }).catch(error => {
+      // catch the playback error and log it to the console, preventing it from being displayed on the screen 
+      console.log("Error attempting to play the audio:" ,error.message)
+    })
 
   };
 
@@ -43,8 +49,9 @@ const Timer = () => {
   // Effect to stop the timer when it reaches 0
   useEffect(() => {    
     if (time === 0) {
-      pauseTimer();
+      pauseTimer() 
       alert("Time's out!")
+      
     }
 
   }, [time]);
