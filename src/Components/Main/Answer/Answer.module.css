@@ -24,3 +24,11 @@
 .invisible {
     visibility: hidden;
 }
+
+.descriptionNewStyleClass {
+    font-style: italic;
+    font-weight: bold;
+    background-color: var(--color-second);
+    transform: scale(1.03);
+    transition: 0.3s;
+}
