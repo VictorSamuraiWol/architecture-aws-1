@@ -3,7 +3,6 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
-import soundNextPage from '../../audios/paperNextPage.mp3';
 
 function PageNext() {
 
