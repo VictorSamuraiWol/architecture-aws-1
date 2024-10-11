@@ -19,17 +19,15 @@ function PageNext() {
         "option3": "c) Versioning.",
         "option4": "d) Policies.",
         "option5": "e) Static Website Hosting."
+
     });
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
-    const [randomIndex, setRandomIndex] = useState(0)
-    const [arr, setArr] = useState([])
-    const [arrUnicIndex, setArrUnicIndex] = useState([])
-
-   
-
+    const [randomIndex, setRandomIndex] = useState(0);
+    const [arr, setArr] = useState([]);
+    const [arrUnicIndex, setArrUnicIndex] = useState([]);  
 
     useEffect(() => {
       fetch("http://localhost:3001/questions")
@@ -42,6 +40,7 @@ function PageNext() {
 
       })
       .catch(e => console.log(e))
+
     }, [])
 
     function clearAnswer() {
@@ -62,7 +61,7 @@ function PageNext() {
             } else if ((restartOptions && optionNext[w].classList.contains(optionValidate))) {
                 optionNext[w].classList.remove(optionValidate);
             } else {}
-                  
+
         }
 
     }
@@ -95,20 +94,13 @@ function PageNext() {
         } else {
             setNextQuestions(listQuestions[randomIndex])
             setRestartOptions(newOptions[randomIndex])
+
         }
 
     }
 
-    function soundNextPageFunc() {
-        const newSoundNextPage = new Audio(soundNextPage);
-        newSoundNextPage.play()
-
-    }
-
     function funcNewRequest() {
-        //sound when pass the next page
-        soundNextPageFunc()
-
+        
         //Clean options' styles
         cleanOptions()
         
@@ -157,7 +149,8 @@ function PageNext() {
                 >
                 </Main>     
 
-                <Footer />    
+                <Footer />
+
             </div>           
 
         </div>
