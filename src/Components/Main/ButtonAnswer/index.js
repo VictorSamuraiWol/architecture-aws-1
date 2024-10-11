@@ -5,7 +5,8 @@ import correctAudio from '../../../audios/correctAudio.mp3';
 function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate }) {
 
     function display() {  
-        const answerId = document.querySelector('#answerId');        
+        const answerId = document.querySelector('#answerId');
+
         if (answerId.classList.contains(`${styles.visibleAnswer}`)) {
             answerDisplay && setAnswerDisplay(styles.invisible)
             descriptionDisplay && setDescriptionDisplay(styles.invisible)
@@ -15,23 +16,27 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
         } else {
             answerDisplay && setAnswerDisplay(styles.visibleAnswer)
             answerMainDisplay && setAnswerMainDisplay(styles.visibleAnswer)
+
         }
 
     }
 
-    function cleanOptions() {
+    function cleanOptions() {        
+        const wrongOptionClean = document.querySelectorAll('.option');
+        const wrongOptionNextClean = document.querySelectorAll('.optionNext');
+
         for(let y=0; y < 5; y++) {
-            const wrongOptionClean = document.querySelectorAll('.option')[y];
-            if (validateAnswerMain && wrongOptionClean.classList.contains(styles.optionInvalidate)) {
-                wrongOptionClean.classList.remove(styles.optionInvalidate)
+            if (validateAnswerMain && wrongOptionClean[y].classList.contains(styles.optionInvalidate)) {
+                wrongOptionClean[y].classList.remove(styles.optionInvalidate)
             } else {}
+
         }
 
         for(let w=0; w < 5; w++) {
-            const wrongOptionNextClean = document.querySelectorAll('.optionNext')[w];
-            if (restartOptions && wrongOptionNextClean.classList.contains(optionInvalidate)) {
-                wrongOptionNextClean.classList.remove(optionInvalidate)
+            if (restartOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate)) {
+                wrongOptionNextClean[w].classList.remove(optionInvalidate)
             } else {}
+
         }
 
     }
@@ -73,6 +78,7 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
                     correctSound.play();
                 }
             } else {}
+
         }
 
     }
@@ -104,6 +110,7 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
                     correctSound.play();
                 }
             } else {}
+
         }
 
     }

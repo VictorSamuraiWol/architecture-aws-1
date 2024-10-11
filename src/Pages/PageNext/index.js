@@ -52,13 +52,17 @@ function PageNext() {
 
     function cleanOptions() {
         //clean radio input
-        document.querySelectorAll('input').forEach(e => e.checked = false)
+        const inputAll = document.querySelectorAll('input');
+        const optionNext = document.querySelectorAll('.optionNext');
+
+        inputAll.forEach(e => e.checked = false)
         for(let w=0; w < 5; w++) {
-            if (restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionInvalidate)) {
-                document.querySelectorAll('.optionNext')[w].classList.remove(optionInvalidate);
-            } else if ((restartOptions && document.querySelectorAll('.optionNext')[w].classList.contains(optionValidate))) {
-                document.querySelectorAll('.optionNext')[w].classList.remove(optionValidate);
-            } else {}      
+            if (restartOptions && optionNext[w].classList.contains(optionInvalidate)) {
+                optionNext[w].classList.remove(optionInvalidate);
+            } else if ((restartOptions && optionNext[w].classList.contains(optionValidate))) {
+                optionNext[w].classList.remove(optionValidate);
+            } else {}
+                  
         }
 
     }
