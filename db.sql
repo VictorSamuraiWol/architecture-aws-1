@@ -267,3 +267,27 @@ SELECT * FROM questions ORDER BY title ASC;
 SELECT * FROM questions ORDER BY title DESC;
 SELECT * FROM options ORDER BY option1 ASC;
 SELECT * FROM options ORDER BY option1 DESC;
+
+SELECT title AS title_architecture, question, answer AS answer_architecture, srcImg, descriptionP AS description_architecture FROM questions;
+SELECT option1 AS option_first, option2, option3 AS option_third, option4, option5 AS option_fifth FROM options;
+
+SELECT title, question FROM questions WHERE answer = 'Global Accelerator.';
+SELECT answer, descriptionP FROM questions WHERE title = "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 10!";
+SELECT option2, option4 AS option_fourth FROM options WHERE option1 = 'a) Use EBS based EC2 instances.' AND option3 = 'c) Use EC2 instances with EFS mount points.';
+SELECT option2, option4 AS option_fourth FROM options WHERE NOT(option1 = 'a) Use EBS based EC2 instances.') AND NOT(option3 = 'c) Use EC2 instances with EFS mount points.');
+SELECT option1 AS option_first, option3 FROM options WHERE option2 = 'b) Glue.' OR option5 = 'e) Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.';
+SELECT option1 AS option_first, option3 FROM options WHERE NOT(option2 = 'b) Glue.') AND NOT(option5 = 'e) Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.');
+
+SELECT title FROM questions WHERE answer IN ('Amazon FSx for Lustre.', 'Versioning.'); 
+
+SELECT answer AS answer_correct FROM questions WHERE answer LIKE 'SQS%';
+SELECT * FROM options WHERE option1 LIKE '%EC2%';
+SELECT * FROM options WHERE option1 OR option2 OR option3 OR option4 OR option5 LIKE '%EC2%';
+
+SELECT DISTINCT descriptionP FROM questions;  
+
+SELECT descriptionP FROM questions LIMIT 5;
+SELECT option1, option3 FROM options LIMIT 3;
+
+
+ 
