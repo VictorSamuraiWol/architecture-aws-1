@@ -3,6 +3,7 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
+import NotRequest from '../../Components/NotRequest';
 
 function PageMain() {
   
@@ -31,19 +32,28 @@ function PageMain() {
               title={Object.values(newQuestions)[0]}
               newQuestions={newQuestions}
             />
-            <Main 
-                question={Object.values(newQuestions)[1]} 
-                answer={Object.values(newQuestions)[2]} 
-                srcImg={Object.values(newQuestions)[3]}
-                descriptionP={Object.values(newQuestions)[4]}
-                elementId={Object.values(newQuestions)[5]}
-                answerMainDisplay={answerMainDisplay}
-                descriptionMainDisplay={descriptionMainDisplay}
-                setAnswerMainDisplay={setAnswerMainDisplay}
-                setDescriptionMainDisplay={setDescriptionMainDisplay}
-                validateAnswerMain={validateAnswerMain}
-            >
-            </Main>
+
+            {Object.values(newQuestions).length > 0 && 
+              <Main 
+                  question={Object.values(newQuestions)[1]} 
+                  answer={Object.values(newQuestions)[2]} 
+                  srcImg={Object.values(newQuestions)[3]}
+                  descriptionP={Object.values(newQuestions)[4]}
+                  elementId={Object.values(newQuestions)[5]}
+                  answerMainDisplay={answerMainDisplay}
+                  descriptionMainDisplay={descriptionMainDisplay}
+                  setAnswerMainDisplay={setAnswerMainDisplay}
+                  setDescriptionMainDisplay={setDescriptionMainDisplay}
+                  validateAnswerMain={validateAnswerMain}
+              >
+              </Main>
+
+            }
+
+            {(Object.values(newQuestions).length === 0) &&
+              <NotRequest />
+
+            }
 
             <Footer />
 

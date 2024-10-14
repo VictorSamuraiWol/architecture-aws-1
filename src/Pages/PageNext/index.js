@@ -3,6 +3,7 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
+import NotRequest from '../../Components/NotRequest';
 
 function PageNext() {
 
@@ -124,29 +125,36 @@ function PageNext() {
                 nextQuestions={nextQuestions}
                 />
 
-                <Main 
-                    question={Object.values(nextQuestions)[1]} 
-                    answer={Object.values(nextQuestions)[2]} 
-                    srcImg={Object.values(nextQuestions)[3]}
-                    descriptionP={Object.values(nextQuestions)[4]}
-                    elementId={Object.values(nextQuestions)[5]}
-                    newRequest={funcNewRequest}
-                    optionsMainAble={optionsMainAble}
-                    optionsAble={optionsAble}
-                    validate={validate}
-                    newOptions={newOptions}
-                    setNewOptions={setNewOptions}
-                    restartOptions={restartOptions}
-                    setRestartOptions={setRestartOptions}                    
-                    answerDisplay={answerDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setAnswerDisplay={setAnswerDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
+                {Object.values(nextQuestions).length > 0 && 
+                    <Main 
+                        question={Object.values(nextQuestions)[1]} 
+                        answer={Object.values(nextQuestions)[2]} 
+                        srcImg={Object.values(nextQuestions)[3]}
+                        descriptionP={Object.values(nextQuestions)[4]}
+                        elementId={Object.values(nextQuestions)[5]}
+                        newRequest={funcNewRequest}
+                        optionsMainAble={optionsMainAble}
+                        optionsAble={optionsAble}
+                        validate={validate}
+                        newOptions={newOptions}
+                        setNewOptions={setNewOptions}
+                        restartOptions={restartOptions}
+                        setRestartOptions={setRestartOptions}                    
+                        answerDisplay={answerDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setAnswerDisplay={setAnswerDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}
+                        optionValidate={optionValidate}
+                        optionInvalidate={optionInvalidate}
+                    >
+                    </Main>
+                    
+                }
 
-                    optionValidate={optionValidate}
-                    optionInvalidate={optionInvalidate}
-                >
-                </Main>     
+                {(Object.values(nextQuestions).length === 0) &&
+                    <NotRequest />
+
+                }     
 
                 <Footer />
 
