@@ -2,17 +2,18 @@ import styles from './Header.module.css';
 import Timer from './Timer';
 
 function Header({ title, newQuestions, nextQuestions }) {
-// console.log(newQuestions === undefined)
-// console.log(newQuestions.length)
-// console.log(nextQuestions)
-// console.log(nextQuestions.length)
-// console.log((Object.values(newQuestions).length > 0 ))
 
-// (Object.values(newQuestions).length > 0 ) || 
+// console.log(newQuestions, 6)
+// console.log((Object.values(newQuestions).length > 0 ), 7)
+
+// console.log(nextQuestions, 9)
+// console.log((Object.values(nextQuestions).length > 0), 10)
+
+
     return(
         <div className={styles.header}>
             <h1>{title}</h1>
-            {
+            {((newQuestions && (Object.values(newQuestions).length > 0) && !nextQuestions) || (nextQuestions && (Object.values(nextQuestions).length > 0) && !newQuestions)) && 
                 <Timer />
             }
 
