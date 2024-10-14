@@ -28,6 +28,7 @@
 - [Json-Server](https://www.npmjs.com/package/json-server)
 - [MySQL](https://www.mysql.com/)
 - [chatGPT](https://chatgpt.com/)
+- [Lexica](https://lexica.art/)
 - [Github](https://github.com/)
 - [Vercel](https://vercel.com/)
 
