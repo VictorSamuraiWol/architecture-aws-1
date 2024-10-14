@@ -3,13 +3,6 @@ import Timer from './Timer';
 
 function Header({ title, newQuestions, nextQuestions }) {
 
-// console.log(newQuestions, 6)
-// console.log((Object.values(newQuestions).length > 0 ), 7)
-
-// console.log(nextQuestions, 9)
-// console.log((Object.values(nextQuestions).length > 0), 10)
-
-
     return(
         <div className={styles.header}>
             <h1>{title}</h1>
