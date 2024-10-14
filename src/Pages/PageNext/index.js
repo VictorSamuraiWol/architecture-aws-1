@@ -4,6 +4,7 @@ import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
 import NotRequest from '../../Components/NotRequest';
+import image from '../../imgs/questions-image.png';
 
 function PageNext() {
 
@@ -152,7 +153,7 @@ function PageNext() {
                 }
 
                 {(Object.values(nextQuestions).length === 0) &&
-                    <NotRequest />
+                    <NotRequest image={image} />
 
                 }     
 

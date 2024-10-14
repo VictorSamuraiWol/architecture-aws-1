@@ -4,6 +4,7 @@ import Footer from "../../Components/Footer";
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
 import NotRequest from '../../Components/NotRequest';
+import image from '../../imgs/cloud-neon-vibe.png';
 
 function PageMain() {
   
@@ -51,7 +52,7 @@ function PageMain() {
             }
 
             {(Object.values(newQuestions).length === 0) &&
-              <NotRequest />
+              <NotRequest image={image} />
 
             }
 
