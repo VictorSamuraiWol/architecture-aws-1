@@ -18,7 +18,7 @@ option5 VARCHAR(1000));
 
 ALTER TABLE questions ADD PRIMARY KEY (title);*/
 
-/*Criando as tabelas com chaves primárias (tabelas questions e options) e secundária (tabela options)*/
+/* Creating tables with primary keys (questions and options tables) and secondary keys (options table) */
 CREATE TABLE questions 
 (codigo_questions INT NOT NULL,
 title VARCHAR(500) NULL,
@@ -37,10 +37,10 @@ option4 VARCHAR(1000) NULL,
 option5 VARCHAR(1000) NULL,
 PRIMARY KEY (codigo_options));
 
-/*Alterando para a chave primária ser também chave estrangeira*/
+/* Altering to make the primary key also a foreign key */
 ALTER TABLE options ADD CONSTRAINT fk_codigo FOREIGN KEY (codigo_options) REFERENCES questions (codigo_questions);
 
-/*Inserindo os valores por vez, a cada comando, dentro da tabela questions*/
+/* Inserting values one at a time into the questions table */
 INSERT INTO questions (codigo_questions, title, question, answer, srcImg, descriptionP) 
 VALUES (
 0,
@@ -123,7 +123,7 @@ VALUES (
 "An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host instance. Instance store is ideal for the temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers. Instance store volumes are included as part of the instance's usage cost. As Instance Store based volumes provide high random I/O performance at low cost (as the storage is part of the instance's usage cost) and the resilient architecture can adjust for the loss of any instance, therefore you should use Instance Store based EC2 instances for this use-case."
 );
 
-/*Inserindo múltiplos valores de uma única vez, dentro da tabela questions*/
+/* Inserting multiple values at once into the questions table */
 INSERT INTO questions (codigo_questions, title, question, answer, srcImg, descriptionP) 
 VALUES (
 9,
@@ -174,7 +174,7 @@ VALUES (
 "RDS Multi-AZ deployments provide enhanced availability and durability for RDS database instances, making them a natural fit for production database workloads. When you provision a Multi-AZ DB instance, RDS automatically creates a primary DB instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Multi-AZ spans at least two Availability Zones (AZs) within a single region. RDS Read Replicas provide enhanced performance and durability for RDS database instances. They make it easy to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads. For the MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines, RDS creates a second DB instance using a snapshot of the source DB instance. It then uses the engines' native asynchrounous replication to update the read replica whenever there is a change to the source DB instance. RDS replicates all databases in the source DB instance. Read replicas can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
 );
 
-/*Inserindo os valores por vez, a cada comando, dentro da tabela options*/
+/* Inserting values one at a time into the options table */
 INSERT INTO options (codigo_options, option1, option2, option3, option4, option5) 
 VALUES (
 0,
@@ -257,7 +257,7 @@ VALUES (
 "e) Use Instance Store based EC2 instances."
 );
 
-/*Inserindo múltiplos valores de uma única vez, dentro da tabela options*/
+/* Inserting multiple values at once into the options table */
 INSERT INTO options (codigo_options, option1, option2, option3, option4, option5) 
 VALUES (
 9,
@@ -308,6 +308,7 @@ VALUES (
 "e) Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
 );
 
+/* Selections */
 SELECT * FROM questions;
 SELECT * FROM options;
 
