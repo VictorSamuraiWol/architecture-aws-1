@@ -265,6 +265,7 @@ VALUES (
 );
 
 /* Selections */
+USE `aws_architecture_questions_project`;
 SELECT * FROM questions;
 SELECT * FROM options;
 
@@ -293,4 +294,37 @@ SELECT DISTINCT descriptionP FROM questions;
 
 SELECT descriptionP FROM questions LIMIT 5;
 SELECT option1, option3 FROM options LIMIT 3;
+
+ALTER TABLE questions ADD COLUMN observation VARCHAR(1500) NULL;
+ALTER TABLE questions ADD COLUMN active BOOLEAN;
+ALTER TABLE questions DROP COLUMN observation;
+ALTER TABLE questions ADD COLUMN obs VARCHAR(1500) NULL;
+ALTER TABLE questions RENAME COLUMN obs to observations;
+ALTER TABLE questions MODIFY COLUMN observations BOOLEAN;
+INSERT INTO questions (observations) VALUES (TRUE);
+INSERT INTO questions (observations) VALUES (FALSE);
+ALTER TABLE questions MODIFY COLUMN observations VARCHAR(1500);
+ALTER TABLE questions RENAME COLUMN active to actived;
+INSERT INTO questions (actived) VALUES (TRUE);
+ALTER TABLE questions RENAME question;
+ALTER TABLE question RENAME questions;
+
+UPDATE questions SET actived = TRUE WHERE answer = "Amazon FSx for Lustre.";
+UPDATE questions SET actived = FALSE WHERE ID_questions = 2;
+UPDATE questions SET observations = 'Detalhes da questão 10...' WHERE ID_questions = 10;
+UPDATE questions SET observations = "Detalhes da questão 1..." WHERE ID_questions = 1;
+
+DELETE FROM questions WHERE ID_questions = 16;
+DELETE FROM questions WHERE ID_questions = 17;
+
+CREATE TABLE teste (teste1 VARCHAR(10) NOT NULL, teste2 VARCHAR(10) NOT NULL);
+INSERT INTO teste VALUES ("ok1", "ok2"), ("ok3", "ok4");
+SELECT * FROM teste;
+
+DELETE FROM teste;
+
+SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 = 'ok4');
+SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 IS NOT NULL);
+SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 IS NULL);
+
  
