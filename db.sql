@@ -317,6 +317,10 @@ UPDATE questions SET observations = "Detalhes da questão 1..." WHERE ID_questio
 DELETE FROM questions WHERE ID_questions = 16;
 DELETE FROM questions WHERE ID_questions = 17;
 
+SELECT * FROM questions INNER JOIN options on ID_questions = ID_options;
+SELECT * FROM questions LEFT JOIN options on ID_questions = ID_options WHERE ID_questions = 5;
+SELECT * FROM questions RIGHT JOIN options on ID_questions = ID_options WHERE ID_questions = 10;
+
 CREATE TABLE teste (teste1 VARCHAR(10) NOT NULL, teste2 VARCHAR(10) NOT NULL);
 INSERT INTO teste VALUES ("ok1", "ok2"), ("ok3", "ok4");
 SELECT * FROM teste;
@@ -327,4 +331,31 @@ SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 =
 SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 IS NOT NULL);
 SELECT * FROM teste WHERE teste2 NOT IN (SELECT teste2 FROM teste WHERE teste2 IS NULL);
 
+START TRANSACTION;
+CREATE TABLE num (num1 INT, num2 INT);
+INSERT INTO num VALUES (1, 2), (3, 4), (5, 6), (7, 8), (9, 10);
+ROLLBACK;
+COMMIT;
+
+DROP TABLE num;
+SELECT * FROM num;
+ALTER TABLE num ADD COLUMN questoes_certas INT;
+SELECT num1 as ODD, num2 as EVEN FROM num;
+SELECT * FROM num WHERE num2 BETWEEN 3 AND 7;
+SELECT num1 FROM num WHERE num1 BETWEEN 2 AND 8;
+SELECT sum(num1) as ODD FROM num;
+SELECT sum(num2) as EVEN FROM num;
+UPDATE num SET questoes_certas = 1 WHERE num1 = 1;
+UPDATE num SET questoes_certas = 4 WHERE num1 = 3;
+UPDATE num SET questoes_certas = 3 WHERE num1 = 5;
+UPDATE num SET questoes_certas = 4 WHERE num1 = 7;
+UPDATE num SET questoes_certas = 3 WHERE num1 = 9;
+SELECT * FROM num ORDER BY questoes_certas;
+SELECT * FROM num ORDER BY questoes_certas DESC;
+SELECT sum(num2) as EVEN FROM num GROUP BY questoes_certas;
+SELECT questoes_certas, sum(num2) as EVEN, sum(num1) as ODD FROM num GROUP BY questoes_certas ORDER BY questoes_certas;
+SELECT questoes_certas, sum(num2) as EVEN, sum(num1) as ODD FROM num GROUP BY questoes_certas ORDER BY questoes_certas DESC;
+SELECT min(num1) as min, max(num2) as max FROM num;
+SELECT AVG(num1) as media1, AVG(num2) as media2 FROM num;
+SELECT count(num1) as contador1, count(num2) as contador2 FROM num;
  
