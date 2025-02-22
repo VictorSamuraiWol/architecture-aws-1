@@ -212,5 +212,24 @@
             "option4": "d) Multi-AZ follows asynchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
             "option5": "e) Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
         }
+    ],
+    "multiQuestions": [
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution X - Randomly!",
+            "question": "About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
+            "answer": "true",
+            "srcImg": "",
+            "descriptionP": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes."
+        }
+    ],
+    "multiOptions": [
+        {
+            "option1": "S3 One Zone-IA => S3 Standard-IA.",
+            "option2": "S3 Intelligent-Tiering => S3 Standard.",
+            "option3": "S3 Standard => S3 Intelligent-Tiering.",
+            "option4": "S3 Standard-IA => S3 Intelligent-Tiering.",
+            "option5": "S3 Standard-IA => S3 One Zone-IA."  
+        }
     ]
+
 }

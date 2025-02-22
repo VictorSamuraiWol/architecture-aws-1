@@ -1,8 +1,9 @@
 import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
+import { useState } from 'react';
 
-function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate }) {
+function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate, captureMultiOptionTag, setCaptureMultiOptionTag, listAnswer, optionColorMulti, setOptionColorMulti }) {
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -83,6 +84,8 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
     }
 
+    //ATENÇÃO DEPOIS AO TIRAR O PAGE MAIN E DEIXAR O PAGE NEXT E PAGE MULTI, VERIFICAR SE É NECESSÁRIO CONTINUAR OU NÃO COM OS STYLES: styles.optionValidate E styles.optionInvalidate DESTE CSS, POIS O optionValidate E O optionInvalidate está sendo usado do css da PAGE NEXT E PAGE MULTI
+
     function validateAnswerPageNext() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
@@ -115,10 +118,70 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
     }
 
+// -------------------------------------------------------------- 
+    function validateAnswerPageMulti() {
+        const errorSound = new Audio(errorAudio);
+        const correctSound = new Audio(correctAudio);
+        const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti')      
+        const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
+        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
+
+        const checkedValues = [...captureOptionsNextMultiInput]
+            .filter(input => input.checked)
+            .map(input => input.value)
+
+        const checkedValuesP = [...captureOptionsNextMultiP]
+        for(let i=0; i<checkedValues.length; i++) { 
+
+            if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) {
+
+                captureOptionsNextMulti[checkedValues[i]].classList.add(optionValidate)
+                captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
+
+                if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {
+                    // som só irá tocar quando estiver tudo correto
+                    correctSound.play();
+                }
+
+            } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
+
+                captureOptionsNextMulti[checkedValues[i]].classList.add(optionInvalidate)
+                captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
+                console.log(captureOptionsNextMulti[i], 174)
+                console.log(checkedValues[i], 175)
+
+                for(let i=0; i<checkedValuesP.length; i++) {
+                    if (checkedValuesP[i].innerText.includes('true')) {
+                        captureOptionsNextMulti[i].classList.add(optionValidate)
+                        captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
+                    }
+                }
+            
+                errorSound.play();
+
+            } else if (checkedValues.length < 2) {
+                alert('Por favor, marque 2 opções!')
+            } else if (checkedValues.length > 2) {
+                alert('Por favor, marque 2 opções!')
+            } else if (checkedValues.length === 0) {
+                alert('Por favor, marque 2 opções!') 
+            } else {
+                console.log('Há algo errado, por favor atualize e recomece a questão!')
+            }
+        }
+        //alerta para marcar as opções quando não tiver nenhuma marcada e ser ativada somente na página multi  
+        captureOptionsNextMulti.length > 0 && checkedValues.length === 0 && alert('Por favor, marque 2 opções!')
+    
+    }
+// --------------------------------------------------------------
+
+
+
     function displayAndValidate () {
         display()
         validateAnswerPageMain()
         validateAnswerPageNext()
+        validateAnswerPageMulti()
 
     }
 
@@ -130,4 +193,4 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
 }
 
-export default ButtonAnswer;
+export default ButtonAnswer

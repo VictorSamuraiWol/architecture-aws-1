@@ -31,4 +31,5 @@
 
 .optionInvalidate {
     color: darkred;
-} 
+    border: 2px solid red;
+}

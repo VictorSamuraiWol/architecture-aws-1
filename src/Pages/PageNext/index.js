@@ -28,8 +28,8 @@ function PageNext() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndex, setRandomIndex] = useState(0);
     const [arr, setArr] = useState([]);
-    const [arrUnicIndex, setArrUnicIndex] = useState([]);  
-
+    const [arrUnicIndex, setArrUnicIndex] = useState([]);
+    
     useEffect(() => {
       fetch("http://localhost:3001/questions")
       .then(res => res.json())
@@ -124,6 +124,7 @@ function PageNext() {
                 <Header 
                 title={Object.values(nextQuestions)[0]}
                 nextQuestions={nextQuestions}
+                key={Object.values(nextQuestions)[5]}
                 />
 
                 {Object.values(nextQuestions).length > 0 && 
@@ -140,7 +141,7 @@ function PageNext() {
                         newOptions={newOptions}
                         setNewOptions={setNewOptions}
                         restartOptions={restartOptions}
-                        setRestartOptions={setRestartOptions}                    
+                        setRestartOptions={setRestartOptions}
                         answerDisplay={answerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setAnswerDisplay={setAnswerDisplay}
@@ -159,7 +160,7 @@ function PageNext() {
 
                 <Footer />
 
-            </div>           
+            </div>
 
         </div>
     )

@@ -1,0 +1,13 @@
+.multiMain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--color-first);
+    gap: 12px;
+    height: 75vh;
+    padding: 8px;
+}
+
+.optionColorMulti {
+    color: var(--color-third);
+}

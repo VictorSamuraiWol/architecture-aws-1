@@ -24,7 +24,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 newOptions={newOptions}
                 setNewOptions={setNewOptions}
                 restartOptions={restartOptions}
-                setRestartOptions={setRestartOptions}                
+                setRestartOptions={setRestartOptions} 
                 optionMain={optionMain}
                 setOptionMain={setOptionMain}
                 setCaptureValue={setCaptureValue}
