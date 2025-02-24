@@ -1,3 +1,7 @@
+.answerClass {
+    width: 90%;
+}
+
 .answerTitle {
     display: flex;
     justify-content: center;

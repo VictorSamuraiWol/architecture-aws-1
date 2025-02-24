@@ -21,7 +21,7 @@ function NewPageMain() {
       .then(res => res.json())
       .then(data => {  
 
-        // toda a lista de questões
+        // toda a lista de questões da página main
         setListQuestions(data)
 
         // gerando um número random e usando para capturar uma questão

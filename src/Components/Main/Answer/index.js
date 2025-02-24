@@ -25,7 +25,7 @@ function Answer({ answer, answerText, descriptionP, srcImg, answerDisplay, descr
     return(
         <section            
             id='answerId' 
-            className={answerDisplay} 
+            className={`${styles.answerClass} ${answerDisplay}`}
         >   
             <div
                 onClick={description}

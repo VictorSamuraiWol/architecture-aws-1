@@ -58,7 +58,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
         const convertObjArray = [Object.values(nextOptions)[optNum1], Object.values(nextOptions)[optNum2], Object.values(nextOptions)[optNum3], Object.values(nextOptions)[optNum4], Object.values(nextOptions)[optNum5]]
-console.log(convertObjArray, 61)
+
         for(let i=0; i < 5; i++) {
             if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                 //added validate class

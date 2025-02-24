@@ -57,7 +57,9 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='0'
                 />
-                <p className={styles.option}>{nextOptions && Object.values(nextOptions)[optNum1]}</p>
+                <p className={styles.option}>
+                    {nextOptions && Object.values(nextOptions)[optNum1]}
+                </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input
@@ -67,7 +69,9 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='1' 
                 />
-                <p className={styles.option}>{nextOptions && Object.values(nextOptions)[optNum2]}</p>
+                <p className={styles.option}>
+                    {nextOptions && Object.values(nextOptions)[optNum2]}
+                </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
@@ -77,7 +81,9 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='2' 
                 />
-                <p className={styles.option}>{nextOptions && Object.values(nextOptions)[optNum3]}</p>
+                <p className={styles.option}>
+                    {nextOptions && Object.values(nextOptions)[optNum3]}
+                </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
@@ -87,7 +93,9 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='3' 
                 />
-                <p className={styles.option}>{nextOptions && Object.values(nextOptions)[optNum4]}</p>
+                <p className={styles.option}>
+                    {nextOptions && Object.values(nextOptions)[optNum4]}
+                </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
@@ -97,7 +105,9 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='4' 
                 />
-                <p className={styles.option}>{nextOptions && Object.values(nextOptions)[optNum5]}</p>
+                <p className={styles.option}>
+                    {nextOptions && Object.values(nextOptions)[optNum5]}
+                </p>
             </div>
         </div>
         

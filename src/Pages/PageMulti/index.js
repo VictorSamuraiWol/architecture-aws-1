@@ -5,38 +5,45 @@ import Header from '../../Components/Header';
 
 function PageMulti() {
 
+    const [listMultiQuestions, setListMultiQuestions] = useState([]);
     const [multiQuestions, setMultiQuestions] = useState([]);
     const [multiOptions, setMultiOptions] = useState([]);
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
+    const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
         .then(res => res.json())
         .then(data => {        
-          setMultiQuestions(data)       
-  
+            // toda a lista de questões da página multi
+            setListMultiQuestions(data)       
+
+            // gerando um número random e usando para capturar uma questão
+            const random = Math.floor(Math.random()*data.length) 
+            setRandomIndexMulti(random)  
+            setMultiQuestions(data[random])
         })
         .catch(e => console.log(e))
   
       }, [])
 
     return(
-        <div key={Object.values(multiQuestions)[5]}>
+        <div key={multiQuestions.id}>
             <Header 
-                title={multiQuestions.map(e => e.title)}
+                title={multiQuestions.title}
                 multiQuestions={multiQuestions}
             />
 
             <MultiMain 
-                question={multiQuestions.map(e => e.question)} 
-                answer={multiQuestions.map(e => e.answer)}
-                answerText={multiQuestions.map(e => e.answerText)}
-                srcImg={multiQuestions.map(e => e.srcImg)}
-                descriptionP={multiQuestions.map(e => e.descriptionP)}
-                elementId={multiQuestions.map(e => e.id)}
+                question={multiQuestions.question} 
+                answer={multiQuestions.answer}
+                answerText={multiQuestions.answerText}
+                srcImg={multiQuestions.srcImg}
+                descriptionP={multiQuestions.descriptionP}
+                elementId={multiQuestions.id}
                 multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
                 answerDisplay={answerDisplay}
@@ -44,7 +51,8 @@ function PageMulti() {
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 optionValidate={optionValidate}
-                optionInvalidate={optionInvalidate}               
+                optionInvalidate={optionInvalidate}
+                randomIndexMulti={randomIndexMulti}              
             />        
         </div> 
 

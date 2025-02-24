@@ -7,7 +7,7 @@ import Question from '../Main/Question';
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
 
-function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate }) {
+function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([]); 
@@ -16,10 +16,12 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
         <div className={styles.multiMain}>
             <Question question={question} />
 
-            <MultiOptions 
+            <MultiOptions
+                multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
                 optionColorMulti={optionColorMulti}
-                setCaptureValueMulti={setCaptureValueMulti}                            
+                setCaptureValueMulti={setCaptureValueMulti}
+                randomIndexMulti={randomIndexMulti}                           
             />
             
             <ButtonAnswer            

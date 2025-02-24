@@ -215,12 +215,28 @@
     ],
     "multiQuestions": [
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution X - Randomly!",
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!",
             "question": "About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
             "answer": "true",
-            "answerText": "answerText",
+            "answerText": "Amazon S3 Intelligent-Tiering => Amazon S3 Standard // Amazon S3 One Zone-IA => Amazon S3 Standard-IA",
             "srcImg": "",
             "descriptionP": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes."
+        }, 
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 2 - Randomly!",
+            "question": "E-commerce company is documenting the process flow to provision EC2 via the Amazon EC2 API. These instances are to be used for an internal application. Can you indentify the storage volume types that CANNOT be used as boot volumes while creating the instances? Select two.",
+            "answer": "true",
+            "answerText": "Throughput Optimized Hard disk drive (st1) // Cold Hard disk drive (sc1)",
+            "srcImg": "",
+            "descriptionP": "Solid state drive (SSD) backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. Hard disk drive (HDD) backed volumes optimized for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Throughput Optimized HDD (st1) and Cold HDD (sc1) volume types CANNOT be used as a boot volume, so these two options are correct."
+        },
+        {
+            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 3 - Randomly!",
+            "question": "The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
+            "answer": "true",
+            "answerText": "Enable AWS Multi-Factor Authentication (AWS MFA) for privileged users // Configure AWS CloudTrail to log all AWS IAM actions",
+            "srcImg": "",
+            "descriptionP": "As per the AWS best practices, it is better to enable Multi Factor Authentication (MFA) for privileged users via an MFA-enabled mobile device or hardware MFA token. AWS recommends to turn on AWS CloudTrail to log all IAM actions for monitoring and audit purposes."
         }
     ],
     "multiOptions": [
@@ -230,7 +246,20 @@
             "option3": "S3 Standard => S3 Intelligent-Tiering.",
             "option4": "S3 Standard-IA => S3 Intelligent-Tiering.",
             "option5": "S3 Standard-IA => S3 One Zone-IA."  
+        }, 
+        {
+            "option1": "Cold Hard Disk Drive (sc1).",
+            "option2": "Throughput Optimized Hard disk Drive (st1).",
+            "option3": "Instance Store.",
+            "option4": "General Purpose Solid State Drive (gp2).",
+            "option5": "Provisioned IOPS Solid State Drive."  
+        },
+        {
+            "option1": "Enable AWS MFA for privileged users.",
+            "option2": "Configure AWS CloudTrail to log all AWS IAM actions.",
+            "option3": "Use user credentials to provide access specific permissions for EC2 instances.",
+            "option4": "Create a minimum number of accounts and share these account credentials among employees.",
+            "option5": "Grant maximum privileges to avoid assigning privileges again."  
         }
     ]
-
 }
