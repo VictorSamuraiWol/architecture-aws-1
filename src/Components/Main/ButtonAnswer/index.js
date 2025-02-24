@@ -1,9 +1,8 @@
 import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
-import { useState } from 'react';
 
-function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, answerDisplay, descriptionDisplay, answerMainDisplay, descriptionMainDisplay, optionMain, validateAnswerMain, captureValue, setOptionColor, restartOptions, answer, optionValidate, optionInvalidate, captureMultiOptionTag, setCaptureMultiOptionTag, listAnswer, optionColorMulti, setOptionColorMulti }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti }) {
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -11,33 +10,31 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
         if (answerId.classList.contains(`${styles.visibleAnswer}`)) {
             answerDisplay && setAnswerDisplay(styles.invisible)
             descriptionDisplay && setDescriptionDisplay(styles.invisible)
-            answerMainDisplay && setAnswerMainDisplay(styles.invisible)
-            descriptionMainDisplay && setDescriptionMainDisplay((styles.invisible))
 
         } else {
             answerDisplay && setAnswerDisplay(styles.visibleAnswer)
-            answerMainDisplay && setAnswerMainDisplay(styles.visibleAnswer)
 
         }
-
     }
 
     function cleanOptions() {        
-        const wrongOptionClean = document.querySelectorAll('.option');
         const wrongOptionNextClean = document.querySelectorAll('.optionNext');
+        const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
 
-        for(let y=0; y < 5; y++) {
-            if (validateAnswerMain && wrongOptionClean[y].classList.contains(styles.optionInvalidate)) {
-                wrongOptionClean[y].classList.remove(styles.optionInvalidate)
+        //limpar a estilização de respostas erradas das opções desmarcadas da página main
+        for(let w=0; w < 5; w++) {
+            if (nextOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
+                wrongOptionNextClean[w].classList.remove(optionInvalidate)
+                wrongOptionNextClean[w].classList.add(optionColor)
             } else {}
-
         }
 
-        for(let w=0; w < 5; w++) {
-            if (restartOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate)) {
-                wrongOptionNextClean[w].classList.remove(optionInvalidate)
+        //limpar a estilização de respostas erradas das opções desmarcadas da página multi
+        for(let z=0; z < 5; z++) {
+            if (multiOptions && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
+                wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
+                wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
             } else {}
-
         }
 
     }
@@ -46,68 +43,40 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
         if (captureValue === '') {
             alert('Por favor, selecione alguma opção!')
             //clean answer
-            answerMainDisplay && setAnswerMainDisplay(styles.invisible)
             answerDisplay && setAnswerDisplay(styles.invisible)
         } else {}
+
+    }
+
+    function clearAnswer() {
+        setAnswerDisplay(styles.invisible)
+        setDescriptionDisplay(styles.invisible)
 
     }
 
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
+        const convertObjArray = [nextOptions.option1, nextOptions.option2, nextOptions.option3, nextOptions.option4, nextOptions.option5]
 
-        validateAnswerMain && alertOption();
-        validateAnswerMain && cleanOptions();        
         for(let i=0; i < 5; i++) {
-            if (validateAnswerMain && `${Object.values(optionMain)[i]}`.includes(`${validateAnswerMain}`) && !(captureValue === '')) {
-                //added validate class
-                const correctOption = document.querySelectorAll('.option')[i];
-                correctOption.classList.add(styles.optionValidate)
-      
-                //added invalide option class
-                if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
-
-                    const wrongOption = document.querySelectorAll('.option')[parseInt(captureValue)];
-
-                    wrongOption.classList.remove(styles.optionValidate)
-                    wrongOption.classList.add(styles.optionInvalidate)
-
-                    //play error audio
-                    errorSound.play();
-                } else {
-                    //play correct audio
-                    correctSound.play();
-                }
-            } else {}
-
-        }
-
-    }
-
-    //ATENÇÃO DEPOIS AO TIRAR O PAGE MAIN E DEIXAR O PAGE NEXT E PAGE MULTI, VERIFICAR SE É NECESSÁRIO CONTINUAR OU NÃO COM OS STYLES: styles.optionValidate E styles.optionInvalidate DESTE CSS, POIS O optionValidate E O optionInvalidate está sendo usado do css da PAGE NEXT E PAGE MULTI
-
-    function validateAnswerPageNext() {
-        const errorSound = new Audio(errorAudio);
-        const correctSound = new Audio(correctAudio);
-
-        restartOptions && alertOption();
-        restartOptions && cleanOptions();        
-        for(let i=0; i < 5; i++) {
-            if (restartOptions && `${Object.values(restartOptions)[i]}`.includes(`${answer}`) && !(captureValue === '')) {
+            if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                 //added validate class
                 const correctOption = document.querySelectorAll('.optionNext')[i];
+                correctOption.classList.remove(optionColor)
                 correctOption.classList.add(optionValidate)
 
                 //added invalide option class
-                if (!(i === parseInt(captureValue)) && !(captureValue === '')) {
-
+                if (i !== parseInt(captureValue) && captureValue !== '') {
                     const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
 
-                    wrongOptionNext.classList.remove(optionValidate)
+                    wrongOptionNext.classList.remove(optionColor)
+                    // wrongOptionNext.classList.remove(optionValidate)
                     wrongOptionNext.classList.add(optionInvalidate)
 
                     //play error audio
-                    errorSound.play();
+                    errorSound.play();                   
+                
                 } else {
                     //play correct audio
                     correctSound.play();
@@ -115,10 +84,11 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
             } else {}
 
         }
+        alertOption()
+        cleanOptions()
 
     }
 
-// -------------------------------------------------------------- 
     function validateAnswerPageMulti() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
@@ -147,41 +117,46 @@ function ButtonAnswer({ setAnswerDisplay, setDescriptionDisplay, setAnswerMainDi
 
                 captureOptionsNextMulti[checkedValues[i]].classList.add(optionInvalidate)
                 captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
-                console.log(captureOptionsNextMulti[i], 174)
-                console.log(checkedValues[i], 175)
 
                 for(let i=0; i<checkedValuesP.length; i++) {
                     if (checkedValuesP[i].innerText.includes('true')) {
                         captureOptionsNextMulti[i].classList.add(optionValidate)
                         captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
                     }
-                }
-            
+                }            
                 errorSound.play();
 
             } else if (checkedValues.length < 2) {
                 alert('Por favor, marque 2 opções!')
+                clearAnswer()
+
             } else if (checkedValues.length > 2) {
-                alert('Por favor, marque 2 opções!')
+                alert('Por favor, marque apenas 2 opções!')
+                clearAnswer()
+
             } else if (checkedValues.length === 0) {
-                alert('Por favor, marque 2 opções!') 
+                alert('Por favor, marque 2 opções!')
+                clearAnswer()
+
             } else {
                 console.log('Há algo errado, por favor atualize e recomece a questão!')
+
             }
         }
-        //alerta para marcar as opções quando não tiver nenhuma marcada e ser ativada somente na página multi  
-        captureOptionsNextMulti.length > 0 && checkedValues.length === 0 && alert('Por favor, marque 2 opções!')
-    
+        // alerta para marcar as opções quando não tiver nenhuma marcada e ser ativada somente na página multi  
+        if (captureOptionsNextMulti.length > 0 && checkedValues.length === 0) {
+            alert('Por favor, marque 2 opções!')
+            clearAnswer()  
+
+        }        
+        cleanOptions()
+   
     }
-// --------------------------------------------------------------
-
-
 
     function displayAndValidate () {
         display()
-        validateAnswerPageMain()
-        validateAnswerPageNext()
-        validateAnswerPageMulti()
+        nextOptions && validateAnswerPageMain()
+        multiOptions && validateAnswerPageMulti()
 
     }
 

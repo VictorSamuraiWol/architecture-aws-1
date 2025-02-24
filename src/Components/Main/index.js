@@ -7,9 +7,8 @@ import { Link} from 'react-router-dom';
 import Options from './Options';
 import { useState } from 'react';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainAble, optionsAble, validate, newOptions, setNewOptions, restartOptions, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, answerMainDisplay, descriptionMainDisplay, setAnswerMainDisplay, setDescriptionMainDisplay, setRestartOptions, validateAnswerMain, optionValidate, optionInvalidate }) {
-
-    const [optionMain, setOptionMain] = useState([]);    
+function Main({ question, answer, srcImg, descriptionP, newRequest, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions }) {
+   
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor, setOptionColor] = useState(styles.optionColor)    
 
@@ -17,37 +16,25 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
         <div className={styles.main}>
             <Question question={question} />
 
-            <Options 
-                optionsMainAble={optionsMainAble} 
-                optionsAble={optionsAble} 
-                validate={validate} 
-                newOptions={newOptions}
-                setNewOptions={setNewOptions}
-                restartOptions={restartOptions}
-                setRestartOptions={setRestartOptions} 
-                optionMain={optionMain}
-                setOptionMain={setOptionMain}
-                setCaptureValue={setCaptureValue}
+            <Options  
+                randomIndex={randomIndex}
                 optionColor={optionColor}
+                nextOptions={nextOptions}
+                setNextOptions={setNextOptions}        
+                setCaptureValue={setCaptureValue}
             />
 
             <ButtonAnswer            
                 answerDisplay={answerDisplay}
-                descriptionDisplay={descriptionDisplay}
-                answerMainDisplay={answerMainDisplay}
-                descriptionMainDisplay={descriptionMainDisplay}
                 setAnswerDisplay={setAnswerDisplay}
+                descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                setAnswerMainDisplay={setAnswerMainDisplay}
-                setDescriptionMainDisplay={setDescriptionMainDisplay}
-                optionMain={optionMain}
-                validateAnswerMain={validateAnswerMain}
-                captureValue={captureValue}
-                setOptionColor={setOptionColor}
-                restartOptions={restartOptions}
                 answer={answer}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
+                nextOptions={nextOptions}                      
+                captureValue={captureValue}
+                optionColor={optionColor}
             />
 
             <Answer 
@@ -57,12 +44,10 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, optionsMainA
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                answerMainDisplay={answerMainDisplay}
-                descriptionMainDisplay={descriptionMainDisplay}
-                setDescriptionMainDisplay={setDescriptionMainDisplay}
+                nextOptions={nextOptions}
             />
 
-            <Link to={'/next'}>
+            <Link to={'/pageMulti'}>
                 <ButtonNext 
                     newRequest={newRequest} 
                 />

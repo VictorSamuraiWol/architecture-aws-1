@@ -2,7 +2,6 @@ import styles from './PageMulti.module.css';
 import MultiMain from '../../Components/MultiMain';
 import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
-import Footer from '../../Components/Footer';
 
 function PageMulti() {
 
@@ -17,8 +16,7 @@ function PageMulti() {
         fetch("http://localhost:3001/multiQuestions")
         .then(res => res.json())
         .then(data => {        
-          setMultiQuestions(data)
-       
+          setMultiQuestions(data)       
   
         })
         .catch(e => console.log(e))
@@ -34,7 +32,8 @@ function PageMulti() {
 
             <MultiMain 
                 question={multiQuestions.map(e => e.question)} 
-                answer={multiQuestions.map(e => e.answer)} 
+                answer={multiQuestions.map(e => e.answer)}
+                answerText={multiQuestions.map(e => e.answerText)}
                 srcImg={multiQuestions.map(e => e.srcImg)}
                 descriptionP={multiQuestions.map(e => e.descriptionP)}
                 elementId={multiQuestions.map(e => e.id)}
@@ -46,10 +45,7 @@ function PageMulti() {
                 setDescriptionDisplay={setDescriptionDisplay}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}               
-            />
-
-            <Footer />
-        
+            />        
         </div> 
 
     )

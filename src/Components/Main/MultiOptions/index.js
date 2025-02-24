@@ -1,7 +1,7 @@
 import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
-function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, setCaptureMultiOptionTag, setListAnswer, optionColorMulti }) {
+function MultiOptions({ setMultiOptions, optionColorMulti, setCaptureValueMulti }) {
 
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');
@@ -9,7 +9,7 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
     const [listNumRandom, setListNumRandom] = useState([]);
-    const [listMulti, setListMulti] = useState([]);
+    const [listMulti, setListMulti] = useState([]);    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,10 +46,17 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
         fetchData()
     }, []);
 
+    function captureValueMultiFunc(e) {
+        const { value, checked } = e.target
+        setCaptureValueMulti(prevValues => checked ? [...prevValues, value] : prevValues.filter(v => v !== value))
+
+    }
+
     return (
         <div className={styles.multiOptionsAll}>
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
                 <input
+                    onChange={captureValueMultiFunc}                    
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value='0'
@@ -59,6 +66,7 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
 
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
                 <input
+                    onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value='1'
@@ -68,6 +76,7 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
 
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
                 <input
+                    onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value='2'
@@ -77,6 +86,7 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
 
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
                 <input
+                    onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value='3'
@@ -86,6 +96,7 @@ function MultiOptions({ multiOptions, setMultiOptions, captureMultiOptionTag, se
 
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
                 <input
+                    onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value='4'

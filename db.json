@@ -108,109 +108,109 @@
     ],
     "options": [
         {
-            "option1": "a) Storage Gateway - Volume Gateway.",
-            "option2": "b) Site-to-Site VPN.",
-            "option3": "c) Storage Gateway - File Gateway.",
-            "option4": "d) Storage Gateway - Tape Gateway.",
-            "option5": "e) Instance Store."
+            "option1": "Storage Gateway - Volume Gateway.",
+            "option2": "Site-to-Site VPN.",
+            "option3": "Storage Gateway - File Gateway.",
+            "option4": "Storage Gateway - Tape Gateway.",
+            "option5": "Instance Store."
         },
         {
-            "option1": "a) Requester Pays.",
-            "option2": "b) Server Access Logging.",
-            "option3": "c) Versioning.",
-            "option4": "d) Policies.",
-            "option5": "e) Static Website Hosting."
+            "option1": "Requester Pays.",
+            "option2": "Server Access Logging.",
+            "option3": "Versioning.",
+            "option4": "Policies.",
+            "option5": "Static Website Hosting."
         },
         {
-            "option1": "a) EMR.",
-            "option2": "b) Glue.",
-            "option3": "c) S3 Glacier Deep Archive.",
-            "option4": "d) Amazon FSx for Windows File Server.",
-            "option5": "e) Amazon FSx for Lustre."
+            "option1": "EMR.",
+            "option2": "Glue.",
+            "option3": "S3 Glacier Deep Archive.",
+            "option4": "Amazon FSx for Windows File Server.",
+            "option5": "Amazon FSx for Lustre."
         },
         {
-            "option1": "a) CloudFront.",
-            "option2": "b) Third-Party services.",
-            "option3": "c) Route 53.",
-            "option4": "d) Global Accelerator.",
-            "option5": "e) ELB."
+            "option1": "CloudFront.",
+            "option2": "Third-Party services.",
+            "option3": "Route 53.",
+            "option4": "Global Accelerator.",
+            "option5": "ELB."
         },
         {
-            "option1": "a) Use EC2 reserved instance for the production and spot instances for the dev.",
-            "option2": "b) Use EC2 reserved instance for the production and spot block intances for the dev.",
-            "option3": "c) Use EC2 reserved instance for the production and on-demand instances for the dev.",
-            "option4": "d) Use only EC2 on-demand instaces for the production and dev.",
-            "option5": "e) Use on-demand EC2 instances for the production and spot intances for the dev."
+            "option1": "Use EC2 reserved instance for the production and spot instances for the dev.",
+            "option2": "Use EC2 reserved instance for the production and spot block intances for the dev.",
+            "option3": "Use EC2 reserved instance for the production and on-demand instances for the dev.",
+            "option4": "Use only EC2 on-demand instaces for the production and dev.",
+            "option5": "Use on-demand EC2 instances for the production and spot intances for the dev."
         },
         {
-            "option1": "a) Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
-            "option2": "b) Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
-            "option3": "c) Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
-            "option4": "d) Amazon API Gateway creates RESTful APIs that enable both stateless and stateful client-server communication.",
-            "option5": "e) Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server."
+            "option1": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
+            "option2": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
+            "option3": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
+            "option4": "Amazon API Gateway creates RESTful APIs that enable both stateless and stateful client-server communication.",
+            "option5": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server."
         },
         {
-            "option1": "a) Use SQS standard queue to process the messages.",
-            "option2": "b) SQS FIFO (First-In-First-Out) queue in batch mode of 2 messages per operation to process the messages at the peak rate.",
-            "option3": "c) SQS FIFO (First-In-First-Out) queue to process the messages.",
-            "option4": "d) SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
-            "option5": "e) Use both SQS standard queue and SQS FIFO queue to process the messages."
+            "option1": "Use SQS standard queue to process the messages.",
+            "option2": "SQS FIFO (First-In-First-Out) queue in batch mode of 2 messages per operation to process the messages at the peak rate.",
+            "option3": "SQS FIFO (First-In-First-Out) queue to process the messages.",
+            "option4": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
+            "option5": "Use both SQS standard queue and SQS FIFO queue to process the messages."
         },
         {
-            "option1": "a) 1 EC2 instance and 1 snapshot exist in Region B.",
-            "option2": "b) 1 EC2 instance and 1 AMI exist in Region B.",
-            "option3": "c) 1 EC2 instance, 1 AMI and 2 snapshots.",
-            "option4": "d) 1 EC2 instance and 2 AMIs exist in Region B.",
-            "option5": "e) 1 EC2 instance, 1 AMI and 1 snapshot exist in Region B."
+            "option1": "1 EC2 instance and 1 snapshot exist in Region B.",
+            "option2": "1 EC2 instance and 1 AMI exist in Region B.",
+            "option3": "1 EC2 instance, 1 AMI and 2 snapshots.",
+            "option4": "1 EC2 instance and 2 AMIs exist in Region B.",
+            "option5": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B."
         },
         {
-            "option1": "a) Use EBS based EC2 instances.",
-            "option2": "b) Use EC2 instances with access to S3 based storage.",
-            "option3": "c) Use EC2 instances with EFS mount points.",
-            "option4": "d) Use EC2 instances with EBS and EFS mount points.",
-            "option5": "e) Use Instance Store based EC2 instances."
+            "option1": "Use EBS based EC2 instances.",
+            "option2": "Use EC2 instances with access to S3 based storage.",
+            "option3": "Use EC2 instances with EFS mount points.",
+            "option4": "Use EC2 instances with EBS and EFS mount points.",
+            "option5": "Use Instance Store based EC2 instances."
         },
         {
-            "option1": "a) Host-based Routing.",
-            "option2": "b) Query string parameter-based routing.",
-            "option3": "c) Path-based Routing.",
-            "option4": "d) HTTP method-based routing.",
-            "option5": "e) HTTP header-based routing."
+            "option1": "Host-based Routing.",
+            "option2": "Query string parameter-based routing.",
+            "option3": "Path-based Routing.",
+            "option4": "HTTP method-based routing.",
+            "option5": "HTTP header-based routing."
         },
         {
-            "option1": "a) Leverage a Route 53 geo-proximity routing policy pointing to on-premises servers.",
-            "option2": "b) Migrate the website to S3. Use S3 cross-region replication (S3 CRR) between AWS Regions in the USA and ASIA.",
-            "option3": "c) Use CloudFront with a custom origin pointing to the DNS record of the website on Route 53.",
-            "option4": "d) Use CloudFront with a custom origin pointing to the on-premises servers.",
-            "option5": "e) Migrate the dynamic website to EC2."
+            "option1": "Leverage a Route 53 geo-proximity routing policy pointing to on-premises servers.",
+            "option2": "Migrate the website to S3. Use S3 cross-region replication (S3 CRR) between AWS Regions in the USA and ASIA.",
+            "option3": "Use CloudFront with a custom origin pointing to the DNS record of the website on Route 53.",
+            "option4": "Use CloudFront with a custom origin pointing to the on-premises servers.",
+            "option5": "Migrate the dynamic website to EC2."
         },
         {
-            "option1": "a) Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
-            "option2": "b) Ingest the data in a Spark Streaming Cluster on EMR and use Spark Streaming transformations before writing to S3.",
-            "option3": "c) Ingest the data in Amazon Kinesis Data Streams and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
-            "option4": "d) Ingest the data in Amazon Kinesis Data Analytics and use Amazon Kinesis Data Firehose to filter and transform the data before the output is dumped on S3.",
-            "option5": "e) Ingest the data in Amazon Kinesis Data Analytics and use SQL queries to filter and transform the data before writing to S3."
+            "option1": "Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
+            "option2": "Ingest the data in a Spark Streaming Cluster on EMR and use Spark Streaming transformations before writing to S3.",
+            "option3": "Ingest the data in Amazon Kinesis Data Streams and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
+            "option4": "Ingest the data in Amazon Kinesis Data Analytics and use Amazon Kinesis Data Firehose to filter and transform the data before the output is dumped on S3.",
+            "option5": "Ingest the data in Amazon Kinesis Data Analytics and use SQL queries to filter and transform the data before writing to S3."
         },
         {
-            "option1": "a) The junior scientist needs to pay both S3 transfer charges and S3TA transfer charges for the image upload.",
-            "option2": "b) The junior scientist only needs to pay S3 transfer charges for the image upload.",
-            "option3": "c) The junior scientist does not need to pay any transfer charges for the image upload.",
-            "option4": "d) The junior scientist needs to pay size image, S3 transfer charges and S3TA transfer charges for the image upload.",
-            "option5": "e) The junior scientist only needs to pay S3TA transfer charges for the image upload."
+            "option1": "The junior scientist needs to pay both S3 transfer charges and S3TA transfer charges for the image upload.",
+            "option2": "The junior scientist only needs to pay S3 transfer charges for the image upload.",
+            "option3": "The junior scientist does not need to pay any transfer charges for the image upload.",
+            "option4": "The junior scientist needs to pay size image, S3 transfer charges and S3TA transfer charges for the image upload.",
+            "option5": "The junior scientist only needs to pay S3TA transfer charges for the image upload."
         },
         {
-            "option1": "a) Amazon SQS, Amazon SNS and AWS Lambda.",
-            "option2": "b) Amazon API Gateway, Amazon SQS and Amazon Kinesis.",
-            "option3": "c) Amazon Gateway Endopoints, Amazon SNS and AWS Lambda.",
-            "option4": "d) Amazon Gateway Endpoints, Amazon SQS and Amazon Kinesis.",
-            "option5": "e) Elastic Load Balancer, Amazon SQS and AWS Lambda."
+            "option1": "Amazon SQS, Amazon SNS and AWS Lambda.",
+            "option2": "Amazon API Gateway, Amazon SQS and Amazon Kinesis.",
+            "option3": "Amazon Gateway Endopoints, Amazon SNS and AWS Lambda.",
+            "option4": "Amazon Gateway Endpoints, Amazon SQS and Amazon Kinesis.",
+            "option5": "Elastic Load Balancer, Amazon SQS and AWS Lambda."
         },
         {
-            "option1": "a) Multi-AZ follows synchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option2": "b) Multi-AZ follows synchronous replication and spans at least two regions. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option3": "c) Multi-AZ follows asynchronous replication and spans one Availability Zone (AZ) within a single region. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option4": "d) Multi-AZ follows asynchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option5": "e) Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
+            "option1": "Multi-AZ follows synchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
+            "option2": "Multi-AZ follows synchronous replication and spans at least two regions. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
+            "option3": "Multi-AZ follows asynchronous replication and spans one Availability Zone (AZ) within a single region. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
+            "option4": "Multi-AZ follows asynchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
+            "option5": "Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
         }
     ],
     "multiQuestions": [
@@ -218,6 +218,7 @@
             "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution X - Randomly!",
             "question": "About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
             "answer": "true",
+            "answerText": "answerText",
             "srcImg": "",
             "descriptionP": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes."
         }

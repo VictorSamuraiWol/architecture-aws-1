@@ -7,25 +7,19 @@ import Question from '../Main/Question';
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
 
-function MultiMain({ question, multiOptions, setMultiOptions, answer, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate }) {
+function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate }) {
 
-    const [captureMultiOptionTag, setCaptureMultiOptionTag] = useState([])
-    const [listAnswer, setListAnswer] = useState([]);
-    const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti) 
+    const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
+    const [captureValueMulti, setCaptureValueMulti] = useState([]); 
 
     return (
         <div className={styles.multiMain}>
             <Question question={question} />
 
             <MultiOptions 
-                multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
-                setListAnswer={setListAnswer}
                 optionColorMulti={optionColorMulti}
-
-
-                captureMultiOptionTag={captureMultiOptionTag}
-                setCaptureMultiOptionTag={setCaptureMultiOptionTag}                            
+                setCaptureValueMulti={setCaptureValueMulti}                            
             />
             
             <ButtonAnswer            
@@ -34,27 +28,27 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, srcImg, de
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}              
                 answer={answer}
-                captureMultiOptionTag={captureMultiOptionTag}
-                setCaptureMultiOptionTag={setCaptureMultiOptionTag}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
-                listAnswer={listAnswer}
                 optionColorMulti={optionColorMulti}
-                setOptionColorMulti={setOptionColorMulti}
-             
+                multiOptions={multiOptions}
+                setMultiOptions={setMultiOptions}
+                captureValueMulti={captureValueMulti}           
             />
 
             <Answer 
-                answer={answer} 
+                answer={answer}
+                answerText={answerText}
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
                 answerDisplay={answerDisplay}
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
+                multiOptions={multiOptions}
             />
 
-            <Link to={'/next'}>
+            <Link to={'/'}>
                 <ButtonNext 
                     newRequest={newRequest} 
                 />

@@ -3,7 +3,7 @@ import soundNextPage from '../../../audios/paperNextPage.mp3';
 
 function ButtonNext({ newRequest }) {
 
-    //sound when pass the next page
+    //som quando mudar de página
     function soundNextPageFunc() {
         const newSoundNextPage = new Audio(soundNextPage);
         newSoundNextPage.play()
@@ -13,7 +13,7 @@ function ButtonNext({ newRequest }) {
     return(
         <>
             <button
-                //two functions in the onClick event 
+                //duas funções ao clicar no botão para mudar de página 
                 onClick={() => { soundNextPageFunc() ; newRequest && newRequest() }} 
                 className={styles.buttonnext}
             >
