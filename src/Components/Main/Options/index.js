@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions }) {    
+function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 }) {    
     
     const [listNumRandom, setListNumRandom] = useState([]);
-    const [listRandomOptions, setListRandomOptions] = useState([]);
-    const [optNum1, setOptNum1] = useState('');
-    const [optNum2, setOptNum2] = useState('');
-    const [optNum3, setOptNum3] = useState('');
-    const [optNum4, setOptNum4] = useState('');
-    const [optNum5, setOptNum5] = useState('');
-
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,9 +16,6 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 } else {
                     // capturando a opção correspondente a questão através da utilização do mesmo número random
                     setNextOptions(data[randomIndex])
-
-                    //pegando os dados e criando uma lista de todas as opções para depois randomizar as opções na própria questão com os números randomizados das variáveis optNum
-                    data[randomIndex] && setListRandomOptions([data[randomIndex].option1, data[randomIndex].option2, data[randomIndex].option3, data[randomIndex].option4, data[randomIndex].option5])
 
                     while (listNumRandom && listNumRandom.length < 5) {
                         const random = Math.floor(Math.random() * 5);

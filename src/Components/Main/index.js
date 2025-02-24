@@ -10,7 +10,13 @@ import { useState } from 'react';
 function Main({ question, answer, srcImg, descriptionP, newRequest, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions }) {
    
     const [captureValue, setCaptureValue] = useState('')
-    const [optionColor, setOptionColor] = useState(styles.optionColor)    
+    const [optionColor, setOptionColor] = useState(styles.optionColor)
+    
+    const [optNum1, setOptNum1] = useState('');
+    const [optNum2, setOptNum2] = useState('');
+    const [optNum3, setOptNum3] = useState('');
+    const [optNum4, setOptNum4] = useState('');
+    const [optNum5, setOptNum5] = useState('');
 
     return(
         <div className={styles.main}>
@@ -22,6 +28,16 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 nextOptions={nextOptions}
                 setNextOptions={setNextOptions}        
                 setCaptureValue={setCaptureValue}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
+                setOptNum1={setOptNum1}
+                setOptNum2={setOptNum2}
+                setOptNum3={setOptNum3}
+                setOptNum4={setOptNum4}
+                setOptNum5={setOptNum5}
             />
 
             <ButtonAnswer            
@@ -35,6 +51,11 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 nextOptions={nextOptions}                      
                 captureValue={captureValue}
                 optionColor={optionColor}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
             />
 
             <Answer 

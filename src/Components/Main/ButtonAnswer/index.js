@@ -2,7 +2,7 @@ import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5 }) {
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -57,8 +57,8 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
-        const convertObjArray = [nextOptions.option1, nextOptions.option2, nextOptions.option3, nextOptions.option4, nextOptions.option5]
-
+        const convertObjArray = [Object.values(nextOptions)[optNum1], Object.values(nextOptions)[optNum2], Object.values(nextOptions)[optNum3], Object.values(nextOptions)[optNum4], Object.values(nextOptions)[optNum5]]
+console.log(convertObjArray, 61)
         for(let i=0; i < 5; i++) {
             if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                 //added validate class

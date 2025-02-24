@@ -21,22 +21,22 @@ function MultiOptions({ setMultiOptions, optionColorMulti, setCaptureValueMulti 
 
                 data.map(e => {
                     //sempre as duas primeiras opções que estão no db.json que serão as corretas: "option1 e option2"
-                    setListMulti([e.option1, e.option2, e.option3, e.option4, e.option5])
-
-                    while (listNumRandom && listNumRandom.length < 5) {
-                        const random = Math.floor(Math.random() * 5);
-                        if (!listNumRandom.includes(random)) {
-                            listNumRandom.push(random)
-                            setOptNum1(listNumRandom[0])
-                            setOptNum2(listNumRandom[1])
-                            setOptNum3(listNumRandom[2])
-                            setOptNum4(listNumRandom[3])
-                            setOptNum5(listNumRandom[4])
-                        }                    
-                    }         
+                    return setListMulti([e.option1, e.option2, e.option3, e.option4, e.option5])
                     
-                })               
-    
+                })  
+
+                while (listNumRandom && listNumRandom.length < 5) {
+                    const random = Math.floor(Math.random() * 5);
+                    if (!listNumRandom.includes(random)) {
+                        listNumRandom.push(random)
+                        setOptNum1(listNumRandom[0])
+                        setOptNum2(listNumRandom[1])
+                        setOptNum3(listNumRandom[2])
+                        setOptNum4(listNumRandom[3])
+                        setOptNum5(listNumRandom[4])
+                    }                    
+                }         
+                
             } catch (error) {
                 console.log('Erro ao buscar as opções:', error);
             }
