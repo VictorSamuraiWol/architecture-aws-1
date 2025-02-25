@@ -17,3 +17,8 @@
     align-items: center;
     gap: 8px;
 }
+
+.checkOpt:hover {
+    font-weight: bold;
+    transform: scale(1.03);
+}

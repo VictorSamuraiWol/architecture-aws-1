@@ -18,6 +18,11 @@
     gap: 8px;
 }
 
+.inputTextMultiOptions:hover {
+    font-weight: bold;
+    transform: scale(1.03);
+}
+
 .answerBoolClass {
     opacity: 0;
 }
