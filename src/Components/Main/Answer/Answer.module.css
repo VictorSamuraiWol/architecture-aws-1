@@ -17,12 +17,13 @@
 
 .visibleDescription {
     visibility: visible;
-    text-align: center;
+    font-size: 1.3rem;
+    text-align: justify;
+    line-height: 24px;
     width: 80%;
     padding: 8px 12px;
     border: 2px solid var(--color-third);
     border-radius: 16px;
-    line-height: 20px;
 }
 
 .invisible {
