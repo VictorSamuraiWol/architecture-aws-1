@@ -40,11 +40,13 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         fetchData()
     }, []);
     
+    // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValue(e) {
         nextOptions && setCaptureValue(e.target.value)
 
     }
 
+    // função para capturar o valor que está marcado quando clicado no campo texto (p)
     function mouseOverOptionsMain(e) {
         const inputOptionMain = e.target.parentElement.childNodes[0]
         if (inputOptionMain) {
@@ -53,7 +55,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         } else {
             inputOptionMain.checked = false
         }
-        
+
     }
 
     return(                 

@@ -20,7 +20,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     throw new Error("Dados inválidos");
                 } else {
                     // capturando a opção correspondente a questão através da utilização do mesmo número random da página multi
-                    data && setMultiOptions(data[randomIndexMulti])
+                    // data && setMultiOptions(data[randomIndexMulti])
+
+                    data && setMultiOptions(data)
+
 
                     while (listNumRandom && listNumRandom.length < 5) {
                         const random = Math.floor(Math.random() * 5);
@@ -44,14 +47,14 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
 
     }, []);
 
-    // função para capturar os dois valores que estão marcados quando clicados no campo input (caixa de marcação)
+    // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
         const { value, checked } = e.target
         setCaptureValueMulti(prevValues => checked ? [...prevValues, value] : prevValues.filter(v => v !== value))
 
     }
 
-    // função para capturar os dois valores que estão marcados quando clicados no campo p (texto)
+    // função para capturar os dois valores que estão marcados quando clicados no campo texto (p)
     function mouseOverOptionsMulti(e) {
         const inputOptionMulti = e.target.parentElement.childNodes[0]
         if (inputOptionMulti.checked === false) {
@@ -61,7 +64,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
             inputOptionMulti.checked = false
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
         } else {
-            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)", verificar na l.63 ou próximo.')
+            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)", verificar na l.67 ou próximo.')
         }
         
     }
@@ -79,7 +82,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     onClick={mouseOverOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    {multiOptions && Object.values(multiOptions)[optNum1]}<span className={styles.answerBoolClass} id='answerBool1'>{(optNum1 === 0 || optNum1 === 1) && 'true'}</span>
+                    {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum1]}<span className={styles.answerBoolClass} id='answerBool1'>{(optNum1 === 0 || optNum1 === 1) && 'true'}</span>
                 </p>
             </div>
 
@@ -94,7 +97,12 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     onClick={mouseOverOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                {multiOptions && Object.values(multiOptions)[optNum2]}<span className={styles.answerBoolClass} id='answerBool2'>{(optNum2 === 0 || optNum2 === 1) && 'true'}</span>
+                    {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum2]}
+                        <span 
+                            className={styles.answerBoolClass} id='answerBool1'
+                        >
+                            {(optNum2 === 0 || optNum2 === 1) && 'true'}
+                        </span>
                 </p>
             </div>
 
@@ -109,7 +117,12 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     onClick={mouseOverOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                {multiOptions && Object.values(multiOptions)[optNum3]}<span className={styles.answerBoolClass} id='answerBool3'>{(optNum3 === 0 || optNum3 === 1) && 'true'}</span>
+                    {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum3]}
+                    <span 
+                        className={styles.answerBoolClass} id='answerBool1'
+                    >
+                        {(optNum3 === 0 || optNum3 === 1) && 'true'}
+                    </span>
                 </p>
             </div>
 
@@ -124,7 +137,12 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     onClick={mouseOverOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                {multiOptions && Object.values(multiOptions)[optNum4]}<span className={styles.answerBoolClass} id='answerBool4'>{(optNum4 === 0 || optNum4 === 1) && 'true'}</span>
+                    {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum4]}
+                    <span 
+                        className={styles.answerBoolClass} id='answerBool1'
+                    >
+                        {(optNum4 === 0 || optNum4 === 1) && 'true'}
+                    </span>
                 </p>
             </div>
 
@@ -139,9 +157,15 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     onClick={mouseOverOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                {multiOptions && Object.values(multiOptions)[optNum5]}<span className={styles.answerBoolClass} id='answerBool5'>{(optNum5 === 0 || optNum5 === 1) && 'true'}</span>
+                    {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum5]}
+                    <span 
+                        className={styles.answerBoolClass} id='answerBool1'
+                    >
+                        {(optNum5 === 0 || optNum5 === 1) && 'true'}
+                    </span>
                 </p>
             </div>
+
         </div>
     )
 }
