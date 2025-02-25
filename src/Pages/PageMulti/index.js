@@ -2,6 +2,8 @@ import styles from './PageMulti.module.css';
 import MultiMain from '../../Components/MultiMain';
 import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
+import NotRequest from '../../Components/NotRequest';
+import image from '../../imgs/questions-image.png';
 
 function PageMulti() {
 
@@ -30,6 +32,11 @@ function PageMulti() {
   
       }, [])
 
+    function funcNewRequest() {     
+        //Função que é chamada, caso seja necessário, ao clicar no botão Next para mudar de página, no momento sem código.
+
+    }
+
     return(
         <div key={multiQuestions.id}>
             <Header 
@@ -37,23 +44,30 @@ function PageMulti() {
                 multiQuestions={multiQuestions}
             />
 
-            <MultiMain 
-                question={multiQuestions.question} 
-                answer={multiQuestions.answer}
-                answerText={multiQuestions.answerText}
-                srcImg={multiQuestions.srcImg}
-                descriptionP={multiQuestions.descriptionP}
-                elementId={multiQuestions.id}
-                multiOptions={multiOptions}
-                setMultiOptions={setMultiOptions}
-                answerDisplay={answerDisplay}
-                setAnswerDisplay={setAnswerDisplay}
-                descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
-                optionValidate={optionValidate}
-                optionInvalidate={optionInvalidate}
-                randomIndexMulti={randomIndexMulti}              
-            />        
+            {multiQuestions.length !== 0 &&
+                <MultiMain 
+                    question={multiQuestions.question} 
+                    answer={multiQuestions.answer}
+                    answerText={multiQuestions.answerText}
+                    srcImg={multiQuestions.srcImg}
+                    descriptionP={multiQuestions.descriptionP}
+                    elementId={multiQuestions.id}
+                    multiOptions={multiOptions}
+                    setMultiOptions={setMultiOptions}
+                    answerDisplay={answerDisplay}
+                    setAnswerDisplay={setAnswerDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    optionValidate={optionValidate}
+                    optionInvalidate={optionInvalidate}
+                    randomIndexMulti={randomIndexMulti}
+                    newRequest={funcNewRequest}             
+                />
+            }
+
+            {multiQuestions.length === 0 &&
+                <NotRequest image={image} />
+            }      
         </div> 
 
     )

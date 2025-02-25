@@ -41,6 +41,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
     
     function captureValue(e) {
         nextOptions && setCaptureValue(e.target.value)
+        
     }
 
     return(                 

@@ -3,7 +3,7 @@ import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
 import NotRequest from '../../Components/NotRequest';
-import image from '../../imgs/questions-image.png';
+import image from '../../imgs/cloud-neon-vibe.png';
 
 function NewPageMain() {
 
@@ -35,7 +35,8 @@ function NewPageMain() {
     }, [])
 
     function funcNewRequest() {     
-        //
+        //Função que é chamada, caso seja necessário, ao clicar no botão Next para mudar de página, no momento sem código.
+
     }
 
     return(
@@ -45,30 +46,26 @@ function NewPageMain() {
                     title={nextQuestions.title}
                     nextQuestions={nextQuestions}
                 />
-                 
-                <Main 
-                    question={nextQuestions.question} 
-                    answer={nextQuestions.answer} 
-                    srcImg={nextQuestions.srcImg}
-                    descriptionP={nextQuestions.descriptionP}
-                    elementId={nextQuestions.elementId}
-                    answerDisplay={answerDisplay}
-                    setAnswerDisplay={setAnswerDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    optionValidate={optionValidate}
-                    optionInvalidate={optionInvalidate}
-                    randomIndex={randomIndex}
-                    nextOptions={nextOptions}
-                    setNextOptions={setNextOptions}
-                    
-                    
-                    
-                    newRequest={funcNewRequest}
 
-
-                >
-                </Main>                  
+                {nextQuestions && 
+                    <Main 
+                        question={nextQuestions.question} 
+                        answer={nextQuestions.answer} 
+                        srcImg={nextQuestions.srcImg}
+                        descriptionP={nextQuestions.descriptionP}
+                        elementId={nextQuestions.elementId}
+                        answerDisplay={answerDisplay}
+                        setAnswerDisplay={setAnswerDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}
+                        optionValidate={optionValidate}
+                        optionInvalidate={optionInvalidate}
+                        randomIndex={randomIndex}
+                        nextOptions={nextOptions}
+                        setNextOptions={setNextOptions}                       
+                        newRequest={funcNewRequest}
+                    />
+                }                  
                 
                 {!nextQuestions &&
                     <NotRequest image={image} />
