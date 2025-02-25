@@ -240,7 +240,7 @@
         },
         {
             "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 4 - Randomly!",
-            "question": "A company uses DynamoDB as a data store for various kinds of customer data. SOme of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
+            "question": "A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
             "answer": "true",
             "answerText": "Amazon ElastiCache // Amazon DynamoDB Accelerator (DAX)",
             "srcImg": "",
