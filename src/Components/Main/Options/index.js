@@ -45,6 +45,17 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
 
     }
 
+    function mouseOverOptionsMain(e) {
+        const inputOptionMain = e.target.parentElement.childNodes[0]
+        if (inputOptionMain) {
+            inputOptionMain.checked = true
+            setCaptureValue(inputOptionMain.value)
+        } else {
+            inputOptionMain.checked = false
+        }
+        
+    }
+
     return(                 
         <div 
         className={styles.optionsMain}  
@@ -59,7 +70,10 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='0'
                 />
-                <p className={styles.option}>
+                <p 
+                    onClick={mouseOverOptionsMain}
+                    className={styles.option}                
+                >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum1]}
                 </p>
             </div>
@@ -71,7 +85,10 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='1' 
                 />
-                <p className={styles.option}>
+                <p 
+                    onClick={mouseOverOptionsMain}
+                    className={styles.option}
+                >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum2]}
                 </p>
             </div>
@@ -83,7 +100,10 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='2' 
                 />
-                <p className={styles.option}>
+                <p 
+                    onClick={mouseOverOptionsMain}
+                    className={styles.option}
+                >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum3]}
                 </p>
             </div>
@@ -95,7 +115,10 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='3' 
                 />
-                <p className={styles.option}>
+                <p 
+                    onClick={mouseOverOptionsMain}
+                    className={styles.option}
+                >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum4]}
                 </p>
             </div>
@@ -107,7 +130,10 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     name='options' 
                     value='4' 
                 />
-                <p className={styles.option}>
+                <p 
+                    onClick={mouseOverOptionsMain}
+                    className={styles.option}
+                >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum5]}
                 </p>
             </div>

@@ -13,8 +13,8 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
         } else {
             answerDisplay && setAnswerDisplay(styles.visibleAnswer)
-
         }
+        
     }
 
     function cleanOptions() {        

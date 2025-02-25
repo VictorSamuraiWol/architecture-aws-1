@@ -1,7 +1,7 @@
 import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
-function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti }) {
+function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti }) {
 
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');
@@ -44,10 +44,26 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
 
     }, []);
 
+    // função para capturar os dois valores que estão marcados quando clicados no campo input (caixa de marcação)
     function captureValueMultiFunc(e) {
         const { value, checked } = e.target
         setCaptureValueMulti(prevValues => checked ? [...prevValues, value] : prevValues.filter(v => v !== value))
 
+    }
+
+    // função para capturar os dois valores que estão marcados quando clicados no campo p (texto)
+    function mouseOverOptionsMulti(e) {
+        const inputOptionMulti = e.target.parentElement.childNodes[0]
+        if (inputOptionMulti.checked === false) {
+            inputOptionMulti.checked = true
+            setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
+        } else if (inputOptionMulti.checked === true) {
+            inputOptionMulti.checked = false
+            setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
+        } else {
+            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)", verificar na l.63 ou próximo.')
+        }
+        
     }
 
     return (
@@ -59,7 +75,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     type='checkbox'
                     value='0'
                 />
-                <p className={styles.textMultiOptions}>
+                <p 
+                    onClick={mouseOverOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
                     {multiOptions && Object.values(multiOptions)[optNum1]}<span className={styles.answerBoolClass} id='answerBool1'>{(optNum1 === 0 || optNum1 === 1) && 'true'}</span>
                 </p>
             </div>
@@ -71,7 +90,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     type='checkbox'
                     value='1'
                 />
-                <p className={styles.textMultiOptions}>
+                <p 
+                    onClick={mouseOverOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
                 {multiOptions && Object.values(multiOptions)[optNum2]}<span className={styles.answerBoolClass} id='answerBool2'>{(optNum2 === 0 || optNum2 === 1) && 'true'}</span>
                 </p>
             </div>
@@ -83,7 +105,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     type='checkbox'
                     value='2'
                 />
-                <p className={styles.textMultiOptions}>
+                <p 
+                    onClick={mouseOverOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
                 {multiOptions && Object.values(multiOptions)[optNum3]}<span className={styles.answerBoolClass} id='answerBool3'>{(optNum3 === 0 || optNum3 === 1) && 'true'}</span>
                 </p>
             </div>
@@ -95,7 +120,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     type='checkbox'
                     value='3'
                 />
-                <p className={styles.textMultiOptions}>
+                <p 
+                    onClick={mouseOverOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
                 {multiOptions && Object.values(multiOptions)[optNum4]}<span className={styles.answerBoolClass} id='answerBool4'>{(optNum4 === 0 || optNum4 === 1) && 'true'}</span>
                 </p>
             </div>
@@ -107,7 +135,10 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     type='checkbox'
                     value='4'
                 />
-                <p className={styles.textMultiOptions}>
+                <p 
+                    onClick={mouseOverOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
                 {multiOptions && Object.values(multiOptions)[optNum5]}<span className={styles.answerBoolClass} id='answerBool5'>{(optNum5 === 0 || optNum5 === 1) && 'true'}</span>
                 </p>
             </div>

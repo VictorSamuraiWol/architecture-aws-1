@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+.textMultiOptions {
+    cursor: pointer;
+}
+
 .answerBoolClass {
     opacity: 0;
 }

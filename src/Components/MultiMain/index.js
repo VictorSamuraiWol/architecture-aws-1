@@ -21,7 +21,8 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 setMultiOptions={setMultiOptions}
                 optionColorMulti={optionColorMulti}
                 setCaptureValueMulti={setCaptureValueMulti}
-                randomIndexMulti={randomIndexMulti}                           
+                randomIndexMulti={randomIndexMulti}
+                captureValueMulti={captureValueMulti}                           
             />
             
             <ButtonAnswer            
