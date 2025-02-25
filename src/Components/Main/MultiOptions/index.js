@@ -19,7 +19,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 if (!data) {
                     throw new Error("Dados inválidos");
                 } else {
-                    // capturando a opção correspondente a questão através da utilização do mesmo número random
+                    // capturando a opção correspondente a questão através da utilização do mesmo número random da página multi
                     data && setMultiOptions(data[randomIndexMulti])
 
                     while (listNumRandom && listNumRandom.length < 5) {

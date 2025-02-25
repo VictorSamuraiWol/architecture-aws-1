@@ -2,7 +2,7 @@ import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5 }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex }) {
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -57,7 +57,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
-        const convertObjArray = [Object.values(nextOptions)[optNum1], Object.values(nextOptions)[optNum2], Object.values(nextOptions)[optNum3], Object.values(nextOptions)[optNum4], Object.values(nextOptions)[optNum5]]
+        const convertObjArray = [Object.values(nextOptions[randomIndex])[optNum1], Object.values(nextOptions[randomIndex])[optNum2], Object.values(nextOptions[randomIndex])[optNum3], Object.values(nextOptions[randomIndex])[optNum4], Object.values(nextOptions[randomIndex])[optNum5]]
 
         for(let i=0; i < 5; i++) {
             if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
@@ -139,9 +139,9 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                 clearAnswer()
 
             } else {
-                console.log('Há algo errado, por favor atualize e recomece a questão!')
-
+                console.error("Ocorreu um erro ao processar os dados da função 'validateAnswerPageMulti()' no componente 'ButtonAnswer'. Verificar 'else' l.142 ou próximo.");
             }
+
         }
         // alerta para marcar as opções quando não tiver nenhuma marcada e ser ativada somente na página multi  
         if (captureOptionsNextMulti.length > 0 && checkedValues.length === 0) {

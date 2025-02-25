@@ -20,7 +20,13 @@
 
 .inputTextMultiOptions:hover {
     font-weight: bold;
-    transform: scale(1.03);
+    transform: scale(1.01);
+}
+
+.inputMultiOptions {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
 }
 
 .answerBoolClass {

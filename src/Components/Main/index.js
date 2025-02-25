@@ -56,6 +56,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
+                randomIndex={randomIndex}
             />
 
             <Answer 
