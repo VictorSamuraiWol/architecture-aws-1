@@ -126,29 +126,14 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                 }            
                 errorSound.play();
 
-            } else if (checkedValues.length < 2) {
-                alert('Por favor, marque 2 opções!')
-                clearAnswer()
-
-            } else if (checkedValues.length > 2) {
-                alert('Por favor, marque apenas 2 opções!')
-                clearAnswer()
-
-            } else if (checkedValues.length === 0) {
-                alert('Por favor, marque 2 opções!')
-                clearAnswer()
-
-            } else {
-                console.error("Ocorreu um erro ao processar os dados da função 'validateAnswerPageMulti()' no componente 'ButtonAnswer'. Verificar 'else' l.142 ou próximo.");
-            }
+            } else {}
 
         }
-        // alerta para marcar as opções quando não tiver nenhuma marcada e ser ativada somente na página multi  
-        if (captureOptionsNextMulti.length > 0 && checkedValues.length === 0) {
+        // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
+        if (captureOptionsNextMulti.length > 0 && ((checkedValues.length === 0) || (checkedValues.length < 2) || (checkedValues.length > 2))) {
             alert('Por favor, marque 2 opções!')
-            clearAnswer()  
-
-        }        
+            clearAnswer()
+        } 
         cleanOptions()
    
     }
