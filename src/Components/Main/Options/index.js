@@ -55,7 +55,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         } else {
             inputOptionMain.checked = false
         }
-
+console.log(e.target.parentElement.childNodes[1].innerText.includes('o'))
     }
 
 // ----------------------------------------------------------------

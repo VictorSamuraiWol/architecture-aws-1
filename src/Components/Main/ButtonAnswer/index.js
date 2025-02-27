@@ -63,6 +63,8 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
         const correctSound = new Audio(correctAudio);
         const convertObjArray = [Object.values(nextOptions[randomIndex])[optNum1], Object.values(nextOptions[randomIndex])[optNum2], Object.values(nextOptions[randomIndex])[optNum3], Object.values(nextOptions[randomIndex])[optNum4], Object.values(nextOptions[randomIndex])[optNum5]]
 
+        // Observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
+
         for(let i=0; i < 5; i++) {
             if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                 //added validate class
@@ -78,25 +80,12 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                     // wrongOptionNext.classList.remove(optionValidate)
                     wrongOptionNext.classList.add(optionInvalidate)
 
-
-
-                    //----------------------------------------
                     //play error audio
                     validateSound === true && errorSound.play(); 
-                    //----------------------------------------
-                    
-
-                
+               
                 } else {
-
-
-
-                    //------------------------------------------
                     //play correct audio
                     validateSound === true && correctSound.play();
-                    //------------------------------------------
-
-
 
                 }
             } else {}
