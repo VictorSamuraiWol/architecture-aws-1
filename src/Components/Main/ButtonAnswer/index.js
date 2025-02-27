@@ -1,8 +1,9 @@
 import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
+import { useState } from 'react';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, validateSound }) {
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -74,12 +75,26 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                     // wrongOptionNext.classList.remove(optionValidate)
                     wrongOptionNext.classList.add(optionInvalidate)
 
+
+
+                    //----------------------------------------
                     //play error audio
-                    errorSound.play();                   
+                    validateSound === true && errorSound.play(); 
+                    //----------------------------------------
+                    
+
                 
                 } else {
+
+
+
+                    //------------------------------------------
                     //play correct audio
-                    correctSound.play();
+                    validateSound === true && correctSound.play();
+                    //------------------------------------------
+
+
+
                 }
             } else {}
 
