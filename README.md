@@ -25,6 +25,7 @@
 - [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
 - [JavaScript](https://www.javascript.com/)
 - [React](https://react.dev/)
+- [React-Icons](https://react-icons.github.io/react-icons/)
 - [Json-Server](https://www.npmjs.com/package/json-server)
 - [MySQL](https://www.mysql.com/)
 - [chatGPT](https://chatgpt.com/)
