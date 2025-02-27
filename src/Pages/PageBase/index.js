@@ -1,11 +1,56 @@
+import { useState } from 'react';
 import Footer from '../../Components/Footer';
 import styles from './PageBase.module.css'
 import { Outlet } from 'react-router-dom'
 
+
+
+import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
+
+
 function PageBase() {
+
+
+
+    const [validateSound, setValidateSound] = useState(true)
+
+    function validateSoundBaseFunc() {
+        const soundFull = document.querySelector('#soundFullBaseId')
+        const soundMute = document.querySelector('#soundMuteBaseId')
+        if (validateSound === true) {
+            setValidateSound(false)
+            soundFull.style.display = 'none'
+            soundMute.style.display = 'flex'
+        } 
+        else {
+            setValidateSound(true)
+            soundFull.style.display = 'flex'
+            soundMute.style.display = 'none'
+        }
+        
+    }
+ 
+
+
     return(
         <>
-            <Outlet />
+            <Outlet context={{validateSound, setValidateSound}} />
+
+
+
+            <BiSolidVolumeFull 
+                onClick={validateSoundBaseFunc} 
+                id='soundFullBaseId' 
+                className={styles.soundFull} 
+            />
+            <BiSolidVolumeMute 
+                onClick={validateSoundBaseFunc} 
+                id='soundMuteBaseId' 
+                className={styles.soundMute}
+            />
+
+
+
             <Footer />
         </>
 

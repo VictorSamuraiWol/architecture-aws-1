@@ -69,26 +69,6 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
         }
         
     }
-
-
-
-    function validateSoundMultiFunc() {
-        const soundFull = document.querySelector('#soundFullId')
-        const soundMute = document.querySelector('#soundMuteId')
-        if (validateSound === true) {
-            setValidateSound(false)
-            soundFull.style.display = 'none'
-            soundMute.style.display = 'flex'
-        } 
-        else {
-            setValidateSound(true)
-            soundFull.style.display = 'flex'
-            soundMute.style.display = 'none'
-        }
-        
-    }
-
-
     
     return (
         <div className={styles.multiOptionsAll}>
@@ -186,22 +166,6 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     </span>
                 </p>
             </div>
-
-
-
-            <BiSolidVolumeFull 
-                onClick={validateSoundMultiFunc} 
-                id='soundFullId' 
-                className={styles.soundFull} 
-            />
-            <BiSolidVolumeMute 
-                onClick={validateSoundMultiFunc} 
-                id='soundMuteId' 
-                className={styles.soundMute}
-            />
-
-
-
         </div>
     )
 }

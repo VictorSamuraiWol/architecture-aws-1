@@ -2,15 +2,17 @@ import styles from './Timer.module.css';
 import React, { useState, useEffect, useRef } from 'react';
 import timerPause from '../../../audios/timer-pause.mp3';
 import timerStart from '../../../audios/timer-start.mp3';
+import { useOutletContext } from 'react-router-dom';
 
 const Timer = () => {
   const [time, setTime] = useState(120); // 2 minutos = 120 segundos
   const [isRunning, setIsRunning] = useState(true);
   const timerRef = useRef(null);
   const timerStartSound = new Audio(timerStart);
-
-
   const timerPauseSound = new Audio(timerPause);
+
+  // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
+  const { validateSound } = useOutletContext(); 
 
   // Function start timer
   const startTimer = () => {
@@ -19,7 +21,7 @@ const Timer = () => {
       timerRef.current = setInterval(() => {
         setTime(prevTime => prevTime - 1);// Every second, the time is decremented by 1
       }, 1000); // 1 second interval (1000 ms)
-    } timerStartSound.play() //play audio
+    } validateSound === true && timerStartSound.play() //play audio
 
   };
 
@@ -27,7 +29,7 @@ const Timer = () => {
   const pauseTimer = () => {    
     setIsRunning(false); // Stop execution state
     clearInterval(timerRef.current); // Clears the range, sttopping the timer
-    timerPauseSound.play().then(() => {
+    validateSound === true && timerPauseSound.play().then(() => {
       console.log("TimerPaused played successfully")
     }).catch(error => {
       // catch the playback error and log it to the console, preventing it from being displayed on the screen 

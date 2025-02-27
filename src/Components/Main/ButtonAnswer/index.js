@@ -1,9 +1,12 @@
 import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
-import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, validateSound }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex }) {
+
+    // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
+    const { validateSound } = useOutletContext(); 
 
     function display() {  
         const answerId = document.querySelector('#answerId');

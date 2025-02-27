@@ -3,7 +3,7 @@ import Answer from './Answer';
 import ButtonAnswer from './ButtonAnswer';
 import Question from './Question';
 import ButtonNext from './ButtonNext';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Options from './Options';
 import { useState } from 'react';
 
@@ -16,12 +16,6 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
     const [optNum3, setOptNum3] = useState('');
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
-
-
-
-    const [validateSound, setValidateSound] = useState(true)
-
-
 
     return(
         <div className={styles.main}>
@@ -43,11 +37,6 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 setOptNum3={setOptNum3}
                 setOptNum4={setOptNum4}
                 setOptNum5={setOptNum5}
-
-
-
-                validateSound={validateSound}
-                setValidateSound={setValidateSound}
             />
 
             <ButtonAnswer            
@@ -67,10 +56,6 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 optNum4={optNum4}
                 optNum5={optNum5}
                 randomIndex={randomIndex}
-
-
-
-                validateSound={validateSound}
             />
 
             <Answer 

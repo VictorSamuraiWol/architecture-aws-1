@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
-import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
-function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, validateSound, setValidateSound }) {    
-    
+function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 }) {   
+           
     const [listNumRandom, setListNumRandom] = useState([]);
- 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -82,26 +81,6 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
 // console.log(optionFilter[optNum1], 83)
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
-
-
-
-    function validateSoundMainFunc() {
-        const soundFull = document.querySelector('#soundFullId')
-        const soundMute = document.querySelector('#soundMuteId')
-        if (validateSound === true) {
-            setValidateSound(false)
-            soundFull.style.display = 'none'
-            soundMute.style.display = 'flex'
-        } 
-        else {
-            setValidateSound(true)
-            soundFull.style.display = 'flex'
-            soundMute.style.display = 'none'
-        }
-        
-    }
-
-
 
     return(                 
         <div 
@@ -184,24 +163,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum5]}
                 </p>
             </div>
-
-
-
-            <BiSolidVolumeFull 
-                onClick={validateSoundMainFunc} 
-                id='soundFullId' 
-                className={styles.soundFull} 
-            />
-            <BiSolidVolumeMute 
-                onClick={validateSoundMainFunc} 
-                id='soundMuteId' 
-                className={styles.soundMute}
-            />
-
-
-
-        </div>
-        
+        </div>        
     )
 }
 

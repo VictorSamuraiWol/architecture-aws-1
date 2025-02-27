@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import Answer from '../Main/Answer';
 import ButtonAnswer from '../Main/ButtonAnswer';
 import ButtonNext from '../Main/ButtonNext';
@@ -12,12 +12,6 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([]); 
 
-
-
-    const [validateSound, setValidateSound] = useState(true)
-
-
-
     return (
         <div className={styles.multiMain}>
             <Question question={question} />
@@ -29,11 +23,6 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 setCaptureValueMulti={setCaptureValueMulti}
                 randomIndexMulti={randomIndexMulti}
                 captureValueMulti={captureValueMulti}
-                
-                
-
-                validateSound={validateSound}
-                setValidateSound={setValidateSound}
             />
             
             <ButtonAnswer            
@@ -48,10 +37,6 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
                 captureValueMulti={captureValueMulti}
-                
-                
-
-                validateSound={validateSound}
             />
 
             <Answer 
