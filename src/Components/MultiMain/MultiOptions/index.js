@@ -1,8 +1,7 @@
 import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
-import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
-function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, validateSound, setValidateSound }) {
+function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti }) {
 
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');
@@ -24,7 +23,6 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                     // data && setMultiOptions(data[randomIndexMulti])
 
                     data && setMultiOptions(data)
-
 
                     while (listNumRandom && listNumRandom.length < 5) {
                         const random = Math.floor(Math.random() * 5);
@@ -65,7 +63,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
             inputOptionMulti.checked = false
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
         } else {
-            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)", verificar na l.67 ou próximo.')
+            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)" do componente multiOptions, verificar na l.67 ou próximo.')
         }
         
     }

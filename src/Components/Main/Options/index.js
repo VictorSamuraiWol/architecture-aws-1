@@ -55,32 +55,32 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         } else {
             inputOptionMain.checked = false
         }
-console.log(e.target.parentElement.childNodes[1].innerText.includes('o'))
+
     }
 
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// Observação 1: Pode ser usada a função 'MAP' nas opções que serão renderizadas neste componente como a seguir, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
-// const [optionMap, setOptionMap] = useState([])
-// useEffect(() => {
-//     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
-    
-// }, [nextOptions])
-// console.log(optionMap[optNum1], 71)
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // Observação 1: Pode ser usada a função 'MAP' nas opções que serão renderizadas neste componente como a seguir, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
+    // const [optionMap, setOptionMap] = useState([])
+    // useEffect(() => {
+    //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
+        
+    // }, [nextOptions])
+    // console.log(optionMap[optNum1], 71)
+    // ----------------------------------------------------------------
+    // ----------------------------------------------------------------
 
-// ----------------------------------------------------------------
-// ----------------------------------------------------------------
-// Observação 2: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
-// const [optionFilter, setOptionFilter] = useState([])
-// useEffect(() => {
-//     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) && setOptionFilter([e.option1, e.option2, e.option3, e.option4, e.option5]))
-    
-// }, [nextOptions])
-// console.log(optionFilter[optNum1], 83)
-// -----------------------------------------------------------------
-// -----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // Observação 2: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
+    // const [optionFilter, setOptionFilter] = useState([])
+    // useEffect(() => {
+    //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) && setOptionFilter([e.option1, e.option2, e.option3, e.option4, e.option5]))
+        
+    // }, [nextOptions])
+    // console.log(optionFilter[optNum1], 83)
+    // -----------------------------------------------------------------
+    // -----------------------------------------------------------------
 
     return(                 
         <div 

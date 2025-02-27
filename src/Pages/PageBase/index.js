@@ -1,16 +1,10 @@
 import { useState } from 'react';
 import Footer from '../../Components/Footer';
-import styles from './PageBase.module.css'
-import { Outlet } from 'react-router-dom'
-
-
-
+import styles from './PageBase.module.css';
+import { Outlet } from 'react-router-dom';
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
-
 function PageBase() {
-
-
 
     const [validateSound, setValidateSound] = useState(true)
 
@@ -29,14 +23,10 @@ function PageBase() {
         }
         
     }
- 
-
 
     return(
         <>
             <Outlet context={{validateSound, setValidateSound}} />
-
-
 
             <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
@@ -48,8 +38,6 @@ function PageBase() {
                 id='soundMuteBaseId' 
                 className={styles.soundMute}
             />
-
-
 
             <Footer />
         </>

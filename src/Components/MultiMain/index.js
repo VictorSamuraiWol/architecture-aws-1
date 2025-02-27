@@ -1,8 +1,8 @@
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Answer from '../Main/Answer';
 import ButtonAnswer from '../Main/ButtonAnswer';
 import ButtonNext from '../Main/ButtonNext';
-import MultiOptions from '../Main/MultiOptions';
+import MultiOptions from './MultiOptions';
 import Question from '../Main/Question';
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
