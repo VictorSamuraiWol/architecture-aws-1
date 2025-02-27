@@ -12,6 +12,12 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([]); 
 
+
+
+    const [validateSound, setValidateSound] = useState(true)
+
+
+
     return (
         <div className={styles.multiMain}>
             <Question question={question} />
@@ -22,7 +28,12 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 optionColorMulti={optionColorMulti}
                 setCaptureValueMulti={setCaptureValueMulti}
                 randomIndexMulti={randomIndexMulti}
-                captureValueMulti={captureValueMulti}                           
+                captureValueMulti={captureValueMulti}
+                
+                
+
+                validateSound={validateSound}
+                setValidateSound={setValidateSound}
             />
             
             <ButtonAnswer            
@@ -36,7 +47,11 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 optionColorMulti={optionColorMulti}
                 multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
-                captureValueMulti={captureValueMulti}           
+                captureValueMulti={captureValueMulti}
+                
+                
+
+                validateSound={validateSound}
             />
 
             <Answer 

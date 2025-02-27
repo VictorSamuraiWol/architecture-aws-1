@@ -125,7 +125,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
                 if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {
                     // som só irá tocar quando estiver tudo correto
-                    correctSound.play();
+                    validateSound === true && correctSound.play();
                 }
 
             } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
@@ -139,7 +139,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
                     }
                 }            
-                errorSound.play();
+                validateSound === true && errorSound.play();
 
             } else {}
 

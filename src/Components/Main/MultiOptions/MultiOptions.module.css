@@ -4,6 +4,7 @@
     align-items: start;
     flex-direction: column;
     gap: 8px;
+    position: relative;
     width: 90%;
     padding: 0 12px;
     border-top: 2px solid var(--color-third);
@@ -35,4 +36,25 @@
 
 .answerBoolClass {
     opacity: 0;
+}
+
+.soundFull {
+    top: 0;
+    right: 8px;
+    position: absolute;
+    padding-top: 3px;
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+}
+
+.soundMute {
+    display: none;
+    top: 0;  
+    right: 8px;
+    position: absolute;
+    padding-top: 3px;
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
 }
