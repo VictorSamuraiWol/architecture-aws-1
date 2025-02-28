@@ -7,6 +7,7 @@ import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 function PageBase() {
 
     const [validateSound, setValidateSound] = useState(true)
+    const [appearSound, setAppearSound] = useState(false)
 
     function validateSoundBaseFunc() {
         const soundFull = document.querySelector('#soundFullBaseId')
@@ -26,18 +27,18 @@ function PageBase() {
 
     return(
         <>
-            <Outlet context={{validateSound, setValidateSound}} />
+            <Outlet context={{ validateSound, setValidateSound, setAppearSound }} />
 
-            <BiSolidVolumeFull 
+            {appearSound === true && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
                 id='soundFullBaseId' 
                 className={styles.soundFull} 
-            />
-            <BiSolidVolumeMute 
+            />}
+            {appearSound === true && <BiSolidVolumeMute 
                 onClick={validateSoundBaseFunc} 
                 id='soundMuteBaseId' 
                 className={styles.soundMute}
-            />
+            />}
 
             <Footer />
         </>

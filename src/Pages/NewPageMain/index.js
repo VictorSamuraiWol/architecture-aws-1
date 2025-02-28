@@ -2,6 +2,7 @@ import styles from './NewPageMain.module.css';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import NotRequest from '../../Components/NotRequest';
 import image from '../../imgs/cloud-neon-vibe.png';
 
@@ -16,6 +17,9 @@ function NewPageMain() {
     const [randomIndex, setRandomIndex] = useState('');
     const [nextOptions, setNextOptions] = useState('');
 
+    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
+    const { setAppearSound } = useOutletContext(); 
+
     useEffect(() => {
       fetch("http://localhost:3001/questions")
       .then(res => res.json())
@@ -28,6 +32,8 @@ function NewPageMain() {
         const random = Math.floor(Math.random()*data.length) 
         setRandomIndex(random)  
         setNextQuestions(data[random])
+
+        data && setAppearSound(true)
 
       })
       .catch(e => console.log(e))
