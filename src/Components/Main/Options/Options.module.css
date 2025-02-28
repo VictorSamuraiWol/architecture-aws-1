@@ -6,11 +6,22 @@
     gap: 8px;
     position: relative;
     width: 90%;
-    padding: 0 12px;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
-    border-radius: 16px;
+    border-radius: 16px;    
     line-height: 20px;
+    padding: 8px 12px;
+    height: 380px;
+    overflow: auto;
+}
+
+.optionsMain::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.optionsMain::-webkit-scrollbar-thumb {
+    background-color: var(--color-fourth);
 }
 
 .checkOpt {
@@ -32,5 +43,75 @@
 }
 
 .option {
+    margin: 12px;
     cursor: pointer;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1700px) {
+    .inputOptions {
+        width: 20px;
+        height: 20px;
+    } 
+
+    .option {
+        font-size: 1.5rem;
+        line-height: 28px;
+        padding: 0 8px;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+    .optionsMain {
+        height: 320px;
+    }
+
+    .inputOptions {
+        width: 16px;
+        height: 16px;
+    }
+
+    .option {
+        font-size: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width: 860px) {
+    .optionsMain {
+        height: 300px;
+    }
+
+    .inputOptions {
+        width: 14px;
+        height: 14px;
+    }
+
+    .option {
+        font-size: 1rem;
+        margin: 8px;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .optionsMain {
+        height: 350px;
+    }
+    
+    .optionsMain::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;  
+    }
+
+    .inputOptions {
+        width: 12px;
+        height: 12px;
+    }
+
+    .option {
+        font-size: 0.8rem;
+    }
+
 }

@@ -40,7 +40,7 @@ function Answer({ answer, answerText, descriptionP, srcImg, answerDisplay, descr
                 onMouseOver={descriptionOnMouseOver}
                 onMouseOut={descriptionOnMouseOut} 
                 id='descriptionId' 
-                className={descriptionDisplay}
+                className={`${styles.descriptionClass} ${descriptionDisplay}`}
             >
                 {descriptionP}
             </p>

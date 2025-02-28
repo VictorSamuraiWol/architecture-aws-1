@@ -11,8 +11,13 @@
     cursor: pointer;
 }
 
+.answerTitle h3 {
+    margin: 0;
+}
+
 .answerTitle p {
     font-size: 12px;
+    margin: 0;
 }
 
 .visibleDescription {
@@ -22,12 +27,19 @@
     line-height: 24px;
     width: 80%;
     padding: 8px 12px;
-    border: 2px solid var(--color-third);
     border-radius: 16px;
+    overflow: auto;
+    height: 110px;
+    text-align: justify;
 }
 
-.invisible {
-    visibility: hidden;
+.visibleDescription::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.visibleDescription::-webkit-scrollbar-thumb {
+    background-color: var(--color-fourth);
 }
 
 .descriptionNewStyleClass {
@@ -38,4 +50,84 @@
     box-shadow: 3px 3px 3px var(--color-fourth);
     transform: scale(1.03);
     transition: 0.3s;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1700px) {
+    .answerTitle {
+        font-size: 1.3rem;
+        padding: 0 8px;
+    }
+
+    .visibleDescription {
+        font-size: 1.3rem;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+    .answerTitle {
+        font-size: 1.2rem;
+    }
+
+    .answerTitle p {
+        font-size: 10px;
+    }
+
+    .visibleDescription {
+        font-size: 1.2rem;
+    }
+  
+}
+
+@media screen and (max-width: 860px) {
+    .answerTitle {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .answerTitle p {
+        font-size: 9px;
+    }
+
+    .visibleDescription {
+        font-size: 1rem;
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .answerTitle {
+        font-size: 0.8rem;
+    }
+
+    .answerTitle h3 {
+        overflow: auto;
+        height: 50px;
+    }
+
+    .answerTitle h3::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;    
+    }
+    
+    .answerTitle h3::-webkit-scrollbar-thumb {    
+        background-color: var(--color-fourth);
+    }
+
+    .visibleDescription {
+        font-size: 0.8rem;
+        width: 65%;
+    }
+
+    .visibleDescription::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;    
+    }
+
 }

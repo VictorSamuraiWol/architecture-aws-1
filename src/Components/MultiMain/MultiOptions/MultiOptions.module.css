@@ -10,7 +10,19 @@
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;
-    line-height: 20px;
+    line-height: 20px;        
+    padding: 8px 12px;
+    height: 380px;
+    overflow: auto;
+}
+
+.multiOptionsAll::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.multiOptionsAll::-webkit-scrollbar-thumb {
+    background-color: var(--color-fourth);
 }
 
 .inputTextMultiOptions {
@@ -31,9 +43,79 @@
 }
 
 .textMultiOptions {
+    margin: 12px;
     cursor: pointer;
 }
 
 .answerBoolClass {
     opacity: 0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1700px) {
+    .inputMultiOptions {
+        width: 20px;
+        height: 20px;
+    } 
+
+    .textMultiOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+        padding: 0 8px;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+    .multiOptionsAll {
+        height: 320px;
+    }
+
+    .inputMultiOptions {
+        width: 16px;
+        height: 16px;
+    }
+
+    .textMultiOptions {
+        font-size: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width: 860px) {
+    .multiOptionsAll {
+        height: 300px;
+    }
+
+    .inputMultiOptions {
+        width: 14px;
+        height: 14px;
+    }
+
+    .textMultiOptions {
+        font-size: 1rem;
+        margin: 8px;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .multiOptionsAll {
+        height: 350px;
+    }
+
+    .multiOptionsAll::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;  
+    }
+
+    .inputMultiOptions {
+        width: 12px;
+        height: 12px;
+    }
+
+    .textMultiOptions {
+        font-size: 0.8rem;
+    }
+
 }

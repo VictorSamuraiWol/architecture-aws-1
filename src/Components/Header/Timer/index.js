@@ -14,41 +14,39 @@ const Timer = () => {
   // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
   const { validateSound } = useOutletContext(); 
 
-  // Function start timer
   const startTimer = () => {
     if (!isRunning) {
-      setIsRunning(true); // Changes the state to indicate that the timer is running
+      setIsRunning(true); // Muda o estado para indicar que está ativado
       timerRef.current = setInterval(() => {
-        setTime(prevTime => prevTime - 1);// Every second, the time is decremented by 1
-      }, 1000); // 1 second interval (1000 ms)
-    } validateSound === true && timerStartSound.play() //play audio
+        setTime(prevTime => prevTime - 1);// Cada segundo, o tempo está caindo em 1
+      }, 1000); // 1000 ms
+    } validateSound === true && timerStartSound.play() //toca o audio
 
   };
 
-  // Function pause timer
   const pauseTimer = () => {    
-    setIsRunning(false); // Stop execution state
-    clearInterval(timerRef.current); // Clears the range, sttopping the timer
+    setIsRunning(false); // Muda o estado para indicar que está desativado
+    clearInterval(timerRef.current); // Limpa o intervalo, parando o cronômetro
     validateSound === true && timerPauseSound.play().then(() => {
       console.log("TimerPaused played successfully")
     }).catch(error => {
-      // catch the playback error and log it to the console, preventing it from being displayed on the screen 
+      // captura o erro e mostra no console
       console.log("Error attempting to play the audio:" ,error.message)
     })
 
   };
 
-  // Effect to start the timer automatically when loading the page
+  // Inicia o tempo automaticamente quando carregar a página
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setTime(prevTime => prevTime - 1);
     }, 1000);
 
-    return () => clearInterval(timerRef.current); // Clears the range when disassembling the component
+    return () => clearInterval(timerRef.current); // Limpa o intervalo ao desmontar o componente
 
   }, []);
 
-  // Effect to stop the timer when it reaches 0
+  // Para o cronômetro quando chegar a 0
   useEffect(() => {    
     if (time === 0) {
       pauseTimer() 
@@ -58,10 +56,10 @@ const Timer = () => {
 
   }, [time]);
 
-  // Formatting time in minutes and seconds
+  // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {
-    const minutes = Math.floor(time / 60); // Calculates entire minutes
-    const seconds = time % 60; // Calculates the remaining seconds
+    const minutes = Math.floor(time / 60); // Calcula minutos inteiros
+    const seconds = time % 60; // Calcula os segundos restantes
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
   };

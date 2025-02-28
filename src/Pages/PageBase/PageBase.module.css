@@ -18,3 +18,19 @@
     height: 1.1em;
     cursor: pointer;
 }
+
+/* Responsividade */
+@media screen and (max-width: 1700px) {
+    .soundFull {
+        top: 93.1vh;
+        left: 2px;
+        padding: 0;
+    }
+    
+    .soundMute {
+        top: 93.1vh;
+        left: 2px;
+        padding: 0;
+    }
+
+}

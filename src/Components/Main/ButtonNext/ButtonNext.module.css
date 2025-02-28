@@ -18,3 +18,25 @@
 .invisible {
     display: none;
 }
+
+/* Responsividade */
+@media screen and (max-width: 1100px) {
+    .buttonnext {
+        padding: 14px;
+    }
+
+}
+
+@media screen and (max-width: 860px) {
+    .buttonnext {
+        padding: 12px;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .buttonnext {
+        padding: 10px;
+    }
+
+}
