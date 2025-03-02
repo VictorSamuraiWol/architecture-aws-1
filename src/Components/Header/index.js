@@ -6,7 +6,7 @@ function Header({ title, nextQuestions, multiQuestions }) {
     return(
         <div className={styles.header}>
             <h1>{title}</h1>
-            { (nextQuestions || multiQuestions) && 
+            { ((nextQuestions && multiQuestions === undefined) || (multiQuestions?.length > 0 && nextQuestions === undefined) || (nextQuestions === undefined && Object.values(multiQuestions).length > 0)) && 
                 <Timer />
             }
 

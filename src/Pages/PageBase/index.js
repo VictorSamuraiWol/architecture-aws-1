@@ -27,7 +27,7 @@ function PageBase() {
         }
         
     }
-console.log(appearSound, 30)
+
     return(
         <>
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />  
