@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import NotRequest from '../../Components/NotRequest';
 import image from '../../imgs/questions-image.png';
+import { useOutletContext } from 'react-router-dom';
 
 function PageMulti() {
 
@@ -16,6 +17,9 @@ function PageMulti() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
+     // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
+    const { setAppearSound } = useOutletContext(); 
+
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
         .then(res => res.json())
@@ -27,6 +31,8 @@ function PageMulti() {
             const random = Math.floor(Math.random()*data.length) 
             setRandomIndexMulti(random)  
             setMultiQuestions(data[random])
+
+            data && setAppearSound(true)
         })
         .catch(e => console.log(e))
   
