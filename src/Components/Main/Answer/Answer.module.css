@@ -1,5 +1,6 @@
 .answerClass {
     width: 90%;
+    z-index: 0;
 }
 
 .answerTitle {

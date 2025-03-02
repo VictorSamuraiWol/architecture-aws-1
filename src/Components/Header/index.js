@@ -6,7 +6,7 @@ function Header({ title, nextQuestions, multiQuestions }) {
     return(
         <div className={styles.header}>
             <h1>{title}</h1>
-            { nextQuestions && 
+            { (nextQuestions || multiQuestions) && 
                 <Timer />
             }
 

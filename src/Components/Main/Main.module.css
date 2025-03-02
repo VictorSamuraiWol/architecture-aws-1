@@ -6,8 +6,11 @@
     gap: 12px;
     height: 81vh;
     padding: 8px;
+    /* z-index: 1; */
 }
 
 .optionColor {
     color: var(--color-third);
 }
+
+

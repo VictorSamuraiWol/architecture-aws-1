@@ -18,7 +18,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
     const [optNum5, setOptNum5] = useState('');
 
     return(
-        <div className={styles.main}>
+        <div className={styles.main}>           
             <Question question={question} />
 
             <Options  
@@ -72,8 +72,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 <ButtonNext 
                     newRequest={newRequest} 
                 />
-            </Link>
-            
+            </Link>             
         </div>
     )
 

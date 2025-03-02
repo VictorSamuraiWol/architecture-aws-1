@@ -4,6 +4,9 @@ import styles from './PageBase.module.css';
 import { Outlet } from 'react-router-dom';
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 
+
+import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+
 function PageBase() {
 
     const [validateSound, setValidateSound] = useState(true)
@@ -27,6 +30,9 @@ function PageBase() {
 
     return(
         <>
+            <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />  
+
+
             <Outlet context={{ validateSound, setValidateSound, setAppearSound }} />
 
             {appearSound === true && <BiSolidVolumeFull 

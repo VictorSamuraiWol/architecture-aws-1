@@ -19,6 +19,13 @@
     cursor: pointer;
 }
 
+.backgroundImage {
+    position: absolute;
+    height: 92.7vh;
+    width: 100%;
+    opacity: 0.1;
+}
+
 /* Responsividade */
 @media screen and (max-width: 1700px) {
     .soundFull {
