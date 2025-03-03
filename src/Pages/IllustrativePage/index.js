@@ -16,7 +16,6 @@ function IllustrativePage() {
         const answerTitleId = document.querySelector('#answerTitleId')
         const answerClickId = document.querySelector('#answerClickId')
         const descriptionId = document.querySelector('#descriptionId')
-console.log(answerClickId, 19)
 
         headerH1.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
         headerH1.classList.add(`${styles.onClickClass}`)
