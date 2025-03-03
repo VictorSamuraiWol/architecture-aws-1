@@ -3,8 +3,6 @@ import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import NotRequest from '../../Components/NotRequest';
-import image from '../../imgs/cloud-neon-vibe.png';
 
 function NewPageMain() {
 
@@ -48,10 +46,12 @@ function NewPageMain() {
     return(
         <div>
             <div className='allquestions' key={nextQuestions.id}>        
-                <Header 
-                    title={nextQuestions.title}
-                    nextQuestions={nextQuestions}
-                />
+                {nextQuestions &&
+                    <Header 
+                        title={nextQuestions.title}
+                        nextQuestions={nextQuestions}
+                    />
+                }
 
                 {nextQuestions && 
                     <Main 
@@ -72,10 +72,7 @@ function NewPageMain() {
                         newRequest={funcNewRequest}
                     />
                 }                  
-                
-                {!nextQuestions &&
-                    <NotRequest image={image} />
-                }
+
             </div>
 
         </div>

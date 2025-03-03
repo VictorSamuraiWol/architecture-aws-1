@@ -2,8 +2,6 @@ import styles from './PageMulti.module.css';
 import MultiMain from '../../Components/MultiMain';
 import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
-import NotRequest from '../../Components/NotRequest';
-import image from '../../imgs/questions-image.png';
 import { useOutletContext } from 'react-router-dom';
 
 function PageMulti() {
@@ -45,10 +43,12 @@ function PageMulti() {
 
     return(
         <div key={multiQuestions.id}>
-            <Header 
-                title={multiQuestions.title}
-                multiQuestions={multiQuestions}
-            />
+            {multiQuestions.length !== 0 &&
+                <Header 
+                    title={multiQuestions.title}
+                    multiQuestions={multiQuestions}
+                />
+            }
 
             {multiQuestions.length !== 0 &&
                 <MultiMain 
@@ -71,9 +71,6 @@ function PageMulti() {
                 />
             }
 
-            {multiQuestions.length === 0 &&
-                <NotRequest image={image} />
-            }      
         </div> 
 
     )
