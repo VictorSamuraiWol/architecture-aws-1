@@ -43,6 +43,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
     background-color: var(--color-first);
     gap: 12px;
     height: 81vh;
@@ -179,8 +180,8 @@
 
 .buttonnext {
     position: absolute;
-    bottom: 140px;
-    right: 26px;
+    bottom: 25px;
+    right: 25px;
     color: var(--color-fourth);
     background-color: var(--color-first);
     padding: 16px;
