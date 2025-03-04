@@ -34,13 +34,6 @@
         font-size: 1rem;
         text-align: center;
         line-height: 28px;
-    }
-
-}
-
-@media screen and (max-width: 580px) {
-    .question {
-        font-size: 0.8rem;
         height: 80px;
         border: 1px dashed var(--color-fourth);
         border-radius: 8px;
@@ -55,5 +48,25 @@
     .question::-webkit-scrollbar-thumb {    
         background-color: var(--color-fourth);
     }
+
+}
+
+@media screen and (max-width: 580px) {
+    .question {
+        font-size: 0.8rem;
+        /* height: 80px;
+        border: 1px dashed var(--color-fourth);
+        border-radius: 8px;
+        overflow: auto; */
+    }
+
+    /* .question::-webkit-scrollbar {
+        height: 2px;    
+        width: 2px;
+    }
+    
+    .question::-webkit-scrollbar-thumb {    
+        background-color: var(--color-fourth);
+    } */
     
 }

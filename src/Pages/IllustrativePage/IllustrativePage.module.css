@@ -380,6 +380,19 @@
         font-size: 1rem;
         text-align: center;
         line-height: 28px;
+        height: 80px;
+        border: 1px dashed var(--color-fourth);
+        border-radius: 8px;
+        overflow: auto;
+    }
+
+    .question::-webkit-scrollbar {
+        height: 2px;    
+        width: 2px;
+    }
+    
+    .question::-webkit-scrollbar-thumb {    
+        background-color: var(--color-fourth);
     }
 
     .optionsMain {
@@ -405,6 +418,14 @@
         text-align: center;
     }
 
+    .answerTitle h3 {
+        max-height: max-content;
+        max-width: max-content;
+        padding: 2px;
+        border: 1px dashed var(--color-fourth);
+        border-radius: 8px;
+    }
+
     .answerTitle p {
         font-size: 9px;
     }
@@ -412,6 +433,8 @@
     .descriptionClass {
         font-size: 1rem;
         width: 75%;
+        border: 1px dashed var(--color-fourth);
+        border-radius: 8px;
     }
 
     .buttonnext {
@@ -464,7 +487,7 @@
     }
 
     .button {
-        padding: 10px;
+        padding: 8px;
     }
 
     .answerTitle {
@@ -496,7 +519,9 @@
     }
 
     .buttonnext {
-        padding: 10px;
+        bottom: 10px;
+        right: 10px;
+        padding: 8px;
     }
 
     .footer p {
