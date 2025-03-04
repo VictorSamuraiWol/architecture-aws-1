@@ -102,13 +102,16 @@
         text-align: center;
     }
 
-    .answerTitle p {
-        font-size: 9px;
-    }
-
     .answerTitle h3 {
+        max-height: max-content;
+        max-width: max-content;
+        padding: 2px;
         border: 1px dashed var(--color-fourth);
         border-radius: 8px;
+    }
+
+    .answerTitle p {
+        font-size: 9px;
     }
 
     .visibleDescription {
