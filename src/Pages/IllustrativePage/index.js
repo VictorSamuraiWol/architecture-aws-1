@@ -1,6 +1,7 @@
 import styles from './IllustrativePage.module.css'
 import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import { Link } from 'react-router-dom'
+import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 
 function IllustrativePage() {
 
@@ -172,6 +173,7 @@ function IllustrativePage() {
             id='IllustrativePageId' 
             className={styles.IllustrativePage}
         >
+            <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
             <div className={styles.header}>
                 <h1 id='headerH1'>
                     "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
