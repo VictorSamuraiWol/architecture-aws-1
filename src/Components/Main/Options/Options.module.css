@@ -13,6 +13,7 @@
     padding: 8px 12px;
     height: 380px;
     overflow: auto;
+    z-index: 1;
 }
 
 .optionsMain::-webkit-scrollbar {

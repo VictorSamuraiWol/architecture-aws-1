@@ -8,6 +8,10 @@
     height: 9vh;
 }
 
+.header h1 {
+    z-index: 1;
+}
+
 /* Responsividade */
 @media screen and (min-width: 1701px) {
     .header h1 {

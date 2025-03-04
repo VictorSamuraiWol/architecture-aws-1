@@ -9,6 +9,7 @@
     padding: 2px;
     border: 2px dotted var(--color-first);
     border-radius: 26px;
+    z-index: 1;
 }
 
 .timer h1 {

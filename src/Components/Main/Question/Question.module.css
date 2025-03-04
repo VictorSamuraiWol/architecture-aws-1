@@ -2,6 +2,7 @@
     color: var(--color-fourth);
     width: 90%;
     text-align: center;
+    z-index: 1;
 }
 
 /* Responsividade */

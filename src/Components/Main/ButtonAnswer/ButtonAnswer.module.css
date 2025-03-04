@@ -6,7 +6,7 @@
     border-radius: 16px;
     border-style: dashed;
     cursor: pointer;
-    z-index: 0;
+    z-index: 1;
 }
 
 .visibleAnswer {
@@ -16,6 +16,7 @@
     align-items: center;
     flex-direction: column;
     color: var(--color-fourth);
+    z-index: 1;
 }
 
 .invisible{

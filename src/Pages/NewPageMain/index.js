@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 function NewPageMain() {
-
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);   
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
@@ -45,7 +44,7 @@ function NewPageMain() {
 
     return(
         <div>
-            <div className='allquestions' key={nextQuestions.id}>        
+            <div className={`${styles.allQuestionsClass} allquestions`} key={nextQuestions.id}>        
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}

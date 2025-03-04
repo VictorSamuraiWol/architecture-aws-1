@@ -7,7 +7,6 @@ import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import IllustrativePage from '../IllustrativePage';
 
 function PageBase() {
-
     const [validateSound, setValidateSound] = useState(true)
     const [appearSound, setAppearSound] = useState(false)
 
@@ -18,11 +17,13 @@ function PageBase() {
             setValidateSound(false)
             soundFull.style.display = 'none'
             soundMute.style.display = 'flex'
+
         } 
         else {
             setValidateSound(true)
             soundFull.style.display = 'flex'
             soundMute.style.display = 'none'
+
         }
         
     }
