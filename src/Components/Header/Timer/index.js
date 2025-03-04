@@ -50,8 +50,7 @@ const Timer = () => {
   useEffect(() => {    
     if (time === 0) {
       pauseTimer() 
-      alert("Time's out!")
-      
+      alert("Ops!!! Tempo acabou! Fique atento ao tempo de realização da prova.")      
     }
 
   }, [time]);
