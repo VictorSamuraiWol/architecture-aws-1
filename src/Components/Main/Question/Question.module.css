@@ -5,6 +5,14 @@
 }
 
 /* Responsividade */
+@media screen and (min-width: 1701px) {
+    .question {
+        font-size: 1.5rem;
+        padding: 0 8px;
+    }
+
+}
+
 @media screen and (max-width: 1700px) {
     .question {
         font-size: 1.5rem;

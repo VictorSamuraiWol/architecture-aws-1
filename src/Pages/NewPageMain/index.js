@@ -49,7 +49,6 @@ function NewPageMain() {
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}
-                        nextQuestions={nextQuestions}
                     />
                 }
 

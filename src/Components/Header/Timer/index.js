@@ -28,7 +28,7 @@ const Timer = () => {
     setIsRunning(false); // Muda o estado para indicar que está desativado
     clearInterval(timerRef.current); // Limpa o intervalo, parando o cronômetro
     validateSound === true && timerPauseSound.play().then(() => {
-      console.log("TimerPaused played successfully")
+      // console.log("TimerPaused played successfully")
     }).catch(error => {
       // captura o erro e mostra no console
       console.log("Error attempting to play the audio:" ,error.message)

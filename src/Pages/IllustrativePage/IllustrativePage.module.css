@@ -16,7 +16,7 @@
     position: absolute;
     top: 8px;
     right: 26px;
-    padding: 4px;
+    padding: 2px;
     border: 2px dotted var(--color-first);
     border-radius: 26px;
 
@@ -223,6 +223,39 @@
 }
 
 /* Responsividade */
+@media screen and (min-width: 1701px) {
+    .header h1 {
+        font-size: 1.6rem;
+        padding: 0 8px;
+    }
+
+    .question {
+        font-size: 1.5rem;
+        padding: 0 8px;
+    }
+
+    .inputOptions {
+        width: 20px;
+        height: 20px;
+    } 
+
+    .option {
+        font-size: 1.5rem;
+        line-height: 28px;
+        padding: 0 8px;
+    }
+
+    .answerTitle h3 {
+        font-size: 1.5rem;
+        padding: 0 8px;
+    }
+
+    .descriptionClass {
+        font-size: 1.5rem;
+    }
+
+}
+
 @media screen and (max-width: 1700px) {
     .header h1 {
         font-size: 1.5rem;

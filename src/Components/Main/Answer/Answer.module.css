@@ -57,6 +57,18 @@
 }
 
 /* Responsividade */
+@media screen and (min-width: 1701px) {
+    .answerTitle {
+        font-size: 1.3rem;
+        padding: 0 8px;
+    }
+
+    .visibleDescription {
+        font-size: 1.3rem;
+    }
+
+}
+
 @media screen and (max-width: 1700px) {
     .answerTitle {
         font-size: 1.3rem;

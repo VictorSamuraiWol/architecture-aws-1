@@ -48,6 +48,20 @@
 }
 
 /* Responsividade */
+@media screen and (min-width: 1701px) {
+    .inputOptions {
+        width: 20px;
+        height: 20px;
+    } 
+
+    .option {
+        font-size: 1.5rem;
+        line-height: 28px;
+        padding: 0 8px;
+    }
+
+}
+
 @media screen and (max-width: 1700px) {
     .inputOptions {
         width: 20px;

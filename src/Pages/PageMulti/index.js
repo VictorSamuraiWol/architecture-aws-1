@@ -5,7 +5,6 @@ import Header from '../../Components/Header';
 import { useOutletContext } from 'react-router-dom';
 
 function PageMulti() {
-
     const [listMultiQuestions, setListMultiQuestions] = useState([]);
     const [multiQuestions, setMultiQuestions] = useState([]);
     const [multiOptions, setMultiOptions] = useState([]);
@@ -46,7 +45,6 @@ function PageMulti() {
             {multiQuestions.length !== 0 &&
                 <Header 
                     title={multiQuestions.title}
-                    multiQuestions={multiQuestions}
                 />
             }
 
