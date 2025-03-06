@@ -37,11 +37,6 @@ function NewPageMain() {
 
     }, [])
 
-    function funcNewRequest() {     
-        //Função que é chamada, caso seja necessário, ao clicar no botão Next para mudar de página, no momento sem código.
-
-    }
-
     return(
         <div>
             <div className={`${styles.allQuestionsClass} allquestions`} key={nextQuestions.id}>        
@@ -67,7 +62,6 @@ function NewPageMain() {
                         randomIndex={randomIndex}
                         nextOptions={nextOptions}
                         setNextOptions={setNextOptions}                       
-                        newRequest={funcNewRequest}
                     />
                 }                  
 

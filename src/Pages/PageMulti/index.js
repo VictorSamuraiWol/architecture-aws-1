@@ -35,11 +35,6 @@ function PageMulti() {
   
       }, [])
 
-    function funcNewRequest() {     
-        //Função que é chamada, caso seja necessário, ao clicar no botão Next para mudar de página, no momento sem código.
-
-    }
-
     return(
         <div key={multiQuestions.id}>
             {multiQuestions.length !== 0 &&
@@ -64,8 +59,7 @@ function PageMulti() {
                     setDescriptionDisplay={setDescriptionDisplay}
                     optionValidate={optionValidate}
                     optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti}
-                    newRequest={funcNewRequest}             
+                    randomIndexMulti={randomIndexMulti}            
                 />
             }
 

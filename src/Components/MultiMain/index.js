@@ -11,7 +11,10 @@ import ModalResults from '../ModalResults';
 function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
-    const [captureValueMulti, setCaptureValueMulti] = useState([]); 
+    const [captureValueMulti, setCaptureValueMulti] = useState([])
+
+    //pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
+    const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
 
     return (
         <div className={styles.multiMain}>
@@ -38,6 +41,7 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 multiOptions={multiOptions}
                 setMultiOptions={setMultiOptions}
                 captureValueMulti={captureValueMulti}
+                setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
             />
 
             <Answer 
@@ -52,9 +56,12 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                 multiOptions={multiOptions}
             />
 
-            <Link to={'/'}>
+            {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
+            <Link 
+                to={questionAnswerButtonNextMulti === true ? '/' : null}
+            >
                 <ButtonNext 
-                    newRequest={newRequest} 
+                    questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
                 />
             </Link>
 

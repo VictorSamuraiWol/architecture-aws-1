@@ -4,13 +4,13 @@ import correctAudio from '../../../audios/correctAudio.mp3';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex }) {
+function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti }) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();
 
     //Variável para saber se foi ou não respondida a questão
-    const [questionAnswer, setQuestionAnswer] = useState(false);
+    const [questionAnswer, setQuestionAnswer] = useState(false);    
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -97,6 +97,9 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
+                        //questionAnswerButtonNextMain se torna true ao responder
+                        setQuestionAnswerButtonNextMain(true)
+
                         setNumIncorrectOption(numIncorrectOption + 1)
 
                     } else {
@@ -105,6 +108,9 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
+
+                        //questionAnswerButtonNext se torna true ao responder
+                        setQuestionAnswerButtonNextMain(true)
 
                         setNumCorrectOption(numCorrectOption + 1)
 
@@ -154,6 +160,8 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
+                        //questionAnswerButtonNext se torna true ao responder
+                        setQuestionAnswerButtonNextMulti(true)
 
                         setNumCorrectOption(numCorrectOption + 1)
 
@@ -173,6 +181,9 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                     validateSound === true && errorSound.play();
                     //questionAnswer se torna true ao responder
                     setQuestionAnswer(true)
+
+                    //questionAnswerButtonNext se torna true ao responder
+                    setQuestionAnswerButtonNextMulti(true)
 
                     setNumIncorrectOption(numIncorrectOption + 1)
 
