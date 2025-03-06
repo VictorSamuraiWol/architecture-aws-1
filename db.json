@@ -201,7 +201,7 @@
         {
             "option1": "Amazon SQS, Amazon SNS and AWS Lambda.",
             "option2": "Amazon API Gateway, Amazon SQS and Amazon Kinesis.",
-            "option3": "Amazon Gateway Endopoints, Amazon SNS and AWS Lambda.",
+            "option3": "Amazon Gateway Endpoints, Amazon SNS and AWS Lambda.",
             "option4": "Amazon Gateway Endpoints, Amazon SQS and Amazon Kinesis.",
             "option5": "Elastic Load Balancer, Amazon SQS and AWS Lambda."
         },

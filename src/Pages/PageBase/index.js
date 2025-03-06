@@ -10,6 +10,18 @@ function PageBase() {
     const [validateSound, setValidateSound] = useState(true)
     const [appearSound, setAppearSound] = useState(false)
 
+    //questões corretas das páginas main e multi
+    const [numCorrectOption, setNumCorrectOption] = useState(0)
+    const [numIncorrectOption, setNumIncorrectOption] = useState(0)
+
+    const dataResults = {
+        numCorrectOption, 
+        numIncorrectOption, 
+        allCorrectIncorrectResults: (numCorrectOption + numIncorrectOption), 
+        pontuationResults: (numCorrectOption + numIncorrectOption > 0) ? `${parseInt((((numCorrectOption/(numCorrectOption + numIncorrectOption))*1000)))}/1000` : 0,
+        performanceResults: (numCorrectOption + numIncorrectOption > 0) ? `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100).toFixed(2)}%` : 0
+    }
+
     function validateSoundBaseFunc() {
         const soundFull = document.querySelector('#soundFullBaseId')
         const soundMute = document.querySelector('#soundMuteBaseId')
@@ -32,7 +44,7 @@ function PageBase() {
         <>
             {appearSound === true && <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />}
 
-            <Outlet context={{ validateSound, setValidateSound, setAppearSound }} />
+            <Outlet context={{ validateSound, setValidateSound, setAppearSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults }} />
 
             {appearSound === true && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 

@@ -6,6 +6,7 @@ import ButtonNext from './ButtonNext';
 import { Link } from 'react-router-dom';
 import Options from './Options';
 import { useState } from 'react';
+import ModalResults from '../ModalResults';
 
 function Main({ question, answer, srcImg, descriptionP, newRequest, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions }) {
    
@@ -16,6 +17,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
     const [optNum3, setOptNum3] = useState('');
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
+
 
     return(
         <div className={styles.main}>           
@@ -72,7 +74,9 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
                 <ButtonNext 
                     newRequest={newRequest} 
                 />
-            </Link>             
+            </Link> 
+
+            <ModalResults />            
         </div>
     )
 

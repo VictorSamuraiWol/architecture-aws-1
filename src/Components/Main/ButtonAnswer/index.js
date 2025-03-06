@@ -7,7 +7,8 @@ import { useState } from 'react';
 function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex }) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-    const { validateSound } = useOutletContext();
+    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();
+
     //Variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false);
 
@@ -48,8 +49,8 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
     function alertOption() {
         if (captureValue === '') {
+            //alertar quando os campos estiverem vazios
             alert('Por favor, selecione alguma opção!')
-            //clean answer
             answerDisplay && setAnswerDisplay(styles.invisible)
         } else {}
 
@@ -77,12 +78,12 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
         } else {
             for(let i=0; i < 5; i++) {
                 if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
-                    //added validate class
+                    //adicionando a validação
                     const correctOption = document.querySelectorAll('.optionNext')[i];
                     correctOption.classList.remove(optionColor)
                     correctOption.classList.add(optionValidate)
 
-                    //added invalide option class
+                    //adicionando a invalidação
                     if (i !== parseInt(captureValue) && captureValue !== '') {
                         const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
 
@@ -96,12 +97,16 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
+                        setNumIncorrectOption(numIncorrectOption + 1)
+
                     } else {
                         //play correct audio
                         validateSound === true && correctSound.play();
 
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
+
+                        setNumCorrectOption(numCorrectOption + 1)
 
                     }
                 } else {}
@@ -148,6 +153,10 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
                         //questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
+
+
+                        setNumCorrectOption(numCorrectOption + 1)
+
                     }
 
                 } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
@@ -164,6 +173,9 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                     validateSound === true && errorSound.play();
                     //questionAnswer se torna true ao responder
                     setQuestionAnswer(true)
+
+                    setNumIncorrectOption(numIncorrectOption + 1)
+
                 } else {}
 
             }

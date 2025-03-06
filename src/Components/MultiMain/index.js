@@ -6,6 +6,7 @@ import MultiOptions from './MultiOptions';
 import Question from '../Main/Question';
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
+import ModalResults from '../ModalResults';
 
 function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, newRequest, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti }) {
 
@@ -56,7 +57,8 @@ function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText
                     newRequest={newRequest} 
                 />
             </Link>
-            
+
+            <ModalResults />              
         </div>
     )
 }
