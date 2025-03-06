@@ -58,6 +58,11 @@
     padding: 4px;
     border: 3px dotted var(--color-third);
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.modalContent h1:hover {
+    transform: scale(1.03);
 }
 
 .modalContent p {
@@ -68,6 +73,11 @@
     padding: 4px;
     border: 3px dotted var(--color-third);
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.modalContent p:hover {
+    transform: scale(1.03);
 }
 
 .modalContent img {
@@ -80,6 +90,10 @@
     border-radius: 50%;
     cursor: pointer;
     z-index: 1;
+}
+
+.modalContent img:hover {
+    transform: scale(1.03);
 }
 
 /* Responsividade */
