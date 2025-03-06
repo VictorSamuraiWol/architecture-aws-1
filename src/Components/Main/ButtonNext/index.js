@@ -5,12 +5,12 @@ import { useOutletContext } from 'react-router-dom';
 function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMulti }) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-    const { validateSound, questionAnswerButtonNext } = useOutletContext();
+    const { validateSound } = useOutletContext();
 
     //som quando mudar de página
     function soundNextPageFunc() {
         const newSoundNextPage = new Audio(soundNextPage);
-        validateSound === true && newSoundNextPage.play()
+        validateSound === true && (questionAnswerButtonNextMain === true || questionAnswerButtonNextMulti === true) && newSoundNextPage.play()
 
     }
 
