@@ -69,41 +69,6 @@
             "answer": "Path-based Routing.",
             "srcImg": "",
             "descriptionP": "Path-based Routing: you can route a client request based on the URL path of the HTTP header. You can use path conditions to define rules that route request based on the URL in the request (also known as path-based routing). The path pattern is applied only to the URL, not to its query parameters."
-        },
-        {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 11 - Randomly!",
-            "question": "A dynamic website is hosted using on-premises servers in its data center in the USA. The company is lauching its website in ASIA, and it wants to optimize the website loading times for new users in ASIA. The website's backend must remain in the USA. The website is being launched in a few days, and an immediate solutions is needed. What would you recommend?",
-            "answer": "Use CloudFront with a custom origin pointing to the on-premises servers.",
-            "srcImg": "",
-            "descriptionP": "CloudFront is a web service that gives businesses and web application developers an easy cost-effective way to distribute content with low latency and high data transfer speeds. CloudFront uses standard cache control headers you set on your files to identify static and dynamic content. You can use different origins for different types of content on a single site - e.g. S3 for static objects, EC2 for dynamic content, and custom origins for third-party content. An origin server stores the original, definitive version of your objects. If you're serving content over HTTP, your origin server is either an S3 bucket or an HTTP server, such as a web server. Your HTTP server can run on an EC2 instance or on a server that you manage, these servers are also known as custom origins."
-        },
-        {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 12 - Randomly!",
-            "question": "A company maintains the data for the last 100 years. The data has a velocity of 1 GB per minute. You would like to store the data with only the most relevant attributes. What AWS services would you use to build the most cost-effective solution with the LEAST amount of infrastructure maintenance?",
-            "answer": "Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
-            "srcImg": "",
-            "descriptionP": "Amazon Kinesis Data Firehose is the easiest way to load streaming data into data stores and analytics tools. It can capture, transform, and load streaming data into S3, Amazon Redshift, Amazon OpenSearch Service, and Splunk, enabling near real-time analytics with existing business intelligence tools and dashboards you're already using today. It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security. So, ingest the data in Amazon Kinesis Data Firehose and use a AWS Lambda function to filter and transform the incoming data before the output is dumped on S3. This way you only need to store a sliced version of the data with only the relevant data attributes required for your model. Also it should be noted that this solution is entirely serveless and requires no infrastructure maintenance."
-        },
-        {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 13 - Randomly!",
-            "question": "A junior scientist is trying to upload a high-resolution image into S3. The image size is approximately 3 gigabytes. The junior scientist is using S3 Transfer Acceleration (Amazon S3TA) for faster image upload. It turns out that Amazon S3TA did not result in an accelerated transfer. Given this scenario, which of the following is correct regarding the charges for this image transfer?",
-            "answer": "The junior scientist does not need to pay any transfer charges for the image upload.",
-            "srcImg": "",
-            "descriptionP": "There are no S3 data transfer charges when data is transferred in from the internet. Also with S3TA, you pay only for transfer that are accelerated. Therefore the junior scientist does not need to pay any transfer charges for the image upload because S3TA did not result in an accelerated transfer."
-        },
-        {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 14 - Randomly!",
-            "question": "A company wants to set up an AWS cloud architecture that throttles request in case of sudden traffic spikes. The company is looking for AWS services that can be used for buffering or throttling to handle such traffic variations. Which of the following services can be used to support this requirement?",
-            "answer": "Amazon API Gateway, Amazon SQS and Amazon Kinesis.",
-            "srcImg": "",
-            "descriptionP": "Throttling is the process of limiting the number of requests an authorized program can submit to a given operation in a given amount of time. To prevent your API from being overwhelmed by too many requests, Amazon API Gateway throttles requests to your API using the token bucket algorithm, where a token counts for a request. Specifically, API Gateway sets a limit on a steady-state rate and a burst of request submissions against all APIs in your account. In the token bucket algorithm, the burst is the maximum bucket size. SQS is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serveless applications. SQS offers buffer capabilities to smooth out temporary volume spikes without losing messages or increasing latency. Amazon Kinesis is a fully managed, scalable service that can ingest, buffer, and process streaming data in real time."
-        },
-        {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 15 - Randomly!",
-            "question": "A new DevOps enginner wants to understand the replication capabilities for RDS Multi-AZ deployment as well as RDS Read-Replicas. Which of the following correctly summarizes these capabilities?",
-            "answer": "Multi-AZ follows synchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "srcImg": "",
-            "descriptionP": "RDS Multi-AZ deployments provide enhanced availability and durability for RDS database instances, making them a natural fit for production database workloads. When you provision a Multi-AZ DB instance, RDS automatically creates a primary DB instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Multi-AZ spans at least two Availability Zones (AZs) within a single region. RDS Read Replicas provide enhanced performance and durability for RDS database instances. They make it easy to elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads. For the MySQL, MariaDB, PostgreSQL, Oracle, and SQL Server database engines, RDS creates a second DB instance using a snapshot of the source DB instance. It then uses the engines' native asynchrounous replication to update the read replica whenever there is a change to the source DB instance. RDS replicates all databases in the source DB instance. Read replicas can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
         }
     ],
     "options": [
@@ -176,41 +141,6 @@
             "option3": "Path-based Routing.",
             "option4": "HTTP method-based routing.",
             "option5": "HTTP header-based routing."
-        },
-        {
-            "option1": "Leverage a Route 53 geo-proximity routing policy pointing to on-premises servers.",
-            "option2": "Migrate the website to S3. Use S3 cross-region replication (S3 CRR) between AWS Regions in the USA and ASIA.",
-            "option3": "Use CloudFront with a custom origin pointing to the DNS record of the website on Route 53.",
-            "option4": "Use CloudFront with a custom origin pointing to the on-premises servers.",
-            "option5": "Migrate the dynamic website to EC2."
-        },
-        {
-            "option1": "Ingest the data in Amazon Kinesis Data Firehose and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
-            "option2": "Ingest the data in a Spark Streaming Cluster on EMR and use Spark Streaming transformations before writing to S3.",
-            "option3": "Ingest the data in Amazon Kinesis Data Streams and use an intermediary AWS Lambda function to filter and transform the incoming stream before the output is dumped on S3.",
-            "option4": "Ingest the data in Amazon Kinesis Data Analytics and use Amazon Kinesis Data Firehose to filter and transform the data before the output is dumped on S3.",
-            "option5": "Ingest the data in Amazon Kinesis Data Analytics and use SQL queries to filter and transform the data before writing to S3."
-        },
-        {
-            "option1": "The junior scientist needs to pay both S3 transfer charges and S3TA transfer charges for the image upload.",
-            "option2": "The junior scientist only needs to pay S3 transfer charges for the image upload.",
-            "option3": "The junior scientist does not need to pay any transfer charges for the image upload.",
-            "option4": "The junior scientist needs to pay size image, S3 transfer charges and S3TA transfer charges for the image upload.",
-            "option5": "The junior scientist only needs to pay S3TA transfer charges for the image upload."
-        },
-        {
-            "option1": "Amazon SQS, Amazon SNS and AWS Lambda.",
-            "option2": "Amazon API Gateway, Amazon SQS and Amazon Kinesis.",
-            "option3": "Amazon Gateway Endpoints, Amazon SNS and AWS Lambda.",
-            "option4": "Amazon Gateway Endpoints, Amazon SQS and Amazon Kinesis.",
-            "option5": "Elastic Load Balancer, Amazon SQS and AWS Lambda."
-        },
-        {
-            "option1": "Multi-AZ follows synchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option2": "Multi-AZ follows synchronous replication and spans at least two regions. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option3": "Multi-AZ follows asynchronous replication and spans one Availability Zone (AZ) within a single region. Read replicas follow synchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option4": "Multi-AZ follows asynchronous replication and spans at least two Availability Zones (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region.",
-            "option5": "Multi-AZ follows asynchronous replication and spans at least two Availability Zone (AZs) within a single region. Read replicas follow asynchronous replication and can be within an Availability Zone (AZ), Cross-AZ, or Cross-Region."
         }
     ],
     "multiQuestions": [
