@@ -7,7 +7,7 @@ function IllustrativePage() {
 
     function IllustrativePageFunc() {
         const headerH1 = document.querySelector('#headerH1')
-        const timerId = document.querySelector('#timerId')
+        // const timerId = document.querySelector('#timerId')
         const questionId = document.querySelector('#questionId')
         const opt1 = document.querySelector('#opt1')
         const opt2 = document.querySelector('#opt2')
@@ -22,14 +22,14 @@ function IllustrativePage() {
         headerH1.classList.add(`${styles.onClickClass}`)
         headerH1.style.color = 'Crimson'
         headerH1.style.border = '1px solid Crimson'
-        timerId.classList.add(`${styles.invisible}`)
+        // timerId.classList.add(`${styles.invisible}`)
 
         setTimeout(() => {
             headerH1.innerText = "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
             headerH1.classList.remove(`${styles.onClickClass}`)
             headerH1.style.color = '#430A5D'
             headerH1.style.border = 'none'            
-            timerId.classList.remove(`${styles.invisible}`)
+            // timerId.classList.remove(`${styles.invisible}`)
 
         }, 3000)
 
@@ -272,6 +272,10 @@ function IllustrativePage() {
                 <button className={styles.buttonnext}>
                     Next
                 </button>
+
+                <button className={styles.buttonResultsModal}>
+                    Results
+                </button> 
             </div>
 
             <div className={styles.footer}>

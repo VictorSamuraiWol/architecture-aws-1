@@ -100,14 +100,14 @@
     .answerTitle {
         font-size: 1rem;
         text-align: center;
+        max-height: max-content;
+        max-width: max-content;
+        border: 1px dashed var(--color-fourth);
+        border-radius: 8px;
     }
 
     .answerTitle h3 {
-        max-height: max-content;
-        max-width: max-content;
         padding: 2px;
-        border: 1px dashed var(--color-fourth);
-        border-radius: 8px;
     }
 
     .answerTitle p {

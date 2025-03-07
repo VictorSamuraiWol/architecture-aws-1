@@ -1,17 +1,17 @@
 .optionsMain {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     flex-direction: column;
     gap: 8px;
     position: relative;
+    height: 380px;
     width: 90%;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;    
     line-height: 20px;
     padding: 8px 12px;
-    height: 380px;
     overflow: auto;
     z-index: 1;
 }
@@ -44,6 +44,7 @@
 }
 
 .option {
+    padding: 8px;
     margin: 12px;
     cursor: pointer;
 }
@@ -107,7 +108,7 @@
         font-size: 1rem;
         margin: 8px;
     }
-
+    
 }
 
 @media screen and (max-width: 580px) {

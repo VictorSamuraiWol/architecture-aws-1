@@ -68,7 +68,7 @@
 
 .optionsMain {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     flex-direction: column;
     gap: 8px;
@@ -194,10 +194,24 @@
     bottom: 25px;
     right: 25px;
     color: var(--color-fourth);
-    background-color: var(--color-first);
+    background-color: var(--color-second);
     padding: 16px;
     border: 2px solid var(--color-third);
     border-radius: 16px;
+    border-style: dashed;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.buttonResultsModal {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    color: var(--color-fourth);
+    background-color: var(--color-second);
+    padding: 16px;
+    border: 2px solid var(--color-fourth);
+    border-radius: 50%;
     border-style: dashed;
     cursor: pointer;
     z-index: 1;
@@ -368,6 +382,10 @@
         padding: 14px;
     }
 
+    .buttonResultsModal {
+        padding: 14px;
+    }
+
     .footer {
         text-align: end;
     }
@@ -428,14 +446,14 @@
     .answerTitle {
         font-size: 1rem;
         text-align: center;
-    }
-
-    .answerTitle h3 {
         max-height: max-content;
         max-width: max-content;
-        padding: 2px;
         border: 1px dashed var(--color-fourth);
         border-radius: 8px;
+    }
+
+    .answerTitle h3 {        
+        padding: 2px;        
     }
 
     .answerTitle p {
@@ -450,6 +468,11 @@
     }
 
     .buttonnext {
+        padding: 12px;
+    }
+
+    .buttonResultsModal {
+        left: 12px;
         padding: 12px;
     }
 
@@ -533,7 +556,13 @@
     .buttonnext {
         bottom: 10px;
         right: 10px;
-        padding: 8px;
+        padding: 4px;
+    }
+
+    .buttonResultsModal {
+        bottom: 10px;
+        left: 2px;
+        padding: 4px;
     }
 
     .footer p {

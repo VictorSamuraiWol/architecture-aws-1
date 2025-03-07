@@ -1,6 +1,6 @@
 .multiOptionsAll {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     flex-direction: column;
     gap: 8px;
