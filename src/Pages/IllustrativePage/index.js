@@ -251,7 +251,7 @@ function IllustrativePage() {
                     </div>
                 </div>
 
-                <button className={styles.button}>
+                <button className={styles.buttonAnswer}>
                     Answer
                 </button>
 
@@ -266,7 +266,7 @@ function IllustrativePage() {
                     </p>
                 </section>
 
-                <button className={styles.buttonnext}>
+                <button className={styles.buttonNext}>
                     Next
                 </button>
 

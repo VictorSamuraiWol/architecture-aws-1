@@ -77,70 +77,80 @@
             "option2": "Site-to-Site VPN.",
             "option3": "Storage Gateway - File Gateway.",
             "option4": "Storage Gateway - Tape Gateway.",
-            "option5": "Instance Store."
+            "option5": "Instance Store.",
+            "numberOption": "1"
         },
         {
             "option1": "Requester Pays.",
             "option2": "Server Access Logging.",
             "option3": "Versioning.",
             "option4": "Policies.",
-            "option5": "Static Website Hosting."
+            "option5": "Static Website Hosting.",
+            "numberOption": "2"
         },
         {
             "option1": "EMR.",
             "option2": "Glue.",
             "option3": "S3 Glacier Deep Archive.",
             "option4": "Amazon FSx for Windows File Server.",
-            "option5": "Amazon FSx for Lustre."
+            "option5": "Amazon FSx for Lustre.",
+            "numberOption": "3"
         },
         {
             "option1": "CloudFront.",
             "option2": "Third-Party services.",
             "option3": "Route 53.",
             "option4": "Global Accelerator.",
-            "option5": "ELB."
+            "option5": "ELB.",
+            "numberOption": "4"
         },
         {
             "option1": "Use EC2 reserved instance for the production and spot instances for the dev.",
             "option2": "Use EC2 reserved instance for the production and spot block intances for the dev.",
             "option3": "Use EC2 reserved instance for the production and on-demand instances for the dev.",
             "option4": "Use only EC2 on-demand instaces for the production and dev.",
-            "option5": "Use on-demand EC2 instances for the production and spot intances for the dev."
+            "option5": "Use on-demand EC2 instances for the production and spot intances for the dev.",
+            "numberOption": "5"
         },
         {
             "option1": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
             "option2": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
             "option3": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
             "option4": "Amazon API Gateway creates RESTful APIs that enable both stateless and stateful client-server communication.",
-            "option5": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server."
+            "option5": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
+            "numberOption": "6"
         },
         {
             "option1": "Use SQS standard queue to process the messages.",
             "option2": "SQS FIFO (First-In-First-Out) queue in batch mode of 2 messages per operation to process the messages at the peak rate.",
             "option3": "SQS FIFO (First-In-First-Out) queue to process the messages.",
             "option4": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
-            "option5": "Use both SQS standard queue and SQS FIFO queue to process the messages."
+            "option5": "Use both SQS standard queue and SQS FIFO queue to process the messages.",
+            "numberOption": "7"
         },
         {
             "option1": "1 EC2 instance and 1 snapshot exist in Region B.",
             "option2": "1 EC2 instance and 1 AMI exist in Region B.",
             "option3": "1 EC2 instance, 1 AMI and 2 snapshots.",
             "option4": "1 EC2 instance and 2 AMIs exist in Region B.",
-            "option5": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B."
+            "option5": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
+            "numberOption": "8"
         },
         {
             "option1": "Use EBS based EC2 instances.",
             "option2": "Use EC2 instances with access to S3 based storage.",
             "option3": "Use EC2 instances with EFS mount points.",
             "option4": "Use EC2 instances with EBS and EFS mount points.",
-            "option5": "Use Instance Store based EC2 instances."
+            "option5": "Use Instance Store based EC2 instances.",
+            "numberOption": "9"
         },
         {
             "option1": "Host-based Routing.",
             "option2": "Query string parameter-based routing.",
             "option3": "Path-based Routing.",
             "option4": "HTTP method-based routing.",
-            "option5": "HTTP header-based routing."
+            "option5": "HTTP header-based routing.",
+            "numberOption": "10"
         }
     ],
     "multiQuestions": [
@@ -191,35 +201,40 @@
             "option2": "S3 Intelligent-Tiering => S3 Standard.",
             "option3": "S3 Standard => S3 Intelligent-Tiering.",
             "option4": "S3 Standard-IA => S3 Intelligent-Tiering.",
-            "option5": "S3 Standard-IA => S3 One Zone-IA."  
+            "option5": "S3 Standard-IA => S3 One Zone-IA.",
+            "numberOption": "1"  
         }, 
         {
             "option1": "Cold Hard Disk Drive (sc1).",
             "option2": "Throughput Optimized Hard disk Drive (st1).",
             "option3": "Instance Store.",
             "option4": "General Purpose Solid State Drive (gp2).",
-            "option5": "Provisioned IOPS Solid State Drive."  
+            "option5": "Provisioned IOPS Solid State Drive.",
+            "numberOption": "2"  
         },
         {
             "option1": "Enable AWS MFA for privileged users.",
             "option2": "Configure AWS CloudTrail to log all AWS IAM actions.",
             "option3": "Use user credentials to provide access specific permissions for EC2 instances.",
             "option4": "Create a minimum number of accounts and share these account credentials among employees.",
-            "option5": "Grant maximum privileges to avoid assigning privileges again."  
+            "option5": "Grant maximum privileges to avoid assigning privileges again.",
+            "numberOption": "3"  
         },
         {
             "option1": "DynamoDB Accelerator (DAX).",
             "option2": "ElastiCache.",
             "option3": "OpenSearch Service.",
             "option4": "Redshift.",
-            "option5": "RDS."
+            "option5": "RDS.",
+            "numberOption": "4"
         },
         {
             "option1": "Different versions of a single object can have different retention modes and periods.",
             "option2": "When you apply a retention period to an object version explicity, you specify a Retain Until Date for the object version.",
             "option3": "You cannot place a retention period on an object version through a bucket default setting.",
             "option4": "When you use bucket default setting, you specify a Retain Until Date for the object version.",
-            "option5": "The bucket default settings will override any explicit retention mode or period you request on an object version."  
+            "option5": "The bucket default settings will override any explicit retention mode or period you request on an object version.",
+            "numberOption": "5"  
         }
     ]
 }

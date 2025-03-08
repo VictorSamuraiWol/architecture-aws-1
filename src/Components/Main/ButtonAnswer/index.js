@@ -209,7 +209,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
     }
 
     return(
-        <button onClick={displayAndValidate} className={styles.button}>
+        <button onClick={displayAndValidate} className={styles.buttonAnswer}>
             Answer
         </button>
     )

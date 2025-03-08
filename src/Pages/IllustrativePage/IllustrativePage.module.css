@@ -118,7 +118,7 @@
     cursor: pointer;
 }
 
-.button {
+.buttonAnswer {
     color: var(--color-fourth);
     background-color: var(--color-second);
     padding: 16px;
@@ -127,6 +127,11 @@
     border-style: dashed;
     cursor: pointer;
     z-index: 1;
+}
+
+.buttonAnswer:hover {
+    border: 3px solid var(--color-third);
+    transform: scale(1.03);
 }
 
 .answerClass {
@@ -189,7 +194,7 @@
     background-color: var(--color-fourth);
 }
 
-.buttonnext {
+.buttonNext {
     position: absolute;
     bottom: 25px;
     right: 25px;
@@ -201,6 +206,11 @@
     border-style: dashed;
     cursor: pointer;
     z-index: 1;
+}
+
+.buttonNext:hover {
+    border: 3px solid var(--color-third);
+    transform: scale(1.03);
 }
 
 .buttonResultsModal {
@@ -215,6 +225,11 @@
     border-style: dashed;
     cursor: pointer;
     z-index: 1;
+}
+
+.buttonResultsModal:hover {
+    border: 3px solid var(--color-third);
+    transform: scale(1.03);
 }
 
 .footer {

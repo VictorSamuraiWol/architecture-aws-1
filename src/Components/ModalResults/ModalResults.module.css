@@ -23,6 +23,11 @@
     cursor: pointer;
 }
 
+.buttonResultsModal:hover {
+    border: 3px solid var(--color-third);
+    transform: scale(1.03);
+}
+
 .modalOverlay {
     display: flex;
     justify-content: center;

@@ -1,12 +1,16 @@
-.button {
+.buttonAnswer {
     color: var(--color-fourth);
     background-color: var(--color-second);
     padding: 16px;
-    border: 2px solid var(--color-fourth);
+    border: 2px dashed var(--color-fourth);
     border-radius: 16px;
-    border-style: dashed;
     cursor: pointer;
     z-index: 1;
+}
+
+.buttonAnswer:hover {
+    border: 3px solid var(--color-third);
+    transform: scale(1.03);
 }
 
 .visibleAnswer {

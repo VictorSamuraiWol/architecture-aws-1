@@ -26,7 +26,7 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
             <button
                 //duas funções ao clicar no botão para mudar de página 
                 onClick={() => { soundNextPageFunc() ; newRequest && newRequest() }} 
-                className={styles.buttonnext}
+                className={styles.buttonNext}
             >
                 Next
             </button>
