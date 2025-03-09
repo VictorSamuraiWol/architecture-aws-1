@@ -79,7 +79,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
-                    className={styles.textMultiOptions}
+                    className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                     {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum1]}<span className={styles.answerBoolClass} id='answerBool1'>{(optNum1 === 0 || optNum1 === 1) && 'true'}</span>
                 </p>
@@ -94,7 +94,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
-                    className={styles.textMultiOptions}
+                    className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                     {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum2]}
                         <span 
@@ -114,7 +114,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
-                    className={styles.textMultiOptions}
+                    className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                     {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum3]}
                     <span 
@@ -134,7 +134,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
-                    className={styles.textMultiOptions}
+                    className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                     {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum4]}
                     <span 
@@ -154,7 +154,7 @@ function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCapt
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
-                    className={styles.textMultiOptions}
+                    className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                     {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum5]}
                     <span 

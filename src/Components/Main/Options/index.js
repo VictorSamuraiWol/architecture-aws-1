@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 }) {   
+function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 }) {
            
     const [listNumRandom, setListNumRandom] = useState([]);
 
@@ -98,7 +98,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 />
                 <p 
                     onClick={mouseOverOptionsMain}
-                    className={styles.option}                
+                    className={`optionNextP ${styles.option}`}                
                 >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum1]}
                 </p>
@@ -113,7 +113,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 />
                 <p 
                     onClick={mouseOverOptionsMain}
-                    className={styles.option}
+                    className={`optionNextP ${styles.option}`}                
                 >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum2]}
                 </p>
@@ -128,7 +128,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 />
                 <p 
                     onClick={mouseOverOptionsMain}
-                    className={styles.option}
+                    className={`optionNextP ${styles.option}`}                
                 >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum3]}
                 </p>
@@ -143,7 +143,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 />
                 <p 
                     onClick={mouseOverOptionsMain}
-                    className={styles.option}
+                    className={`optionNextP ${styles.option}`}                
                 >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum4]}
                 </p>
@@ -158,7 +158,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
                 />
                 <p 
                     onClick={mouseOverOptionsMain}
-                    className={styles.option}
+                    className={`optionNextP ${styles.option}`}                
                 >
                     {nextOptions && Object.values(nextOptions[randomIndex])[optNum5]}
                 </p>
