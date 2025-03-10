@@ -20,23 +20,22 @@ function PageMulti() {
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
         .then(res => res.json())
-        .then(data => {        
-            // toda a lista de questões da página multi
-            data && setListMultiQuestions(data)       
+        .then(data => {
+            if (!data) {
+                throw new Error("Dados inválidos");
+
+            } else {
+                // toda a lista de questões da página multi
+                setListMultiQuestions(data)       
             
-            data && setAppearSound(true)
+                setAppearSound(true)
 
-//------------------------------------------------------------------------
-            // gerando um número random e usando para capturar uma questão
-            // const random = Math.floor(Math.random()*data.length) 
-            // setRandomIndexMulti(random)  
-            // setMultiQuestions(data[random])
-//------------------------------------------------------------------------
+                //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                const random = uniqueRandomMulti(data.length) 
+                setRandomIndexMulti(random)  
+                setMultiQuestions(data[random])
 
-            //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-            const random = data && uniqueRandomMulti(data.length) 
-            setRandomIndexMulti(random)  
-            data && setMultiQuestions(data[random])
+            }
 
     })
     .catch(e => console.log(e))

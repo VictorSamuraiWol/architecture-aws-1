@@ -20,34 +20,28 @@ function NewPageMain() {
     useEffect(() => {
         fetch("http://localhost:3001/questions")
         .then(res => res.json())
-        .then(data => {  
+        .then(data => {
+            if (!data) {
+                throw new Error("Dados inválidos");
 
-            // toda a lista de questões da página main
-            data && setListQuestions(data)
+            } else {
+                // toda a lista de questões da página main
+                setListQuestions(data)
 
-            data && setAppearSound(true)
-
-//--------------------------------------------------------------------
-            // gerando um número random e usando para capturar uma questão
-            // const random = Math.floor(Math.random()*data.length)        
-            
-            // setRandomIndex(random)  
-            // setNextQuestions(data[random])
-//--------------------------------------------------------------------
-
-            //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-            if (data) {
+                setAppearSound(true)
+                
+                //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
                 const random = uniqueRandomMain(data.length) 
                 setRandomIndex(random)  
                 setNextQuestions(data[random])
 
-                console.log(listQuestions.length, 42)
             }
+            
         })
         .catch(e => console.log(e))
 
     }, [])
-// console.log(typeof(listQuestions.length), 53)
+
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMain(dataLength) {
         let random;
