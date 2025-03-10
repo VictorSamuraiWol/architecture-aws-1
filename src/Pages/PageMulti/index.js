@@ -99,10 +99,7 @@ function PageMulti() {
                     setDescriptionDisplay={setDescriptionDisplay}
                     optionValidate={optionValidate}
                     optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti} 
-                    
-                    
-
+                    randomIndexMulti={randomIndexMulti}
                     uniqueRandomMulti={uniqueRandomMulti}
                 />
             }

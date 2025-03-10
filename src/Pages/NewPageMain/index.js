@@ -101,9 +101,7 @@ function NewPageMain() {
                         optionInvalidate={optionInvalidate}
                         randomIndex={randomIndex}
                         nextOptions={nextOptions}
-                        setNextOptions={setNextOptions}
-                        
-                        
+                        setNextOptions={setNextOptions}                      
                         uniqueRandomMain={uniqueRandomMain}
                     />
                 }                  
