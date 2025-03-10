@@ -14,7 +14,7 @@ function PageMulti() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
-    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
+    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { setAppearSound, lastRandomMulti, setLastRandomMulti } = useOutletContext();
 
     useEffect(() => {
@@ -99,7 +99,10 @@ function PageMulti() {
                     setDescriptionDisplay={setDescriptionDisplay}
                     optionValidate={optionValidate}
                     optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti}
+                    randomIndexMulti={randomIndexMulti} 
+                    
+                    
+
                     uniqueRandomMulti={uniqueRandomMulti}
                 />
             }

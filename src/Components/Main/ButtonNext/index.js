@@ -15,7 +15,7 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
     }
 
     function newRequest() {
-        //chamar as funções 'uniqueRandomMain() e uniqueRandomMulti()' sempre na página correspondente, pois a função multi na página main e a função main na página multi fica 'undefined' 
+        //chamar as funções somnete se estiverem nas ppaginas correnpondentes
         questionAnswerButtonNextMain === false && uniqueRandomMain()
         questionAnswerButtonNextMulti === false && uniqueRandomMulti()
 

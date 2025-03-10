@@ -14,7 +14,7 @@ function NewPageMain() {
     const [randomIndex, setRandomIndex] = useState('');
     const [nextOptions, setNextOptions] = useState('');
     
-    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
+    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { setAppearSound, lastRandomMain, setLastRandomMain } = useOutletContext();
 
     useEffect(() => {
@@ -101,7 +101,9 @@ function NewPageMain() {
                         optionInvalidate={optionInvalidate}
                         randomIndex={randomIndex}
                         nextOptions={nextOptions}
-                        setNextOptions={setNextOptions}                      
+                        setNextOptions={setNextOptions}
+                        
+                        
                         uniqueRandomMain={uniqueRandomMain}
                     />
                 }                  
