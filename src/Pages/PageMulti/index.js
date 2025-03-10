@@ -14,8 +14,8 @@ function PageMulti() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
-     // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
-    const { setAppearSound } = useOutletContext(); 
+    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
+    const { setAppearSound, lastRandomMulti, setLastRandomMulti } = useOutletContext();
 
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
@@ -23,17 +23,38 @@ function PageMulti() {
         .then(data => {        
             // toda a lista de questões da página multi
             setListMultiQuestions(data)       
+            
+            data && setAppearSound(true)
 
+//------------------------------------------------------------------------
             // gerando um número random e usando para capturar uma questão
-            const random = Math.floor(Math.random()*data.length) 
+            // const random = Math.floor(Math.random()*data.length) 
+            // setRandomIndexMulti(random)  
+            // setMultiQuestions(data[random])
+//------------------------------------------------------------------------
+
+            //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+            const random = uniqueRandomMulti() 
             setRandomIndexMulti(random)  
             setMultiQuestions(data[random])
 
-            data && setAppearSound(true)
-        })
-        .catch(e => console.log(e))
+    })
+    .catch(e => console.log(e))
   
-      }, [])
+    }, [])
+
+    // função para garantir que o novo número aleatório seja sempre diferente do anterior
+    function uniqueRandomMulti() {
+        let random;
+        do {
+            random = Math.floor(Math.random()*2)
+        }
+        while (random === lastRandomMulti) //repete até obter um número diferente
+        
+        setLastRandomMulti(random) //atualiza o último número gerado
+        return random                
+    
+    }
 
     //função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
     function optionVoidFunc() {
@@ -78,7 +99,11 @@ function PageMulti() {
                     setDescriptionDisplay={setDescriptionDisplay}
                     optionValidate={optionValidate}
                     optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti}            
+                    randomIndexMulti={randomIndexMulti} 
+                    
+                    
+
+                    uniqueRandomMulti={uniqueRandomMulti}
                 />
             }
 

@@ -13,29 +13,50 @@ function NewPageMain() {
     const [nextQuestions, setNextQuestions] = useState('');
     const [randomIndex, setRandomIndex] = useState('');
     const [nextOptions, setNextOptions] = useState('');
-
+    
     // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base
-    const { setAppearSound } = useOutletContext(); 
+    const { setAppearSound, lastRandomMain, setLastRandomMain } = useOutletContext();
 
     useEffect(() => {
-      fetch("http://localhost:3001/questions")
-      .then(res => res.json())
-      .then(data => {  
+        fetch("http://localhost:3001/questions")
+        .then(res => res.json())
+        .then(data => {  
 
-        // toda a lista de questões da página main
-        setListQuestions(data)
+            // toda a lista de questões da página main
+            setListQuestions(data)
 
-        // gerando um número random e usando para capturar uma questão
-        const random = Math.floor(Math.random()*data.length) 
-        setRandomIndex(random)  
-        setNextQuestions(data[random])
+            data && setAppearSound(true)
 
-        data && setAppearSound(true)
+//--------------------------------------------------------------------
+            // gerando um número random e usando para capturar uma questão
+            // const random = Math.floor(Math.random()*data.length)        
+            
+            // setRandomIndex(random)  
+            // setNextQuestions(data[random])
+//--------------------------------------------------------------------
 
-      })
-      .catch(e => console.log(e))
+            //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+            const random = uniqueRandomMain() 
+            setRandomIndex(random)  
+            setNextQuestions(data[random])
 
+    })
+    .catch(e => console.log(e))
+    
     }, [])
+
+    // função para garantir que o novo número aleatório seja sempre diferente do anterior
+    function uniqueRandomMain() {
+        let random;
+        do {
+            random = Math.floor(Math.random()*2) 
+        }
+        while (random === lastRandomMain) //repete até obter um número diferente
+        
+        setLastRandomMain(random) //atualiza o último número gerado
+        return random                
+    
+    }
 
     //função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
     function optionVoidFunc() {
@@ -80,7 +101,10 @@ function NewPageMain() {
                         optionInvalidate={optionInvalidate}
                         randomIndex={randomIndex}
                         nextOptions={nextOptions}
-                        setNextOptions={setNextOptions}                       
+                        setNextOptions={setNextOptions}
+                        
+                        
+                        uniqueRandomMain={uniqueRandomMain}
                     />
                 }                  
 

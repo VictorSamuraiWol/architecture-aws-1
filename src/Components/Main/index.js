@@ -8,7 +8,7 @@ import Options from './Options';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
-function Main({ question, answer, srcImg, descriptionP, newRequest, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions }) {
+function Main({ question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain }) {
    
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor, setOptionColor] = useState(styles.optionColor)    
@@ -79,6 +79,7 @@ function Main({ question, answer, srcImg, descriptionP, newRequest, answerDispla
             >
                 <ButtonNext
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
+                    uniqueRandomMain={uniqueRandomMain}
                 />
             </Link> 
 
