@@ -22,7 +22,7 @@ function PageMulti() {
         .then(res => res.json())
         .then(data => {        
             // toda a lista de questões da página multi
-            setListMultiQuestions(data)       
+            data && setListMultiQuestions(data)       
             
             data && setAppearSound(true)
 
@@ -34,9 +34,9 @@ function PageMulti() {
 //------------------------------------------------------------------------
 
             //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-            const random = uniqueRandomMulti() 
+            const random = data && uniqueRandomMulti(data.length) 
             setRandomIndexMulti(random)  
-            setMultiQuestions(data[random])
+            data && setMultiQuestions(data[random])
 
     })
     .catch(e => console.log(e))
@@ -44,10 +44,10 @@ function PageMulti() {
     }, [])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    function uniqueRandomMulti() {
+    function uniqueRandomMulti(dataLength) {
         let random;
         do {
-            random = Math.floor(Math.random()*2)
+            random = Math.floor(Math.random()*dataLength)
         }
         while (random === lastRandomMulti) //repete até obter um número diferente
         
@@ -99,10 +99,7 @@ function PageMulti() {
                     setDescriptionDisplay={setDescriptionDisplay}
                     optionValidate={optionValidate}
                     optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti} 
-                    
-                    
-
+                    randomIndexMulti={randomIndexMulti}
                     uniqueRandomMulti={uniqueRandomMulti}
                 />
             }

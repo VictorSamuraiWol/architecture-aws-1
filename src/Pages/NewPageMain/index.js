@@ -23,7 +23,7 @@ function NewPageMain() {
         .then(data => {  
 
             // toda a lista de questões da página main
-            setListQuestions(data)
+            data && setListQuestions(data)
 
             data && setAppearSound(true)
 
@@ -36,20 +36,23 @@ function NewPageMain() {
 //--------------------------------------------------------------------
 
             //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-            const random = uniqueRandomMain() 
-            setRandomIndex(random)  
-            setNextQuestions(data[random])
+            if (data) {
+                const random = uniqueRandomMain(data.length) 
+                setRandomIndex(random)  
+                setNextQuestions(data[random])
 
-    })
-    .catch(e => console.log(e))
-    
+                console.log(listQuestions.length, 42)
+            }
+        })
+        .catch(e => console.log(e))
+
     }, [])
-
+// console.log(typeof(listQuestions.length), 53)
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    function uniqueRandomMain() {
+    function uniqueRandomMain(dataLength) {
         let random;
         do {
-            random = Math.floor(Math.random()*2) 
+            random = Math.floor(Math.random()*dataLength) 
         }
         while (random === lastRandomMain) //repete até obter um número diferente
         
@@ -101,9 +104,7 @@ function NewPageMain() {
                         optionInvalidate={optionInvalidate}
                         randomIndex={randomIndex}
                         nextOptions={nextOptions}
-                        setNextOptions={setNextOptions}
-                        
-                        
+                        setNextOptions={setNextOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
                     />
                 }                  
