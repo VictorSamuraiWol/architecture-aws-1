@@ -1,3 +1,8 @@
+.allQuestionsMultiClass {
+    height: 90vh;
+    background-color: var(--color-first);
+}
+
 .visible {
     visibility: visible;
     display: flex;

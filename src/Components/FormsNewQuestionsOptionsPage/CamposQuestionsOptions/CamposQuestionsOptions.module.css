@@ -1,0 +1,23 @@
+.campo {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid var(--color-third);
+    border-radius: 16px;
+    width: 90%;
+    z-index: 1;
+}
+
+.labelTextarea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+textarea {
+    height: 80px;
+    border: 1px solid var(--color-third);
+}

@@ -76,7 +76,10 @@ function PageMulti() {
     }, [multiOptions]) // useEffect será chamado sempre que as opções (multiOptions) forem atualizadas
 
     return(
-        <div key={multiQuestions.id}>
+        <div 
+            className={styles.allQuestionsMultiClass} 
+            key={multiQuestions.id}
+        >
             {multiQuestions.length !== 0 &&
                 <Header 
                     title={multiQuestions.title}

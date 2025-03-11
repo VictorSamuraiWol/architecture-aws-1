@@ -75,7 +75,7 @@ function Main({ question, answer, srcImg, descriptionP, answerDisplay, descripti
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
             <Link 
-                to={questionAnswerButtonNextMain === true ? '/pageMulti' : null}
+                to={questionAnswerButtonNextMain === true ? '/page-multi' : null}
             >
                 <ButtonNext
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}

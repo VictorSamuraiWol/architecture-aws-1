@@ -9,6 +9,7 @@ import IllustrativePage from '../IllustrativePage';
 function PageBase() {
     const [validateSound, setValidateSound] = useState(true)
     const [appearSound, setAppearSound] = useState(false)
+    const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
 
     // questões corretas das páginas main e multi
     const [numCorrectOption, setNumCorrectOption] = useState(0)
@@ -45,10 +46,10 @@ function PageBase() {
     }
 
     return(
-        <>
-            {appearSound === true && <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />}
+        <div className={styles.pageBaseOutlet}>
+            {(appearSound === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
 
-            <Outlet context={{ validateSound, setValidateSound, setAppearSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti }} />
+            <Outlet context={{ validateSound, setValidateSound, setAppearSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions }} />
 
             {appearSound === true && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
@@ -61,10 +62,10 @@ function PageBase() {
                 className={styles.soundMute}
             />}
 
-            {appearSound === true && <Footer />}
+            {(appearSound === true || activePageFormsQuestionsOptions === true) && <Footer />}
 
-            {!appearSound && <IllustrativePage />}
-        </>
+            {!appearSound && activePageFormsQuestionsOptions === false && <IllustrativePage />}
+        </div>
     )
 }
 

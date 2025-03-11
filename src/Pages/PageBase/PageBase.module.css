@@ -1,3 +1,7 @@
+.pageBaseOutlet {
+    height: 100vh;
+}
+
 .soundFull {
     top: 0;
     right: 8px;
@@ -23,7 +27,7 @@
 
 .backgroundImage {
     position: absolute;
-    height: 94vh;
+    height: 90vh;
     width: 100%;
     opacity: 0.1;
     z-index: 1;

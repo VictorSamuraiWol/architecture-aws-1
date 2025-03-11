@@ -4,8 +4,7 @@
     align-items: center;
     color: var(--color-fourth);
     background-color: var(--color-second);
-    padding: 8px 0;
-    height: 9vh;
+    height: 8vh;
 }
 
 .header h1 {
