@@ -10,11 +10,11 @@ function PageBase() {
     const [validateSound, setValidateSound] = useState(true)
     const [appearSound, setAppearSound] = useState(false)
 
-    //questões corretas das páginas main e multi
+    // questões corretas das páginas main e multi
     const [numCorrectOption, setNumCorrectOption] = useState(0)
     const [numIncorrectOption, setNumIncorrectOption] = useState(0)
 
-    //inicializar com um valor que não existe no intervalo (número das questões) para poder ser gerado um número dentro do intervalo nas funções 'uniqueRandomMain e uniqueRandomMulti'
+    // inicializar com um valor que não existe no intervalo (número das questões) para poder ser gerado um número dentro do intervalo nas funções 'uniqueRandomMain e uniqueRandomMulti'
     const [lastRandomMain, setLastRandomMain] = useState(-1);
     const [lastRandomMulti, setLastRandomMulti] = useState(-1);
 

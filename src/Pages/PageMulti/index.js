@@ -28,9 +28,10 @@ function PageMulti() {
                 // toda a lista de questões da página multi
                 setListMultiQuestions(data)       
             
+                // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página multi
                 setAppearSound(true)
 
-                //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
                 const random = uniqueRandomMulti(data.length) 
                 setRandomIndexMulti(random)  
                 setMultiQuestions(data[random])
@@ -48,14 +49,14 @@ function PageMulti() {
         do {
             random = Math.floor(Math.random()*dataLength)
         }
-        while (random === lastRandomMulti) //repete até obter um número diferente
+        while (random === lastRandomMulti) // repete até obter um número diferente
         
-        setLastRandomMulti(random) //atualiza o último número gerado
+        setLastRandomMulti(random) // atualiza o último número gerado
         return random                
     
     }
 
-    //função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
+    // função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
     function optionVoidFunc() {
         const optionMultiVoid = document.querySelectorAll('.optionNextMulti')
         const optionMultiVoidP = document.querySelectorAll('.optionsMultiP')
@@ -69,10 +70,10 @@ function PageMulti() {
     }
     
     useEffect(() => {
-        //função que esconde a opção vazia, caso tenha       
+        // função que esconde a opção vazia, caso tenha       
         optionVoidFunc()
 
-    }, [multiOptions]) //useEffect será chamado sempre que as opções (multiOptions) forem atualizadas
+    }, [multiOptions]) // useEffect será chamado sempre que as opções (multiOptions) forem atualizadas
 
     return(
         <div key={multiQuestions.id}>

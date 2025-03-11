@@ -9,7 +9,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();
 
-    //Variável para saber se foi ou não respondida a questão
+    // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false);    
 
     function display() {  
@@ -29,7 +29,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
         const wrongOptionNextClean = document.querySelectorAll('.optionNext');
         const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
 
-        //limpar a estilização de respostas erradas das opções desmarcadas da página main
+        // limpar a estilização de respostas erradas das opções desmarcadas da página main
         for(let w=0; w < 5; w++) {
             if (nextOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
                 wrongOptionNextClean[w].classList.remove(optionInvalidate)
@@ -37,7 +37,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
             } else {}
         }
 
-        //limpar a estilização de respostas erradas das opções desmarcadas da página multi
+        // limpar a estilização de respostas erradas das opções desmarcadas da página multi
         for(let z=0; z < 5; z++) {
             if (multiOptions && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
                 wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
@@ -49,7 +49,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
     function alertOption() {
         if (captureValue === '') {
-            //alertar quando os campos estiverem vazios
+            // alertar quando os campos estiverem vazios
             alert('Por favor, selecione alguma opção!')
             answerDisplay && setAnswerDisplay(styles.invisible)
         } else {}
@@ -62,28 +62,28 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
 
     }
 
-    // Validação da página main
+    // validação da página main
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
         const convertObjArray = [Object.values(nextOptions[randomIndex])[optNum1], Object.values(nextOptions[randomIndex])[optNum2], Object.values(nextOptions[randomIndex])[optNum3], Object.values(nextOptions[randomIndex])[optNum4], Object.values(nextOptions[randomIndex])[optNum5]]
 
-        // Observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
+        // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
         if(questionAnswer === true) {
             // para manter a resposta sempre visível
             answerDisplay && setAnswerDisplay(styles.visibleAnswer)
             
-            //alerta avisando para passar para a próxima questão
+            // alerta avisando para passar para a próxima questão
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
         } else {
             for(let i=0; i < 5; i++) {
                 if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
-                    //adicionando a validação
+                    // adicionando a validação
                     const correctOption = document.querySelectorAll('.optionNext')[i];
                     correctOption.classList.remove(optionColor)
                     correctOption.classList.add(optionValidate)
 
-                    //adicionando a invalidação
+                    // adicionando a invalidação
                     if (i !== parseInt(captureValue) && captureValue !== '') {
                         const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
 
@@ -91,25 +91,25 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         // wrongOptionNext.classList.remove(optionValidate)
                         wrongOptionNext.classList.add(optionInvalidate)
 
-                        //play error audio
+                        // play error audio
                         validateSound === true && errorSound.play(); 
 
-                        //questionAnswer se torna true ao responder
+                        // questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
-                        //questionAnswerButtonNextMain se torna true ao responder
+                        // questionAnswerButtonNextMain se torna true ao responder
                         setQuestionAnswerButtonNextMain(true)
 
                         setNumIncorrectOption(numIncorrectOption + 1)
 
                     } else {
-                        //play correct audio
+                        // play correct audio
                         validateSound === true && correctSound.play();
 
-                        //questionAnswer se torna true ao responder
+                        // questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
-                        //questionAnswerButtonNext se torna true ao responder
+                        // questionAnswerButtonNext se torna true ao responder
                         setQuestionAnswerButtonNextMain(true)
 
                         setNumCorrectOption(numCorrectOption + 1)
@@ -121,12 +121,12 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
         }
         alertOption()
 
-        //para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
+        // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
         questionAnswer === false && cleanOptions()
 
     }
 
-    // Validação da página multi
+    // validação da página multi
     function validateAnswerPageMulti() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
@@ -138,7 +138,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
             // para manter a resposta sempre visível
             answerDisplay && setAnswerDisplay(styles.visibleAnswer)
             
-            //alerta avisando para passar para a próxima questão
+            // alerta avisando para passar para a próxima questão
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
         } else {
             const checkedValues = [...captureOptionsNextMultiInput]
@@ -157,10 +157,10 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         // som só irá tocar quando estiver tudo correto
                         validateSound === true && correctSound.play();
 
-                        //questionAnswer se torna true ao responder
+                        // questionAnswer se torna true ao responder
                         setQuestionAnswer(true)
 
-                        //questionAnswerButtonNext se torna true ao responder
+                        // questionAnswerButtonNext se torna true ao responder
                         setQuestionAnswerButtonNextMulti(true)
 
                         setNumCorrectOption(numCorrectOption + 1)
@@ -179,10 +179,10 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                         }
                     }            
                     validateSound === true && errorSound.play();
-                    //questionAnswer se torna true ao responder
+                    // questionAnswer se torna true ao responder
                     setQuestionAnswer(true)
 
-                    //questionAnswerButtonNext se torna true ao responder
+                    // questionAnswerButtonNext se torna true ao responder
                     setQuestionAnswerButtonNextMulti(true)
 
                     setNumIncorrectOption(numIncorrectOption + 1)
@@ -196,7 +196,7 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
                 clearAnswer()
             }
         } 
-        //para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
+        // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
         questionAnswer === false && cleanOptions()
    
     }

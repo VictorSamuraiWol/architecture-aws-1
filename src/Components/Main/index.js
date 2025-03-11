@@ -18,7 +18,7 @@ function Main({ question, answer, srcImg, descriptionP, answerDisplay, descripti
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
 
-    //pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
+    // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
 
     return(

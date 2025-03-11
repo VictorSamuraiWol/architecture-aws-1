@@ -28,9 +28,10 @@ function NewPageMain() {
                 // toda a lista de questões da página main
                 setListQuestions(data)
 
+                // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main 
                 setAppearSound(true)
                 
-                //atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
                 const random = uniqueRandomMain(data.length) 
                 setRandomIndex(random)  
                 setNextQuestions(data[random])
@@ -48,14 +49,14 @@ function NewPageMain() {
         do {
             random = Math.floor(Math.random()*dataLength) 
         }
-        while (random === lastRandomMain) //repete até obter um número diferente
+        while (random === lastRandomMain) // repete até obter um número diferente
         
-        setLastRandomMain(random) //atualiza o último número gerado
+        setLastRandomMain(random) // atualiza o último número gerado
         return random                
     
     }
 
-    //função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
+    // função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
     function optionVoidFunc() {
         const optionMainVoid = document.querySelectorAll('.optionNext')
         const optionMainVoidP = document.querySelectorAll('.optionNextP')
@@ -69,10 +70,10 @@ function NewPageMain() {
     }
     
     useEffect(() => {
-        //função que esconde a opção vazia, caso tenha       
+        // função que esconde a opção vazia, caso tenha       
         optionVoidFunc()
 
-    }, [nextOptions]) //useEffect será chamado sempre que as opções (nextOptions) forem atualizadas
+    }, [nextOptions]) // useEffect será chamado sempre que as opções (nextOptions) forem atualizadas
 
     return(
         <div>

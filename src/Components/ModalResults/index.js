@@ -4,13 +4,13 @@ import deleteIcon from './delete-icon.png'
 import Modal from 'react-modal';
 import { useOutletContext } from 'react-router-dom';
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+// certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
 function ModalResults() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    //pegando os dados do resultado
+    // pegando os dados do resultado
     const { dataResults } = useOutletContext()
 
     function openModal() {

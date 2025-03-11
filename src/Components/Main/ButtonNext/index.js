@@ -7,7 +7,7 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound } = useOutletContext();
 
-    //som quando mudar de página
+    // som quando mudar de página
     function soundNextPageFunc() {
         const newSoundNextPage = new Audio(soundNextPage);
         validateSound === true && (questionAnswerButtonNextMain === true || questionAnswerButtonNextMulti === true) && newSoundNextPage.play()
@@ -15,7 +15,7 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
     }
 
     function newRequest() {
-        //chamar as funções somnete se estiverem nas ppaginas correnpondentes
+        // chamar as funções somnete se estiverem nas ppaginas correnpondentes
         questionAnswerButtonNextMain === false && uniqueRandomMain()
         questionAnswerButtonNextMulti === false && uniqueRandomMulti()
 
@@ -28,7 +28,7 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
     return(
         <>
             <button
-                //duas funções ao clicar no botão para mudar de página 
+                // duas funções ao clicar no botão para mudar de página 
                 onClick={() => { soundNextPageFunc() ; newRequest && newRequest() }} 
                 className={styles.buttonNext}
             >
