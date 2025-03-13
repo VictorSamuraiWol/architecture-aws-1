@@ -46,6 +46,8 @@ function PageBase() {
     }
 console.log(!appearSound, 47)
 console.log(activePageFormsQuestionsOptions === false, 48)
+console.log(<IllustrativePage />, 49)
+
     return(
         <div className={styles.pageBaseOutlet}>
             {(appearSound === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}

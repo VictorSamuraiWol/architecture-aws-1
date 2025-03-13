@@ -2,6 +2,7 @@ import styles from './IllustrativePage.module.css'
 import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import { Link } from 'react-router-dom'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+import { useEffect } from 'react'
 
 function IllustrativePage() {
 
@@ -161,8 +162,18 @@ function IllustrativePage() {
             descriptionId.style.border = 'none'
 
         }, 27000)
-
+        
     }
+    
+    useEffect(() => {
+        //capturando as páginas main e multi e certificando que elas não irão aparecer ao renderizar a página ilustrativa
+        const allQuestionsMain = document.querySelector('#allQuestionsMainId');
+        const allQuestionsMulti = document.querySelector('#allQuestionsMultiId');
+
+        allQuestionsMain && (allQuestionsMain.style.display = 'none')
+        allQuestionsMulti && (allQuestionsMulti.style.display = 'none')
+        
+    }, [])
 
     return(
         <div

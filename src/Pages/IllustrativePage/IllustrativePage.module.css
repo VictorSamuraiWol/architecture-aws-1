@@ -1,11 +1,6 @@
-.IllustrativePage {
-    position: absolute;
-    top: 0;
-}
-
 .backgroundImage {
     position: absolute;
-    height: 94vh;
+    height: 90vh;
     width: 100%;
     opacity: 0.1;
     z-index: 1;
@@ -17,8 +12,7 @@
     align-items: center;
     color: var(--color-fourth);
     background-color: var(--color-second);
-    padding: 8px 0;
-    height: 9vh;
+    height: 8vh;
 }
 
 .header h1 {
@@ -60,8 +54,7 @@
     position: relative;
     background-color: var(--color-first);
     gap: 12px;
-    height: 81vh;
-    padding: 8px;
+    height: 82vh;
 }
 
 .question {
@@ -241,7 +234,7 @@
     color: var(--color-fourth);
     background-color: var(--color-second);
     text-align: center;
-    padding: 8px 0;
+    height: 10vh;
     width: 100%;
     font-size: 1rem;
 }

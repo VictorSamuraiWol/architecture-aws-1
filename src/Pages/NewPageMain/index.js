@@ -77,7 +77,7 @@ function NewPageMain() {
 
     return(
         <div>
-            <div className={`${styles.allQuestionsMainClass} allquestions`} key={nextQuestions.id}>        
+            <div id='allQuestionsMainId' className={`${styles.allQuestionsMainClass} allquestions`} key={nextQuestions.id}>        
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}
