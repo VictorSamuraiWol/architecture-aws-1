@@ -33,13 +33,21 @@ nav {
 ul {
     font-size: 1.6rem;
     font-weight: bold;
+    padding: 0;
     text-decoration: underline;
     list-style: none;
 }
 
-.link:hover {
+.linksNavigation {
+    color: var(--color-fourth);
+}
+
+.linksNavigation:hover {
     color: var(--color-first);
     text-decoration: underline var(--color-first);
+}
+
+.link:hover {
     transform: scale(1.03);
 }
 
@@ -56,6 +64,10 @@ ul {
         font-size: 1.5rem;
     }
 
+    ul {
+        font-size: 1.5rem;
+    }
+
 }
 
 @media screen and (max-width: 1100px) {
@@ -64,6 +76,10 @@ ul {
     }
     
     .header h1 {
+        font-size: 1.2rem;
+    }
+
+    ul {
         font-size: 1.2rem;
     }
 
@@ -79,6 +95,10 @@ ul {
         text-align: center;
     }
 
+    ul {
+        font-size: 1rem;
+    }
+
 }
 
 @media screen and (max-width: 580px) {
@@ -86,8 +106,12 @@ ul {
         font-size: 0.8rem;
     }
 
+    ul {
+        font-size: 0.8rem;
+    }
+
     .iconStart {
         width: 50px;
-    }
+    } 
     
 }
