@@ -14,8 +14,8 @@ function NewPageMain() {
     const [randomIndex, setRandomIndex] = useState('');
     const [nextOptions, setNextOptions] = useState('');
     
-    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setAppearSound, lastRandomMain, setLastRandomMain } = useOutletContext();
+    // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
+    const { setRequestData, lastRandomMain, setLastRandomMain } = useOutletContext();
 
     useEffect(() => {
         fetch("http://localhost:3001/questions")
@@ -29,7 +29,7 @@ function NewPageMain() {
                 setListQuestions(data)
 
                 // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main 
-                setAppearSound(true)
+                setRequestData(true)
                 
                 // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
                 const random = uniqueRandomMain(data.length) 

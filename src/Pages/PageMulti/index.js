@@ -14,8 +14,8 @@ function PageMulti() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
-    // pegando a variável booleana para habilitar ou desabilitar o icone quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setAppearSound, lastRandomMulti, setLastRandomMulti } = useOutletContext();
+    // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
+    const { setRequestData, lastRandomMulti, setLastRandomMulti } = useOutletContext();
 
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
@@ -29,7 +29,7 @@ function PageMulti() {
                 setListMultiQuestions(data)       
             
                 // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página multi
-                setAppearSound(true)
+                setRequestData(true)
 
                 // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
                 const random = uniqueRandomMulti(data.length) 

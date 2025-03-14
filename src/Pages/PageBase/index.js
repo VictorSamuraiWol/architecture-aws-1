@@ -8,7 +8,10 @@ import IllustrativePage from '../IllustrativePage';
 
 function PageBase() {
     const [validateSound, setValidateSound] = useState(true)
-    const [appearSound, setAppearSound] = useState(false)
+
+    //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
+    const [requestData, setRequestData] = useState(false)
+
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
 
     // questões corretas das páginas main e multi
@@ -44,30 +47,27 @@ function PageBase() {
         }
         
     }
-console.log(!appearSound, 47)
-console.log(activePageFormsQuestionsOptions === false, 48)
-console.log(<IllustrativePage />, 49)
 
     return(
         <div className={styles.pageBaseOutlet}>
-            {(appearSound === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
+            {(requestData === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
 
-            <Outlet context={{ validateSound, setValidateSound, setAppearSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions }} />
+            <Outlet context={{ validateSound, setValidateSound, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions }} />
 
-            {appearSound === true && <BiSolidVolumeFull 
+            {requestData === true && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
                 id='soundFullBaseId' 
                 className={styles.soundFull} 
             />}
-            {appearSound === true && <BiSolidVolumeMute 
+            {requestData === true && <BiSolidVolumeMute 
                 onClick={validateSoundBaseFunc} 
                 id='soundMuteBaseId' 
                 className={styles.soundMute}
             />}
 
-            {(appearSound === true || activePageFormsQuestionsOptions === true) && <Footer />}
+            {(requestData === true || activePageFormsQuestionsOptions === true) && <Footer />}
 
-            {(!appearSound && activePageFormsQuestionsOptions === false) && <IllustrativePage />}
+            {(!requestData && activePageFormsQuestionsOptions === false) && <IllustrativePage />}
         </div>
     )
 }
