@@ -1,7 +1,7 @@
 {
     "questions": [
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!",
+            "title": "Resolution 1 - Randomly",
             "question": "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?",
             "answer": "Storage Gateway - File Gateway.",
             "srcImg": "",
@@ -9,7 +9,7 @@
             "numberQuestion": "1"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 3 - Randomly!",
+            "title": "Resolution 3 - Randomly",
             "question": "What feature of an Amazon S3 bucket only be suspended and not disabled once it have been enabled?",
             "answer": "Versioning.",
             "srcImg": "",
@@ -17,7 +17,7 @@
             "numberQuestion": "3"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 5 - Randomly!",
+            "title": "Resolution 5 - Randomly",
             "question": "Massive volumes of data that can be divided into two categories. The 'hot data' need to be both processed and stored quickly in a parallel and distributed fashion. The 'cold data need to be kept for reference with quick access for reads and updates at a low cost. What AWS services is BEST suited to accelerate the process?",
             "answer": "Amazon FSx for Lustre.",
             "srcImg": "",
@@ -25,7 +25,7 @@
             "numberQuestion": "5"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 7 - Randomly!",
+            "title": "Resolution 7 - Randomly",
             "question": "A company utilizes User Datagram Protocol and needs to support fast regional failover in case an AWS Region goes down. The company wants to continue using its own custom Domain Name System (DNS) service. What AWS service represent the best solution?",
             "answer": "Global Accelerator.",
             "srcImg": "",
@@ -33,7 +33,7 @@
             "numberQuestion": "7"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 9 - Randomly!",
+            "title": "Resolution 9 - Randomly",
             "question": "A company has a web application that runs 24*7 in the production environment. The company runs a clone of the same application in the dev environment for up to 8 hours every day. The company wants to build the MOST cost-optimal solution by deploying these applications using the best-fit pricing options for EC2 instances. What would you recommend?",
             "answer": "Use EC2 reserved instance for the production and on-demand instances for the dev.",
             "srcImg": "",
@@ -41,7 +41,7 @@
             "numberQuestion": "9"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 11 - Randomly!",
+            "title": "Resolution 11 - Randomly",
             "question": "A market need to support both stateful and stateless client-server communications via the application programming interface (APIs) developed using its platform. You have been hired by the startup to build a solution to fulfill this market need using Amazon API Gateway.",
             "answer": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
             "srcImg": "",
@@ -49,7 +49,7 @@
             "numberQuestion": "11"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 13 - Randomly!",
+            "title": "Resolution 13 - Randomly",
             "question": "Amazon SQS is used for migrate several core applications to the cloud to ensure high availability and cost efficiency. The development team expects a peak rate of about 1000 messages per second to be processed via SQS. It is important that the messages are processed in order. Which option can be used to implement this system?",
             "answer": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
             "srcImg": "",
@@ -57,7 +57,7 @@
             "numberQuestion": "13"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 15 - Randomly!",
+            "title": "Resolution 15 - Randomly",
             "question": "An EC2 instance 1A is running in AWS Region A. Later, it was created a new Amazon Machine Image (AMI) in Region A from a snapshot. This AMI is then copied into another Region B. It was provisioned an instance 1B in Region B using this new AMI in Region B. What entities exist in Region B?",
             "answer": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
             "srcImg": "",
@@ -65,7 +65,7 @@
             "numberQuestion": "15"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 17 - Randomly!",
+            "title": "Resolution 17 - Randomly",
             "question": "A Fleet of EC2 instances realized a specialized task that must deliver high random I/O performance. Each instance in the fleet would have access to a dataset that is replicated across the instances by the application itself. Because of the resilient application architecture, the specialized task would continue to be processed even if any instance goes down, as the underlying application would ensure the replacement instance has access to the required dataset. Which of the following options is the MOST cost-optimal and resource-efficient solution to build this fleet of EC2 instances?",
             "answer": "Use Instance Store based EC2 instances.",
             "srcImg": "",
@@ -73,7 +73,7 @@
             "numberQuestion": "17"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 19 - Randomly!",
+            "title": "Resolution 19 - Randomly",
             "question": "Multiple microservices running on EC2 instances under an ALB. The team wants ti route traffic to multiple back-end services based on the URL path of the HTTP header. So it wants request for https://www.test.com/orders to go to a specific microservice and request for https://www.test.com/products to go to another microservice. Which of the following features of ALB can be used?",
             "answer": "Path-based Routing.",
             "srcImg": "",
@@ -165,7 +165,7 @@
     ],
     "multiQuestions": [
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 2 - Randomly!",
+            "title": "Resolution 2 - Randomly",
             "question": "About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
             "answer": "true",
             "answerText": "Amazon S3 Intelligent-Tiering => Amazon S3 Standard // Amazon S3 One Zone-IA => Amazon S3 Standard-IA",
@@ -174,7 +174,7 @@
             "numberQuestion": "2"
         }, 
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 4 - Randomly!",
+            "title": "Resolution 4 - Randomly",
             "question": "E-commerce company is documenting the process flow to provision EC2 via the Amazon EC2 API. These instances are to be used for an internal application. Can you indentify the storage volume types that CANNOT be used as boot volumes while creating the instances? Select two.",
             "answer": "true",
             "answerText": "Throughput Optimized Hard disk drive (st1) // Cold Hard disk drive (sc1)",
@@ -183,7 +183,7 @@
             "numberQuestion": "4"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 6 - Randomly!",
+            "title": "Resolution 6 - Randomly",
             "question": "The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
             "answer": "true",
             "answerText": "Enable AWS Multi-Factor Authentication (AWS MFA) for privileged users // Configure AWS CloudTrail to log all AWS IAM actions",
@@ -192,7 +192,7 @@
             "numberQuestion": "6"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 8 - Randomly!",
+            "title": "Resolution 8 - Randomly",
             "question": "A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
             "answer": "true",
             "answerText": "Amazon ElastiCache // Amazon DynamoDB Accelerator (DAX)",
@@ -201,7 +201,7 @@
             "numberQuestion": "8"
         },
         {
-            "title": "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 10 - Randomly!",
+            "title": "Resolution 10 - Randomly",
             "question": "The company has defined different retention periods for different objects present in the S3, but the retention rules do not seem to work as expected. Which of the following options represent a valid configuration for setting up retention periods for objects. Select two.",
             "answer": "true",
             "answerText": "Different versions of a single object can have different retention modes and periods // When you apply a retention period to an object version explicity, you specify a Retain Until Date for the object version",

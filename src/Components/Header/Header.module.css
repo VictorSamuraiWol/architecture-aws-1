@@ -1,21 +1,52 @@
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
+    padding: 0 12px;
     color: var(--color-fourth);
     background-color: var(--color-second);
     height: 8vh;
 }
 
-.header h1 {
+.linkHeader {
     z-index: 1;
+}
+
+.iconStart {
+    width: 80px;
+}
+
+.iconStart:hover {
+    transform: scale(1.03);
+}
+
+.header h1 {
+    cursor: default;
+    z-index: 1;
+}
+
+nav {
+    z-index: 1;
+}
+
+ul {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration: underline;
+    list-style: none;
+}
+
+.link:hover {
+    color: var(--color-first);
+    text-decoration: underline var(--color-first);
+    transform: scale(1.03);
 }
 
 /* Responsividade */
 @media screen and (min-width: 1701px) {
     .header h1 {
         font-size: 1.6rem;
-        padding: 0 8px;
     }
 
 }
@@ -23,12 +54,15 @@
 @media screen and (max-width: 1700px) {
     .header h1 {
         font-size: 1.5rem;
-        padding: 0 8px;
     }
 
 }
 
 @media screen and (max-width: 1100px) {
+    .iconStart {
+        width: 70px;
+    }
+    
     .header h1 {
         font-size: 1.2rem;
     }
@@ -36,6 +70,10 @@
 }
 
 @media screen and (max-width: 860px) {
+    .iconStart {
+        width: 60px;
+    }
+
     .header h1 {
         font-size: 1rem;
         text-align: center;
@@ -46,6 +84,10 @@
 @media screen and (max-width: 580px) {
     .header h1 {
         font-size: 0.8rem;
+    }
+
+    .iconStart {
+        width: 50px;
     }
     
 }

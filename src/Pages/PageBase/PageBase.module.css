@@ -3,10 +3,9 @@
 }
 
 .soundFull {
-    top: 0;
-    right: 8px;
+    top: 91vh;
+    left: 2px;
     position: absolute;
-    padding-top: 6px;
     width: 1.1em;
     height: 1.1em;
     cursor: pointer;
@@ -15,10 +14,9 @@
 
 .soundMute {
     display: none;
-    top: 0;  
-    right: 8px;
+    top: 91vh;  
+    left: 2px;
     position: absolute;
-    padding-top: 6px;
     width: 1.1em;
     height: 1.1em;
     cursor: pointer;
@@ -31,20 +29,4 @@
     width: 100%;
     opacity: 0.1;
     z-index: 1;
-}
-
-/* Responsividade */
-@media screen and (max-width: 1700px) {
-    .soundFull {
-        top: 95vh;
-        left: 2px;
-        padding: 0;
-    }
-    
-    .soundMute {
-        top: 95vh;
-        left: 2px;
-        padding: 0;
-    }
-
 }

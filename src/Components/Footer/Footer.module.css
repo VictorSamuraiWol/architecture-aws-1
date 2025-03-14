@@ -13,24 +13,10 @@
 
 .footer p {
     margin: 0;
+    cursor: default;
 }
 
 /* Responsividade */
-@media screen and (max-width: 1100px) {
-    .footer {
-        text-align: end;
-    }
-
-    .footer img {
-        padding-right: 8px;
-    }
-    
-    .footer p {
-        padding-right: 8px;
-    }
-  
-}
-
 @media screen and (max-width: 860px) {
     .footer {
         display: flex;

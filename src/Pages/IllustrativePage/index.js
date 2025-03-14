@@ -40,7 +40,7 @@ function IllustrativePage() {
         }, 3000)
 
         setTimeout(() => {
-            questionId.innerText = "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
+            questionId.innerText = "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?"
             questionId.classList.remove(`${styles.onClickClass}`)
             questionId.style.color = '#430A5D'
             questionId.style.border = 'none'
@@ -183,7 +183,8 @@ function IllustrativePage() {
         >
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
             <div className={styles.header}>
-                <h1 id='headerH1'>
+                <h1 className={styles.headerIllustrativeTitle}>PÁGINA ILUSTRATIVA</h1>
+                <h1 id='headerH1' className={styles.headerH1}>
                     "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
                 </h1>
                 <div id='timerId' className={styles.timer}>
