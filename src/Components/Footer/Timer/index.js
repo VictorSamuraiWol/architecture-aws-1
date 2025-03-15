@@ -2,17 +2,13 @@ import styles from './Timer.module.css';
 import React, { useState, useEffect, useRef } from 'react';
 import timerPause from '../../../audios/timer-pause.mp3';
 import timerStart from '../../../audios/timer-start.mp3';
-import { useOutletContext } from 'react-router-dom';
 
-const Timer = () => {
+const Timer = (validateSound) => {
   const [time, setTime] = useState(120); // 2 minutos = 120 segundos
   const [isRunning, setIsRunning] = useState(true);
   const timerRef = useRef(null);
   const timerStartSound = new Audio(timerStart);
   const timerPauseSound = new Audio(timerPause);
-
-  // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-  const { validateSound } = useOutletContext(); 
 
   const startTimer = () => {
     if (!isRunning) {
@@ -20,14 +16,14 @@ const Timer = () => {
       timerRef.current = setInterval(() => {
         setTime(prevTime => prevTime - 1);// Cada segundo, o tempo está caindo em 1
       }, 1000); // 1000 ms
-    } validateSound === true && timerStartSound.play() //toca o audio
+    } validateSound.validateSound.validateSound === true && timerStartSound.play() //toca o audio
 
   };
 
   const pauseTimer = () => {    
     setIsRunning(false); // Muda o estado para indicar que está desativado
     clearInterval(timerRef.current); // Limpa o intervalo, parando o cronômetro
-    validateSound === true && timerPauseSound.play().then(() => {
+    validateSound.validateSound.validateSound === true && timerPauseSound.play().then(() => {
       // console.log("TimerPaused played successfully")
     }).catch(error => {
       // captura o erro e mostra no console

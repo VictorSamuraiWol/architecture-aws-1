@@ -1,10 +1,11 @@
 .footer {
     color: var(--color-fourth);
     background-color: var(--color-second);
+    font-size: 1rem;
     text-align: center;
+    position: relative;
     height: 10vh;
     width: 100%;
-    font-size: 1rem;
 }
 
 .footer img {

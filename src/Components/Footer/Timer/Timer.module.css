@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 91vh;
-    left: 18px;
+    top: 5px;
+    left: 20px;
     padding: 4px;
     border: 2px dotted var(--color-first);
     border-radius: 26px;

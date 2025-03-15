@@ -8,51 +8,63 @@
 
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 12px;
     color: var(--color-fourth);
     background-color: var(--color-second);
     height: 8vh;
 }
 
+.iconStart {
+    width: 80px;
+    z-index: 1;
+}
+
+.iconStart:hover {
+    transform: scale(1.03);
+}
+
 .headerIllustrativeTitle {
     background-color: var(--color-first);
     border-radius: 16px;
+    padding: 2px;
     margin-right: 8px;
     box-shadow: 2px 2px 2px var(--color-fourth);
     z-index: 1;
 }
 
 .headerH1 {
+    cursor: default;
     z-index: 1;
 }
 
-.timer {
+nav {
+    z-index: 1;
+}
+
+ul {
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.link {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 8px;
-    right: 26px;
-    padding: 2px;
-    border: 2px dotted var(--color-first);
-    border-radius: 26px;
-}
-
-.timer h1 {
-    margin: 8px;
-}
-
-.timer button {
-    color: var(--color-fourth);
     background-color: var(--color-first);
-    padding: 6px;
-    margin: 0 3px;
-    border: 1px solid var(--color-third);
+    padding: 8px;
     border-radius: 16px;
-    border-style: dashed;
+}
+
+.link:hover {
+    color: var(--color-first);
+    background-color: var(--color-third);
     cursor: pointer;
+    transform: scale(1.03);
 }
 
 .main {
@@ -241,10 +253,45 @@
 .footer {
     color: var(--color-fourth);
     background-color: var(--color-second);
+    font-size: 1rem;
     text-align: center;
+    position: relative;
     height: 10vh;
     width: 100%;
-    font-size: 1rem;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    padding: 4px;
+    border: 2px dotted var(--color-first);
+    border-radius: 26px;
+    z-index: 1;
+}
+
+.timer h1 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.timer button {
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+    padding: 6px;
+    margin: 0 3px;
+    border: 1px solid var(--color-third);
+    border-radius: 16px;
+    border-style: dashed;
+    cursor: pointer;
+}
+
+.timer button:hover {
+    transform: scale(1.03);
 }
 
 .footer img {
@@ -309,15 +356,8 @@
         padding: 0 8px;
     }
 
-    .timer {
-        height: 65px;
-        width: 105px;
-        top: 95vh;
-        left: 18px;
-    }
-
-    .timer h1 {
-        margin: 0;
+    ul {
+        font-size: 1.5rem;
     }
 
     .question {
@@ -348,22 +388,16 @@
 }
 
 @media screen and (max-width: 1100px) {
+    .iconStart {
+        width: 70px;
+    }
+    
     .header h1 {
         font-size: 1.2rem;
     }
 
-    .timer {
-        height: 60px;
-        padding: 0;
-    }
-
-    .timer h1 {
-        font-size: 16px;
-
-    }
-
-    .timer button {
-        padding: 4px;
+    ul {
+        font-size: 1.2rem;
     }
 
     .question {
@@ -383,7 +417,7 @@
         font-size: 1.2rem;
     }
 
-    .button {
+    .buttonAnswer {
         padding: 14px;
     }
 
@@ -399,7 +433,7 @@
         font-size: 1.2rem;
     }
 
-    .buttonnext {
+    .buttonNext {
         padding: 14px;
     }
 
@@ -421,10 +455,18 @@
 
 }
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 860px) {    
+    .iconStart {
+        width: 60px;
+    }
+
     .header h1 {
         font-size: 1rem;
         text-align: center;
+    }
+
+    ul {
+        font-size: 1rem;
     }
 
     .question {
@@ -460,7 +502,7 @@
         margin: 8px;
     }
 
-    .button {
+    .buttonAnswer {
         padding: 12px;
     }
 
@@ -488,7 +530,7 @@
         border-radius: 8px;
     }
 
-    .buttonnext {
+    .buttonNext {
         padding: 12px;
     }
 
@@ -515,10 +557,18 @@
 
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 580px) {    
+    .iconStart {
+        width: 50px;
+    } 
+    
     .header h1 {
         font-size: 0.8rem;
     }
+
+    ul {
+        font-size: 0.8rem;
+    }   
 
     .question {
         font-size: 0.8rem;
@@ -542,7 +592,7 @@
         font-size: 0.8rem;
     }
 
-    .button {
+    .buttonAnswer {
         padding: 8px;
     }
 
@@ -574,7 +624,7 @@
         height: 2px;    
     }
 
-    .buttonnext {
+    .buttonNext {
         bottom: 10px;
         right: 10px;
         padding: 4px;
@@ -584,6 +634,14 @@
         bottom: 10px;
         left: 2px;
         padding: 4px;
+    }
+
+    .timer button {
+        padding: 2px;
+    }
+
+    .footer {
+        height: 10vh;
     }
 
     .footer p {

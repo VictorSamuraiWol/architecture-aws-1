@@ -3,6 +3,8 @@ import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import { Link } from 'react-router-dom'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import { useEffect } from 'react'
+import imageStart from '../../imgs/icon-start.png'
+import { GoPlus } from "react-icons/go";
 
 function IllustrativePage() {
 
@@ -24,7 +26,7 @@ function IllustrativePage() {
         headerH1.style.border = '1px solid Crimson'
 
         setTimeout(() => {
-            headerH1.innerText = "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
+            headerH1.innerText = "Resolution 1 - Randomly"
             headerH1.classList.remove(`${styles.onClickClass}`)
             headerH1.style.color = '#430A5D'
             headerH1.style.border = 'none'            
@@ -183,17 +185,17 @@ function IllustrativePage() {
         >
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
             <div className={styles.header}>
-                <h1 className={styles.headerIllustrativeTitle}>PÁGINA ILUSTRATIVA</h1>
-                <h1 id='headerH1' className={styles.headerH1}>
-                    "🏆 Wellcome!!! Deep in the Content and Lost in the Knowledge - Resolution 1 - Randomly!"
-                </h1>
-                <div id='timerId' className={styles.timer}>
-                    <h1>12:00</h1>
-                    <div>
-                        <button>Play</button>
-                        <button>Pause</button>
-                    </div>
-                 </div>
+                <img className={styles.iconStart} src={imageStart} alt='icon-start' />
+                    
+                    <h1 id='headerH1' className={styles.headerH1}>
+                        <span className={styles.headerIllustrativeTitle}>PÁGINA ILUSTRATIVA</span>
+                        "Resolution 1 - Randomly"
+                    </h1>
+                <nav>
+                    <ul>                    
+                        <li className={styles.link}><GoPlus />Create</li>                     
+                    </ul>
+                </nav>
             </div>
 
             <div className={styles.main}>
@@ -288,6 +290,13 @@ function IllustrativePage() {
             </div>
 
             <div className={styles.footer}>
+                <div id='timerId' className={styles.timer}>
+                    <h1>12:00</h1>
+                    <div>
+                        <button>Play</button>
+                        <button>Pause</button>
+                    </div>
+                </div>
                 <img src={image} alt="icon wolverine" />
                 <p>Created by Victor Cardoso. Feel free to connect on  
                     <Link id='contactLink' to="https://www.linkedin.com/in/victor-cardoso-cloud-front/" target="_blank"> Linkedin.

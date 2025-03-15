@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
-import Timer from './Timer';
 import image from '../../imgs/icon-start.png'
 import { Link } from 'react-router-dom';
+import { GoPlus } from "react-icons/go";
 
 function Header({ title }) {
     return(
@@ -19,11 +19,10 @@ function Header({ title }) {
                         to='/'
                         className={styles.linksNavigation} 
                     >
-                        <li className={styles.link}>Create</li>
+                        <li className={styles.link}><GoPlus />Create</li>
                     </Link>
                 </ul>
             </nav>
-            <Timer />
         </div>
     )
 
