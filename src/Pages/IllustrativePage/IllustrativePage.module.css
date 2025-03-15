@@ -25,16 +25,12 @@
     transform: scale(1.03);
 }
 
-.headerIllustrativeTitle {
+.headerH1 {
+    width:80%;
+    max-width: max-content;
     background-color: var(--color-first);
     border-radius: 16px;
-    padding: 2px;
-    margin-right: 8px;
     box-shadow: 2px 2px 2px var(--color-fourth);
-    z-index: 1;
-}
-
-.headerH1 {
     cursor: default;
     z-index: 1;
 }

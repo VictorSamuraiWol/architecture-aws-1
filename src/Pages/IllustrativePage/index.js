@@ -26,7 +26,7 @@ function IllustrativePage() {
         headerH1.style.border = '1px solid Crimson'
 
         setTimeout(() => {
-            headerH1.innerText = "Resolution 1 - Randomly"
+            headerH1.innerHTML = "PÁGINA ILUSTRATIVA / Resolution 1 - Randomly"        
             headerH1.classList.remove(`${styles.onClickClass}`)
             headerH1.style.color = '#430A5D'
             headerH1.style.border = 'none'            
@@ -185,12 +185,10 @@ function IllustrativePage() {
         >
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
             <div className={styles.header}>
-                <img className={styles.iconStart} src={imageStart} alt='icon-start' />
-                    
-                    <h1 id='headerH1' className={styles.headerH1}>
-                        <span className={styles.headerIllustrativeTitle}>PÁGINA ILUSTRATIVA</span>
-                        "Resolution 1 - Randomly"
-                    </h1>
+                <img className={styles.iconStart} src={imageStart} alt='icon-start' />                    
+                <h1 id='headerH1' className={styles.headerH1}>
+                    PÁGINA ILUSTRATIVA / Resolution 1 - Randomly              
+                </h1>
                 <nav>
                     <ul>                    
                         <li className={styles.link}><GoPlus />Create</li>                     
