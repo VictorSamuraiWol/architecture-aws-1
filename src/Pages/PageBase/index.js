@@ -65,7 +65,7 @@ function PageBase() {
                 className={styles.soundMute}
             />}
 
-            {(requestData === true || activePageFormsQuestionsOptions === true) && <Footer validateSound={validateSound} />}
+            {(requestData === true || activePageFormsQuestionsOptions === true) && <Footer />}
 
             {(!requestData && activePageFormsQuestionsOptions === false) && <IllustrativePage />}
         </div>

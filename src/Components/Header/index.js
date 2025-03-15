@@ -3,8 +3,10 @@ import image from '../../imgs/icon-start.png'
 import { Link } from 'react-router-dom';
 import NavigationItem from './NavigationItem';
 import { GoPlus } from 'react-icons/go';
+import Timer from './Timer';
 
 function Header({ title }) {
+
     return(
         <div className={styles.header}>
             <Link 
@@ -36,6 +38,8 @@ function Header({ title }) {
 
                 </ul>
             </nav>
+            {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
+            <Timer />
         </div>
     )
 
