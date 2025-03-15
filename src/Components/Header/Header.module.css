@@ -30,33 +30,18 @@ nav {
 }
 
 ul {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     font-size: 1.6rem;
     font-weight: bold;
     padding: 0;
     list-style: none;
-    text-decoration: none;
 }
 
-.linksNavigation {
+.linksNavigation {   
     color: var(--color-fourth);
-}
-
-.linksNavigation:hover {
-    color: var(--color-first);
-}
-
-.link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-first);
-    padding: 8px;
-    border-radius: 16px;
-}
-
-.link:hover {
-    background-color: var(--color-third);
-    transform: scale(1.03);
+    text-decoration: none;
 }
 
 /* Responsividade */

@@ -1,0 +1,13 @@
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-first);
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.link:hover {
+    background-color: var(--color-third);
+    transform: scale(1.03);
+}
