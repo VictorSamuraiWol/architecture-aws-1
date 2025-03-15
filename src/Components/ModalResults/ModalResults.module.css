@@ -14,18 +14,6 @@
     position: absolute;
     bottom: 25px;
     left: 25px;
-    color: var(--color-fourth);
-    background-color: var(--color-second);
-    padding: 16px;
-    border: 2px solid var(--color-fourth);
-    border-radius: 50%;
-    border-style: dashed;
-    cursor: pointer;
-}
-
-.buttonResultsModal:hover {
-    border: 3px solid var(--color-third);
-    transform: scale(1.03);
 }
 
 .modalOverlay {

@@ -1,9 +1,10 @@
 import styles from './ButtonNext.module.css';
 import soundNextPage from '../../../audios/paperNextPage.mp3';
 import { useOutletContext } from 'react-router-dom';
+import ButtonDefault from '../../ButtonDefault';
 
 function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMulti, uniqueRandomMain, uniqueRandomMulti }) {
-
+console.log(uniqueRandomMulti, 7)
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound } = useOutletContext();
 
@@ -15,26 +16,22 @@ function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMult
     }
 
     function newRequest() {
-        // chamar as funções somnete se estiverem nas ppaginas correnpondentes
-        questionAnswerButtonNextMain === false && uniqueRandomMain()
-        questionAnswerButtonNextMulti === false && uniqueRandomMulti()
-
         if ((questionAnswerButtonNextMain === false || questionAnswerButtonNextMulti === false)) {
             alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
         } else {}
 
+        // chamar as funções somente se estiverem nas páginas correspondentes
+        questionAnswerButtonNextMain === false && uniqueRandomMain && uniqueRandomMain()
+        questionAnswerButtonNextMulti === false && uniqueRandomMulti && uniqueRandomMulti()
+
     }
     
     return(
-        <>
-            <button
-                // duas funções ao clicar no botão para mudar de página 
-                onClick={() => { soundNextPageFunc() ; newRequest && newRequest() }} 
-                className={styles.buttonNext}
-            >
-                Next
-            </button>
-        </>
+        <ButtonDefault 
+            onClick={() => { soundNextPageFunc() ; newRequest && newRequest() }} 
+            specificStyleButton={styles.buttonNext} 
+            buttonName='Next' 
+        />
     )
 }
 

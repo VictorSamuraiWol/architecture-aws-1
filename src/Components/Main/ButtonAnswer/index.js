@@ -3,6 +3,7 @@ import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import ButtonDefault from '../../ButtonDefault';
 
 function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti }) {
 
@@ -209,9 +210,11 @@ function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, set
     }
 
     return(
-        <button onClick={displayAndValidate} className={styles.buttonAnswer}>
-            Answer
-        </button>
+        <ButtonDefault 
+            onClick={displayAndValidate} 
+            specificStyleButton={styles.buttonAnswer} 
+            buttonName='Answer' 
+        />
     )
 
 }

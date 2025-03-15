@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import deleteIcon from './delete-icon.png'
 import Modal from 'react-modal';
 import { useOutletContext } from 'react-router-dom';
+import ButtonDefault from '../ButtonDefault';
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -27,7 +28,12 @@ function ModalResults() {
                 onClick={openModal}
                 className={styles.iconesTextos} 
             >
-                <button className={styles.buttonResultsModal}>Results</button>            
+
+                <ButtonDefault 
+                    specificStyleButton={styles.buttonResultsModal} 
+                    buttonName='Results' 
+                />
+
             </div>
 
             <Modal
@@ -37,6 +43,7 @@ function ModalResults() {
                 overlayClassName={styles.modalOverlay}
                 className={styles.modalContent}
             >
+
                 <h1>✔REAL-TIME RESULT:</h1>
                 <p>Correct questions: {dataResults.numCorrectOption}</p>
                 <p>Incorrect questions: {dataResults.numIncorrectOption}</p>
@@ -49,8 +56,10 @@ function ModalResults() {
                     onClick={closeModal} 
                     src={deleteIcon} 
                     alt='imagem delete'
-                /> 
+                />
+
             </Modal>
+
         </div>
     )
 }
