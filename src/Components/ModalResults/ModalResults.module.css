@@ -101,6 +101,14 @@
         width: 1.5em;
     }
 
+    .modalContent h1 {
+        font-size: 1.7rem;
+    }
+    
+    .modalContent p {
+        font-size: 1.5rem;
+    }
+
 }
 
 @media screen and (max-width: 860px) {
