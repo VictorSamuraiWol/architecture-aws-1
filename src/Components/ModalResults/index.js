@@ -1,9 +1,9 @@
 import styles from './ModalResults.module.css';
 import React, { useState } from 'react';
-import deleteIcon from './delete-icon.png'
 import Modal from 'react-modal';
 import { useOutletContext } from 'react-router-dom';
 import ButtonDefault from '../ButtonDefault';
+import { TiDeleteOutline } from "react-icons/ti";
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -52,10 +52,10 @@ function ModalResults() {
                 <p>Performance: {dataResults.performanceResults}</p>
                 <p>Obs: Performance para aprovação: 70% em 65 questões</p>
 
-                <img 
+                {/* imagem do react icon */}
+                <TiDeleteOutline
                     onClick={closeModal} 
-                    src={deleteIcon} 
-                    alt='imagem delete'
+                    className={styles.modalImageDelete} 
                 />
 
             </Modal>

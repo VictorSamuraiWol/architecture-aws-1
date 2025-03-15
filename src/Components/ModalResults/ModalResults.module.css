@@ -73,19 +73,20 @@
     transform: scale(1.03);
 }
 
-.modalContent img {
+.modalImageDelete {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 25px;
+    top: 5px;
+    right: 5px;
+    /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
+    height: 2em;
+    width: 2em;
     background-color: var(--color-second);
-    border: 3px dotted var(--color-third);
     border-radius: 50%;
     cursor: pointer;
     z-index: 1;
 }
 
-.modalContent img:hover {
+.modalImageDelete:hover {
     transform: scale(1.03);
 }
 
@@ -95,9 +96,9 @@
         padding: 14px;
     }
 
-    .modalContent img {
-        top: 15px;
-        right: 15px;
+    .modalImageDelete {
+        height: 1.5em;
+        width: 1.5em;
     }
 
 }
@@ -114,12 +115,6 @@
     
     .modalContent p {
         font-size: 1.3rem;
-    }
-
-    .modalContent img {
-        top: 10px;
-        right: 10px;
-        width: 20px;
     }
 
 }
@@ -139,10 +134,9 @@
         font-size: 0.7rem;
     }
 
-    .modalContent img {
-        top: 8px;
-        right: 8px;
-        width: 15px;
+    .modalImageDelete {
+        height: 1em;
+        width: 1em;
     }
 
 }
