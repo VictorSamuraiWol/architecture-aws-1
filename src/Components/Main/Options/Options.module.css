@@ -37,10 +37,35 @@
     transition: 0.1s;
 }
 
-.inputOptions {
+.inputOptions {    
+    appearance: none; /* remove o estilo padrão */
     width: 15px;
     height: 15px;
+    position: relative;
+    background-color: var(--color-first);
+    border: 2px solid var(--color-second);
+    border-radius: 50%;
+    transition: 0.3s;
     cursor: pointer;
+}
+
+/* Quando o radio está marcado */
+.inputOptions:checked {
+    background-color: var(--color-second);
+    border: 2px solid var(--color-fourth);
+}
+
+/* Criando o ponto interno ao ser checado */
+.inputOptions:checked::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-fourth);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
 .option {

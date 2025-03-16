@@ -1,6 +1,8 @@
 import styles from './Answer.module.css';
 
-function Answer({ answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, nextOptions, multiOptions }) {
+function Answer({ 
+    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, nextOptions, multiOptions 
+}) {
 
     function description() {
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {

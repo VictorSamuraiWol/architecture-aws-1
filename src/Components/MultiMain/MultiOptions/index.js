@@ -1,7 +1,9 @@
 import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
-function MultiOptions({ multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti }) {
+function MultiOptions({ 
+    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti 
+}) {
 
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');

@@ -3,7 +3,9 @@ import soundNextPage from '../../../audios/paperNextPage.mp3';
 import { useOutletContext } from 'react-router-dom';
 import ButtonDefault from '../../ButtonDefault';
 
-function ButtonNext({ questionAnswerButtonNextMain, questionAnswerButtonNextMulti, uniqueRandomMain, uniqueRandomMulti }) {
+function ButtonNext({ 
+    questionAnswerButtonNextMain, questionAnswerButtonNextMulti, uniqueRandomMain, uniqueRandomMulti 
+}) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound } = useOutletContext();

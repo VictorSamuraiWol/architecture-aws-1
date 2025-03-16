@@ -8,7 +8,9 @@ import styles from './MultiMain.module.css';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
-function MultiMain({ question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti }) {
+function MultiMain({ 
+    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti 
+}) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([])

@@ -7,7 +7,6 @@ import Header from '../../Components/Header'
 function CreateNewQuestionsOptions () {
  
     const { setActivePageFormsQuestionsOptions } = useOutletContext()
-
     
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela

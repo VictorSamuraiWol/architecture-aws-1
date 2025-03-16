@@ -38,10 +38,32 @@
 }
 
 .inputMultiOptions {
+    appearance: none; /* remove o estilo padrão */
     width: 15px;
     height: 15px;
+    position: relative;
+    background-color: var(--color-first);
+    border: 2px solid var(--color-second);
+    transition: 0.3s;
     cursor: pointer;
 }
+
+.inputMultiOptions:checked {
+    background-color: var(--color-second);
+    border: 2px solid var(--color-fourth);
+}
+
+.inputMultiOptions:checked::after {
+    content: "✓";
+    font-size: 12px;
+    color: var(--color-fourth);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
 
 .textMultiOptions {
     margin: 12px;

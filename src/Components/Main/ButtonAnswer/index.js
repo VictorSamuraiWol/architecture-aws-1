@@ -5,7 +5,9 @@ import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
 
-function ButtonAnswer({ answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti }) {
+function ButtonAnswer({ 
+    answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti 
+}) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();

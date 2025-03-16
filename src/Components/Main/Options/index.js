@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
-function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 }) {
+function Options({ 
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 
+}) {
            
     const [listNumRandom, setListNumRandom] = useState([]);
 
@@ -58,8 +60,6 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
 
     }
 
-    // ----------------------------------------------------------------
-    // ----------------------------------------------------------------
     // Observação 1: Pode ser usada a função 'MAP' nas opções que serão renderizadas neste componente como a seguir, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
     // const [optionMap, setOptionMap] = useState([])
     // useEffect(() => {
@@ -67,11 +67,7 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         
     // }, [nextOptions])
     // console.log(optionMap[optNum1], 71)
-    // ----------------------------------------------------------------
-    // ----------------------------------------------------------------
 
-    // ----------------------------------------------------------------
-    // ----------------------------------------------------------------
     // Observação 2: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
     // const [optionFilter, setOptionFilter] = useState([])
     // useEffect(() => {
@@ -79,8 +75,6 @@ function Options({ setCaptureValue, optionColor, randomIndex, nextOptions, setNe
         
     // }, [nextOptions])
     // console.log(optionFilter[optNum1], 83)
-    // -----------------------------------------------------------------
-    // -----------------------------------------------------------------
 
     return(                 
         <div 

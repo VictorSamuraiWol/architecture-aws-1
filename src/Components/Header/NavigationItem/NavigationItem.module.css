@@ -3,11 +3,14 @@
     justify-content: center;
     align-items: center;
     background-color: var(--color-first);
+    border: 2px solid var(--color-fourth);
     padding: 8px;
     border-radius: 16px;
 }
 
 .link:hover {
+    color: var(--color-first);
     background-color: var(--color-third);
+    border: 2px solid var(--color-fourth);
     transform: scale(1.03);
 }

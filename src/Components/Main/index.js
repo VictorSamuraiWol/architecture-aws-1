@@ -8,7 +8,9 @@ import Options from './Options';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
-function Main({ question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain }) {
+function Main({ 
+    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain 
+}) {
    
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor, setOptionColor] = useState(styles.optionColor)    
