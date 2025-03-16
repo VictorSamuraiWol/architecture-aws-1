@@ -289,7 +289,7 @@ function IllustrativePage() {
 
             <div className={styles.footer}>
                 <div id='timerId' className={styles.timer}>
-                    <h1>12:00</h1>
+                    <h1>2:00</h1>
                     <div>
                         <button>Play</button>
                         <button>Pause</button>

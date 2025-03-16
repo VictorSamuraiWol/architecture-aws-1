@@ -29,7 +29,8 @@ function FormsNewQuestionsOptionsPage() {
                     nome3="Option 3:" 
                     nome4="Option 4:"                
                     nome5="Option 5:" 
-                    nome6="Option's number:" 
+                    nome6="Option's number:"
+                    optionClass={styles.optionClass}
                 />
             </form>
         </div>

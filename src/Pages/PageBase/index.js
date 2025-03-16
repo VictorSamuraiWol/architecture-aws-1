@@ -22,6 +22,7 @@ function PageBase() {
     const [lastRandomMain, setLastRandomMain] = useState(-1);
     const [lastRandomMulti, setLastRandomMulti] = useState(-1);
 
+    // resultados estatísticos
     const dataResults = {
         numCorrectOption, 
         numIncorrectOption, 
@@ -30,6 +31,7 @@ function PageBase() {
         performanceResults: (numCorrectOption + numIncorrectOption > 0) ? `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100).toFixed(2)}%` : 0
     }
 
+    // função que habilita ou desabilita os ícones dos audios
     function validateSoundBaseFunc() {
         const soundFull = document.querySelector('#soundFullBaseId')
         const soundMute = document.querySelector('#soundMuteBaseId')
@@ -52,14 +54,15 @@ function PageBase() {
         <div className={styles.pageBaseOutlet}>
             {(requestData === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
 
-            <Outlet context={{ validateSound, setValidateSound, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions }} />
+            <Outlet context={{ validateSound, setValidateSound, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions,setActivePageFormsQuestionsOptions }} />
 
-            {requestData === true && <BiSolidVolumeFull 
+            {(requestData === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
                 id='soundFullBaseId' 
                 className={styles.soundFull} 
             />}
-            {requestData === true && <BiSolidVolumeMute 
+
+            {(requestData === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute 
                 onClick={validateSoundBaseFunc} 
                 id='soundMuteBaseId' 
                 className={styles.soundMute}

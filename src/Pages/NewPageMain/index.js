@@ -15,7 +15,8 @@ function NewPageMain() {
     const [nextOptions, setNextOptions] = useState('');
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, lastRandomMain, setLastRandomMain } = useOutletContext();
+    const { setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
+
 
     useEffect(() => {
         fetch("http://localhost:3001/questions")
@@ -35,6 +36,9 @@ function NewPageMain() {
                 const random = uniqueRandomMain(data.length) 
                 setRandomIndex(random)  
                 setNextQuestions(data[random])
+
+                // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
+                setActivePageFormsQuestionsOptions(false)
 
             }
             

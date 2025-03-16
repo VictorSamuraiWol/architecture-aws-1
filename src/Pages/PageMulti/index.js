@@ -15,7 +15,7 @@ function PageMulti() {
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, lastRandomMulti, setLastRandomMulti } = useOutletContext();
+    const { setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
     useEffect(() => {
         fetch("http://localhost:3001/multiQuestions")
@@ -35,6 +35,9 @@ function PageMulti() {
                 const random = uniqueRandomMulti(data.length) 
                 setRandomIndexMulti(random)  
                 setMultiQuestions(data[random])
+
+                // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
+                setActivePageFormsQuestionsOptions(false)
 
             }
 

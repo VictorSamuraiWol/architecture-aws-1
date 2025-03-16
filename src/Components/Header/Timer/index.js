@@ -64,7 +64,7 @@ const Timer = () => {
   };
 
   return (
-    <div className={styles.timer}>
+    <div id='timerPagesId' className={styles.timer}>
       <h1>{formatTime(time)}</h1>
       <div>
         <button onClick={startTimer} disabled={isRunning || time === 0}>Play</button>
