@@ -1,5 +1,6 @@
 import styles from './FormsNewQuestionsOptions.module.css'
 import CampoQuestionsOptions from './CamposQuestionsOptions'
+import ButtonDefault from '../ButtonDefault'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -19,6 +20,7 @@ function FormsNewQuestionsOptionsPage() {
                     nome5="Description:" 
                     nome6="Question's number:" 
                 />
+                <ButtonDefault buttonName='Submit' specificType='submit' specificStyleButton={styles.buttonSubmit} />
             </form>
 
             <form onSubmit={onSave} className={styles.form}>
@@ -32,6 +34,7 @@ function FormsNewQuestionsOptionsPage() {
                     nome6="Option's number:"
                     optionClass={styles.optionClass}
                 />
+                <ButtonDefault buttonName='Submit' specificType='submit' specificStyleButton={styles.buttonSubmit} />
             </form>
         </div>
     )

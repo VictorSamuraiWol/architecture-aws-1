@@ -37,6 +37,7 @@
     transform: scale(1.01);
 }
 
+/* personalizando o estilo do input checkbox */
 .inputMultiOptions {
     appearance: none; /* remove o estilo padrão */
     width: 15px;

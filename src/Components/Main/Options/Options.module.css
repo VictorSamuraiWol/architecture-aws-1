@@ -37,6 +37,7 @@
     transition: 0.1s;
 }
 
+/* personalizando o estilo do input radio */
 .inputOptions {    
     appearance: none; /* remove o estilo padrão */
     width: 15px;
