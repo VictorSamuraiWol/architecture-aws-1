@@ -1,0 +1,35 @@
+.campo {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+    width: 95%;
+    padding: 4px;
+    border: 1px solid var(--color-third);
+    border-radius: 16px;
+    z-index: 1;
+}
+
+.labelTextarea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    width: 100%;
+}
+
+textarea {
+    font-size: 1rem;
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+    height: 60px;
+    width: 100%;
+    border: 1px solid var(--color-third);
+    border-radius: 8px;
+    outline: none;
+    resize: none;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--color-first) var(--color-fourth);
+}
