@@ -29,6 +29,9 @@ function CampoQuestionOption({
     //atualizando os valores e certificando que todos estão capturados antes de salvar os dados do form
     useEffect(() => {
         // form 1
+        // se for utilizar o forms1, usar os valores dos campos do forms1
+        formsTitlesTarget  === "Question's Form" && serValuesForms(valueForm1)  
+
         setNewTitleQuestions && labelTarget === "Question's Form Title:" && setNewTitleQuestions(newValue)
 
         setNewQuestionQuestions && labelTarget === "Question's Form Question:" && setNewQuestionQuestions(newValue)
@@ -39,12 +42,12 @@ function CampoQuestionOption({
 
         setNewDescriptionQuestions && labelTarget === "Question's Form Description:" && setNewDescriptionQuestions(newValue)
 
-        setNewQuestionsNumberQuestions && labelTarget === "Question's Form Question's number:" && setNewQuestionsNumberQuestions(newValue)
-
-        // se for utilizar o forms1, usar os valores dos campos do forms1
-        formsTitlesTarget  === "Question's Form" && serValuesForms(valueForm1)        
+        setNewQuestionsNumberQuestions && labelTarget === "Question's Form Question's number:" && setNewQuestionsNumberQuestions(newValue)              
 
         // form 2
+        // se for utilizar o forms2, usar os valores dos campos do forms2
+        formsTitlesTarget === "Option's Form" && serValuesForms(valueForm2)
+
         setNewOption1Question && labelTarget === "Question's Form Option 1:" && setNewOption1Question(newValue)
 
         setNewOption2Question && labelTarget === "Question's Form Option 2:" && setNewOption2Question(newValue)
@@ -55,12 +58,12 @@ function CampoQuestionOption({
 
         setNewOption5Question && labelTarget === "Question's Form Option 5:" && setNewOption5Question(newValue)
 
-        setNewOptionsNumberQuestions && labelTarget === "Question's Form Option's number:" && setNewOptionsNumberQuestions(newValue)
-
-        // se for utilizar o forms2, usar os valores dos campos do forms2
-        formsTitlesTarget === "Option's Form" && serValuesForms(valueForm2)
+        setNewOptionsNumberQuestions && labelTarget === "Question's Form Option's number:" && setNewOptionsNumberQuestions(newValue)        
 
         // form 3
+        // se for utilizar o forms3, usar os valores dos campos do forms3
+        formsTitlesTarget === "MultiQuestion's Form" && serValuesForms(valueForm3)
+
         setNewTitleMultiQuestions && labelTarget === "MultiQuestion's Form Title:" && setNewTitleMultiQuestions(newValue)
 
         setNewQuestionMultiQuestions && labelTarget === "MultiQuestion's Form Question:" && setNewQuestionMultiQuestions(newValue)
@@ -73,12 +76,12 @@ function CampoQuestionOption({
 
         setNewDescriptionMultiQuestions && labelTarget === "MultiQuestion's Form Description:" && setNewDescriptionMultiQuestions(newValue)
         
-        setNewQuestionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Question's number:" && setNewQuestionsNumberMultiQuestions(newValue)
-
-        // se for utilizar o forms3, usar os valores dos campos do forms3
-        formsTitlesTarget === "MultiQuestion's Form" && serValuesForms(valueForm3)
+        setNewQuestionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Question's number:" && setNewQuestionsNumberMultiQuestions(newValue)        
 
         // form 4
+        // se for utilizar o forms4, usar os valores dos campos do forms4
+        formsTitlesTarget === "MultiOption's Form" && serValuesForms(valueForm4)
+
         setNewOption1MultiQuestion && labelTarget === "MultiQuestion's Form Option 1:" && setNewOption1MultiQuestion(newValue)
         
         setNewOption2MultiQuestion && labelTarget === "MultiQuestion's Form Option 2:" && setNewOption2MultiQuestion(newValue)
@@ -89,10 +92,7 @@ function CampoQuestionOption({
         
         setNewOption5MultiQuestion && labelTarget === "MultiQuestion's Form Option 5:" && setNewOption5MultiQuestion(newValue)
         
-        setNewOptionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Option's number:" && setNewOptionsNumberMultiQuestions(newValue)
-
-        // se for utilizar o forms4, usar os valores dos campos do forms4
-        formsTitlesTarget === "MultiOption's Form" && serValuesForms(valueForm4)
+        setNewOptionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Option's number:" && setNewOptionsNumberMultiQuestions(newValue)        
 
     }, [newValue, labelTarget, setLabelTarget, formsTitlesTarget, /* Campos form1 (Question's Form) */ setNewTitleQuestions, setNewQuestionQuestions, setNewAnswerQuestions, setNewSourceImageQuestions, setNewDescriptionQuestions, setNewQuestionsNumberQuestions, valueForm1, /* Campos form2 (Option's Form) */ setNewOption1Question, setNewOption2Question, setNewOption3Question, setNewOption4Question, setNewOption5Question, setNewOptionsNumberQuestions, valueForm2, /* Campos form3 (MultiQuestion's Form) */ setNewTitleMultiQuestions, setNewQuestionMultiQuestions, setNewAnswerMultiQuestions, setNewAnswerTextMultiQuestions, setNewSourceImageMultiQuestions, setNewDescriptionMultiQuestions, setNewQuestionsNumberMultiQuestions, valueForm3, /* Campos form4 (MultiOption's Form) */ setNewOption1MultiQuestion, setNewOption2MultiQuestion, setNewOption3MultiQuestion, setNewOption4MultiQuestion, setNewOption5MultiQuestion, setNewOptionsNumberMultiQuestions, valueForm4 ])
 
