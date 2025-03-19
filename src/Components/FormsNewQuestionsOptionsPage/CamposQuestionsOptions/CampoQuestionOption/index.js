@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './CampoQuestionOption.module.css'
 
 function CampoQuestionOption({ 
-    nome, optionClass, labelTarget, setLabelTarget, valueForm1, valueForm2, valueForm3, valueForm4, /* Campos form1 (Question's Form) */ setNewTitleQuestions, setNewQuestionQuestions, setNewAnswerQuestions, setNewSourceImageQuestions, setNewDescriptionQuestions, setNewQuestionsNumberQuestions, /* Campos form2 (Option's Form) */ setNewOption1Question, setNewOption2Question, setNewOption3Question, setNewOption4Question, setNewOption5Question, setNewOptionsNumberQuestions, /* Campos form3 (MultiQuestion's Form) */ setNewTitleMultiQuestions, setNewQuestionMultiQuestions, setNewAnswerMultiQuestions, setNewAnswerTextMultiQuestions, setNewSourceImageMultiQuestions, setNewDescriptionMultiQuestions, setNewQuestionsNumberMultiQuestions, /* Campos form4 (MultiOption's Form) */ setNewOption1MultiQuestion, setNewOption2MultiQuestion, setNewOption3MultiQuestion, setNewOption4MultiQuestion, setNewOption5MultiQuestion, setNewOptionsNumberMultiQuestions
+    nome, optionClass, labelTarget, setLabelTarget, valueForm1, valueForm2, valueForm3, valueForm4, /* campos form1 */ setNewTitleQuestions, setNewQuestionQuestions, setNewAnswerQuestions, setNewSourceImageQuestions, setNewDescriptionQuestions, setNewQuestionsNumberQuestions, /* campos form2 */ setNewOption1Question, setNewOption2Question, setNewOption3Question, setNewOption4Question, setNewOption5Question, setNewOptionsNumberQuestions, /* campos form3 */ setNewTitleMultiQuestions, setNewQuestionMultiQuestions, setNewAnswerMultiQuestions, setNewAnswerTextMultiQuestions, setNewSourceImageMultiQuestions, setNewDescriptionMultiQuestions, setNewQuestionsNumberMultiQuestions, /* campos form4 */ setNewOption1MultiQuestion, setNewOption2MultiQuestion, setNewOption3MultiQuestion, setNewOption4MultiQuestion, setNewOption5MultiQuestion, setNewOptionsNumberMultiQuestions
 }) {
 
     const [newValue, setNewValue] = useState("")
@@ -30,71 +30,71 @@ function CampoQuestionOption({
     useEffect(() => {
         // form 1
         // se for utilizar o forms1, usar os valores dos campos do forms1
-        formsTitlesTarget  === "Question's Form" && serValuesForms(valueForm1)  
+        formsTitlesTarget  === "Form 1 (Questions)" && serValuesForms(valueForm1)  
 
-        setNewTitleQuestions && labelTarget === "Question's Form Title:" && setNewTitleQuestions(newValue)
+        setNewTitleQuestions && labelTarget === "Title(Form1):" && setNewTitleQuestions(newValue)
 
-        setNewQuestionQuestions && labelTarget === "Question's Form Question:" && setNewQuestionQuestions(newValue)
+        setNewQuestionQuestions && labelTarget === "Question(Form1):" && setNewQuestionQuestions(newValue)
         
-        setNewAnswerQuestions && labelTarget === "Question's Form Answer:" && setNewAnswerQuestions(newValue)
+        setNewAnswerQuestions && labelTarget === "Answer(Form1):" && setNewAnswerQuestions(newValue)
 
-        setNewSourceImageQuestions && labelTarget === "Question's Form Source Image:" && setNewSourceImageQuestions(newValue)
+        setNewSourceImageQuestions && labelTarget === "Source Image(Form1):" && setNewSourceImageQuestions(newValue)
 
-        setNewDescriptionQuestions && labelTarget === "Question's Form Description:" && setNewDescriptionQuestions(newValue)
+        setNewDescriptionQuestions && labelTarget === "Description(Form1):" && setNewDescriptionQuestions(newValue)
 
-        setNewQuestionsNumberQuestions && labelTarget === "Question's Form Question's number:" && setNewQuestionsNumberQuestions(newValue)              
+        setNewQuestionsNumberQuestions && labelTarget === "Question's number(Form1):" && setNewQuestionsNumberQuestions(newValue)              
 
         // form 2
         // se for utilizar o forms2, usar os valores dos campos do forms2
-        formsTitlesTarget === "Option's Form" && serValuesForms(valueForm2)
+        formsTitlesTarget === "Form 2 (Options)" && serValuesForms(valueForm2)
 
-        setNewOption1Question && labelTarget === "Question's Form Option 1:" && setNewOption1Question(newValue)
+        setNewOption1Question && labelTarget === "Option 1(Form2):" && setNewOption1Question(newValue)
 
-        setNewOption2Question && labelTarget === "Question's Form Option 2:" && setNewOption2Question(newValue)
+        setNewOption2Question && labelTarget === "Option 2(Form2):" && setNewOption2Question(newValue)
         
-        setNewOption3Question && labelTarget === "Question's Form Option 3:" && setNewOption3Question(newValue)
+        setNewOption3Question && labelTarget === "Option 3(Form2):" && setNewOption3Question(newValue)
 
-        setNewOption4Question && labelTarget === "Question's Form Option 4:" && setNewOption4Question(newValue)
+        setNewOption4Question && labelTarget === "Option 4(Form2):" && setNewOption4Question(newValue)
 
-        setNewOption5Question && labelTarget === "Question's Form Option 5:" && setNewOption5Question(newValue)
+        setNewOption5Question && labelTarget === "Option 5(Form2):" && setNewOption5Question(newValue)
 
-        setNewOptionsNumberQuestions && labelTarget === "Question's Form Option's number:" && setNewOptionsNumberQuestions(newValue)        
+        setNewOptionsNumberQuestions && labelTarget === "Option's number(Form2):" && setNewOptionsNumberQuestions(newValue)        
 
         // form 3
         // se for utilizar o forms3, usar os valores dos campos do forms3
-        formsTitlesTarget === "MultiQuestion's Form" && serValuesForms(valueForm3)
+        formsTitlesTarget === "Form 3 (MultiQuestions)" && serValuesForms(valueForm3)
 
-        setNewTitleMultiQuestions && labelTarget === "MultiQuestion's Form Title:" && setNewTitleMultiQuestions(newValue)
+        setNewTitleMultiQuestions && labelTarget === "Title(Form3):" && setNewTitleMultiQuestions(newValue)
 
-        setNewQuestionMultiQuestions && labelTarget === "MultiQuestion's Form Question:" && setNewQuestionMultiQuestions(newValue)
+        setNewQuestionMultiQuestions && labelTarget === "Question(Form3):" && setNewQuestionMultiQuestions(newValue)
 
-        setNewAnswerMultiQuestions && labelTarget === "MultiQuestion's Form Answer:" && setNewAnswerMultiQuestions(newValue)
+        setNewAnswerMultiQuestions && labelTarget === "Answer(Form3):" && setNewAnswerMultiQuestions(newValue)
 
-        setNewAnswerTextMultiQuestions && labelTarget === "MultiQuestion's Form Answer's Text:" && setNewAnswerTextMultiQuestions(newValue)
+        setNewAnswerTextMultiQuestions && labelTarget === "Answer's Text(Form3):" && setNewAnswerTextMultiQuestions(newValue)
 
-        setNewSourceImageMultiQuestions && labelTarget === "MultiQuestion's Form Source Image:" && setNewSourceImageMultiQuestions(newValue)
+        setNewSourceImageMultiQuestions && labelTarget === "Source Image(Form3):" && setNewSourceImageMultiQuestions(newValue)
 
-        setNewDescriptionMultiQuestions && labelTarget === "MultiQuestion's Form Description:" && setNewDescriptionMultiQuestions(newValue)
+        setNewDescriptionMultiQuestions && labelTarget === "Description(Form3):" && setNewDescriptionMultiQuestions(newValue)
         
-        setNewQuestionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Question's number:" && setNewQuestionsNumberMultiQuestions(newValue)        
+        setNewQuestionsNumberMultiQuestions && labelTarget === "Question's number(Form3):" && setNewQuestionsNumberMultiQuestions(newValue)        
 
         // form 4
         // se for utilizar o forms4, usar os valores dos campos do forms4
-        formsTitlesTarget === "MultiOption's Form" && serValuesForms(valueForm4)
+        formsTitlesTarget === "Form 4 (MultiOptions)" && serValuesForms(valueForm4)
 
-        setNewOption1MultiQuestion && labelTarget === "MultiQuestion's Form Option 1:" && setNewOption1MultiQuestion(newValue)
+        setNewOption1MultiQuestion && labelTarget === "Option 1(Form4):" && setNewOption1MultiQuestion(newValue)
         
-        setNewOption2MultiQuestion && labelTarget === "MultiQuestion's Form Option 2:" && setNewOption2MultiQuestion(newValue)
+        setNewOption2MultiQuestion && labelTarget === "Option 2(Form4):" && setNewOption2MultiQuestion(newValue)
         
-        setNewOption3MultiQuestion && labelTarget === "MultiQuestion's Form Option 3:" && setNewOption3MultiQuestion(newValue)
+        setNewOption3MultiQuestion && labelTarget === "Option 3(Form4):" && setNewOption3MultiQuestion(newValue)
         
-        setNewOption4MultiQuestion && labelTarget === "MultiQuestion's Form Option 4:" && setNewOption4MultiQuestion(newValue)
+        setNewOption4MultiQuestion && labelTarget === "Option 4(Form4):" && setNewOption4MultiQuestion(newValue)
         
-        setNewOption5MultiQuestion && labelTarget === "MultiQuestion's Form Option 5:" && setNewOption5MultiQuestion(newValue)
+        setNewOption5MultiQuestion && labelTarget === "Option 5(Form4):" && setNewOption5MultiQuestion(newValue)
         
-        setNewOptionsNumberMultiQuestions && labelTarget === "MultiQuestion's Form Option's number:" && setNewOptionsNumberMultiQuestions(newValue)        
+        setNewOptionsNumberMultiQuestions && labelTarget === "Option's number(Form4):" && setNewOptionsNumberMultiQuestions(newValue)        
 
-    }, [newValue, labelTarget, setLabelTarget, formsTitlesTarget, /* Campos form1 (Question's Form) */ setNewTitleQuestions, setNewQuestionQuestions, setNewAnswerQuestions, setNewSourceImageQuestions, setNewDescriptionQuestions, setNewQuestionsNumberQuestions, valueForm1, /* Campos form2 (Option's Form) */ setNewOption1Question, setNewOption2Question, setNewOption3Question, setNewOption4Question, setNewOption5Question, setNewOptionsNumberQuestions, valueForm2, /* Campos form3 (MultiQuestion's Form) */ setNewTitleMultiQuestions, setNewQuestionMultiQuestions, setNewAnswerMultiQuestions, setNewAnswerTextMultiQuestions, setNewSourceImageMultiQuestions, setNewDescriptionMultiQuestions, setNewQuestionsNumberMultiQuestions, valueForm3, /* Campos form4 (MultiOption's Form) */ setNewOption1MultiQuestion, setNewOption2MultiQuestion, setNewOption3MultiQuestion, setNewOption4MultiQuestion, setNewOption5MultiQuestion, setNewOptionsNumberMultiQuestions, valueForm4 ])
+    }, [newValue, labelTarget, setLabelTarget, formsTitlesTarget, /* campos form1 */ setNewTitleQuestions, setNewQuestionQuestions, setNewAnswerQuestions, setNewSourceImageQuestions, setNewDescriptionQuestions, setNewQuestionsNumberQuestions, valueForm1, /* campos form2 */ setNewOption1Question, setNewOption2Question, setNewOption3Question, setNewOption4Question, setNewOption5Question, setNewOptionsNumberQuestions, valueForm2, /* campos form3 */ setNewTitleMultiQuestions, setNewQuestionMultiQuestions, setNewAnswerMultiQuestions, setNewAnswerTextMultiQuestions, setNewSourceImageMultiQuestions, setNewDescriptionMultiQuestions, setNewQuestionsNumberMultiQuestions, valueForm3, /* campos form4 */ setNewOption1MultiQuestion, setNewOption2MultiQuestion, setNewOption3MultiQuestion, setNewOption4MultiQuestion, setNewOption5MultiQuestion, setNewOptionsNumberMultiQuestions, valueForm4 ])
 
     return(
         <div className={styles.campo}>

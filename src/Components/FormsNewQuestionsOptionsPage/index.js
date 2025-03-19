@@ -65,27 +65,28 @@ function FormsNewQuestionsOptionsPage() {
         } else {
                 console.error('Erro nos dados recebidos!')
                 alert("Por favor! Preencha todos os campos necessários!")
-
-        }        
-
-        try {
-            const response = await fetch('http://localhost:3001/questions', {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data),
-
-            });        
-       
-            if (response.ok) {
-                console.log("Dados enviados com sucesso!");
-                alert('Questão adicionada com sucesso!!!')
                 
-            }
-        } catch(error) {
+            }        
+            
+            try {
+                const response = await fetch('http://localhost:3001/questions', {
+                    method: 'POST',
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(data),
+                    
+                });        
+                
+                if (response.ok) {
+                    console.log("Dados enviados com sucesso!");
+                    alert('Questão adicionada com sucesso!!!')
+                    cleanForm();
+                    
+                }
+
+            } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
         }    
-        readyToSendForm1 === true && cleanForm();
     };
 
     // função utilizando POST para salvar os dados do form2 na API
@@ -122,8 +123,9 @@ function FormsNewQuestionsOptionsPage() {
                 console.log("Dados enviados com sucesso!");
                 alert('Questão adicionada com sucesso!!!')
                 cleanForm();
-
+                
             }
+
         } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
@@ -165,12 +167,13 @@ function FormsNewQuestionsOptionsPage() {
                 console.log("Dados enviados com sucesso!");
                 alert('Questão adicionada com sucesso!!!')
                 cleanForm();
-
+                
             }
+
         } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
-        }    
+        }   
     };
 
     // função utilizando POST para salvar os dados do form4 na API
@@ -207,16 +210,15 @@ function FormsNewQuestionsOptionsPage() {
                 console.log("Dados enviados com sucesso!");
                 alert('Questão adicionada com sucesso!!!')
                 cleanForm();
-
+                
             }
+
         } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
         }    
     };
 
-
-    // tirar o saveData depois, não precisa
     function cleanForm() {        
         if (readyToSendForm1 === true) { // form1
             setNewTitleQuestions('')
@@ -260,23 +262,21 @@ function FormsNewQuestionsOptionsPage() {
             setReadyToSendForm4(false)
     
         }
-
-        console.log((readyToSendForm1 === true), (readyToSendForm2 === true), (readyToSendForm3 === true), (readyToSendForm4 === true), 264)
         
-    }
+    }    
 
     return(
         <div className={styles.formsNewQuestionsOptions}>
             <div className={styles.forms}>
                 <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
-                    <h1>Question's Form</h1>
+                    <h1>Form 1 (Questions)</h1>
                     <CampoQuestionsOptions
-                        nome1="Question's Form Title:" 
-                        nome2="Question's Form Question:" 
-                        nome3="Question's Form Answer:" 
-                        nome4="Question's Form Source Image:" 
-                        nome5="Question's Form Description:" 
-                        nome6="Question's Form Question's number:"
+                        nome1="Title(Form1):" 
+                        nome2="Question(Form1):" 
+                        nome3="Answer(Form1):" 
+                        nome4="Source Image(Form1):" 
+                        nome5="Description(Form1):" 
+                        nome6="Question's number(Form1):"
 
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
@@ -304,14 +304,14 @@ function FormsNewQuestionsOptionsPage() {
                 </form>
 
                 <form onSubmit={onSaveForm2} className={styles.form}>
-                    <h1>Option's Form</h1>
+                    <h1>Form 2 (Options)</h1>
                     <CampoQuestionsOptions 
-                        nome1="Question's Form Option 1:" 
-                        nome2="Question's Form Option 2:" 
-                        nome3="Question's Form Option 3:" 
-                        nome4="Question's Form Option 4:"                
-                        nome5="Question's Form Option 5:" 
-                        nome6="Question's Form Option's number:"
+                        nome1="Option 1(Form2):" 
+                        nome2="Option 2(Form2):" 
+                        nome3="Option 3(Form2):" 
+                        nome4="Option 4(Form2):"                
+                        nome5="Option 5(Form2):" 
+                        nome6="Option's number(Form2):"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
@@ -342,15 +342,15 @@ function FormsNewQuestionsOptionsPage() {
 
             <div className={styles.forms}>
                 <form onSubmit={onSaveForm3} className={styles.form}>
-                    <h1>MultiQuestion's Form</h1>
+                    <h1>Form 3 (MultiQuestions)</h1>
                     <CampoQuestionsOptions 
-                        nome1="MultiQuestion's Form Title:" 
-                        nome2="MultiQuestion's Form Question:" 
-                        nome3="MultiQuestion's Form Answer:" 
-                        nome4="MultiQuestion's Form Answer's Text:" 
-                        nome5="MultiQuestion's Form Source Image:" 
-                        nome6="MultiQuestion's Form Description:"
-                        nome7="MultiQuestion's Form Question's number:"
+                        nome1="Title(Form3):" 
+                        nome2="Question(Form3):" 
+                        nome3="Answer(Form3):" 
+                        nome4="Answer's Text(Form3):" 
+                        nome5="Source Image(Form3):" 
+                        nome6="Description(Form3):"
+                        nome7="Question's number(Form3):"
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
@@ -380,14 +380,14 @@ function FormsNewQuestionsOptionsPage() {
                 </form>
 
                 <form onSubmit={onSaveForm4} className={styles.form}>
-                    <h1>MultiOption's Form</h1>
+                    <h1>Form 4 (MultiOptions)</h1>
                     <CampoQuestionsOptions 
-                        nome1="MultiQuestion's Form Option 1:" 
-                        nome2="MultiQuestion's Form Option 2:" 
-                        nome3="MultiQuestion's Form Option 3:" 
-                        nome4="MultiQuestion's Form Option 4:"                
-                        nome5="MultiQuestion's Form Option 5:" 
-                        nome6="MultiQuestion's Form Option's number:"
+                        nome1="Option 1(Form4):" 
+                        nome2="Option 2(Form4):" 
+                        nome3="Option 3(Form4):" 
+                        nome4="Option 4(Form4):"                
+                        nome5="Option 5(Form4):" 
+                        nome6="Option's number(Form4):"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
