@@ -280,15 +280,6 @@
       "option5": "The bucket default settings will override any explicit retention mode or period you request on an object version.",
       "numberOption": "10",
       "id": "3681"
-    },
-    {
-      "id": "bb56",
-      "option1": "a",
-      "option2": "a",
-      "option3": "a",
-      "option4": "a",
-      "option5": "a",
-      "numberOption": "a"
     }
   ]
 }
