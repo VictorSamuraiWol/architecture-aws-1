@@ -271,12 +271,12 @@ function FormsNewQuestionsOptionsPage() {
                 <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
                     <h1>Form 1 (Questions)</h1>
                     <CampoQuestionsOptions
-                        nome1="Title(Form1):" 
-                        nome2="Question(Form1):" 
-                        nome3="Answer(Form1):" 
-                        nome4="Source Image(Form1):" 
-                        nome5="Description(Form1):" 
-                        nome6="Question's number(Form1):"
+                        nome1="Title:" 
+                        nome2="Question:" 
+                        nome3="Answer:" 
+                        nome4="Source Image:" 
+                        nome5="Description:" 
+                        nome6="Question's number:"
 
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
@@ -306,12 +306,12 @@ function FormsNewQuestionsOptionsPage() {
                 <form onSubmit={onSaveForm2} className={styles.form}>
                     <h1>Form 2 (Options)</h1>
                     <CampoQuestionsOptions 
-                        nome1="Option 1(Form2):" 
-                        nome2="Option 2(Form2):" 
-                        nome3="Option 3(Form2):" 
-                        nome4="Option 4(Form2):"                
-                        nome5="Option 5(Form2):" 
-                        nome6="Option's number(Form2):"
+                        nome1="Option 1:" 
+                        nome2="Option 2:" 
+                        nome3="Option 3:" 
+                        nome4="Option 4:"                
+                        nome5="Option 5:" 
+                        nome6="Option's number:"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
@@ -344,13 +344,13 @@ function FormsNewQuestionsOptionsPage() {
                 <form onSubmit={onSaveForm3} className={styles.form}>
                     <h1>Form 3 (MultiQuestions)</h1>
                     <CampoQuestionsOptions 
-                        nome1="Title(Form3):" 
-                        nome2="Question(Form3):" 
-                        nome3="Answer(Form3):" 
-                        nome4="Answer's Text(Form3):" 
-                        nome5="Source Image(Form3):" 
-                        nome6="Description(Form3):"
-                        nome7="Question's number(Form3):"
+                        nome1="Title:" 
+                        nome2="Question:" 
+                        nome3="Answer:" 
+                        nome4="Answer's Text:" 
+                        nome5="Source Image:" 
+                        nome6="Description:"
+                        nome7="Question's number:"
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
@@ -382,12 +382,12 @@ function FormsNewQuestionsOptionsPage() {
                 <form onSubmit={onSaveForm4} className={styles.form}>
                     <h1>Form 4 (MultiOptions)</h1>
                     <CampoQuestionsOptions 
-                        nome1="Option 1(Form4):" 
-                        nome2="Option 2(Form4):" 
-                        nome3="Option 3(Form4):" 
-                        nome4="Option 4(Form4):"                
-                        nome5="Option 5(Form4):" 
-                        nome6="Option's number(Form4):"
+                        nome1="Option 1:" 
+                        nome2="Option 2:" 
+                        nome3="Option 3:" 
+                        nome4="Option 4:"                
+                        nome5="Option 5:" 
+                        nome6="Option's number:"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
