@@ -46,6 +46,8 @@ function FormsNewQuestionsOptionsPage() {
     const [readyToSendForm3, setReadyToSendForm3] = useState(false);
     const [readyToSendForm4, setReadyToSendForm4] = useState(false);
 
+    const [readyToCleanAll, setReadyToCleanAll] = useState(false)
+
     // função utilizando POST para salvar os dados do form1 na API
     const onSaveForm1 = async (e) => {
         e.preventDefault();
@@ -63,8 +65,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos!')
-                alert("Por favor! Preencha todos os campos necessários!")
+                console.error('Erro nos dados recebidos do formulário 1!')
+                alert("Por favor! Preencha todos os campos necessários do formulário 1!")
                 
             }        
             
@@ -77,8 +79,8 @@ function FormsNewQuestionsOptionsPage() {
                 });        
                 
                 if (response.ok) {
-                    console.log("Dados enviados com sucesso!");
-                    alert('Questão adicionada com sucesso!!!')
+                    console.log("Dados enviados com sucesso do formulário 1! Preencha um formulário por vez.");
+                    alert('Questão adicionada com sucesso do formulário 1! Preencha um formulário por vez.')
                     cleanForm();
                     
                 }
@@ -106,8 +108,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos!')
-                alert("Por favor! Preencha todos os campos necessários!")
+                console.error('Erro nos dados recebidos do formulário 2!')
+                alert("Por favor! Preencha todos os campos necessários do formulário 2!")
                 
         }      
 
@@ -120,8 +122,8 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso!");
-                alert('Questão adicionada com sucesso!!!')
+                console.log("Dados enviados com sucesso do formulário 2! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucessodo formulário 2! Preencha um formulário por vez.')
                 cleanForm();
                 
             }
@@ -150,8 +152,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos!')
-                alert("Por favor! Preencha todos os campos necessários!")
+                console.error('Erro nos dados recebidos do formulário 3!')
+                alert("Por favor! Preencha todos os campos necessários do formulário 3!")
                 
         }      
 
@@ -164,8 +166,8 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso!");
-                alert('Questão adicionada com sucesso!!!')
+                console.log("Dados enviados com sucesso do formulário 3! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do formulário 3! Preencha um formulário por vez.')
                 cleanForm();
                 
             }
@@ -193,9 +195,9 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos!')
-                alert("Por favor! Preencha todos os campos necessários!")
-                
+                console.error('Erro nos dados recebidos do formulário 4!')
+                alert("Por favor! Preencha todos os campos necessários do formulário 4!")
+                cleanForm();
         }      
 
         try {
@@ -207,10 +209,10 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso!");
-                alert('Questão adicionada com sucesso!!!')
+                console.log("Dados enviados com sucesso do formulário 4! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do formulário 4! Preencha um formulário por vez.')
                 cleanForm();
-                
+
             }
 
         } catch(error) {
@@ -219,8 +221,11 @@ function FormsNewQuestionsOptionsPage() {
         }    
     };
 
-    function cleanForm() {        
-        if (readyToSendForm1 === true) { // form1
+    function cleanForm() { 
+
+        // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
+        if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
+            // form 1
             setNewTitleQuestions('')
             setNewQuestionQuestions('')
             setNewAnswerQuestions('')
@@ -228,19 +233,15 @@ function FormsNewQuestionsOptionsPage() {
             setNewDescriptionQuestions('')
             setNewQuestionsNumberQuestions('')
 
-            setReadyToSendForm1(false)
-
-        } else if (readyToSendForm2 === true) { // form2
+            // form 2
             setNewOption1Question('')
             setNewOption2Question('')
             setNewOption3Question('')
             setNewOption4Question('')
             setNewOption5Question('')
             setNewOptionsNumberQuestions('')
-            
-            setReadyToSendForm2(false)
 
-        } else if (readyToSendForm3 === true) { // form3
+            // form 3
             setNewTitleMultiQuestions('')
             setNewQuestionMultiQuestions('')
             setNewAnswerMultiQuestions('')
@@ -249,9 +250,7 @@ function FormsNewQuestionsOptionsPage() {
             setNewDescriptionMultiQuestions('')
             setNewQuestionsNumberMultiQuestions('')
 
-            setReadyToSendForm3(false)
-    
-        } else if (readyToSendForm4 === true) { // form4
+            // form 4
             setNewOption1MultiQuestion('')
             setNewOption2MultiQuestion('')
             setNewOption3MultiQuestion('')
@@ -259,11 +258,11 @@ function FormsNewQuestionsOptionsPage() {
             setNewOption5MultiQuestion('')
             setNewOptionsNumberMultiQuestions('')
 
-            setReadyToSendForm4(false)
-    
         }
-        
-    }    
+
+        setReadyToCleanAll(true)
+
+    }
 
     return(
         <div className={styles.formsNewQuestionsOptions}>
@@ -276,7 +275,7 @@ function FormsNewQuestionsOptionsPage() {
                         nome3="Answer:" 
                         nome4="Source Image:" 
                         nome5="Description:" 
-                        nome6="Question's number:"
+                        nome6="Number:"
 
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
@@ -292,6 +291,11 @@ function FormsNewQuestionsOptionsPage() {
                         setNewDescriptionQuestions={setNewDescriptionQuestions}
                         newQuestionsNumberQuestions={newQuestionsNumberQuestions}
                         setNewQuestionsNumberQuestions={setNewQuestionsNumberQuestions}
+
+                        readyToCleanAll={readyToCleanAll}
+                        setReadyToCleanAll={setReadyToCleanAll}
+
+                        readyToSendForm1={readyToSendForm1}
 
                     />
                     <ButtonDefault 
@@ -311,7 +315,7 @@ function FormsNewQuestionsOptionsPage() {
                         nome3="Option 3:" 
                         nome4="Option 4:"                
                         nome5="Option 5:" 
-                        nome6="Option's number:"
+                        nome6="Number:"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
@@ -328,6 +332,11 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOption5Question={setNewOption5Question}    
                         newOptionsNumberQuestions={newOptionsNumberQuestions} 
                         setNewOptionsNumberQuestions={setNewOptionsNumberQuestions}
+
+                        readyToCleanAll={readyToCleanAll}
+                        setReadyToCleanAll={setReadyToCleanAll}
+
+                        readyToSendForm2={readyToSendForm2}
 
                     />
                     <ButtonDefault 
@@ -350,7 +359,7 @@ function FormsNewQuestionsOptionsPage() {
                         nome4="Answer's Text:" 
                         nome5="Source Image:" 
                         nome6="Description:"
-                        nome7="Question's number:"
+                        nome7="Number:"
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
@@ -368,6 +377,11 @@ function FormsNewQuestionsOptionsPage() {
                         setNewDescriptionMultiQuestions={setNewDescriptionMultiQuestions}
                         newQuestionsNumberMultiQuestions={newQuestionsNumberMultiQuestions}
                         setNewQuestionsNumberMultiQuestions={setNewQuestionsNumberMultiQuestions}
+
+                        readyToCleanAll={readyToCleanAll}
+                        setReadyToCleanAll={setReadyToCleanAll}
+
+                        readyToSendForm3={readyToSendForm3}
 
                     />
                     <ButtonDefault 
@@ -387,7 +401,7 @@ function FormsNewQuestionsOptionsPage() {
                         nome3="Option 3:" 
                         nome4="Option 4:"                
                         nome5="Option 5:" 
-                        nome6="Option's number:"
+                        nome6="Number:"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
@@ -404,6 +418,11 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOption5MultiQuestion={setNewOption5MultiQuestion}
                         newOptionsNumberMultiQuestions={newOptionsNumberMultiQuestions}
                         setNewOptionsNumberMultiQuestions={setNewOptionsNumberMultiQuestions}
+
+                        readyToCleanAll={readyToCleanAll}
+                        setReadyToCleanAll={setReadyToCleanAll}
+
+                        readyToSendForm4={readyToSendForm4}
 
                     />
                     <ButtonDefault 
