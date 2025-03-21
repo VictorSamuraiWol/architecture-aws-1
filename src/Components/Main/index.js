@@ -43,6 +43,7 @@ function Main({
                 setOptNum3={setOptNum3}
                 setOptNum4={setOptNum4}
                 setOptNum5={setOptNum5}
+
             />
 
             <ButtonAnswer            
@@ -63,6 +64,7 @@ function Main({
                 optNum5={optNum5}
                 randomIndex={randomIndex}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
+
             />
 
             <Answer 
@@ -73,6 +75,7 @@ function Main({
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 nextOptions={nextOptions}
+                
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}

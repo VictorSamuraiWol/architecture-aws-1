@@ -29,6 +29,7 @@ function MultiMain({
                 setCaptureValueMulti={setCaptureValueMulti}
                 randomIndexMulti={randomIndexMulti}
                 captureValueMulti={captureValueMulti}
+
             />
             
             <ButtonAnswer            
@@ -44,6 +45,7 @@ function MultiMain({
                 setMultiOptions={setMultiOptions}
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
+
             />
 
             <Answer 
@@ -56,6 +58,7 @@ function MultiMain({
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 multiOptions={multiOptions}
+                
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}

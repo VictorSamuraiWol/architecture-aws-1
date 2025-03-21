@@ -1,7 +1,7 @@
-import styles from './CamposQuestionsOptions.module.css'
-import CampoQuestionOption from './CampoQuestionOption'
+import styles from './FieldsQuestionsOptions.module.css'
+import FieldQuestionOption from './FieldQuestionOption'
 
-function CampoQuestionsOptions({ 
+function FieldsQuestionsOptions({ 
     nome1, nome2, nome3, nome4, nome5, nome6, nome7, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
     /* campos form1 */ newTitleQuestions, setNewTitleQuestions, newQuestionQuestions, setNewQuestionQuestions, newAnswerQuestions, setNewAnswerQuestions, newSourceImageQuestions, setNewSourceImageQuestions, newDescriptionQuestions, setNewDescriptionQuestions, newQuestionsNumberQuestions, setNewQuestionsNumberQuestions, 
     /* campos form2 */ newOption1Question, setNewOption1Question, newOption2Question, setNewOption2Question, newOption3Question, setNewOption3Question, newOption4Question, setNewOption4Question, newOption5Question, setNewOption5Question, newOptionsNumberQuestions, setNewOptionsNumberQuestions, 
@@ -12,7 +12,7 @@ function CampoQuestionsOptions({
     return(
         <>
             {/* campo 1 */}
-            <CampoQuestionOption
+            <FieldQuestionOption
                 nome={nome1} 
                 optionClass={optionClass}
 
@@ -48,7 +48,7 @@ function CampoQuestionsOptions({
             />
 
             {/* campo 2 */}
-            <CampoQuestionOption
+            <FieldQuestionOption
                 nome={nome2} 
                 optionClass={optionClass}
                 
@@ -56,7 +56,7 @@ function CampoQuestionsOptions({
                 setLabelTarget={setLabelTarget}
 
                 // 4 possíveis elementos do campo 2 (4 forms)
-                // campo 1 do form 2
+                // campo 2 do form 1
                 valueForm1={newQuestionQuestions}
                 setValueForm1={setNewQuestionQuestions}
 
@@ -84,7 +84,7 @@ function CampoQuestionsOptions({
             />
 
             {/* campo 3 */}
-            <CampoQuestionOption
+            <FieldQuestionOption
                 nome={nome3} 
                 optionClass={optionClass}
 
@@ -92,7 +92,7 @@ function CampoQuestionsOptions({
                 setLabelTarget={setLabelTarget}
 
                 // 4 possíveis elementos do campo 3 (4 forms)
-                // campo 1 do form 3
+                // campo 3 do form 1
                 valueForm1={newAnswerQuestions}
                 setValueForm1={setNewAnswerQuestions}
 
@@ -120,7 +120,7 @@ function CampoQuestionsOptions({
             />
 
             {/* campo 4 */}
-            <CampoQuestionOption
+            <FieldQuestionOption
                 nome={nome4} 
                 optionClass={optionClass} 
 
@@ -128,7 +128,7 @@ function CampoQuestionsOptions({
                 setLabelTarget={setLabelTarget}
 
                 // 4 possíveis elementos do campo 4 (4 forms)
-                // campo 1 do form 4
+                // campo 4 do form 1
                 valueForm1={newSourceImageQuestions}
                 setValueForm1={setNewSourceImageQuestions}
 
@@ -155,7 +155,8 @@ function CampoQuestionsOptions({
             
             />
 
-            <CampoQuestionOption
+            {/* campo 5 */}
+            <FieldQuestionOption
                 nome={nome5} 
                 optionClass={optionClass}
                 
@@ -163,7 +164,7 @@ function CampoQuestionsOptions({
                 setLabelTarget={setLabelTarget}
 
                 // 4 possíveis elementos do campo 5 (4 forms)
-                // campo 1 do form 5
+                // campo 5 do form 1
                 valueForm1={newDescriptionQuestions}
                 setValueForm1={setNewDescriptionQuestions}
                 
@@ -190,7 +191,8 @@ function CampoQuestionsOptions({
                 
             />
 
-            <CampoQuestionOption
+            {/* campo 6 */}
+            <FieldQuestionOption
                 nome={nome6} 
                 optionClass={optionClass} 
                 
@@ -198,7 +200,7 @@ function CampoQuestionsOptions({
                 setLabelTarget={setLabelTarget}
 
                 // 4 possíveis elementos do campo 6 (4 forms)
-                // campo 1 do form 6
+                // campo 6 do form 1
                 valueForm1={newQuestionsNumberQuestions}
                 setValueForm1={setNewQuestionsNumberQuestions}
                
@@ -226,7 +228,8 @@ function CampoQuestionsOptions({
             />
 
             {/* Só irá aparecer o campo 7 se tiver atribuído um valor ao label 7 (nome7) */}
-            {nome7 && <CampoQuestionOption
+            {/* campo 7 */}
+            {nome7 && <FieldQuestionOption
                 nome={nome7} 
                 optionClass={optionClass} 
 
@@ -250,4 +253,4 @@ function CampoQuestionsOptions({
 
 }
 
-export default CampoQuestionsOptions
+export default FieldsQuestionsOptions

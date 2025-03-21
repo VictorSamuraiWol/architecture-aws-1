@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import styles from './CampoQuestionOption.module.css'
+import styles from './FieldQuestionOption.module.css'
 
-function CampoQuestionOption({ 
+function FieldQuestionOption({ 
     nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4,   setValueForm4
 }) {
 
-    // valor capturando do textarea
+    // valor capturado do textarea
     const [newValue, setNewValue] = useState("")
 
     // valores dos títulos dos 4 forms
@@ -146,7 +146,7 @@ function CampoQuestionOption({
     }, [formsTitlesTarget, labelTarget, readyToCleanAll, setReadyToCleanAll, newValue, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
 
     return(
-        <div className={styles.campo}>
+        <div className={styles.field}>
             <div className={styles.labelTextarea}>
                 <label className={optionClass}>{nome}</label>
                 <textarea 
@@ -158,4 +158,4 @@ function CampoQuestionOption({
     )
 }
 
-export default CampoQuestionOption
+export default FieldQuestionOption

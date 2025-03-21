@@ -59,25 +59,6 @@ function PageMulti() {
     
     }
 
-    // função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
-    function optionVoidFunc() {
-        const optionMultiVoid = document.querySelectorAll('.optionNextMulti')
-        const optionMultiVoidP = document.querySelectorAll('.optionsMultiP')
-
-        optionMultiVoid.forEach((option, index) => {
-            if (optionMultiVoidP[index]?.innerText === '') {
-                option.style.display = 'none'
-            } 
-        })
-
-    }
-    
-    useEffect(() => {
-        // função que esconde a opção vazia, caso tenha       
-        optionVoidFunc()
-
-    }, [multiOptions]) // useEffect será chamado sempre que as opções (multiOptions) forem atualizadas
-
     return(
         <div
             id='allQuestionsMultiId' 
@@ -87,6 +68,7 @@ function PageMulti() {
             {multiQuestions.length !== 0 &&
                 <Header 
                     title={multiQuestions.title}
+
                 />
             }
 
@@ -108,6 +90,7 @@ function PageMulti() {
                     optionInvalidate={optionInvalidate}
                     randomIndexMulti={randomIndexMulti}
                     uniqueRandomMulti={uniqueRandomMulti}
+
                 />
             }
 

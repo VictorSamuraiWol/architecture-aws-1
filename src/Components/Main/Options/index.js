@@ -2,10 +2,18 @@ import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5 
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5
 }) {
-           
+
+
     const [listNumRandom, setListNumRandom] = useState([]);
+
+    // constantes para armazenar as opções
+    const [option1, setOption1] = useState('')
+    const [option2, setOption2] = useState('')
+    const [option3, setOption3] = useState('')
+    const [option4, setOption4] = useState('')
+    const [option5, setOption5] = useState('')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -75,6 +83,31 @@ function Options({
         
     // }, [nextOptions])
     // console.log(optionFilter[optNum1], 83)
+  
+    useEffect(() => {
+        // para garantir que todas as opções sejam capturadas antes de mostrar na tela
+        setOption1(nextOptions && Object.values(nextOptions[randomIndex])[optNum1])
+        setOption2(nextOptions && Object.values(nextOptions[randomIndex])[optNum2])
+        setOption3(nextOptions && Object.values(nextOptions[randomIndex])[optNum3])
+        setOption4(nextOptions && Object.values(nextOptions[randomIndex])[optNum4])
+        setOption5(nextOptions && Object.values(nextOptions[randomIndex])[optNum5])
+
+        // esconder a opção vazia, caso tenha questões com apenas 4 opções
+        const optionMainVoid = document.querySelectorAll('.optionNext')
+
+        if ((option1 === '') && (option2 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+            optionMainVoid[0].style.display = 'none'
+        } else if ((option2 === '') && (option1 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+            optionMainVoid[1].style.display = 'none'
+        } else if ((option3 === '') && (option1 !== '' && option2 !== '' && option4 !== '' && option5 !== '')) {
+            optionMainVoid[2].style.display = 'none'
+        } else if ((option4 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option5 !== '')) {
+            optionMainVoid[3].style.display = 'none'
+        } else if ((option5 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option4 !== '')) {
+            optionMainVoid[4].style.display = 'none'
+        }
+        
+    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5])
 
     return(                 
         <div 
@@ -94,7 +127,7 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
-                    {nextOptions && Object.values(nextOptions[randomIndex])[optNum1]}
+                    {option1}
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -109,7 +142,7 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
-                    {nextOptions && Object.values(nextOptions[randomIndex])[optNum2]}
+                    {option2}
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -124,7 +157,7 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
-                    {nextOptions && Object.values(nextOptions[randomIndex])[optNum3]}
+                    {option3}
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -139,7 +172,7 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
-                    {nextOptions && Object.values(nextOptions[randomIndex])[optNum4]}
+                    {option4}
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -154,7 +187,7 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
-                    {nextOptions && Object.values(nextOptions[randomIndex])[optNum5]}
+                    {option5}
                 </p>
             </div>
         </div>        

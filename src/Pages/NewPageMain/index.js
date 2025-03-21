@@ -60,31 +60,13 @@ function NewPageMain() {
     
     }
 
-    // função para esconder a opção vazia, caso tenha questões com apenas 4 opções, usando forEach
-    function optionVoidFunc() {
-        const optionMainVoid = document.querySelectorAll('.optionNext')
-        const optionMainVoidP = document.querySelectorAll('.optionNextP')
-
-        optionMainVoid.forEach((option, index) => {
-            if (optionMainVoidP[index]?.innerText === '') {
-                option.style.display = 'none'
-            }
-        })
-
-    }
-    
-    useEffect(() => {
-        // função que esconde a opção vazia, caso tenha       
-        optionVoidFunc()
-
-    }, [nextOptions]) // useEffect será chamado sempre que as opções (nextOptions) forem atualizadas
-
     return(
         <div>
             <div id='allQuestionsMainId' className={`${styles.allQuestionsMainClass} allquestions`} key={nextQuestions.id}>        
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}
+                        
                     />
                 }
 
@@ -105,6 +87,7 @@ function NewPageMain() {
                         nextOptions={nextOptions}
                         setNextOptions={setNextOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
+
                     />
                 }                  
 

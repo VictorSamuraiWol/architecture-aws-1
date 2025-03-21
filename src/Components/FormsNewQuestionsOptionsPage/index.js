@@ -1,5 +1,5 @@
 import styles from './FormsNewQuestionsOptions.module.css'
-import CampoQuestionsOptions from './CamposQuestionsOptions'
+import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
 import { useEffect, useState } from 'react'
 
@@ -123,7 +123,7 @@ function FormsNewQuestionsOptionsPage() {
        
             if (response.ok) {
                 console.log("Dados enviados com sucesso do formulário 2! Preencha um formulário por vez.");
-                alert('Questão adicionada com sucessodo formulário 2! Preencha um formulário por vez.')
+                alert('Questão adicionada com sucesso do formulário 2! Preencha um formulário por vez.')
                 cleanForm();
                 
             }
@@ -269,7 +269,7 @@ function FormsNewQuestionsOptionsPage() {
             <div className={styles.forms}>
                 <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
                     <h1>Form 1 (Questions)</h1>
-                    <CampoQuestionsOptions
+                    <FieldsQuestionsOptions
                         nome1="Title:" 
                         nome2="Question:" 
                         nome3="Answer:" 
@@ -309,7 +309,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 <form onSubmit={onSaveForm2} className={styles.form}>
                     <h1>Form 2 (Options)</h1>
-                    <CampoQuestionsOptions 
+                    <FieldsQuestionsOptions 
                         nome1="Option 1:" 
                         nome2="Option 2:" 
                         nome3="Option 3:" 
@@ -352,7 +352,7 @@ function FormsNewQuestionsOptionsPage() {
             <div className={styles.forms}>
                 <form onSubmit={onSaveForm3} className={styles.form}>
                     <h1>Form 3 (MultiQuestions)</h1>
-                    <CampoQuestionsOptions 
+                    <FieldsQuestionsOptions 
                         nome1="Title:" 
                         nome2="Question:" 
                         nome3="Answer:" 
@@ -395,7 +395,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 <form onSubmit={onSaveForm4} className={styles.form}>
                     <h1>Form 4 (MultiOptions)</h1>
-                    <CampoQuestionsOptions 
+                    <FieldsQuestionsOptions 
                         nome1="Option 1:" 
                         nome2="Option 2:" 
                         nome3="Option 3:" 
