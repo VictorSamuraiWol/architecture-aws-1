@@ -115,8 +115,9 @@ function MultiOptions({
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-                    {/* {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum1]} */}
+
                     {option1}
+
                     <span className={styles.answerBoolClass} id='answerBool1'>
 
                         {(optNum1 === 0 || optNum1 === 1) && 'true'}
@@ -136,9 +137,9 @@ function MultiOptions({
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-                    {/* {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum2]}
-                     */}
+
                     {option2}
+
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
                     >
@@ -160,8 +161,9 @@ function MultiOptions({
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-                    {/* {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum3]} */}
+   
                     {option3}
+
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
                     >
@@ -183,8 +185,9 @@ function MultiOptions({
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-                    {/* {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum4]} */}
+                   
                     {option4}
+
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
                     >
@@ -206,8 +209,9 @@ function MultiOptions({
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-                    {/* {multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum5]} */}
+                 
                     {option5}
+                    
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
                     >

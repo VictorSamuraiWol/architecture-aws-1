@@ -13,7 +13,7 @@ function FieldsQuestionsOptions({
         <>
             {/* campo 1 */}
             <FieldQuestionOption
-                nome={nome1} 
+                nome={nome1}
                 optionClass={optionClass}
 
                 labelTarget={labelTarget}

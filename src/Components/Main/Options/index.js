@@ -127,7 +127,9 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
+
                     {option1}
+
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -142,7 +144,9 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
+
                     {option2}
+
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -157,7 +161,9 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
+
                     {option3}
+
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -172,7 +178,9 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
+
                     {option4}
+
                 </p>
             </div>
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
@@ -187,7 +195,9 @@ function Options({
                     onClick={mouseOverOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
+
                     {option5}
+                    
                 </p>
             </div>
         </div>        

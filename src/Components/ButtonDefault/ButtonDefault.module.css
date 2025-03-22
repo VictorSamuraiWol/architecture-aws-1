@@ -9,6 +9,6 @@
 }
 
 .buttonDefault:hover {
-    border: 3px solid var(--color-third);
+    border: 2px solid var(--color-third);
     transform: scale(1.03);
 }
