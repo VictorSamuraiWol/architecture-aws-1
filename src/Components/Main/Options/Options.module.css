@@ -40,13 +40,15 @@
 /* personalizando o estilo do input radio */
 .inputOptions {    
     appearance: none; /* remove o estilo padrão */
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     position: relative;
     background-color: var(--color-first);
     border: 2px solid var(--color-second);
     border-radius: 50%;
     transition: 0.3s;
+    padding: 8px;
+    margin: 0;
     cursor: pointer;
 }
 
@@ -70,36 +72,25 @@
 }
 
 .option {
-    padding: 8px;
-    margin: 12px;
+    padding: 16px;
+    margin: 0;
+    text-align: justify;
     cursor: pointer;
 }
 
 /* Responsividade */
 @media screen and (min-width: 1701px) {
-    .inputOptions {
-        width: 20px;
-        height: 20px;
-    } 
-
     .option {
         font-size: 1.5rem;
         line-height: 28px;
-        padding: 0 8px;
     }
 
 }
 
 @media screen and (max-width: 1700px) {
-    .inputOptions {
-        width: 20px;
-        height: 20px;
-    } 
-
     .option {
         font-size: 1.5rem;
         line-height: 28px;
-        padding: 0 8px;
     }
 
 }
@@ -107,11 +98,6 @@
 @media screen and (max-width: 1100px) {
     .optionsMain {
         height: 320px;
-    }
-
-    .inputOptions {
-        width: 16px;
-        height: 16px;
     }
 
     .option {
@@ -125,14 +111,8 @@
         height: 300px;
     }
 
-    .inputOptions {
-        width: 14px;
-        height: 14px;
-    }
-
     .option {
         font-size: 1rem;
-        margin: 8px;
     }
     
 }
@@ -145,11 +125,6 @@
     .optionsMain::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
-    }
-
-    .inputOptions {
-        width: 12px;
-        height: 12px;
     }
 
     .option {
