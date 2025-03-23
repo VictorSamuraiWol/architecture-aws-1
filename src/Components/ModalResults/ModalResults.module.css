@@ -39,10 +39,18 @@
     background: transparent;
     font-weight: bold;
     width: 35%;
-    padding: 20px 10px 40px 10px;
+    padding: 20px 12px 40px 12px;
     border: 5px solid var(--color-fourth);
     border-radius: 12px;
     z-index: 1;
+}
+
+.correct {
+    color: darkgreen;
+}
+
+.incorrect {
+    color: darkred
 }
 
 .modalContent h1 {
@@ -65,7 +73,7 @@
     background-color: var(--color-second);
     padding: 4px;
     border: 3px dotted var(--color-third);
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 

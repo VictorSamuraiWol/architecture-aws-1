@@ -9,6 +9,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 Modal.setAppElement('#root');
 
 function ModalResults() {
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // pegando os dados do resultado
@@ -16,6 +17,33 @@ function ModalResults() {
 
     function openModal() {
         setModalIsOpen(true);
+        
+        setTimeout(() => {
+
+            if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
+                const corrects = document.querySelector('#corrects')
+                const pontuations = document.querySelector('#pontuations')
+                const performances = document.querySelector('#performances')
+
+                corrects?.classList.add(`${styles.correct}`)
+                pontuations?.classList.add(`${styles.correct}`)
+                performances?.classList.add(`${styles.correct}`)
+
+            } else if (dataResults.numCorrectOption < dataResults.numIncorrectOption) {
+                const incorrects = document.querySelector('#incorrects')
+                const pontuations = document.querySelector('#pontuations')
+                const performances = document.querySelector('#performances')
+
+                incorrects?.classList.add(`${styles.incorrect}`)
+                pontuations?.classList.add(`${styles.incorrect}`)
+                performances?.classList.add(`${styles.incorrect}`)
+
+            } else {
+                console.error('Há algo errado com o setTimeout do componente ModalResults, l.41')
+                
+            }
+
+        }, 0)
     }
 
     function closeModal() {
@@ -24,7 +52,7 @@ function ModalResults() {
 
     return (
         <div className={styles.container}>
-            <div 
+            <div
                 onClick={openModal}
                 className={styles.iconesTextos} 
             >
@@ -45,11 +73,11 @@ function ModalResults() {
             >
 
                 <h1>✔REAL-TIME RESULT:</h1>
-                <p>Correct questions: {dataResults.numCorrectOption}</p>
-                <p>Incorrect questions: {dataResults.numIncorrectOption}</p>
-                <p>All questions: {dataResults.allCorrectIncorrectResults}</p>
-                <p>Pontuation: {dataResults.pontuationResults}</p>
-                <p>Performance: {dataResults.performanceResults}</p>
+                <p id='corrects' className={styles.test}>Correct questions: {dataResults.numCorrectOption}</p>
+                <p id='incorrects'>Incorrect questions: {dataResults.numIncorrectOption}</p>
+                <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>
+                <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
+                <p id='performances'>Performance: {dataResults.performanceResults}</p>
                 <p>Obs: Performance para aprovação: 70% em 65 questões</p>
 
                 {/* imagem do react icon */}

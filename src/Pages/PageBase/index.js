@@ -7,6 +7,7 @@ import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import IllustrativePage from '../IllustrativePage';
 
 function PageBase() {
+
     const [validateSound, setValidateSound] = useState(true)
 
     //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
