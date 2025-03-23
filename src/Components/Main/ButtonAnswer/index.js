@@ -4,16 +4,28 @@ import correctAudio from '../../../audios/correctAudio.mp3';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
+import FramerMotion from '../../FramerMotion';
 
 function ButtonAnswer({ 
     answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti 
 }) {
-
+    
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();
 
     // variável para saber se foi ou não respondida a questão
-    const [questionAnswer, setQuestionAnswer] = useState(false);    
+    const [questionAnswer, setQuestionAnswer] = useState(false);
+
+    // variável usada na animação fogos de artifício
+    const [correct, setCorrect] = useState(false);
+    
+    // habilitar a animação fogos de artifício ao acertar
+    const handleAnswer = (isCorrect) => {
+        if (isCorrect) {
+            setCorrect(true);
+            setTimeout(() => setCorrect(false), 2500); // Remove partículas após 2,5s            
+        }
+    };
 
     function display() {  
         const answerId = document.querySelector('#answerId');
@@ -78,6 +90,7 @@ function ButtonAnswer({
             
             // alerta avisando para passar para a próxima questão
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+
         } else {
             for(let i=0; i < 5; i++) {
                 if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
@@ -116,6 +129,9 @@ function ButtonAnswer({
                         setQuestionAnswerButtonNextMain(true)
 
                         setNumCorrectOption(numCorrectOption + 1)
+
+                        // função da animação fogos de artifício
+                        handleAnswer(true)
 
                     }
                 } else {}
@@ -168,6 +184,9 @@ function ButtonAnswer({
 
                         setNumCorrectOption(numCorrectOption + 1)
 
+                        // função da animação fogos de artifício
+                        handleAnswer(true)
+
                     }
 
                 } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
@@ -211,12 +230,20 @@ function ButtonAnswer({
 
     }
 
+
+
+
     return(
-        <ButtonDefault 
-            onClick={displayAndValidate} 
-            specificStyleButton={styles.buttonAnswer} 
-            buttonName='Answer' 
-        />
+        <>
+            <ButtonDefault 
+                onClick={displayAndValidate} 
+                specificStyleButton={styles.buttonAnswer} 
+                buttonName='Answer' 
+
+            />
+
+            <FramerMotion correct={correct} />
+        </>
     )
 
 }

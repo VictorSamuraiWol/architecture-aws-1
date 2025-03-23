@@ -1,7 +1,7 @@
 import styles from './FormsNewQuestionsOptions.module.css'
 import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -433,7 +433,7 @@ function FormsNewQuestionsOptionsPage() {
 
                     />
                 </form>
-            </div>           
+            </div>        
 
         </div>
     )

@@ -10,9 +10,10 @@ function ButtonNext({
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { validateSound } = useOutletContext();
 
+    const newSoundNextPage = new Audio(soundNextPage);
+    
     // som quando mudar de página
     function soundNextPageFunc() {
-        const newSoundNextPage = new Audio(soundNextPage);
         validateSound === true && (questionAnswerButtonNextMain === true || questionAnswerButtonNextMulti === true) && newSoundNextPage.play()
 
     }

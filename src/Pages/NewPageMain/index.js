@@ -89,7 +89,7 @@ function NewPageMain() {
                         uniqueRandomMain={uniqueRandomMain}
 
                     />
-                }                  
+                }               
 
             </div>
 
