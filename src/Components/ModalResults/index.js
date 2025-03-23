@@ -17,7 +17,8 @@ function ModalResults() {
 
     function openModal() {
         setModalIsOpen(true);
-        
+ 
+        // setTimeout para dar tempo de capturar as variáveis ao abrir a modal e, em seguida, mudar a cor de acordo com os resultados
         setTimeout(() => {
 
             if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
@@ -40,7 +41,7 @@ function ModalResults() {
 
             } else {
                 console.error('Há algo errado com o setTimeout do componente ModalResults, l.41')
-                
+
             }
 
         }, 0)
