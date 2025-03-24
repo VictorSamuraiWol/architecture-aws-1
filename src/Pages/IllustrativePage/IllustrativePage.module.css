@@ -357,7 +357,7 @@ ul {
         padding: 0 8px;
     }
 
-    ul {
+    .ulIllustrative {
         font-size: 1.5rem;
     }
 
@@ -391,7 +391,7 @@ ul {
         font-size: 1.2rem;
     }
 
-    ul {
+    .ulIllustrative {
         font-size: 1.2rem;
     }
 
@@ -460,7 +460,7 @@ ul {
         text-align: center;
     }
 
-    ul {
+    .ulIllustrative {
         font-size: 1rem;
     }
 
@@ -564,7 +564,7 @@ ul {
         position: relative;
     }
 
-    ul {
+    .ulIllustrative {
         display: flex;
         align-items: start;
         flex-direction: column;
@@ -576,6 +576,7 @@ ul {
     .hamburger {
         display: flex;
         padding: 8px;
+        cursor: pointer;
     }
 
     .hamburger:hover {

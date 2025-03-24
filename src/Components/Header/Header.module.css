@@ -30,6 +30,12 @@ nav {
     z-index: 1;
 }
 
+.hamburger {
+    display: none;
+    width: 2.5em;
+    height: 2.5em;
+}
+
 ul {
     display: flex;
     align-items: center;
@@ -38,6 +44,7 @@ ul {
     font-weight: bold;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .linksNavigation {   
@@ -104,8 +111,37 @@ ul {
         font-size: 0.8rem;
     }
 
-    ul {
-        font-size: 0.8rem;
+    .nav {
+        position: relative;
+    }
+
+    .hamburger {
+        display: flex;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .hamburger:hover {
+        background-color: rgba(0, 0, 0, 80%);
+        border-radius: 50%;
     }   
-    
+
+    .ulHeader {
+        display: none;      
+    }
+
+    .ulAble {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        bottom: -90px;
+        font-size: 0.8rem;
+        background-color: rgba(0, 0, 0, 80%);
+        padding: 4px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        z-index: 1;
+    }
+   
 }

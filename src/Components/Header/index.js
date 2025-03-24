@@ -4,10 +4,26 @@ import { Link, useOutletContext } from 'react-router-dom';
 import NavigationItem from './NavigationItem';
 import { GoPlus } from 'react-icons/go';
 import Timer from './Timer';
+import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header({ title }) {
 
     const { activePageFormsQuestionsOptions } = useOutletContext()
+    const allLinks = document.querySelectorAll('.ulHeader')
+
+    // habilitar ou não os links de navegação ao clicar quando o menu hamburguer está ativado na resolução até 580px
+    function ableLinks() {
+        if (allLinks[0]?.classList.contains(`${styles.ulHeader}`)) {
+            allLinks[0]?.classList.remove(`${styles.ulHeader}`)
+            allLinks[0]?.classList.add(`${styles.ulAble}`)            
+
+        } else {
+            allLinks[0]?.classList.add(`${styles.ulHeader}`)
+            allLinks[0]?.classList.remove(`${styles.ulAble}`)
+
+        }
+
+    }
 
     return(
         <div className={styles.header}>
@@ -19,7 +35,11 @@ function Header({ title }) {
             </Link>
             <h1>{title}</h1>
             <nav>
-                <ul>
+                <RxHamburgerMenu 
+                    onClick={ableLinks} 
+                    className={styles.hamburger} 
+                /> 
+                <ul className={`ulHeader ${styles.ulHeader}`}>
                     <Link 
                         to='/'
                         className={styles.linksNavigation} 

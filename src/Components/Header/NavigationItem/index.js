@@ -2,7 +2,7 @@ import styles from './NavigationItem.module.css'
 
 function NavigationItem({ component, itemName }) {
     return(
-        <li className={styles.link}>{component}{itemName}</li>
+        <li className={`link ${styles.link}`}>{component}{itemName}</li>
     )
 }
 

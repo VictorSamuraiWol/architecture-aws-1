@@ -191,8 +191,8 @@ function IllustrativePage() {
                     PÁGINA ILUSTRATIVA / Resolution 1 - Randomly              
                 </h1>
                 <nav>
-                    <ul>
-                        <RxHamburgerMenu className={styles.hamburger} />    
+                    <RxHamburgerMenu className={styles.hamburger} />   
+                    <ul className={styles.ulIllustrative}>
                         <li className={styles.link}>Home</li>                
                         <li className={styles.link}><GoPlus />Create</li>                 
                     </ul>
