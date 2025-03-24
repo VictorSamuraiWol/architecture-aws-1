@@ -47,11 +47,18 @@ ul {
     text-decoration: none;
 }
 
+.hamburger {
+    display: none;
+    width: 2.5em;
+    height: 2.5em;
+}
+
 .link {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color-first);
+    border: 2px solid var(--color-fourth);
     padding: 8px;
     border-radius: 16px;
 }
@@ -59,7 +66,7 @@ ul {
 .link:hover {
     color: var(--color-first);
     background-color: var(--color-third);
-    cursor: pointer;
+    border: 2px solid var(--color-fourth);
     transform: scale(1.03);
 }
 
@@ -121,14 +128,18 @@ ul {
 }
 
 .inputOptions {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 8px;
     cursor: pointer;
 }
 
 .option {
     margin: 12px;
     font-size: 1.3rem;
+    margin: 0;
+    padding: 16px;
     cursor: pointer;
 }
 
@@ -144,7 +155,7 @@ ul {
 }
 
 .buttonAnswer:hover {
-    border: 3px solid var(--color-third);
+    border: 2px solid var(--color-third);
     transform: scale(1.03);
 }
 
@@ -223,7 +234,7 @@ ul {
 }
 
 .buttonNext:hover {
-    border: 3px solid var(--color-third);
+    border: 2px solid var(--color-third);
     transform: scale(1.03);
 }
 
@@ -242,7 +253,7 @@ ul {
 }
 
 .buttonResultsModal:hover {
-    border: 3px solid var(--color-third);
+    border: 2px solid var(--color-third);
     transform: scale(1.03);
 }
 
@@ -324,15 +335,9 @@ ul {
         padding: 0 8px;
     }
 
-    .inputOptions {
-        width: 20px;
-        height: 20px;
-    } 
-
     .option {
         font-size: 1.5rem;
         line-height: 28px;
-        padding: 0 8px;
     }
 
     .answerTitle h3 {
@@ -361,15 +366,9 @@ ul {
         padding: 0 8px;
     }
 
-    .inputOptions {
-        width: 20px;
-        height: 20px;
-    } 
-
     .option {
         font-size: 1.5rem;
         line-height: 28px;
-        padding: 0 8px;
     }
 
     .answerTitle h3 {
@@ -457,7 +456,7 @@ ul {
     }
 
     .header h1 {
-        font-size: 1rem;
+        font-size: 0.8rem;
         text-align: center;
     }
 
@@ -495,7 +494,6 @@ ul {
 
     .option {
         font-size: 1rem;
-        margin: 8px;
     }
 
     .buttonAnswer {
@@ -553,21 +551,45 @@ ul {
 
 }
 
-@media screen and (max-width: 580px) {    
+@media screen and (max-width: 580px) { 
     .iconStart {
         width: 50px;
     } 
     
     .header h1 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .nav {
+        position: relative;
     }
 
     ul {
+        display: flex;
+        align-items: start;
+        flex-direction: column;
         font-size: 0.8rem;
+        margin: 0;
+        border-radius: 16px;
+    } 
+    
+    .hamburger {
+        display: flex;
+        padding: 8px;
+    }
+
+    .hamburger:hover {
+        background-color: rgba(0, 0, 0, 80%);
+        border-radius: 50%;
     }   
+        
+    .link {
+        display: none;
+    }
 
     .question {
         font-size: 0.8rem;
+        z-index: 0;
     }
 
     .optionsMain {

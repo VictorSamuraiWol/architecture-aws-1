@@ -5,6 +5,7 @@ import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import { useEffect } from 'react'
 import imageStart from '../../imgs/icon-start.png'
 import { GoPlus } from "react-icons/go";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 function IllustrativePage() {
 
@@ -190,9 +191,10 @@ function IllustrativePage() {
                     PÁGINA ILUSTRATIVA / Resolution 1 - Randomly              
                 </h1>
                 <nav>
-                    <ul>     
+                    <ul>
+                        <RxHamburgerMenu className={styles.hamburger} />    
                         <li className={styles.link}>Home</li>                
-                        <li className={styles.link}><GoPlus />Create</li>                     
+                        <li className={styles.link}><GoPlus />Create</li>                 
                     </ul>
                 </nav>
             </div>
