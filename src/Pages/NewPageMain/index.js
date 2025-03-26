@@ -17,7 +17,6 @@ function NewPageMain() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-
     useEffect(() => {
         fetch("http://localhost:3001/questions")
         .then(res => res.json())
@@ -66,14 +65,14 @@ function NewPageMain() {
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}
-                        
+
                     />
                 }
 
                 {nextQuestions && 
                     <Main 
-                        question={nextQuestions.question} 
-                        answer={nextQuestions.answer} 
+                        question={nextQuestions.question}
+                        answer={nextQuestions.answer}
                         srcImg={nextQuestions.srcImg}
                         descriptionP={nextQuestions.descriptionP}
                         elementId={nextQuestions.elementId}
@@ -87,6 +86,9 @@ function NewPageMain() {
                         nextOptions={nextOptions}
                         setNextOptions={setNextOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
+                        listQuestions={listQuestions}
+                        setNextQuestions={setNextQuestions}
+                        setRandomIndex={setRandomIndex}
 
                     />
                 }               

@@ -20,6 +20,7 @@ function MultiOptions({
     const [option5, setOption5] = useState('')
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const res = await fetch("http://localhost:3001/multiOptions");
@@ -33,6 +34,7 @@ function MultiOptions({
 
                     data && setMultiOptions(data)
 
+                    // gerando um número para randomizar toda vez que renderizar
                     while (listNumRandom && listNumRandom.length < 5) {
                         const random = Math.floor(Math.random() * 5);
                         if (!listNumRandom.includes(random)) {
@@ -64,20 +66,26 @@ function MultiOptions({
 
     // função para capturar os dois valores que estão marcados quando clicados no campo texto (p)
     function mouseOverOptionsMulti(e) {
+
         const inputOptionMulti = e.target.parentElement.childNodes[0]
+
         if (inputOptionMulti.checked === false) {
             inputOptionMulti.checked = true
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
+
         } else if (inputOptionMulti.checked === true) {
             inputOptionMulti.checked = false
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
+
         } else {
             console.error('Erro nos dados da função "mouseOverOptionsMulti(e)" do componente multiOptions, verificar na l.67 ou próximo.')
+
         }
         
     }
 
     useEffect(() => {
+        
         // para garantir que todas as opções sejam capturadas antes de mostrar na tela
         setOption1(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum1])
         setOption2(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum2])

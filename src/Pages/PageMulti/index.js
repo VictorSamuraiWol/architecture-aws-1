@@ -55,6 +55,7 @@ function PageMulti() {
         while (random === lastRandomMulti) // repete até obter um número diferente
         
         setLastRandomMulti(random) // atualiza o último número gerado
+        
         return random                
     
     }

@@ -5,17 +5,22 @@ function Answer({
 }) {
 
     function description() {
+
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
                 descriptionDisplay && setDescriptionDisplay(styles.invisible)
-            } else {
-                descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
-            }
+
+        } else {
+
+            descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
+            
+        }
 
     }
 
     function descriptionOnMouseOver() {
         const descriptionNewStyle = document.querySelector('#descriptionId')
         descriptionNewStyle.classList.add(styles.descriptionNewStyleClass)
+        
     }
 
     function descriptionOnMouseOut() {

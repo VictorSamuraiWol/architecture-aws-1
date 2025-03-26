@@ -20,7 +20,10 @@ function MultiMain({
 
     return (
         <div className={styles.multiMain}>
-            <Question question={question} />
+            <Question 
+                question={question} 
+            
+            />
 
             <MultiOptions
                 multiOptions={multiOptions}
@@ -67,10 +70,18 @@ function MultiMain({
             >
                 <ButtonNext 
                     questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
+
+                    // tornar a resposta invisível ao mudar de questão
+                    setAnswerDisplay={setAnswerDisplay}
+
+                    // tornar a descrição invisível ao mudar de questão
+                    setDescriptionDisplay={setDescriptionDisplay}
+
                 />
             </Link>
 
-            <ModalResults />              
+            <ModalResults />
+                       
         </div>
     )
 }

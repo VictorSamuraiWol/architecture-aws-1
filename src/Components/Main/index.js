@@ -9,7 +9,7 @@ import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain 
+    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, listQuestions, setNextQuestions, setRandomIndex
 }) {
    
     const [captureValue, setCaptureValue] = useState('')
@@ -22,10 +22,45 @@ function Main({
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
+ 
+    // Gera um número aleatório entre 1 e 3 para usar na função getPath
+    const number = Math.floor(Math.random() * 3) + 1;
+
+    // Definindo o caminho com base no número gerado
+    // função para aumentar a probabilidade de cair mais questões de uma escolha do que de múltipla escolha
+    const getPath = (number) => {
+        
+        switch (number) {
+            case 1:
+            case 2:
+                return generateNewQuestionMain(); // quando o número  randômico for 1 ou 2 ativar a função
+            case 3:
+                return '/page-multi'; // quando o número randômico for 3 ir para página multi
+
+            default:
+                return '/';
+
+        }
+
+    };
+
+    function generateNewQuestionMain() {
+
+        // chamando a função que gera número randômico
+        const random = uniqueRandomMain(listQuestions.length)
+        setRandomIndex(random)
+
+        // gerando novas questões
+        setNextQuestions(listQuestions[random])
+
+    }  
 
     return(
         <div className={styles.main}>           
-            <Question question={question} />
+            <Question 
+                question={question} 
+            
+            />
 
             <Options  
                 randomIndex={randomIndex}
@@ -79,16 +114,28 @@ function Main({
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
-            <Link 
-                to={questionAnswerButtonNextMain === true ? '/page-multi' : null}
+            <Link
+                to={questionAnswerButtonNextMain === true ? number === 3 && getPath(number) : '/'}                
             >
                 <ButtonNext
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
                     uniqueRandomMain={uniqueRandomMain}
-                />
-            </Link> 
+                    
+                    // passar a função para usar no onClick do componente ButtonNext
+                    getPath={getPath}
+                    number={number}
 
-            <ModalResults />            
+                    // tornar a resposta invisível ao mudar de questão
+                    setAnswerDisplay={setAnswerDisplay}
+                    
+                    // tornar a descrição invisível ao mudar de questão
+                    setDescriptionDisplay={setDescriptionDisplay}
+
+                />
+            </Link>
+
+            <ModalResults /> 
+                      
         </div>
     )
 

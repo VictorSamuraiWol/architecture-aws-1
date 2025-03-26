@@ -27,17 +27,10 @@ function ButtonAnswer({
         }
     };
 
-    function display() {  
-        const answerId = document.querySelector('#answerId');
+    function display() {
 
-        if (answerId.classList.contains(`${styles.visibleAnswer}`)) {
-            answerDisplay && setAnswerDisplay(styles.invisible)
-            descriptionDisplay && setDescriptionDisplay(styles.invisible)
+        setAnswerDisplay(styles.visibleAnswer)
 
-        } else {
-            answerDisplay && setAnswerDisplay(styles.visibleAnswer)
-        }
-        
     }
 
     function cleanOptions() {        
@@ -49,7 +42,7 @@ function ButtonAnswer({
             if (nextOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
                 wrongOptionNextClean[w].classList.remove(optionInvalidate)
                 wrongOptionNextClean[w].classList.add(optionColor)
-            } else {}
+            }
         }
 
         // limpar a estilização de respostas erradas das opções desmarcadas da página multi
@@ -57,7 +50,7 @@ function ButtonAnswer({
             if (multiOptions && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
                 wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
                 wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
-            } else {}
+            }
         }
 
     }
@@ -67,7 +60,7 @@ function ButtonAnswer({
             // alertar quando os campos estiverem vazios
             alert('Por favor, selecione alguma opção!')
             answerDisplay && setAnswerDisplay(styles.invisible)
-        } else {}
+        }
 
     }
 
@@ -92,6 +85,7 @@ function ButtonAnswer({
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
 
         } else {
+
             for(let i=0; i < 5; i++) {
                 if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                     // adicionando a validação
@@ -134,10 +128,11 @@ function ButtonAnswer({
                         handleAnswer(true)
 
                     }
-                } else {}
+                }
             }
 
         }
+
         alertOption()
 
         // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
@@ -160,6 +155,7 @@ function ButtonAnswer({
             // alerta avisando para passar para a próxima questão
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
         } else {
+
             const checkedValues = [...captureOptionsNextMultiInput]
                 .filter(input => input.checked)
                 .map(input => input.value)
@@ -209,29 +205,31 @@ function ButtonAnswer({
 
                     setNumIncorrectOption(numIncorrectOption + 1)
 
-                } else {}
+                }
 
             }
             // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
             if (captureOptionsNextMulti.length > 0 && ((checkedValues.length === 0) || (checkedValues.length < 2) || (checkedValues.length > 2))) {
+
                 alert('Por favor, marque 2 opções!')
                 clearAnswer()
+
             }
-        } 
+
+        }
+
         // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
         questionAnswer === false && cleanOptions()
    
     }
 
     function displayAndValidate () {
+
         display()
         nextOptions && validateAnswerPageMain()
         multiOptions && validateAnswerPageMulti()
 
     }
-
-
-
 
     return(
         <>

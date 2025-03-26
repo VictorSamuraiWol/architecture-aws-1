@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5,
 }) {
-
 
     const [listNumRandom, setListNumRandom] = useState([]);
 
@@ -14,6 +13,7 @@ function Options({
     const [option3, setOption3] = useState('')
     const [option4, setOption4] = useState('')
     const [option5, setOption5] = useState('')
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +28,7 @@ function Options({
                     // capturando toda a lista de opções da página main
                     data && setNextOptions(data)
 
+                    // gerando um número para randomizar toda vez que renderizar
                     while (listNumRandom && listNumRandom.length < 5) {
                         const random = Math.floor(Math.random() * 5);
                         if (!listNumRandom.includes(random)) {
@@ -85,13 +86,14 @@ function Options({
     // console.log(optionFilter[optNum1], 83)
   
     useEffect(() => {
+
         // para garantir que todas as opções sejam capturadas antes de mostrar na tela
         setOption1(nextOptions && Object.values(nextOptions[randomIndex])[optNum1])
         setOption2(nextOptions && Object.values(nextOptions[randomIndex])[optNum2])
         setOption3(nextOptions && Object.values(nextOptions[randomIndex])[optNum3])
         setOption4(nextOptions && Object.values(nextOptions[randomIndex])[optNum4])
-        setOption5(nextOptions && Object.values(nextOptions[randomIndex])[optNum5])
-
+        setOption5(nextOptions && Object.values(nextOptions[randomIndex])[optNum5])     
+     
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMainVoid = document.querySelectorAll('.optionNext')
 
@@ -105,9 +107,9 @@ function Options({
             optionMainVoid[3].style.display = 'none'
         } else if ((option5 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option4 !== '')) {
             optionMainVoid[4].style.display = 'none'
-        }
+        }        
         
-    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5])
+    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, setOption1, setOption2, setOption3, setOption4, setOption5, optNum1, optNum2, optNum3, optNum4, optNum5])
 
     return(                 
         <div 
