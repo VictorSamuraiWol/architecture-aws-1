@@ -138,8 +138,6 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOption4Question} 
                 
                 // campo 4 do form 3
-                // valueForm3={newAnswerTextMultiQuestions}
-                // setValueForm3={setNewAnswerTextMultiQuestions}
                 valueForm3={newSourceImageMultiQuestions}
                 setValueForm3={setNewSourceImageMultiQuestions}
 
@@ -176,8 +174,6 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOption5Question} 
                 
                 // campo 5 do form 3
-                // valueForm3={newSourceImageMultiQuestions}
-                // setValueForm3={setNewSourceImageMultiQuestions}
                 valueForm3={newDescriptionMultiQuestions}
                 setValueForm3={setNewDescriptionMultiQuestions}               
 
@@ -214,8 +210,6 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOptionsNumberQuestions}
                 
                 // campo 6 do form 3
-                // valueForm3={newDescriptionMultiQuestions}
-                // setValueForm3={setNewDescriptionMultiQuestions}
                 valueForm3={newQuestionsNumberMultiQuestions}
                 setValueForm3={setNewQuestionsNumberMultiQuestions}
 
@@ -243,16 +237,9 @@ function FieldsQuestionsOptions({
                 labelTarget={labelTarget}
                 setLabelTarget={setLabelTarget}
 
-                // 1 possível elementos do campo 7 (1 form)
-                // campo 7 do form 3
-                // valueForm3={newQuestionsNumberMultiQuestions}
-                // setValueForm3={setNewQuestionsNumberMultiQuestions}
-
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
                 setReadyToCleanAll={setReadyToCleanAll}
-
-                readyToSendForm3={readyToSendForm3}
             
             />}        
         </>

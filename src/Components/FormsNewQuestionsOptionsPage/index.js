@@ -142,7 +142,6 @@ function FormsNewQuestionsOptionsPage() {
             data = {
                 title: newTitleMultiQuestions,
                 question: newQuestionMultiQuestions,
-                answer: 'true', // sempre ser true
                 answerText: newAnswerTextMultiQuestions,
                 srcImg: newSourceImageMultiQuestions, // não obrigatório
                 descriptionP: newDescriptionMultiQuestions,

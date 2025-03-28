@@ -105,7 +105,8 @@ function MultiOptions({
         }
         
     }, [multiOptions, randomIndexMulti, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5, setMultiOptionMap])
-    
+const teste = document.querySelectorAll('.optionsMultiP')
+console.log(teste, 109) 
     return (
         <div className={styles.multiOptionsAll}>
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
@@ -145,7 +146,7 @@ function MultiOptions({
                     {multiOptionMap[optNum2]}
 
                     <span 
-                        className={styles.answerBoolClass} id='answerBool1'
+                        className={styles.answerBoolClass} id='answerBool2'
                     >
 
                         {(optNum2 === 0 || optNum2 === 1) && 'true'}
@@ -169,7 +170,7 @@ function MultiOptions({
                     {multiOptionMap[optNum3]}
 
                     <span 
-                        className={styles.answerBoolClass} id='answerBool1'
+                        className={styles.answerBoolClass} id='answerBool3'
                     >
 
                         {(optNum3 === 0 || optNum3 === 1) && 'true'}
@@ -193,7 +194,7 @@ function MultiOptions({
                     {multiOptionMap[optNum4]}
 
                     <span 
-                        className={styles.answerBoolClass} id='answerBool1'
+                        className={styles.answerBoolClass} id='answerBool4'
                     >
 
                         {(optNum4 === 0 || optNum4 === 1) && 'true'}
@@ -217,7 +218,7 @@ function MultiOptions({
                     {multiOptionMap[optNum5]}
                     
                     <span 
-                        className={styles.answerBoolClass} id='answerBool1'
+                        className={styles.answerBoolClass} id='answerBool5'
                     >
 
                         {(optNum5 === 0 || optNum5 === 1) && 'true'}
