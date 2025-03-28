@@ -10,7 +10,6 @@
     padding: 16px;
     font-size: 1rem; 
     color: var(--color-fourth);
-    /* border: 1px solid var(--color-fourth); */
 }
 
 .form {
@@ -20,9 +19,8 @@
     flex-direction: column;
     gap: 16px;
     background-color: var(--color-second);
-    height: 800px;
     width: 50%;
-    padding: 8px;
+    padding: 12px;
     border: 1px solid var(--color-third);
     border-radius: 8px;
 }
@@ -32,9 +30,32 @@
 }
 
 .optionClass {
-    width: 9%;
+    max-width: max-content;
 }
 
 .buttonSubmit {
     z-index: 1;
+}
+
+/* responsividade */
+@media screen and (max-width: 860px) {
+    .form h1 {
+        font-size: 1.3rem;
+    }
+    
+    .buttonSubmit {
+        padding: 12px;
+    }
+    
+}
+
+@media screen and (max-width: 580px) {
+    .form h1 {
+        font-size: 1rem;
+    }
+
+    .buttonSubmit {
+        padding: 8px;
+    }
+
 }

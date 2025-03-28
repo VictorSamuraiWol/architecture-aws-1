@@ -45,8 +45,7 @@ function FormsNewQuestionsOptionsPage() {
     const [readyToSendForm2, setReadyToSendForm2] = useState(false);
     const [readyToSendForm3, setReadyToSendForm3] = useState(false);
     const [readyToSendForm4, setReadyToSendForm4] = useState(false);
-
-    const [readyToCleanAll, setReadyToCleanAll] = useState(false)
+    const [readyToCleanAll, setReadyToCleanAll] = useState(false);
 
     // função utilizando POST para salvar os dados do form1 na API
     const onSaveForm1 = async (e) => {
@@ -79,7 +78,7 @@ function FormsNewQuestionsOptionsPage() {
                 });        
                 
                 if (response.ok) {
-                    console.log("Dados enviados com sucesso do formulário 1! Preencha um formulário por vez.");
+                    console.log(data, "Dados enviados com sucesso do formulário 1! Preencha um formulário por vez.");
                     alert('Questão adicionada com sucesso do formulário 1! Preencha um formulário por vez.')
                     cleanForm();
                     
@@ -122,7 +121,7 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso do formulário 2! Preencha um formulário por vez.");
+                console.log(data, "Dados enviados com sucesso do formulário 2! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do formulário 2! Preencha um formulário por vez.')
                 cleanForm();
                 
@@ -166,7 +165,7 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso do formulário 3! Preencha um formulário por vez.");
+                console.log(data, "Dados enviados com sucesso do formulário 3! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do formulário 3! Preencha um formulário por vez.')
                 cleanForm();
                 
@@ -209,7 +208,7 @@ function FormsNewQuestionsOptionsPage() {
             });        
        
             if (response.ok) {
-                console.log("Dados enviados com sucesso do formulário 4! Preencha um formulário por vez.");
+                console.log(data, "Dados enviados com sucesso do formulário 4! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do formulário 4! Preencha um formulário por vez.')
                 cleanForm();
 
@@ -276,7 +275,6 @@ function FormsNewQuestionsOptionsPage() {
                         nome4="Source Image:" 
                         nome5="Description:" 
                         nome6="Number:"
-
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
                         newTitleQuestions={newTitleQuestions}
@@ -290,11 +288,9 @@ function FormsNewQuestionsOptionsPage() {
                         newDescriptionQuestions={newDescriptionQuestions}
                         setNewDescriptionQuestions={setNewDescriptionQuestions}
                         newQuestionsNumberQuestions={newQuestionsNumberQuestions}
-                        setNewQuestionsNumberQuestions={setNewQuestionsNumberQuestions}
-
+                        setNewQuestionsNumberQuestions={setNewQuestionsNumberQuestions}     
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
-
                         readyToSendForm1={readyToSendForm1}
 
                     />
@@ -332,10 +328,8 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOption5Question={setNewOption5Question}    
                         newOptionsNumberQuestions={newOptionsNumberQuestions} 
                         setNewOptionsNumberQuestions={setNewOptionsNumberQuestions}
-
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
-
                         readyToSendForm2={readyToSendForm2}
 
                     />
@@ -377,10 +371,8 @@ function FormsNewQuestionsOptionsPage() {
                         setNewDescriptionMultiQuestions={setNewDescriptionMultiQuestions}
                         newQuestionsNumberMultiQuestions={newQuestionsNumberMultiQuestions}
                         setNewQuestionsNumberMultiQuestions={setNewQuestionsNumberMultiQuestions}
-
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
-
                         readyToSendForm3={readyToSendForm3}
 
                     />
@@ -418,10 +410,8 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOption5MultiQuestion={setNewOption5MultiQuestion}
                         newOptionsNumberMultiQuestions={newOptionsNumberMultiQuestions}
                         setNewOptionsNumberMultiQuestions={setNewOptionsNumberMultiQuestions}
-
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
-
                         readyToSendForm4={readyToSendForm4}
 
                     />

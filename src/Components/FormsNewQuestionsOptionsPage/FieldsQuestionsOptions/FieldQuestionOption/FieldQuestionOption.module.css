@@ -1,10 +1,5 @@
 .field {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-    gap: 16px;
-    width: 95%;
+    width: 100%;
     padding: 4px;
     border: 1px solid var(--color-third);
     border-radius: 16px;
@@ -17,6 +12,10 @@
     gap: 8px;
     font-weight: bold;
     width: 100%;
+}
+
+.labelTextarea label {
+    font-size: 1rem;
 }
 
 textarea {
@@ -32,4 +31,24 @@ textarea {
     overflow: auto;
     scroll-behavior: smooth;
     scrollbar-color: var(--color-first) var(--color-fourth);
+}
+
+
+/* responsividade */
+@media screen and (max-width: 860px) {
+    .labelTextarea label {
+        font-size: 0.9rem;
+    }   
+    
+}
+
+@media screen and (max-width: 580px) {
+    .labelTextarea label {
+        font-size: 0.5rem;
+    }
+
+    .labelTextarea textarea {
+        height: 50px;
+    }
+
 }

@@ -15,6 +15,7 @@ function FieldsQuestionsOptions({
             <FieldQuestionOption
                 nome={nome1}
                 optionClass={optionClass}
+                className={styles.fieldQuestionOption}
 
                 labelTarget={labelTarget}
                 setLabelTarget={setLabelTarget}
