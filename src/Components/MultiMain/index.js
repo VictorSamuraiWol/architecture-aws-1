@@ -14,6 +14,7 @@ function MultiMain({
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
+    const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
@@ -32,6 +33,8 @@ function MultiMain({
                 setCaptureValueMulti={setCaptureValueMulti}
                 randomIndexMulti={randomIndexMulti}
                 captureValueMulti={captureValueMulti}
+                multiOptionMap={multiOptionMap}
+                setMultiOptionMap={setMultiOptionMap}
 
             />
             
@@ -48,6 +51,7 @@ function MultiMain({
                 setMultiOptions={setMultiOptions}
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
+                multiOptionMap={multiOptionMap}
 
             />
 

@@ -95,8 +95,6 @@ function FieldQuestionOption({
 
                 labelTarget === "Question:" && setValueForm3(newValue)
 
-                labelTarget === "Answer:" && setValueForm3(newValue)
-
                 labelTarget === "Answer's Text:" && setValueForm3(newValue)
 
                 labelTarget === "Source Image:" && setValueForm3(newValue)

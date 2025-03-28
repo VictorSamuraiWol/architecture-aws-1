@@ -5,7 +5,7 @@ function FieldsQuestionsOptions({
     nome1, nome2, nome3, nome4, nome5, nome6, nome7, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
     /* campos form1 */ newTitleQuestions, setNewTitleQuestions, newQuestionQuestions, setNewQuestionQuestions, newAnswerQuestions, setNewAnswerQuestions, newSourceImageQuestions, setNewSourceImageQuestions, newDescriptionQuestions, setNewDescriptionQuestions, newQuestionsNumberQuestions, setNewQuestionsNumberQuestions, 
     /* campos form2 */ newOption1Question, setNewOption1Question, newOption2Question, setNewOption2Question, newOption3Question, setNewOption3Question, newOption4Question, setNewOption4Question, newOption5Question, setNewOption5Question, newOptionsNumberQuestions, setNewOptionsNumberQuestions, 
-    /* campos form3 */ newTitleMultiQuestions, setNewTitleMultiQuestions, newQuestionMultiQuestions, setNewQuestionMultiQuestions, newAnswerMultiQuestions, setNewAnswerMultiQuestions, newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions, newSourceImageMultiQuestions, setNewSourceImageMultiQuestions, newDescriptionMultiQuestions, setNewDescriptionMultiQuestions, newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions,
+    /* campos form3 */ newTitleMultiQuestions, setNewTitleMultiQuestions, newQuestionMultiQuestions, setNewQuestionMultiQuestions, newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions, newSourceImageMultiQuestions, setNewSourceImageMultiQuestions, newDescriptionMultiQuestions, setNewDescriptionMultiQuestions, newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions,
     /* campos form4 */ newOption1MultiQuestion, setNewOption1MultiQuestion, newOption2MultiQuestion, setNewOption2MultiQuestion, newOption3MultiQuestion, setNewOption3MultiQuestion, newOption4MultiQuestion, setNewOption4MultiQuestion, newOption5MultiQuestion, setNewOption5MultiQuestion, newOptionsNumberMultiQuestions, setNewOptionsNumberMultiQuestions    
 }) {
 
@@ -102,8 +102,8 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOption3Question} 
                 
                 // campo 3 do form 3
-                valueForm3={newAnswerMultiQuestions}
-                setValueForm3={setNewAnswerMultiQuestions}
+                valueForm3={newAnswerTextMultiQuestions}
+                setValueForm3={setNewAnswerTextMultiQuestions}
 
                 // campo 3 do form 4
                 valueForm4={newOption3MultiQuestion}
@@ -138,8 +138,10 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOption4Question} 
                 
                 // campo 4 do form 3
-                valueForm3={newAnswerTextMultiQuestions}
-                setValueForm3={setNewAnswerTextMultiQuestions}
+                // valueForm3={newAnswerTextMultiQuestions}
+                // setValueForm3={setNewAnswerTextMultiQuestions}
+                valueForm3={newSourceImageMultiQuestions}
+                setValueForm3={setNewSourceImageMultiQuestions}
 
                 // campo 4 do form 4
                 valueForm4={newOption4MultiQuestion}
@@ -174,8 +176,10 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOption5Question} 
                 
                 // campo 5 do form 3
-                valueForm3={newSourceImageMultiQuestions}
-                setValueForm3={setNewSourceImageMultiQuestions}                
+                // valueForm3={newSourceImageMultiQuestions}
+                // setValueForm3={setNewSourceImageMultiQuestions}
+                valueForm3={newDescriptionMultiQuestions}
+                setValueForm3={setNewDescriptionMultiQuestions}               
 
                 // campo 5 do form 4
                 valueForm4={newOption5MultiQuestion}
@@ -210,8 +214,10 @@ function FieldsQuestionsOptions({
                 setValueForm2={setNewOptionsNumberQuestions}
                 
                 // campo 6 do form 3
-                valueForm3={newDescriptionMultiQuestions}
-                setValueForm3={setNewDescriptionMultiQuestions}
+                // valueForm3={newDescriptionMultiQuestions}
+                // setValueForm3={setNewDescriptionMultiQuestions}
+                valueForm3={newQuestionsNumberMultiQuestions}
+                setValueForm3={setNewQuestionsNumberMultiQuestions}
 
                 // campo 6 do form 4
                 valueForm4={newOptionsNumberMultiQuestions}
@@ -239,8 +245,8 @@ function FieldsQuestionsOptions({
 
                 // 1 possível elementos do campo 7 (1 form)
                 // campo 7 do form 3
-                valueForm3={newQuestionsNumberMultiQuestions}
-                setValueForm3={setNewQuestionsNumberMultiQuestions}
+                // valueForm3={newQuestionsNumberMultiQuestions}
+                // setValueForm3={setNewQuestionsNumberMultiQuestions}
 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}

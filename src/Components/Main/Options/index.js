@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5,
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap
 }) {
 
     const [listNumRandom, setListNumRandom] = useState([]);
@@ -69,30 +69,18 @@ function Options({
 
     }
 
-    // Observação 1: Pode ser usada a função 'MAP' nas opções que serão renderizadas neste componente como a seguir, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
-    // const [optionMap, setOptionMap] = useState([])
-    // useEffect(() => {
-    //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
-        
-    // }, [nextOptions])
-    // console.log(optionMap[optNum1], 71)
-
-    // Observação 2: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
+    // Observação 1: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
     // const [optionFilter, setOptionFilter] = useState([])
     // useEffect(() => {
     //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) && setOptionFilter([e.option1, e.option2, e.option3, e.option4, e.option5]))
         
     // }, [nextOptions])
     // console.log(optionFilter[optNum1], 83)
-  
+
     useEffect(() => {
 
-        // para garantir que todas as opções sejam capturadas antes de mostrar na tela
-        setOption1(nextOptions && Object.values(nextOptions[randomIndex])[optNum1])
-        setOption2(nextOptions && Object.values(nextOptions[randomIndex])[optNum2])
-        setOption3(nextOptions && Object.values(nextOptions[randomIndex])[optNum3])
-        setOption4(nextOptions && Object.values(nextOptions[randomIndex])[optNum4])
-        setOption5(nextOptions && Object.values(nextOptions[randomIndex])[optNum5])     
+        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+        nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null) 
      
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMainVoid = document.querySelectorAll('.optionNext')
@@ -109,7 +97,7 @@ function Options({
             optionMainVoid[4].style.display = 'none'
         }        
         
-    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, setOption1, setOption2, setOption3, setOption4, setOption5, optNum1, optNum2, optNum3, optNum4, optNum5])
+    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, setOption1, setOption2, setOption3, setOption4, setOption5, optNum1, optNum2, optNum3, optNum4, optNum5, setOptionMap])
 
     return(                 
         <div 
@@ -130,7 +118,7 @@ function Options({
                     className={`optionNextP ${styles.option}`}                
                 >
 
-                    {option1}
+                    {optionMap[optNum1]}
 
                 </p>
             </div>
@@ -147,7 +135,7 @@ function Options({
                     className={`optionNextP ${styles.option}`}                
                 >
 
-                    {option2}
+                    {optionMap[optNum2]}
 
                 </p>
             </div>
@@ -164,7 +152,7 @@ function Options({
                     className={`optionNextP ${styles.option}`}                
                 >
 
-                    {option3}
+                    {optionMap[optNum3]}
 
                 </p>
             </div>
@@ -181,7 +169,7 @@ function Options({
                     className={`optionNextP ${styles.option}`}                
                 >
 
-                    {option4}
+                    {optionMap[optNum4]}
 
                 </p>
             </div>
@@ -198,7 +186,7 @@ function Options({
                     className={`optionNextP ${styles.option}`}                
                 >
 
-                    {option5}
+                    {optionMap[optNum5]}
                     
                 </p>
             </div>

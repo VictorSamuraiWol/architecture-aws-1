@@ -7,7 +7,7 @@ import ButtonDefault from '../../ButtonDefault';
 import Animation from '../../Animation';
 
 function ButtonAnswer({ 
-    answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti 
+    answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap
 }) {
     
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
@@ -39,7 +39,7 @@ function ButtonAnswer({
 
         // limpar a estilização de respostas erradas das opções desmarcadas da página main
         for(let w=0; w < 5; w++) {
-            if (nextOptions && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
+            if (optionMap && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
                 wrongOptionNextClean[w].classList.remove(optionInvalidate)
                 wrongOptionNextClean[w].classList.add(optionColor)
             }
@@ -47,7 +47,7 @@ function ButtonAnswer({
 
         // limpar a estilização de respostas erradas das opções desmarcadas da página multi
         for(let z=0; z < 5; z++) {
-            if (multiOptions && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
+            if (multiOptionMap && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
                 wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
                 wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
             }
@@ -74,7 +74,7 @@ function ButtonAnswer({
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
-        const convertObjArray = [Object.values(nextOptions[randomIndex])[optNum1], Object.values(nextOptions[randomIndex])[optNum2], Object.values(nextOptions[randomIndex])[optNum3], Object.values(nextOptions[randomIndex])[optNum4], Object.values(nextOptions[randomIndex])[optNum5]]
+        const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
 
         // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
         if(questionAnswer === true) {
@@ -87,7 +87,7 @@ function ButtonAnswer({
         } else {
 
             for(let i=0; i < 5; i++) {
-                if (nextOptions && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
+                if (optionMap && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
                     // adicionando a validação
                     const correctOption = document.querySelectorAll('.optionNext')[i];
                     correctOption.classList.remove(optionColor)
@@ -226,8 +226,8 @@ function ButtonAnswer({
     function displayAndValidate () {
 
         display()
-        nextOptions && validateAnswerPageMain()
-        multiOptions && validateAnswerPageMulti()
+        optionMap && validateAnswerPageMain()
+        multiOptionMap && validateAnswerPageMulti()
 
     }
 

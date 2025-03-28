@@ -27,7 +27,6 @@ function FormsNewQuestionsOptionsPage() {
     // elementos do MultiQuestion's Form
     const [newTitleMultiQuestions, setNewTitleMultiQuestions] = useState("")
     const [newQuestionMultiQuestions, setNewQuestionMultiQuestions] = useState("")
-    const [newAnswerMultiQuestions, setNewAnswerMultiQuestions] = useState("")
     const [newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions] = useState("")
     const [newSourceImageMultiQuestions, setNewSourceImageMultiQuestions] = useState("")
     const [newDescriptionMultiQuestions, setNewDescriptionMultiQuestions] = useState("")
@@ -139,11 +138,11 @@ function FormsNewQuestionsOptionsPage() {
         let data = '';
         
         // colocando somente os campos que serão obrigatórios
-        if (readyToSendForm3 === true && newTitleMultiQuestions && newQuestionMultiQuestions && newAnswerMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
+        if (readyToSendForm3 === true && newTitleMultiQuestions && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
             data = {
                 title: newTitleMultiQuestions,
                 question: newQuestionMultiQuestions,
-                answer: newAnswerMultiQuestions,
+                answer: 'true', // sempre ser true
                 answerText: newAnswerTextMultiQuestions,
                 srcImg: newSourceImageMultiQuestions, // não obrigatório
                 descriptionP: newDescriptionMultiQuestions,
@@ -243,7 +242,6 @@ function FormsNewQuestionsOptionsPage() {
             // form 3
             setNewTitleMultiQuestions('')
             setNewQuestionMultiQuestions('')
-            setNewAnswerMultiQuestions('')
             setNewAnswerTextMultiQuestions('')
             setNewSourceImageMultiQuestions('')
             setNewDescriptionMultiQuestions('')
@@ -347,13 +345,21 @@ function FormsNewQuestionsOptionsPage() {
                 <form onSubmit={onSaveForm3} className={styles.form}>
                     <h1>Form 3 (MultiQuestions)</h1>
                     <FieldsQuestionsOptions 
+                        // nome1="Title:" 
+                        // nome2="Question:" 
+                        // nome3="Answer:"
+                        // nome4="Answer's Text:" 
+                        // nome5="Source Image:" 
+                        // nome6="Description:"
+                        // nome7="Number:"
+
                         nome1="Title:" 
                         nome2="Question:" 
-                        nome3="Answer:" 
-                        nome4="Answer's Text:" 
-                        nome5="Source Image:" 
-                        nome6="Description:"
-                        nome7="Number:"
+                        nome3="Answer's Text:"
+                        nome4="Source Image:" 
+                        nome5="Description:"
+                        nome6="Number:"
+                        // não foi atribuído algum título no campo7, desta forma o campo 7 não existirá
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
@@ -361,8 +367,6 @@ function FormsNewQuestionsOptionsPage() {
                         setNewTitleMultiQuestions={setNewTitleMultiQuestions}
                         newQuestionMultiQuestions={newQuestionMultiQuestions}
                         setNewQuestionMultiQuestions={setNewQuestionMultiQuestions}
-                        newAnswerMultiQuestions={newAnswerMultiQuestions}
-                        setNewAnswerMultiQuestions={setNewAnswerMultiQuestions}
                         newAnswerTextMultiQuestions={newAnswerTextMultiQuestions}
                         setNewAnswerTextMultiQuestions={setNewAnswerTextMultiQuestions}
                         newSourceImageMultiQuestions={newSourceImageMultiQuestions}

@@ -19,6 +19,7 @@ function Main({
     const [optNum3, setOptNum3] = useState('');
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
+    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções da página main
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
@@ -78,6 +79,8 @@ function Main({
                 setOptNum3={setOptNum3}
                 setOptNum4={setOptNum4}
                 setOptNum5={setOptNum5}
+                optionMap={optionMap}
+                setOptionMap={setOptionMap}
 
             />
 
@@ -99,6 +102,7 @@ function Main({
                 optNum5={optNum5}
                 randomIndex={randomIndex}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
+                optionMap={optionMap}
 
             />
 

@@ -2,7 +2,7 @@ import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
 function MultiOptions({ 
-    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti 
+    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap 
 }) {
 
     const [optNum1, setOptNum1] = useState('');
@@ -85,13 +85,9 @@ function MultiOptions({
     }
 
     useEffect(() => {
-        
-        // para garantir que todas as opções sejam capturadas antes de mostrar na tela
-        setOption1(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum1])
-        setOption2(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum2])
-        setOption3(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum3])
-        setOption4(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum4])
-        setOption5(multiOptions[randomIndexMulti] && Object.values(multiOptions[randomIndexMulti])[optNum5])
+
+        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+        multiOptions && multiOptions.map((e, i) => (i === parseInt([randomIndexMulti])) ? setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
 
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMultiVoid = document.querySelectorAll('.optionNextMulti')
@@ -108,7 +104,7 @@ function MultiOptions({
             optionMultiVoid[4].style.display = 'none'
         }
         
-    }, [multiOptions, randomIndexMulti, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5])
+    }, [multiOptions, randomIndexMulti, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5, setMultiOptionMap])
     
     return (
         <div className={styles.multiOptionsAll}>
@@ -124,7 +120,7 @@ function MultiOptions({
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
 
-                    {option1}
+                    {multiOptionMap[optNum1]}
 
                     <span className={styles.answerBoolClass} id='answerBool1'>
 
@@ -146,7 +142,7 @@ function MultiOptions({
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
 
-                    {option2}
+                    {multiOptionMap[optNum2]}
 
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
@@ -170,7 +166,7 @@ function MultiOptions({
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
    
-                    {option3}
+                    {multiOptionMap[optNum3]}
 
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
@@ -194,7 +190,7 @@ function MultiOptions({
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                    
-                    {option4}
+                    {multiOptionMap[optNum4]}
 
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
@@ -218,7 +214,7 @@ function MultiOptions({
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                  
-                    {option5}
+                    {multiOptionMap[optNum5]}
                     
                     <span 
                         className={styles.answerBoolClass} id='answerBool1'
