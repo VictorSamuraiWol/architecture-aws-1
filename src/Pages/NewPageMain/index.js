@@ -3,6 +3,7 @@ import Header from '../../Components/Header';
 import Main from '../../Components/Main';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import Loader from '../../Components/Loader';
 
 function NewPageMain() {
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
@@ -13,11 +14,16 @@ function NewPageMain() {
     const [nextQuestions, setNextQuestions] = useState('');
     const [randomIndex, setRandomIndex] = useState('');
     const [nextOptions, setNextOptions] = useState('');
+
+    
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
+    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
 
     useEffect(() => {
+        // habilitar o loading
+        setLoading(true)
+
         fetch("http://localhost:3001/questions")
         .then(res => res.json())
         .then(data => {
@@ -25,6 +31,7 @@ function NewPageMain() {
                 throw new Error("Dados inválidos");
 
             } else {
+
                 // toda a lista de questões da página main
                 setListQuestions(data)
 
@@ -39,10 +46,16 @@ function NewPageMain() {
                 // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
                 setActivePageFormsQuestionsOptions(false)
 
+                // desabilitar o loading
+                setLoading(false)
+
             }
             
         })
         .catch(e => console.log(e))
+
+        // desabilitar o loading
+        setLoading(false)
 
     }, [])
 
@@ -61,7 +74,7 @@ function NewPageMain() {
 
     return(
         <div>
-            <div id='allQuestionsMainId' className={`${styles.allQuestionsMainClass} allquestions`} key={nextQuestions.id}>        
+            {requestData && <div id='allQuestionsMainId' className={`${styles.allQuestionsMainClass} allquestions`} key={nextQuestions.id}>        
                 {nextQuestions &&
                     <Header 
                         title={nextQuestions.title}
@@ -91,9 +104,11 @@ function NewPageMain() {
                         setRandomIndex={setRandomIndex}
 
                     />
-                }               
+                }  
 
-            </div>
+                {loading && <Loader />}            
+
+            </div>}
 
         </div>
     )

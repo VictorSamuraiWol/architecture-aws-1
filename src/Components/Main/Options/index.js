@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './Options.module.css';
+import { useOutletContext } from 'react-router-dom';
 
 function Options({ 
     setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap
@@ -14,10 +15,15 @@ function Options({
     const [option4, setOption4] = useState('')
     const [option5, setOption5] = useState('')
 
+    const { loading, setLoading } = useOutletContext()
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // habilitar o loading
+                setLoading(true)
+
                 const res = await fetch("http://localhost:3001/options");
                 const data = await res.json(); 
                 
@@ -39,11 +45,19 @@ function Options({
                             setOptNum4(listNumRandom[3])
                             setOptNum5(listNumRandom[4])
                         }                    
-                    } 
+                    }
+                    
+                    // desabilitar o loading                  
+                    setLoading(false)
+                    
                 }  
     
             } catch (error) {
                 console.error('Erro ao buscar as opções:', error);
+
+                // desabilitar o loading               
+                setLoading(false)
+
             }
 
         }
@@ -190,8 +204,11 @@ function Options({
                     
                 </p>
             </div>
-        </div>        
-    )
+
+        </div>      
+
+    )    
+    
 }
 
 export default Options;

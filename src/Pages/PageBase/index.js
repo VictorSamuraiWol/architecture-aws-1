@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from '../../Components/Footer';
 import styles from './PageBase.module.css';
 import { Outlet } from 'react-router-dom';
@@ -8,10 +8,15 @@ import IllustrativePage from '../IllustrativePage';
 
 function PageBase() {
 
+    const [loading, setLoading] = useState(true)
+
     const [validateSound, setValidateSound] = useState(true)
 
     //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
     const [requestData, setRequestData] = useState(false)
+
+    // para habilitar ou não a página ilustrativa
+    const [showIllustrativePage, setShowIllustrativePage] = useState(false)
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
 
@@ -50,28 +55,35 @@ function PageBase() {
         }
         
     }
+    
+    // torna showIllustrativePage true para verificar se mostrará ou não a página ilustrativa, dependendo do recebimento dos dados do backend    
+    setTimeout(() => {
+        setShowIllustrativePage(true)
+    }, 1000)
 
     return(
         <div className={styles.pageBaseOutlet}>
-            {(requestData === true || activePageFormsQuestionsOptions === true) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
 
-            <Outlet context={{ validateSound, setValidateSound, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions,setActivePageFormsQuestionsOptions }} />
+            {(requestData || activePageFormsQuestionsOptions) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
 
-            {(requestData === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull 
+            <Outlet context={{ validateSound, setValidateSound, requestData, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions,setActivePageFormsQuestionsOptions, loading, setLoading }} />
+
+            {(requestData && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
                 id='soundFullBaseId' 
                 className={styles.soundFull} 
             />}
 
-            {(requestData === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute 
+            {(requestData && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute 
                 onClick={validateSoundBaseFunc} 
                 id='soundMuteBaseId' 
                 className={styles.soundMute}
             />}
 
-            {(requestData === true || activePageFormsQuestionsOptions === true) && <Footer />}
+            {(requestData || activePageFormsQuestionsOptions) && <Footer />}
 
-            {(!requestData && activePageFormsQuestionsOptions === false) && <IllustrativePage />}
+            {showIllustrativePage && requestData === false && activePageFormsQuestionsOptions === false && <IllustrativePage />}
+            
         </div>
     )
 }

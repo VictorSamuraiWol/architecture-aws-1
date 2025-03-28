@@ -1,3 +1,4 @@
+import { useOutletContext } from 'react-router-dom';
 import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
@@ -19,10 +20,14 @@ function MultiOptions({
     const [option4, setOption4] = useState('')
     const [option5, setOption5] = useState('')
 
-    useEffect(() => {
+    const { loading, setLoading } = useOutletContext()
 
+    useEffect(() => {
         const fetchData = async () => {
             try {
+                // habilitar o loading
+                setLoading(true)
+
                 const res = await fetch("http://localhost:3001/multiOptions");
                 const data = await res.json();
 
@@ -46,10 +51,18 @@ function MultiOptions({
                             setOptNum5(listNumRandom[4])
                         }                    
                     }
+
+                    // desabilitar o loading                  
+                    setLoading(false)
+
                 }         
                 
             } catch (error) {
                 console.log('Erro ao buscar as opções:', error);
+
+                // desabilitar o loading                  
+                setLoading(false)
+                
             }
 
         }    

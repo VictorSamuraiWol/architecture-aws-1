@@ -3,6 +3,7 @@ import MultiMain from '../../Components/MultiMain';
 import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import { useOutletContext } from 'react-router-dom';
+import Loader from '../../Components/Loader';
 
 function PageMulti() {
     const [listMultiQuestions, setListMultiQuestions] = useState([]);
@@ -15,9 +16,12 @@ function PageMulti() {
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
+    const { setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
 
     useEffect(() => {
+        // habilitar o loading
+        setLoading(true)
+
         fetch("http://localhost:3001/multiQuestions")
         .then(res => res.json())
         .then(data => {
@@ -39,10 +43,16 @@ function PageMulti() {
                 // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
                 setActivePageFormsQuestionsOptions(false)
 
+                // desabilitar o loading
+                setLoading(false)
+
             }
 
     })
     .catch(e => console.log(e))
+
+    // desabilitar o loading
+    setLoading(false)
   
     }, [])
 
@@ -95,6 +105,8 @@ function PageMulti() {
                 />
             }
 
+            {loading && <Loader />}           
+          
         </div> 
 
     )
