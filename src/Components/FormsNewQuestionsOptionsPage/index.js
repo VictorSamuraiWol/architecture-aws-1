@@ -95,13 +95,13 @@ function FormsNewQuestionsOptionsPage() {
         let data = '';
 
         // colocando somente os campos que serão obrigatórios
-        if (readyToSendForm2 === true && newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOption5Question && newOptionsNumberQuestions) { 
+        if (readyToSendForm2 === true && newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions) { 
             data = {
                 option1: newOption1Question,
                 option2: newOption2Question,
                 option3: newOption3Question,
                 option4: newOption4Question,
-                option5: newOption5Question,
+                option5: newOption5Question, // não obrigatório
                 numberOption: newOptionsNumberQuestions
             }
 
@@ -181,13 +181,13 @@ function FormsNewQuestionsOptionsPage() {
         let data = '';
 
         // colocando somente os campos que serão obrigatórios
-        if (readyToSendForm4 === true && newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOption5MultiQuestion && newOptionsNumberMultiQuestions) {
+        if (readyToSendForm4 === true && newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions) {
             data = {
                 option1: newOption1MultiQuestion,
                 option2: newOption2MultiQuestion,
                 option3: newOption3MultiQuestion,
                 option4: newOption4MultiQuestion,
-                option5: newOption5MultiQuestion,
+                option5: newOption5MultiQuestion, // não obrigatório
                 numberOption: newOptionsNumberMultiQuestions
             }
 

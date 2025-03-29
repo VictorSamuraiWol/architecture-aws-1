@@ -16,7 +16,7 @@ function PageMulti() {
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
+    const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
 
     useEffect(() => {
         // habilitar o loading
@@ -71,43 +71,46 @@ function PageMulti() {
     }
 
     return(
-        <div
-            id='allQuestionsMultiId' 
-            className={styles.allQuestionsMultiClass} 
-            key={multiQuestions.id}
-        >
-            {multiQuestions.length !== 0 &&
-                <Header 
-                    title={multiQuestions.title}
+        <div>     
+            {requestData && <div
+                id='allQuestionsMultiId' 
+                className={styles.allQuestionsMultiClass} 
+                key={multiQuestions.id}
+            >
+                {multiQuestions.length !== 0 &&
+                    <Header 
+                        title={multiQuestions.title}
 
-                />
-            }
+                    />
+                }
 
-            {multiQuestions.length !== 0 &&
-                <MultiMain 
-                    question={multiQuestions.question} 
-                    answer={multiQuestions.answer}
-                    answerText={multiQuestions.answerText}
-                    srcImg={multiQuestions.srcImg}
-                    descriptionP={multiQuestions.descriptionP}
-                    elementId={multiQuestions.id}
-                    multiOptions={multiOptions}
-                    setMultiOptions={setMultiOptions}
-                    answerDisplay={answerDisplay}
-                    setAnswerDisplay={setAnswerDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    optionValidate={optionValidate}
-                    optionInvalidate={optionInvalidate}
-                    randomIndexMulti={randomIndexMulti}
-                    uniqueRandomMulti={uniqueRandomMulti}
+                {multiQuestions.length !== 0 &&
+                    <MultiMain 
+                        question={multiQuestions.question} 
+                        answer={multiQuestions.answer}
+                        answerText={multiQuestions.answerText}
+                        srcImg={multiQuestions.srcImg}
+                        descriptionP={multiQuestions.descriptionP}
+                        elementId={multiQuestions.id}
+                        multiOptions={multiOptions}
+                        setMultiOptions={setMultiOptions}
+                        answerDisplay={answerDisplay}
+                        setAnswerDisplay={setAnswerDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}
+                        optionValidate={optionValidate}
+                        optionInvalidate={optionInvalidate}
+                        randomIndexMulti={randomIndexMulti}
+                        uniqueRandomMulti={uniqueRandomMulti}
 
-                />
-            }
+                    />
+                }
 
-            {loading && <Loader />}           
-          
-        </div> 
+                {loading && <Loader />}           
+            
+            </div>}
+               
+        </div>
 
     )
 }

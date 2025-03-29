@@ -1,7 +1,7 @@
 import styles from './Answer.module.css';
 
 function Answer({ 
-    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, nextOptions, multiOptions 
+    answer, answerText, descriptionP, answerDisplay, descriptionDisplay, setDescriptionDisplay, nextOptions, multiOptions 
 }) {
 
     function description() {

@@ -7,7 +7,7 @@ import ButtonDefault from '../../ButtonDefault';
 import Animation from '../../Animation';
 
 function ButtonAnswer({ 
-    answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, nextOptions, multiOptions, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, randomIndex, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap
+    answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap
 }) {
     
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
@@ -38,18 +38,22 @@ function ButtonAnswer({
         const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
 
         // limpar a estilização de respostas erradas das opções desmarcadas da página main
-        for(let w=0; w < 5; w++) {
-            if (optionMap && wrongOptionNextClean[w].classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
-                wrongOptionNextClean[w].classList.remove(optionInvalidate)
-                wrongOptionNextClean[w].classList.add(optionColor)
+        if (optionMap) {
+            for(let w=0; w < optionMap.length; w++) {
+                if (optionMap && wrongOptionNextClean[w]?.classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
+                    wrongOptionNextClean[w].classList.remove(optionInvalidate)
+                    wrongOptionNextClean[w].classList.add(optionColor)
+                }
             }
         }
 
         // limpar a estilização de respostas erradas das opções desmarcadas da página multi
-        for(let z=0; z < 5; z++) {
-            if (multiOptionMap && wrongOptionNextMultiClean[z].classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
-                wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
-                wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
+        if (multiOptionMap) {
+            for(let z=0; z < multiOptionMap.length; z++) {
+                if (multiOptionMap && wrongOptionNextMultiClean[z]?.classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
+                    wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
+                    wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
+                }
             }
         }
 
@@ -74,6 +78,7 @@ function ButtonAnswer({
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
+        // passar somente os valores que não forem vazios de todas as opções para um array antes da validação
         const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
 
         // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
@@ -86,20 +91,20 @@ function ButtonAnswer({
 
         } else {
 
-            for(let i=0; i < 5; i++) {
+            for(let i=0; i < convertObjArray.length; i++) {
                 if (optionMap && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
+
                     // adicionando a validação
                     const correctOption = document.querySelectorAll('.optionNext')[i];
-                    correctOption.classList.remove(optionColor)
                     correctOption.classList.add(optionValidate)
+                    correctOption.classList.remove(optionColor)
 
                     // adicionando a invalidação
                     if (i !== parseInt(captureValue) && captureValue !== '') {
                         const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
 
-                        wrongOptionNext.classList.remove(optionColor)
-                        // wrongOptionNext.classList.remove(optionValidate)
                         wrongOptionNext.classList.add(optionInvalidate)
+                        wrongOptionNext.classList.remove(optionColor)
 
                         // play error audio
                         validateSound === true && errorSound.play(); 

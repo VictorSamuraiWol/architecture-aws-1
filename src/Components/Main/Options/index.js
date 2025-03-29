@@ -15,7 +15,7 @@ function Options({
     const [option4, setOption4] = useState('')
     const [option5, setOption5] = useState('')
 
-    const { loading, setLoading } = useOutletContext()
+    const { setLoading } = useOutletContext()
 
 
     useEffect(() => {
@@ -72,7 +72,7 @@ function Options({
     }
 
     // função para capturar o valor que está marcado quando clicado no campo texto (p)
-    function mouseOverOptionsMain(e) {
+    function mouseClickOptionsMain(e) {
         const inputOptionMain = e.target.parentElement.childNodes[0]
         if (inputOptionMain) {
             inputOptionMain.checked = true
@@ -83,7 +83,7 @@ function Options({
 
     }
 
-    // Observação 1: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
+    // Observação: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
     // const [optionFilter, setOptionFilter] = useState([])
     // useEffect(() => {
     //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) && setOptionFilter([e.option1, e.option2, e.option3, e.option4, e.option5]))
@@ -94,24 +94,29 @@ function Options({
     useEffect(() => {
 
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null) 
-     
+        nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)        
+        
+    }, [nextOptions, randomIndex, setOptionMap])
+
+    useEffect(() => {
+
+        // colocando em outro useEffect a variável 'optionMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setOptionMap'
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMainVoid = document.querySelectorAll('.optionNext')
 
-        if ((option1 === '') && (option2 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+        if ((optionMap[optNum1] === '') && (optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
             optionMainVoid[0].style.display = 'none'
-        } else if ((option2 === '') && (option1 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+        } else if ((optionMap[optNum2] === '') && (optionMap[optNum1] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
             optionMainVoid[1].style.display = 'none'
-        } else if ((option3 === '') && (option1 !== '' && option2 !== '' && option4 !== '' && option5 !== '')) {
+        } else if ((optionMap[optNum3] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
             optionMainVoid[2].style.display = 'none'
-        } else if ((option4 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option5 !== '')) {
+        } else if ((optionMap[optNum4] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum5] !== '')) {
             optionMainVoid[3].style.display = 'none'
-        } else if ((option5 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option4 !== '')) {
+        } else if ((optionMap[optNum5] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '')) {
             optionMainVoid[4].style.display = 'none'
-        }        
-        
-    }, [nextOptions, randomIndex, option1, option2, option3, option4, option5, setOption1, setOption2, setOption3, setOption4, setOption5, optNum1, optNum2, optNum3, optNum4, optNum5, setOptionMap])
+        }  
+
+    }, [optNum1, optNum2, optNum3, optNum4, optNum5, optionMap])
 
     return(                 
         <div 
@@ -121,14 +126,14 @@ function Options({
         >
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input
-                    onClick={captureValue} 
+                    onClick={captureValue}
                     className={styles.inputOptions}  
                     type='radio' 
                     name='options' 
                     value='0'
                 />
                 <p 
-                    onClick={mouseOverOptionsMain}
+                    onClick={mouseClickOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
 
@@ -136,16 +141,17 @@ function Options({
 
                 </p>
             </div>
+
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input
-                    onClick={captureValue} 
+                    onClick={captureValue}
                     className={styles.inputOptions} 
                     type='radio' 
                     name='options' 
                     value='1' 
                 />
                 <p 
-                    onClick={mouseOverOptionsMain}
+                    onClick={mouseClickOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
 
@@ -153,6 +159,7 @@ function Options({
 
                 </p>
             </div>
+
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
                     onClick={captureValue}
@@ -162,7 +169,7 @@ function Options({
                     value='2' 
                 />
                 <p 
-                    onClick={mouseOverOptionsMain}
+                    onClick={mouseClickOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
 
@@ -170,6 +177,7 @@ function Options({
 
                 </p>
             </div>
+
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
                     onClick={captureValue}
@@ -179,7 +187,7 @@ function Options({
                     value='3' 
                 />
                 <p 
-                    onClick={mouseOverOptionsMain}
+                    onClick={mouseClickOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
 
@@ -187,6 +195,7 @@ function Options({
 
                 </p>
             </div>
+
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input 
                     onClick={captureValue}
@@ -196,7 +205,7 @@ function Options({
                     value='4' 
                 />
                 <p 
-                    onClick={mouseOverOptionsMain}
+                    onClick={mouseClickOptionsMain}
                     className={`optionNextP ${styles.option}`}                
                 >
 

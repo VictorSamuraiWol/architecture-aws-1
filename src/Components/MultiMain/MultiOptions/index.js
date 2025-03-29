@@ -20,7 +20,7 @@ function MultiOptions({
     const [option4, setOption4] = useState('')
     const [option5, setOption5] = useState('')
 
-    const { loading, setLoading } = useOutletContext()
+    const { setLoading } = useOutletContext()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -101,25 +101,29 @@ function MultiOptions({
 
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
         multiOptions && multiOptions.map((e, i) => (i === parseInt([randomIndexMulti])) ? setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
+        
+    }, [multiOptions, randomIndexMulti, setMultiOptionMap])
 
+    useEffect(() => {
+
+        // colocando em outro useEffect a variável 'optionMultiMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setMultiOptionMap'
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMultiVoid = document.querySelectorAll('.optionNextMulti')
-
-        if ((option1 === '') && (option2 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+    
+        if ((multiOptionMap[optNum1] === '') && (multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
             optionMultiVoid[0].style.display = 'none'
-        } else if ((option2 === '') && (option1 !== '' && option3 !== '' && option4 !== '' && option5 !== '')) {
+        } else if ((multiOptionMap[optNum2] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
             optionMultiVoid[1].style.display = 'none'
-        } else if ((option3 === '') && (option1 !== '' && option2 !== '' && option4 !== '' && option5 !== '')) {
+        } else if ((multiOptionMap[optNum3] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
             optionMultiVoid[2].style.display = 'none'
-        } else if ((option4 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option5 !== '')) {
+        } else if ((multiOptionMap[optNum4] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum5] !== '')) {
             optionMultiVoid[3].style.display = 'none'
-        } else if ((option5 === '') && (option1 !== '' && option2 !== '' && option3 !== '' && option4 !== '')) {
+        } else if ((multiOptionMap[optNum5] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '')) {
             optionMultiVoid[4].style.display = 'none'
-        }
-        
-    }, [multiOptions, randomIndexMulti, option1, option2, option3, option4, option5, optNum1, optNum2, optNum3, optNum4, optNum5, setMultiOptionMap])
-const teste = document.querySelectorAll('.optionsMultiP')
-console.log(teste, 109) 
+        }  
+
+    }, [optNum1, optNum2, optNum3, optNum4, optNum5, multiOptionMap])
+
     return (
         <div className={styles.multiOptionsAll}>
             <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
@@ -179,7 +183,7 @@ console.log(teste, 109)
                     onClick={mouseOverOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
-   
+
                     {multiOptionMap[optNum3]}
 
                     <span 
@@ -239,6 +243,7 @@ console.log(teste, 109)
                     </span>
                 </p>
             </div>
+
         </div>
     )
 }
