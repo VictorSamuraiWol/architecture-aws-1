@@ -9,7 +9,6 @@ function FormsNewQuestionsOptionsPage() {
     const [labelTarget, setLabelTarget] = useState("")
 
     // elementos do Question's Form:
-    const [newTitleQuestions, setNewTitleQuestions] = useState("")
     const [newQuestionQuestions, setNewQuestionQuestions] = useState("")
     const [newAnswerQuestions, setNewAnswerQuestions] = useState("")
     const [newSourceImageQuestions, setNewSourceImageQuestions] = useState("")
@@ -25,7 +24,6 @@ function FormsNewQuestionsOptionsPage() {
     const [newOptionsNumberQuestions, setNewOptionsNumberQuestions] = useState("")
 
     // elementos do MultiQuestion's Form
-    const [newTitleMultiQuestions, setNewTitleMultiQuestions] = useState("")
     const [newQuestionMultiQuestions, setNewQuestionMultiQuestions] = useState("")
     const [newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions] = useState("")
     const [newSourceImageMultiQuestions, setNewSourceImageMultiQuestions] = useState("")
@@ -52,9 +50,8 @@ function FormsNewQuestionsOptionsPage() {
         let data = '';
 
         // colocando somente os campos que serão obrigatórios
-        if (readyToSendForm1 === true && newTitleQuestions && newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions) { 
+        if (readyToSendForm1 === true && newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions) { 
             data = {
-                titulo: newTitleQuestions,
                 question: newQuestionQuestions,
                 answer: newAnswerQuestions,
                 srcImg: newSourceImageQuestions, // não obrigatório
@@ -138,9 +135,8 @@ function FormsNewQuestionsOptionsPage() {
         let data = '';
         
         // colocando somente os campos que serão obrigatórios
-        if (readyToSendForm3 === true && newTitleMultiQuestions && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
+        if (readyToSendForm3 === true && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
             data = {
-                title: newTitleMultiQuestions,
                 question: newQuestionMultiQuestions,
                 answerText: newAnswerTextMultiQuestions,
                 srcImg: newSourceImageMultiQuestions, // não obrigatório
@@ -223,7 +219,6 @@ function FormsNewQuestionsOptionsPage() {
         // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
         if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
             // form 1
-            setNewTitleQuestions('')
             setNewQuestionQuestions('')
             setNewAnswerQuestions('')
             setNewSourceImageQuestions('')
@@ -239,7 +234,6 @@ function FormsNewQuestionsOptionsPage() {
             setNewOptionsNumberQuestions('')
 
             // form 3
-            setNewTitleMultiQuestions('')
             setNewQuestionMultiQuestions('')
             setNewAnswerTextMultiQuestions('')
             setNewSourceImageMultiQuestions('')
@@ -266,16 +260,14 @@ function FormsNewQuestionsOptionsPage() {
                 <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
                     <h1>Form 1 (Questions)</h1>
                     <FieldsQuestionsOptions
-                        nome1="Title:" 
-                        nome2="Question:" 
-                        nome3="Answer:" 
-                        nome4="Source Image:" 
-                        nome5="Description:" 
-                        nome6="Number:"
+                        nome1="Question:"
+                        nome2="Answer:"
+                        nome3="Source Image:"
+                        nome4="Description:" 
+                        nome5="Number:"
+
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
-                        newTitleQuestions={newTitleQuestions}
-                        setNewTitleQuestions={setNewTitleQuestions}
                         newQuestionQuestions={newQuestionQuestions}
                         setNewQuestionQuestions={setNewQuestionQuestions}
                         newAnswerQuestions={newAnswerQuestions}
@@ -343,27 +335,15 @@ function FormsNewQuestionsOptionsPage() {
             <div className={styles.forms}>
                 <form onSubmit={onSaveForm3} className={styles.form}>
                     <h1>Form 3 (MultiQuestions)</h1>
-                    <FieldsQuestionsOptions 
-                        // nome1="Title:" 
-                        // nome2="Question:" 
-                        // nome3="Answer:"
-                        // nome4="Answer's Text:" 
-                        // nome5="Source Image:" 
-                        // nome6="Description:"
-                        // nome7="Number:"
-
-                        nome1="Title:" 
-                        nome2="Question:" 
-                        nome3="Answer's Text:"
-                        nome4="Source Image:" 
-                        nome5="Description:"
-                        nome6="Number:"
-                        // não foi atribuído algum título no campo7, desta forma o campo 7 não existirá
+                    <FieldsQuestionsOptions
+                        nome1="Question:" 
+                        nome2="Answer's Text:"
+                        nome3="Source Image:"
+                        nome4="Description:" 
+                        nome5="Number:"
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
-                        newTitleMultiQuestions={newTitleMultiQuestions}
-                        setNewTitleMultiQuestions={setNewTitleMultiQuestions}
                         newQuestionMultiQuestions={newQuestionMultiQuestions}
                         setNewQuestionMultiQuestions={setNewQuestionMultiQuestions}
                         newAnswerTextMultiQuestions={newAnswerTextMultiQuestions}

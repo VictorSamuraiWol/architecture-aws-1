@@ -37,8 +37,6 @@ function FieldQuestionOption({
 
             if (readyToCleanAll === false) {
 
-                labelTarget === "Title:" && setValueForm1(newValue)
-
                 labelTarget === "Question:" && setValueForm1(newValue)
             
                 labelTarget === "Answer:" && setValueForm1(newValue)
@@ -90,8 +88,6 @@ function FieldQuestionOption({
             setValuesForms(valueForm3)
 
             if (readyToCleanAll === false) {
-
-                labelTarget === "Title:" && setValueForm3(newValue)
 
                 labelTarget === "Question:" && setValueForm3(newValue)
 

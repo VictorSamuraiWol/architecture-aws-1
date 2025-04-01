@@ -79,7 +79,7 @@ function PageMulti() {
             >
                 {multiQuestions.length !== 0 &&
                     <Header 
-                        title={multiQuestions.title}
+                        title="Architecture Questions - Randomly"
 
                     />
                 }

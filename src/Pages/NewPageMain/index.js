@@ -81,7 +81,7 @@ function NewPageMain() {
             >        
                 {nextQuestions &&
                     <Header 
-                        title={nextQuestions.title}
+                        title="Architecture Questions - Randomly"
 
                     />
                 }
