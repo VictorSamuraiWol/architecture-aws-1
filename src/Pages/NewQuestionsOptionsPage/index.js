@@ -21,10 +21,12 @@ function CreateNewQuestionsOptions () {
 
     return(
         <div className={styles.newQuestionsOptionsPage}>
+            
             <Header title='Forms' />
             <FormsNewQuestionsOptionsPage className={styles.formsNewQuestionsOptionsPage} />
 
             {loading && <Loader />}
+
         </div>
     )
 }

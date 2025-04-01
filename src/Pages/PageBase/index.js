@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Footer from '../../Components/Footer';
 import styles from './PageBase.module.css';
 import { Outlet } from 'react-router-dom';

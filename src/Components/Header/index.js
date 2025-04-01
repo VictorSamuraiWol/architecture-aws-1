@@ -1,14 +1,15 @@
 import styles from './Header.module.css';
 import image from '../../imgs/icon-start.png'
 import { Link, useOutletContext } from 'react-router-dom';
+import Timer from './Timer';
 import NavigationItem from './NavigationItem';
 import { GoPlus } from 'react-icons/go';
-import Timer from './Timer';
 import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header({ title }) {
 
-    const { activePageFormsQuestionsOptions } = useOutletContext()
+    const { requestData, activePageFormsQuestionsOptions } = useOutletContext()
+
     const allLinks = document.querySelectorAll('.ulHeader')
 
     // habilitar ou não os links de navegação ao clicar quando o menu hamburguer está ativado na resolução até 580px
@@ -61,7 +62,8 @@ function Header({ title }) {
                 </ul>
             </nav>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
-            {activePageFormsQuestionsOptions === false && <Timer />}
+            {requestData && activePageFormsQuestionsOptions === false && <Timer />}
+            
         </div>
     )
 
