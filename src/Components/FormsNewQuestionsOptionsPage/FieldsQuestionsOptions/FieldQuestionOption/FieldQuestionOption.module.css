@@ -33,6 +33,24 @@ textarea {
     scrollbar-color: var(--color-first) var(--color-fourth);
 }
 
+input {
+    font-size: 1rem;
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+    height: 60px;
+    width: 100%;
+    appearance: none;
+    border: 1px solid var(--color-third);
+    border-radius: 8px;
+    outline: none;
+}
+
+/* esconder os spinners (setas de incremento/decremento) nos navegadores */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 /* responsividade */
 @media screen and (max-width: 860px) {

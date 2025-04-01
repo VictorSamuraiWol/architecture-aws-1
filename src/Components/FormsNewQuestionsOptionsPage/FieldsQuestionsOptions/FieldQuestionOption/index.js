@@ -143,10 +143,23 @@ function FieldQuestionOption({
         <div className={styles.field}>
             <div className={styles.labelTextarea}>
                 <label className={optionClass}>{nome}</label>
-                <textarea 
-                    onChange={(e) => newValueFunc(e)}
-                    value={valuesForms}
-                />
+                {/* aparecer o campo do tipo textarea se for textos e números */}
+                {(nome !== "Number:" || nome !== "Number:") &&
+                    <textarea 
+                        onChange={(e) => newValueFunc(e)}
+                        value={valuesForms}
+                        
+                    />
+                }
+                {/* aparecer o campo do tipo input se for numérico */}
+                {(nome === "Number:" || nome === "Number:") && 
+                    <input 
+                        onChange={(e) => newValueFunc(e)}
+                        value={valuesForms}
+                        type='number'
+                        
+                    />
+                }
             </div>
         </div>
     )
