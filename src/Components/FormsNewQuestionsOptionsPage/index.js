@@ -2,6 +2,7 @@ import styles from './FormsNewQuestionsOptions.module.css'
 import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
 import { useState } from 'react'
+import backgroundImage from '../../imgs/forms-image.png'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -256,6 +257,13 @@ function FormsNewQuestionsOptionsPage() {
 
     return(
         <div className={styles.formsNewQuestionsOptions}>
+
+            <img 
+                className={styles.backgroundImage} 
+                src={backgroundImage} 
+                alt='backgroundImage' 
+            />
+
             <div className={styles.forms}>
                 <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
                     <h1>Form 1 (Questions)</h1>

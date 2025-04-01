@@ -64,7 +64,12 @@ function PageBase() {
     return(
         <div className={styles.pageBaseOutlet}>
 
-            {(requestData || activePageFormsQuestionsOptions) && <img className={`backgroundImageClass ${styles.backgroundImage}`} src={backgroundImage} alt='imagem de fundo' />}
+            {(requestData && activePageFormsQuestionsOptions === false) && 
+            <img 
+                className={`backgroundImageClass ${styles.backgroundImage}`} 
+                src={backgroundImage} 
+                alt='imagem de fundo'
+            />}
 
             <Outlet context={{ validateSound, setValidateSound, requestData, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions,setActivePageFormsQuestionsOptions, loading, setLoading }} />
 

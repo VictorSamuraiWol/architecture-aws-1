@@ -9,10 +9,11 @@ function CreateNewQuestionsOptions () {
     const { setActivePageFormsQuestionsOptions } = useOutletContext()
     
     useEffect(() => {
-        // tornar a página ativa ao entrar na rota dela
-        setActivePageFormsQuestionsOptions(true)
 
-    }, [])
+            // tornar a página ativa ao entrar na rota dela
+            setActivePageFormsQuestionsOptions(true)   
+
+    }, [setActivePageFormsQuestionsOptions])
 
     return(
         <div className={styles.newQuestionsOptionsPage}>
