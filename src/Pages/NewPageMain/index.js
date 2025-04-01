@@ -6,6 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import Loader from '../../Components/Loader';
 
 function NewPageMain() {
+
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);   
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
@@ -13,9 +14,7 @@ function NewPageMain() {
     const [listQuestions, setListQuestions] = useState([]);
     const [nextQuestions, setNextQuestions] = useState('');
     const [randomIndex, setRandomIndex] = useState('');
-    const [nextOptions, setNextOptions] = useState('');
-
-    
+    const [nextOptions, setNextOptions] = useState('');    
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();

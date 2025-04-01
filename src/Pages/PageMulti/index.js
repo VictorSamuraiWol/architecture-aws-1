@@ -6,6 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import Loader from '../../Components/Loader';
 
 function PageMulti() {
+    
     const [listMultiQuestions, setListMultiQuestions] = useState([]);
     const [multiQuestions, setMultiQuestions] = useState([]);
     const [multiOptions, setMultiOptions] = useState([]);

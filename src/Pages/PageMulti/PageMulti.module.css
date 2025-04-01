@@ -15,14 +15,14 @@
 }
 
 .optionValidate {
-    color: green;
+    color: var(--color-fourth);
     font-weight: bold;
     padding: 0 8px;
-    border: 2px solid yellowgreen;
+    border: 2px solid var(--color-third);
     border-radius: 16px;
 }
 
 .optionInvalidate {
-    color: darkred;
+    color: #B71C1C; /* Tom mais escuro e forte */
     font-weight: bold;
 }
