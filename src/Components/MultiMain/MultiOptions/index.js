@@ -92,24 +92,12 @@ function MultiOptions({
 
     useEffect(() => {
 
-//--------------------------------------------------
-        // // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        // multiOptions && multiOptions.map((e, i) => (i === parseInt([randomIndexMulti])) ? setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
-//---------------------------------------------------
-
-
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        multiOptions && multiOptions.map((e, i) => {
+        multiOptions && multiOptions.map((option) => {
 
-            // a primeira possibilidade será acionada se a posição da questão está na mesma posição da opção e se os números são equivalentes, a segunda possibilidade será acionada se os números são equivalentes, mesmo que a posição da questão e da opção sejam diferentes no backend
-            if ((i === parseInt([randomIndexMulti])) && parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion)) {
-                setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
-                console.log(parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion), 110)
-
-            } else if (parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion)) {
-                setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
-                console.log(parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion), 112)
-                console.log(e)
+            // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend          
+            if (parseInt(option.numberOption) === parseInt(multiQuestions.numberQuestion)) {
+                setMultiOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
 
             }
 
