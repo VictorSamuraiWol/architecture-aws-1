@@ -103,6 +103,7 @@ function PageMulti() {
                         optionInvalidate={optionInvalidate}
                         randomIndexMulti={randomIndexMulti}
                         uniqueRandomMulti={uniqueRandomMulti}
+                        multiQuestions={multiQuestions}
 
                     />
                 }

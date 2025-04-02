@@ -3,7 +3,7 @@ import styles from './MultiOptions.module.css';
 import { useEffect, useState } from 'react';
 
 function MultiOptions({ 
-    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap 
+    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap,multiQuestions
 }) {
 
     const [optNum1, setOptNum1] = useState('');
@@ -12,13 +12,6 @@ function MultiOptions({
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
     const [listNumRandom, setListNumRandom] = useState([]);
-
-    // constantes para armazenar as opções
-    const [option1, setOption1] = useState('')
-    const [option2, setOption2] = useState('')
-    const [option3, setOption3] = useState('')
-    const [option4, setOption4] = useState('')
-    const [option5, setOption5] = useState('')
 
     const { setLoading } = useOutletContext()
 
@@ -99,10 +92,32 @@ function MultiOptions({
 
     useEffect(() => {
 
+//--------------------------------------------------
+        // // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+        // multiOptions && multiOptions.map((e, i) => (i === parseInt([randomIndexMulti])) ? setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
+//---------------------------------------------------
+
+
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        multiOptions && multiOptions.map((e, i) => (i === parseInt([randomIndexMulti])) ? setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)
+        multiOptions && multiOptions.map((e, i) => {
+
+            // a primeira possibilidade será acionada se a posição da questão está na mesma posição da opção e se os números são equivalentes, a segunda possibilidade será acionada se os números são equivalentes, mesmo que a posição da questão e da opção sejam diferentes no backend
+            if ((i === parseInt([randomIndexMulti])) && parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion)) {
+                setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
+                console.log(parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion), 110)
+
+            } else if (parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion)) {
+                setMultiOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
+                console.log(parseInt(e.numberOption) === parseInt(multiQuestions.numberQuestion), 112)
+                console.log(e)
+
+            }
+
+            return null
+       
+        }) 
         
-    }, [multiOptions, randomIndexMulti, setMultiOptionMap])
+    }, [multiOptions, randomIndexMulti, setMultiOptionMap, multiQuestions])
 
     useEffect(() => {
 

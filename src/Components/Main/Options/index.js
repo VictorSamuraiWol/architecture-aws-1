@@ -3,20 +3,12 @@ import styles from './Options.module.css';
 import { useOutletContext } from 'react-router-dom';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestions
 }) {
 
     const [listNumRandom, setListNumRandom] = useState([]);
 
-    // constantes para armazenar as opções
-    const [option1, setOption1] = useState('')
-    const [option2, setOption2] = useState('')
-    const [option3, setOption3] = useState('')
-    const [option4, setOption4] = useState('')
-    const [option5, setOption5] = useState('')
-
     const { setLoading } = useOutletContext()
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -92,11 +84,35 @@ function Options({
     // console.log(optionFilter[optNum1], 83)
 
     useEffect(() => {
-
-        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null)        
         
-    }, [nextOptions, randomIndex, setOptionMap])
+//-----------------------------------------------------------
+        // // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+        // nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) ? setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5]) : null) 
+//-----------------------------------------------------------
+
+        
+        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+        nextOptions && nextOptions.map((e, i) => {
+
+            // a primeira possibilidade será acionada se a posição da questão está na mesma posição da opção e se os números são equivalentes, a segunda possibilidade será acionada se os números são equivalentes, mesmo que a posição da questão e da opção sejam diferentes no backend
+            if ((i === parseInt([randomIndex])) && parseInt(e.numberOption) === parseInt(nextQuestions.numberQuestion)) {
+                setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
+                console.log(parseInt(e.numberOption) === parseInt(nextQuestions.numberQuestion), 110)
+
+            } else if (parseInt(e.numberOption) === parseInt(nextQuestions.numberQuestion)) {
+                setOptionMap([e.option1, e.option2, e.option3, e.option4, e.option5])
+                console.log(parseInt(e.numberOption) === parseInt(nextQuestions.numberQuestion), 112)
+                console.log(e)
+
+            }
+
+            return null
+           
+        }) 
+        
+        
+
+    }, [nextOptions, randomIndex, setOptionMap, nextQuestions])
 
     useEffect(() => {
 

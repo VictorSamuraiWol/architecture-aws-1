@@ -9,7 +9,7 @@ import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, listQuestions, setNextQuestions, setRandomIndex
+    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, listQuestions, setNextQuestions, setRandomIndex, nextQuestions
 }) {
    
     const [captureValue, setCaptureValue] = useState('')
@@ -81,6 +81,7 @@ function Main({
                 setOptNum5={setOptNum5}
                 optionMap={optionMap}
                 setOptionMap={setOptionMap}
+                nextQuestions={nextQuestions}
 
             />
 

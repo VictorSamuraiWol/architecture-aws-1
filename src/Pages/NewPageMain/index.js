@@ -104,8 +104,9 @@ function NewPageMain() {
                         uniqueRandomMain={uniqueRandomMain}
                         listQuestions={listQuestions}
                         setNextQuestions={setNextQuestions}
-                        setRandomIndex={setRandomIndex}
-
+                        setRandomIndex={setRandomIndex}                        
+                        nextQuestions={nextQuestions}
+                    
                     />
                 }  
 
