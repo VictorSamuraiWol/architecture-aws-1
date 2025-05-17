@@ -1,13 +1,16 @@
 import styles from './NewQuestionsOptionsPage.module.css'
 import { useOutletContext } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
 import Header from '../../Components/Header'
 import Loader from '../../Components/Loader'
+import { DataContext } from '../../Components/DataContext'
 
 function CreateNewQuestionsOptions () {
  
-    const { setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext()
+    const { setActivePageFormsQuestionsOptions } = useOutletContext()
+
+    const { loading, setLoading } = useContext(DataContext)
     
     useEffect(() => {
 
