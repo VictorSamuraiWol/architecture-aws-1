@@ -1,10 +1,13 @@
 import styles from './FormsNewQuestionsOptions.module.css'
 import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import backgroundImage from '../../imgs/forms-image.png'
+import { DataContext } from '../DataContext'
 
 function FormsNewQuestionsOptionsPage() {
+
+    const { listUnicQuestions, listUnicOptions, listMultiQuestions, listMultiOptions } = useContext(DataContext)
 
     // capturando o conteúdo da label
     const [labelTarget, setLabelTarget] = useState("")

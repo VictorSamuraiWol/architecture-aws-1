@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Options.module.css';
-import { useOutletContext } from 'react-router-dom';
+import { DataContext } from '../../DataContext';
 
 function Options({ 
     setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestions
@@ -8,54 +8,32 @@ function Options({
 
     const [listNumRandom, setListNumRandom] = useState([]);
 
-    const { setLoading } = useOutletContext()
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // habilitar o loading
-                setLoading(true)
-
-                const res = await fetch("http://localhost:3001/options");
-                const data = await res.json(); 
-                
-                if (!data) {
-                    throw new Error("Dados inválidos");
-                } else {
-                    
-                    // capturando toda a lista de opções da página main
-                    data && setNextOptions(data)
-
-                    // gerando um número para randomizar toda vez que renderizar
-                    while (listNumRandom && listNumRandom.length < 5) {
-                        const random = Math.floor(Math.random() * 5);
-                        if (!listNumRandom.includes(random)) {
-                            listNumRandom.push(random)
-                            setOptNum1(listNumRandom[0])
-                            setOptNum2(listNumRandom[1])
-                            setOptNum3(listNumRandom[2])
-                            setOptNum4(listNumRandom[3])
-                            setOptNum5(listNumRandom[4])
-                        }                    
-                    }
-                    
-                    // desabilitar o loading                  
-                    setLoading(false)
-                    
-                }  
+    // pegando as variáveis através do 'useContext' do componente 'DataContext'
+    const { listUnicOptionsContext } = useContext(DataContext)
     
-            } catch (error) {
-                console.error('Erro ao buscar as opções:', error);
+    useEffect(() => {
+        
+        if (listUnicOptionsContext) {
 
-                // desabilitar o loading               
-                setLoading(false)
+            // capturando toda a lista de opções da página main
+            setNextOptions(listUnicOptionsContext)
 
+            // gerando um número para randomizar toda vez que renderizar
+            while (listNumRandom && listNumRandom.length < 5) {
+                const random = Math.floor(Math.random() * 5);
+                if (!listNumRandom.includes(random)) {
+                    listNumRandom.push(random)
+                    setOptNum1(listNumRandom[0])
+                    setOptNum2(listNumRandom[1])
+                    setOptNum3(listNumRandom[2])
+                    setOptNum4(listNumRandom[3])
+                    setOptNum5(listNumRandom[4])
+                }                    
             }
 
-        }
-    
-        fetchData()
-    }, []);
+        }         
+
+    }, [ listUnicOptionsContext, setNextOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
     
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValue(e) {
@@ -96,9 +74,7 @@ function Options({
 
             return null
            
-        }) 
-        
-        
+        })
 
     }, [nextOptions, randomIndex, setOptionMap, nextQuestions])
 

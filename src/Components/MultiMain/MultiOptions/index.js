@@ -1,6 +1,6 @@
-import { useOutletContext } from 'react-router-dom';
 import styles from './MultiOptions.module.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../DataContext';
 
 function MultiOptions({ 
     multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap,multiQuestions
@@ -13,55 +13,31 @@ function MultiOptions({
     const [optNum5, setOptNum5] = useState('');
     const [listNumRandom, setListNumRandom] = useState([]);
 
-    const { setLoading } = useOutletContext()
+    // pegando as variáveis através do 'useContext' do componente 'DataContext'
+    const { listMultiOptionsContext } = useContext(DataContext)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // habilitar o loading
-                setLoading(true)
 
-                const res = await fetch("http://localhost:3001/multiOptions");
-                const data = await res.json();
+        if (listMultiOptionsContext) {
+        
+            setMultiOptions(listMultiOptionsContext)
 
-                if (!data) {
-                    throw new Error("Dados inválidos");
-                } else {
-                    // capturando a opção correspondente a questão através da utilização do mesmo número random da página multi
-                    // data && setMultiOptions(data[randomIndexMulti])
-
-                    data && setMultiOptions(data)
-
-                    // gerando um número para randomizar toda vez que renderizar
-                    while (listNumRandom && listNumRandom.length < 5) {
-                        const random = Math.floor(Math.random() * 5);
-                        if (!listNumRandom.includes(random)) {
-                            listNumRandom.push(random)
-                            setOptNum1(listNumRandom[0])
-                            setOptNum2(listNumRandom[1])
-                            setOptNum3(listNumRandom[2])
-                            setOptNum4(listNumRandom[3])
-                            setOptNum5(listNumRandom[4])
-                        }                    
-                    }
-
-                    // desabilitar o loading                  
-                    setLoading(false)
-
-                }         
-                
-            } catch (error) {
-                console.log('Erro ao buscar as opções:', error);
-
-                // desabilitar o loading                  
-                setLoading(false)
-                
+            // gerando um número para randomizar toda vez que renderizar
+            while (listNumRandom && listNumRandom.length < 5) {
+                const random = Math.floor(Math.random() * 5);
+                if (!listNumRandom.includes(random)) {
+                    listNumRandom.push(random)
+                    setOptNum1(listNumRandom[0])
+                    setOptNum2(listNumRandom[1])
+                    setOptNum3(listNumRandom[2])
+                    setOptNum4(listNumRandom[3])
+                    setOptNum5(listNumRandom[4])
+                }                    
             }
-
-        }    
-        fetchData()
-
-    }, []);
+        
+        }                      
+    
+    }, [ listMultiOptionsContext, setMultiOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
 
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {

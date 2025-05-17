@@ -5,12 +5,16 @@ import Question from './Question';
 import ButtonNext from './ButtonNext';
 import { Link } from 'react-router-dom';
 import Options from './Options';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ModalResults from '../ModalResults';
+import { DataContext } from '../DataContext';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, listQuestions, setNextQuestions, setRandomIndex, nextQuestions
+    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, setNextQuestions, setRandomIndex, nextQuestions
 }) {
+
+    // pegando as variáveis através do 'useContext' do componente 'DataContext'
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
    
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor, setOptionColor] = useState(styles.optionColor)    
@@ -46,13 +50,13 @@ function Main({
     };
 
     function generateNewQuestionMain() {
-
+        
         // chamando a função que gera número randômico
-        const random = uniqueRandomMain(listQuestions.length)
+        const random = uniqueRandomMain(listUnicQuestionsContextLength)
         setRandomIndex(random)
 
         // gerando novas questões
-        setNextQuestions(listQuestions[random])
+        setNextQuestions(listUnicQuestionsContext[random])
 
     }  
 

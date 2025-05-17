@@ -5,10 +5,9 @@ import { Outlet } from 'react-router-dom';
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import IllustrativePage from '../IllustrativePage';
+import DataProvider from '../../Components/DataContext'
 
 function PageBase() {
-
-    const [loading, setLoading] = useState(true)
 
     const [validateSound, setValidateSound] = useState(true)
 
@@ -61,35 +60,39 @@ function PageBase() {
         setShowIllustrativePage(true)
     }, 1000)
 
-    return(
+    return(   
+
         <div className={styles.pageBaseOutlet}>
 
+            <DataProvider>
             {(requestData && activePageFormsQuestionsOptions === false) && 
             <img 
                 className={`backgroundImageClass ${styles.backgroundImage}`} 
                 src={backgroundImage} 
                 alt='imagem de fundo'
-            />}
+            />}          
 
-            <Outlet context={{ validateSound, setValidateSound, requestData, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions,setActivePageFormsQuestionsOptions, loading, setLoading }} />
+            <Outlet context={{ validateSound, setValidateSound, requestData, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions }} />
 
             {(requestData && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull 
                 onClick={validateSoundBaseFunc} 
                 id='soundFullBaseId' 
                 className={styles.soundFull} 
-            />}
+                />}
 
             {(requestData && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute 
                 onClick={validateSoundBaseFunc} 
                 id='soundMuteBaseId' 
                 className={styles.soundMute}
-            />}
+                />}
 
             {(requestData || activePageFormsQuestionsOptions) && <Footer />}
 
             {showIllustrativePage && requestData === false && activePageFormsQuestionsOptions === false && <IllustrativePage />}
             
+                </DataProvider>
         </div>
+       
     )
 }
 

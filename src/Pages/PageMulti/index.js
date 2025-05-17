@@ -1,9 +1,10 @@
 import styles from './PageMulti.module.css';
 import MultiMain from '../../Components/MultiMain';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import { useOutletContext } from 'react-router-dom';
 import Loader from '../../Components/Loader';
+import { DataContext } from '../../Components/DataContext';
 
 function PageMulti() {
     
@@ -16,46 +17,35 @@ function PageMulti() {
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
+    // pegando as variáveis através do 'useContext' do componente 'DataContext'
+    const { listMultiQuestionsContext, listMultiQuestionsContextLength, loading } = useContext(DataContext)
+
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
+    const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
     useEffect(() => {
-        // habilitar o loading
-        setLoading(true)
 
-        fetch("http://localhost:3001/multiQuestions")
-        .then(res => res.json())
-        .then(data => {
-            if (!data) {
-                throw new Error("Dados inválidos");
+        if (listMultiQuestionsContext) {
 
-            } else {
-                // toda a lista de questões da página multi
-                setListMultiQuestions(data)       
-            
-                // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página multi
-                setRequestData(true)
+            // toda a lista de questões da página multi
+            setListMultiQuestions(listMultiQuestionsContext)       
+        
+            // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
+            setRequestData(true)
 
+            if (listMultiQuestionsContextLength) {
                 // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                const random = uniqueRandomMulti(data.length) 
+                const random = uniqueRandomMulti(listMultiQuestionsContextLength) 
                 setRandomIndexMulti(random)  
-                setMultiQuestions(data[random])
-
-                // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
-                setActivePageFormsQuestionsOptions(false)
-
-                // desabilitar o loading
-                setLoading(false)
-
+                setMultiQuestions(listMultiQuestionsContext[random])                
             }
 
-    })
-    .catch(e => console.log(e))
+            // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+            setActivePageFormsQuestionsOptions(false)
 
-    // desabilitar o loading
-    setLoading(false)
-  
-    }, [])
+        }
+
+    }, [ listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMulti(dataLength) {
@@ -78,14 +68,14 @@ function PageMulti() {
                 className={styles.allQuestionsMultiClass} 
                 key={multiQuestions.id}
             >
-                {multiQuestions.length !== 0 &&
+                {multiQuestions &&
                     <Header 
                         title="Architecture Questions - Randomly"
 
                     />
                 }
 
-                {multiQuestions.length !== 0 &&
+                {multiQuestions &&
                     <MultiMain 
                         question={multiQuestions.question} 
                         answer={multiQuestions.answer}

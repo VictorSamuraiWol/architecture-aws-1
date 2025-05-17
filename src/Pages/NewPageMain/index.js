@@ -1,9 +1,10 @@
 import styles from './NewPageMain.module.css';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Loader from '../../Components/Loader';
+import { DataContext } from '../../Components/DataContext';
 
 function NewPageMain() {
 
@@ -14,49 +15,37 @@ function NewPageMain() {
     const [listQuestions, setListQuestions] = useState([]);
     const [nextQuestions, setNextQuestions] = useState('');
     const [randomIndex, setRandomIndex] = useState('');
-    const [nextOptions, setNextOptions] = useState('');    
+    const [nextOptions, setNextOptions] = useState('');
+    
+    // pegando as variáveis através do 'useContext' do componente 'DataContext'
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions, loading, setLoading } = useOutletContext();
+    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();    
 
     useEffect(() => {
-        // habilitar o loading
-        setLoading(true)
 
-        fetch("http://localhost:3001/questions")
-        .then(res => res.json())
-        .then(data => {
-            if (!data) {
-                throw new Error("Dados inválidos");
+        if (listUnicQuestionsContext) {
 
-            } else {
+            // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
+            setListQuestions(listUnicQuestionsContext)
 
-                // toda a lista de questões da página main
-                setListQuestions(data)
+            // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
+            setRequestData(true)
 
-                // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main 
-                setRequestData(true)
-                
+            if (listUnicQuestionsContextLength) {
                 // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                const random = uniqueRandomMain(data.length) 
+                const random = uniqueRandomMain(listUnicQuestionsContextLength) 
                 setRandomIndex(random)  
-                setNextQuestions(data[random])
-
-                // tornar o cronômetro e os icones dos audios ativos ao sair da página forms
-                setActivePageFormsQuestionsOptions(false)
-
-                // desabilitar o loading
-                setLoading(false)
-
+                setNextQuestions(listUnicQuestionsContext[random])
             }
-            
-        })
-        .catch(e => console.log(e))
 
-        // desabilitar o loading
-        setLoading(false)
+            // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+            setActivePageFormsQuestionsOptions(false)
 
-    }, [])
+        }
+
+    }, [ listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMain(dataLength) {
