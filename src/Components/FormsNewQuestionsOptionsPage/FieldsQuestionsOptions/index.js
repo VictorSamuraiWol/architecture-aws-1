@@ -6,7 +6,8 @@ function FieldsQuestionsOptions({
     /* campos form1 */ newQuestionQuestions, setNewQuestionQuestions, newAnswerQuestions, setNewAnswerQuestions, newSourceImageQuestions, setNewSourceImageQuestions, newDescriptionQuestions, setNewDescriptionQuestions, newQuestionsNumberQuestions, setNewQuestionsNumberQuestions, 
     /* campos form2 */ newOption1Question, setNewOption1Question, newOption2Question, setNewOption2Question, newOption3Question, setNewOption3Question, newOption4Question, setNewOption4Question, newOption5Question, setNewOption5Question, newOptionsNumberQuestions, setNewOptionsNumberQuestions, 
     /* campos form3 */ newQuestionMultiQuestions, setNewQuestionMultiQuestions, newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions, newSourceImageMultiQuestions, setNewSourceImageMultiQuestions, newDescriptionMultiQuestions, setNewDescriptionMultiQuestions, newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions,
-    /* campos form4 */ newOption1MultiQuestion, setNewOption1MultiQuestion, newOption2MultiQuestion, setNewOption2MultiQuestion, newOption3MultiQuestion, setNewOption3MultiQuestion, newOption4MultiQuestion, setNewOption4MultiQuestion, newOption5MultiQuestion, setNewOption5MultiQuestion, newOptionsNumberMultiQuestions, setNewOptionsNumberMultiQuestions    
+    /* campos form4 */ newOption1MultiQuestion, setNewOption1MultiQuestion, newOption2MultiQuestion, setNewOption2MultiQuestion, newOption3MultiQuestion, setNewOption3MultiQuestion, newOption4MultiQuestion, setNewOption4MultiQuestion, newOption5MultiQuestion, setNewOption5MultiQuestion, newOptionsNumberMultiQuestions, setNewOptionsNumberMultiQuestions
+    
 }) {
 
     return(

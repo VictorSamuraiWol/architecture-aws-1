@@ -257,7 +257,7 @@ function FormsNewQuestionsOptionsPage() {
         setReadyToCleanAll(true)
 
     }
-
+    
     return(
         <div className={styles.formsNewQuestionsOptions}>
 

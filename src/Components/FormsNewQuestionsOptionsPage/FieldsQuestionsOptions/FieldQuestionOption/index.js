@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import styles from './FieldQuestionOption.module.css'
+import DetailsFieldsForms from '../../../DetailsFieldsForms'
 
 function FieldQuestionOption({ 
     nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4,   setValueForm4
+
 }) {
 
     // valor capturado do textarea
@@ -14,13 +16,18 @@ function FieldQuestionOption({
     // valores dos campos do textrea
     const [valuesForms, setValuesForms] = useState("")
 
+    // valores para aparecer as descrições dos campos
+    const [detailsFields, setDetailsFields] = useState(styles.invisible)
+
+    const [textDetail, setTextDetail] = useState("")
+
     function newValueFunc(e) {
 
-        // capturar o texto da label do form alvo
+        // capturar o texto da label do form alvo ao mudar os valores dos campos
         setLabelTarget(e.target.parentElement.children[0].textContent)
         // console.log(labelTarget, '(labelTarget l.20)')
 
-        // capturar o texto do título do form alvo
+        // capturar o texto do título do form alvo ao mudar os valores dos campos
         setFormsTitlesTarget(e.target.parentElement.parentElement.parentElement.children[0].textContent)
         // console.log(formsTitlesTarget, '(formsTitlesTarget l.24)')
 
@@ -139,12 +146,92 @@ function FieldQuestionOption({
  
     }, [formsTitlesTarget, labelTarget, readyToCleanAll, setReadyToCleanAll, newValue, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
 
+    // função para capturar as tags ao passar o mouse nos forms
+    function appearDetailsFieldsForms(e) {
+
+        // capturar o texto da label do form alvo ao passar o mouse
+        setLabelTarget(e.target.parentElement.children[0].textContent)
+
+        // capturar o texto do título do form alvo ao passar o mouse
+        setFormsTitlesTarget(e.target.parentElement.parentElement.parentElement.children[0].textContent)
+
+        setDetailsFields(styles.visible)
+
+    }
+
+    function disappearDetailsFieldsForms() {
+        setDetailsFields(styles.invisible)
+    }
+
+    // atualizar todas as descrições das dicas para seu respectivo campo, dando exemplo em cada campo dos formulários
+    useEffect(() => {
+        
+        if (formsTitlesTarget  === "Form 1 (Questions)") { // form 1
+
+            labelTarget === "Question:" && setTextDetail('Tip: "1) What the most..."')
+        
+            labelTarget === "Answer:" && setTextDetail('Tip: "Storage Gateway..."')
+
+            labelTarget === "Source Image:" && setTextDetail('Tip: "./src/img/image1.png"')
+
+            labelTarget === "Description:" && setTextDetail('Tip: "AWS Storage Gateway..."')
+
+            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 1"')
+
+        } else if (formsTitlesTarget === "Form 2 (Options)") { // form 2
+
+            labelTarget === "Option 1:" && setTextDetail('Tip: "Storage..."')
+
+            labelTarget === "Option 2:" && setTextDetail('Tip: "Storage..."')
+            
+            labelTarget === "Option 3:" && setTextDetail('Tip: "Storage..."')
+
+            labelTarget === "Option 4:" && setTextDetail('Tip: "Storage..."')
+
+            labelTarget === "Option 5:" && setTextDetail('Tip: "Storage..."')
+
+            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 2"')
+
+        } else if (formsTitlesTarget === "Form 3 (MultiQuestions)") { // form 3
+
+            labelTarget === "Question:" && setTextDetail('Tip: "5) About S3..."')
+
+            labelTarget === "Answer's Text:" && setTextDetail('Tip: "Amazon S3 Intelligent-Tiering..."')
+
+            labelTarget === "Source Image:" && setTextDetail('Tip: "./src/img/image1.png"')
+
+            labelTarget === "Description:" && setTextDetail('Tip: "Following are the..."')
+            
+            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 3"')
+
+        } else if (formsTitlesTarget === "Form 4 (MultiOptions)") { // form 4
+
+            labelTarget === "Option 1:" && setTextDetail('Tip: "Storage..."')
+    
+            labelTarget === "Option 2:" && setTextDetail('Tip: "Storage..."')
+            
+            labelTarget === "Option 3:" && setTextDetail('Tip: "Storage..."')
+            
+            labelTarget === "Option 4:" && setTextDetail('Tip: "Storage..."')
+            
+            labelTarget === "Option 5:" && setTextDetail('Tip: "Storage..."')
+            
+            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 4"')
+
+        }
+    
+    }, [formsTitlesTarget, labelTarget])
+
     return(
         <div className={styles.field}>
-            <div className={styles.labelTextarea}>
+            <div
+                onMouseOver={(e) => appearDetailsFieldsForms(e)}
+                onMouseOut={disappearDetailsFieldsForms} 
+                className={styles.labelTextarea}
+            >
                 <label className={optionClass}>{nome}</label>
                 {/* aparecer o campo do tipo textarea se for textos e números */}
-                {(nome !== "Number:" || nome !== "Number:") &&
+                {(nome !== "Number:") &&
                     <textarea 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}
@@ -152,7 +239,7 @@ function FieldQuestionOption({
                     />
                 }
                 {/* aparecer o campo do tipo input se for numérico */}
-                {(nome === "Number:" || nome === "Number:") && 
+                {(nome === "Number:") && 
                     <input 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}
@@ -160,6 +247,10 @@ function FieldQuestionOption({
                         
                     />
                 }
+                <DetailsFieldsForms 
+                    detailsFields={detailsFields}
+                    textDetail={textDetail}
+                />
             </div>
         </div>
     )

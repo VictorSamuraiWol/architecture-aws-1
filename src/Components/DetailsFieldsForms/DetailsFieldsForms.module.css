@@ -1,0 +1,31 @@
+.detailsFieldsForms {
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    
+}
+
+.textSpeech {
+    font-style: italic;
+    text-decoration: underline;
+    width: max-content;
+    background-color: var(--color-first);
+    padding: 4px;
+    border: 1px solid var(--color-third);
+    border-radius: 8px;
+}
+
+/* responsividade */
+@media screen and (max-width: 860px) {
+    .textSpeech {
+        font-size: 0.9rem;
+    }   
+    
+}
+
+@media screen and (max-width: 580px) {
+    .textSpeech {
+        font-size: 0.5rem;
+    }
+
+}
