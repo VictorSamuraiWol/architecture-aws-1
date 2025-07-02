@@ -26,9 +26,6 @@ function FieldQuestionOption({
     //variáveis para mostrar os detalhes dos campos
     const [textDetail, setTextDetail] = useState("")
 
-    // variáveis para os campos correspondentes label, textarea e input
-    const [keyLabelTextareaInput, setKeyLabelTextareaInput] = useState('')
-
     function newValueFunc(e) {
 
         // capturar o texto da label do form alvo ao mudar os valores dos campos
