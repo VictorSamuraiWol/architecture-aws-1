@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import styles from './FieldQuestionOption.module.css'
 import DetailsFieldsForms from '../../../DetailsFieldsForms'
+import { v4 as uuidv4 } from 'uuid';
 
 function FieldQuestionOption({ 
     nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4,   setValueForm4
 
 }) {
+
+    // id única
+    const uniqueId = uuidv4();
 
     // valor capturado do textarea
     const [newValue, setNewValue] = useState("")
@@ -19,7 +23,11 @@ function FieldQuestionOption({
     // valores para aparecer as descrições dos campos
     const [detailsFields, setDetailsFields] = useState(styles.invisible)
 
+    //variáveis para mostrar os detalhes dos campos
     const [textDetail, setTextDetail] = useState("")
+
+    // variáveis para os campos correspondentes label, textarea e input
+    const [keyLabelTextareaInput, setKeyLabelTextareaInput] = useState('')
 
     function newValueFunc(e) {
 
@@ -161,7 +169,7 @@ function FieldQuestionOption({
 
     function disappearDetailsFieldsForms() {
         setDetailsFields(styles.invisible)
-    }
+    }   
 
     // atualizar todas as descrições das dicas para seu respectivo campo, dando exemplo em cada campo dos formulários
     useEffect(() => {
@@ -226,24 +234,33 @@ function FieldQuestionOption({
         <div className={styles.field}>
             <div
                 onMouseOver={(e) => appearDetailsFieldsForms(e)}
-                onMouseOut={disappearDetailsFieldsForms} 
-                className={styles.labelTextarea}
+                onMouseOut={disappearDetailsFieldsForms}
+                className={`labelTextarea ${styles.labelTextarea}`}
+
             >
-                <label className={optionClass}>{nome}</label>
+                <label
+                    className={optionClass}
+                    htmlFor={uniqueId}
+
+                >
+                    {nome}
+                </label>
                 {/* aparecer o campo do tipo textarea se for textos e números */}
                 {(nome !== "Number:") &&
                     <textarea 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}
+                        id={uniqueId}
                         
                     />
                 }
-                {/* aparecer o campo do tipo input se for numérico */}
+                {/* aparecer o campo do tipo input se for somente numérico */}
                 {(nome === "Number:") && 
                     <input 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}
                         type='number'
+                        id={uniqueId}
                         
                     />
                 }
@@ -253,6 +270,7 @@ function FieldQuestionOption({
                 />
             </div>
         </div>
+
     )
 }
 
