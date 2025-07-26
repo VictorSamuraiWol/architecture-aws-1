@@ -79,7 +79,7 @@ function ModalResults() {
                 <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>
                 <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
                 <p id='performances'>Performance: {dataResults.performanceResults}</p>
-                <p>Obs: Performance para aprovação: 70% em 65 questões</p>
+                <p>Obs: Performance para aprovação: 72% em 65 questões</p>
 
                 {/* imagem do react icon */}
                 <TiDeleteOutline

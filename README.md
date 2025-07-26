@@ -8,7 +8,7 @@
 
 # AWS Architecture Questions Project
 
- > ℹ️ **NOTE:** Este repositório foi desenvolvido durante meus estudos de Front-End e AWS Cloud Computing, com o objetivo de aprimorar meus conhecimentos nesses temas. Ele estará em constante evolução para melhorar o desempenho e a otimização do código.
+> ℹ️ **NOTE:** Este repositório foi desenvolvido durante meus estudos de Front-End e AWS Cloud Computing, com o objetivo de aprimorar meus conhecimentos nesses temas. Ele estará em constante evolução para melhorar o desempenho e a otimização do código.
 
 ## ✨ Features
 ✅ Bem vindos! Este é um projeto com o objetivo de criar uma aplicação em React com temática AWS Cloud Computing, com funcionalidades de verificar as questões certas ou erradas, bem como mostrar a resposta correta com informações detalhadas, medindo o conhecimento sobre arquiteturas da Aws em nível associate. Minha gratidão a Deus pela finalização do projeto.
@@ -16,7 +16,7 @@
 ✅ Welcome! This is a project aimed at creating a React application with an AWS Cloud Computing theme, featuring functionalities to check correct or incorrect answers, as well as display the correct answer with detailed information, measuring knowledge on AWS architectures at the associate level. My gratitude to God for the completion of this project.
 
 <a href="https://architecture-aws-1.vercel.app/" title="View Project now"> 📟 Clique aqui para visualizar a aplicação</a><br/>
-<a href="https://github.com/VictorSamuraiWol/architecture-aws-1" title="View Repository now"> 📜 Clique aqui para visualizar o reposiório</a>
+<a href="https://github.com/VictorSamuraiWol/architecture-aws-1" title="View Repository now"> 📜 Clique aqui para visualizar o repositório</a>
 
 ## 💻 Tecnologias utilizadas no projeto
 
