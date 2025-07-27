@@ -1,13 +1,13 @@
 import styles from './FormsNewQuestionsOptions.module.css'
 import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import backgroundImage from '../../imgs/forms-image.png'
 import { DataContext } from '../DataContext'
 
 function FormsNewQuestionsOptionsPage() {
 
-    const { listUnicQuestions, listUnicOptions, listMultiQuestions, listMultiOptions } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
 
     // capturando o conteúdo da label
     const [labelTarget, setLabelTarget] = useState("")
@@ -48,6 +48,9 @@ function FormsNewQuestionsOptionsPage() {
     const [readyToSendForm4, setReadyToSendForm4] = useState(false);
     const [readyToCleanAll, setReadyToCleanAll] = useState(false);
 
+    // capturar a mensagem de alerta para exibir na tela dos formulários
+    const [alertMessage, setAlertMessage] = useState('')
+
     // função utilizando POST para salvar os dados do form1 na API
     const onSaveForm1 = async (e) => {
         e.preventDefault();
@@ -64,30 +67,34 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos do formulário 1!')
-                alert("Por favor! Preencha todos os campos necessários do formulário 1!")
+                console.error('Erro nos dados recebidos do form 1!')
+                alert("Por favor! Preencha todos os campos necessários do form 1!")
                 
-            }        
+        }        
             
-            try {
-                const response = await fetch('http://localhost:3001/questions', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(data),
-                    
-                });        
+        try {
+            const response = await fetch('http://localhost:3001/questions', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data),
                 
-                if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do formulário 1! Preencha um formulário por vez.");
-                    alert('Questão adicionada com sucesso do formulário 1! Preencha um formulário por vez.')
-                    cleanForm();
-                    
-                }
+            }); 
+                        
+            if (response.ok) {
+                console.log(data, "Dados enviados com sucesso do form 1! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do form 1! Preencha um formulário por vez.')
+                cleanForm(); // limpar o formulário
+              
+                // tornar verdadeiro a cada POST
+                setPostApi(true)
 
-            } catch(error) {
-            console.error("Erro ao enviar os dados", error);
+            }
             
-        }    
+        } catch(error) {
+        console.error("Erro ao enviar os dados", error);
+
+        }
+        
     };
 
     // função utilizando POST para salvar os dados do form2 na API
@@ -107,8 +114,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos do formulário 2!')
-                alert("Por favor! Preencha todos os campos necessários do formulário 2!")
+                console.error('Erro nos dados recebidos do form 2!')
+                alert("Por favor! Preencha todos os campos necessários do form 2!")
                 
         }      
 
@@ -119,11 +126,14 @@ function FormsNewQuestionsOptionsPage() {
                 body: JSON.stringify(data),
 
             });        
-       
+        
             if (response.ok) {
-                console.log(data, "Dados enviados com sucesso do formulário 2! Preencha um formulário por vez.");
-                alert('Questão adicionada com sucesso do formulário 2! Preencha um formulário por vez.')
-                cleanForm();
+                console.log(data, "Dados enviados com sucesso do form 2! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do form 2! Preencha um formulário por vez.')
+                cleanForm(); // limpar o formulário
+                
+                // tornar verdadeiro a cada POST
+                setPostApi(true)
                 
             }
 
@@ -149,8 +159,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos do formulário 3!')
-                alert("Por favor! Preencha todos os campos necessários do formulário 3!")
+                console.error('Erro nos dados recebidos do form 3!')
+                alert("Por favor! Preencha todos os campos necessários do form 3!")
                 
         }      
 
@@ -161,11 +171,14 @@ function FormsNewQuestionsOptionsPage() {
                 body: JSON.stringify(data),
 
             });        
-       
+        
             if (response.ok) {
-                console.log(data, "Dados enviados com sucesso do formulário 3! Preencha um formulário por vez.");
-                alert('Questão adicionada com sucesso do formulário 3! Preencha um formulário por vez.')
-                cleanForm();
+                console.log(data, "Dados enviados com sucesso do form 3! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do form 3! Preencha um formulário por vez.')
+                cleanForm(); // limpar o formulário
+                
+                // tornar verdadeiro a cada POST
+                setPostApi(true)
                 
             }
 
@@ -192,8 +205,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-                console.error('Erro nos dados recebidos do formulário 4!')
-                alert("Por favor! Preencha todos os campos necessários do formulário 4!")
+                console.error('Erro nos dados recebidos do form 4!')
+                alert("Por favor! Preencha todos os campos necessários do form 4!")
                 cleanForm();
         }      
 
@@ -204,22 +217,26 @@ function FormsNewQuestionsOptionsPage() {
                 body: JSON.stringify(data),
 
             });        
-       
+        
             if (response.ok) {
-                console.log(data, "Dados enviados com sucesso do formulário 4! Preencha um formulário por vez.");
-                alert('Questão adicionada com sucesso do formulário 4! Preencha um formulário por vez.')
-                cleanForm();
+                console.log(data, "Dados enviados com sucesso do form 4! Preencha um formulário por vez.");
+                alert('Questão adicionada com sucesso do form 4! Preencha um formulário por vez.')
+                cleanForm(); // limpar o formulário
+               
+                // tornar verdadeiro a cada POST
+                setPostApi(true)
 
             }
 
         } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
-        }    
+        }
+        
     };
 
     function cleanForm() { 
-
+        
         // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
         if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
             // form 1
@@ -256,19 +273,81 @@ function FormsNewQuestionsOptionsPage() {
 
         setReadyToCleanAll(true)
 
-    }
-    
-    return(
-        <div className={styles.formsNewQuestionsOptions}>
+    }   
 
+    useEffect(() => {
+
+        function formsCheck() {
+
+            if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais questões no "form 1" do que opções no "form 2". Não esqueça de adicionar as opções que faltam no "form 2".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listUnicOptionsContext.length > listUnicQuestionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais opções no "form 2" do que questões no "form 1". Não esqueça de adicionar as questões que faltam no "form 1".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listMultiQuestionsContext.length > listMultiOptionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
+                setAlertMessage('⚠ Há mais questões no "form 3" do que opções no "form 4". Não esqueça de adicionar as opções que faltam no "form 4".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listMultiOptionsContext.length > listMultiQuestionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
+                setAlertMessage('⚠ Há mais opções no "form 4" do que questões no "form 3". Não esqueça de adicionar as questões que faltam no "form 3".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais questões nos "forms 1 e 3" do que opções nos "forms 2 e 4". Não esqueça de adicionar as opções que faltam nos "forms 2 e 4".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais questões no "form 1" do que opções no "form 2" e mais opções no "form 4" do que questões no "form 3". Não esqueça de adicionar as opções que faltam no "form 2" e as questões que faltam no "form 3".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais opções no "form 2" do que questões no "form 1" e mais questões no "form 3" do que opções no "form 4". Não esqueça de adicionar as questões que faltam no "form 1" e as opções que faltam no "form 4".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
+                setAlertMessage('⚠ Há mais opções nos "forms 2 e 4" do que questões nos "forms 1 e 3". Não esqueça de adicionar as questões que faltam nos "forms 1 e 3".')
+                setTimeout(() => {
+                    setAlertMessage('') // tempo para sair da tela
+                }, 15000)
+            }
+
+            setPostApi(false)
+
+        } 
+
+        updateList && setTimeout(() => {
+            formsCheck() // disparar a função após atualizar o backend
+
+        }, 1000)
+
+    }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi])
+
+    return(
+        <div className={styles.formsNewQuestionsOptions}>            
             <img 
                 className={styles.backgroundImage} 
                 src={backgroundImage} 
                 alt='backgroundImage' 
             />
 
+            <div className={styles.messageAlert}>{alertMessage}</div>
+
             <div className={styles.forms}>
-                <form id='form1' onSubmit={onSaveForm1} className={styles.form}>
+                <form 
+                    onSubmit={onSaveForm1} 
+                    className={styles.form}
+                    id='form1'
+                >
                     <h1>Form 1 (Questions)</h1>
                     <FieldsQuestionsOptions
                         nome1="Question:"
@@ -299,11 +378,15 @@ function FormsNewQuestionsOptionsPage() {
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
                         onClick={() => setReadyToSendForm1(true)}
-
                     />
+
                 </form>
 
-                <form onSubmit={onSaveForm2} className={styles.form}>
+                <form 
+                    onSubmit={onSaveForm2} 
+                    className={styles.form}
+                    id='form2'
+                >
                     <h1>Form 2 (Options)</h1>
                     <FieldsQuestionsOptions 
                         nome1="Option 1:" 
@@ -337,14 +420,18 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm2(true)} 
-
+                        onClick={() => setReadyToSendForm2(true)}
                     />
+
                 </form>
             </div>
 
             <div className={styles.forms}>
-                <form onSubmit={onSaveForm3} className={styles.form}>
+                <form 
+                    onSubmit={onSaveForm3} 
+                    className={styles.form}
+                    id='form3'
+                >                    
                     <h1>Form 3 (MultiQuestions)</h1>
                     <FieldsQuestionsOptions
                         nome1="Question:" 
@@ -374,12 +461,16 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm3(true)} 
-
+                        onClick={() => setReadyToSendForm3(true)}
                     />
+
                 </form>
 
-                <form onSubmit={onSaveForm4} className={styles.form}>
+                <form 
+                    onSubmit={onSaveForm4} 
+                    className={styles.form}
+                    id='form4'
+                >
                     <h1>Form 4 (MultiOptions)</h1>
                     <FieldsQuestionsOptions 
                         nome1="Option 1:" 
@@ -413,9 +504,9 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm4(true)} 
-
+                        onClick={() => setReadyToSendForm4(true)}
                     />
+
                 </form>
             </div>        
 

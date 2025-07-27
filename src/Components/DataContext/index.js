@@ -15,7 +15,12 @@ export default function DataProvider({ children }) {
     const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState()
     const [listMultiOptionsContext, setListMultiOptionsContext] = useState()
 
-    const [loading, setLoading] = useState(true)    
+    const [loading, setLoading] = useState(true)
+
+    const [updateList, setUpdateList] = useState(false)
+
+    const [postApi, setPostApi] = useState(false)
+
 
     useEffect(() => {
 
@@ -38,6 +43,11 @@ export default function DataProvider({ children }) {
 
                     // desabilitar o loading
                     setLoading(false)
+
+                    postApi && setTimeout(() => {
+                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+
+                    }, 300)
 
                 }
             
@@ -68,6 +78,14 @@ export default function DataProvider({ children }) {
 
                     setListUnicOptionsContext(data)
                     
+                    // desabilitar o loading
+                    setLoading(false)
+
+                    postApi && setTimeout(() => {
+                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+
+                    }, 300)
+
                 }  
     
             } catch (error) {
@@ -100,6 +118,11 @@ export default function DataProvider({ children }) {
                     // desabilitar o loading
                     setLoading(false)
 
+                    postApi && setTimeout(() => {
+                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+
+                    }, 300)
+
                 }   
 
             } catch (error) {
@@ -128,8 +151,13 @@ export default function DataProvider({ children }) {
 
                     setListMultiOptionsContext(data)                   
 
-                    // desabilitar o loading                  
+                    // desabilitar o loading
                     setLoading(false)
+
+                    postApi && setTimeout(() => {
+                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+
+                    }, 300)
 
                 }         
                 
@@ -144,7 +172,7 @@ export default function DataProvider({ children }) {
         }
         fetchData4()
 
-    }, [])
+    }, [postApi, updateList])
     
     return (        
         <DataContext.Provider
@@ -156,7 +184,9 @@ export default function DataProvider({ children }) {
                 listMultiQuestionsContextLength,
                 listMultiOptionsContext,
                 loading,
-                setLoading
+                setLoading,
+                updateList,
+                setPostApi
             }}
         >
 

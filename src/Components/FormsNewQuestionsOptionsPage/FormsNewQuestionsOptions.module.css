@@ -10,6 +10,19 @@
     opacity: 0.1;
 }
 
+.messageAlert {
+    position: absolute;
+    top: 0;
+    padding-left: 20px;
+    color: var(--color-third);
+    text-shadow: 1px 1px 3px var(--color-second);
+    width: 47%;
+    height: 35px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: justify;
+    z-index: 1;
+}
 
 .forms {
     display: flex;
@@ -48,7 +61,25 @@
 }
 
 /* responsividade */
+@media screen and (max-width: 1350px) {
+    .messageAlert {
+        font-size: 0.9rem;
+    }
+    
+}
+
+@media screen and (max-width: 1090px) {
+    .messageAlert {
+        font-size: 0.8rem;
+    }
+    
+}
+
 @media screen and (max-width: 860px) {
+    .messageAlert {
+        font-size: 0.7rem;
+    }
+
     .form h1 {
         font-size: 1.3rem;
     }
@@ -60,6 +91,10 @@
 }
 
 @media screen and (max-width: 580px) {
+    .messageAlert {
+        font-size: 0.5rem;
+    }
+
     .form h1 {
         font-size: 1rem;
     }
