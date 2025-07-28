@@ -280,42 +280,42 @@ function FormsNewQuestionsOptionsPage() {
         function formsCheck() {
 
             if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais questões no "form 1" do que opções no "form 2". Não esqueça de adicionar as opções que faltam no "form 2".')
+                setAlertMessage('⚠ There are more questions in form 1" than options in "form 2." Dont forget to add the missing options to "form 2".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listUnicOptionsContext.length > listUnicQuestionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais opções no "form 2" do que questões no "form 1". Não esqueça de adicionar as questões que faltam no "form 1".')
+                setAlertMessage('⚠ There are more options in "form 2" than questions in "form 1." Dont forget to add the missing questions to "form 1".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listMultiQuestionsContext.length > listMultiOptionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
-                setAlertMessage('⚠ Há mais questões no "form 3" do que opções no "form 4". Não esqueça de adicionar as opções que faltam no "form 4".')
+                setAlertMessage('⚠ There are more questions in "form 3" than options in "form 4." Dont forget to add the missing options to "form 4".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listMultiOptionsContext.length > listMultiQuestionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
-                setAlertMessage('⚠ Há mais opções no "form 4" do que questões no "form 3". Não esqueça de adicionar as questões que faltam no "form 3".')
+                setAlertMessage('⚠ There are more options in "form 4" than questions in "form 3." Dont forget to add the missing questions to "form 3".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais questões nos "forms 1 e 3" do que opções nos "forms 2 e 4". Não esqueça de adicionar as opções que faltam nos "forms 2 e 4".')
+                setAlertMessage('⚠ There are more questions in "forms 1 and 3" than options in "forms 2 and 4." Dont forget to add the missing options to "forms 2 and 4".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais questões no "form 1" do que opções no "form 2" e mais opções no "form 4" do que questões no "form 3". Não esqueça de adicionar as opções que faltam no "form 2" e as questões que faltam no "form 3".')
+                setAlertMessage('⚠ There are more questions in "form 1" than options in "form 2," and more options in "form 4" than questions in "form 3." Dont forget to add the missing options to "form 2" and the missing questions to "form 3".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais opções no "form 2" do que questões no "form 1" e mais questões no "form 3" do que opções no "form 4". Não esqueça de adicionar as questões que faltam no "form 1" e as opções que faltam no "form 4".')
+                setAlertMessage('⚠ There are more options in "form 2" than questions in "form 1," and more questions in "form 3" than options in "form 4." Dont forget to add the missing questions to "form 1" and the missing options to "form 4".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)
             } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
-                setAlertMessage('⚠ Há mais opções nos "forms 2 e 4" do que questões nos "forms 1 e 3". Não esqueça de adicionar as questões que faltam nos "forms 1 e 3".')
+                setAlertMessage('⚠ There are more options in "forms 2 and 4" than questions in "forms 1 and 3." Dont forget to add the missing questions to "forms 1 and 3".')
                 setTimeout(() => {
                     setAlertMessage('') // tempo para sair da tela
                 }, 15000)

@@ -45,7 +45,7 @@ export default function DataProvider({ children }) {
                     setLoading(false)
 
                     postApi && setTimeout(() => {
-                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
 
                     }, 300)
 
@@ -82,7 +82,7 @@ export default function DataProvider({ children }) {
                     setLoading(false)
 
                     postApi && setTimeout(() => {
-                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
 
                     }, 300)
 
@@ -119,7 +119,7 @@ export default function DataProvider({ children }) {
                     setLoading(false)
 
                     postApi && setTimeout(() => {
-                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
 
                     }, 300)
 
@@ -155,7 +155,7 @@ export default function DataProvider({ children }) {
                     setLoading(false)
 
                     postApi && setTimeout(() => {
-                        setUpdateList(true) // torna verdadeiro em 300ms após o post ter sido realizado
+                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
 
                     }, 300)
 
