@@ -4,7 +4,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "1) What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?",
       "answer": "Storage Gateway - File Gateway.",
-      "srcImg": "",
+      "srcImg": "storageGateway",
       "descriptionP": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.",
       "numberQuestion": "1",
       "id": "91c1"
@@ -13,7 +13,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "2) What feature of an Amazon S3 bucket only be suspended and not disabled once it have been enabled?",
       "answer": "Versioning.",
-      "srcImg": "",
+      "srcImg": "simpleStoragesService",
       "descriptionP": "Once you version-enable a bucket, it can never return to an unversioned state. Versioning can only be suspended once it has been enabled.",
       "numberQuestion": "2",
       "id": "ab6c"
@@ -22,7 +22,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "3) Massive volumes of data that can be divided into two categories. The 'hot data' need to be both processed and stored quickly in a parallel and distributed fashion. The 'cold data need to be kept for reference with quick access for reads and updates at a low cost. What AWS services is BEST suited to accelerate the process?",
       "answer": "Amazon FSx for Lustre.",
-      "srcImg": "",
+      "srcImg": "fsxForLustre",
       "descriptionP": "FSx for Lustre provides the ability to both process the 'hot data' in a parallel and distributed fashion as well as easily store the 'cold data' on Amazon S3.",
       "numberQuestion": "3",
       "id": "9ee6"
@@ -31,7 +31,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "4) A company utilizes User Datagram Protocol and needs to support fast regional failover in case an AWS Region goes down. The company wants to continue using its own custom Domain Name System (DNS) service. What AWS service represent the best solution?",
       "answer": "Global Accelerator.",
-      "srcImg": "",
+      "srcImg": "globalAccelerator",
       "descriptionP": "AWS Global Accelerator improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. Global Accelerator is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover.",
       "numberQuestion": "4",
       "id": "1f16"
@@ -40,7 +40,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "6) A company has a web application that runs 24*7 in the production environment. The company runs a clone of the same application in the dev environment for up to 8 hours every day. The company wants to build the MOST cost-optimal solution by deploying these applications using the best-fit pricing options for EC2 instances. What would you recommend?",
       "answer": "Use EC2 reserved instance for the production and on-demand instances for the dev.",
-      "srcImg": "",
+      "srcImg": "ec2",
       "descriptionP": "For the given use case, you can use Amazon EC2 Reserved Instances for the prodution application as it is run 24*7; This way you can get a 72% discount if you avail a 3-year term. You can use on-demand instances for the dev application since it is only used for up to 8 hours per day. On-demand offers the flexibility to only pay for the Amazon EC2 instance when it is being used (0 to 8 hours for the given use case).",
       "numberQuestion": "6",
       "id": "6a3a"
@@ -49,7 +49,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "7) A market need to support both stateful and stateless client-server communications via the application programming interface (APIs) developed using its platform. You have been hired by the startup to build a solution to fulfill this market need using Amazon API Gateway.",
       "answer": "Amazon API Gateway creates RESTful APIs that enable stateless client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateful, full duplex communication between client and server.",
-      "srcImg": "",
+      "srcImg": "apiGateway",
       "descriptionP": "Amazon API Gateway creates RESTful APIs that: are HTTP-based. Enable stateless client-server communication. Implement standard HTTP methos such as GET, POST, PUT, PATCH, and DELETE. Also, Amazon API Gateway creates WebSocket APIs that: adhere to the WebSocket protocol, which enables stateful, full-duplex communication between client and server. Route incoming messages based on message content. So Amazon API Gateway supports stateless RESTful APIs as well as stateful WebSocket APIs.",
       "numberQuestion": "7",
       "id": "016d"
@@ -58,7 +58,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "8) Amazon SQS is used for migrate several core applications to the cloud to ensure high availability and cost efficiency. The development team expects a peak rate of about 1000 messages per second to be processed via SQS. It is important that the messages are processed in order. Which option can be used to implement this system?",
       "answer": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
-      "srcImg": "",
+      "srcImg": "simpleQueueService",
       "descriptionP": "By default, FIFO queues support up to 300 messages per second (300 send, receive, or delete operations per second). When you batch 10 messages per operation (maximum), FIFO queues can support up to 3,000 messages per second. Therefore you need to process 4 messages per operations so that the FIFO queue can support up to 1200 messages per second, which is well within the peak rate.",
       "numberQuestion": "8",
       "id": "891d"
@@ -67,7 +67,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "9) An EC2 instance 1A is running in AWS Region A. Later, it was created a new Amazon Machine Image (AMI) in Region A from a snapshot. This AMI is then copied into another Region B. It was provisioned an instance 1B in Region B using this new AMI in Region B. What entities exist in Region B?",
       "answer": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
-      "srcImg": "",
+      "srcImg": "ec2",
       "descriptionP": "An AMI provides the information required to launch an instance. You must specify an AMI when you launch an instance. When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots. Further, an instance is created from this AMI in Region B. Hence, we have 1 EC2, 1AMI and 1 snapshot in Region B.",
       "numberQuestion": "9",
       "id": "5334"
@@ -76,7 +76,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "11) A Fleet of EC2 instances realized a specialized task that must deliver high random I/O performance. Each instance in the fleet would have access to a dataset that is replicated across the instances by the application itself. Because of the resilient application architecture, the specialized task would continue to be processed even if any instance goes down, as the underlying application would ensure the replacement instance has access to the required dataset. Which of the following options is the MOST cost-optimal and resource-efficient solution to build this fleet of EC2 instances?",
       "answer": "Use Instance Store based EC2 instances.",
-      "srcImg": "",
+      "srcImg": "ec2",
       "descriptionP": "An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host instance. Instance store is ideal for the temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers. Instance store volumes are included as part of the instance's usage cost. As Instance Store based volumes provide high random I/O performance at low cost (as the storage is part of the instance's usage cost) and the resilient architecture can adjust for the loss of any instance, therefore you should use Instance Store based EC2 instances for this use-case.",
       "numberQuestion": "11",
       "id": "1840"
@@ -85,7 +85,7 @@
       "title": "AWS Architecture Questions - Randomly",
       "question": "12) Multiple microservices running on EC2 instances under an ALB. The team wants ti route traffic to multiple back-end services based on the URL path of the HTTP header. So it wants request for https://www.test.com/orders to go to a specific microservice and request for https://www.test.com/products to go to another microservice. Which of the following features of ALB can be used?",
       "answer": "Path-based Routing.",
-      "srcImg": "",
+      "srcImg": "elasticLoadBalancing",
       "descriptionP": "Path-based Routing: you can route a client request based on the URL path of the HTTP header. You can use path conditions to define rules that route request based on the URL in the request (also known as path-based routing). The path pattern is applied only to the URL, not to its query parameters.",
       "numberQuestion": "12",
       "id": "491b"
@@ -189,7 +189,7 @@
       "question": "5) About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
       "answer": "true",
       "answerText": "Amazon S3 Intelligent-Tiering => Amazon S3 Standard // Amazon S3 One Zone-IA => Amazon S3 Standard-IA",
-      "srcImg": "",
+      "srcImg": "simpleStoragesService",
       "descriptionP": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes.",
       "numberQuestion": "5",
       "id": "8eca"
@@ -199,7 +199,7 @@
       "question": "10) E-commerce company is documenting the process flow to provision EC2 via the Amazon EC2 API. These instances are to be used for an internal application. Can you indentify the storage volume types that CANNOT be used as boot volumes while creating the instances? Select two.",
       "answer": "true",
       "answerText": "Throughput Optimized Hard disk drive (st1) // Cold Hard disk drive (sc1)",
-      "srcImg": "",
+      "srcImg": "ec2",
       "descriptionP": "Solid state drive (SSD) backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. Hard disk drive (HDD) backed volumes optimized for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Throughput Optimized HDD (st1) and Cold HDD (sc1) volume types CANNOT be used as a boot volume, so these two options are correct.",
       "numberQuestion": "10",
       "id": "ec16"
@@ -209,7 +209,7 @@
       "question": "15) The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
       "answer": "true",
       "answerText": "Enable AWS Multi-Factor Authentication (AWS MFA) for privileged users // Configure AWS CloudTrail to log all AWS IAM actions",
-      "srcImg": "",
+      "srcImg": "identityAndAccessManagement",
       "descriptionP": "As per the AWS best practices, it is better to enable Multi Factor Authentication (MFA) for privileged users via an MFA-enabled mobile device or hardware MFA token. AWS recommends to turn on AWS CloudTrail to log all IAM actions for monitoring and audit purposes.",
       "numberQuestion": "15",
       "id": "ac63"
@@ -219,7 +219,7 @@
       "question": "20) A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
       "answer": "true",
       "answerText": "Amazon ElastiCache // Amazon DynamoDB Accelerator (DAX)",
-      "srcImg": "",
+      "srcImg": "dynamoDB",
       "descriptionP": "Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. Amazon ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
       "numberQuestion": "20",
       "id": "5703"
@@ -229,7 +229,7 @@
       "question": "25) The company has defined different retention periods for different objects present in the S3, but the retention rules do not seem to work as expected. Which of the following options represent a valid configuration for setting up retention periods for objects. Select two.",
       "answer": "true",
       "answerText": "Different versions of a single object can have different retention modes and periods // When you apply a retention period to an object version explicity, you specify a Retain Until Date for the object version",
-      "srcImg": "",
+      "srcImg": "simpleStoragesService",
       "descriptionP": "You can place a retention period on an object version either explicitly or through a bucket default setting. When you apply a retention period to an object version explicitly, you specify a Retain Until Date for the object version. Amazon S3 stores the Retain Until Date setting in the object version's metadata and protects the object version until the retention period expires. Like all other Object Lock settings, retention periods apply to individual object versions. Different versions of a single object can have different retention modes and periods.",
       "numberQuestion": "25",
       "id": "1e6b"

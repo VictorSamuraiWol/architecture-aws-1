@@ -81,6 +81,7 @@ function NewPageMain() {
                         srcImg={nextQuestions.srcImg}
                         descriptionP={nextQuestions.descriptionP}
                         elementId={nextQuestions.elementId}
+                        numberQuestion={nextQuestions.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}

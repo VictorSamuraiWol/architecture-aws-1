@@ -10,7 +10,7 @@ import ModalResults from '../ModalResults';
 import { DataContext } from '../DataContext';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, setNextQuestions, setRandomIndex, nextQuestions
+    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, setNextQuestions, setRandomIndex, nextQuestions
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -115,6 +115,7 @@ function Main({
                 answer={answer} 
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
+                numberQuestion={numberQuestion}
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}

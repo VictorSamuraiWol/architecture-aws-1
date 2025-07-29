@@ -9,7 +9,7 @@ import { useState } from 'react';
 import ModalResults from '../ModalResults';
 
 function MultiMain({ 
-    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti,multiQuestions
+    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti,multiQuestions
 }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
@@ -61,6 +61,7 @@ function MultiMain({
                 answerText={answerText}
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
+                numberQuestion={numberQuestion}
                 answerDisplay={answerDisplay}
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}

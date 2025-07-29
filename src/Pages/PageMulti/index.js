@@ -83,6 +83,7 @@ function PageMulti() {
                         srcImg={multiQuestions.srcImg}
                         descriptionP={multiQuestions.descriptionP}
                         elementId={multiQuestions.id}
+                        numberQuestion={multiQuestions.numberQuestion}
                         multiOptions={multiOptions}
                         setMultiOptions={setMultiOptions}
                         answerDisplay={answerDisplay}
