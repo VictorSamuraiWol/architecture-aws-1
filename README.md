@@ -26,6 +26,7 @@
 - [JavaScript](https://www.javascript.com/)
 - [React](https://react.dev/)
 - [React-Icons](https://react-icons.github.io/react-icons/)
+- [AWS Icons](https://aws-icons.com/)
 - [Microsoft Designer](https://designer.microsoft.com/)
 - [Pixabay](https://pixabay.com/pt/)
 - [Json-Server](https://www.npmjs.com/package/json-server)
