@@ -49,15 +49,15 @@ function FieldQuestionOption({
 
             if (readyToCleanAll === false) {
 
-                labelTarget === "Question:" && setValueForm1(newValue)
+                labelTarget === "Question:*" && setValueForm1(newValue)
             
-                labelTarget === "Answer:" && setValueForm1(newValue)
+                labelTarget === "Answer:*" && setValueForm1(newValue)
 
                 labelTarget === "Source Image:" && setValueForm1(newValue)
 
-                labelTarget === "Description:" && setValueForm1(newValue)
+                labelTarget === "Description:*" && setValueForm1(newValue)
 
-                labelTarget === "Number:" && setValueForm1(newValue)
+                labelTarget === "Number:*" && setValueForm1(newValue)
             
             } else if (readyToCleanAll === true) {
 
@@ -74,17 +74,17 @@ function FieldQuestionOption({
 
             if (readyToCleanAll === false) {
 
-                labelTarget === "Option 1:" && setValueForm2(newValue)
+                labelTarget === "Option 1:*" && setValueForm2(newValue)
 
-                labelTarget === "Option 2:" && setValueForm2(newValue)
+                labelTarget === "Option 2:*" && setValueForm2(newValue)
                 
-                labelTarget === "Option 3:" && setValueForm2(newValue)
+                labelTarget === "Option 3:*" && setValueForm2(newValue)
 
-                labelTarget === "Option 4:" && setValueForm2(newValue)
+                labelTarget === "Option 4:*" && setValueForm2(newValue)
 
                 labelTarget === "Option 5:" && setValueForm2(newValue)
 
-                labelTarget === "Number:" && setValueForm2(newValue)
+                labelTarget === "Number:*" && setValueForm2(newValue)
 
             } else if (readyToCleanAll === true) {
 
@@ -101,15 +101,15 @@ function FieldQuestionOption({
 
             if (readyToCleanAll === false) {
 
-                labelTarget === "Question:" && setValueForm3(newValue)
+                labelTarget === "Question:*" && setValueForm3(newValue)
 
-                labelTarget === "Answer's Text:" && setValueForm3(newValue)
+                labelTarget === "Answer's Text:*" && setValueForm3(newValue)
 
                 labelTarget === "Source Image:" && setValueForm3(newValue)
 
-                labelTarget === "Description:" && setValueForm3(newValue)
+                labelTarget === "Description:*" && setValueForm3(newValue)
                 
-                labelTarget === "Number:" && setValueForm3(newValue)
+                labelTarget === "Number:*" && setValueForm3(newValue)
 
             } else if (readyToCleanAll === true) {
 
@@ -126,17 +126,17 @@ function FieldQuestionOption({
 
             if (readyToCleanAll === false) {
 
-                labelTarget === "Option 1:" && setValueForm4(newValue)
+                labelTarget === "Option 1:*" && setValueForm4(newValue)
         
-                labelTarget === "Option 2:" && setValueForm4(newValue)
+                labelTarget === "Option 2:*" && setValueForm4(newValue)
                 
-                labelTarget === "Option 3:" && setValueForm4(newValue)
+                labelTarget === "Option 3:*" && setValueForm4(newValue)
                 
-                labelTarget === "Option 4:" && setValueForm4(newValue)
+                labelTarget === "Option 4:*" && setValueForm4(newValue)
                 
                 labelTarget === "Option 5:" && setValueForm4(newValue)
                 
-                labelTarget === "Number:" && setValueForm4(newValue)
+                labelTarget === "Number:*" && setValueForm4(newValue)
 
             } else if (readyToCleanAll === true) {
 
@@ -151,87 +151,11 @@ function FieldQuestionOption({
  
     }, [formsTitlesTarget, labelTarget, readyToCleanAll, setReadyToCleanAll, newValue, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
 
-    // função para capturar as tags ao passar o mouse nos forms
-    function appearDetailsFieldsForms(e) {
-
-        // capturar o texto da label do form alvo ao passar o mouse
-        setLabelTarget(e.target.parentElement.children[0].textContent)
-
-        // capturar o texto do título do form alvo ao passar o mouse
-        setFormsTitlesTarget(e.target.parentElement.parentElement.parentElement.children[0].textContent)
-
-        setDetailsFields(styles.visible)
-
-    }
-
-    function disappearDetailsFieldsForms() {
-        setDetailsFields(styles.invisible)
-    }   
-
-    // atualizar todas as descrições das dicas para seu respectivo campo, dando exemplo em cada campo dos formulários
-    useEffect(() => {
-        
-        if (formsTitlesTarget  === "Form 1 (Questions)") { // form 1
-
-            labelTarget === "Question:" && setTextDetail('Tip: "1) What the most..."')
-        
-            labelTarget === "Answer:" && setTextDetail('Tip: "Storage Gateway..."')
-
-            labelTarget === "Source Image:" && setTextDetail('Tip: "./src/img/image1.png"')
-
-            labelTarget === "Description:" && setTextDetail('Tip: "AWS Storage Gateway..."')
-
-            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 1"')
-
-        } else if (formsTitlesTarget === "Form 2 (Options)") { // form 2
-
-            labelTarget === "Option 1:" && setTextDetail('Tip: "Storage..."')
-
-            labelTarget === "Option 2:" && setTextDetail('Tip: "Storage..."')
-            
-            labelTarget === "Option 3:" && setTextDetail('Tip: "Storage..."')
-
-            labelTarget === "Option 4:" && setTextDetail('Tip: "Storage..."')
-
-            labelTarget === "Option 5:" && setTextDetail('Tip: "Storage..."')
-
-            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 2"')
-
-        } else if (formsTitlesTarget === "Form 3 (MultiQuestions)") { // form 3
-
-            labelTarget === "Question:" && setTextDetail('Tip: "5) About S3..."')
-
-            labelTarget === "Answer's Text:" && setTextDetail('Tip: "Amazon S3 Intelligent-Tiering..."')
-
-            labelTarget === "Source Image:" && setTextDetail('Tip: "./src/img/image1.png"')
-
-            labelTarget === "Description:" && setTextDetail('Tip: "Following are the..."')
-            
-            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 3"')
-
-        } else if (formsTitlesTarget === "Form 4 (MultiOptions)") { // form 4
-
-            labelTarget === "Option 1:" && setTextDetail('Tip: "Storage..."')
-    
-            labelTarget === "Option 2:" && setTextDetail('Tip: "Storage..."')
-            
-            labelTarget === "Option 3:" && setTextDetail('Tip: "Storage..."')
-            
-            labelTarget === "Option 4:" && setTextDetail('Tip: "Storage..."')
-            
-            labelTarget === "Option 5:" && setTextDetail('Tip: "Storage..."')
-            
-            labelTarget === "Number:" && setTextDetail('Tip: "Number of the Form 4"')
-
-        }
-    
-    }, [formsTitlesTarget, labelTarget])
-
     return(
         <div className={styles.field}>
             <div
-                onMouseOver={(e) => appearDetailsFieldsForms(e)}
-                onMouseOut={disappearDetailsFieldsForms}
+                // onMouseOver={(e) => appearDetailsFieldsForms(e)}
+                // onMouseOut={disappearDetailsFieldsForms}
                 className={`labelTextarea ${styles.labelTextarea}`}
 
             >
@@ -243,7 +167,7 @@ function FieldQuestionOption({
                     {nome}
                 </label>
                 {/* aparecer o campo do tipo textarea se for textos e números */}
-                {(nome !== "Number:") &&
+                {(nome !== "Number:*") &&
                     <textarea 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}
@@ -252,7 +176,7 @@ function FieldQuestionOption({
                     />
                 }
                 {/* aparecer o campo do tipo input se for somente numérico */}
-                {(nome === "Number:") && 
+                {(nome === "Number:*") && 
                     <input 
                         onChange={(e) => newValueFunc(e)}
                         value={valuesForms}

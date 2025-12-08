@@ -12,8 +12,8 @@ function FieldsQuestionsOptions({
 
     return(
         <>
-            {/* campo 1, só vai existir se for dado algum nome para a label (nome1) */}
-            {nome1 && <FieldQuestionOption
+            {/* campo 1, obrigatório (nome1) */}
+            {<FieldQuestionOption
                 nome={nome1}
                 optionClass={optionClass}
                 className={styles.fieldQuestionOption}
@@ -49,8 +49,8 @@ function FieldsQuestionsOptions({
 
             />}
 
-            {/* campo 2, só vai existir se for dado algum nome para a label (nome2) */}
-            {nome2 && <FieldQuestionOption
+            {/* campo 2, obrigatório (nome2) */}
+            {<FieldQuestionOption
                 nome={nome2} 
                 optionClass={optionClass}
                 
@@ -85,7 +85,7 @@ function FieldsQuestionsOptions({
 
             />}
 
-            {/* campo 3, só vai existir se for dado algum nome para a label (nome3) */}
+            {/* campo 3, obrigatório (nome3) */}
             {nome3 && <FieldQuestionOption
                 nome={nome3} 
                 optionClass={optionClass}
@@ -121,7 +121,7 @@ function FieldsQuestionsOptions({
                 
             />}
 
-            {/* campo 4, só vai existir se for dado algum nome para a label (nome4) */}
+            {/* campo 4, obrigatório (nome4) */}
             {nome4 && <FieldQuestionOption
                 nome={nome4} 
                 optionClass={optionClass} 
@@ -193,7 +193,7 @@ function FieldsQuestionsOptions({
                 
             />}
 
-            {/* campo 6, só vai existir se for dado algum nome para a label (nome6) */}
+            {/* campo 6, obrigatório (nome6) */}
             {nome6 && <FieldQuestionOption
                 nome={nome6} 
                 optionClass={optionClass} 
@@ -220,20 +220,7 @@ function FieldsQuestionsOptions({
                 readyToSendForm4={readyToSendForm4}
                 
             />}
-
-            {/* campo 7, só vai existir se for dado algum nome para a label (nome7) */}
-            {nome7 && <FieldQuestionOption
-                nome={nome7} 
-                optionClass={optionClass} 
-
-                labelTarget={labelTarget}
-                setLabelTarget={setLabelTarget}
-
-                // ativar para zerar os campos
-                readyToCleanAll={readyToCleanAll}
-                setReadyToCleanAll={setReadyToCleanAll}
-            
-            />}        
+                   
         </>
     )
 

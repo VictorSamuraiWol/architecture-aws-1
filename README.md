@@ -8,7 +8,7 @@
 
 # AWS Architecture Questions Project
 
-> ℹ️ **NOTE:** Este repositório foi desenvolvido durante meus estudos de Front-End e AWS Cloud Computing, com o objetivo de aprimorar meus conhecimentos nesses temas. Ele estará em constante evolução para melhorar o desempenho e a otimização do código.
+> ℹ️ **NOTE:** Este repositório foi desenvolvido durante meus estudos de Front-End e Cloud Computing, com o objetivo de aprimorar meus conhecimentos nesses temas. Ele estará em constante evolução para melhorar o desempenho e a otimização do código.
 
 ## ✨ Features
 ✅ Bem vindos! Este é um projeto com o objetivo de criar uma aplicação em React com temática AWS Cloud Computing, com funcionalidades de verificar as questões certas ou erradas, bem como mostrar a resposta correta com informações detalhadas, medindo o conhecimento sobre arquiteturas da Aws em nível associate. Minha gratidão a Deus pela finalização do projeto.

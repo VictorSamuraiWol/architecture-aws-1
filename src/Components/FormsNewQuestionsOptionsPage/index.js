@@ -350,11 +350,11 @@ function FormsNewQuestionsOptionsPage() {
                 >
                     <h1>Form 1 (Questions)</h1>
                     <FieldsQuestionsOptions
-                        nome1="Question:"
-                        nome2="Answer:"
+                        nome1="Question:*"
+                        nome2="Answer:*"
                         nome3="Source Image:"
-                        nome4="Description:" 
-                        nome5="Number:"
+                        nome4="Description:*" 
+                        nome5="Number:*"
 
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
@@ -389,12 +389,12 @@ function FormsNewQuestionsOptionsPage() {
                 >
                     <h1>Form 2 (Options)</h1>
                     <FieldsQuestionsOptions 
-                        nome1="Option 1:" 
-                        nome2="Option 2:" 
-                        nome3="Option 3:" 
-                        nome4="Option 4:"                
+                        nome1="Option 1:*" 
+                        nome2="Option 2:*" 
+                        nome3="Option 3:*" 
+                        nome4="Option 4:*"                
                         nome5="Option 5:" 
-                        nome6="Number:"
+                        nome6="Number:*"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
@@ -434,11 +434,11 @@ function FormsNewQuestionsOptionsPage() {
                 >                    
                     <h1>Form 3 (MultiQuestions)</h1>
                     <FieldsQuestionsOptions
-                        nome1="Question:" 
-                        nome2="Answer's Text:"
+                        nome1="Question:*" 
+                        nome2="Answer's Text:*"
                         nome3="Source Image:"
-                        nome4="Description:" 
-                        nome5="Number:"
+                        nome4="Description:*" 
+                        nome5="Number:*"
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
@@ -473,12 +473,12 @@ function FormsNewQuestionsOptionsPage() {
                 >
                     <h1>Form 4 (MultiOptions)</h1>
                     <FieldsQuestionsOptions 
-                        nome1="Option 1:" 
-                        nome2="Option 2:" 
-                        nome3="Option 3:" 
-                        nome4="Option 4:"                
+                        nome1="Option 1:*" 
+                        nome2="Option 2:*" 
+                        nome3="Option 3:*" 
+                        nome4="Option 4:*"                
                         nome5="Option 5:" 
-                        nome6="Number:"
+                        nome6="Number:*"
                         optionClass={styles.optionClass}
 
                         labelTarget={labelTarget}
