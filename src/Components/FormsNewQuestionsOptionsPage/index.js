@@ -67,22 +67,24 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900)
+            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
             function redVoidField() {
                 const form1 = document.querySelector("#form1");
                 const fields = form1.querySelectorAll(".labelTextarea");
 
                 for(let i=0; i<fields.length; i++) {
-                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels
-                    if (fields[i].children[1].value === "") {
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (fields[i].children[0].innerText !== "Source Image:") {            
-                            fields[i].children[0].style.color = "#B71C1C"
+                    const label = fields[i].children[0];
+                    const textAreaInput = fields[i].children[1];
+
+                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+
+                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels e marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+                    if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        label.style.color = "#B71C1C"
 
                         }
                     }
                 }
-            }
 
             redVoidField()
 
@@ -133,22 +135,24 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900)
+            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
             function redVoidField() {
-                const form2 = document.querySelector("#form2");
+                const form2= document.querySelector("#form2");
                 const fields = form2.querySelectorAll(".labelTextarea");
 
                 for(let i=0; i<fields.length; i++) {
-                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels
-                    if (fields[i].children[1].value === "") {
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (fields[i].children[0].innerText !== "Option 5:") {            
-                            fields[i].children[0].style.color = "#B71C1C"
+                    const label = fields[i].children[0];
+                    const textAreaInput = fields[i].children[1];
+
+                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+
+                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels e marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+                    if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        label.style.color = "#B71C1C"
 
                         }
                     }
                 }
-            }
 
             redVoidField()
 
@@ -197,22 +201,23 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-
-            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900)
+            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
             function redVoidField() {
-                const form3 = document.querySelector("#form3");
+                const form3= document.querySelector("#form3");
                 const fields = form3.querySelectorAll(".labelTextarea");
 
-                for(let i=0; i<fields.length; i++) {
-                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels
-                    if (fields[i].children[1].value === "") {
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (fields[i].children[0].innerText !== "Source Image:") {            
-                            fields[i].children[0].style.color = "#B71C1C"
+                fields.forEach(field => {
+                    const label = field.children[0];
+                    const textAreaInput = field.children[1];
 
-                        }
+                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+
+                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels e marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+                    if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        label.style.color = "#B71C1C"
+
                     }
-                }
+                })                                
             }
 
             redVoidField()
@@ -263,22 +268,23 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } else {
-
-            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900)
+            // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
             function redVoidField() {
-                const form4 = document.querySelector("#form4");
+                const form4= document.querySelector("#form4");
                 const fields = form4.querySelectorAll(".labelTextarea");
 
-                for(let i=0; i<fields.length; i++) {
-                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels
-                    if (fields[i].children[1].value === "") {
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (fields[i].children[0].innerText !== "Option 5:") {            
-                            fields[i].children[0].style.color = "#B71C1C"
+                fields.forEach(field => {
+                    const label = field.children[0];
+                    const textAreaInput = field.children[1];
 
-                        }
+                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+
+                    // "fields[i].children[1]" captura os campos input e textarea, "fields[i].children[0]" captura as labels e marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+                    if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        label.style.color = "#B71C1C"
+
                     }
-                }
+                })                                
             }
 
             redVoidField()
