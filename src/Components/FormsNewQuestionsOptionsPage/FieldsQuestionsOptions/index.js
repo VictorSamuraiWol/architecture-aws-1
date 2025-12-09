@@ -2,7 +2,7 @@ import styles from './FieldsQuestionsOptions.module.css'
 import FieldQuestionOption from './FieldQuestionOption'
 
 function FieldsQuestionsOptions({ 
-    nome1, nome2, nome3, nome4, nome5, nome6, nome7, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
+    nome1, nome2, nome3, nome4, nome5, nome6, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
     /* campos form1 */ newQuestionQuestions, setNewQuestionQuestions, newAnswerQuestions, setNewAnswerQuestions, newSourceImageQuestions, setNewSourceImageQuestions, newDescriptionQuestions, setNewDescriptionQuestions, newQuestionsNumberQuestions, setNewQuestionsNumberQuestions, 
     /* campos form2 */ newOption1Question, setNewOption1Question, newOption2Question, setNewOption2Question, newOption3Question, setNewOption3Question, newOption4Question, setNewOption4Question, newOption5Question, setNewOption5Question, newOptionsNumberQuestions, setNewOptionsNumberQuestions, 
     /* campos form3 */ newQuestionMultiQuestions, setNewQuestionMultiQuestions, newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions, newSourceImageMultiQuestions, setNewSourceImageMultiQuestions, newDescriptionMultiQuestions, setNewDescriptionMultiQuestions, newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions,

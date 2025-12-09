@@ -4,7 +4,7 @@ import DetailsFieldsForms from '../../../DetailsFieldsForms'
 import { v4 as uuidv4 } from 'uuid';
 
 function FieldQuestionOption({ 
-    nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4,   setValueForm4
+    nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4
 
 }) {
 
@@ -154,12 +154,11 @@ function FieldQuestionOption({
     return(
         <div className={styles.field}>
             <div
-                // onMouseOver={(e) => appearDetailsFieldsForms(e)}
-                // onMouseOut={disappearDetailsFieldsForms}
                 className={`labelTextarea ${styles.labelTextarea}`}
 
             >
                 <label
+                    // classe optionClass somente estiliza os forms 2 e 4
                     className={optionClass}
                     htmlFor={uniqueId}
 
