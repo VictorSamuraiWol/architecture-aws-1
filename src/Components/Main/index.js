@@ -8,6 +8,7 @@ import Options from './Options';
 import { useContext, useState } from 'react';
 import ModalResults from '../ModalResults';
 import { DataContext } from '../DataContext';
+import MenuTools from './MenuTools';
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, setNextQuestions, setRandomIndex, nextQuestions
@@ -17,13 +18,14 @@ function Main({
     const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
    
     const [captureValue, setCaptureValue] = useState('')
-    const [optionColor, setOptionColor] = useState(styles.optionColor)    
+    const [optionColor, setOptionColor] = useState(styles.optionColor)  
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');
     const [optNum3, setOptNum3] = useState('');
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
-    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções da página main
+    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
+    const [optionMapNumberId, setOptionMapNumberId] = useState([]) //capturar a ID da opção presente na página main
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
@@ -67,6 +69,15 @@ function Main({
             
             />
 
+            <MenuTools 
+                nextQuestions={nextQuestions} 
+                setNextQuestions={setNextQuestions} 
+                optionMap={optionMap} 
+                setOptionMap={setOptionMap} 
+                optionMapNumberId={optionMapNumberId}
+                
+            />
+
             <Options  
                 randomIndex={randomIndex}
                 optionColor={optionColor}
@@ -86,6 +97,7 @@ function Main({
                 optionMap={optionMap}
                 setOptionMap={setOptionMap}
                 nextQuestions={nextQuestions}
+                setOptionMapNumberId={setOptionMapNumberId}
 
             />
 

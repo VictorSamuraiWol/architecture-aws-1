@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import Answer from '../Main/Answer';
-import ButtonAnswer from '../Main/ButtonAnswer';
-import ButtonNext from '../Main/ButtonNext';
+import Answer from '../Main/Answer'; // reutilizando componente presente no Main
+import ButtonAnswer from '../Main/ButtonAnswer'; // reutilizando componente presente no Main
+import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
 import MultiOptions from './MultiOptions';
-import Question from '../Main/Question';
+import Question from '../Main/Question'; // reutilizando componente presente no Main
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';

@@ -58,9 +58,10 @@ function FormsNewQuestionsOptionsPage() {
     const [listNumbersForms2and4, setListNumbersForms2and4] = useState([])
 
     useEffect(() => {
-        // capturando o número de todas as questões presentes nos formulários 1 e 2
+        // capturando o número de todas as questões presentes nos formulários 1 e 3
         listUnicQuestionsContext && listMultiQuestionsContext && setListNumbersForms1and3([...listUnicQuestionsContext.map(questions => {return questions.numberQuestion}), ...listMultiQuestionsContext.map(questions => {return questions.numberQuestion})])
-
+        
+        // capturando o número de todas as opções presentes nos formulários 2 e 4
         listUnicOptionsContext && listMultiOptionsContext && setListNumbersForms2and4([...listUnicOptionsContext.map(options => {return options.numberOption}), ...listMultiOptionsContext.map(options => {return options.numberOption})])
 
     },[listUnicQuestionsContext, listMultiQuestionsContext, listUnicOptionsContext, listMultiOptionsContext])

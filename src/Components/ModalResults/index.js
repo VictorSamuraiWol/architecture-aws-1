@@ -9,7 +9,6 @@ import { TiDeleteOutline } from "react-icons/ti";
 Modal.setAppElement('#root');
 
 function ModalResults() {
-
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // pegando os dados do resultado
@@ -60,7 +59,7 @@ function ModalResults() {
 
                 <ButtonDefault 
                     specificStyleButton={styles.buttonResultsModal} 
-                    buttonName='Results' 
+                    buttonName='Results'
                 />
 
             </div>

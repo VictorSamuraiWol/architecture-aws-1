@@ -3,7 +3,7 @@ import styles from './Options.module.css';
 import { DataContext } from '../../DataContext';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestions
+    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestions, setOptionMapNumberId
 }) {
 
     const [listNumRandom, setListNumRandom] = useState([]);
@@ -69,9 +69,10 @@ function Options({
             // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend
             if (parseInt(option.numberOption) === parseInt(nextQuestions.numberQuestion)) {
                 setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
+                setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
 
-            }
-
+            } 
+                
             return null
            
         })
