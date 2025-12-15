@@ -8,7 +8,7 @@ function FieldQuestionOption({
 
 }) {
 
-    // id única
+    // id única para somente para os campos
     const uniqueId = uuidv4();
 
     // valor capturado do textarea

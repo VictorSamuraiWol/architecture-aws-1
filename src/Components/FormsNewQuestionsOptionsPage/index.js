@@ -4,8 +4,11 @@ import ButtonDefault from '../ButtonDefault'
 import { useContext, useEffect, useState } from 'react'
 import backgroundImage from '../../imgs/forms-image.png'
 import { DataContext } from '../DataContext'
+import { v4 as uuidv4 } from 'uuid';
 
 function FormsNewQuestionsOptionsPage() {
+
+    const uniqueId = uuidv4(); // gerar uma id aleatória para a questão e a opção correspondente
 
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
 
@@ -90,7 +93,8 @@ function FormsNewQuestionsOptionsPage() {
                 answer: newAnswerQuestions,
                 srcImg: newSourceImageQuestions, // não obrigatório
                 descriptionP: newDescriptionQuestions,
-                numberQuestion: newQuestionsNumberQuestions
+                numberQuestion: newQuestionsNumberQuestions,
+                id: uniqueId
             }
 
             // limpar todas as cores das labels para as cores iniciais depois submeter os dados
@@ -237,7 +241,8 @@ function FormsNewQuestionsOptionsPage() {
                 option3: newOption3Question,
                 option4: newOption4Question,
                 option5: newOption5Question, // não obrigatório
-                numberOption: newOptionsNumberQuestions
+                numberOption: newOptionsNumberQuestions,
+                id: uniqueId
             }
 
             // limpar todas as cores das labels para as cores iniciais depois submeter os dados
@@ -382,7 +387,8 @@ function FormsNewQuestionsOptionsPage() {
                 answerText: newAnswerTextMultiQuestions,
                 srcImg: newSourceImageMultiQuestions, // não obrigatório
                 descriptionP: newDescriptionMultiQuestions,
-                numberQuestion: newQuestionsNumberMultiQuestions
+                numberQuestion: newQuestionsNumberMultiQuestions,
+                id: uniqueId
             }
 
             // limpar todas as cores das labels para as cores iniciais depois submeter os dados
@@ -525,7 +531,8 @@ function FormsNewQuestionsOptionsPage() {
                 option3: newOption3MultiQuestion,
                 option4: newOption4MultiQuestion,
                 option5: newOption5MultiQuestion, // não obrigatório
-                numberOption: newOptionsNumberMultiQuestions
+                numberOption: newOptionsNumberMultiQuestions,
+                id: uniqueId
             }
 
             // limpar todas as cores das labels para as cores iniciais depois submeter os dados
