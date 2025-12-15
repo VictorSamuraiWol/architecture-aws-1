@@ -95,6 +95,7 @@ function PageMulti() {
                         randomIndexMulti={randomIndexMulti}
                         uniqueRandomMulti={uniqueRandomMulti}
                         multiQuestions={multiQuestions}
+                        setMultiQuestions={setMultiQuestions}
 
                     />
                 }

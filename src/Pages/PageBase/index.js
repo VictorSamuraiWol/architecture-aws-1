@@ -3,9 +3,9 @@ import Footer from '../../Components/Footer';
 import styles from './PageBase.module.css';
 import { Outlet } from 'react-router-dom';
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
-import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+import backgroundImage from '../../imgs/cloud-neon-vibe.png';
 import IllustrativePage from '../IllustrativePage';
-import DataProvider from '../../Components/DataContext'
+import DataProvider from '../../Components/DataContext';
 
 function PageBase() {
 

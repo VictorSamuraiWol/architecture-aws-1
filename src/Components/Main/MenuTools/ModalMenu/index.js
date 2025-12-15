@@ -9,30 +9,48 @@ import ButtonDefault from '../../../ButtonDefault';
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
-function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId }) {
+function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [question, setQuestion] = useState(nextQuestions.question);
-  const [answer, setAnswer] = useState(nextQuestions.answer);
-  const [srcImg, setSrcImg] = useState(nextQuestions.srcImg);
-  const [description, setDescription] = useState(nextQuestions.descriptionP);
+  const [question, setQuestion] = useState(nextQuestions?.question);
+  const [answer, setAnswer] = useState(nextQuestions?.answer);
+  const [srcImg, setSrcImg] = useState(nextQuestions?.srcImg);
+  const [description, setDescription] = useState(nextQuestions?.descriptionP);
 
   // criando variáveis para todos os atributos das opções
-  const [option1, setOption1] = useState(optionMap[0]);
-  const [option2, setOption2] = useState(optionMap[1]);
-  const [option3, setOption3] = useState(optionMap[2]);
-  const [option4, setOption4] = useState(optionMap[3]);
-  const [option5, setOption5] = useState(optionMap[4]);
+  const [option1, setOption1] = useState(optionMap && optionMap[0]);
+  const [option2, setOption2] = useState(optionMap && optionMap[1]);
+  const [option3, setOption3] = useState(optionMap && optionMap[2]);
+  const [option4, setOption4] = useState(optionMap && optionMap[3]);
+  const [option5, setOption5] = useState(optionMap && optionMap[4]);
 
-  // sempre atualizar as opções quando houver mudança
+  // criando variáveis para todos os atributos das questões de múltipla escolha
+  const [questionMulti, setQuestionMulti] = useState(multiQuestions?.question);
+  const [answerMulti, setAnswerMulti] = useState(multiQuestions?.answerText);
+  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestions?.srcImg);
+  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestions?.descriptionP);
+
+  // criando variáveis para todos os atributos das opções de múltipla escolha
+  const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0]);
+  const [option2Multi, setOption2Multi] = useState(multiOptionMap && multiOptionMap[1]);
+  const [option3Multi, setOption3Multi] = useState(multiOptionMap && multiOptionMap[2]);
+  const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3]);
+  const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4]);
+
   useEffect(() => {
-      setOption1(optionMap[0])
-      setOption2(optionMap[1])
-      setOption3(optionMap[2])
-      setOption4(optionMap[3])
-      setOption5(optionMap[4])
+    setOption1(optionMap && optionMap[0])
+    setOption2(optionMap && optionMap[1])
+    setOption3(optionMap && optionMap[2])
+    setOption4(optionMap && optionMap[3])
+    setOption5(optionMap && optionMap[4])
 
-  }, [optionMap, optionMapNumberId])
+    setOption1Multi(multiOptionMap && multiOptionMap[0])
+    setOption2Multi(multiOptionMap && multiOptionMap[1])
+    setOption3Multi(multiOptionMap && multiOptionMap[2])
+    setOption4Multi(multiOptionMap && multiOptionMap[3])
+    setOption5Multi(multiOptionMap && multiOptionMap[4])
+
+  }, [optionMap, multiOptionMap]) // sempre atualizar as opções quando houver mudança
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -47,7 +65,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
   }
 
   //função utilizando PUT para alterar as questões na API
-  async function onSalveModalQuestion() {
+  async function onSaveModalQuestion() {
       const jsonBody = JSON.stringify({
           question: question,
           answer: answer,
@@ -74,7 +92,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
   }
 
   //função utilizando PUT para alterar as opções na API
-  async function onSalveModalOption() {
+  async function onSaveModalOption() {
       const jsonBody = JSON.stringify({
           option1: option1,
           option2: option2,
@@ -101,10 +119,75 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   }
 
+  //função utilizando PUT para alterar as questões de múltipla escolha na API
+  async function onSaveModalMultiQuestion() {
+      const jsonBody = JSON.stringify({
+          question: questionMulti,
+          answerText: answerMulti,
+          srcImg: srcImgMulti,
+          descriptionP: descriptionMulti,
+          numberQuestion: multiQuestions.numberQuestion, // não será alterado
+          id: multiQuestions.id // não será alterado
+      })
+      await fetch(`http://localhost:3001/multiQuestions/${multiQuestions.id}`, {
+          method: 'PUT',
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: jsonBody
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data)
+      }) 
+      .catch((error) => {
+          console.log(error)
+      }) 
+
+  }
+
+  //função utilizando PUT para alterar as opções de múltipla escolha na API
+  async function onSaveModalMultiOption() {
+      const jsonBody = JSON.stringify({
+          option1: option1Multi,
+          option2: option2Multi,
+          option3: option3Multi,
+          option4: option4Multi,
+          option5: option5Multi,
+          numberOption: multiOptionMapNumberId[0], // não será alterado 
+          id: multiOptionMapNumberId[1] // não será alterado
+      })
+      await fetch(`http://localhost:3001/multiOptions/${multiOptionMapNumberId[1]}`, {
+          method: 'PUT',
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: jsonBody
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data)
+      }) 
+      .catch((error) => {
+          console.log(error)
+      }) 
+
+  }
+
   // função que vai salvar quaisquer alterações feitas na questão e opção atual
-  function multiFunctions() {
-    onSalveModalQuestion();
-    onSalveModalOption();
+  function multiFunctionsNewPageMain() {
+    onSaveModalQuestion();
+    onSaveModalOption();
+
+    console.log('Saved!!!')
+    alert('Saved successfully!!!')
+
+  }
+
+  // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual
+  function multiFunctionsPageMulti() {
+    onSaveModalMultiQuestion();
+    onSaveModalMultiOption();
 
     console.log('Saved!!!')
     alert('Saved successfully!!!')
@@ -158,17 +241,80 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   }
 
+  // funções para capturar os valores dos campos das questões de múltipla escolha
+  function onChangeModalQuestionMulti(event) {
+    setQuestionMulti(event.target.value)
+
+  }
+
+  function onChangeModalAnswerMulti(event) {
+    setAnswerMulti(event.target.value)
+
+  }
+
+  function onChangeModalImageMulti(event) {
+    setSrcImgMulti(event.target.value)
+
+  }
+
+  function onChangeModalDescriptionMulti(event) {
+    setDescriptionMulti(event.target.value)
+
+  }
+
+  //funções para capturar os valores dos campos das opções de múltipla escolha
+  function onChangeModalOption1Multi(event) {
+    setOption1Multi(event.target.value)
+
+  }
+
+  function onChangeModalOption2Multi(event) {
+    setOption2Multi(event.target.value)
+
+  }
+
+  function onChangeModalOption3Multi(event) {
+    setOption3Multi(event.target.value)
+
+  }
+
+  function onChangeModalOption4Multi(event) {
+    setOption4Multi(event.target.value)
+
+  }
+
+  function onChangeModalOption5Multi(event) {
+    setOption5Multi(event.target.value)
+
+  }
+
   // função que limpa todos os campos do formulário
   function cleanForm() {
-    setQuestion('')
-    setAnswer('')
-    setSrcImg('')
-    setDescription('')
-    setOption1('')
-    setOption2('')
-    setOption3('')
-    setOption4('')
-    setOption5('')
+    if (nextQuestions && optionMap) {
+      setQuestion('')
+      setAnswer('')
+      setSrcImg('')
+      setDescription('')
+      setOption1('')
+      setOption2('')
+      setOption3('')
+      setOption4('')
+      setOption5('')
+
+    }
+
+    if (multiQuestions && multiOptionMap) {
+      setQuestionMulti('')
+      setAnswerMulti('')
+      setSrcImgMulti('')
+      setDescriptionMulti('')
+      setOption1Multi('')
+      setOption2Multi('')
+      setOption3Multi('')
+      setOption4Multi('')
+      setOption5Multi('')
+
+    }
       
   }
 
@@ -201,8 +347,8 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           className={styles.modalImageDelete} 
       />      
 
-      <form
-        onSubmit={multiFunctions}
+      {nextQuestions && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
+        onSubmit={multiFunctionsNewPageMain}
         className={styles.formModal}
       > 
         {/* todos os campos das questões */}
@@ -286,7 +432,94 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
         </div>
       
-      </form>
+      </form>}
+
+      {multiQuestions && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
+        onSubmit={multiFunctionsPageMulti}
+        className={styles.formModal}
+      > 
+        {/* todos os campos das questões de múltipla escolha */}
+        <Field
+          onChangeModal={onChangeModalQuestionMulti}
+          name="Question*"
+          newValue={questionMulti}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalAnswerMulti}
+          name="Answer*"
+          newValue={answerMulti}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalImageMulti}
+          name="Image Source"
+          newValue={srcImgMulti}
+
+        />
+        <Field
+          onChangeModal={onChangeModalDescriptionMulti}
+          name="Description*"
+          newValue={descriptionMulti}
+          required={true}
+
+        />
+
+        {/* todos os campos das opções de múltipla escolha */}
+        <Field
+          onChangeModal={onChangeModalOption1Multi}
+          name="Option1*"
+          newValue={option1Multi}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalOption2Multi}
+          name="Option2*"
+          newValue={option2Multi}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalOption3Multi}
+          name="Option3*"
+          newValue={option3Multi}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalOption4Multi}
+          name="Option4*"
+          newValue={option4Multi}
+          required={true}
+
+        />
+        <Field
+          onChangeModal={onChangeModalOption5Multi}
+          name="Option5"
+          newValue={option5Multi}
+
+        />
+
+        {/* Botões submit e clean */}
+        <div className={styles.buttons}>
+          <ButtonDefault 
+            buttonName='Save' 
+            specificType='submit'
+
+          />
+          <ButtonDefault 
+            onClick={cleanForm} 
+            buttonName='Clean' 
+            specificType='button'
+             
+          />
+
+        </div>
+      
+      </form>}
 
       </Modal>
 

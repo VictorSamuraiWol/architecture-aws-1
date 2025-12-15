@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../DataContext';
 
 function MultiOptions({ 
-    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap,multiQuestions
+    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap, multiQuestions, setMultiOptionMapNumberId
 }) {
 
     const [optNum1, setOptNum1] = useState('');
@@ -74,6 +74,7 @@ function MultiOptions({
             // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend          
             if (parseInt(option.numberOption) === parseInt(multiQuestions.numberQuestion)) {
                 setMultiOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
+                setMultiOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção de múltipla escolha atual
 
             }
 

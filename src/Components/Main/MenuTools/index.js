@@ -2,7 +2,8 @@ import ModalMenu from './ModalMenu';
 import styles from './MenuTools.module.css'
 import { MdDelete } from "react-icons/md";
 
-function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId }) {
+function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+ 
   function deleteQuestionOptionMultiQuestionMultiOption () {
     console.log("delete teste")
   }
@@ -21,15 +22,22 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           setOptionMap={setOptionMap} 
           optionMapNumberId={optionMapNumberId} 
 
+          multiQuestions={multiQuestions}
+          setMultiQuestions={setMultiQuestions}
+          multiOptionMap={multiOptionMap}
+          setMultiOptionMap={setMultiOptionMap}
+          multiOptionMapNumberId={multiOptionMapNumberId}
+
         />
-        
+
         <div>
           <MdDelete
             onClick={deleteQuestionOptionMultiQuestionMultiOption}
             className={styles.deleteIcon}
             
           />        
-        </div>
+
+        </div>    
 
       </div>
 

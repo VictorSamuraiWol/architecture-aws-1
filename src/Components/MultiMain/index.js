@@ -7,9 +7,10 @@ import Question from '../Main/Question'; // reutilizando componente presente no 
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';
+import MenuTools from '../Main/MenuTools';
 
 function MultiMain({ 
-    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti,multiQuestions
+    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti, multiQuestions, setMultiQuestions
 }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
@@ -19,11 +20,22 @@ function MultiMain({
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
 
+    const [multiOptionMapNumberId, setMultiOptionMapNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
+
     return (
         <div className={styles.multiMain}>
             <Question 
                 question={question} 
             
+            />
+
+            <MenuTools 
+                multiQuestions={multiQuestions} 
+                setMultiQuestions={setMultiQuestions} 
+                multiOptionMap={multiOptionMap} 
+                setMultiOptionMap={setMultiOptionMap}
+                multiOptionMapNumberId={multiOptionMapNumberId}
+                
             />
 
             <MultiOptions
@@ -36,6 +48,7 @@ function MultiMain({
                 multiOptionMap={multiOptionMap}
                 setMultiOptionMap={setMultiOptionMap}
                 multiQuestions={multiQuestions}
+                setMultiOptionMapNumberId={setMultiOptionMapNumberId}
 
             />
             
