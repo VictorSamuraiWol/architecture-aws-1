@@ -1,11 +1,80 @@
 import ModalMenu from './ModalMenu';
 import styles from './MenuTools.module.css'
 import { MdDelete } from "react-icons/md";
+import { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../DataContext';
 
-function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
- 
-  function deleteQuestionOptionMultiQuestionMultiOption () {
-    console.log("delete teste")
+function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId, generateNewQuestionMain }) {
+
+  // pegando as variáveis através do 'useContext' do componente 'DataContext'
+  const { listUnicQuestionsContext, setListUnicQuestionsContext, listUnicOptionsContext, setListUnicOptionsContext, setDeleteApi } = useContext(DataContext)
+
+  // função que deleta a questão atual
+  async function onDeleteQuestion(nextQuestions) {
+    const url = `http://localhost:3001/questions/${nextQuestions.id}`
+
+    const options = {
+        method: "DELETE",
+    };
+
+    setDeleteApi(false)
+
+    await fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error deleting');
+
+      } else {
+        response.json();
+        setDeleteApi(true)
+
+      }
+
+    })
+    .catch((error) => {
+        console.error('Erro:', error);
+    })
+
+  };
+
+  // função que deleta a opção atual
+  async function onDeleteOption(optionMapNumberId) {
+    const url = `http://localhost:3001/options/${optionMapNumberId[1]}`
+
+    const options = {
+        method: "DELETE",
+    };
+
+    setDeleteApi(false)
+
+    await fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error deleting');
+
+      } else {
+        response.json();
+        setDeleteApi(true)
+
+      }
+
+    })
+    .catch((error) => {
+        console.error('Erro:', error);
+    })
+
+  };
+
+  function multiDeleteQuestionOption() {
+    if (listUnicQuestionsContext.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões de uma única escolha disponíveis
+      onDeleteQuestion(nextQuestions)
+      onDeleteOption(optionMapNumberId)
+    
+    } else {
+      alert('Só restam menos de 3 questões de uma única escolha, atingiu o limite mínimo de questões, por favor, é necessário criar novas questões para poder deletar!')
+    
+    }
+
   }
 
   return (
@@ -20,8 +89,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           setNextQuestions={setNextQuestions} 
           optionMap={optionMap} 
           setOptionMap={setOptionMap} 
-          optionMapNumberId={optionMapNumberId} 
-
+          optionMapNumberId={optionMapNumberId}
           multiQuestions={multiQuestions}
           setMultiQuestions={setMultiQuestions}
           multiOptionMap={multiOptionMap}
@@ -32,7 +100,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
         <div>
           <MdDelete
-            onClick={deleteQuestionOptionMultiQuestionMultiOption}
+            onClick={multiDeleteQuestionOption}
             className={styles.deleteIcon}
             
           />        

@@ -26,7 +26,6 @@ function NewPageMain() {
     useEffect(() => {
 
         if (listUnicQuestionsContext) {
-
             // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
             setListQuestions(listUnicQuestionsContext)
 
@@ -74,7 +73,7 @@ function NewPageMain() {
                     />
                 }
 
-                {nextQuestions && 
+                {nextQuestions &&
                     <Main 
                         question={nextQuestions.question}
                         answer={nextQuestions.answer}

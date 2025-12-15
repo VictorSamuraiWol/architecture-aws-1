@@ -21,6 +21,7 @@ export default function DataProvider({ children }) {
 
     const [postApi, setPostApi] = useState(false)
 
+    const [deleteApi, setDeleteApi] = useState(false) // torna verdadeiro ao deletar
 
     useEffect(() => {
 
@@ -172,8 +173,8 @@ export default function DataProvider({ children }) {
         }
         fetchData4()
 
-    }, [postApi, updateList])
-    
+    }, [postApi, updateList, deleteApi])
+ 
     return (        
         <DataContext.Provider
             value={{
@@ -186,7 +187,8 @@ export default function DataProvider({ children }) {
                 loading,
                 setLoading,
                 updateList,
-                setPostApi
+                setPostApi,
+                setDeleteApi
             }}
         >
 

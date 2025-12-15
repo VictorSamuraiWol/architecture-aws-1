@@ -61,8 +61,7 @@ function Options({
     // }, [nextOptions])
     // console.log(optionFilter[optNum1], 83)
 
-    useEffect(() => {
-        
+    useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
         nextOptions && nextOptions.map((option) => {
 

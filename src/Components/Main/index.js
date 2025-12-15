@@ -35,8 +35,7 @@ function Main({
 
     // Definindo o caminho com base no número gerado
     // função para aumentar a probabilidade de cair mais questões de uma escolha do que de múltipla escolha
-    const getPath = (number) => {
-        
+    const getPath = (number) => {        
         switch (number) {
             case 1:
             case 2:
@@ -51,8 +50,7 @@ function Main({
 
     };
 
-    function generateNewQuestionMain() {
-        
+    function generateNewQuestionMain() {        
         // chamando a função que gera número randômico
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         setRandomIndex(random)
@@ -75,6 +73,7 @@ function Main({
                 optionMap={optionMap} 
                 setOptionMap={setOptionMap} 
                 optionMapNumberId={optionMapNumberId}
+                generateNewQuestionMain={generateNewQuestionMain}
                 
             />
 
