@@ -73,13 +73,12 @@ function Options({
             } 
                 
             return null
-           
+            
         })
 
     }, [nextOptions, randomIndex, setOptionMap, nextQuestions])
 
     useEffect(() => {
-
         // colocando em outro useEffect a variável 'optionMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setOptionMap'
         // esconder a opção vazia, caso tenha questões com apenas 4 opções
         const optionMainVoid = document.querySelectorAll('.optionNext')

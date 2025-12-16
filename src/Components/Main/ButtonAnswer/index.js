@@ -74,7 +74,7 @@ function ButtonAnswer({
 
     }
 
-    // validação da página main
+    // validação da página NewPageMain, a resposta correta será sempre uma comparação do valor do campo resposta (answer) com os valores dos campos das opções (opção 1, 2, 3, 4 e 5), caso seja igual, ela ficará destacada na validação
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
@@ -145,7 +145,7 @@ function ButtonAnswer({
 
     }
 
-    // validação da página multi
+    // validação da página PageMulti, a resposta correta será sempre as opções 1 e 2 do backend, elas ficarão destacadas na validação
     function validateAnswerPageMulti() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
