@@ -15,7 +15,7 @@
 
 ✅ Welcome! This is a project aimed at creating a React application with an AWS Cloud Computing theme, featuring functionalities to check correct or incorrect answers, as well as display the correct answer with detailed information, measuring knowledge on AWS architectures at the associate level. My gratitude to God for the completion of this project.
 
-<a href="https://architecture-aws-1.vercel.app/" title="View Project now"> 📟 Clique aqui para visualizar a aplicação</a><br/>
+<a href="https://architecture-react-cloud-questions.vercel.app/" title="View Project now"> 📟 Clique aqui para visualizar a aplicação</a><br/>
 <a href="https://github.com/VictorSamuraiWol/architecture-aws-1" title="View Repository now"> 📜 Clique aqui para visualizar o repositório</a>
 
 ## 💻 Tecnologias utilizadas no projeto

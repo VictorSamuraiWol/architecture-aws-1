@@ -23,6 +23,8 @@ export default function DataProvider({ children }) {
 
     const [deleteApi, setDeleteApi] = useState(false) // torna verdadeiro ao deletar
 
+    const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
+
     useEffect(() => {
 
         const fetchData1 = async () => {
@@ -188,7 +190,10 @@ export default function DataProvider({ children }) {
                 setLoading,
                 updateList,
                 setPostApi,
-                setDeleteApi
+                setDeleteApi,
+                ableDisableMenuTools,
+                setAbleDisableMenuTools
+
             }}
         >
 

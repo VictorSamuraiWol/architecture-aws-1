@@ -7,7 +7,7 @@ import { DataContext } from '../../DataContext';
 function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
-  const { listUnicQuestionsContext, listMultiQuestionsContext, setDeleteApi } = useContext(DataContext)
+  const { listUnicQuestionsContext, listMultiQuestionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(nextQuestions) {
@@ -143,15 +143,28 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
     
     }
 
+  }  
+
+  // função para habilitar e desabilitar o Menu
+  function ableDisableMenu() {
+    ableDisableMenuTools === styles.disableMenu 
+    ? setAbleDisableMenuTools(styles.menuIcons)
+    : setAbleDisableMenuTools(styles.disableMenu)
+
   }
 
   return (
     <div className={styles.menu}>
-      <div className={styles.menuTools}>
+      <div
+        onClick={ableDisableMenu}
+        className={styles.menuTools}
+      >
         <span>Menu</span>
       </div>
 
-      <div className={styles.menuIcons}>
+      <div 
+        className={`menuToolsSelector ${ableDisableMenuTools}`}        
+      >
         <ModalMenu 
           nextQuestions={nextQuestions} 
           setNextQuestions={setNextQuestions} 
@@ -169,8 +182,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
         <div>
           <MdDelete
             onClick={(nextQuestions !== undefined && multiDeleteQuestionOption) || (multiQuestions !== undefined && multiDeleteMultiQuestionMultiOption)}
-            className={styles.deleteIcon}
-            
+            className={styles.deleteIcon}            
           />        
 
         </div>    
