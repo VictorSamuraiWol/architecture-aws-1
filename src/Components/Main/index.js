@@ -51,24 +51,8 @@ function Main({
     };
 
     function generateNewQuestionMain() {
-
-
-
-// --------------------------------------------------------------------      
-        // // chamando a função que gera número randômico
-        // const random = uniqueRandomMain(listUnicQuestionsContextLength)
-        // setRandomIndex(random)
-
-        // // gerando novas questões
-        // setNextQuestion(listUnicQuestionsContext[random])
-// --------------------------------------------------------------------
-
-
-
-        // chamando a função que gera número randômico
-        if (nextQuestion) {
-            // chamando a função que gera número randômico
-            const random = uniqueRandomMain(listUnicQuestionsContextLength)
+        if (nextQuestion) {            
+            const random = uniqueRandomMain(listUnicQuestionsContextLength) // chamando a função que gera número randômico
             setRandomIndex(random)
     
             // gerando novas questões

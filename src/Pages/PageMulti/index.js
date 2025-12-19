@@ -23,35 +23,6 @@ function PageMulti() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-
-
-// -----------------------------------------------------------------------
-    // useEffect(() => {
-    //     if (listMultiQuestionsContext) {
-
-    //         // toda a lista de questões da página multi
-    //         setListMultiQuestions(listMultiQuestionsContext)       
-        
-    //         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
-    //         setRequestData(true)
-
-    //         if (listMultiQuestionsContextLength) {
-    //             // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-    //             const random = uniqueRandomMulti(listMultiQuestionsContextLength) 
-    //             setRandomIndexMulti(random)  
-    //             setMultiQuestion(listMultiQuestionsContext[random])                
-    //         }
-
-    //         // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
-    //         setActivePageFormsQuestionsOptions(false)
-
-    //     }
-
-    // }, [ listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
-// -----------------------------------------------------------------------
-
-
-
     useEffect(() => {
         if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return;
 

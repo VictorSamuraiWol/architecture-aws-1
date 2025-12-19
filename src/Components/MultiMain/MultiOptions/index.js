@@ -15,34 +15,6 @@ function MultiOptions({
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiOptionsContext } = useContext(DataContext)
 
-
-
-// -------------------------------------------------------------------
-    // useEffect(() => {
-    //     if (listMultiOptionsContext) {
-        
-    //         setListMultiOptions(listMultiOptionsContext)
-
-    //         // gerando um número para randomizar toda vez que renderizar
-    //         while (listNumRandom && listNumRandom.length < 5) {
-    //             const random = Math.floor(Math.random() * 5);
-    //             if (!listNumRandom.includes(random)) {
-    //                 listNumRandom.push(random)
-    //                 setOptNum1(listNumRandom[0])
-    //                 setOptNum2(listNumRandom[1])
-    //                 setOptNum3(listNumRandom[2])
-    //                 setOptNum4(listNumRandom[3])
-    //                 setOptNum5(listNumRandom[4])
-    //             }                    
-    //         }
-        
-    //     }                      
-    
-    // }, [ listMultiOptionsContext, setListMultiOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
-// -------------------------------------------------------------------
-
-
-
     useEffect(() => {
         if (!listMultiOptionsContext) return;
         
@@ -56,7 +28,8 @@ function MultiOptions({
                 randomNumbers.push(random)
             }                    
         }
-            
+        
+        // gerando números radômicos para alterar a ordem das opções
         setOptNum1(randomNumbers[0])
         setOptNum2(randomNumbers[1])
         setOptNum3(randomNumbers[2])
@@ -91,30 +64,6 @@ function MultiOptions({
         }
         
     }
-
-
-
-// ----------------------------------------------------------------------
-    // useEffect(() => {
-
-    //     // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-    //     listMultiOptions && listMultiOptions.map((option) => {
-
-    //         // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend          
-    //         if (parseInt(option.numberOption) === parseInt(multiQuestion.numberQuestion)) {
-    //             setMultiOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
-    //             setMultiOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção de múltipla escolha atual
-
-    //         }
-
-    //         return null
-       
-    //     }) 
-        
-    // }, [listMultiOptions, randomIndexMulti, setMultiOptionMap, multiQuestion])
-// ----------------------------------------------------------------------
-
-
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
@@ -165,7 +114,7 @@ function MultiOptions({
 
         }        
         
-        questionMultiOptionMatch()
+        questionMultiOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
 
     }, [listMultiOptions, multiQuestion, listMultiQuestions])
 

@@ -23,36 +23,6 @@ function NewPageMain() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-
-
-// ---------------------------------------------------------------------------------
-    // useEffect(() => {
-
-    //     if (listUnicQuestionsContext) {
-    //         // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
-    //         setListQuestions(listUnicQuestionsContext)
-
-    //         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
-    //         setRequestData(true)
-
-    //         if (listUnicQuestionsContextLength) {
-    //             // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-    //             const random = uniqueRandomMain(listUnicQuestionsContextLength) 
-    //             setRandomIndex(random)  
-    //             setNextQuestion(listUnicQuestionsContext[random])
-    //             console.log('nextQuestion:', nextQuestion, 40)
-    //         }
-
-    //         // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
-    //         setActivePageFormsQuestionsOptions(false)
-
-    //     }
-
-    // }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
-// -----------------------------------------------------------------------------------
-
-
-
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return;
      

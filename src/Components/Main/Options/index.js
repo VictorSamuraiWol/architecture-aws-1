@@ -10,36 +10,6 @@ function Options({
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicOptionsContext } = useContext(DataContext)
 
-    
-
-// ---------------------------------------------------------------------------
-    // useEffect(() => {
-        
-    //     if (listUnicOptionsContext) {
-
-    //         // capturando toda a lista de opções da página main
-    //         setListOptions(listUnicOptionsContext)
-
-    //         // gerando um número para randomizar toda vez que renderizar
-    //         while (listNumRandom && listNumRandom.length < 5) {
-    //             const random = Math.floor(Math.random() * 5);
-    //             if (!listNumRandom.includes(random)) {
-    //                 listNumRandom.push(random)
-    //                 setOptNum1(listNumRandom[0])
-    //                 setOptNum2(listNumRandom[1])
-    //                 setOptNum3(listNumRandom[2])
-    //                 setOptNum4(listNumRandom[3])
-    //                 setOptNum5(listNumRandom[4])
-    //             }                    
-    //         }
-
-    //     }         
-
-    // }, [ listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
-// ----------------------------------------------------------------------------
-
-
-
     useEffect(() => {        
         if (!listUnicOptionsContext) return; // se listUnicOptionsContext não existir, não faça nada e saia do useEffect 
 
@@ -54,7 +24,8 @@ function Options({
                 randomNumbers.push(random);                
             }
         }
-            
+        
+        // gerando números radômicos para alterar a ordem das opções
         setOptNum1(randomNumbers[0]);
         setOptNum2(randomNumbers[1]);
         setOptNum3(randomNumbers[2]);
@@ -62,7 +33,7 @@ function Options({
         setOptNum5(randomNumbers[4]);     
 
     }, [listUnicOptionsContext]);
-   
+  
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValue(e) {
         listOptions && setCaptureValue(e.target.value)
@@ -83,42 +54,7 @@ function Options({
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-   
-               
-        
-        // ----------------------------------------------------------------------------------
-        // function questionOptionMatch() {
-        //     listOptions.forEach(option => {
-        //         // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend
-        //         if (parseInt(option.numberOption) === parseInt(nextQuestion.numberQuestion)) {
-        //             setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
-        //             setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
-        
-        //         } else if (parseInt(option.numberOption) !== parseInt(nextQuestion.numberQuestion)) {
-        //             listOptions.forEach(option => {
-            //                 listQuestions.forEach(question => {
-        //                     if (option.numberOption === question.numberQuestion) {                                
-        //                         setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
-        //                         setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
-                                
-        //                         setNextQuestion(question)
-                                
-        //                     }
-
-        //                 })
-        //             })
-        
-        //         }
-        
-        //     })    
-
-        // }
-        
-        // questionOptionMatch()
-        // ------------------------------------------------------------------------------------
-        
-        
-        
+           
         if (!listQuestions || !nextQuestion || !listOptions) return;
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
@@ -165,7 +101,7 @@ function Options({
 
         }        
         
-        questionOptionMatch()
+        questionOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
 
     }, [listOptions, nextQuestion, listQuestions])
 
