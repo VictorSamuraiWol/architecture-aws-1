@@ -1,43 +1,71 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './Options.module.css';
 import { DataContext } from '../../DataContext';
+import { TfiControlShuffle } from 'react-icons/tfi';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, nextOptions, setNextOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestions, setOptionMapNumberId
+    setCaptureValue, optionColor, randomIndex, listOptions, setListOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestion, setNextQuestion, setOptionMapNumberId, listQuestions
 }) {
 
-    const [listNumRandom, setListNumRandom] = useState([]);
-
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicOptionsContext } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicOptionsContext } = useContext(DataContext)
+
     
-    useEffect(() => {
+
+// ---------------------------------------------------------------------------
+    // useEffect(() => {
         
-        if (listUnicOptionsContext) {
+    //     if (listUnicOptionsContext) {
 
-            // capturando toda a lista de opções da página main
-            setNextOptions(listUnicOptionsContext)
+    //         // capturando toda a lista de opções da página main
+    //         setListOptions(listUnicOptionsContext)
 
-            // gerando um número para randomizar toda vez que renderizar
-            while (listNumRandom && listNumRandom.length < 5) {
-                const random = Math.floor(Math.random() * 5);
-                if (!listNumRandom.includes(random)) {
-                    listNumRandom.push(random)
-                    setOptNum1(listNumRandom[0])
-                    setOptNum2(listNumRandom[1])
-                    setOptNum3(listNumRandom[2])
-                    setOptNum4(listNumRandom[3])
-                    setOptNum5(listNumRandom[4])
-                }                    
+    //         // gerando um número para randomizar toda vez que renderizar
+    //         while (listNumRandom && listNumRandom.length < 5) {
+    //             const random = Math.floor(Math.random() * 5);
+    //             if (!listNumRandom.includes(random)) {
+    //                 listNumRandom.push(random)
+    //                 setOptNum1(listNumRandom[0])
+    //                 setOptNum2(listNumRandom[1])
+    //                 setOptNum3(listNumRandom[2])
+    //                 setOptNum4(listNumRandom[3])
+    //                 setOptNum5(listNumRandom[4])
+    //             }                    
+    //         }
+
+    //     }         
+
+    // }, [ listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
+// ----------------------------------------------------------------------------
+
+
+
+    useEffect(() => {        
+        if (!listUnicOptionsContext) return; // se listUnicOptionsContext não existir, não faça nada e saia do useEffect 
+
+        // capturando toda a lista de opções da página main
+        setListOptions(listUnicOptionsContext);
+
+        const randomNumbers = []; // armazena a lista de números randômicos
+        // gerando um número para randomizar toda vez que renderizar
+        while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
+            const random = Math.floor(Math.random() * 5);
+            if (!randomNumbers.includes(random)) {
+                randomNumbers.push(random);                
             }
+        }
+            
+        setOptNum1(randomNumbers[0]);
+        setOptNum2(randomNumbers[1]);
+        setOptNum3(randomNumbers[2]);
+        setOptNum4(randomNumbers[3]);
+        setOptNum5(randomNumbers[4]);     
 
-        }         
-
-    }, [ listUnicOptionsContext, setNextOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
-    
+    }, [listUnicOptionsContext]);
+   
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValue(e) {
-        nextOptions && setCaptureValue(e.target.value)
+        listOptions && setCaptureValue(e.target.value)
 
     }
 
@@ -53,30 +81,93 @@ function Options({
 
     }
 
-    // Observação: Pode ser usada a função 'FILTER', também, nas opções que serão renderizadas neste componente como a seguir, mais indicado que o map, já que esta função filtra os elementos, pode ser usada no retorno do componente ou lá em cima na função fetchData() para capturar os dados (como não está sendo usada nesta parte do projeto então foi comentada)
-    // const [optionFilter, setOptionFilter] = useState([])
-    // useEffect(() => {
-    //     nextOptions && nextOptions.map((e, i) => (i === parseInt([randomIndex])) && setOptionFilter([e.option1, e.option2, e.option3, e.option4, e.option5]))
-        
-    // }, [nextOptions])
-    // console.log(optionFilter[optNum1], 83)
-
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        nextOptions && nextOptions.map((option) => {
+   
+               
+        
+        // ----------------------------------------------------------------------------------
+        // function questionOptionMatch() {
+        //     listOptions.forEach(option => {
+        //         // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend
+        //         if (parseInt(option.numberOption) === parseInt(nextQuestion.numberQuestion)) {
+        //             setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
+        //             setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
+        
+        //         } else if (parseInt(option.numberOption) !== parseInt(nextQuestion.numberQuestion)) {
+        //             listOptions.forEach(option => {
+            //                 listQuestions.forEach(question => {
+        //                     if (option.numberOption === question.numberQuestion) {                                
+        //                         setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
+        //                         setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
+                                
+        //                         setNextQuestion(question)
+                                
+        //                     }
 
-            // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend
-            if (parseInt(option.numberOption) === parseInt(nextQuestions.numberQuestion)) {
-                setOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
-                setOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção atual
+        //                 })
+        //             })
+        
+        //         }
+        
+        //     })    
 
-            } 
-                
-            return null
+        // }
+        
+        // questionOptionMatch()
+        // ------------------------------------------------------------------------------------
+        
+        
+        
+        if (!listQuestions || !nextQuestion || !listOptions) return;
+
+        function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
+            let matchedOption = null;
+            let matchedQuestion = null;
+
+            // tenta corresponder diretamente com a questão atual
+            matchedOption = listOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
+                return Number(option.numberOption) === Number(nextQuestion.numberQuestion)
+
+            })
             
-        })
+            // Se não encontrou, tenta corresponder via lista de questões
+            if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
+                listOptions.forEach(option => {
+                    matchedQuestion = listQuestions.find(question => {
+                        return question.numberQuestion === option.numberOption // procura uma questão que tenha uma opção correspondente
 
-    }, [nextOptions, randomIndex, setOptionMap, nextQuestions])
+                    })
+
+                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
+                        matchedOption = option;
+                        
+                    } else if (!matchedQuestion) { // se ainda não encontrar uma questão com opção correspondente, procura uma nova questão e opção correspondentes
+                        listQuestions.forEach(question => {
+                            matchedOption = listOptions.find(option => {
+                                return option.numberOption === question.numberQuestion // procura uma opção que tenha uma questão correspondente
+
+                            })
+                            matchedQuestion = question; // ao encontrar uma questão e opção correspondentes, capturar e mostra na tela
+
+                        })
+                    }
+                })
+
+                setNextQuestion(matchedQuestion) // atualizando a questão
+
+            } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
+                // atualizando a opção
+                setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
+                setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+
+            }
+
+        }        
+        
+        questionOptionMatch()
+
+    }, [listOptions, nextQuestion, listQuestions])
 
     useEffect(() => {
         // colocando em outro useEffect a variável 'optionMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setOptionMap'
@@ -101,7 +192,7 @@ function Options({
         <div 
         className={styles.optionsMain}  
         id='option' 
-        key={nextOptions && nextOptions.id}
+        key={listOptions && listOptions.id}
         >
             <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
                 <input

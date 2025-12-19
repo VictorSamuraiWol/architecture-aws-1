@@ -9,8 +9,8 @@ import { DataContext } from '../../Components/DataContext';
 function PageMulti() {
     
     const [listMultiQuestions, setListMultiQuestions] = useState([]);
-    const [multiQuestions, setMultiQuestions] = useState([]);
-    const [multiOptions, setMultiOptions] = useState([]);
+    const [multiQuestion, setMultiQuestion] = useState([]);
+    const [listMultiOptions, setListMultiOptions] = useState([]);
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
@@ -23,29 +23,55 @@ function PageMulti() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-    useEffect(() => {
 
-        if (listMultiQuestionsContext) {
 
-            // toda a lista de questões da página multi
-            setListMultiQuestions(listMultiQuestionsContext)       
+// -----------------------------------------------------------------------
+    // useEffect(() => {
+    //     if (listMultiQuestionsContext) {
+
+    //         // toda a lista de questões da página multi
+    //         setListMultiQuestions(listMultiQuestionsContext)       
         
-            // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
-            setRequestData(true)
+    //         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
+    //         setRequestData(true)
 
-            if (listMultiQuestionsContextLength) {
-                // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                const random = uniqueRandomMulti(listMultiQuestionsContextLength) 
-                setRandomIndexMulti(random)  
-                setMultiQuestions(listMultiQuestionsContext[random])                
-            }
+    //         if (listMultiQuestionsContextLength) {
+    //             // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+    //             const random = uniqueRandomMulti(listMultiQuestionsContextLength) 
+    //             setRandomIndexMulti(random)  
+    //             setMultiQuestion(listMultiQuestionsContext[random])                
+    //         }
 
-            // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
-            setActivePageFormsQuestionsOptions(false)
+    //         // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+    //         setActivePageFormsQuestionsOptions(false)
 
-        }
+    //     }
 
-    }, [ listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
+    // }, [ listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
+// -----------------------------------------------------------------------
+
+
+
+    useEffect(() => {
+        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return;
+
+        // toda a lista de questões da página multi
+        setListMultiQuestions(listMultiQuestionsContext)       
+    
+        // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
+        setRequestData(true)
+
+        // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+        setActivePageFormsQuestionsOptions(false)
+        
+        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+        const random = uniqueRandomMulti(listMultiQuestionsContextLength)
+        const next = listMultiQuestionsContext[random]
+
+        setRandomIndexMulti(random); 
+        setMultiQuestion(next);           
+
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMulti(dataLength) {
@@ -66,26 +92,26 @@ function PageMulti() {
             {requestData && <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
-                key={multiQuestions.id}
+                key={multiQuestion.id}
             >
-                {multiQuestions &&
+                {multiQuestion &&
                     <Header 
                         title="Architecture Questions - Randomly"
 
                     />
                 }
 
-                {multiQuestions &&
+                {multiQuestion &&
                     <MultiMain 
-                        question={multiQuestions.question} 
-                        answer={multiQuestions.answer}
-                        answerText={multiQuestions.answerText}
-                        srcImg={multiQuestions.srcImg}
-                        descriptionP={multiQuestions.descriptionP}
-                        elementId={multiQuestions.id}
-                        numberQuestion={multiQuestions.numberQuestion}
-                        multiOptions={multiOptions}
-                        setMultiOptions={setMultiOptions}
+                        question={multiQuestion.question} 
+                        answer={multiQuestion.answer}
+                        answerText={multiQuestion.answerText}
+                        srcImg={multiQuestion.srcImg}
+                        descriptionP={multiQuestion.descriptionP}
+                        elementId={multiQuestion.id}
+                        numberQuestion={multiQuestion.numberQuestion}
+                        listMultiOptions={listMultiOptions}
+                        setListMultiOptions={setListMultiOptions}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
@@ -94,8 +120,9 @@ function PageMulti() {
                         optionInvalidate={optionInvalidate}
                         randomIndexMulti={randomIndexMulti}
                         uniqueRandomMulti={uniqueRandomMulti}
-                        multiQuestions={multiQuestions}
-                        setMultiQuestions={setMultiQuestions}
+                        multiQuestion={multiQuestion}
+                        setMultiQuestion={setMultiQuestion}
+                        listMultiQuestions={listMultiQuestions}
 
                     />
                 }

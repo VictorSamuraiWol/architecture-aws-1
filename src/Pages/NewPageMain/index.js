@@ -13,38 +13,66 @@ function NewPageMain() {
     const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
     const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
     const [listQuestions, setListQuestions] = useState([]);
-    const [nextQuestions, setNextQuestions] = useState('');
+    const [nextQuestion, setNextQuestion] = useState('');
+    const [listOptions, setListOptions] = useState('');
     const [randomIndex, setRandomIndex] = useState('');
-    const [nextOptions, setNextOptions] = useState('');
-    
+  
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();    
+    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
+
+
+
+// ---------------------------------------------------------------------------------
+    // useEffect(() => {
+
+    //     if (listUnicQuestionsContext) {
+    //         // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
+    //         setListQuestions(listUnicQuestionsContext)
+
+    //         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
+    //         setRequestData(true)
+
+    //         if (listUnicQuestionsContextLength) {
+    //             // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+    //             const random = uniqueRandomMain(listUnicQuestionsContextLength) 
+    //             setRandomIndex(random)  
+    //             setNextQuestion(listUnicQuestionsContext[random])
+    //             console.log('nextQuestion:', nextQuestion, 40)
+    //         }
+
+    //         // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+    //         setActivePageFormsQuestionsOptions(false)
+
+    //     }
+
+    // }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
+// -----------------------------------------------------------------------------------
+
+
 
     useEffect(() => {
+        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return;
+     
+        // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
+        setListQuestions(listUnicQuestionsContext)
 
-        if (listUnicQuestionsContext) {
-            // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
-            setListQuestions(listUnicQuestionsContext)
+        // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
+        setRequestData(true)
 
-            // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
-            setRequestData(true)
+        // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+        setActivePageFormsQuestionsOptions(false)
 
-            if (listUnicQuestionsContextLength) {
-                // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                const random = uniqueRandomMain(listUnicQuestionsContextLength) 
-                setRandomIndex(random)  
-                setNextQuestions(listUnicQuestionsContext[random])
-            }
+        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+        const random = uniqueRandomMain(listUnicQuestionsContextLength)
+        const next = listUnicQuestionsContext[random]
 
-            // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
-            setActivePageFormsQuestionsOptions(false)
+        setRandomIndex(random); 
+        setNextQuestion(next);    
 
-        }
-
-    }, [ listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMain(dataLength) {
@@ -64,23 +92,24 @@ function NewPageMain() {
             {requestData && <div 
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
-                key={nextQuestions.id}
+                key={nextQuestion.id}
             >        
-                {nextQuestions &&
+                {nextQuestion &&
                     <Header 
                         title="Architecture Questions - Randomly"
 
                     />
+                    
                 }
-
-                {nextQuestions &&
+                
+                {nextQuestion &&
                     <Main 
-                        question={nextQuestions.question}
-                        answer={nextQuestions.answer}
-                        srcImg={nextQuestions.srcImg}
-                        descriptionP={nextQuestions.descriptionP}
-                        elementId={nextQuestions.elementId}
-                        numberQuestion={nextQuestions.numberQuestion}
+                        question={nextQuestion.question}
+                        answer={nextQuestion.answer}
+                        srcImg={nextQuestion.srcImg}
+                        descriptionP={nextQuestion.descriptionP}
+                        elementId={nextQuestion.elementId}
+                        numberQuestion={nextQuestion.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
@@ -88,16 +117,16 @@ function NewPageMain() {
                         optionValidate={optionValidate}
                         optionInvalidate={optionInvalidate}
                         randomIndex={randomIndex}
-                        nextOptions={nextOptions}
-                        setNextOptions={setNextOptions}                       
+                        listOptions={listOptions}
+                        setListOptions={setListOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
                         listQuestions={listQuestions}
-                        setNextQuestions={setNextQuestions}
+                        setNextQuestion={setNextQuestion}
                         setRandomIndex={setRandomIndex}                        
-                        nextQuestions={nextQuestions}
+                        nextQuestion={nextQuestion}
                     
                     />
-                }  
+                }
 
                 {loading && <Loader />}            
 

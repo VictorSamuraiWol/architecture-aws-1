@@ -12,7 +12,7 @@ import identityAndAccessManagement from '../../../imgs/answers-imgs/Identity_and
 import dynamoDB from '../../../imgs/answers-imgs/DynamoDB.png'
 
 function Answer({ 
-    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, nextOptions, multiOptions
+    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, listOptions, listMultiOptions
 }) {
 
     // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem
@@ -65,7 +65,7 @@ function Answer({
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
-                <h3>{(nextOptions && answer) || (multiOptions && answerText)}</h3>
+                <h3>{(listOptions && answer) || (listMultiOptions && answerText)}</h3>
                 <p>Click here for more information</p>
             </div>
 

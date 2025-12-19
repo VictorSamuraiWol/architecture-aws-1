@@ -4,14 +4,14 @@ import { MdDelete } from "react-icons/md";
 import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../DataContext';
 
-function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listMultiQuestionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
   // função que deleta a questão de única escolha atual
-  async function onDeleteQuestion(nextQuestions) {
-    const url = `http://localhost:3001/questions/${nextQuestions.id}`
+  async function onDeleteQuestion(nextQuestion) {
+    const url = `http://localhost:3001/questions/${nextQuestion.id}`
 
     const options = {
         method: "DELETE",
@@ -66,8 +66,8 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
   };
 
   // função que deleta a questão de múltipla escolha atual
-  async function onDeleteQuestionMulti(multiQuestions) {
-    const url = `http://localhost:3001/multiQuestions/${multiQuestions.id}`
+  async function onDeleteQuestionMulti(multiQuestion) {
+    const url = `http://localhost:3001/multiQuestions/${multiQuestion.id}`
 
     const options = {
         method: "DELETE",
@@ -123,7 +123,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   function multiDeleteQuestionOption() {
     if (listUnicQuestionsContext?.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões de uma única escolha disponíveis
-      onDeleteQuestion(nextQuestions)
+      onDeleteQuestion(nextQuestion)
       onDeleteOption(optionMapNumberId)
     
     } else {
@@ -135,7 +135,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   function multiDeleteMultiQuestionMultiOption() {
     if (listMultiQuestionsContext?.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões de múltipla escolha disponíveis
-      onDeleteQuestionMulti(multiQuestions)
+      onDeleteQuestionMulti(multiQuestion)
       onDeleteOptionMulti(multiOptionMapNumberId)
     
     } else {
@@ -147,6 +147,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   // função para habilitar e desabilitar o Menu
   function ableDisableMenu() {
+    // usando 'operador ternário'
     ableDisableMenuTools === styles.disableMenu 
     ? setAbleDisableMenuTools(styles.menuIcons)
     : setAbleDisableMenuTools(styles.disableMenu)
@@ -166,13 +167,13 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
         className={`menuToolsSelector ${ableDisableMenuTools}`}        
       >
         <ModalMenu 
-          nextQuestions={nextQuestions} 
-          setNextQuestions={setNextQuestions} 
+          nextQuestion={nextQuestion} 
+          setNextQuestion={setNextQuestion} 
           optionMap={optionMap} 
           setOptionMap={setOptionMap} 
           optionMapNumberId={optionMapNumberId}
-          multiQuestions={multiQuestions}
-          setMultiQuestions={setMultiQuestions}
+          multiQuestion={multiQuestion}
+          setMultiQuestion={setMultiQuestion}
           multiOptionMap={multiOptionMap}
           setMultiOptionMap={setMultiOptionMap}
           multiOptionMapNumberId={multiOptionMapNumberId}
@@ -181,7 +182,7 @@ function MenuTools({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
         <div>
           <MdDelete
-            onClick={(nextQuestions !== undefined && multiDeleteQuestionOption) || (multiQuestions !== undefined && multiDeleteMultiQuestionMultiOption)}
+            onClick={(nextQuestion !== undefined && multiDeleteQuestionOption) || (multiQuestion !== undefined && multiDeleteMultiQuestionMultiOption)}
             className={styles.deleteIcon}            
           />        
 

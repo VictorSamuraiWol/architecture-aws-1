@@ -11,7 +11,7 @@ import { DataContext } from '../DataContext';
 import MenuTools from './MenuTools';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, nextOptions, setNextOptions, uniqueRandomMain, setNextQuestions, setRandomIndex, nextQuestions
+    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, listOptions, setListOptions, uniqueRandomMain, setNextQuestion, setRandomIndex, nextQuestion, listQuestions
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -50,13 +50,31 @@ function Main({
 
     };
 
-    function generateNewQuestionMain() {        
-        // chamando a função que gera número randômico
-        const random = uniqueRandomMain(listUnicQuestionsContextLength)
-        setRandomIndex(random)
+    function generateNewQuestionMain() {
 
-        // gerando novas questões
-        setNextQuestions(listUnicQuestionsContext[random])
+
+
+// --------------------------------------------------------------------      
+        // // chamando a função que gera número randômico
+        // const random = uniqueRandomMain(listUnicQuestionsContextLength)
+        // setRandomIndex(random)
+
+        // // gerando novas questões
+        // setNextQuestion(listUnicQuestionsContext[random])
+// --------------------------------------------------------------------
+
+
+
+        // chamando a função que gera número randômico
+        if (nextQuestion) {
+            // chamando a função que gera número randômico
+            const random = uniqueRandomMain(listUnicQuestionsContextLength)
+            setRandomIndex(random)
+    
+            // gerando novas questões
+            setNextQuestion(listUnicQuestionsContext[random])
+
+        }
 
     }  
 
@@ -68,8 +86,8 @@ function Main({
             />
 
             <MenuTools 
-                nextQuestions={nextQuestions} 
-                setNextQuestions={setNextQuestions} 
+                nextQuestion={nextQuestion} 
+                setNextQuestion={setNextQuestion} 
                 optionMap={optionMap} 
                 setOptionMap={setOptionMap} 
                 optionMapNumberId={optionMapNumberId}
@@ -80,8 +98,8 @@ function Main({
             <Options  
                 randomIndex={randomIndex}
                 optionColor={optionColor}
-                nextOptions={nextOptions}
-                setNextOptions={setNextOptions}        
+                listOptions={listOptions}
+                setListOptions={setListOptions}        
                 setCaptureValue={setCaptureValue}
                 optNum1={optNum1}
                 optNum2={optNum2}
@@ -95,8 +113,10 @@ function Main({
                 setOptNum5={setOptNum5}
                 optionMap={optionMap}
                 setOptionMap={setOptionMap}
-                nextQuestions={nextQuestions}
+                nextQuestion={nextQuestion}
+                setNextQuestion={setNextQuestion}
                 setOptionMapNumberId={setOptionMapNumberId}
+                listQuestions={listQuestions}
 
             />
 
@@ -108,7 +128,7 @@ function Main({
                 answer={answer}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
-                nextOptions={nextOptions}                      
+                listOptions={listOptions}                      
                 captureValue={captureValue}
                 optionColor={optionColor}
                 optNum1={optNum1}
@@ -130,7 +150,7 @@ function Main({
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                nextOptions={nextOptions}
+                listOptions={listOptions}
                 
             />
 

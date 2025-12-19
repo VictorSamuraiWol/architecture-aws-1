@@ -9,13 +9,13 @@ import ButtonDefault from '../../../ButtonDefault';
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
-function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, optionMapNumberId, multiQuestions, setMultiQuestions, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function ModalMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [question, setQuestion] = useState(nextQuestions?.question);
-  const [answer, setAnswer] = useState(nextQuestions?.answer);
-  const [srcImg, setSrcImg] = useState(nextQuestions?.srcImg);
-  const [description, setDescription] = useState(nextQuestions?.descriptionP);
+  const [question, setQuestion] = useState(nextQuestion?.question);
+  const [answer, setAnswer] = useState(nextQuestion?.answer);
+  const [srcImg, setSrcImg] = useState(nextQuestion?.srcImg);
+  const [description, setDescription] = useState(nextQuestion?.descriptionP);
 
   // criando variáveis para todos os atributos das opções
   const [option1, setOption1] = useState(optionMap && optionMap[0]);
@@ -25,10 +25,10 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
   const [option5, setOption5] = useState(optionMap && optionMap[4]);
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
-  const [questionMulti, setQuestionMulti] = useState(multiQuestions?.question);
-  const [answerMulti, setAnswerMulti] = useState(multiQuestions?.answerText);
-  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestions?.srcImg);
-  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestions?.descriptionP);
+  const [questionMulti, setQuestionMulti] = useState(multiQuestion?.question);
+  const [answerMulti, setAnswerMulti] = useState(multiQuestion?.answerText);
+  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestion?.srcImg);
+  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP);
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
   const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0]);
@@ -71,10 +71,10 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           answer: answer,
           srcImg: srcImg,
           descriptionP: description,
-          numberQuestion: nextQuestions.numberQuestion, // não será alterado
-          id: nextQuestions.id // não será alterado
+          numberQuestion: nextQuestion.numberQuestion, // não será alterado
+          id: nextQuestion.id // não será alterado
       })
-      await fetch(`http://localhost:3001/questions/${nextQuestions.id}`, {
+      await fetch(`http://localhost:3001/questions/${nextQuestion.id}`, {
           method: 'PUT',
           headers: {
               "Content-Type": "application/json"
@@ -126,10 +126,10 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           answerText: answerMulti,
           srcImg: srcImgMulti,
           descriptionP: descriptionMulti,
-          numberQuestion: multiQuestions.numberQuestion, // não será alterado
-          id: multiQuestions.id // não será alterado
+          numberQuestion: multiQuestion.numberQuestion, // não será alterado
+          id: multiQuestion.id // não será alterado
       })
-      await fetch(`http://localhost:3001/multiQuestions/${multiQuestions.id}`, {
+      await fetch(`http://localhost:3001/multiQuestions/${multiQuestion.id}`, {
           method: 'PUT',
           headers: {
               "Content-Type": "application/json"
@@ -290,7 +290,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
   // função que limpa todos os campos do formulário
   function cleanForm() {
-    if (nextQuestions && optionMap) {
+    if (nextQuestion && optionMap) {
       setQuestion('')
       setAnswer('')
       setSrcImg('')
@@ -303,7 +303,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
 
     }
 
-    if (multiQuestions && multiOptionMap) {
+    if (multiQuestion && multiOptionMap) {
       setQuestionMulti('')
       setAnswerMulti('')
       setSrcImgMulti('')
@@ -347,7 +347,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
           className={styles.modalImageDelete} 
       />      
 
-      {nextQuestions && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
+      {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
         onSubmit={multiFunctionsNewPageMain}
         className={styles.formModal}
       > 
@@ -434,7 +434,7 @@ function ModalMenu({ nextQuestions, setNextQuestions, optionMap, setOptionMap, o
       
       </form>}
 
-      {multiQuestions && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
+      {multiQuestion && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
         onSubmit={multiFunctionsPageMulti}
         className={styles.formModal}
       > 

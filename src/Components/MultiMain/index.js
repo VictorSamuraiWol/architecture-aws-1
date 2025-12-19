@@ -10,7 +10,7 @@ import ModalResults from '../ModalResults';
 import MenuTools from '../Main/MenuTools';
 
 function MultiMain({ 
-    question, multiOptions, setMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti, multiQuestions, setMultiQuestions
+    question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
 }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
@@ -30,8 +30,8 @@ function MultiMain({
             />
 
             <MenuTools 
-                multiQuestions={multiQuestions} 
-                setMultiQuestions={setMultiQuestions} 
+                multiQuestion={multiQuestion} 
+                setMultiQuestion={setMultiQuestion} 
                 multiOptionMap={multiOptionMap} 
                 setMultiOptionMap={setMultiOptionMap}
                 multiOptionMapNumberId={multiOptionMapNumberId}
@@ -39,16 +39,18 @@ function MultiMain({
             />
 
             <MultiOptions
-                multiOptions={multiOptions}
-                setMultiOptions={setMultiOptions}
+                listMultiOptions={listMultiOptions}
+                setListMultiOptions={setListMultiOptions}
                 optionColorMulti={optionColorMulti}
                 setCaptureValueMulti={setCaptureValueMulti}
                 randomIndexMulti={randomIndexMulti}
                 captureValueMulti={captureValueMulti}
                 multiOptionMap={multiOptionMap}
                 setMultiOptionMap={setMultiOptionMap}
-                multiQuestions={multiQuestions}
+                multiQuestion={multiQuestion}
+                setMultiQuestion={setMultiQuestion}
                 setMultiOptionMapNumberId={setMultiOptionMapNumberId}
+                listMultiQuestions={listMultiQuestions}
 
             />
             
@@ -61,8 +63,8 @@ function MultiMain({
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
                 optionColorMulti={optionColorMulti}
-                multiOptions={multiOptions}
-                setMultiOptions={setMultiOptions}
+                listMultiOptions={listMultiOptions}
+                setListMultiOptions={setListMultiOptions}
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
                 multiOptionMap={multiOptionMap}
@@ -79,7 +81,7 @@ function MultiMain({
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                multiOptions={multiOptions}
+                listMultiOptions={listMultiOptions}
                 
             />
 

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../DataContext';
 
 function MultiOptions({ 
-    multiOptions, setMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap, multiQuestions, setMultiOptionMapNumberId
+    listMultiOptions, setListMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap, multiQuestion, setMultiQuestion, setMultiOptionMapNumberId, listMultiQuestions
 }) {
 
     const [optNum1, setOptNum1] = useState('');
@@ -11,33 +11,59 @@ function MultiOptions({
     const [optNum3, setOptNum3] = useState('');
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
-    const [listNumRandom, setListNumRandom] = useState([]);
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiOptionsContext } = useContext(DataContext)
 
-    useEffect(() => {
 
-        if (listMultiOptionsContext) {
-        
-            setMultiOptions(listMultiOptionsContext)
 
-            // gerando um número para randomizar toda vez que renderizar
-            while (listNumRandom && listNumRandom.length < 5) {
-                const random = Math.floor(Math.random() * 5);
-                if (!listNumRandom.includes(random)) {
-                    listNumRandom.push(random)
-                    setOptNum1(listNumRandom[0])
-                    setOptNum2(listNumRandom[1])
-                    setOptNum3(listNumRandom[2])
-                    setOptNum4(listNumRandom[3])
-                    setOptNum5(listNumRandom[4])
-                }                    
-            }
+// -------------------------------------------------------------------
+    // useEffect(() => {
+    //     if (listMultiOptionsContext) {
         
-        }                      
+    //         setListMultiOptions(listMultiOptionsContext)
+
+    //         // gerando um número para randomizar toda vez que renderizar
+    //         while (listNumRandom && listNumRandom.length < 5) {
+    //             const random = Math.floor(Math.random() * 5);
+    //             if (!listNumRandom.includes(random)) {
+    //                 listNumRandom.push(random)
+    //                 setOptNum1(listNumRandom[0])
+    //                 setOptNum2(listNumRandom[1])
+    //                 setOptNum3(listNumRandom[2])
+    //                 setOptNum4(listNumRandom[3])
+    //                 setOptNum5(listNumRandom[4])
+    //             }                    
+    //         }
+        
+    //     }                      
     
-    }, [ listMultiOptionsContext, setMultiOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
+    // }, [ listMultiOptionsContext, setListMultiOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, listNumRandom ]);
+// -------------------------------------------------------------------
+
+
+
+    useEffect(() => {
+        if (!listMultiOptionsContext) return;
+        
+        setListMultiOptions(listMultiOptionsContext)
+
+        const randomNumbers = []; // armazena a lista de números randômicos
+        // gerando um número para randomizar toda vez que renderizar
+        while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
+            const random = Math.floor(Math.random() * 5);
+            if (!randomNumbers.includes(random)) {
+                randomNumbers.push(random)
+            }                    
+        }
+            
+        setOptNum1(randomNumbers[0])
+        setOptNum2(randomNumbers[1])
+        setOptNum3(randomNumbers[2])
+        setOptNum4(randomNumbers[3])
+        setOptNum5(randomNumbers[4])
+    
+    }, [listMultiOptionsContext]);
 
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
@@ -60,29 +86,88 @@ function MultiOptions({
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
 
         } else {
-            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)" do componente multiOptions, verificar na l.67 ou próximo.')
+            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)" do componente listMultiOptions, verificar na l.67 ou próximo.')
 
         }
         
     }
 
-    useEffect(() => {
 
+
+// ----------------------------------------------------------------------
+    // useEffect(() => {
+
+    //     // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
+    //     listMultiOptions && listMultiOptions.map((option) => {
+
+    //         // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend          
+    //         if (parseInt(option.numberOption) === parseInt(multiQuestion.numberQuestion)) {
+    //             setMultiOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
+    //             setMultiOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção de múltipla escolha atual
+
+    //         }
+
+    //         return null
+       
+    //     }) 
+        
+    // }, [listMultiOptions, randomIndexMulti, setMultiOptionMap, multiQuestion])
+// ----------------------------------------------------------------------
+
+
+
+    useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-        multiOptions && multiOptions.map((option) => {
 
-            // a possibilidade será acionada se os números corresponderem, mesmo que a posição da questão e da opção sejam diferentes no backend          
-            if (parseInt(option.numberOption) === parseInt(multiQuestions.numberQuestion)) {
-                setMultiOptionMap([option.option1, option.option2, option.option3, option.option4, option.option5])
-                setMultiOptionMapNumberId([option.numberOption, option.id]) // capturar o número e o id da opção de múltipla escolha atual
+        if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return;
+
+        function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
+            let matchedOption = null;
+            let matchedQuestion = null;
+
+            // tenta corresponder diretamente com a questão atual
+            matchedOption = listMultiOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
+                return Number(option.numberOption) === Number(multiQuestion.numberQuestion)
+
+            })
+     
+            // Se não encontrou, tenta corresponder via lista de questões
+            if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
+                listMultiOptions.forEach(option => {
+                    matchedQuestion = listMultiQuestions.find(question => {
+                        return question.numberQuestion === option.numberOption // procura uma questão que tenha uma opção correspondente
+
+                    })
+
+                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
+                        matchedOption = option;
+                        setMultiQuestion(matchedQuestion)
+                        
+                    } else if (!matchedQuestion) { // se ainda não encontrar uma questão com opção correspondente, procura uma nova questão e opção correspondentes
+                        listMultiQuestions.forEach(question => {
+                            matchedOption = listMultiOptions.find(option => {
+                                return option.numberOption === question.numberQuestion // procura uma opção que tenha uma questão correspondente
+
+                            })
+                            matchedQuestion = question; // ao encontrar uma questão e opção correspondentes, capturar e mostra na tela
+
+                        })
+                    }
+                
+                })
+
+            } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
+                // atualizando a opção
+                setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
+                setMultiOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
 
             }
 
-            return null
-       
-        }) 
+        }        
         
-    }, [multiOptions, randomIndexMulti, setMultiOptionMap, multiQuestions])
+        questionMultiOptionMatch()
+
+    }, [listMultiOptions, multiQuestion, listMultiQuestions])
 
     useEffect(() => {
 
