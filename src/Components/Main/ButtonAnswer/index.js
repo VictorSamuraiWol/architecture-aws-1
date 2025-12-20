@@ -92,14 +92,14 @@ function ButtonAnswer({
         } else {
 
             for(let i=0; i < convertObjArray.length; i++) {
-                if (optionMap && `${convertObjArray[i]}`.includes(`${answer}`) && captureValue !== '') {
+                if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
-                    // adicionando a validação
+                    // adicionando a validação na opção correta
                     const correctOption = document.querySelectorAll('.optionNext')[i];
                     correctOption.classList.add(optionValidate)
                     correctOption.classList.remove(optionColor)
 
-                    // adicionando a invalidação
+                    // adicionando a invalidação nas opções incorretas
                     if (i !== parseInt(captureValue) && captureValue !== '') {
                         const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
 
@@ -153,9 +153,8 @@ function ButtonAnswer({
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
         const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
     
-        if(questionAnswer === true) {
-            // para manter a resposta sempre visível
-            answerDisplay && setAnswerDisplay(styles.visibleAnswer)
+        if(questionAnswer === true) {           
+            answerDisplay && setAnswerDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
             
             // alerta avisando para passar para a próxima questão
             alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
@@ -168,25 +167,21 @@ function ButtonAnswer({
             const checkedValuesP = [...captureOptionsNextMultiP]
             for(let i=0; i<checkedValues.length; i++) { 
 
-                if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) {
+                if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
 
                     captureOptionsNextMulti[checkedValues[i]].classList.add(optionValidate)
                     captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
 
-                    if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {
-                        // som só irá tocar quando estiver tudo correto
-                        validateSound === true && correctSound.play();
-
-                        // questionAnswer se torna true ao responder
-                        setQuestionAnswer(true)
-
-                        // questionAnswerButtonNext se torna true ao responder
-                        setQuestionAnswerButtonNextMulti(true)
+                    if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {   
+                        validateSound === true && correctSound.play(); // som só irá tocar quando estiver tudo correto
+                       
+                        setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                       
+                        setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
 
                         setNumCorrectOption(numCorrectOption + 1)
-
-                        // função da animação fogos de artifício
-                        handleAnswer(true)
+                      
+                        handleAnswer(true) // função da animação fogos de artifício
 
                     }
 
@@ -201,12 +196,10 @@ function ButtonAnswer({
                             captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
                         }
                     }            
-                    validateSound === true && errorSound.play();
-                    // questionAnswer se torna true ao responder
-                    setQuestionAnswer(true)
-
-                    // questionAnswerButtonNext se torna true ao responder
-                    setQuestionAnswerButtonNextMulti(true)
+                    validateSound === true && errorSound.play();                    
+                    setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                   
+                    setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
 
                     setNumIncorrectOption(numIncorrectOption + 1)
 

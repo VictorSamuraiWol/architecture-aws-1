@@ -75,7 +75,7 @@
 }
 
 .answerBoolClass {
-    opacity: 0;
+    opacity: 0; /* deixar invisíveis as palavras 'true' que estão em 2 das 5 opções mostradas */
 }
 
 /* Responsividade */

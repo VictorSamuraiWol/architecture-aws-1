@@ -155,9 +155,7 @@ function MultiOptions({
                     {multiOptionMap[optNum1]}
 
                     <span className={styles.answerBoolClass} id='answerBool1'>
-
-                        {(optNum1 === 0 || optNum1 === 1) && 'true'}
-
+                        {(optNum1 === 0 || optNum1 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
             </div>
@@ -176,12 +174,8 @@ function MultiOptions({
 
                     {multiOptionMap[optNum2]}
 
-                    <span 
-                        className={styles.answerBoolClass} id='answerBool2'
-                    >
-
-                        {(optNum2 === 0 || optNum2 === 1) && 'true'}
-
+                    <span className={styles.answerBoolClass} id='answerBool2'>
+                        {(optNum2 === 0 || optNum2 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
             </div>
@@ -200,12 +194,8 @@ function MultiOptions({
 
                     {multiOptionMap[optNum3]}
 
-                    <span 
-                        className={styles.answerBoolClass} id='answerBool3'
-                    >
-
-                        {(optNum3 === 0 || optNum3 === 1) && 'true'}
-
+                    <span className={styles.answerBoolClass} id='answerBool3'>
+                        {(optNum3 === 0 || optNum3 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
             </div>
@@ -224,12 +214,8 @@ function MultiOptions({
                    
                     {multiOptionMap[optNum4]}
 
-                    <span 
-                        className={styles.answerBoolClass} id='answerBool4'
-                    >
-
-                        {(optNum4 === 0 || optNum4 === 1) && 'true'}
-
+                    <span className={styles.answerBoolClass} id='answerBool4'>
+                        {(optNum4 === 0 || optNum4 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
             </div>
@@ -248,12 +234,8 @@ function MultiOptions({
                  
                     {multiOptionMap[optNum5]}
                     
-                    <span 
-                        className={styles.answerBoolClass} id='answerBool5'
-                    >
-
-                        {(optNum5 === 0 || optNum5 === 1) && 'true'}
-
+                    <span className={styles.answerBoolClass} id='answerBool5'>
+                        {(optNum5 === 0 || optNum5 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
             </div>
