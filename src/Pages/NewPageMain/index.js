@@ -24,7 +24,7 @@ function NewPageMain() {
     const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
 
     useEffect(() => {
-        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return;
+        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, não faça nada e saia do useEffect 
      
         // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
         setListQuestions(listUnicQuestionsContext)
@@ -63,6 +63,7 @@ function NewPageMain() {
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
                 key={nextQuestion.id}
+
             >        
                 {nextQuestion &&
                     <Header 
@@ -78,7 +79,7 @@ function NewPageMain() {
                         answer={nextQuestion.answer}
                         srcImg={nextQuestion.srcImg}
                         descriptionP={nextQuestion.descriptionP}
-                        elementId={nextQuestion.elementId}
+                        elementId={nextQuestion.id}
                         numberQuestion={nextQuestion.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}

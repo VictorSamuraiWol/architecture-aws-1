@@ -7,13 +7,13 @@ export const DataContext = createContext()
 export default function DataProvider({ children }) {
     
     //colocando todas as variáveis que precisam utilizar os dados do backend neste contexto, podendo utilizar todas as variáveis em qualquer lugar do projeto através do 'useContext' 
-    const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState();
-    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState();
-    const [listUnicOptionsContext, setListUnicOptionsContext] = useState()
+    const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState([]);
+    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState('');
+    const [listUnicOptionsContext, setListUnicOptionsContext] = useState([])
 
-    const [listMultiQuestionsContext, setListMultiQuestionsContext] = useState()
-    const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState()
-    const [listMultiOptionsContext, setListMultiOptionsContext] = useState()
+    const [listMultiQuestionsContext, setListMultiQuestionsContext] = useState([])
+    const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState('')
+    const [listMultiOptionsContext, setListMultiOptionsContext] = useState([])
 
     const [loading, setLoading] = useState(true)
 
@@ -26,7 +26,6 @@ export default function DataProvider({ children }) {
     const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
 
     useEffect(() => {
-
         const fetchData1 = async () => {
             try {
 
@@ -176,7 +175,7 @@ export default function DataProvider({ children }) {
         fetchData4()
 
     }, [postApi, updateList, deleteApi])
- 
+
     return (        
         <DataContext.Provider
             value={{

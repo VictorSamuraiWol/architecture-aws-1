@@ -1,4 +1,4 @@
-import styles from './ModalMenu.module.css';
+import styles from './ModalEditMenu.module.css';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { MdEditSquare } from "react-icons/md";
@@ -9,7 +9,8 @@ import ButtonDefault from '../../../ButtonDefault';
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
-function ModalMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
+  multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // criando variáveis para todos os atributos das questões
   const [question, setQuestion] = useState(nextQuestion?.question);
@@ -527,4 +528,4 @@ function ModalMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   )
 }
 
-export default ModalMenu;
+export default ModalEditMenu;

@@ -46,11 +46,11 @@
 }
 
 .correct {
-    color: darkgreen;
+    color: var(--color-correct);
 }
 
 .incorrect {
-    color: darkred
+    color: var(--color-incorrect);
 }
 
 .modalContent h1 {

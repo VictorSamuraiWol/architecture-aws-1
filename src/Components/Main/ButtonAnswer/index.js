@@ -7,7 +7,9 @@ import ButtonDefault from '../../ButtonDefault';
 import Animation from '../../Animation';
 
 function ButtonAnswer({ 
-    answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap
+    answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, 
+    optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, 
+    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap
 }) {
     
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
@@ -33,36 +35,37 @@ function ButtonAnswer({
 
     }
 
-    function cleanOptions() {        
-        const wrongOptionNextClean = document.querySelectorAll('.optionNext');
-        const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
+    // function cleanOptions() {        
+    //     const wrongOptionNextClean = document.querySelectorAll('.optionNext');
+    //     const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
 
-        // limpar a estilização de respostas erradas das opções desmarcadas da página main
-        if (optionMap) {
-            for(let w=0; w < optionMap.length; w++) {
-                if (optionMap && wrongOptionNextClean[w]?.classList.contains(optionInvalidate) && (w !== parseInt(captureValue))) {
-                    wrongOptionNextClean[w].classList.remove(optionInvalidate)
-                    wrongOptionNextClean[w].classList.add(optionColor)
-                }
-            }
-        }
+    //     // se necessário, limpar a estilização das respostas erradas das outras opções desmarcadas da página main 
+    //     if (optionMap) {
+    //         for(let w=0; w < optionMap.length; w++) {
+    //             if (optionMap && wrongOptionNextClean[w]?.classList.contains(optionInvalidate) && (w !== Number(captureValue))) {
+    //                 wrongOptionNextClean[w].classList.remove(optionInvalidate)
+    //                 wrongOptionNextClean[w].classList.add(optionColor)
 
-        // limpar a estilização de respostas erradas das opções desmarcadas da página multi
-        if (multiOptionMap) {
-            for(let z=0; z < multiOptionMap.length; z++) {
-                if (multiOptionMap && wrongOptionNextMultiClean[z]?.classList.contains(optionInvalidate) && (z !== parseInt(captureValueMulti.sort()[0])) && (z !== parseInt(captureValueMulti.sort()[1]))) {
-                    wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
-                    wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
-                }
-            }
-        }
+    //             }
+    //         }
+    //     }
 
-    }
+    //     // limpar a estilização das respostas erradas das outras opções desmarcadas da página multi
+    //     if (multiOptionMap) {
+    //         for(let z=0; z < multiOptionMap.length; z++) {
+    //             if (multiOptionMap && wrongOptionNextMultiClean[z]?.classList.contains(optionInvalidate) && (z !== Number(captureValueMulti.sort()[0])) && (z !== Number(captureValueMulti.sort()[1]))) {
+    //                 wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
+    //                 wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
 
-    function alertOption() {
-        if (captureValue === '') {
-            // alertar quando os campos estiverem vazios
-            alert('Por favor, selecione alguma opção!')
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    function alertOption() { 
+        if (captureValue === '') {            
+            alert('Por favor, selecione alguma opção!') // alertar quando os campos estiverem vazios
             answerDisplay && setAnswerDisplay(styles.invisible)
         }
 
@@ -100,37 +103,31 @@ function ButtonAnswer({
                     correctOption.classList.remove(optionColor)
 
                     // adicionando a invalidação nas opções incorretas
-                    if (i !== parseInt(captureValue) && captureValue !== '') {
-                        const wrongOptionNext = document.querySelectorAll('.optionNext')[parseInt(captureValue)];
+                    if (i !== Number(captureValue) && captureValue !== '') {
+                        const wrongOptionNext = document.querySelectorAll('.optionNext')[Number(captureValue)];
 
                         wrongOptionNext.classList.add(optionInvalidate)
                         wrongOptionNext.classList.remove(optionColor)
-
-                        // play error audio
-                        validateSound === true && errorSound.play(); 
-
-                        // questionAnswer se torna true ao responder
-                        setQuestionAnswer(true)
-
-                        // questionAnswerButtonNextMain se torna true ao responder
-                        setQuestionAnswerButtonNextMain(true)
+                        
+                        validateSound === true && errorSound.play(); // play error audio
+                        
+                        setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                        
+                        setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNextMain se torna true ao responder
 
                         setNumIncorrectOption(numIncorrectOption + 1)
 
                     } else {
-                        // play correct audio
-                        validateSound === true && correctSound.play();
-
-                        // questionAnswer se torna true ao responder
-                        setQuestionAnswer(true)
-
-                        // questionAnswerButtonNext se torna true ao responder
-                        setQuestionAnswerButtonNextMain(true)
+                        
+                        validateSound === true && correctSound.play(); // play correct audio
+                        
+                        setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                        
+                        setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNext se torna true ao responder
 
                         setNumCorrectOption(numCorrectOption + 1)
-
-                        // função da animação fogos de artifício
-                        handleAnswer(true)
+                        
+                        handleAnswer(true) // função da animação fogos de artifício
 
                     }
                 }
@@ -139,9 +136,8 @@ function ButtonAnswer({
         }
 
         alertOption()
-
-        // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
-        questionAnswer === false && cleanOptions()
+        
+        // questionAnswer === false && cleanOptions() // para a função ser chamada se for a primeira vez que marcou as opções
 
     }
 
@@ -216,8 +212,7 @@ function ButtonAnswer({
 
         }
 
-        // para a função limpar as opções ser chamada se for a primeira vez que marcou as opções
-        questionAnswer === false && cleanOptions()
+        // questionAnswer === false && cleanOptions() // para a função ser chamada se for a primeira vez que marcou as opções
    
     }
 

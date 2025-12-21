@@ -4,7 +4,9 @@ import DetailsFieldsForms from '../../../DetailsFieldsForms'
 import { v4 as uuidv4 } from 'uuid';
 
 function FieldQuestionOption({ 
-    nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4
+    nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, 
+    readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, 
+    valueForm3, setValueForm3, valueForm4, setValueForm4
 
 }) {
 
@@ -149,7 +151,7 @@ function FieldQuestionOption({
 
         }  
  
-    }, [formsTitlesTarget, labelTarget, readyToCleanAll, setReadyToCleanAll, newValue, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
+    }, [formsTitlesTarget, labelTarget, readyToCleanAll, newValue, valueForm1, valueForm2, valueForm3, valueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
 
     return(
         <div className={styles.field}>

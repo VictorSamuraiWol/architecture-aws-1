@@ -3,7 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../DataContext';
 
 function MultiOptions({ 
-    listMultiOptions, setListMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, multiOptionMap, setMultiOptionMap, multiQuestion, setMultiQuestion, setMultiOptionMapNumberId, listMultiQuestions
+    listMultiOptions, setListMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, 
+    multiOptionMap, setMultiOptionMap, multiQuestion, setMultiQuestion, setMultiOptionMapNumberId, listMultiQuestions
 }) {
 
     const [optNum1, setOptNum1] = useState('');
@@ -16,7 +17,7 @@ function MultiOptions({
     const { listMultiOptionsContext } = useContext(DataContext)
 
     useEffect(() => {
-        if (!listMultiOptionsContext) return;
+        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return; // se a lista de opções não existir, não faça nada e saia do useEffect 
         
         setListMultiOptions(listMultiOptionsContext)
 
@@ -76,7 +77,7 @@ function MultiOptions({
 
             // tenta corresponder diretamente com a questão atual
             matchedOption = listMultiOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
-                return Number(option.numberOption) === Number(multiQuestion.numberQuestion)
+                return option.numberOption === multiQuestion.numberQuestion
 
             })
      

@@ -24,7 +24,7 @@ function PageMulti() {
     const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
     useEffect(() => {
-        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return;
+        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return; // se a lista de questões não existir, não faça nada e saia do useEffect 
 
         // toda a lista de questões da página multi
         setListMultiQuestions(listMultiQuestionsContext)       

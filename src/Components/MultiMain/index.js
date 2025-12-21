@@ -10,7 +10,9 @@ import ModalResults from '../ModalResults';
 import MenuTools from '../Main/MenuTools';
 
 function MultiMain({ 
-    question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
+    question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, 
+    numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, 
+    optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
 }) {
 
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
@@ -29,7 +31,7 @@ function MultiMain({
             
             />
 
-            <MenuTools 
+            <MenuTools
                 multiQuestion={multiQuestion} 
                 setMultiQuestion={setMultiQuestion} 
                 multiOptionMap={multiOptionMap} 

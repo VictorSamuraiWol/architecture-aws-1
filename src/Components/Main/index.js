@@ -11,7 +11,9 @@ import { DataContext } from '../DataContext';
 import MenuTools from './MenuTools';
 
 function Main({ 
-    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, listOptions, setListOptions, uniqueRandomMain, setNextQuestion, setRandomIndex, nextQuestion, listQuestions
+    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
+    setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, listOptions, 
+    setListOptions, uniqueRandomMain, setNextQuestion, setRandomIndex, nextQuestion, listQuestions
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'

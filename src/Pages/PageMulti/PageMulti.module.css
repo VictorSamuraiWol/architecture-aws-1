@@ -23,6 +23,6 @@
 }
 
 .optionInvalidate {
-    color: #B71C1C; /* Tom mais escuro e forte */
+    color: var(--color-incorrect);
     font-weight: bold;
 }

@@ -744,7 +744,7 @@ function FormsNewQuestionsOptionsPage() {
 
         }, 1000)
 
-    }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi])
+    }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList])
 
     return(
         <div className={styles.formsNewQuestionsOptions}>            

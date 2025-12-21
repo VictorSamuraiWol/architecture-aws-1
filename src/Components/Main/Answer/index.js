@@ -12,11 +12,11 @@ import identityAndAccessManagement from '../../../imgs/answers-imgs/Identity_and
 import dynamoDB from '../../../imgs/answers-imgs/DynamoDB.png'
 
 function Answer({ 
-    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, listOptions, listMultiOptions
+    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
+    listOptions, listMultiOptions
 }) {
 
-    // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem
-    // usadas nas suas respectivas questões dinamicamente
+    // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem usadas nas suas respectivas questões dinamicamente
     const [imagesDescriptions, setImagesDescriptions] = useState({
         storageGateway: storageGateway,
         simpleStoragesService: simpleStoragesService,

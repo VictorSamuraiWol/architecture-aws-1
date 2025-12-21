@@ -10,4 +10,8 @@ body {
   --color-second: #8C6A5D;
   --color-third: #5F374B;
   --color-fourth: #430A5D;
+
+  --color-correct: #4CAF50; /* tom verde vibrante */
+  --color-incorrect: #B71C1C; /* tom vermelho mais escuro e forte */;
+
 }

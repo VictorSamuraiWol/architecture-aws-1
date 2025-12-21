@@ -1,17 +1,18 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import styles from './Options.module.css';
 import { DataContext } from '../../DataContext';
-import { TfiControlShuffle } from 'react-icons/tfi';
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, listOptions, setListOptions, optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, optionMap, setOptionMap, nextQuestion, setNextQuestion, setOptionMapNumberId, listQuestions
+    setCaptureValue, optionColor, randomIndex, listOptions, setListOptions, 
+    optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, 
+    optionMap, setOptionMap, nextQuestion, setNextQuestion, setOptionMapNumberId, listQuestions
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicOptionsContext } = useContext(DataContext)
+    const { listUnicOptionsContext } = useContext(DataContext)
 
     useEffect(() => {        
-        if (!listUnicOptionsContext) return; // se listUnicOptionsContext não existir, não faça nada e saia do useEffect 
+        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return; // se a lista de opções não existir, não faça nada e saia do useEffect
 
         // capturando toda a lista de opções da página main
         setListOptions(listUnicOptionsContext);
@@ -30,10 +31,10 @@ function Options({
         setOptNum2(randomNumbers[1]);
         setOptNum3(randomNumbers[2]);
         setOptNum4(randomNumbers[3]);
-        setOptNum5(randomNumbers[4]);     
+        setOptNum5(randomNumbers[4]);  
 
     }, [listUnicOptionsContext]);
-  
+
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValue(e) {
         listOptions && setCaptureValue(e.target.value)
@@ -61,10 +62,9 @@ function Options({
             let matchedOption = null;
             let matchedQuestion = null;
 
-            // tenta corresponder diretamente com a questão atual
+            // busca uma opção que corresponde diretamente com a questão atual
             matchedOption = listOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
-                return Number(option.numberOption) === Number(nextQuestion.numberQuestion)
-
+                return option.numberOption === nextQuestion.numberQuestion
             })
             
             // Se não encontrou, tenta corresponder via lista de questões
@@ -75,9 +75,9 @@ function Options({
 
                     })
 
-                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
+                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
                         matchedOption = option;
-                        
+
                     } else if (!matchedQuestion) { // se ainda não encontrar uma questão com opção correspondente, procura uma nova questão e opção correspondentes
                         listQuestions.forEach(question => {
                             matchedOption = listOptions.find(option => {
@@ -88,6 +88,7 @@ function Options({
 
                         })
                     }
+
                 })
 
                 setNextQuestion(matchedQuestion) // atualizando a questão

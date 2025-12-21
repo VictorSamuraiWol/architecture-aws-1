@@ -1,10 +1,11 @@
-import ModalMenu from './ModalMenu';
 import styles from './MenuTools.module.css'
 import { MdDelete } from "react-icons/md";
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { DataContext } from '../../DataContext';
+import ModalEditMenu from './ModalEditMenu';
 
-function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
+  multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listMultiQuestionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
@@ -166,7 +167,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
       <div 
         className={`menuToolsSelector ${ableDisableMenuTools}`}        
       >
-        <ModalMenu 
+        <ModalEditMenu 
           nextQuestion={nextQuestion} 
           setNextQuestion={setNextQuestion} 
           optionMap={optionMap} 

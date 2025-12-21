@@ -13,9 +13,8 @@ function PageBase() {
 
     //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
     const [requestData, setRequestData] = useState(false)
-
-    // para habilitar ou não a página ilustrativa
-    const [showIllustrativePage, setShowIllustrativePage] = useState(false)
+ 
+    const [showIllustrativePage, setShowIllustrativePage] = useState(false) // para habilitar ou não a página ilustrativa
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
 
@@ -32,7 +31,7 @@ function PageBase() {
         numCorrectOption, 
         numIncorrectOption, 
         allCorrectIncorrectResults: (numCorrectOption + numIncorrectOption), 
-        pontuationResults: (numCorrectOption + numIncorrectOption > 0) ? `${parseInt((((numCorrectOption/(numCorrectOption + numIncorrectOption))*1000)))}/1000` : 0,
+        pontuationResults: (numCorrectOption + numIncorrectOption > 0) ? `${Math.floor(Number((((numCorrectOption/(numCorrectOption + numIncorrectOption))*1000))))}/1000` : 0,
         performanceResults: (numCorrectOption + numIncorrectOption > 0) ? `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100).toFixed(2)}%` : 0
     }
 
