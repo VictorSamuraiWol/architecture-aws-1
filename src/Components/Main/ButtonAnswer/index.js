@@ -35,34 +35,6 @@ function ButtonAnswer({
 
     }
 
-    // function cleanOptions() {        
-    //     const wrongOptionNextClean = document.querySelectorAll('.optionNext');
-    //     const wrongOptionNextMultiClean = document.querySelectorAll('.optionNextMulti');
-
-    //     // se necessário, limpar a estilização das respostas erradas das outras opções desmarcadas da página main 
-    //     if (optionMap) {
-    //         for(let w=0; w < optionMap.length; w++) {
-    //             if (optionMap && wrongOptionNextClean[w]?.classList.contains(optionInvalidate) && (w !== Number(captureValue))) {
-    //                 wrongOptionNextClean[w].classList.remove(optionInvalidate)
-    //                 wrongOptionNextClean[w].classList.add(optionColor)
-
-    //             }
-    //         }
-    //     }
-
-    //     // limpar a estilização das respostas erradas das outras opções desmarcadas da página multi
-    //     if (multiOptionMap) {
-    //         for(let z=0; z < multiOptionMap.length; z++) {
-    //             if (multiOptionMap && wrongOptionNextMultiClean[z]?.classList.contains(optionInvalidate) && (z !== Number(captureValueMulti.sort()[0])) && (z !== Number(captureValueMulti.sort()[1]))) {
-    //                 wrongOptionNextMultiClean[z].classList.remove(optionInvalidate)
-    //                 wrongOptionNextMultiClean[z].classList.add(optionColorMulti)
-
-    //             }
-    //         }
-    //     }
-
-    // }
-
     function alertOption() { 
         if (captureValue === '') {            
             alert('Por favor, selecione alguma opção!') // alertar quando os campos estiverem vazios
@@ -136,8 +108,6 @@ function ButtonAnswer({
         }
 
         alertOption()
-        
-        // questionAnswer === false && cleanOptions() // para a função ser chamada se for a primeira vez que marcou as opções
 
     }
 
@@ -211,8 +181,6 @@ function ButtonAnswer({
             }
 
         }
-
-        // questionAnswer === false && cleanOptions() // para a função ser chamada se for a primeira vez que marcou as opções
    
     }
 

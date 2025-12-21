@@ -17,7 +17,7 @@ function MultiOptions({
     const { listMultiOptionsContext } = useContext(DataContext)
 
     useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return; // se a lista de opções não existir, não faça nada e saia do useEffect 
+        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return; // se a lista de opções não existir, retorne 
         
         setListMultiOptions(listMultiOptionsContext)
 

@@ -12,7 +12,7 @@ function Options({
     const { listUnicOptionsContext } = useContext(DataContext)
 
     useEffect(() => {        
-        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return; // se a lista de opções não existir, não faça nada e saia do useEffect
+        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return; // se a lista de opções não existir, retorne
 
         // capturando toda a lista de opções da página main
         setListOptions(listUnicOptionsContext);
