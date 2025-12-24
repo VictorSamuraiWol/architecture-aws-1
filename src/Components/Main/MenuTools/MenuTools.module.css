@@ -37,3 +37,25 @@
 .deleteIcon {
   cursor: pointer;
 }
+
+/* Responsividade */
+@media screen and (max-width: 1100px) {
+  .menu {
+    font-size: 0.8rem;
+  }
+
+  .menuToolsSelector {
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 580px) {
+  .menu {
+    position: absolute;
+    height: 7vh;
+    right: 45%;
+    top: -9%;
+  }
+
+}

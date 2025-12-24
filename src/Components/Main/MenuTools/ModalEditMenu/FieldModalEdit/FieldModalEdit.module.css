@@ -1,15 +1,15 @@
-.field {
+.fieldModalEdit {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
 
-.field label {
+.fieldModalEdit label {
   color: var(--color-first);
   text-shadow: 2px 2px 3px var(--color-first);
 }
 
-.field label:hover {
+.fieldModalEdit label:hover {
   transform: scale(1.03);
 }

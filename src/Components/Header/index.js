@@ -34,7 +34,7 @@ function Header({ title }) {
             >
                 <img className={styles.iconStart} src={image} alt='icon-start' />
             </Link>
-            <h1>{title}</h1>
+            <h1 className={styles.headerTitle}>{title}</h1>
             <nav>
                 <RxHamburgerMenu 
                     onClick={ableLinks} 

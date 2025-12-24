@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { MdEditSquare } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
-import Field from './Field';
+import FieldModalEdit from './FieldModalEdit';
 import ButtonDefault from '../../../ButtonDefault';
 
 // certifique-se de vincular o modal ao seu appElement
@@ -353,27 +353,27 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
         className={styles.formModal}
       > 
         {/* todos os campos das questões */}
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalQuestion}
           name="Question*"
           newValue={question}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalAnswer}
           name="Answer*"
           newValue={answer}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalImage}
           name="Image Source"
           newValue={srcImg}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalDescription}
           name="Description*"
           newValue={description}
@@ -382,35 +382,35 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
         />
 
         {/* todos os campos das opções */}
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption1}
           name="Option1*"
           newValue={option1}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption2}
           name="Option2*"
           newValue={option2}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption3}
           name="Option3*"
           newValue={option3}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption4}
           name="Option4*"
           newValue={option4}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption5}
           name="Option5"
           newValue={option5}
@@ -440,27 +440,27 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
         className={styles.formModal}
       > 
         {/* todos os campos das questões de múltipla escolha */}
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalQuestionMulti}
           name="Question*"
           newValue={questionMulti}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalAnswerMulti}
           name="Answer*"
           newValue={answerMulti}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalImageMulti}
           name="Image Source"
           newValue={srcImgMulti}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalDescriptionMulti}
           name="Description*"
           newValue={descriptionMulti}
@@ -469,35 +469,35 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
         />
 
         {/* todos os campos das opções de múltipla escolha */}
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption1Multi}
           name="Option1*"
           newValue={option1Multi}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption2Multi}
           name="Option2*"
           newValue={option2Multi}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption3Multi}
           name="Option3*"
           newValue={option3Multi}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption4Multi}
           name="Option4*"
           newValue={option4Multi}
           required={true}
 
         />
-        <Field
+        <FieldModalEdit
           onChangeModal={onChangeModalOption5Multi}
           name="Option5"
           newValue={option5Multi}

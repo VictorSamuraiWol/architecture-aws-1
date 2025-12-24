@@ -36,6 +36,7 @@
         text-align: center;
         line-height: 28px;
         height: 80px;
+        width: 77%;
         border: 1px dashed var(--color-fourth);
         border-radius: 8px;
         overflow: auto;

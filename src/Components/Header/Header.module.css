@@ -107,8 +107,8 @@ ul {
         width: 50px;
     } 
     
-    .header h1 {
-        font-size: 0.8rem;
+    .headerTitle {
+        display: none;
     }
 
     .nav {

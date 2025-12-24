@@ -165,7 +165,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
       </div>
 
       <div 
-        className={`menuToolsSelector ${ableDisableMenuTools}`}        
+        className={`menuToolsSelector ${styles.menuToolsSelector} ${ableDisableMenuTools}`}        
       >
         <ModalEditMenu 
           nextQuestion={nextQuestion} 
