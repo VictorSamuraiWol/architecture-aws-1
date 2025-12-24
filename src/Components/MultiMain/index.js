@@ -8,6 +8,7 @@ import styles from './MultiMain.module.css';
 import { useState } from 'react';
 import ModalResults from '../ModalResults';
 import MenuTools from '../Main/MenuTools';
+import PopupRepeatedAlternatives from '../Main/PopupRepeatedAlternatives';
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, 
@@ -18,6 +19,7 @@ function MultiMain({
     const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
+    const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
@@ -39,6 +41,8 @@ function MultiMain({
                 multiOptionMapNumberId={multiOptionMapNumberId}
                 
             />
+
+            {activePopupRepeatedAlternativesMultiMain === true && <PopupRepeatedAlternatives />}
 
             <MultiOptions
                 listMultiOptions={listMultiOptions}
@@ -70,6 +74,8 @@ function MultiMain({
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
                 multiOptionMap={multiOptionMap}
+                activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
+                setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
 
             />
 

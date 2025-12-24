@@ -9,6 +9,7 @@ import { useContext, useState } from 'react';
 import ModalResults from '../ModalResults';
 import { DataContext } from '../DataContext';
 import MenuTools from './MenuTools';
+import PopupRepeatedAlternatives from './PopupRepeatedAlternatives';
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
@@ -28,6 +29,7 @@ function Main({
     const [optNum5, setOptNum5] = useState('');
     const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
     const [optionMapNumberId, setOptionMapNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
+    const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
@@ -81,6 +83,8 @@ function Main({
                 
             />
 
+            {activePopupRepeatedAlternativesMain === true && <PopupRepeatedAlternatives />}
+
             <Options  
                 randomIndex={randomIndex}
                 optionColor={optionColor}
@@ -125,6 +129,8 @@ function Main({
                 randomIndex={randomIndex}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
                 optionMap={optionMap}
+                activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
+                setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
 
             />
 
