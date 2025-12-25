@@ -33,7 +33,7 @@
 }
 
 /* Responsividade */
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .timer button {
         padding: 2px;
     }

@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import imageStart from '../../imgs/icon-start.png'
 import { GoPlus } from "react-icons/go";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { MdEditSquare } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 function IllustrativePage() {
 
@@ -203,6 +205,26 @@ function IllustrativePage() {
                 <h2 id='questionId' className={styles.question}>
                     "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?"
                 </h2>
+
+
+
+
+                <div className={styles.menu}>
+                    <div className={styles.menuTools}>
+                        <span>Menu</span>
+
+                    </div>
+
+                    <div className={styles.menuToolsSelector}>
+                        <MdEditSquare className={styles.editIcon}/>
+
+                        <MdDelete className={styles.deleteIcon}/>
+                        
+                    </div>
+
+                </div>
+
+
 
                 <div className={styles.optionsMain}>
                     <div className={styles.checkOpt}>

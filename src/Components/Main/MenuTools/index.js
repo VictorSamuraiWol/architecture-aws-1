@@ -181,13 +181,10 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
 
         />
 
-        <div>
-          <MdDelete
-            onClick={(nextQuestion !== undefined && multiDeleteQuestionOption) || (multiQuestion !== undefined && multiDeleteMultiQuestionMultiOption)}
-            className={styles.deleteIcon}            
-          />        
-
-        </div>    
+        <MdDelete
+          onClick={(nextQuestion !== undefined && multiDeleteQuestionOption) || (multiQuestion !== undefined && multiDeleteMultiQuestionMultiOption)}
+          className={styles.deleteIcon}            
+        />        
 
       </div>
 

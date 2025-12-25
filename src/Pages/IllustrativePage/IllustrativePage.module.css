@@ -82,9 +82,49 @@ ul {
 
 .question {
     color: var(--color-fourth);
-    width: 90%;
+    width: 85%;
     text-align: center;
     z-index: 1;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  position: absolute;
+  right: 1%;
+  margin-top: 19.92px;
+  color: var(--color-fourth);
+  padding: 1px 4px;
+  z-index: 1;
+}
+
+.menuTools {
+  padding: 1px 4px;
+  border: 1px solid var(--color-third);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menuToolsSelector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 40px;
+  padding: 1px 4px;
+  border: 1px solid var(--color-third);
+  border-radius: 6px;
+}
+
+.editIcon {
+  cursor: pointer;
+}
+
+.deleteIcon {
+  cursor: pointer;
 }
 
 .optionsMain {
@@ -324,7 +364,7 @@ ul {
 }
 
 /* Responsividade */
-@media screen and (min-width: 1701px) {
+@media (min-width: 1701px) {
     .header h1 {
         font-size: 1.6rem;
         padding: 0 8px;
@@ -351,7 +391,7 @@ ul {
 
 }
 
-@media screen and (max-width: 1700px) {
+@media (max-width: 1700px) {
     .header h1 {
         font-size: 1.5rem;
         padding: 0 8px;
@@ -363,7 +403,6 @@ ul {
 
     .question {
         font-size: 1.5rem;
-        padding: 0 8px;
     }
 
     .option {
@@ -382,7 +421,7 @@ ul {
 
 }
 
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .iconStart {
         width: 70px;
     }
@@ -397,6 +436,14 @@ ul {
 
     .question {
         font-size: 1.2rem;
+    }
+
+    .menu {
+        font-size: 0.8rem;
+    }
+
+    .menuToolsSelector {
+        width: 80%;
     }
 
     .optionsMain {
@@ -450,7 +497,7 @@ ul {
 
 }
 
-@media screen and (max-width: 860px) {    
+@media (max-width: 860px) {    
     .iconStart {
         width: 60px;
     }
@@ -469,6 +516,7 @@ ul {
         text-align: center;
         line-height: 28px;
         height: 80px;
+        width: 77%;
         border: 1px dashed var(--color-fourth);
         border-radius: 8px;
         overflow: auto;
@@ -551,13 +599,13 @@ ul {
 
 }
 
-@media screen and (max-width: 580px) { 
+@media (max-width: 580px) { 
     .iconStart {
         width: 50px;
     } 
     
-    .header h1 {
-        font-size: 0.7rem;
+    .headerH1 {
+        display: none;
     }
 
     .nav {
@@ -591,6 +639,24 @@ ul {
     .question {
         font-size: 0.8rem;
         z-index: 0;
+    }
+
+    .menu {
+        position: absolute;
+        height: 7vh;
+        right: 45%;
+        top: -9%;
+        color: var(--color-first);         
+    }
+
+    .menuTools {
+        border: 2px solid var(--color-fourth);
+    }
+
+    .menuToolsSelector {
+        border: 2px solid var(--color-fourth);
+        padding-top: 2px;
+        padding-bottom: 2px;
     }
 
     .optionsMain {

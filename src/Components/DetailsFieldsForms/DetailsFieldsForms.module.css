@@ -16,14 +16,14 @@
 }
 
 /* responsividade */
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .textSpeech {
         font-size: 0.9rem;
     }   
     
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .textSpeech {
         font-size: 0.5rem;
     }

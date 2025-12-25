@@ -61,21 +61,21 @@
 }
 
 /* responsividade */
-@media screen and (max-width: 1350px) {
+@media (max-width: 1350px) {
     .messageAlert {
         font-size: 0.9rem;
     }
     
 }
 
-@media screen and (max-width: 1090px) {
+@media (max-width: 1090px) {
     .messageAlert {
         font-size: 0.8rem;
     }
     
 }
 
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .messageAlert {
         font-size: 0.7rem;
     }
@@ -90,7 +90,7 @@
     
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .messageAlert {
         font-size: 0.5rem;
     }

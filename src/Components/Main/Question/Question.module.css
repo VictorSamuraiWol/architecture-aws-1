@@ -1,13 +1,14 @@
 .question {
     color: var(--color-fourth);
-    width: 90%;
+    width: 85%;
+    padding: 0;
     text-align: center;
     cursor: default;
     z-index: 1;
 }
 
 /* Responsividade */
-@media screen and (min-width: 1701px) {
+@media (min-width: 1701px) {
     .question {
         font-size: 1.5rem;
         padding: 0 8px;
@@ -15,22 +16,21 @@
 
 }
 
-@media screen and (max-width: 1700px) {
+@media (max-width: 1700px) {
     .question {
         font-size: 1.5rem;
-        padding: 0 8px;
     }
 
 }
 
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .question {
         font-size: 1.2rem;
     }
 
 }
 
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .question {
         font-size: 1rem;
         text-align: center;
@@ -53,7 +53,7 @@
 
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .question {
         font-size: 0.8rem;
         z-index: 0;

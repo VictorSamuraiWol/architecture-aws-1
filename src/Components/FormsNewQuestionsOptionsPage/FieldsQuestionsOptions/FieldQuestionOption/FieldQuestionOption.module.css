@@ -62,14 +62,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* responsividade */
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .labelTextarea label {
         font-size: 0.9rem;
     }   
     
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .labelTextarea label {
         font-size: 0.5rem;
     }

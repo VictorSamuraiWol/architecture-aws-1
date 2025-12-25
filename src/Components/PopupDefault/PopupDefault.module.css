@@ -14,7 +14,7 @@
 }
 
 /* Responsividade */
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
   .popupDefault {
     font-size: 0.8rem;
     width: 20%;
@@ -22,7 +22,7 @@
 
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
   .popupDefault {
     font-size: 0.7rem;
     width: 25%;

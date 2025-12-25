@@ -79,7 +79,7 @@
 }
 
 /* Responsividade */
-@media screen and (max-width: 1700px) {
+@media (max-width: 1700px) {
     .inputMultiOptions {
         width: 20px;
         height: 20px;
@@ -92,7 +92,7 @@
 
 }
 
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .multiOptionsAll {
         height: 320px;
     }
@@ -112,7 +112,7 @@
 
 }
 
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .multiOptionsAll {
         height: 300px;
     }
@@ -132,7 +132,7 @@
 
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .multiOptionsAll {
         height: 350px;
     }

@@ -79,7 +79,7 @@
 }
 
 /* Responsividade */
-@media screen and (min-width: 1701px) {
+@media (min-width: 1701px) {
     .option {
         font-size: 1.5rem;
         line-height: 28px;
@@ -87,7 +87,7 @@
 
 }
 
-@media screen and (max-width: 1700px) {
+@media (max-width: 1700px) {
     .option {
         font-size: 1.5rem;
         line-height: 28px;
@@ -95,7 +95,7 @@
 
 }
 
-@media screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .optionsMain {
         height: 320px;
     }
@@ -106,7 +106,7 @@
 
 }
 
-@media screen and (max-width: 860px) {
+@media (max-width: 860px) {
     .optionsMain {
         height: 300px;
     }
@@ -117,7 +117,7 @@
     
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .optionsMain {
         height: 350px;
     }
