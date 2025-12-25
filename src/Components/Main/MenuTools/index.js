@@ -148,7 +148,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
 
   // função para habilitar e desabilitar o Menu
   function ableDisableMenu() {
-    // usando 'operador ternário'
+    // usando o 'operador ternário'
     ableDisableMenuTools === styles.disableMenu 
     ? setAbleDisableMenuTools(styles.menuIcons)
     : setAbleDisableMenuTools(styles.disableMenu)
