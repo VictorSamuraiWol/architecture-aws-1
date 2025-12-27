@@ -26,6 +26,8 @@ function PageBase() {
     const [lastRandomMain, setLastRandomMain] = useState(-1);
     const [lastRandomMulti, setLastRandomMulti] = useState(-1);
 
+    // const
+
     // resultados estatísticos
     const dataResults = {
         numCorrectOption, 
@@ -70,7 +72,14 @@ function PageBase() {
                     alt='imagem de fundo'
                 />}          
 
-                <Outlet context={{ validateSound, setValidateSound, requestData, setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions }} />
+                <Outlet 
+                    context={{ validateSound, setValidateSound, requestData, 
+                        setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
+                        setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, 
+                        lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions, 
+                        setActivePageFormsQuestionsOptions
+                        }} 
+                />
 
                 {(requestData && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull 
                     onClick={validateSoundBaseFunc} 

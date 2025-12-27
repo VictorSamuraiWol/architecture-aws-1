@@ -1,7 +1,8 @@
 .popupDefault {
-  position: absolute; 
-  right: 1%;
-  bottom: 15%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-first);
   text-align: center;
   font-weight: bold;

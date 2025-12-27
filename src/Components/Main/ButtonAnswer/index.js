@@ -53,11 +53,11 @@ function ButtonAnswer({
         
         if (optionMap) { // quando tiver no componente Main
             repeated = optionMap.filter((option, index) => 
-            optionMap.indexOf(option) !== index); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
+            (optionMap.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
         } else if (multiOptionMap) { // quando tiver no componente MultiMain
             repeated = multiOptionMap.filter((option, index) => 
-            multiOptionMap.indexOf(option) !== index); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
+            (multiOptionMap.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
         }
 
