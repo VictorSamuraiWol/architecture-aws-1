@@ -5,6 +5,7 @@ import { MdEditSquare } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import FieldModalEdit from './FieldModalEdit';
 import ButtonDefault from '../../../ButtonDefault';
+import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives';
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -38,6 +39,8 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3]);
   const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4]);
 
+  const [activePopupRepeatedAlternativesModalEdit, setActivePopupRepeatedAlternativesModalEdit] = useState(false) // ativa o componente PopupRepeatedAlternatives na ModalEdit
+
   useEffect(() => {
     setOption1(optionMap && optionMap[0])
     setOption2(optionMap && optionMap[1])
@@ -67,132 +70,197 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
-      const jsonBody = JSON.stringify({
-          question: question,
-          answer: answer,
-          srcImg: srcImg,
-          descriptionP: description,
-          numberQuestion: nextQuestion.numberQuestion, // não será alterado
-          id: nextQuestion.id // não será alterado
-      })
-      await fetch(`http://localhost:3001/questions/${nextQuestion.id}`, {
-          method: 'PUT',
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: jsonBody
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      }) 
-      .catch((error) => {
-          console.log(error)
-      }) 
+    const jsonBody = JSON.stringify({
+      question: question,
+      answer: answer,
+      srcImg: srcImg,
+      descriptionP: description,
+      numberQuestion: nextQuestion.numberQuestion, // não será alterado
+      id: nextQuestion.id // não será alterado
+
+    })
+    await fetch(`http://localhost:3001/questions/${nextQuestion.id}`, {
+      method: 'PUT',
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: jsonBody
+
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+
+    }) 
+    .catch((error) => {
+        console.log(error)
+
+    })
 
   }
 
   //função utilizando PUT para alterar as opções na API
   async function onSaveModalOption() {
-      const jsonBody = JSON.stringify({
-          option1: option1,
-          option2: option2,
-          option3: option3,
-          option4: option4,
-          option5: option5,
-          numberOption: optionMapNumberId[0], // não será alterado 
-          id: optionMapNumberId[1] // não será alterado
-      })
-      await fetch(`http://localhost:3001/options/${optionMapNumberId[1]}`, {
-          method: 'PUT',
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: jsonBody
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      }) 
-      .catch((error) => {
-          console.log(error)
-      }) 
+    const jsonBody = JSON.stringify({
+      option1: option1,
+      option2: option2,
+      option3: option3,
+      option4: option4,
+      option5: option5,
+      numberOption: optionMapNumberId[0], // não será alterado 
+      id: optionMapNumberId[1] // não será alterado
+
+    })
+    await fetch(`http://localhost:3001/options/${optionMapNumberId[1]}`, {
+      method: 'PUT',
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: jsonBody
+    })
+
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+
+    }) 
+    .catch((error) => {
+      console.log(error)
+
+    })
 
   }
 
   //função utilizando PUT para alterar as questões de múltipla escolha na API
   async function onSaveModalMultiQuestion() {
-      const jsonBody = JSON.stringify({
-          question: questionMulti,
-          answerText: answerMulti,
-          srcImg: srcImgMulti,
-          descriptionP: descriptionMulti,
-          numberQuestion: multiQuestion.numberQuestion, // não será alterado
-          id: multiQuestion.id // não será alterado
-      })
-      await fetch(`http://localhost:3001/multiQuestions/${multiQuestion.id}`, {
-          method: 'PUT',
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: jsonBody
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      }) 
-      .catch((error) => {
-          console.log(error)
-      }) 
+    const jsonBody = JSON.stringify({
+      question: questionMulti,
+      answerText: answerMulti,
+      srcImg: srcImgMulti,
+      descriptionP: descriptionMulti,
+      numberQuestion: multiQuestion.numberQuestion, // não será alterado
+      id: multiQuestion.id // não será alterado
+
+    })
+    await fetch(`http://localhost:3001/multiQuestions/${multiQuestion.id}`, {
+      method: 'PUT',
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: jsonBody
+
+    })
+
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+
+    }) 
+    .catch((error) => {
+      console.log(error)
+
+    })
 
   }
 
   //função utilizando PUT para alterar as opções de múltipla escolha na API
   async function onSaveModalMultiOption() {
-      const jsonBody = JSON.stringify({
-          option1: option1Multi,
-          option2: option2Multi,
-          option3: option3Multi,
-          option4: option4Multi,
-          option5: option5Multi,
-          numberOption: multiOptionMapNumberId[0], // não será alterado 
-          id: multiOptionMapNumberId[1] // não será alterado
-      })
-      await fetch(`http://localhost:3001/multiOptions/${multiOptionMapNumberId[1]}`, {
-          method: 'PUT',
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: jsonBody
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      }) 
-      .catch((error) => {
-          console.log(error)
-      }) 
+    const jsonBody = JSON.stringify({
+      option1: option1Multi,
+      option2: option2Multi,
+      option3: option3Multi,
+      option4: option4Multi,
+      option5: option5Multi,
+      numberOption: multiOptionMapNumberId[0], // não será alterado 
+      id: multiOptionMapNumberId[1] // não será alterado
+
+    })
+    await fetch(`http://localhost:3001/multiOptions/${multiOptionMapNumberId[1]}`, {
+      method: 'PUT',
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: jsonBody
+
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      
+    }) 
+
+    .catch((error) => {
+      console.log(error)
+    }) 
 
   }
 
-  // função que vai salvar quaisquer alterações feitas na questão e opção atual
-  function multiFunctionsNewPageMain() {
-    onSaveModalQuestion();
-    onSaveModalOption();
+  function repeatedAlternativesModalEdit() { // função que verifica se as alternativas se repetem dentro da ModalEdit
+    let editOptions = [option1, option2, option3, option4, option5]
+    let editOptionsMulti = [option1Multi, option2Multi, option3Multi, option4Multi, option5Multi]
+    let repeated = '';
+    
+    if (editOptions && ((option1 !== undefined && option1 !== '') || (option2 !== undefined && option2 !== '') || (option3 !== undefined && option3 !== '') || (option4 !== undefined && option4 !== ''))) { // verificando as alternativas da opção única
+        repeated = editOptions.filter((option, index) => 
+        (editOptions.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
-    console.log('Saved!!!')
-    alert('Saved successfully!!!')
+    } else if (editOptionsMulti && ((option1Multi !== undefined && option1Multi !== '') || (option2Multi !== undefined && option2Multi !== '') || (option3Multi !== undefined && option3Multi !== '') || (option4Multi !== undefined && option4Multi !== ''))) { // verificando as alternativas da opção múltipla
+        repeated = editOptionsMulti.filter((option, index) => 
+        (editOptionsMulti.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
+
+    }
+
+    return repeated
+  
+  }
+
+  // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
+  function multiFunctionsNewPageMain(event) {
+    if (repeatedAlternativesModalEdit().length > 0) {
+      event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
+
+      setActivePopupRepeatedAlternativesModalEdit(true)
+
+      setTimeout(() => {
+        setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+      }, 10000)
+
+    } else {
+      onSaveModalQuestion(); // salvando a questão única
+      onSaveModalOption(); // salvando a opção única
+      
+      setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+
+      console.log('Saved!!!')
+      alert('Saved successfully!!!')
+
+    }
 
   }
 
-  // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual
-  function multiFunctionsPageMulti() {
-    onSaveModalMultiQuestion();
-    onSaveModalMultiOption();
+  // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
+  function multiFunctionsPageMulti(event) {
+    if (repeatedAlternativesModalEdit().length > 0) {
+      event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
 
-    console.log('Saved!!!')
-    alert('Saved successfully!!!')
+      setActivePopupRepeatedAlternativesModalEdit(true)
 
+      setTimeout(() => {
+        setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+      }, 10000)
+
+    } else {    
+      onSaveModalMultiQuestion(); // salvando a questão múltipla
+      onSaveModalMultiOption(); // salvando a opção múltipla
+      
+      setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+
+      console.log('Saved!!!')
+      alert('Saved successfully!!!')
+
+    }
   }
 
   // funções para capturar os valores dos campos das questões
@@ -337,192 +405,197 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           contentLabel="Example Modal"
           overlayClassName={styles.modalOverlay}
           className={styles.modalContent}
-
       >
 
-      <h1>EDITAR CARD:</h1>
+        <h1>EDITAR CARD:</h1>
+          
+        {/* imagem delete do react icon */}
+        <TiDeleteOutline
+            onClick={closeModal} 
+            className={styles.modalImageDelete} 
+        />      
+
+        {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
+          onSubmit={multiFunctionsNewPageMain}
+          className={styles.formModal}
+        > 
+          {/* todos os campos das questões */}
+          <FieldModalEdit
+            onChangeModal={onChangeModalQuestion}
+            name="Question*"
+            newValue={question}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalAnswer}
+            name="Answer*"
+            newValue={answer}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalImage}
+            name="Image Source"
+            newValue={srcImg}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalDescription}
+            name="Description*"
+            newValue={description}
+            required={true}
+
+          />
+
+          {/* todos os campos das opções */}
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption1}
+            name="Option1*"
+            newValue={option1}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption2}
+            name="Option2*"
+            newValue={option2}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption3}
+            name="Option3*"
+            newValue={option3}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption4}
+            name="Option4*"
+            newValue={option4}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption5}
+            name="Option5"
+            newValue={option5}
+
+          />
+
+          {/* Botões submit e clean */}
+          <div className={styles.buttons}>
+            <ButtonDefault
+              onClick={repeatedAlternativesModalEdit} 
+              buttonName='Save' 
+              specificType='submit'
+              // specificType='button'
+
+            />
+            <ButtonDefault 
+              onClick={cleanForm} 
+              buttonName='Clean' 
+              specificType='button'
+              
+            />
+
+          </div>
         
-      {/* imagem delete do react icon */}
-      <TiDeleteOutline
-          onClick={closeModal} 
-          className={styles.modalImageDelete} 
-      />      
+        </form>}
 
-      {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
-        onSubmit={multiFunctionsNewPageMain}
-        className={styles.formModal}
-      > 
-        {/* todos os campos das questões */}
-        <FieldModalEdit
-          onChangeModal={onChangeModalQuestion}
-          name="Question*"
-          newValue={question}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalAnswer}
-          name="Answer*"
-          newValue={answer}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalImage}
-          name="Image Source"
-          newValue={srcImg}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalDescription}
-          name="Description*"
-          newValue={description}
-          required={true}
-
-        />
-
-        {/* todos os campos das opções */}
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption1}
-          name="Option1*"
-          newValue={option1}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption2}
-          name="Option2*"
-          newValue={option2}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption3}
-          name="Option3*"
-          newValue={option3}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption4}
-          name="Option4*"
-          newValue={option4}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption5}
-          name="Option5"
-          newValue={option5}
-
-        />
-
-        {/* Botões submit e clean */}
-        <div className={styles.buttons}>
-          <ButtonDefault 
-            buttonName='Save' 
-            specificType='submit'
+        {multiQuestion && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
+          onSubmit={multiFunctionsPageMulti}
+          className={styles.formModal}
+        > 
+          {/* todos os campos das questões de múltipla escolha */}
+          <FieldModalEdit
+            onChangeModal={onChangeModalQuestionMulti}
+            name="Question*"
+            newValue={questionMulti}
+            required={true}
 
           />
-          <ButtonDefault 
-            onClick={cleanForm} 
-            buttonName='Clean' 
-            specificType='button'
-             
+          <FieldModalEdit
+            onChangeModal={onChangeModalAnswerMulti}
+            name="Answer*"
+            newValue={answerMulti}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalImageMulti}
+            name="Image Source"
+            newValue={srcImgMulti}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalDescriptionMulti}
+            name="Description*"
+            newValue={descriptionMulti}
+            required={true}
+
           />
 
-        </div>
+          {/* todos os campos das opções de múltipla escolha */}
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption1Multi}
+            name="Option1*"
+            newValue={option1Multi}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption2Multi}
+            name="Option2*"
+            newValue={option2Multi}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption3Multi}
+            name="Option3*"
+            newValue={option3Multi}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption4Multi}
+            name="Option4*"
+            newValue={option4Multi}
+            required={true}
+
+          />
+          <FieldModalEdit
+            onChangeModal={onChangeModalOption5Multi}
+            name="Option5"
+            newValue={option5Multi}
+
+          />
+
+          {/* Botões submit e clean */}
+          <div className={styles.buttons}>
+            <ButtonDefault
+              onClick={repeatedAlternativesModalEdit} 
+              buttonName='Save' 
+              specificType='submit'
+
+            />
+            <ButtonDefault 
+              onClick={cleanForm} 
+              buttonName='Clean' 
+              specificType='button'
+              
+            />
+
+          </div>
+        
+        </form>}
+
+        {activePopupRepeatedAlternativesModalEdit === true && <PopupRepeatedAlternatives specificStyles={styles.popupModalEdit} textPopup={"Há alternativas repetidas! Por favor, antes de editar a opção, altere as alternativas que se repetem, e então prossiga com a edição da questão e da opção. Obrigado."} />}
       
-      </form>}
-
-      {multiQuestion && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
-        onSubmit={multiFunctionsPageMulti}
-        className={styles.formModal}
-      > 
-        {/* todos os campos das questões de múltipla escolha */}
-        <FieldModalEdit
-          onChangeModal={onChangeModalQuestionMulti}
-          name="Question*"
-          newValue={questionMulti}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalAnswerMulti}
-          name="Answer*"
-          newValue={answerMulti}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalImageMulti}
-          name="Image Source"
-          newValue={srcImgMulti}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalDescriptionMulti}
-          name="Description*"
-          newValue={descriptionMulti}
-          required={true}
-
-        />
-
-        {/* todos os campos das opções de múltipla escolha */}
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption1Multi}
-          name="Option1*"
-          newValue={option1Multi}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption2Multi}
-          name="Option2*"
-          newValue={option2Multi}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption3Multi}
-          name="Option3*"
-          newValue={option3Multi}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption4Multi}
-          name="Option4*"
-          newValue={option4Multi}
-          required={true}
-
-        />
-        <FieldModalEdit
-          onChangeModal={onChangeModalOption5Multi}
-          name="Option5"
-          newValue={option5Multi}
-
-        />
-
-        {/* Botões submit e clean */}
-        <div className={styles.buttons}>
-          <ButtonDefault 
-            buttonName='Save' 
-            specificType='submit'
-
-          />
-          <ButtonDefault 
-            onClick={cleanForm} 
-            buttonName='Clean' 
-            specificType='button'
-             
-          />
-
-        </div>
-      
-      </form>}
-
       </Modal>
+
 
     </div>
   )

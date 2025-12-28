@@ -83,7 +83,7 @@ function Main({
                 
             />
 
-            {activePopupRepeatedAlternativesMain === true && <PopupRepeatedAlternatives textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga com a resposta. Obrigado."} />}
+            {activePopupRepeatedAlternativesMain === true && <PopupRepeatedAlternatives specificStyles={styles.popupMain} textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga com a resposta. Obrigado."} />}
 
             <Options  
                 randomIndex={randomIndex}

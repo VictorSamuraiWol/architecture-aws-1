@@ -1,9 +1,12 @@
 import styles from './PopupDefault.module.css'
 
-function PopupDefault({ text }) {
+function PopupDefault({ specificStyles, text }) {
 
   return (
-    <div className={styles.popupDefault}> 
+    <div 
+      // className={styles.popupDefault}
+      className={specificStyles}
+    > 
       <span>{text}</span>
     </div>
   )

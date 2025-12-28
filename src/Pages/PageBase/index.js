@@ -26,8 +26,6 @@ function PageBase() {
     const [lastRandomMain, setLastRandomMain] = useState(-1);
     const [lastRandomMulti, setLastRandomMulti] = useState(-1);
 
-    // const
-
     // resultados estatísticos
     const dataResults = {
         numCorrectOption, 

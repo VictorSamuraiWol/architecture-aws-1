@@ -11,3 +11,36 @@
 .optionColor {
     color: var(--color-third);
 }
+
+.popupMain {
+  position: fixed;
+  left: 85%;
+  bottom: 15%;
+  transform: translate(-50%, -50%);
+  color: var(--color-first);
+  text-align: center;
+  font-weight: bold;
+  width: 15%;
+  padding: 6px;
+  border: 1px solid var(--color-third);
+  border-radius: 8px;
+  z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+  background-color: var(--color-incorrect);
+}
+
+/* Responsividade */
+@media (max-width: 860px) {
+  .popupMain {
+    font-size: 0.8rem;
+    width: 20%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .popupMain {
+    font-size: 0.7rem;
+    width: 25%;
+  }
+
+}

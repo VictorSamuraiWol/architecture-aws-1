@@ -48,7 +48,7 @@ function ButtonAnswer({
 
     }
 
-    function repeatedAlternatives() { // função que verifica se as alternativas se repetem
+    function repeatedAlternatives() { // função que verifica se as alternativas se repetem nos componentes Main e MultiMain
         let repeated = '';
         
         if (optionMap) { // quando tiver no componente Main

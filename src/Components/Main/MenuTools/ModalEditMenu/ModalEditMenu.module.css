@@ -77,10 +77,42 @@
   gap: 16px;
 }
 
+.popupModalEdit {
+  position: fixed;
+  top: 50%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  color: var(--color-first);
+  text-align: center;
+  font-weight: bold;
+  width: 15%;
+  padding: 6px;
+  border: 1px solid var(--color-third);
+  border-radius: 8px;
+  z-index: 1; /* para estar a frente do conteúdo principal ao aparecer */
+  background-color: var(--color-incorrect);
+}
+
 /* Responsividade */
 @media (max-width: 1100px) {
   .container {
     height: 13px; /* para ficar do tamanho do conteúdo */
+  }
+
+}
+
+@media (max-width: 860px) {
+  .popupModalEdit {
+    font-size: 0.8rem;
+    width: 20%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .popupModalEdit {
+    font-size: 0.7rem;
+    width: 25%;
   }
 
 }

@@ -75,16 +75,16 @@ function FormsNewQuestionsOptionsPage() {
 
     },[listUnicQuestionsContext, listMultiQuestionsContext, listUnicOptionsContext, listMultiOptionsContext])
 
-    function repeatedAlternativesForms() { // função que verifica se as alternativas se repetem
+    function repeatedAlternativesForms() { // função que verifica se as alternativas se repetem na página de formulários
         let newOptions = [newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOption5Question]
         let newOptionsMulti = [newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOption5MultiQuestion]
         let repeated = '';
         
-        if (newOptions && (newOption1Question !== '' || newOption2Question !== '' || newOption3Question !== '' || newOption4Question !== '')) { // verificando as alternativas da opção única
+        if (newOptions && ((newOption1Question !== undefined && newOption1Question !== '') || (newOption2Question !== undefined && newOption2Question !== '') || (newOption3Question !== undefined && newOption3Question !== '') || (newOption4Question !== undefined && newOption4Question !== ''))) { // verificando as alternativas da opção única
             repeated = newOptions.filter((option, index) => 
             (newOptions.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
-        } else if (newOptionsMulti && (newOption1MultiQuestion !== '' || newOption2MultiQuestion !== '' || newOption3MultiQuestion !== '' || newOption4MultiQuestion !== '')) { // verificando as alternativas da opção múltipla
+        } else if (newOptionsMulti && ((newOption1MultiQuestion !== undefined && newOption1MultiQuestion !== '') || (newOption2MultiQuestion !== undefined && newOption2MultiQuestion !== '') || (newOption3MultiQuestion !== undefined && newOption3MultiQuestion !== '') || (newOption4MultiQuestion !== undefined && newOption4MultiQuestion !== ''))) { // verificando as alternativas da opção múltipla
             repeated = newOptionsMulti.filter((option, index) => 
             (newOptionsMulti.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
@@ -310,6 +310,7 @@ function FormsNewQuestionsOptionsPage() {
             }
 
             cleanLabels()
+            setActivePopupRepeatedAlternativesForms2(false) // desativar o popup, caso esteja visível na tela
 
         } else if (readyToSendForm2 === true && isValid === true && (newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions) && (repeatedAlternativesForms().length > 0)) {
         // condição: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOptionsNumberQuestions) e se as alternativas se repetem (repeatedAlternativesForms())
@@ -792,6 +793,7 @@ function FormsNewQuestionsOptionsPage() {
             }
 
             cleanLabels()
+            setActivePopupRepeatedAlternativesForms4(false) // desativar o popup, caso esteja visível na tela
 
         } else if (readyToSendForm4 === true && isValid === true && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions) && (repeatedAlternativesForms().length > 0)) {
         // condição: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions) e se as alternativas se repetem (repeatedAlternativesForms())
@@ -1327,8 +1329,8 @@ function FormsNewQuestionsOptionsPage() {
                 </form>
             </div>  
 
-            {activePopupRepeatedAlternativesForms2 === true && <PopupRepeatedAlternatives textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 2 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
-            {activePopupRepeatedAlternativesForms4 === true && <PopupRepeatedAlternatives textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 4 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
+            {activePopupRepeatedAlternativesForms2 === true && <PopupRepeatedAlternatives specificStyles={styles.popupForms} textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 2 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
+            {activePopupRepeatedAlternativesForms4 === true && <PopupRepeatedAlternatives specificStyles={styles.popupForms} textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 4 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
 
       
         </div>

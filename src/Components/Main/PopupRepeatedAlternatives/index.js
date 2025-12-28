@@ -1,10 +1,10 @@
 import styles from './PopupRepeatedAlternatives.module.css'
 import PopupDefault from '../../PopupDefault';
 
-function PopupRepeatedAlternatives({ textPopup }) {
+function PopupRepeatedAlternatives({ specificStyles, textPopup }) {
 
   return (
-    <PopupDefault text={textPopup} />
+    <PopupDefault specificStyles={specificStyles} text={textPopup} />
   )
 
 }
