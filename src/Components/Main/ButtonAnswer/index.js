@@ -13,7 +13,7 @@ function ButtonAnswer({
 }) {
     
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption } = useOutletContext();
+    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, repeatedAlternativesDefault } = useOutletContext();
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false);
@@ -35,9 +35,13 @@ function ButtonAnswer({
     }
 
     function alertOption() { 
-        if (captureValue === '') {            
-            alert('Por favor, selecione alguma opção!') // alertar quando os campos estiverem vazios
+        if (optionMap && captureValue === '') { // alertar quando as alternativas estiverem todas desmarcadas na opção única            
+            alert('Por favor, selecione alguma opção!') 
             answerDisplay && setAnswerDisplay(styles.invisible)
+        } else if ((multiOptionMap && captureValueMulti.length < 2) || (multiOptionMap && captureValueMulti.length > 2)) { // alertar quando menos de 2 alternativas ou mais de 2 alternativas estiverem marcadas na opção múltipla
+            alert('Por favor, selecione as duas opções!') 
+            answerDisplay && setAnswerDisplay(styles.invisible)
+
         }
 
     }
@@ -48,37 +52,22 @@ function ButtonAnswer({
 
     }
 
-    function repeatedAlternatives() { // função que verifica se as alternativas se repetem nos componentes Main e MultiMain
-        let repeated = '';
-        
-        if (optionMap) { // quando tiver no componente Main
-            repeated = optionMap.filter((option, index) => 
-            (optionMap.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
-
-        } else if (multiOptionMap) { // quando tiver no componente MultiMain
-            repeated = multiOptionMap.filter((option, index) => 
-            (multiOptionMap.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
-
-        }
-
-        return repeated
-  
-    }
-
     // validação da página NewPageMain, a resposta correta será sempre uma comparação do valor do campo resposta (answer) com os valores dos campos das opções (opção 1, 2, 3, 4 e 5), caso seja igual, ela ficará destacada na validação
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
         // passar somente os valores que não forem vazios de todas as opções para um array antes da validação
         const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
-
-        if (repeatedAlternatives().length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem                      
+        
+        if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
             setActivePopupRepeatedAlternativesMain(true)
 
             setTimeout(() => {
                 setActivePopupRepeatedAlternativesMain(false) // desativa o popup em 10s
 
-            }, 10000)            
+            }, 10000)
+
+            alertOption() // alertar, se não tiver nenhuma alternativa marcada
 
         } else {
             // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
@@ -143,8 +132,8 @@ function ButtonAnswer({
         const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti')      
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
         const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
-    
-        if (repeatedAlternatives().length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem          
+
+        if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
             setActivePopupRepeatedAlternativesMultiMain(true)
 
             setTimeout(() => {
@@ -152,6 +141,7 @@ function ButtonAnswer({
 
             }, 10000)
 
+            alertOption() // alertar, se não tiver nenhuma alternativa marcada
 
         } else {
             if(questionAnswer === true) {           
@@ -225,7 +215,7 @@ function ButtonAnswer({
         multiOptionMap && validateAnswerPageMulti()
 
         // enquanto tiver alternativas repetidas, não será mostrado a resposta na tela 
-        if ((optionMap && !multiOptionMap && repeatedAlternatives().length === 0 && captureValue !== '') || (multiOptionMap && !optionMap && repeatedAlternatives().length === 0 && captureValueMulti?.length === 2)) {
+        if ((optionMap && !multiOptionMap && repeatedAlternativesDefault(optionMap, multiOptionMap).length === 0 && captureValue !== '') || (multiOptionMap && !optionMap && repeatedAlternativesDefault(optionMap, multiOptionMap).length === 0 && captureValueMulti.length === 2)) {
         // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
 
