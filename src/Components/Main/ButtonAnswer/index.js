@@ -225,10 +225,11 @@ function ButtonAnswer({
         multiOptionMap && validateAnswerPageMulti()
 
         // enquanto tiver alternativas repetidas, não será mostrado a resposta na tela 
-        if ((optionMap && !multiOptionMap && repeatedAlternatives().length === 0) || (multiOptionMap && !optionMap && repeatedAlternatives().length === 0)) {
+        if ((optionMap && !multiOptionMap && repeatedAlternatives().length === 0 && captureValue !== '') || (multiOptionMap && !optionMap && repeatedAlternatives().length === 0 && captureValueMulti?.length === 2)) {
+        // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
 
-        } 
+        }
 
     }
 

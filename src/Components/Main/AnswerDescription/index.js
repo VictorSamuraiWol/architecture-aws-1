@@ -1,4 +1,4 @@
-import styles from './Answer.module.css';
+import styles from './AnswerDescription.module.css';
 import { useState } from 'react';
 import storageGateway from '../../../imgs/answers-imgs/Storage_Gateway.png'
 import simpleStoragesService from '../../../imgs/answers-imgs/Simple_Storage_Service.png'
@@ -11,7 +11,7 @@ import elasticLoadBalancing from '../../../imgs/answers-imgs/Elastic_Load_Balanc
 import identityAndAccessManagement from '../../../imgs/answers-imgs/Identity_and_Access_Management.png'
 import dynamoDB from '../../../imgs/answers-imgs/DynamoDB.png'
 
-function Answer({ 
+function AnswerDescription({ 
     answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
     listOptions, listMultiOptions
 }) {
@@ -83,4 +83,4 @@ function Answer({
     )
 }
 
-export default Answer;
+export default AnswerDescription;

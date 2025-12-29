@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Answer from '../Main/Answer'; // reutilizando componente presente no Main
+import Answer from '../Main/AnswerDescription'; // reutilizando componente presente no Main
 import ButtonAnswer from '../Main/ButtonAnswer'; // reutilizando componente presente no Main
 import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
 import MultiOptions from './MultiOptions';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import ModalResults from '../ModalResults';
 import MenuTools from '../Main/MenuTools';
 import PopupRepeatedAlternatives from '../Main/PopupRepeatedAlternatives';
+import AnswerDescription from '../Main/AnswerDescription';
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, 
@@ -79,7 +80,7 @@ function MultiMain({
 
             />
 
-            <Answer 
+            <AnswerDescription
                 answer={answer}
                 answerText={answerText}
                 srcImg={srcImg} 

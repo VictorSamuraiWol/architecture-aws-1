@@ -1,5 +1,5 @@
 import styles from './Main.module.css'
-import Answer from './Answer';
+import AnswerDescription from './AnswerDescription';
 import ButtonAnswer from './ButtonAnswer';
 import Question from './Question';
 import ButtonNext from './ButtonNext';
@@ -134,7 +134,7 @@ function Main({
 
             />
 
-            <Answer 
+            <AnswerDescription 
                 answer={answer} 
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
