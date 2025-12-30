@@ -59,7 +59,7 @@ function PageBase() {
         setShowIllustrativePage(true)
     }, 1000)
 
-    function repeatedAlternativesDefault(option1, option2) { // função que verifica se as alternativas se repetem e retorna os que forem repetidos
+    function repeatedAlternativesDefault(option1, option2) { // função padrão (será reutilizada) que verifica se as alternativas se repetem e retorna os que forem repetidos
         let repeated = '';
         
         if (option1 && ((option1[0] !== undefined && option1[0] !== '') || (option1[1] !== undefined && option1[1] !== '') || (option1[2] !== undefined && option1[2] !== '') || (option1[3] !== undefined && option1[3] !== ''))) {

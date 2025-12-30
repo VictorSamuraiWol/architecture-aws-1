@@ -6,6 +6,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import FieldModalEdit from './FieldModalEdit';
 import ButtonDefault from '../../../ButtonDefault';
 import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives';
+import { useOutletContext } from 'react-router-dom';
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -40,6 +41,8 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4]);
 
   const [activePopupRepeatedAlternativesModalEdit, setActivePopupRepeatedAlternativesModalEdit] = useState(false) // ativa o componente PopupRepeatedAlternatives na ModalEdit
+
+  const { repeatedAlternativesDefault } = useOutletContext();
 
   useEffect(() => {
     setOption1(optionMap && optionMap[0])
@@ -195,28 +198,9 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   }
 
-  function repeatedAlternativesModalEdit() { // função que verifica se as alternativas se repetem dentro da ModalEdit
-    let editOptions = [option1, option2, option3, option4, option5]
-    let editOptionsMulti = [option1Multi, option2Multi, option3Multi, option4Multi, option5Multi]
-    let repeated = '';
-    
-    if (editOptions && ((option1 !== undefined && option1 !== '') || (option2 !== undefined && option2 !== '') || (option3 !== undefined && option3 !== '') || (option4 !== undefined && option4 !== ''))) { // verificando as alternativas da opção única
-        repeated = editOptions.filter((option, index) => 
-        (editOptions.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
-
-    } else if (editOptionsMulti && ((option1Multi !== undefined && option1Multi !== '') || (option2Multi !== undefined && option2Multi !== '') || (option3Multi !== undefined && option3Multi !== '') || (option4Multi !== undefined && option4Multi !== ''))) { // verificando as alternativas da opção múltipla
-        repeated = editOptionsMulti.filter((option, index) => 
-        (editOptionsMulti.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
-
-    }
-
-    return repeated
-  
-  }
-
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
-  function multiFunctionsNewPageMain(event) {
-    if (repeatedAlternativesModalEdit().length > 0) {
+  function multiFunctionsNewPageMain(event) { 
+    if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) {
       event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
 
       setActivePopupRepeatedAlternativesModalEdit(true)
@@ -241,7 +225,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsPageMulti(event) {
-    if (repeatedAlternativesModalEdit().length > 0) {
+    if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) {
       event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
 
       setActivePopupRepeatedAlternativesModalEdit(true)
@@ -263,7 +247,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
     }
   }
 
-  // funções para capturar os valores dos campos das questões
+  // funções para capturar os valores dos campos das questões de única escolha
   function onChangeModalQuestion(event) {
     setQuestion(event.target.value)
 
@@ -284,7 +268,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   }
 
-  //funções para capturar os valores dos campos das opções
+  //funções para capturar os valores dos campos das opções de única escolha
   function onChangeModalOption1(event) {
     setOption1(event.target.value)
 
@@ -487,10 +471,9 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={repeatedAlternativesModalEdit} 
+              onClick={() => repeatedAlternativesDefault(optionMap, multiOptionMap)} 
               buttonName='Save' 
               specificType='submit'
-              // specificType='button'
 
             />
             <ButtonDefault 
@@ -576,7 +559,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={repeatedAlternativesModalEdit} 
+              onClick={() => repeatedAlternativesDefault(optionMap, multiOptionMap)} 
               buttonName='Save' 
               specificType='submit'
 
