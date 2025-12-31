@@ -61,6 +61,7 @@ ul {
     border: 2px solid var(--color-fourth);
     padding: 8px;
     border-radius: 16px;
+    cursor: pointer;
 }
 
 .link:hover {

@@ -678,10 +678,10 @@ function FormsNewQuestionsOptionsPage() {
         // condição 1: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions)
             if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
             // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+                setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                 setTimeout(() => {
-                    setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                    setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
 
                 }, 10000)
             
@@ -740,10 +740,10 @@ function FormsNewQuestionsOptionsPage() {
 
             if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
             // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+                setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                 setTimeout(() => {
-                    setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                    setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
 
                 }, 10000)
             
@@ -777,10 +777,10 @@ function FormsNewQuestionsOptionsPage() {
 
             if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
             // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+                setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                 setTimeout(() => {
-                    setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                    setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
 
                 }, 10000)
             
@@ -814,10 +814,10 @@ function FormsNewQuestionsOptionsPage() {
 
              if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
             // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+                setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                 setTimeout(() => {
-                    setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                    setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
 
                 }, 10000)
             
@@ -1149,8 +1149,21 @@ function FormsNewQuestionsOptionsPage() {
                 </form>
             </div>  
 
-            {activePopupRepeatedAlternativesForms2 === true && <PopupRepeatedAlternatives specificStyles={styles.popupForms} textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 2 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
-            {activePopupRepeatedAlternativesForms4 === true && <PopupRepeatedAlternatives specificStyles={styles.popupForms} textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 4 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} />}
+            {activePopupRepeatedAlternativesForms2 === true && 
+                <PopupRepeatedAlternatives 
+                    specificStyles={styles.popupForms} 
+                    textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 2 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} 
+                    setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesForms2}
+                    
+                    />}
+
+            {activePopupRepeatedAlternativesForms4 === true && 
+                <PopupRepeatedAlternatives 
+                    specificStyles={styles.popupForms} 
+                    textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 4 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} 
+                    setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesForms4}
+                    
+                    />}
 
       
         </div>

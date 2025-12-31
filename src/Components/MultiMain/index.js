@@ -43,7 +43,13 @@ function MultiMain({
                 
             />
 
-            {activePopupRepeatedAlternativesMultiMain === true && <PopupRepeatedAlternatives specificStyles={styles.popupMultiMain} textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga com a resposta. Obrigado."} />}
+            {activePopupRepeatedAlternativesMultiMain === true && 
+                <PopupRepeatedAlternatives 
+                    specificStyles={styles.popupMultiMain} 
+                    textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga com a resposta. Obrigado."}
+                    setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesMultiMain}
+                        
+                />}
 
             <MultiOptions
                 listMultiOptions={listMultiOptions}
