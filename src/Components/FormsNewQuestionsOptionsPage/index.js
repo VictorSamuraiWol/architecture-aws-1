@@ -91,6 +91,45 @@ function FormsNewQuestionsOptionsPage() {
 
     }, [newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOption5Question, newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOption5MultiQuestion])
 
+    function cleanAllForms() {         
+        // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
+        if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
+            // form 1
+            setNewQuestionQuestions('')
+            setNewAnswerQuestions('')
+            setNewSourceImageQuestions('')
+            setNewDescriptionQuestions('')
+            setNewQuestionsNumberQuestions('')
+
+            // form 2
+            setNewOption1Question('')
+            setNewOption2Question('')
+            setNewOption3Question('')
+            setNewOption4Question('')
+            setNewOption5Question('')
+            setNewOptionsNumberQuestions('')
+
+            // form 3
+            setNewQuestionMultiQuestions('')
+            setNewAnswerTextMultiQuestions('')
+            setNewSourceImageMultiQuestions('')
+            setNewDescriptionMultiQuestions('')
+            setNewQuestionsNumberMultiQuestions('')
+
+            // form 4
+            setNewOption1MultiQuestion('')
+            setNewOption2MultiQuestion('')
+            setNewOption3MultiQuestion('')
+            setNewOption4MultiQuestion('')
+            setNewOption5MultiQuestion('')
+            setNewOptionsNumberMultiQuestions('')
+
+        }
+
+        setReadyToCleanAll(true)
+
+    }
+
     // função utilizando POST para salvar os dados do form1 na API
     const onSaveForm1 = async (e) => {
         e.preventDefault();
@@ -250,7 +289,7 @@ function FormsNewQuestionsOptionsPage() {
             if (response.ok) {
                 console.log(data, "Dados enviados com sucesso do form 1! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do form 1! Preencha um formulário por vez.')
-                cleanForm(); // limpar o formulário
+                cleanAllForms(); // limpar o formulário
               
                 // tornar verdadeiro a cada POST
                 setPostApi(true)
@@ -262,7 +301,7 @@ function FormsNewQuestionsOptionsPage() {
 
         }
       
-    };
+    }
 
     // função utilizando POST para salvar os dados do form2 na API
     const onSaveForm2 = async (e) => {
@@ -474,7 +513,7 @@ function FormsNewQuestionsOptionsPage() {
             if (response.ok) {
                 console.log(data, "Dados enviados com sucesso do form 2! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do form 2! Preencha um formulário por vez.')
-                cleanForm(); // limpar o formulário
+                cleanAllForms(); // limpar o formulário
                 
                 // tornar verdadeiro a cada POST
                 setPostApi(true)
@@ -486,7 +525,7 @@ function FormsNewQuestionsOptionsPage() {
             
         } 
                 
-    };
+    }
 
     // função utilizando POST para salvar os dados do form3 na API
     const onSaveForm3 = async (e) => {
@@ -643,7 +682,7 @@ function FormsNewQuestionsOptionsPage() {
             if (response.ok) {
                 console.log(data, "Dados enviados com sucesso do form 3! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do form 3! Preencha um formulário por vez.')
-                cleanForm(); // limpar o formulário
+                cleanAllForms(); // limpar o formulário
                 
                 // tornar verdadeiro a cada POST
                 setPostApi(true)
@@ -654,7 +693,7 @@ function FormsNewQuestionsOptionsPage() {
             console.error("Erro ao enviar os dados", error);
             
         }   
-    };
+    }
 
     // função utilizando POST para salvar os dados do form4 na API
     const onSaveForm4 = async (e) => {
@@ -862,7 +901,7 @@ function FormsNewQuestionsOptionsPage() {
             if (response.ok) {
                 console.log(data, "Dados enviados com sucesso do form 4! Preencha um formulário por vez.");
                 alert('Questão adicionada com sucesso do form 4! Preencha um formulário por vez.')
-                cleanForm(); // limpar o formulário
+                cleanAllForms(); // limpar o formulário
                
                 // tornar verdadeiro a cada POST
                 setPostApi(true)
@@ -874,46 +913,7 @@ function FormsNewQuestionsOptionsPage() {
             
         }
         
-    };
-
-    function cleanForm() {         
-        // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
-        if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
-            // form 1
-            setNewQuestionQuestions('')
-            setNewAnswerQuestions('')
-            setNewSourceImageQuestions('')
-            setNewDescriptionQuestions('')
-            setNewQuestionsNumberQuestions('')
-
-            // form 2
-            setNewOption1Question('')
-            setNewOption2Question('')
-            setNewOption3Question('')
-            setNewOption4Question('')
-            setNewOption5Question('')
-            setNewOptionsNumberQuestions('')
-
-            // form 3
-            setNewQuestionMultiQuestions('')
-            setNewAnswerTextMultiQuestions('')
-            setNewSourceImageMultiQuestions('')
-            setNewDescriptionMultiQuestions('')
-            setNewQuestionsNumberMultiQuestions('')
-
-            // form 4
-            setNewOption1MultiQuestion('')
-            setNewOption2MultiQuestion('')
-            setNewOption3MultiQuestion('')
-            setNewOption4MultiQuestion('')
-            setNewOption5MultiQuestion('')
-            setNewOptionsNumberMultiQuestions('')
-
-        }
-
-        setReadyToCleanAll(true)
-
-    }   
+    }
 
     useEffect(() => {
         function formsCheck() { // verifica se existem mais questões que opções ou mais opções que questões nos 4 formulários e avisa na tela
@@ -1016,7 +1016,8 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm1(true)}
+                        onClick={() => {setReadyToSendForm1(true); setReadyToSendForm2(false); setReadyToSendForm3(false); setReadyToSendForm4(false)}}
+
                     />
 
                 </form>
@@ -1059,7 +1060,8 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm2(true)}
+                        onClick={() => {setReadyToSendForm2(true); setReadyToSendForm1(false); setReadyToSendForm3(false); setReadyToSendForm4(false)}}
+                        
                     />
 
                 </form>
@@ -1100,7 +1102,7 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm3(true)}
+                        onClick={() => {setReadyToSendForm3(true); setReadyToSendForm1(false); setReadyToSendForm2(false); setReadyToSendForm4(false)}}
                     />
 
                 </form>
@@ -1143,7 +1145,7 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => setReadyToSendForm4(true)}
+                        onClick={() => {setReadyToSendForm4(true); setReadyToSendForm1(false); setReadyToSendForm2(false); setReadyToSendForm3(false)}}
                     />
 
                 </form>

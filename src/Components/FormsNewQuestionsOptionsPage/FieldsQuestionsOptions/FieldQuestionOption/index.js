@@ -40,17 +40,15 @@ function FieldQuestionOption({
 
         setNewValue(e.target.value)
 
-    }
+    }    
 
     //atualizando os valores e certificando que todos estão capturados antes de salvar os dados dos forms
-    useEffect(() => {
-        
+    useEffect(() => {        
         if (formsTitlesTarget  === "Form 1 (Questions)") { // form 1
 
             setValuesForms(valueForm1)
 
             if (readyToCleanAll === false) {
-
                 labelTarget === "Question:*" && setValueForm1(newValue)
             
                 labelTarget === "Answer:*" && setValueForm1(newValue)
@@ -62,7 +60,6 @@ function FieldQuestionOption({
                 labelTarget === "Number:*" && setValueForm1(newValue)
             
             } else if (readyToCleanAll === true) {
-
                 // zera
                 setNewValue('')
                 // retorna ao valor inicial
@@ -75,7 +72,6 @@ function FieldQuestionOption({
             setValuesForms(valueForm2)
 
             if (readyToCleanAll === false) {
-
                 labelTarget === "Option 1:*" && setValueForm2(newValue)
 
                 labelTarget === "Option 2:*" && setValueForm2(newValue)
@@ -89,7 +85,6 @@ function FieldQuestionOption({
                 labelTarget === "Number:*" && setValueForm2(newValue)
 
             } else if (readyToCleanAll === true) {
-
                 //zera
                 setNewValue('')
                 // retorna ao valor inicial
@@ -102,7 +97,6 @@ function FieldQuestionOption({
             setValuesForms(valueForm3)
 
             if (readyToCleanAll === false) {
-
                 labelTarget === "Question:*" && setValueForm3(newValue)
 
                 labelTarget === "Answer's Text:*" && setValueForm3(newValue)
@@ -114,7 +108,6 @@ function FieldQuestionOption({
                 labelTarget === "Number:*" && setValueForm3(newValue)
 
             } else if (readyToCleanAll === true) {
-
                 // zera
                 setNewValue('')
                 // retorna ao valor inicial
@@ -127,7 +120,6 @@ function FieldQuestionOption({
             setValuesForms(valueForm4)  
 
             if (readyToCleanAll === false) {
-
                 labelTarget === "Option 1:*" && setValueForm4(newValue)
         
                 labelTarget === "Option 2:*" && setValueForm4(newValue)
@@ -141,7 +133,6 @@ function FieldQuestionOption({
                 labelTarget === "Number:*" && setValueForm4(newValue)
 
             } else if (readyToCleanAll === true) {
-
                 // zera
                 setNewValue('')
                 // retorna ao valor inicial

@@ -2,7 +2,7 @@ import styles from './ButtonAnswer.module.css';
 import errorAudio from '../../../audios/errorAudio.mp3';
 import correctAudio from '../../../audios/correctAudio.mp3';
 import { useOutletContext } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
 import Animation from '../../Animation';
 
