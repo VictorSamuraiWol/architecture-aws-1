@@ -119,29 +119,9 @@ function MultiOptions({
 
     }, [listMultiOptions, multiQuestion, listMultiQuestions])
 
-    useEffect(() => {
-
-        // colocando em outro useEffect a variável 'optionMultiMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setMultiOptionMap'
-        // esconder a opção vazia, caso tenha questões com apenas 4 opções
-        const optionMultiVoid = document.querySelectorAll('.optionNextMulti')
-    
-        if ((multiOptionMap[optNum1] === '') && (multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
-            optionMultiVoid[0].style.display = 'none'
-        } else if ((multiOptionMap[optNum2] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
-            optionMultiVoid[1].style.display = 'none'
-        } else if ((multiOptionMap[optNum3] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum4] !== '' && multiOptionMap[optNum5] !== '')) {
-            optionMultiVoid[2].style.display = 'none'
-        } else if ((multiOptionMap[optNum4] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum5] !== '')) {
-            optionMultiVoid[3].style.display = 'none'
-        } else if ((multiOptionMap[optNum5] === '') && (multiOptionMap[optNum1] !== '' && multiOptionMap[optNum2] !== '' && multiOptionMap[optNum3] !== '' && multiOptionMap[optNum4] !== '')) {
-            optionMultiVoid[4].style.display = 'none'
-        }  
-
-    }, [optNum1, optNum2, optNum3, optNum4, optNum5, multiOptionMap])
-
     return (
         <div className={styles.multiOptionsAll}>
-            <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
+            {multiOptionMap[optNum1] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum1]' existir */}
                 <input
                     onChange={captureValueMultiFunc}                    
                     className={styles.inputMultiOptions}
@@ -159,9 +139,9 @@ function MultiOptions({
                         {(optNum1 === 0 || optNum1 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
+            {multiOptionMap[optNum2] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum2]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
@@ -179,9 +159,9 @@ function MultiOptions({
                         {(optNum2 === 0 || optNum2 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
+            {multiOptionMap[optNum3] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum3]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
@@ -199,9 +179,9 @@ function MultiOptions({
                         {(optNum3 === 0 || optNum3 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
+            {multiOptionMap[optNum4] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum4]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
@@ -219,9 +199,9 @@ function MultiOptions({
                         {(optNum4 === 0 || optNum4 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}>
+            {multiOptionMap[optNum5] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum5]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
@@ -239,7 +219,7 @@ function MultiOptions({
                         {(optNum5 === 0 || optNum5 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
                     </span>
                 </p>
-            </div>
+            </div>}
 
         </div>
     )

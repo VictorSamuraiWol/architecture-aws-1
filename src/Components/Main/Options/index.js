@@ -106,33 +106,14 @@ function Options({
 
     }, [listOptions, nextQuestion, listQuestions])
 
-    useEffect(() => {
-        // colocando em outro useEffect a variável 'optionMap' para evitar o excesso de atualizações pelas mudanças de estado, pelo fato de no useEffect acima ter o 'setOptionMap'
-        // esconder a opção vazia, caso tenha questões com apenas 4 opções
-        const optionMainVoid = document.querySelectorAll('.optionNext')
-
-        if ((optionMap[optNum1] === '') && (optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
-            optionMainVoid[0].style.display = 'none'
-        } else if ((optionMap[optNum2] === '') && (optionMap[optNum1] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
-            optionMainVoid[1].style.display = 'none'
-        } else if ((optionMap[optNum3] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum4] !== '' && optionMap[optNum5] !== '')) {
-            optionMainVoid[2].style.display = 'none'
-        } else if ((optionMap[optNum4] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum5] !== '')) {
-            optionMainVoid[3].style.display = 'none'
-        } else if ((optionMap[optNum5] === '') && (optionMap[optNum1] !== '' && optionMap[optNum2] !== '' && optionMap[optNum3] !== '' && optionMap[optNum4] !== '')) {
-            optionMainVoid[4].style.display = 'none'
-        }  
-
-    }, [optNum1, optNum2, optNum3, optNum4, optNum5, optionMap])
-
     return(                 
         <div 
         className={styles.optionsMain}  
         id='option' 
         key={listOptions && listOptions.id}
         >
-            <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
-                <input
+            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
+                 <input 
                     onClick={captureValue}
                     className={styles.inputOptions}  
                     type='radio' 
@@ -147,9 +128,9 @@ function Options({
                     {optionMap[optNum1]}
 
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
+            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
                 <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -165,9 +146,9 @@ function Options({
                     {optionMap[optNum2]}
 
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
+            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
                 <input 
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -183,10 +164,10 @@ function Options({
                     {optionMap[optNum3]}
 
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
-                <input 
+            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
+                <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
                     type='radio' 
@@ -201,10 +182,10 @@ function Options({
                     {optionMap[optNum4]}
 
                 </p>
-            </div>
+            </div>}
 
-            <div className={`optionNext ${optionColor} ${styles.checkOpt}`}>
-                <input 
+            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
+                <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
                     type='radio' 
@@ -219,7 +200,7 @@ function Options({
                     {optionMap[optNum5]}
                     
                 </p>
-            </div>
+            </div>}
 
         </div>      
 

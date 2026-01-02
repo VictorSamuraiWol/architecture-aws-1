@@ -25,16 +25,18 @@
 - [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
 - [JavaScript](https://www.javascript.com/)
 - [React](https://react.dev/)
-- [React-Icons](https://react-icons.github.io/react-icons/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [AWS](https://aws.amazon.com/pt/)
 - [AWS Icons](https://aws-icons.com/)
-- [Microsoft Designer](https://designer.microsoft.com/)
-- [Pixabay](https://pixabay.com/pt/)
 - [Json-Server](https://www.npmjs.com/package/json-server)
 - [MySQL](https://www.mysql.com/)
-- [chatGPT](https://chatgpt.com/)
+- [Microsoft Designer](https://designer.microsoft.com/)
+- [Pixabay](https://pixabay.com/pt/)
+- [ChatGPT](https://chatgpt.com/)
 - [Lexica](https://lexica.art/)
 - [Github](https://github.com/)
 - [Vercel](https://vercel.com/)
+- [Trello](https://trello.com/pt-BR)
 
 ## <img src="src/imgs/icone-wolverine-sem-fundo.png" width="50" /> AWS Certified Cloud Practitioner, AWS Cloud Computing and Front-End Student 
 <br>

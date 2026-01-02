@@ -70,10 +70,11 @@ function FormsNewQuestionsOptionsPage() {
     // capturando os números usados nos formulários 2 e 4
     const [listNumbersForms2and4, setListNumbersForms2and4] = useState([])
 
-    const [activePopupRepeatedAlternativesForms2, setActivePopupRepeatedAlternativesForms2] = useState(false) // ativa o componente PopupRepeatedAlternatives no formulário 2
+    // ativa o componente PopupRepeatedAlternatives no formulário 2
+    const [activePopupRepeatedAlternativesForms2, setActivePopupRepeatedAlternativesForms2] = useState(false) 
 
-    const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false) // ativa o componente PopupRepeatedAlternatives nao formulário 4
-
+    // ativa o componente PopupRepeatedAlternatives nao formulário 4
+    const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false)
 
     useEffect(() => {
         // capturando o número de todas as questões presentes nos formulários 1 e 3
@@ -183,7 +184,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -209,7 +210,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -235,7 +236,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -261,7 +262,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -291,8 +292,7 @@ function FormsNewQuestionsOptionsPage() {
                 alert('Questão adicionada com sucesso do form 1! Preencha um formulário por vez.')
                 cleanAllForms(); // limpar o formulário
               
-                // tornar verdadeiro a cada POST
-                setPostApi(true)
+                setPostApi(true) // tornar verdadeiro a cada POST
 
             }
             
@@ -371,7 +371,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -409,7 +409,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -447,7 +447,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -485,7 +485,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = fields[i].children[0];
                     const textAreaInput = fields[i].children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -515,8 +515,7 @@ function FormsNewQuestionsOptionsPage() {
                 alert('Questão adicionada com sucesso do form 2! Preencha um formulário por vez.')
                 cleanAllForms(); // limpar o formulário
                 
-                // tornar verdadeiro a cada POST
-                setPostApi(true)
+                setPostApi(true) // tornar verdadeiro a cada POST
                 
             }
 
@@ -579,7 +578,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -604,7 +603,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -629,7 +628,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -654,7 +653,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
@@ -684,8 +683,7 @@ function FormsNewQuestionsOptionsPage() {
                 alert('Questão adicionada com sucesso do form 3! Preencha um formulário por vez.')
                 cleanAllForms(); // limpar o formulário
                 
-                // tornar verdadeiro a cada POST
-                setPostApi(true)
+                setPostApi(true) // tornar verdadeiro a cada POST
                 
             }
 
@@ -762,7 +760,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -799,7 +797,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -836,7 +834,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -873,7 +871,7 @@ function FormsNewQuestionsOptionsPage() {
                     const label = field.children[0];
                     const textAreaInput = field.children[1];
 
-                    label.style.color = ""; //para restaurar a cor inicial das labels antes de verificar os campos
+                    label.style.color = ""; // para restaurar a cor inicial das labels antes de verificar os campos
 
                     // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                     if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
@@ -903,8 +901,7 @@ function FormsNewQuestionsOptionsPage() {
                 alert('Questão adicionada com sucesso do form 4! Preencha um formulário por vez.')
                 cleanAllForms(); // limpar o formulário
                
-                // tornar verdadeiro a cada POST
-                setPostApi(true)
+                setPostApi(true) // tornar verdadeiro a cada POST
 
             }
 
