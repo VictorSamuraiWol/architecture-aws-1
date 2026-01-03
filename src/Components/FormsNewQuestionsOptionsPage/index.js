@@ -7,6 +7,7 @@ import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid';
 import PopupRepeatedAlternatives from '../Main/PopupRepeatedAlternatives'
 import { useOutletContext } from 'react-router-dom'
+import { GiConsoleController } from 'react-icons/gi'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -967,6 +968,16 @@ function FormsNewQuestionsOptionsPage() {
         }, 1000)
 
     }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList])
+
+    function checkAlternativeAnswer() {
+        let matchedAlternativeAnswer = null;
+
+        // optionForm2.filter(alternative => alternative === )
+
+        console.log(!matchedAlternativeAnswer, matchedAlternativeAnswer, 976)
+
+    }
+    console.log(checkAlternativeAnswer())
 
     return(
         <div className={styles.formsNewQuestionsOptions}>            
