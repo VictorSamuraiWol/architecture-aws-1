@@ -1,15 +1,15 @@
 import styles from './Main.module.css'
-import AnswerDescription from './AnswerDescription';
-import ButtonAnswer from './ButtonAnswer';
-import Question from './Question';
-import ButtonNext from './ButtonNext';
-import { Link } from 'react-router-dom';
-import Options from './Options';
 import { useContext, useState } from 'react';
-import ModalResults from '../ModalResults';
 import { DataContext } from '../DataContext';
+import { Link } from 'react-router-dom';
+import Question from './Question';
+import Options from './Options';
 import MenuTools from './MenuTools';
-import PopupRepeatedAlternatives from './PopupRepeatedAlternatives';
+import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
+import ModalResults from '../ModalResults';
+import ButtonAnswer from './ButtonAnswer';
+import AnswerDescription from './AnswerDescription';
+import ButtonNext from './ButtonNext';
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
@@ -87,9 +87,10 @@ function Main({
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupMain} 
                     textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga respondendo. Obrigado."} 
-                    setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesMain}
+                    activePopup={setActivePopupRepeatedAlternativesMain}
 
-                />}
+                />
+            }
 
             <Options  
                 randomIndex={randomIndex}

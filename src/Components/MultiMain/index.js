@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom';
-import Answer from '../Main/AnswerDescription'; // reutilizando componente presente no Main
-import ButtonAnswer from '../Main/ButtonAnswer'; // reutilizando componente presente no Main
-import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
-import MultiOptions from './MultiOptions';
-import Question from '../Main/Question'; // reutilizando componente presente no Main
 import styles from './MultiMain.module.css';
 import { useState } from 'react';
-import ModalResults from '../ModalResults';
+import { Link } from 'react-router-dom';
+import Question from '../Main/Question'; // reutilizando componente presente no Main
+import MultiOptions from './MultiOptions';
 import MenuTools from '../Main/MenuTools';
-import PopupRepeatedAlternatives from '../Main/PopupRepeatedAlternatives';
+import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
+import ModalResults from '../ModalResults';
+import ButtonAnswer from '../Main/ButtonAnswer'; // reutilizando componente presente no Main
 import AnswerDescription from '../Main/AnswerDescription';
+import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, 
@@ -47,9 +46,10 @@ function MultiMain({
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupMultiMain} 
                     textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga respondendo. Obrigado."}
-                    setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesMultiMain}
+                    activePopup={setActivePopupRepeatedAlternativesMultiMain}
 
-                />}
+                />
+            }
 
             <MultiOptions
                 listMultiOptions={listMultiOptions}

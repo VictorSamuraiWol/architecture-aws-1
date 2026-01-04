@@ -5,7 +5,7 @@ import { MdEditSquare } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import FieldModalEdit from './FieldModalEdit';
 import ButtonDefault from '../../../ButtonDefault';
-import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives';
+import PopupRepeatedAlternatives from '../../../PopupRepeatedAlternatives';
 import { useOutletContext } from 'react-router-dom';
 
 // certifique-se de vincular o modal ao seu appElement
@@ -40,6 +40,9 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3]);
   const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4]);
 
+  const [newOption, setNewOption] = useState([]) // lista das alternativas da opção única
+  const [newMultiOption, setNewMultiOption] = useState([]) // lista das alternativas da opção múltipla
+
   const [activePopupRepeatedAlternativesModalEdit, setActivePopupRepeatedAlternativesModalEdit] = useState(false) // ativa o componente PopupRepeatedAlternatives na ModalEdit
 
   const { repeatedAlternativesDefault } = useOutletContext();
@@ -58,6 +61,13 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
     setOption5Multi(multiOptionMap && multiOptionMap[4])
 
   }, [optionMap, multiOptionMap]) // sempre atualizar as opções quando houver mudança
+
+  useEffect(() => {
+    setNewOption([option1, option2, option3, option4, option5]) // lista das alternativas da opção única
+
+    setNewMultiOption([option1Multi, option2Multi, option3Multi, option4Multi, option5Multi]) // lista das alternativas da opção múltipla
+
+  }, [option1, option2, option3, option4, option5, option1Multi, option2Multi, option3Multi, option4Multi, option5Multi])
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -200,7 +210,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsNewPageMain(event) { 
-    if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) {
+    if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
       event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
 
       setActivePopupRepeatedAlternativesModalEdit(true)
@@ -225,7 +235,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsPageMulti(event) {
-    if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) {
+    if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
       event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
 
       setActivePopupRepeatedAlternativesModalEdit(true)
@@ -471,7 +481,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => repeatedAlternativesDefault(optionMap, multiOptionMap)} 
+              onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
               buttonName='Save' 
               specificType='submit'
 
@@ -559,7 +569,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => repeatedAlternativesDefault(optionMap, multiOptionMap)} 
+              onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
               buttonName='Save' 
               specificType='submit'
 
@@ -579,7 +589,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           <PopupRepeatedAlternatives 
             specificStyles={styles.popupModalEdit} 
             textPopup={"Há alternativas repetidas! Por favor, antes de editar a opção, altere as alternativas que se repetem, e então prossiga com a edição da questão e da opção. Obrigado."} 
-            setActivePopupRepeatedAlternatives={setActivePopupRepeatedAlternativesModalEdit}
+            activePopup={setActivePopupRepeatedAlternativesModalEdit}
             
           />}
       
