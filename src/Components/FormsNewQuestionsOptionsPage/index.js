@@ -86,7 +86,7 @@ function FormsNewQuestionsOptionsPage() {
     const [matchedQuestionMain, setMatchedQuestionMain] = useState('') // capturar o número da questão alvo
     const [matchedQuestionMultiMain, setMatchedQuestionMultiMain] = useState('') // capturar o número da questão alvo
     
-    function checkAlternativeAnswer() { // função que verifica se há alguma alternativa da opção exatamente igual a resposta da questão correspondente e retorna 'true' se não houver
+    function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão
         let matchedQuestionMain = null
         let matchedQuestionMainAnswer = null
         let matchedAlternativeAnswerMain = null
@@ -108,7 +108,7 @@ function FormsNewQuestionsOptionsPage() {
         // filtra a alternativa que corresponde a resposta da questão única correspondente, não incluindo alternativas vazias
         matchedAlternativeAnswerMain = optionForm2 && optionForm2.filter(alternative => (alternative !== '') && (alternative === matchedQuestionMainAnswer))
 
-        // filtra a alternativa que corresponde a resposta da questão múltipla correspondente, não incluindo alternativas vazias
+        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias
         matchedAlternativeAnswerMultiMain = optionForm4 && ((optionForm4[0] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[0])) && (optionForm4[1] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[1])))
 
         if (readyToSendForm2 === true && ((matchedQuestionMain.length > 0) && (matchedAlternativeAnswerMain.length === 0))) {
@@ -358,6 +358,8 @@ function FormsNewQuestionsOptionsPage() {
         console.error("Erro ao enviar os dados", error);
 
         }
+
+        setReadyToSendForm1(false) // volta ao estado inicial ao submeter o formulário (false)
       
     }
 
@@ -591,7 +593,9 @@ function FormsNewQuestionsOptionsPage() {
                 
             }
 
-        }     
+        } 
+        
+        setReadyToSendForm2(false) // volta ao estado inicial ao submeter o formulário (false)
                 
     }
 
@@ -759,7 +763,10 @@ function FormsNewQuestionsOptionsPage() {
         } catch(error) {
             console.error("Erro ao enviar os dados", error);
             
-        }   
+        } 
+        
+        setReadyToSendForm3(false) // volta ao estado inicial ao submeter o formulário (false)
+
     }
 
     // função utilizando POST para salvar os dados do form4 na API
@@ -989,6 +996,8 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         }
+
+        setReadyToSendForm4(false) // volta ao estado inicial ao submeter o formulário (false)
         
     }
 
@@ -1048,6 +1057,9 @@ function FormsNewQuestionsOptionsPage() {
 
     }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList])
 
+
+
+
     return(
         <div className={styles.formsNewQuestionsOptions}>            
             <img 
@@ -1093,7 +1105,8 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => {setReadyToSendForm1(true); setReadyToSendForm2(false); setReadyToSendForm3(false); setReadyToSendForm4(false)}}
+                        // tornar readyToSendForm1 'true' antes de entrar na função onSaveForm1 ao submeter o formulário 1
+                        onClick={() => {setReadyToSendForm1(true)}}
 
                     />
 
@@ -1137,8 +1150,9 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => {setReadyToSendForm2(true); setReadyToSendForm1(false); setReadyToSendForm3(false); setReadyToSendForm4(false)}}
-                        
+                        // tornar readyToSendForm2 'true' antes de entrar na função onSaveForm2 ao submeter o formulário 2
+                        onClick={() => {setReadyToSendForm2(true)}}
+         
                     />
 
                 </form>
@@ -1179,7 +1193,8 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => {setReadyToSendForm3(true); setReadyToSendForm1(false); setReadyToSendForm2(false); setReadyToSendForm4(false)}}
+                        // tornar readyToSendForm3 'true' antes de entrar na função onSaveForm3 ao submeter o formulário 3
+                        onClick={() => {setReadyToSendForm3(true)}}
                     />
 
                 </form>
@@ -1222,7 +1237,8 @@ function FormsNewQuestionsOptionsPage() {
                         buttonName='Submit' 
                         specificType='submit' 
                         specificStyleButton={styles.buttonSubmit}
-                        onClick={() => {setReadyToSendForm4(true); setReadyToSendForm1(false); setReadyToSendForm2(false); setReadyToSendForm3(false)}}
+                        // tornar readyToSendForm4 'true' antes de entrar na função onSaveForm4 ao submeter o formulário 4
+                        onClick={() => {setReadyToSendForm4(true)}}
                     />
 
                 </form>
