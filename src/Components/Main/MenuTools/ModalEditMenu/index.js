@@ -587,7 +587,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
         {activePopupRepeatedAlternativesModalEdit === true && 
           <PopupRepeatedAlternatives 
-            specificStyles={styles.popupModalEdit} 
+            specificStyles={styles.popupRepeatedModalEdit} 
             textPopup={"Há alternativas repetidas! Por favor, antes de editar a opção, altere as alternativas que se repetem, e então prossiga com a edição da questão e da opção. Obrigado."} 
             activePopup={setActivePopupRepeatedAlternativesModalEdit}
             

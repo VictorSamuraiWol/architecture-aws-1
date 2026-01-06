@@ -60,7 +60,7 @@
     z-index: 1;
 }
 
-.popupForms {
+.popupRepeatedForms {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -124,7 +124,12 @@
         padding: 12px;
     }
 
-    .popupDefault {
+    .popupRepeatedForms {
+        font-size: 0.8rem;
+        width: 20%;
+    }
+
+    .popupCheckForm {
         font-size: 0.8rem;
         width: 20%;
     }
@@ -144,7 +149,12 @@
         padding: 8px;
     }
 
-    .popupDefault {
+    .popupRepeatedForms {
+        font-size: 0.7rem;
+        width: 25%;
+    }
+
+    .popupCheckForm {
         font-size: 0.7rem;
         width: 25%;
     }

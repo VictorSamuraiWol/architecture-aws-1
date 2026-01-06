@@ -1312,7 +1312,7 @@ function FormsNewQuestionsOptionsPage() {
             {/* PopupRepeatedAlternatives */}
             {activePopupRepeatedAlternativesForms2 === true && 
                 <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupForms} 
+                    specificStyles={styles.popupRepeatedForms} 
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 2 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms2}
                     
@@ -1321,7 +1321,7 @@ function FormsNewQuestionsOptionsPage() {
 
             {activePopupRepeatedAlternativesForms4 === true && 
                 <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupForms} 
+                    specificStyles={styles.popupRepeatedForms} 
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 4 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms4}
                     

@@ -12,7 +12,7 @@
   color: var(--color-third);
 }
 
-.popupMultiMain {
+.popupRepeatedMultiMain {
   position: fixed;
   left: 85%;
   bottom: 15%;
@@ -30,7 +30,7 @@
 
 /* Responsividade */
 @media (max-width: 860px) {
-  .popupMultiMain {
+  .popupRepeatedMultiMain {
     font-size: 0.8rem;
     width: 20%;
   }
@@ -38,7 +38,7 @@
 }
 
 @media (max-width: 580px) {
-  .popupMultiMain {
+  .popupRepeatedMultiMain {
     font-size: 0.7rem;
     width: 25%;
   }

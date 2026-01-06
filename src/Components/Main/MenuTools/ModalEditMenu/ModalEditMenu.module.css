@@ -77,7 +77,7 @@
   gap: 16px;
 }
 
-.popupModalEdit {
+.popupRepeatedModalEdit {
   position: fixed;
   top: 50%;
   left: 85%;
@@ -102,7 +102,7 @@
 }
 
 @media (max-width: 860px) {
-  .popupModalEdit {
+  .popupRepeatedModalEdit {
     font-size: 0.8rem;
     width: 20%;
   }
@@ -110,7 +110,7 @@
 }
 
 @media (max-width: 580px) {
-  .popupModalEdit {
+  .popupRepeatedModalEdit {
     font-size: 0.7rem;
     width: 25%;
   }
