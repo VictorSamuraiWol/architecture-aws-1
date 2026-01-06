@@ -451,9 +451,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 } else {
                     data = {
@@ -514,9 +514,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
                 
@@ -552,9 +552,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
 
@@ -590,9 +590,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
                     
@@ -870,9 +870,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 } else {
                     data = {
@@ -932,9 +932,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
 
@@ -969,9 +969,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
 
@@ -1006,9 +1006,9 @@ function FormsNewQuestionsOptionsPage() {
                     setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
                     setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 10s
+                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 10000)
+                    }, 15000)
                 
                 }
                     
@@ -1313,7 +1313,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupRepeatedAlternativesForms2 === true && 
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupForms} 
-                    textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 2 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} 
+                    textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 2 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms2}
                     
                     />
@@ -1322,7 +1322,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupRepeatedAlternativesForms4 === true && 
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupForms} 
-                    textPopup={"Há alternativas repetidas! Por favor, antes de criar a opção, altere as alternativas no formulário 4 para que todas sejam diferentes, e então prossiga com a criação da opção. Obrigado."} 
+                    textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 4 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms4}
                     
                     />
@@ -1332,7 +1332,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms1 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Sua resposta não contém alguma alternativa da opção ${matchedOptionMainPopup}! Por favor, antes de criar a questão, deixe a resposta exatamente igual a alternativa correta da opção ${matchedOptionMainPopup}, e então prossiga com a criação da questão. Para mais informações, consulte o banco de dados. Obrigado.`} 
+                        textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopup}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopup}, and then proceed with creating the question. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms1}
 
                     />
@@ -1341,7 +1341,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms2 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Não foi encontrada alguma alternativa igual a resposta da questão ${matchedQuestionMainPopup}! Por favor, antes de criar a opção, deixe uma das alternativas exatamente igual a resposta da questão ${matchedQuestionMainPopup}, já criada, e então prossiga com a criação da opção. Para mais informações, consulte o banco de dados. Obrigado.`} 
+                        textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopup} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopup}, and then proceed with creating the option. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms2}
 
                     />
@@ -1350,7 +1350,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms3 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Sua resposta não contém as duas alternativas corretas (Option1 e Option2) da opção ${matchedOptionMultiMainPopup}! Por favor, antes de criar a questão, inclua na resposta as duas alternativas corretas (Option1 e Option2) da opção ${matchedOptionMultiMainPopup}, e então prossiga com a criação da questão. Para mais informações, consulte o banco de dados. Obrigado.`} 
+                        textPopup={`Your answer does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopup}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopup} in the answer, and then proceed with creating the question. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms3}
 
                     />
@@ -1359,7 +1359,7 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms4 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Não foram encontradas as duas alternativas incluídas na resposta da questão ${matchedQuestionMultiMainPopup}! Por favor, antes de criar a opção, deixe sempre as alternativas 'Option1' e 'Option2' igual as incluídas na resposta da questão ${matchedQuestionMultiMainPopup}, já criada, e então prossiga com a criação da opção. Para mais informações, consulte o banco de dados. Obrigado.`} 
+                        textPopup={`The two alternatives included in the answer of question ${matchedQuestionMultiMainPopup} were not found. Please, before creating the option, always ensure that the alternatives ‘Option1’ and ‘Option2’ are exactly the same as those included in the answer of the already created question ${matchedQuestionMultiMainPopup}, and then proceed with creating the option. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms4}
 
                     />
