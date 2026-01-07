@@ -83,3 +83,48 @@
 .modalImageDelete:hover {
   transform: scale(1.03);
 }
+
+/* Responsividade */
+@media (max-width: 1100px) {
+  .modalImageDelete {
+      height: 1.5em;
+      width: 1.5em;
+  }
+
+  .modalContent h1 {
+      font-size: 1.7rem;
+  }
+  
+  .modalContent p {
+      font-size: 1.5rem;
+  }
+
+}
+
+@media (max-width: 860px) {
+  .modalContent h1 {
+      font-size: 1.5rem;
+  }
+  
+  .modalContent p {
+      font-size: 1.3rem;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .modalImageDelete {
+      height: 1em;
+      width: 1em;
+  }
+
+  .modalContent h1 {
+      font-size: 0.9rem;
+  }
+  
+  .modalContent p {
+      font-size: 0.7rem;
+  }
+
+}
+
