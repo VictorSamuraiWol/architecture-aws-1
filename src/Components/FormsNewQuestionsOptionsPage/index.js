@@ -87,12 +87,16 @@ function FormsNewQuestionsOptionsPage() {
     const [activePopupcheckAlternativeAnswerForms3, setActivePopupcheckAlternativeAnswerForms3] = useState(false) 
 
     // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage
-    const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false)  
+    const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false) 
 
-    const [matchedOptionMainPopup, setMatchedOptionMainPopup] = useState('') // capturar o número da opção alvo
-    const [matchedQuestionMainPopup, setMatchedQuestionMainPopup] = useState('') // capturar o número da questão alvo
-    const [matchedOptionMultiMainPopup, setMatchedOptionMultiMainPopup] = useState('') // capturar o número da opção alvo
-    const [matchedQuestionMultiMainPopup, setMatchedQuestionMultiMainPopup] = useState('') // capturar o número da questão alvo
+    const [matchedOptionMainPopup, setMatchedOptionMainPopup] = useState('') // capturar a opção única (form1)
+    const [matchedOptionMainPopupNumber, setMatchedOptionMainPopupNumber] = useState('') // capturar o número da opção única (form1)
+    const [matchedQuestionMainPopupAnswer, setMatchedQuestionMainPopupAnswer] = useState('') // capturar a resposta da questão única (form2)
+    const [matchedQuestionMainPopupNumber, setMatchedQuestionMainPopupNumber] = useState('') // capturar o número da questão única (form2)
+    const [matchedOptionMultiMainPopupAnswers, setMatchedOptionMultiMainPopupAnswers] = useState('') // capturar as duas alternativas corretas da opção múltipla (form3)
+    const [matchedOptionMultiMainPopupNumber, setMatchedOptionMultiMainPopupNumber] = useState('') // capturar o número da opção múltipla (form3)
+    const [matchedQuestionMultiMainPopupAnswer, setMatchedQuestionMultiMainPopupAnswer] = useState('') // capturar a resposta da questão múltipla (form4) 
+    const [matchedQuestionMultiMainPopupNumber, setMatchedQuestionMultiMainPopupNumber] = useState('') // capturar o número da questão múltipla (form4)
     
     function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão
         // variáveis usadas ao preencher o formulário 1
@@ -168,10 +172,14 @@ function FormsNewQuestionsOptionsPage() {
 
         }
 
-        setMatchedOptionMainPopup(matchedOptionMainNumber) // capturar o número da opção única
-        setMatchedQuestionMainPopup(matchedQuestionMain?.numberQuestion) // capturar o número da questão única
-        setMatchedOptionMultiMainPopup(matchedOptionMultiMainNumber) // capturar o número da opção múltipla
-        setMatchedQuestionMultiMainPopup(matchedQuestionMultiMain?.numberQuestion) // capturar o número da questão múltipla        
+        setMatchedOptionMainPopup(matchedOptionMain) // capturar a opção única (form1)
+        setMatchedOptionMainPopupNumber(matchedOptionMainNumber) // capturar o número da opção única (form1)
+        setMatchedQuestionMainPopupAnswer(matchedQuestionMainAnswer) // capturar a resposta da questão única (form2)
+        setMatchedQuestionMainPopupNumber(matchedQuestionMain?.numberQuestion) // capturar o número da questão única (form2)
+        setMatchedOptionMultiMainPopupAnswers([matchedOptionMultiMain && matchedOptionMultiMain[0], matchedOptionMultiMain && matchedOptionMultiMain[1]]) // capturar as duas alternativas corretas da opção múltipla (form3)
+        setMatchedOptionMultiMainPopupNumber(matchedOptionMultiMainNumber) // capturar o número da opção múltipla (form3)
+        setMatchedQuestionMultiMainPopupAnswer(matchedQuestionMultiMainAnswerText) // capturar a resposta da questão múltipla (form4)
+        setMatchedQuestionMultiMainPopupNumber(matchedQuestionMultiMain?.numberQuestion) // capturar o número da questão múltipla (form4)       
         
         return checkWithoutMatched
   
@@ -251,11 +259,6 @@ function FormsNewQuestionsOptionsPage() {
 
         if (checkAlternativeAnswer() === true && (newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions)) {
             setActivePopupcheckAlternativeAnswerForms1(true) // ativa o popup
-
-            setTimeout(() => {
-                setActivePopupcheckAlternativeAnswerForms1(false) // desativa o popup em 20s
-
-            }, 20000)
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -436,11 +439,6 @@ function FormsNewQuestionsOptionsPage() {
 
         if (checkAlternativeAnswer() === true && (newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
-
-            setTimeout(() => {
-                setActivePopupcheckAlternativeAnswerForms2(false) // desativa o popup em 20s
-
-            }, 20000)
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -675,11 +673,6 @@ function FormsNewQuestionsOptionsPage() {
         if (checkAlternativeAnswer() === true && (newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions)) {
             setActivePopupcheckAlternativeAnswerForms3(true) // ativa o popup
 
-            setTimeout(() => {
-                setActivePopupcheckAlternativeAnswerForms3(false) // desativa o popup em 20s
-
-            }, 20000)
-
         } else {
             // colocando somente os campos que serão obrigatórios
             if (readyToSendForm3 === true && isValid === true && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
@@ -856,11 +849,6 @@ function FormsNewQuestionsOptionsPage() {
         if (checkAlternativeAnswer() === true && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
             setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
 
-            setTimeout(() => {
-                setActivePopupcheckAlternativeAnswerForms4(false) // desativa o popup em 20s
-
-            }, 20000)
-
         } else {
             // colocando somente os campos que serão obrigatórios
             if (readyToSendForm4 === true && isValid === true && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
@@ -935,7 +923,7 @@ function FormsNewQuestionsOptionsPage() {
                         setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
                     }, 15000)
-                
+
                 }
 
             } else if (readyToSendForm4 === true && isValid === false && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
@@ -1332,8 +1320,9 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms1 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopup}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopup}, and then proceed with creating the question. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms1}
+                        textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopupNumber}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopupNumber}, and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
+                        textModalDescription={`Include in the answer to question ${newQuestionsNumberQuestions} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? `or ${matchedOptionMainPopup[4]}.` : `.`}`}
 
                     />
             }
@@ -1341,8 +1330,9 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms2 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopup} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopup}, and then proceed with creating the option. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms2}
+                        textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopupNumber} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
+                        textModalDescription={`Include in one of the alternatives of option ${newOptionsNumberQuestions} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
 
                     />
             }
@@ -1350,8 +1340,9 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms3 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`Your answer does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopup}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopup} in the answer, and then proceed with creating the question. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms3}
+                        textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
+                        textModalDescription={`Include in the "answer's text" to question ${newQuestionsNumberMultiQuestions} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
 
                     />
             }
@@ -1359,8 +1350,9 @@ function FormsNewQuestionsOptionsPage() {
             {activePopupcheckAlternativeAnswerForms4 === true && 
                     <PopupCheckAlternativeAnswer 
                         specificStyles={styles.popupCheckForm} 
-                        textPopup={`The two alternatives included in the answer of question ${matchedQuestionMultiMainPopup} were not found. Please, before creating the option, always ensure that the alternatives ‘Option1’ and ‘Option2’ are exactly the same as those included in the answer of the already created question ${matchedQuestionMultiMainPopup}, and then proceed with creating the option. For more information, please refer to the database. Thank you.`} 
                         activePopup={setActivePopupcheckAlternativeAnswerForms4}
+                        textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
+                        textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionsNumberMultiQuestions} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
 
                     />
             }

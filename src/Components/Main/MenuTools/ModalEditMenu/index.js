@@ -1,12 +1,12 @@
 import styles from './ModalEditMenu.module.css';
-import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { MdEditSquare } from "react-icons/md";
-import { TiDeleteOutline } from "react-icons/ti";
 import FieldModalEdit from './FieldModalEdit';
 import ButtonDefault from '../../../ButtonDefault';
 import PopupRepeatedAlternatives from '../../../PopupRepeatedAlternatives';
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { MdEditSquare } from "react-icons/md";
+import { TiDeleteOutline } from "react-icons/ti";
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -69,15 +69,15 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   }, [option1, option2, option3, option4, option5, option1Multi, option2Multi, option3Multi, option4Multi, option5Multi])
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   function openModal() {
-    setModalIsOpen(true);
+    setModalIsOpen(true)
 
   }
 
   function closeModal() {
-    setModalIsOpen(false);
+    setModalIsOpen(false)
 
   }
 
@@ -400,14 +400,13 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
           overlayClassName={styles.modalOverlay}
           className={styles.modalContent}
       >
-
-        <h1>EDITAR CARD:</h1>
-          
         {/* imagem delete do react icon */}
         <TiDeleteOutline
             onClick={closeModal} 
             className={styles.modalImageDelete} 
         />      
+
+        <h1>EDITAR CARD:</h1>          
 
         {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
           onSubmit={multiFunctionsNewPageMain}
@@ -595,8 +594,8 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
       
       </Modal>
 
-
     </div>
+
   )
 }
 

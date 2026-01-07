@@ -142,17 +142,17 @@
         padding: 4px;
     }
 
+    .modalImageDelete {
+        height: 1em;
+        width: 1em;
+    }
+
     .modalContent h1 {
         font-size: 0.9rem;
     }
     
     .modalContent p {
         font-size: 0.7rem;
-    }
-
-    .modalImageDelete {
-        height: 1em;
-        width: 1em;
     }
 
 }

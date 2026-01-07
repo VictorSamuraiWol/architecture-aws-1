@@ -1,0 +1,85 @@
+.container {
+  height: 16px; /* para ficar do tamanho do conteúdo */
+}
+
+.clickModal {
+  border: 1px solid var(--color-first);
+  border-radius: 8px;
+  padding: 2px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.modalOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.modalContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  color: var(--color-fourth);
+  background: transparent;
+  font-weight: bold;
+  width: 35%;
+  padding: 20px 12px 40px 12px;
+  border: 5px solid var(--color-fourth);
+  border-radius: 12px;
+}
+
+.modalContent h1 {
+  font-size: 1.8rem;
+  font-style: italic;
+  text-decoration: underline;
+  background-color: var(--color-second);
+  padding: 4px;
+  border: 3px dotted var(--color-third);
+  border-radius: 8px;
+  cursor: default;
+}
+
+.modalContent h1:hover {
+  transform: scale(1.03);   
+}
+
+.modalContent p {
+  font-size: 1.8rem;
+  font-style: italic;
+  text-decoration: underline;
+  background-color: var(--color-second);
+  padding: 4px;
+  border: 3px dotted var(--color-third);
+  border-radius: 8px;
+  cursor: default;
+}
+
+.modalContent p:hover {
+  transform: scale(1.03);   
+}
+
+.modalImageDelete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
+  height: 2em;
+  width: 2em;
+  background-color: var(--color-second);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modalImageDelete:hover {
+  transform: scale(1.03);
+}
