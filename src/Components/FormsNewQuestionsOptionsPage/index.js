@@ -1304,7 +1304,7 @@ function FormsNewQuestionsOptionsPage() {
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 2 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms2}
                     
-                    />
+                />
             }
 
             {activePopupRepeatedAlternativesForms4 === true && 
@@ -1313,48 +1313,48 @@ function FormsNewQuestionsOptionsPage() {
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 4 so that all of them are different, and then proceed with creating the option. Thank you."} 
                     activePopup={setActivePopupRepeatedAlternativesForms4}
                     
-                    />
+                />
             }
 
             {/* PopupCheckAlternativeAnswer */}
             {activePopupcheckAlternativeAnswerForms1 === true && 
-                    <PopupCheckAlternativeAnswer 
-                        specificStyles={styles.popupCheckForm} 
-                        activePopup={setActivePopupcheckAlternativeAnswerForms1}
-                        textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopupNumber}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopupNumber}, and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
-                        textModalDescription={`Include in the answer to question ${newQuestionsNumberQuestions} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? `or ${matchedOptionMainPopup[4]}.` : `.`}`}
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckForm} 
+                    activePopup={setActivePopupcheckAlternativeAnswerForms1}
+                    textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopupNumber}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopupNumber}, and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Include in the answer to question ${newQuestionsNumberQuestions} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? ` or ${matchedOptionMainPopup[4]}.` : `.`}`}
 
-                    />
+                />
             }
 
             {activePopupcheckAlternativeAnswerForms2 === true && 
-                    <PopupCheckAlternativeAnswer 
-                        specificStyles={styles.popupCheckForm} 
-                        activePopup={setActivePopupcheckAlternativeAnswerForms2}
-                        textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopupNumber} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
-                        textModalDescription={`Include in one of the alternatives of option ${newOptionsNumberQuestions} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckForm} 
+                    activePopup={setActivePopupcheckAlternativeAnswerForms2}
+                    textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopupNumber} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Include in one of the alternatives of option ${newOptionsNumberQuestions} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
 
-                    />
+                />
             }
 
             {activePopupcheckAlternativeAnswerForms3 === true && 
-                    <PopupCheckAlternativeAnswer 
-                        specificStyles={styles.popupCheckForm} 
-                        activePopup={setActivePopupcheckAlternativeAnswerForms3}
-                        textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
-                        textModalDescription={`Include in the "answer's text" to question ${newQuestionsNumberMultiQuestions} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckForm} 
+                    activePopup={setActivePopupcheckAlternativeAnswerForms3}
+                    textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Include in the "answer's text" to question ${newQuestionsNumberMultiQuestions} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
 
-                    />
+                />
             }
 
             {activePopupcheckAlternativeAnswerForms4 === true && 
-                    <PopupCheckAlternativeAnswer 
-                        specificStyles={styles.popupCheckForm} 
-                        activePopup={setActivePopupcheckAlternativeAnswerForms4}
-                        textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
-                        textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionsNumberMultiQuestions} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckForm} 
+                    activePopup={setActivePopupcheckAlternativeAnswerForms4}
+                    textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionsNumberMultiQuestions} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
 
-                    />
+                />
             }
       
         </div>
