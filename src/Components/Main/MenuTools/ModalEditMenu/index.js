@@ -251,14 +251,13 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
     } else {
       if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+        event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
         setActivePopupRepeatedAlternativesModalEdit(true)
 
         setTimeout(() => {
           setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
 
         }, 10000)
-
-        checkAlternativeAnswer()
 
       } else {
         onSaveModalQuestion(); // salvando a questão única
@@ -283,14 +282,13 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
       } else {
       if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+        event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
         setActivePopupRepeatedAlternativesModalEdit(true)
 
         setTimeout(() => {
           setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
 
         }, 10000)
-
-        checkAlternativeAnswer()
 
       } else {    
         onSaveModalMultiQuestion(); // salvando a questão múltipla
