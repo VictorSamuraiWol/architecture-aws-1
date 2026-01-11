@@ -46,7 +46,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [newOption, setNewOption] = useState([]) // lista das alternativas da opção única
   const [newMultiOption, setNewMultiOption] = useState([]) // lista das alternativas da opção múltipla
 
-  // ativa o componente PopupRepeatedAlternatives na ModalEdit
+  // ativa o componente PopupRepeatedAlternatives na ModalEditMenu
   const [activePopupRepeatedAlternativesModalEdit, setActivePopupRepeatedAlternativesModalEdit] = useState(false) 
 
   // ativa o componente PopupCheckAlternativeAnswer na ModalEditMenu

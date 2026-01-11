@@ -5,21 +5,29 @@ import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import ButtonDefault from '../../ButtonDefault';
 import Animation from '../../Animation';
+import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer';
 
 function ButtonAnswer({ 
     answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, 
     optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, 
-    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain, activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain
+    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain, 
+    activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion
 }) {
     
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, repeatedAlternativesDefault } = useOutletContext();
+    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, repeatedAlternativesDefault } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
-    const [questionAnswer, setQuestionAnswer] = useState(false);
+    const [questionAnswer, setQuestionAnswer] = useState(false)
 
     // variável usada na animação fogos de artifício
-    const [correct, setCorrect] = useState(false);
+    const [correct, setCorrect] = useState(false)
+
+    // ativa o componente PopupCheckAlternativeAnswer no ButtonAnswer
+    const [activePopupCheckAlternativeAnswerButtonAnswerMain, setActivePopupCheckAlternativeAnswerButtonAnswerMain] = useState(false)
+
+    // ativa o componente PopupCheckAlternativeAnswer no ButtonAnswer
+    const [activePopupCheckAlternativeAnswerButtonAnswerMulti, setActivePopupCheckAlternativeAnswerButtonAnswerMulti] = useState(false)
     
     // habilitar a animação fogos de artifício ao acertar
     const handleAnswer = (isCorrect) => {
@@ -52,6 +60,31 @@ function ButtonAnswer({
 
     }
 
+    function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
+        let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
+        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
+        let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
+        
+        // filtra a opção única correspondente, ao preencher o formulário 1
+        matchedOptionMain = optionMap && optionMap.filter(option => option === answer)[0]
+        
+        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, ao preencher o formulário 2
+        matchedOptionMultiMain = answer && answer.includes(multiOptionMap && multiOptionMap[0]) && answer.includes(multiOptionMap && multiOptionMap[1])
+        
+        if (answer && optionMap && matchedOptionMain === undefined) {
+        checkWithoutMatched = true
+        
+        } else if (answer && multiOptionMap && matchedOptionMultiMain === false) {
+        checkWithoutMatched = true
+
+        }
+
+        console.log(matchedOptionMain, matchedOptionMultiMain, answer, 78)
+        
+        return checkWithoutMatched
+    
+    }
+
     // validação da página NewPageMain, a resposta correta será sempre uma comparação do valor do campo resposta (answer) com os valores dos campos das opções (opção 1, 2, 3, 4 e 5), caso seja igual, ela ficará destacada na validação
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
@@ -59,68 +92,74 @@ function ButtonAnswer({
         // passar somente os valores que não forem vazios de todas as opções para um array antes da validação
         const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
         
-        if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
-            setActivePopupRepeatedAlternativesMain(true)
-
-            setTimeout(() => {
-                setActivePopupRepeatedAlternativesMain(false) // desativa o popup em 10s
-
-            }, 10000)
-
-            alertOption() // alertar, se não tiver nenhuma alternativa marcada
+        if (checkAlternativeAnswer() === true) {
+            setActivePopupCheckAlternativeAnswerButtonAnswerMain(true)
 
         } else {
-            // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
-            if(questionAnswer === true) {
-                // para manter a resposta sempre visível
-                answerDisplay && setAnswerDisplay(styles.visibleAnswer)
-                
-                // alerta avisando para passar para a próxima questão
-                alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+            if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
+                setActivePopupRepeatedAlternativesMain(true)
+
+                setTimeout(() => {
+                    setActivePopupRepeatedAlternativesMain(false) // desativa o popup em 10s
+
+                }, 10000)
+
+                alertOption() // alertar, se não tiver nenhuma alternativa marcada
 
             } else {
-                for(let i=0; i < convertObjArray.length; i++) {
-                    if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
+                // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
+                if(questionAnswer === true) {
+                    // para manter a resposta sempre visível
+                    answerDisplay && setAnswerDisplay(styles.visibleAnswer)
+                    
+                    // alerta avisando para passar para a próxima questão
+                    alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
 
-                        // adicionando a validação na opção correta
-                        const correctOption = document.querySelectorAll('.optionNext')[i];
-                        correctOption.classList.add(optionValidate)
-                        correctOption.classList.remove(optionColor)
+                } else {
+                    for(let i=0; i < convertObjArray.length; i++) {
+                        if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
-                        // adicionando a invalidação nas opções incorretas
-                        if (i !== Number(captureValue) && captureValue !== '') {
-                            const wrongOptionNext = document.querySelectorAll('.optionNext')[Number(captureValue)];
+                            // adicionando a validação na opção correta
+                            const correctOption = document.querySelectorAll('.optionNext')[i];
+                            correctOption.classList.add(optionValidate)
+                            correctOption.classList.remove(optionColor)
 
-                            wrongOptionNext.classList.add(optionInvalidate)
-                            wrongOptionNext.classList.remove(optionColor)
-                            
-                            validateSound === true && errorSound.play(); // play error audio
-                            
-                            setQuestionAnswer(true) // questionAnswer se torna true ao responder
-                            
-                            setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNextMain se torna true ao responder
+                            // adicionando a invalidação nas opções incorretas
+                            if (i !== Number(captureValue) && captureValue !== '') {
+                                const wrongOptionNext = document.querySelectorAll('.optionNext')[Number(captureValue)];
 
-                            setNumIncorrectOption(numIncorrectOption + 1)
+                                wrongOptionNext.classList.add(optionInvalidate)
+                                wrongOptionNext.classList.remove(optionColor)
+                                
+                                validateSound === true && errorSound.play(); // play error audio
+                                
+                                setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                                
+                                setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNextMain se torna true ao responder
 
-                        } else {
-                            
-                            validateSound === true && correctSound.play(); // play correct audio
-                            
-                            setQuestionAnswer(true) // questionAnswer se torna true ao responder
-                            
-                            setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNext se torna true ao responder
+                                setNumIncorrectOption(numIncorrectOption + 1)
 
-                            setNumCorrectOption(numCorrectOption + 1)
-                            
-                            handleAnswer(true) // função da animação fogos de artifício
+                            } else {
+                                
+                                validateSound === true && correctSound.play(); // play correct audio
+                                
+                                setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                                
+                                setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNext se torna true ao responder
 
+                                setNumCorrectOption(numCorrectOption + 1)
+                                
+                                handleAnswer(true) // função da animação fogos de artifício
+
+                            }
                         }
                     }
-                }
 
+                }
+                
+                alertOption()
             }
-            
-            alertOption()
+
         }
 
     }
@@ -133,79 +172,86 @@ function ButtonAnswer({
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
         const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
 
-        if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
-            setActivePopupRepeatedAlternativesMultiMain(true)
-
-            setTimeout(() => {
-                setActivePopupRepeatedAlternativesMultiMain(false) // desativa o popup em 10s
-
-            }, 10000)
-
-            alertOption() // alertar, se não tiver nenhuma alternativa marcada
+        if (checkAlternativeAnswer() === true) {
+            setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
 
         } else {
-            if(questionAnswer === true) {           
-                answerDisplay && setAnswerDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
-                
-                // alerta avisando para passar para a próxima questão
-                alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+            if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
+                setActivePopupRepeatedAlternativesMultiMain(true)
+
+                setTimeout(() => {
+                    setActivePopupRepeatedAlternativesMultiMain(false) // desativa o popup em 10s
+
+                }, 10000)
+
+                alertOption() // alertar, se não tiver nenhuma alternativa marcada
+
             } else {
+                if(questionAnswer === true) {           
+                    answerDisplay && setAnswerDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                    
+                    // alerta avisando para passar para a próxima questão
+                    alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+                } else {
 
-                const checkedValues = [...captureOptionsNextMultiInput]
-                    .filter(input => input.checked)
-                    .map(input => input.value)
+                    const checkedValues = [...captureOptionsNextMultiInput]
+                        .filter(input => input.checked)
+                        .map(input => input.value)
 
-                const checkedValuesP = [...captureOptionsNextMultiP]
-                for(let i=0; i<checkedValues.length; i++) { 
+                    const checkedValuesP = [...captureOptionsNextMultiP]
+                    for(let i=0; i<checkedValues.length; i++) { 
 
-                    if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
+                        if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
 
-                        captureOptionsNextMulti[checkedValues[i]].classList.add(optionValidate)
-                        captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
+                            captureOptionsNextMulti[checkedValues[i]].classList.add(optionValidate)
+                            captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
 
-                        if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {   
-                            validateSound === true && correctSound.play(); // som só irá tocar quando estiver tudo correto
-                        
+                            if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {   
+                                validateSound === true && correctSound.play(); // som só irá tocar quando estiver tudo correto
+                            
+                                setQuestionAnswer(true) // questionAnswer se torna true ao responder
+                            
+                                setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
+
+                                setNumCorrectOption(numCorrectOption + 1)
+                            
+                                handleAnswer(true) // função da animação fogos de artifício
+
+                            }
+
+                        } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
+
+                            captureOptionsNextMulti[checkedValues[i]].classList.add(optionInvalidate)
+                            captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
+
+                            for(let i=0; i<checkedValuesP.length; i++) {
+                                if (checkedValuesP[i].innerText.includes('true')) {
+                                    captureOptionsNextMulti[i].classList.add(optionValidate)
+                                    captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
+                                }
+                            }            
+                            validateSound === true && errorSound.play();                    
                             setQuestionAnswer(true) // questionAnswer se torna true ao responder
                         
                             setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
 
-                            setNumCorrectOption(numCorrectOption + 1)
-                        
-                            handleAnswer(true) // função da animação fogos de artifício
+                            setNumIncorrectOption(numIncorrectOption + 1)
 
                         }
 
-                    } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
+                    }
+                    // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
+                    if (captureOptionsNextMulti.length > 0 && ((checkedValues.length === 0) || (checkedValues.length < 2) || (checkedValues.length > 2))) {
 
-                        captureOptionsNextMulti[checkedValues[i]].classList.add(optionInvalidate)
-                        captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
-
-                        for(let i=0; i<checkedValuesP.length; i++) {
-                            if (checkedValuesP[i].innerText.includes('true')) {
-                                captureOptionsNextMulti[i].classList.add(optionValidate)
-                                captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
-                            }
-                        }            
-                        validateSound === true && errorSound.play();                    
-                        setQuestionAnswer(true) // questionAnswer se torna true ao responder
-                    
-                        setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
-
-                        setNumIncorrectOption(numIncorrectOption + 1)
+                        alert('Por favor, marque 2 opções!')
+                        clearAnswer()
 
                     }
 
                 }
-                // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
-                if (captureOptionsNextMulti.length > 0 && ((checkedValues.length === 0) || (checkedValues.length < 2) || (checkedValues.length > 2))) {
-
-                    alert('Por favor, marque 2 opções!')
-                    clearAnswer()
-
-                }
 
             }
+        
         }
    
     }
@@ -233,6 +279,28 @@ function ButtonAnswer({
             />
 
             <Animation correct={correct} />
+
+            {/* PopupCheckAlternativeAnswer */}
+            {activePopupCheckAlternativeAnswerButtonAnswerMain === true && 
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckButtonAnswer} 
+                    activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
+                    textPopup={`No alternative matching the answer to question ${numberQuestion} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestion} the correct alternative from the option highlighted below: ${optionMap[0]}, ${optionMap[1]}, ${optionMap[2]}, ${optionMap[3]}${optionMap[4] !== '' ? ` or ${optionMap[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestion}, highlighted below: ${answer}.`}
+
+                />
+            }
+
+            {activePopupCheckAlternativeAnswerButtonAnswerMulti === true && 
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckButtonAnswer} 
+                    activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
+                    textPopup={`The two alternatives included in the answer to question ${numberQuestion} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option 1 and Option 2 exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
+                    textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestion} the two correct alternatives from the option highlighted below: ${multiOptionMap[0]} e ${multiOptionMap[1]}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestion}, highlighted below: ${answer}. `}
+
+                />
+            }
+
         </>
     )
 

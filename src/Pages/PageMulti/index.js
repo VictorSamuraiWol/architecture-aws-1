@@ -75,8 +75,7 @@ function PageMulti() {
                 {multiQuestion &&
                     <MultiMain 
                         question={multiQuestion.question} 
-                        answer={multiQuestion.answer}
-                        answerText={multiQuestion.answerText}
+                        answer={multiQuestion.answerText}
                         srcImg={multiQuestion.srcImg}
                         descriptionP={multiQuestion.descriptionP}
                         elementId={multiQuestion.id}

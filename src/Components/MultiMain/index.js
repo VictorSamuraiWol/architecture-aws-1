@@ -11,7 +11,7 @@ import AnswerDescription from '../Main/AnswerDescription';
 import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
 
 function MultiMain({ 
-    question, listMultiOptions, setListMultiOptions, answer, answerText, srcImg, descriptionP, 
+    question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 
     numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, 
     optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
 }) {
@@ -73,6 +73,7 @@ function MultiMain({
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}              
                 answer={answer}
+                numberQuestion={numberQuestion}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
                 optionColorMulti={optionColorMulti}
@@ -88,7 +89,6 @@ function MultiMain({
 
             <AnswerDescription
                 answer={answer}
-                answerText={answerText}
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
                 numberQuestion={numberQuestion}

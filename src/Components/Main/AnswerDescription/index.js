@@ -12,7 +12,7 @@ import identityAndAccessManagement from '../../../imgs/answers-imgs/Identity_and
 import dynamoDB from '../../../imgs/answers-imgs/DynamoDB.png'
 
 function AnswerDescription({ 
-    answer, answerText, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
+    answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
     listOptions, listMultiOptions
 }) {
 
@@ -65,7 +65,7 @@ function AnswerDescription({
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
-                <h3>{(listOptions && answer) || (listMultiOptions && answerText)}</h3>
+                <h3>{(listOptions && answer) || (listMultiOptions && answer)}</h3>
                 <p>Click here for more information</p>
             </div>
 

@@ -123,6 +123,7 @@ function Main({
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 answer={answer}
+                numberQuestion={numberQuestion}
                 optionValidate={optionValidate}
                 optionInvalidate={optionInvalidate}
                 listOptions={listOptions}                      

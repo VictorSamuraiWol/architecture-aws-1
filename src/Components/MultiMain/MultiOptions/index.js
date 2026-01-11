@@ -69,7 +69,7 @@ function MultiOptions({
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
 
-        if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return;
+        if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null;
