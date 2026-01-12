@@ -78,6 +78,33 @@ function PageBase() {
   
     }
 
+
+
+//-------------------------------------------------
+    function checkAlternativeAnswerDefault(option, multiOption, answer) { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
+        let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
+        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
+        let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
+        
+        // filtra a opção única correspondente, ao preencher o formulário 1
+        matchedOptionMain = option && option.filter(option => option === answer)[0]
+        
+        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, ao preencher o formulário 2
+        matchedOptionMultiMain = answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
+        
+        if (answer && option && (option[0] !== undefined && option[1] !== undefined && option[2] !== undefined && option[3] !== undefined) && matchedOptionMain === undefined) {
+        checkWithoutMatched = true
+        
+        } else if (answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionMultiMain === false) {
+        checkWithoutMatched = true
+
+        }
+        
+        return checkWithoutMatched
+    
+    }
+//-------------------------------------------------
+
     return(   
 
         <div className={styles.pageBaseOutlet}>
@@ -94,7 +121,8 @@ function PageBase() {
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
                         setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, 
                         lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions, 
-                        setActivePageFormsQuestionsOptions, repeatedAlternativesDefault
+                        setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
+                        checkAlternativeAnswerDefault
                         }} 
                 />
 

@@ -126,7 +126,8 @@ function MultiOptions({
                     onChange={captureValueMultiFunc}                    
                     className={styles.inputMultiOptions}
                     type='checkbox'
-                    value='0'
+                    // value='0'
+                    value={optNum1}
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
@@ -146,7 +147,8 @@ function MultiOptions({
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
-                    value='1'
+                    // value='1'
+                    value={optNum2}
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
@@ -166,7 +168,8 @@ function MultiOptions({
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
-                    value='2'
+                    // value='2'
+                    value={optNum3}
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
@@ -186,7 +189,8 @@ function MultiOptions({
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
-                    value='3'
+                    // value='3'
+                    value={optNum4}
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}
@@ -206,7 +210,8 @@ function MultiOptions({
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
-                    value='4'
+                    // value='4'
+                    value={optNum5}
                 />
                 <p 
                     onClick={mouseOverOptionsMulti}

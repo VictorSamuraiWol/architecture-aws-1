@@ -15,6 +15,7 @@ function FormsNewQuestionsOptionsPage() {
 
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
 
+    // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
     const { repeatedAlternativesDefault } = useOutletContext()
 
     // capturando o conteúdo da label
@@ -98,6 +99,7 @@ function FormsNewQuestionsOptionsPage() {
     const [matchedQuestionMultiMainPopupAnswer, setMatchedQuestionMultiMainPopupAnswer] = useState('') // capturar a resposta da questão múltipla (form4) 
     const [matchedQuestionMultiMainPopupNumber, setMatchedQuestionMultiMainPopupNumber] = useState('') // capturar o número da questão múltipla (form4)
     
+    // obs: não usar o checkAlternativeAnswerDefault da PageBase usando o 'useOutletContext' neste forms, pois são necessárias outras variáveis e 4 condições
     function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão
         // variáveis usadas ao preencher o formulário 1
         let matchedOptionMain = null

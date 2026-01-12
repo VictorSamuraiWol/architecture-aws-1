@@ -14,8 +14,8 @@ function ButtonAnswer({
     activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion
 }) {
     
-    // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
-    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, repeatedAlternativesDefault } = useOutletContext()
+    // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
+    const { validateSound, numCorrectOption, setNumCorrectOption, numIncorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
@@ -60,31 +60,6 @@ function ButtonAnswer({
 
     }
 
-    function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
-        let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
-        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
-        let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
-        
-        // filtra a opção única correspondente, ao preencher o formulário 1
-        matchedOptionMain = optionMap && optionMap.filter(option => option === answer)[0]
-        
-        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, ao preencher o formulário 2
-        matchedOptionMultiMain = answer && answer.includes(multiOptionMap && multiOptionMap[0]) && answer.includes(multiOptionMap && multiOptionMap[1])
-        
-        if (answer && optionMap && matchedOptionMain === undefined) {
-        checkWithoutMatched = true
-        
-        } else if (answer && multiOptionMap && matchedOptionMultiMain === false) {
-        checkWithoutMatched = true
-
-        }
-
-        console.log(matchedOptionMain, matchedOptionMultiMain, answer, 78)
-        
-        return checkWithoutMatched
-    
-    }
-
     // validação da página NewPageMain, a resposta correta será sempre uma comparação do valor do campo resposta (answer) com os valores dos campos das opções (opção 1, 2, 3, 4 e 5), caso seja igual, ela ficará destacada na validação
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
@@ -92,7 +67,7 @@ function ButtonAnswer({
         // passar somente os valores que não forem vazios de todas as opções para um array antes da validação
         const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
         
-        if (checkAlternativeAnswer() === true) {
+        if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMain(true)
 
         } else {
@@ -172,7 +147,7 @@ function ButtonAnswer({
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
         const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
 
-        if (checkAlternativeAnswer() === true) {
+        if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
 
         } else {
@@ -192,56 +167,66 @@ function ButtonAnswer({
                     
                     // alerta avisando para passar para a próxima questão
                     alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
-                } else {
+                } else {                    
+                    const checkedValuesInput = [...captureOptionsNextMultiInput] // captura somente os inputs marcados
+                    .filter(input => input.checked)
+                    .map(input => input.value)
+                    
+                    const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
 
-                    const checkedValues = [...captureOptionsNextMultiInput]
-                        .filter(input => input.checked)
-                        .map(input => input.value)
+                    const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcados
+                            .filter(input => input.checked)
+                            .map(input => input.parentElement.children[1])
 
-                    const checkedValuesP = [...captureOptionsNextMultiP]
-                    for(let i=0; i<checkedValues.length; i++) { 
+                    for(let i=0; i<checkedValuesInput.length; i++) {
+                        if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
+                            // as alternativas verdadeiras serão destacadas em verde
+                            checkedParagraph[i].classList.add(optionValidate)
+                            checkedParagraph[i].classList.remove(optionColorMulti)
 
-                        if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
-
-                            captureOptionsNextMulti[checkedValues[i]].classList.add(optionValidate)
-                            captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
-
-                            if (checkedValuesP[checkedValues[0]].innerText.includes('true') && checkedValuesP[checkedValues[1]].innerText.includes('true')) {   
-                                validateSound === true && correctSound.play(); // som só irá tocar quando estiver tudo correto
+                            if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {   
+                                validateSound === true && correctSound.play(); // som ao acertar
                             
                                 setQuestionAnswer(true) // questionAnswer se torna true ao responder
                             
                                 setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
 
-                                setNumCorrectOption(numCorrectOption + 1)
+                                setNumCorrectOption(numCorrectOption + 1) // variável utilizada no componente ModalResults
                             
                                 handleAnswer(true) // função da animação fogos de artifício
 
                             }
 
-                        } else if (checkedValues.length === 2 && checkedValuesP[checkedValues[i]].innerText.includes('true') === false) { 
+                        } 
 
-                            captureOptionsNextMulti[checkedValues[i]].classList.add(optionInvalidate)
-                            captureOptionsNextMulti[checkedValues[i]].classList.remove(optionColorMulti)
+                        else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
+                            // as alternativas falsas serão destacadas em vermelho
+                            checkedParagraph[i].classList.add(optionInvalidate)
+                            checkedParagraph[i].classList.remove(optionColorMulti)
 
-                            for(let i=0; i<checkedValuesP.length; i++) {
-                                if (checkedValuesP[i].innerText.includes('true')) {
-                                    captureOptionsNextMulti[i].classList.add(optionValidate)
-                                    captureOptionsNextMulti[i].classList.remove(optionColorMulti)                    
+                            for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
+                                if (allParagraph[i].innerText.includes('true')) {
+                                    allParagraph[i].classList.add(optionValidate)
+                                    allParagraph[i].classList.remove(optionColorMulti) 
+
                                 }
-                            }            
-                            validateSound === true && errorSound.play();                    
+
+                            }  
+
+                            validateSound === true && errorSound.play() // som ao errar
+
                             setQuestionAnswer(true) // questionAnswer se torna true ao responder
                         
                             setQuestionAnswerButtonNextMulti(true) // questionAnswerButtonNext se torna true ao responder
 
-                            setNumIncorrectOption(numIncorrectOption + 1)
+                            setNumIncorrectOption(numIncorrectOption + 1) // variável utilizada no componente ModalResults
 
-                        }
+                        } 
 
                     }
+
                     // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
-                    if (captureOptionsNextMulti.length > 0 && ((checkedValues.length === 0) || (checkedValues.length < 2) || (checkedValues.length > 2))) {
+                    if (captureOptionsNextMulti.length > 0 && ((checkedValuesInput.length === 0) || (checkedValuesInput.length < 2) || (checkedValuesInput.length > 2))) {
 
                         alert('Por favor, marque 2 opções!')
                         clearAnswer()

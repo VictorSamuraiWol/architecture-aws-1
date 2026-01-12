@@ -55,7 +55,8 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   // ativa o componente PopupCheckAlternativeAnswer na ModalEditMenu
   const [activePopupcheckAlternativeAnswerModalForms2, setActivePopupcheckAlternativeAnswerModalForms2] = useState(false)
 
-  const { repeatedAlternativesDefault } = useOutletContext();
+  // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext();
 
   useEffect(() => {
     setOption1(optionMap && optionMap[0])
@@ -220,32 +221,9 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   }
 
-  function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
-    let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
-    let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
-    let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
-    
-    // filtra a opção única correspondente, ao preencher o formulário 1
-    matchedOptionMain = newOption && newOption.filter(option => option === answer)[0]
-    
-    // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, ao preencher o formulário 2
-    matchedOptionMultiMain = answerMulti && answerMulti.includes(newMultiOption && newMultiOption[0]) && answerMulti.includes(newMultiOption && newMultiOption[1])
-    
-    if (answer && newOption && matchedOptionMain === undefined) {
-      checkWithoutMatched = true
-      
-    } else if (answerMulti && newMultiOption && matchedOptionMultiMain === false) {
-      checkWithoutMatched = true
-
-    }
-      
-    return checkWithoutMatched
-    
-  }
-
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsNewPageMain(event) {
-    if (checkAlternativeAnswer() === true) {
+    if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
       event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
       setActivePopupcheckAlternativeAnswerModalForms1(true)
 
@@ -276,7 +254,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsPageMulti(event) {
-    if (checkAlternativeAnswer() === true) {
+    if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
         event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
         setActivePopupcheckAlternativeAnswerModalForms2(true)
 
