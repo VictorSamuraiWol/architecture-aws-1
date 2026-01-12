@@ -57,6 +57,7 @@ function PageBase() {
     // torna showIllustrativePage true para verificar se mostrará ou não a página ilustrativa, dependendo do recebimento dos dados do backend    
     setTimeout(() => {
         setShowIllustrativePage(true)
+        
     }, 1000)
 
     function repeatedAlternativesDefault(option1, option2) { // função padrão (será reutilizada) que verifica se as alternativas se repetem e retorna os que forem repetidos
@@ -78,9 +79,6 @@ function PageBase() {
   
     }
 
-
-
-//-------------------------------------------------
     function checkAlternativeAnswerDefault(option, multiOption, answer) { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
         let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
         let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
@@ -103,7 +101,6 @@ function PageBase() {
         return checkWithoutMatched
     
     }
-//-------------------------------------------------
 
     return(   
 

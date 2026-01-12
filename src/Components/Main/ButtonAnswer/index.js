@@ -174,7 +174,7 @@ function ButtonAnswer({
                     
                     const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
 
-                    const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcados
+                    const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
                             .filter(input => input.checked)
                             .map(input => input.parentElement.children[1])
 
