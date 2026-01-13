@@ -1,4 +1,4 @@
-.multiOptionsAll {
+.multiOptions {
     display: flex;
     justify-content: start;
     align-items: start;
@@ -6,33 +6,32 @@
     gap: 8px;
     position: relative;
     width: 90%;
-    padding: 0 12px;
+    padding: 8px 12px;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;
     line-height: 20px;        
-    padding: 8px 12px;
-    height: 380px;
     overflow: auto;
     z-index: 1;
 }
 
-.multiOptionsAll::-webkit-scrollbar {
+.multiOptions::-webkit-scrollbar {
     width: 3px;
     height: 3px;
 }
 
-.multiOptionsAll::-webkit-scrollbar-thumb {
+.multiOptions::-webkit-scrollbar-thumb {
     background-color: var(--color-fourth);
 }
 
-.inputTextMultiOptions {
+.alternativeMultiOptions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    padding: 16px;
 }
 
-.inputTextMultiOptions:hover {
+.alternativeMultiOptions:hover {
     font-weight: bold;
     transform: scale(1.01);
 }
@@ -67,9 +66,7 @@
     transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
-
 .textMultiOptions {
-    padding: 16px;
     margin: 0;
     cursor: pointer;
 }
@@ -79,11 +76,27 @@
 }
 
 /* Responsividade */
+@media (min-width: 1701px) {
+    .itemAlternativeMulti {
+        font-size: 1.5rem;
+    }
+
+    .textMultiOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+    
+}
+
 @media (max-width: 1700px) {
     .inputMultiOptions {
         width: 20px;
         height: 20px;
     } 
+
+    .itemAlternativeMulti {
+        font-size: 1.5rem;
+    }
 
     .textMultiOptions {
         font-size: 1.5rem;
@@ -93,7 +106,7 @@
 }
 
 @media (max-width: 1100px) {
-    .multiOptionsAll {
+    .multiOptions {
         height: 320px;
     }
 
@@ -106,14 +119,19 @@
         font-size: 10px;
     }
 
+    .itemAlternativeMulti {
+        font-size: 1.2rem;
+    }
+
     .textMultiOptions {
         font-size: 1.2rem;
     }
 
+
 }
 
 @media (max-width: 860px) {
-    .multiOptionsAll {
+    .multiOptions {
         height: 300px;
     }
 
@@ -126,6 +144,10 @@
         font-size: 9px;
     }
 
+    .itemAlternativeMulti {
+        font-size: 1rem;
+    }
+
     .textMultiOptions {
         font-size: 1rem;
     }
@@ -133,15 +155,14 @@
 }
 
 @media (max-width: 580px) {
-    .multiOptionsAll {
+    .multiOptions {
         height: 350px;
     }
 
-    .multiOptionsAll::-webkit-scrollbar {
+    .multiOptions::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
     }
-
     .inputMultiOptions {
         width: 12px;
         height: 12px;
@@ -149,6 +170,10 @@
 
     .inputMultiOptions:checked::after {
         font-size: 7px;
+    }
+
+    .itemAlternativeMulti {
+        font-size: 0.8rem;
     }
 
     .textMultiOptions {

@@ -115,17 +115,20 @@ function Options({
         id='option' 
         key={listOptions && listOptions.id}
         >
-            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
-                 <input 
+            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
+                <input 
                     onClick={captureValue}
                     className={styles.inputOptions}  
                     type='radio' 
                     name='options' 
                     value='0'
                 />
+
+                <span className={styles.itemAlternativeMain}>{"a)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.option}`}                
+                    className={`optionNextP ${styles.textOptions}`}                
                 >
 
                     {optionMap[optNum1]}
@@ -133,7 +136,7 @@ function Options({
                 </p>
             </div>}
 
-            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
+            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
                 <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -141,9 +144,12 @@ function Options({
                     name='options' 
                     value='1' 
                 />
+
+                <span className={styles.itemAlternativeMain}>{"b)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.option}`}                
+                    className={`optionNextP ${styles.textOptions}`}                
                 >
 
                     {optionMap[optNum2]}
@@ -151,7 +157,7 @@ function Options({
                 </p>
             </div>}
 
-            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
+            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
                 <input 
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -159,9 +165,12 @@ function Options({
                     name='options' 
                     value='2' 
                 />
+
+                <span className={styles.itemAlternativeMain}>{"c)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.option}`}                
+                    className={`optionNextP ${styles.textOptions}`}                
                 >
 
                     {optionMap[optNum3]}
@@ -169,7 +178,7 @@ function Options({
                 </p>
             </div>}
 
-            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
+            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
                 <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -177,9 +186,12 @@ function Options({
                     name='options' 
                     value='3' 
                 />
+
+                <span className={styles.itemAlternativeMain}>{"d)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.option}`}                
+                    className={`optionNextP ${styles.textOptions}`}                
                 >
 
                     {optionMap[optNum4]}
@@ -187,7 +199,7 @@ function Options({
                 </p>
             </div>}
 
-            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.checkOpt}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
+            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
                 <input
                     onClick={captureValue}
                     className={styles.inputOptions} 
@@ -195,9 +207,12 @@ function Options({
                     name='options' 
                     value='4' 
                 />
+
+                <span className={styles.itemAlternativeMain}>{"e)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.option}`}                
+                    className={`optionNextP ${styles.textOptions}`}                
                 >
 
                     {optionMap[optNum5]}

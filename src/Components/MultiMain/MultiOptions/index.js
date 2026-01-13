@@ -116,14 +116,17 @@ function MultiOptions({
     }, [listMultiOptions, multiQuestion, listMultiQuestions])
 
     return (
-        <div className={styles.multiOptionsAll}>
-            {multiOptionMap[optNum1] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum1]' existir */}
+        <div className={styles.multiOptions}>
+            {multiOptionMap[optNum1] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum1]' existir */}
                 <input
                     onChange={captureValueMultiFunc}                    
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value={optNum1}
                 />
+
+                <span className={styles.itemAlternativeMulti}>{"a)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
@@ -137,13 +140,16 @@ function MultiOptions({
                 </p>
             </div>}
 
-            {multiOptionMap[optNum2] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum2]' existir */}
+            {multiOptionMap[optNum2] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum2]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value={optNum2}
                 />
+
+                <span className={styles.itemAlternativeMulti}>{"b)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
@@ -157,13 +163,16 @@ function MultiOptions({
                 </p>
             </div>}
 
-            {multiOptionMap[optNum3] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum3]' existir */}
+            {multiOptionMap[optNum3] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum3]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value={optNum3}
                 />
+
+                <span className={styles.itemAlternativeMulti}>{"c)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
@@ -177,13 +186,16 @@ function MultiOptions({
                 </p>
             </div>}
 
-            {multiOptionMap[optNum4] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum4]' existir */}
+            {multiOptionMap[optNum4] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum4]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value={optNum4}
                 />
+
+                <span className={styles.itemAlternativeMulti}>{"d)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
@@ -197,13 +209,16 @@ function MultiOptions({
                 </p>
             </div>}
 
-            {multiOptionMap[optNum5] && <div className={`optionNextMulti ${optionColorMulti} ${styles.inputTextMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum5]' existir */}
+            {multiOptionMap[optNum5] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum5]' existir */}
                 <input
                     onClick={captureValueMultiFunc}
                     className={styles.inputMultiOptions}
                     type='checkbox'
                     value={optNum5}
                 />
+
+                <span className={styles.itemAlternativeMulti}>{"e)"}</span>
+
                 <p 
                     onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
