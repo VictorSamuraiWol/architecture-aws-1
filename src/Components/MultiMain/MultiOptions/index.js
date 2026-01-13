@@ -47,9 +47,8 @@ function MultiOptions({
     }
 
     // função para capturar os dois valores que estão marcados quando clicados no campo texto (p)
-    function mouseOverOptionsMulti(e) {
-
-        const inputOptionMulti = e.target.parentElement.childNodes[0]
+    function mouseClickOptionsMulti(e) {
+        const inputOptionMulti = e.target.parentElement.childNodes[1]
 
         if (inputOptionMulti.checked === false) {
             inputOptionMulti.checked = true
@@ -58,9 +57,6 @@ function MultiOptions({
         } else if (inputOptionMulti.checked === true) {
             inputOptionMulti.checked = false
             setCaptureValueMulti(prevValues => inputOptionMulti.checked && !captureValueMulti.includes(`${inputOptionMulti.value}`) ? [...prevValues, inputOptionMulti.value] : prevValues.filter(v => v !== inputOptionMulti.value))
-
-        } else {
-            console.error('Erro nos dados da função "mouseOverOptionsMulti(e)" do componente listMultiOptions, verificar na l.67 ou próximo.')
 
         }
         
@@ -129,7 +125,7 @@ function MultiOptions({
                     value={optNum1}
                 />
                 <p 
-                    onClick={mouseOverOptionsMulti}
+                    onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
 
@@ -149,7 +145,7 @@ function MultiOptions({
                     value={optNum2}
                 />
                 <p 
-                    onClick={mouseOverOptionsMulti}
+                    onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
 
@@ -169,7 +165,7 @@ function MultiOptions({
                     value={optNum3}
                 />
                 <p 
-                    onClick={mouseOverOptionsMulti}
+                    onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
 
@@ -189,7 +185,7 @@ function MultiOptions({
                     value={optNum4}
                 />
                 <p 
-                    onClick={mouseOverOptionsMulti}
+                    onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                    
@@ -209,7 +205,7 @@ function MultiOptions({
                     value={optNum5}
                 />
                 <p 
-                    onClick={mouseOverOptionsMulti}
+                    onClick={mouseClickOptionsMulti}
                     className={`optionsMultiP ${styles.textMultiOptions}`}
                 >
                  

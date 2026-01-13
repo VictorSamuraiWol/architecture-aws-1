@@ -43,12 +43,15 @@ function Options({
 
     // função para capturar o valor que está marcado quando clicado no campo texto (p)
     function mouseClickOptionsMain(e) {
-        const inputOptionMain = e.target.parentElement.childNodes[0]
+        const inputOptionMain = e.target.parentElement.childNodes[1]
+
         if (inputOptionMain) {
             inputOptionMain.checked = true
             setCaptureValue(inputOptionMain.value)
+
         } else {
             inputOptionMain.checked = false
+
         }
 
     }
