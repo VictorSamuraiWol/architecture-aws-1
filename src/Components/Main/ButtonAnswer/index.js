@@ -176,7 +176,7 @@ function ButtonAnswer({
 
                     const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
                             .filter(input => input.checked)
-                            .map(input => input.parentElement.children[1])
+                            .map(input => input.parentElement.children[2])
 
                     for(let i=0; i<checkedValuesInput.length; i++) {
                         if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
@@ -197,9 +197,7 @@ function ButtonAnswer({
 
                             }
 
-                        } 
-
-                        else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
+                        } else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
                             // as alternativas falsas serão destacadas em vermelho
                             checkedParagraph[i].classList.add(optionInvalidate)
                             checkedParagraph[i].classList.remove(optionColorMulti)
