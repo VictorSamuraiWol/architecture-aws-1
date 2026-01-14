@@ -9,7 +9,7 @@ function Options({
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicOptionsContext } = useContext(DataContext)
+    const { listUnicOptionsContext, setLoading } = useContext(DataContext)
 
     useEffect(() => {        
         if (!listUnicOptionsContext || !listUnicOptionsContext.length) return; // se a lista de opções não existir, retorne
@@ -36,7 +36,7 @@ function Options({
     }, [listUnicOptionsContext]);
 
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
-    function captureValue(e) {
+    function captureValueFunc(e) {
         listOptions && setCaptureValue(e.target.value)
 
     }
@@ -62,8 +62,10 @@ function Options({
         if (!listQuestions || !nextQuestion || !listOptions) return
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null;
-            let matchedQuestion = null;
+            let matchedOption = null
+            let matchedQuestion = null
+
+            setLoading(true) // habilita o componente 'Loader'
 
             // busca uma opção que corresponde diretamente com a questão atual
             matchedOption = listOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
@@ -77,29 +79,26 @@ function Options({
                         return question.numberQuestion === option.numberOption // procura uma questão que tenha uma opção correspondente
 
                     })
-
+                        
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
-                        matchedOption = option;
+                        matchedOption = option
+                        setNextQuestion(matchedQuestion) // atualizando a questão
 
-                    } else if (!matchedQuestion) { // se ainda não encontrar uma questão com opção correspondente, procura uma nova questão e opção correspondentes
-                        listQuestions.forEach(question => {
-                            matchedOption = listOptions.find(option => {
-                                return option.numberOption === question.numberQuestion // procura uma opção que tenha uma questão correspondente
-
-                            })
-                            matchedQuestion = question; // ao encontrar uma questão e opção correspondentes, capturar e mostra na tela
-
-                        })
+                    setLoading(false) // desabilita o componente 'Loader'
+                        
                     }
 
                 })
 
-                setNextQuestion(matchedQuestion) // atualizando a questão
-
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
-                // atualizando a opção
+                // atualizando a opção correspondente
                 setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
                 setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+
+                setLoading(false) // desabilita o componente 'Loader'
+
+            } else {
+                console.error('não encontrou uma opção que possua uma questão correspondente, crie uma nova questão ou opção com o mesmo número para haver correspondênciam, obrigado.')
 
             }
 
@@ -117,11 +116,11 @@ function Options({
         >
             {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
                 <input 
-                    onClick={captureValue}
+                    onClick={captureValueFunc}
                     className={styles.inputOptions}  
                     type='radio' 
                     name='options' 
-                    value='0'
+                    value={optNum1}
                 />
 
                 <span className={styles.itemAlternativeMain}>{"a)"}</span>
@@ -138,11 +137,11 @@ function Options({
 
             {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
                 <input
-                    onClick={captureValue}
+                    onClick={captureValueFunc}
                     className={styles.inputOptions} 
                     type='radio' 
                     name='options' 
-                    value='1' 
+                    value={optNum2} 
                 />
 
                 <span className={styles.itemAlternativeMain}>{"b)"}</span>
@@ -159,11 +158,11 @@ function Options({
 
             {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
                 <input 
-                    onClick={captureValue}
+                    onClick={captureValueFunc}
                     className={styles.inputOptions} 
                     type='radio' 
                     name='options' 
-                    value='2' 
+                    value={optNum3}
                 />
 
                 <span className={styles.itemAlternativeMain}>{"c)"}</span>
@@ -180,11 +179,11 @@ function Options({
 
             {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
                 <input
-                    onClick={captureValue}
+                    onClick={captureValueFunc}
                     className={styles.inputOptions} 
                     type='radio' 
                     name='options' 
-                    value='3' 
+                    value={optNum4}
                 />
 
                 <span className={styles.itemAlternativeMain}>{"d)"}</span>
@@ -201,11 +200,11 @@ function Options({
 
             {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
                 <input
-                    onClick={captureValue}
+                    onClick={captureValueFunc}
                     className={styles.inputOptions} 
                     type='radio' 
                     name='options' 
-                    value='4' 
+                    value={optNum5}
                 />
 
                 <span className={styles.itemAlternativeMain}>{"e)"}</span>
@@ -218,6 +217,7 @@ function Options({
                     {optionMap[optNum5]}
                     
                 </p>
+
             </div>}
 
         </div>      

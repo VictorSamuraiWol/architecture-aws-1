@@ -8,7 +8,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
-  const { listUnicQuestionsContext, listMultiQuestionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(nextQuestion) {
@@ -123,7 +123,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   };
 
   function multiDeleteQuestionOption() {
-    if (listUnicQuestionsContext?.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões de uma única escolha disponíveis
+    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis
       onDeleteQuestion(nextQuestion)
       onDeleteOption(optionMapNumberId)
     
@@ -135,7 +135,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   }
 
   function multiDeleteMultiQuestionMultiOption() {
-    if (listMultiQuestionsContext?.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões de múltipla escolha disponíveis
+    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(multiQuestion)
       onDeleteOptionMulti(multiOptionMapNumberId)
     

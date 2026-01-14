@@ -14,7 +14,7 @@ function MultiOptions({
     const [optNum5, setOptNum5] = useState('');
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listMultiOptionsContext } = useContext(DataContext)
+    const { listMultiOptionsContext, setLoading } = useContext(DataContext)
 
     useEffect(() => {
         if (!listMultiOptionsContext || !listMultiOptionsContext.length) return; // se a lista de opções não existir, retorne 
@@ -68,8 +68,10 @@ function MultiOptions({
         if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null;
-            let matchedQuestion = null;
+            let matchedOption = null
+            let matchedQuestion = null
+
+            setLoading(true) // habilita o componente 'Loader'
 
             // tenta corresponder diretamente com a questão atual
             matchedOption = listMultiOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
@@ -87,25 +89,22 @@ function MultiOptions({
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
                         matchedOption = option;
-                        setMultiQuestion(matchedQuestion)
+                        setMultiQuestion(matchedQuestion) // atualizando a questão
+
+                        setLoading(false) // desabilita o componente 'Loader'
                         
-                    } else if (!matchedQuestion) { // se ainda não encontrar uma questão com opção correspondente, procura uma nova questão e opção correspondentes
-                        listMultiQuestions.forEach(question => {
-                            matchedOption = listMultiOptions.find(option => {
-                                return option.numberOption === question.numberQuestion // procura uma opção que tenha uma questão correspondente
-
-                            })
-                            matchedQuestion = question; // ao encontrar uma questão e opção correspondentes, capturar e mostra na tela
-
-                        })
                     }
-                
+                    
                 })
+                
+                
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
-                // atualizando a opção
+                // atualizando a opção correspondente
                 setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
                 setMultiOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+
+                setLoading(false) // desabilita o componente 'Loader'
 
             }
 

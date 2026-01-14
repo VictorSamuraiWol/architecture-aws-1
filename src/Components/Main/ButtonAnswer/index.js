@@ -64,9 +64,10 @@ function ButtonAnswer({
     function validateAnswerPageMain() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
-        // passar somente os valores que não forem vazios de todas as opções para um array antes da validação
-        const convertObjArray = [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]]
-        
+        // passar somente os valores que não forem vazios de todas as opções para a const 'convertObjArray' antes da validação
+        const convertObjArray = optionMap && [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]].filter(option => option !== '')
+        const captureOptionsNextInput = document.querySelectorAll('.optionNext input') // captura todas os campos input        
+
         if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMain(true)
 
@@ -90,21 +91,24 @@ function ButtonAnswer({
                     // alerta avisando para passar para a próxima questão
                     alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
 
-                } else {
+                } else {                    
+                    const checkedParagraph = [...captureOptionsNextInput] // captura somente a alternativa marcada
+                    .filter(input => input.checked)
+                    .map(input => input.parentElement.children[2])[0]
+                    
                     for(let i=0; i < convertObjArray.length; i++) {
                         if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
                             // adicionando a validação na opção correta
                             const correctOption = document.querySelectorAll('.optionNext')[i];
-                            correctOption.classList.add(optionValidate)
-                            correctOption.classList.remove(optionColor)
+                            correctOption?.classList.add(optionValidate)
+                            correctOption?.classList.remove(optionColor)
 
                             // adicionando a invalidação nas opções incorretas
-                            if (i !== Number(captureValue) && captureValue !== '') {
-                                const wrongOptionNext = document.querySelectorAll('.optionNext')[Number(captureValue)];
+                            if ((checkedParagraph.innerText !== answer) && captureValue !== '') {
 
-                                wrongOptionNext.classList.add(optionInvalidate)
-                                wrongOptionNext.classList.remove(optionColor)
+                                checkedParagraph?.classList.add(optionInvalidate)
+                                checkedParagraph?.classList.remove(optionColor)                                
                                 
                                 validateSound === true && errorSound.play(); // play error audio
                                 
@@ -112,7 +116,7 @@ function ButtonAnswer({
                                 
                                 setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNextMain se torna true ao responder
 
-                                setNumIncorrectOption(numIncorrectOption + 1)
+                                setNumIncorrectOption(numIncorrectOption + 1) // variável utilizada no componente ModalResults
 
                             } else {
                                 
@@ -122,7 +126,7 @@ function ButtonAnswer({
                                 
                                 setQuestionAnswerButtonNextMain(true) // questionAnswerButtonNext se torna true ao responder
 
-                                setNumCorrectOption(numCorrectOption + 1)
+                                setNumCorrectOption(numCorrectOption + 1) // variável utilizada no componente ModalResults
                                 
                                 handleAnswer(true) // função da animação fogos de artifício
 
@@ -143,9 +147,9 @@ function ButtonAnswer({
     function validateAnswerPageMulti() {
         const errorSound = new Audio(errorAudio);
         const correctSound = new Audio(correctAudio);
-        const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti')      
-        const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input')
-        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p')
+        const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti') // captura todas as alternativas      
+        const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input') // captura todas os campos input
+        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p') // captura todos os parágrafos
 
         if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
@@ -172,11 +176,11 @@ function ButtonAnswer({
                     .filter(input => input.checked)
                     .map(input => input.value)
                     
-                    const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
-
                     const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
                             .filter(input => input.checked)
                             .map(input => input.parentElement.children[2])
+
+                    const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
 
                     for(let i=0; i<checkedValuesInput.length; i++) {
                         if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
