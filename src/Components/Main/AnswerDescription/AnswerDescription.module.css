@@ -127,7 +127,7 @@
         text-align: center;
         max-height: max-content;
         max-width: max-content;
-        border: 1px dashed var(--color-fourth);
+        border: 1px solid var(--color-fourth);
         border-radius: 8px;
     }
 
@@ -142,7 +142,7 @@
     .visibleDescription {
         font-size: 1rem;
         width: 75%;
-        border: 1px dashed var(--color-fourth);
+        border: 1px solid var(--color-fourth);
         border-radius: 8px;
     }
 

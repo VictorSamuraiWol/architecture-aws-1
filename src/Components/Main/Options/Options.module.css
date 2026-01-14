@@ -6,12 +6,13 @@
     gap: 8px;
     position: relative;
     width: 90%;
-    padding: 8px 12px;
+    padding: 12px;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;    
     line-height: 20px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 1;
 }
 
@@ -26,16 +27,17 @@
 
 .alternativeOptions {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 12px;
     padding: 16px;
+    width: 98%;
 }
 
 .alternativeOptions:hover {
     font-weight: bold;
     transform: scale(1.01);
-    transition: 0.1s;
+    transition: all 0.1s ease-in-out;
 }
 
 /* personalizando o estilo do input radio */
@@ -80,39 +82,39 @@
 
 /* Responsividade */
 @media (min-width: 1701px) {
+    .itemAlternativeMain {
+        font-size: 1.5rem;
+    }
+
     .textOptions {
         font-size: 1.5rem;
         line-height: 28px;
     }
     
-    .itemAlternativeMain {
-        font-size: 1.5rem;
-    }
-
 }
 
 @media (max-width: 1700px) {
-    .textOptions {
-        font-size: 1.5rem;
-        line-height: 28px;
-    }
-    
     .itemAlternativeMain {
         font-size: 1.5rem;
     }
+
+    .textOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }    
 
 }
 
 @media (max-width: 1100px) {
     .optionsMain {
-        height: 320px;
-    }
-
-    .textOptions {
-        font-size: 1.2rem;
+        padding: 8px;
     }
 
     .itemAlternativeMain {
+        font-size: 1.2rem;
+    }
+
+    .textOptions {
         font-size: 1.2rem;
     }
 
@@ -120,34 +122,46 @@
 
 @media (max-width: 860px) {
     .optionsMain {
-        height: 300px;
-    }
-
-    .textOptions {
-        font-size: 1rem;
+        padding: 6px;
     }
 
     .itemAlternativeMain {
         font-size: 1rem;
+    }
+
+    .textOptions {
+        font-size: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .textOptions::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+    }
+
+    .textOptions::-webkit-scrollbar-thumb {
+        background-color: var(--color-fourth);
     }
     
 }
 
 @media (max-width: 580px) {
     .optionsMain {
-        height: 350px;
+        padding: 4px;
     }
-    
+
     .optionsMain::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
     }
-
-    .textOptions {
+    
+    .itemAlternativeMain {
         font-size: 0.8rem;
     }
 
-    .itemAlternativeMain {
+    .textOptions {
         font-size: 0.8rem;
     }
 

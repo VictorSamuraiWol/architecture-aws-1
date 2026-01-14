@@ -13,3 +13,23 @@
 .fieldModalEdit label:hover {
   transform: scale(1.03);
 }
+
+/* Responsividade */
+@media (max-width: 860px) {
+  .fieldModalEdit input {
+    height: 50px;
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .fieldModalEdit {
+    flex-direction: column;
+  }
+
+  .fieldModalEdit input {
+    height: 40px;
+  }
+
+}

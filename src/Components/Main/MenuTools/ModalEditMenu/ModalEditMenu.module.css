@@ -29,7 +29,7 @@
   color: var(--color-fourth);
   background: transparent;
   font-weight: bold;
-  width: 35%;
+  width: 50%;
   padding: 20px 12px 40px 12px;
   border: 5px solid var(--color-fourth);
   border-radius: 12px;
@@ -122,6 +122,14 @@
 }
 
 @media (max-width: 860px) {
+  .modalContent {
+    width: 75%;
+  }
+
+  .modalContent h1 {
+    font-size: 1.5rem;
+  }
+
   .popupRepeatedModalEdit {
     font-size: 0.8rem;
     width: 20%;
@@ -130,6 +138,10 @@
 }
 
 @media (max-width: 580px) {
+  .modalContent {
+    width: 80%;
+  }
+
   .popupRepeatedModalEdit {
     font-size: 0.7rem;
     width: 25%;
