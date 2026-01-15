@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Options.module.css';
 import { DataContext } from '../../DataContext';
 
@@ -7,6 +7,12 @@ function Options({
     optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, 
     optionMap, setOptionMap, nextQuestion, setNextQuestion, setOptionMapNumberId, listQuestions
 }) {
+    
+    const [itemA, setItemA] = useState('') // valor do item A
+    const [itemB, setItemB] = useState('') // valor do item B
+    const [itemC, setItemC] = useState('') // valor do item C
+    const [itemD, setItemD] = useState('') // valor do item D
+    const [itemE, setItemE] = useState('') // valor do item E
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicOptionsContext, setLoading } = useContext(DataContext)
@@ -43,7 +49,7 @@ function Options({
 
     // função para capturar o valor que está marcado quando clicado no campo texto (p)
     function mouseClickOptionsMain(e) {
-        const inputOptionMain = e.target.parentElement.childNodes[1]
+        const inputOptionMain = e.target.parentElement.parentElement.childNodes[0]
 
         if (inputOptionMain) {
             inputOptionMain.checked = true
@@ -107,6 +113,24 @@ function Options({
         questionOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
 
     }, [listOptions, nextQuestion, listQuestions])
+  
+    useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
+        if (optionMap[optNum1] && optionMap[optNum2] && optionMap[optNum3] && optionMap[optNum4] && optionMap[optNum5]) {
+            setItemA('a)') 
+            setItemB('b)') 
+            setItemC('c)') 
+            setItemD('d)') 
+            setItemE('e)')
+
+        } else if (!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4] || !optionMap[optNum5]) {
+            setItemA('a)') 
+            setItemB('b)') 
+            setItemC('c)') 
+            setItemD('d)')
+
+        }
+
+    }, [optionMap, optNum1, optNum2, optNum3, optNum4, optNum5]) 
 
     return(                 
         <div 
@@ -114,7 +138,8 @@ function Options({
         id='option' 
         key={listOptions && listOptions.id}
         >
-            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
+            {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
+            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
                 <input 
                     onClick={captureValueFunc}
                     className={styles.inputOptions}  
@@ -123,19 +148,28 @@ function Options({
                     value={optNum1}
                 />
 
-                <span className={styles.itemAlternativeMain}>{"a)"}</span>
-
-                <p 
+                <div
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.textOptions}`}                
+                    className={styles.textOptions}              
                 >
+                    <span className="item">
+                        {itemA}
+                    </span>
 
-                    {optionMap[optNum1]}
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
-                </p>
+                    <p>
+
+                        {optionMap[optNum1]}
+
+                    </p>
+
+                </div>
+                
             </div>}
 
-            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
+            {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
+            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
                     className={styles.inputOptions} 
@@ -144,19 +178,29 @@ function Options({
                     value={optNum2} 
                 />
 
-                <span className={styles.itemAlternativeMain}>{"b)"}</span>
-
-                <p 
+                <div
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.textOptions}`}                
+                    className={styles.textOptions}   
                 >
+                    <span className="item">
+                        {/* {condição para aparecer o item A ou B} */}
+                        {(!optionMap[optNum1] && itemA) || itemB}
+                    </span>
 
-                    {optionMap[optNum2]}
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
-                </p>
+                    <p>
+
+                        {optionMap[optNum2]}
+
+                    </p>
+
+                </div>
+
             </div>}
 
-            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
+            {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
+            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
                 <input 
                     onClick={captureValueFunc}
                     className={styles.inputOptions} 
@@ -165,19 +209,29 @@ function Options({
                     value={optNum3}
                 />
 
-                <span className={styles.itemAlternativeMain}>{"c)"}</span>
-
-                <p 
+                <div
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.textOptions}`}                
+                    className={styles.textOptions}   
                 >
+                    <span className="item">
+                        {/* {condição para aparecer o item B ou C} */}
+                        {((!optionMap[optNum1] || !optionMap[optNum2]) && itemB) || itemC}
+                    </span>
 
-                    {optionMap[optNum3]}
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
-                </p>
+                    <p>
+
+                        {optionMap[optNum3]}
+
+                    </p>
+
+                </div>
+
             </div>}
 
-            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
+            {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
+            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
                     className={styles.inputOptions} 
@@ -186,19 +240,29 @@ function Options({
                     value={optNum4}
                 />
 
-                <span className={styles.itemAlternativeMain}>{"d)"}</span>
-
-                <p 
+                <div
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.textOptions}`}                
+                    className={styles.textOptions}   
                 >
+                    <span className="item">
+                        {/* {condição para aparecer o item C ou D} */}
+                        {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3]) && itemC) || itemD}
+                    </span>
 
-                    {optionMap[optNum4]}
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
-                </p>
+                    <p>
+
+                        {optionMap[optNum4]}
+
+                    </p>
+
+                </div>
+
             </div>}
 
-            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
+            {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
+            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
                     className={styles.inputOptions} 
@@ -207,16 +271,24 @@ function Options({
                     value={optNum5}
                 />
 
-                <span className={styles.itemAlternativeMain}>{"e)"}</span>
-
-                <p 
+                <div
                     onClick={mouseClickOptionsMain}
-                    className={`optionNextP ${styles.textOptions}`}                
+                    className={styles.textOptions}   
                 >
+                    <span className="item">
+                        {/* {condição para aparecer o item D ou E} */}
+                        {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4]) && itemD) || itemE}
+                    </span>
 
-                    {optionMap[optNum5]}
-                    
-                </p>
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+
+                        {optionMap[optNum5]}
+
+                    </p>
+
+                </div>
 
             </div>}
 

@@ -43,7 +43,7 @@ function Main({
         switch (number) {
             case 1:
             case 2:
-                return generateNewQuestionMain(); // quando o número  randômico for 1 ou 2 ativar a função
+                return generateNewQuestionMain(); // quando o número randômico for 1 ou 2 ativar a função
             case 3:
                 return '/page-multi'; // quando o número randômico for 3 ir para página multi
 

@@ -94,8 +94,8 @@ function ButtonAnswer({
                 } else {                    
                     const checkedParagraph = [...captureOptionsNextInput] // captura somente a alternativa marcada
                     .filter(input => input.checked)
-                    .map(input => input.parentElement.children[2])[0]
-                    
+                    .map(input => input.parentElement.children[1].childNodes[3])[0]
+                  
                     for(let i=0; i < convertObjArray.length; i++) {
                         if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
