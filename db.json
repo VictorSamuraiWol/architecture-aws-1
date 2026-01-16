@@ -205,9 +205,7 @@
       "id": "ec16"
     },
     {
-      "title": "AWS Architecture Questions - Randomly",
       "question": "15) The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
-      "answer": "true",
       "answerText": "Enable AWS Multi-Factor Authentication (MFA) for privileged users. // Configure AWS CloudTrail to log all AWS IAM actions.",
       "srcImg": "identityAndAccessManagement",
       "descriptionP": "As per the AWS best practices, it is better to enable Multi Factor Authentication (MFA) for privileged users via an MFA-enabled mobile device or hardware MFA token. AWS recommends to turn on AWS CloudTrail to log all IAM actions for monitoring and audit purposes.",
