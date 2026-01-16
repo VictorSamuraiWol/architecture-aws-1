@@ -16,14 +16,14 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
 
     const options = {
         method: "DELETE",
-    };
+    }
 
     setDeleteApi(false)
 
     await fetch(url, options)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Error deleting');
+        throw new Error('Error deleting')
 
       } else {
         response.json();
@@ -33,10 +33,10 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
 
     })
     .catch((error) => {
-        console.error('Erro:', error);
+        console.error('Erro:', error)
     })
 
-  };
+  }
 
   // função que deleta a opção de única escolha atual
   async function onDeleteOption(optionMapNumberId) {
@@ -51,20 +51,20 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     await fetch(url, options)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Error deleting');
+        throw new Error('Error deleting')
 
       } else {
-        response.json();
+        response.json()
         setDeleteApi(true)
 
       }
 
     })
     .catch((error) => {
-        console.error('Erro:', error);
+        console.error('Erro:', error)
     })
 
-  };
+  }
 
   // função que deleta a questão de múltipla escolha atual
   async function onDeleteQuestionMulti(multiQuestion) {
@@ -79,20 +79,20 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     await fetch(url, options)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Error deleting');
+        throw new Error('Error deleting')
 
       } else {
-        response.json();
+        response.json()
         setDeleteApi(true)
 
       }
 
     })
     .catch((error) => {
-        console.error('Erro:', error);
+        console.error('Erro:', error)
     })
 
-  };
+  }
 
   // função que deleta a opção de múltipla escolha atual
   async function onDeleteOptionMulti(multiOptionMapNumberId) {
@@ -107,23 +107,44 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     await fetch(url, options)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Error deleting');
+        throw new Error('Error deleting')
 
       } else {
-        response.json();
+        response.json()
         setDeleteApi(true)
 
       }
 
     })
     .catch((error) => {
-        console.error('Erro:', error);
+        console.error('Erro:', error)
     })
 
-  };
+  }
+
+  function listMatchedQuestionsOptions() { // função que mostra todas as questões e opções correspondentes da Main e MultiMain
+    const listNumbersQuestionsMain = listUnicQuestionsContext.map(question => question.numberQuestion)    
+    const listNumbersOptionsMain = listUnicOptionsContext.map(option => option.numberOption) 
+
+    const listNumbersQuestionsMulti = listMultiQuestionsContext.map(question => question.numberQuestion)    
+    const listNumbersOptionsMulti = listMultiOptionsContext.map(option => option.numberOption) 
+ 
+    let matched = null
+
+    if (listNumbersQuestionsMain && listNumbersOptionsMain) {      
+      matched = listNumbersQuestionsMain.filter(question => listNumbersOptionsMain.includes(question))
+
+    } else if (listNumbersQuestionsMulti && listNumbersOptionsMulti) {
+      matched = listNumbersQuestionsMulti.filter(question => listNumbersOptionsMulti.includes(question))
+
+    }
+        
+    return matched
+
+  }
 
   function multiDeleteQuestionOption() {
-    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis
+    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis
       onDeleteQuestion(nextQuestion)
       onDeleteOption(optionMapNumberId)
     
@@ -135,7 +156,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   }
 
   function multiDeleteMultiQuestionMultiOption() {
-    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
+    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(multiQuestion)
       onDeleteOptionMulti(multiOptionMapNumberId)
     
@@ -153,7 +174,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     ? setAbleDisableMenuTools(styles.menuIcons)
     : setAbleDisableMenuTools(styles.disableMenu)
 
-  }
+  } 
 
   return (
     <div className={styles.menu}>
@@ -161,7 +182,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
         onClick={ableDisableMenu}
         className={styles.menuTools}
       >
-        <span>Menu</span>
+        <span onClick={listMatchedQuestionsOptions}>Menu</span>
       </div>
 
       <div 
