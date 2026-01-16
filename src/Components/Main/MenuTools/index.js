@@ -131,10 +131,10 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
  
     let matched = null
 
-    if (listNumbersQuestionsMain && listNumbersOptionsMain) {      
+    if (nextQuestion) {      
       matched = listNumbersQuestionsMain.filter(question => listNumbersOptionsMain.includes(question))
 
-    } else if (listNumbersQuestionsMulti && listNumbersOptionsMulti) {
+    } else if (multiQuestion) {
       matched = listNumbersQuestionsMulti.filter(question => listNumbersOptionsMulti.includes(question))
 
     }
@@ -144,24 +144,26 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
   }
 
   function multiDeleteQuestionOption() {
-    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis
-      onDeleteQuestion(nextQuestion)
-      onDeleteOption(optionMapNumberId)
+    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
+        onDeleteQuestion(nextQuestion)
+        onDeleteOption(optionMapNumberId)
+        alert('Deleted successfully!')
     
     } else {
-      alert('Só restam menos de 3 questões de uma única escolha, atingiu o limite mínimo de questões, por favor, é necessário criar novas questões para poder deletar!')
+      alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
     
     }
 
   }
 
   function multiDeleteMultiQuestionMultiOption() {
-    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >=3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
+    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(multiQuestion)
       onDeleteOptionMulti(multiOptionMapNumberId)
+      alert('Deleted successfully!')
     
     } else {
-      alert('Só restam menos de 3 questões de múltipla escolha, atingiu o limite mínimo de questões, por favor, é necessário criar novas questões para poder deletar!')
+      alert('There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
     
     }
 
