@@ -70,11 +70,18 @@
 }
 
 .textMultiOptions {
-    margin: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
     cursor: pointer;
 }
 
-.answerBoolClass {
+.textMultiOptions p {
+    margin: 0;
+}
+
+.answerBool {
     opacity: 0; /* deixar invisíveis as palavras 'true' que estão em 2 das 5 opções mostradas */
 }
 

@@ -13,6 +13,12 @@ function MultiOptions({
     const [optNum4, setOptNum4] = useState('');
     const [optNum5, setOptNum5] = useState('');
 
+    const [itemA, setItemA] = useState('') // valor do item A
+    const [itemB, setItemB] = useState('') // valor do item B
+    const [itemC, setItemC] = useState('') // valor do item C
+    const [itemD, setItemD] = useState('') // valor do item D
+    const [itemE, setItemE] = useState('') // valor do item E
+
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiOptionsContext, setLoading } = useContext(DataContext)
 
@@ -48,7 +54,7 @@ function MultiOptions({
 
     // função para capturar os dois valores que estão marcados quando clicados no campo texto (p)
     function mouseClickOptionsMulti(e) {
-        const inputOptionMulti = e.target.parentElement.childNodes[1]
+        const inputOptionMulti = e.target.parentElement.parentElement.childNodes[1]
 
         if (inputOptionMulti.checked === false) {
             inputOptionMulti.checked = true
@@ -114,6 +120,30 @@ function MultiOptions({
 
     }, [listMultiOptions, multiQuestion, listMultiQuestions])
 
+    useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
+        function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção
+            if (multiOptionMap[optNum1] && multiOptionMap[optNum2] && multiOptionMap[optNum3] && multiOptionMap[optNum4] && multiOptionMap[optNum5]) {
+                setItemA('a)') 
+                setItemB('b)') 
+                setItemC('c)') 
+                setItemD('d)') 
+                setItemE('e)')
+
+            } else if (!multiOptionMap[optNum1] || !multiOptionMap[optNum2] || !multiOptionMap[optNum3] || !multiOptionMap[optNum4] || !multiOptionMap[optNum5]) {
+                setItemA('a)') 
+                setItemB('b)') 
+                setItemC('c)') 
+                setItemD('d)')
+                setItemE('')
+
+            }
+            
+        }
+
+        itemOrderSelection()
+        
+    }, [multiOptionMap, optNum1, optNum2, optNum3, optNum4, optNum5]) 
+
     return (
         <div className={styles.multiOptions}>
             {multiOptionMap[optNum1] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum1]' existir */}
@@ -124,19 +154,26 @@ function MultiOptions({
                     value={optNum1}
                 />
 
-                <span className={styles.itemAlternativeMulti}>{"a)"}</span>
-
-                <p 
+                <div 
                     onClick={mouseClickOptionsMulti}
-                    className={`optionsMultiP ${styles.textMultiOptions}`}
+                    className={styles.textMultiOptions}
                 >
-
-                    {multiOptionMap[optNum1]}
-
-                    <span className={styles.answerBoolClass} id='answerBool1'>
-                        {(optNum1 === 0 || optNum1 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
+                    <span>
+                        {itemA}
                     </span>
-                </p>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>                        
+                        {multiOptionMap[optNum1]}
+
+                        <span className={styles.answerBool} id='answerBool1'>
+                            {(optNum1 === 0 || optNum1 === 1) && 'true'} 
+                        </span>
+                    </p>
+
+                </div>                
+                
             </div>}
 
             {multiOptionMap[optNum2] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum2]' existir */}
@@ -147,19 +184,27 @@ function MultiOptions({
                     value={optNum2}
                 />
 
-                <span className={styles.itemAlternativeMulti}>{"b)"}</span>
-
-                <p 
+                <div 
                     onClick={mouseClickOptionsMulti}
-                    className={`optionsMultiP ${styles.textMultiOptions}`}
+                    className={styles.textMultiOptions}
                 >
-
-                    {multiOptionMap[optNum2]}
-
-                    <span className={styles.answerBoolClass} id='answerBool2'>
-                        {(optNum2 === 0 || optNum2 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
+                    <span>
+                        {/* {condição para aparecer o item A ou B} */}
+                        {(!multiOptionMap[optNum1] && itemA) || itemB}
                     </span>
-                </p>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+                        {multiOptionMap[optNum2]}
+
+                        <span className={styles.answerBool} id='answerBool2'>
+                            {(optNum2 === 0 || optNum2 === 1) && 'true'} 
+                        </span>
+                    </p>
+
+                </div>
+
             </div>}
 
             {multiOptionMap[optNum3] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum3]' existir */}
@@ -170,19 +215,27 @@ function MultiOptions({
                     value={optNum3}
                 />
 
-                <span className={styles.itemAlternativeMulti}>{"c)"}</span>
-
-                <p 
+               <div 
                     onClick={mouseClickOptionsMulti}
-                    className={`optionsMultiP ${styles.textMultiOptions}`}
+                    className={styles.textMultiOptions}
                 >
-
-                    {multiOptionMap[optNum3]}
-
-                    <span className={styles.answerBoolClass} id='answerBool3'>
-                        {(optNum3 === 0 || optNum3 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
+                    <span>
+                        {/* condição para aparecer o item B ou C */}
+                        {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2]) && itemB) || itemC}
                     </span>
-                </p>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+                        {multiOptionMap[optNum3]}
+
+                        <span className={styles.answerBool} id='answerBool3'>
+                            {(optNum3 === 0 || optNum3 === 1) && 'true'} 
+                        </span>
+                    </p>
+
+                </div>
+
             </div>}
 
             {multiOptionMap[optNum4] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum4]' existir */}
@@ -193,19 +246,27 @@ function MultiOptions({
                     value={optNum4}
                 />
 
-                <span className={styles.itemAlternativeMulti}>{"d)"}</span>
-
-                <p 
+                <div 
                     onClick={mouseClickOptionsMulti}
-                    className={`optionsMultiP ${styles.textMultiOptions}`}
+                    className={styles.textMultiOptions}
                 >
-                   
-                    {multiOptionMap[optNum4]}
-
-                    <span className={styles.answerBoolClass} id='answerBool4'>
-                        {(optNum4 === 0 || optNum4 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
+                    <span>
+                        {/* condição para aparecer o item C ou D */}
+                        {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2] || !multiOptionMap[optNum3]) && itemC) || itemD}
                     </span>
-                </p>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+                        {multiOptionMap[optNum4]}
+
+                        <span className={styles.answerBool} id='answerBool4'>
+                            {(optNum4 === 0 || optNum4 === 1) && 'true'} 
+                        </span>
+                    </p>
+
+                </div>
+
             </div>}
 
             {multiOptionMap[optNum5] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum5]' existir */}
@@ -216,19 +277,27 @@ function MultiOptions({
                     value={optNum5}
                 />
 
-                <span className={styles.itemAlternativeMulti}>{"e)"}</span>
-
-                <p 
+                <div 
                     onClick={mouseClickOptionsMulti}
-                    className={`optionsMultiP ${styles.textMultiOptions}`}
+                    className={styles.textMultiOptions}
                 >
-                 
-                    {multiOptionMap[optNum5]}
-                    
-                    <span className={styles.answerBoolClass} id='answerBool5'>
-                        {(optNum5 === 0 || optNum5 === 1) && 'true'} {/* obs: tornar sempre verdadeira as opções 1 e 2 do backend, mesmo estando em ordens diferentes quando mostradas na tela */}
+                    <span>
+                        {/* condição para aparecer o item D ou E */}
+                        {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2] || !multiOptionMap[optNum3] || !multiOptionMap[optNum4]) && itemD) || itemE}
                     </span>
-                </p>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+                        {multiOptionMap[optNum5]}
+
+                        <span className={styles.answerBool} id='answerBool5'>
+                            {(optNum5 === 0 || optNum5 === 1) && 'true'} 
+                        </span>
+                    </p>
+
+                </div>
+
             </div>}
 
         </div>

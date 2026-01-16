@@ -149,7 +149,7 @@ function ButtonAnswer({
         const correctSound = new Audio(correctAudio);
         const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti') // captura todas as alternativas      
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input') // captura todas os campos input
-        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti p') // captura todos os parágrafos
+        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti div p') // captura todos os parágrafos
 
         if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
@@ -178,7 +178,7 @@ function ButtonAnswer({
                     
                     const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
                             .filter(input => input.checked)
-                            .map(input => input.parentElement.children[2])
+                            .map(input => input.parentElement.children[1].childNodes[3])
 
                     const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
 

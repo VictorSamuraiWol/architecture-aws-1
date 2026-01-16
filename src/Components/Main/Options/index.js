@@ -115,20 +115,26 @@ function Options({
     }, [listOptions, nextQuestion, listQuestions])
   
     useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
-        if (optionMap[optNum1] && optionMap[optNum2] && optionMap[optNum3] && optionMap[optNum4] && optionMap[optNum5]) {
-            setItemA('a)') 
-            setItemB('b)') 
-            setItemC('c)') 
-            setItemD('d)') 
-            setItemE('e)')
+        function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção
+            if (optionMap[optNum1] && optionMap[optNum2] && optionMap[optNum3] && optionMap[optNum4] && optionMap[optNum5]) {
+                setItemA('a)') 
+                setItemB('b)') 
+                setItemC('c)') 
+                setItemD('d)') 
+                setItemE('e)')
 
-        } else if (!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4] || !optionMap[optNum5]) {
-            setItemA('a)') 
-            setItemB('b)') 
-            setItemC('c)') 
-            setItemD('d)')
+            } else if (!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4] || !optionMap[optNum5]) {
+                setItemA('a)') 
+                setItemB('b)') 
+                setItemC('c)') 
+                setItemD('d)')
+                setItemE('')
 
+            }
+        
         }
+
+        itemOrderSelection()
 
     }, [optionMap, optNum1, optNum2, optNum3, optNum4, optNum5]) 
 
@@ -152,16 +158,14 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}              
                 >
-                    <span className="item">
+                    <span>
                         {itemA}
                     </span>
 
                     <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
                     <p>
-
                         {optionMap[optNum1]}
-
                     </p>
 
                 </div>
@@ -182,17 +186,15 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span className="item">
-                        {/* {condição para aparecer o item A ou B} */}
+                    <span>
+                        {/* condição para aparecer o item A ou B */}
                         {(!optionMap[optNum1] && itemA) || itemB}
                     </span>
 
                     <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
                     <p>
-
                         {optionMap[optNum2]}
-
                     </p>
 
                 </div>
@@ -213,17 +215,15 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span className="item">
-                        {/* {condição para aparecer o item B ou C} */}
+                    <span>
+                        {/* condição para aparecer o item B ou C */}
                         {((!optionMap[optNum1] || !optionMap[optNum2]) && itemB) || itemC}
                     </span>
 
                     <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
                     <p>
-
                         {optionMap[optNum3]}
-
                     </p>
 
                 </div>
@@ -244,17 +244,15 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span className="item">
-                        {/* {condição para aparecer o item C ou D} */}
+                    <span>
+                        {/* condição para aparecer o item C ou D */}
                         {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3]) && itemC) || itemD}
                     </span>
 
                     <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
                     <p>
-
                         {optionMap[optNum4]}
-
                     </p>
 
                 </div>
@@ -275,17 +273,15 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span className="item">
-                        {/* {condição para aparecer o item D ou E} */}
+                    <span>
+                        {/* condição para aparecer o item D ou E */}
                         {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4]) && itemD) || itemE}
                     </span>
 
                     <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
 
                     <p>
-
                         {optionMap[optNum5]}
-
                     </p>
 
                 </div>
