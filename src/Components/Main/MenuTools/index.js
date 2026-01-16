@@ -1,14 +1,17 @@
 import styles from './MenuTools.module.css'
-import { MdDelete } from "react-icons/md";
-import { useContext } from 'react';
-import { DataContext } from '../../DataContext';
-import ModalEditMenu from './ModalEditMenu';
+import { MdDelete } from "react-icons/md"
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../../DataContext'
+import ModalEditMenu from './ModalEditMenu'
+import PopupDeleteQuestionOption from '../../PopupDeleteQuestionOption'
 
 function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
   multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
+
+  const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(nextQuestion) {
@@ -143,7 +146,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
 
   }
 
-  function multiDeleteQuestionOption() {
+  function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
     if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
         onDeleteQuestion(nextQuestion)
         onDeleteOption(optionMapNumberId)
@@ -151,12 +154,13 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     
     } else {
       alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
+      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption' 
     
     }
 
   }
 
-  function multiDeleteMultiQuestionMultiOption() {
+  function multiDeleteMultiQuestionMultiOption() { // função que deleta a questão e opção correspondente da página 'PageMulti'
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(multiQuestion)
       onDeleteOptionMulti(multiOptionMapNumberId)
@@ -164,6 +168,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     
     } else {
       alert('There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
+      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption'
     
     }
 
@@ -176,7 +181,7 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
     ? setAbleDisableMenuTools(styles.menuIcons)
     : setAbleDisableMenuTools(styles.disableMenu)
 
-  } 
+  }
 
   return (
     <div className={styles.menu}>
@@ -184,7 +189,8 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
         onClick={ableDisableMenu}
         className={styles.menuTools}
       >
-        <span onClick={listMatchedQuestionsOptions}>Menu</span>
+        <span>Menu</span>
+
       </div>
 
       <div 
@@ -201,13 +207,24 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
           multiOptionMap={multiOptionMap}
           setMultiOptionMap={setMultiOptionMap}
           multiOptionMapNumberId={multiOptionMapNumberId}
-
         />
 
         <MdDelete
-          onClick={(nextQuestion !== undefined && multiDeleteQuestionOption) || (multiQuestion !== undefined && multiDeleteMultiQuestionMultiOption)}
+          onClick={() => {setActivePopupDelete(true)}}
           className={styles.deleteIcon}            
-        />        
+        /> 
+
+        {activePopupDelete === true && 
+        <PopupDeleteQuestionOption
+          specificStyles={styles.popupDeleteMain} 
+          textPopup={"Are you sure you want to delete?"}
+          activePopup={setActivePopupDelete}
+          activeButtons={activePopupDelete}
+          nextQuestion={nextQuestion}
+          multiQuestion={multiQuestion}
+          multiDeleteQuestionOption={multiDeleteQuestionOption}
+          multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
+        />}   
 
       </div>
 

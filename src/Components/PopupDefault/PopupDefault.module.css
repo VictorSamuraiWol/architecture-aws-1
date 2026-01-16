@@ -14,8 +14,3 @@
 .modalImageDelete:hover {
   transform: scale(1.03); 
 }
-
-.button {
-  width: 90%;
-  height: 50px;
-}
