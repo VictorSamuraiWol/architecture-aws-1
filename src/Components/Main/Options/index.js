@@ -1,6 +1,6 @@
-import styles from './Options.module.css';
-import { useContext, useEffect, useState } from 'react';
-import { DataContext } from '../../DataContext';
+import styles from './Options.module.css'
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../../DataContext'
 
 function Options({ 
     setCaptureValue, optionColor, randomIndex, listOptions, setListOptions, 

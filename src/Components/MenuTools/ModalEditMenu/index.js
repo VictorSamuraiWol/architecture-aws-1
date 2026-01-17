@@ -1,13 +1,13 @@
-import styles from './ModalEditMenu.module.css';
-import Modal from 'react-modal';
-import FieldModalEdit from './FieldModalEdit';
-import ButtonDefault from '../../ButtonDefault';
-import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives';
-import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { MdEditSquare } from "react-icons/md";
-import { TiDeleteOutline } from "react-icons/ti";
-import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer';
+import styles from './ModalEditMenu.module.css'
+import Modal from 'react-modal'
+import FieldModalEdit from './FieldModalEdit'
+import ButtonDefault from '../../ButtonDefault'
+import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives'
+import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer'
+import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { MdEditSquare } from "react-icons/md"
+import { TiDeleteOutline } from "react-icons/ti"
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');

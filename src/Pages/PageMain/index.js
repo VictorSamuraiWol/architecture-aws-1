@@ -1,10 +1,10 @@
-import styles from './PageMain.module.css';
-import Header from '../../Components/Header';
-import Main from '../../Components/Main';
-import Loader from '../../Components/Loader';
-import { useContext, useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { DataContext } from '../../Components/DataContext';
+import styles from './PageMain.module.css'
+import Header from '../../Components/Header'
+import Main from '../../Components/Main'
+import Loader from '../../Components/Loader'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { DataContext } from '../../Components/DataContext'
 
 function PageMain() {
 
@@ -23,16 +23,30 @@ function PageMain() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
 
+    // função para garantir que o novo número aleatório seja sempre diferente do anterior
+    const uniqueRandomMain = useCallback((dataLength) => {
+        let random
+
+        do {
+            random = Math.floor(Math.random()*dataLength) 
+        }
+        while (random === lastRandomMain) // repete até obter um número diferente
+        
+        setLastRandomMain(random) // atualiza o último número gerado
+        return random                
+    
+    }, [])
+    
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
      
-        // toda a lista de questões da página main (AJEITAR DEPOIS USANDO O listUnicQuestionsLength NO COMPONENTE MAIN )
+        // toda a lista de questões da página Main
         setListQuestions(listUnicQuestionsContext)
 
-        // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)?
+        // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
 
-        // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
+        // tornar o cronômetro e os icones dos audios ativos ao sair da página Forms
         setActivePageFormsQuestionsOptions(false)
 
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
@@ -42,20 +56,7 @@ function PageMain() {
         setRandomIndex(random); 
         setNextQuestion(next);    
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
-
-    // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    function uniqueRandomMain(dataLength) {
-        let random;
-        do {
-            random = Math.floor(Math.random()*dataLength) 
-        }
-        while (random === lastRandomMain) // repete até obter um número diferente
-        
-        setLastRandomMain(random) // atualiza o último número gerado
-        return random                
-    
-    }
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData, uniqueRandomMain])
 
     return(
         <div>

@@ -1,14 +1,14 @@
-import styles from './MultiMain.module.css';
-import Question from '../Question';
-import MultiOptions from './MultiOptions';
-import ButtonAnswer from '../ButtonAnswer';
-import ButtonNext from '../ButtonNext';
-import AnswerDescription from '../AnswerDescription';
-import MenuTools from '../MenuTools';
-import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
-import ModalResults from '../ModalResults';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import styles from './MultiMain.module.css'
+import Question from '../Question'
+import MultiOptions from './MultiOptions'
+import ButtonAnswer from '../ButtonAnswer'
+import ButtonNext from '../ButtonNext'
+import AnswerDescription from '../AnswerDescription'
+import MenuTools from '../MenuTools'
+import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives'
+import ModalResults from '../ModalResults'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 

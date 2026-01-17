@@ -1,4 +1,4 @@
-import styles from './AnswerDescription.module.css';
+import styles from './AnswerDescription.module.css'
 import apiGateway from '../../imgs/answers-imgs/API_Gateway.png'
 import dynamoDB from '../../imgs/answers-imgs/DynamoDB.png'
 import ec2 from '../../imgs/answers-imgs/EC2.png'
@@ -9,7 +9,7 @@ import identityAndAccessManagement from '../../imgs/answers-imgs/Identity_and_Ac
 import simpleQueueService from '../../imgs/answers-imgs/Simple_Queue_Service.png'
 import simpleStoragesService from '../../imgs/answers-imgs/Simple_Storage_Service.png'
 import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
-import { useState } from 'react';
+import { useState } from 'react'
 
 function AnswerDescription({ 
     answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 

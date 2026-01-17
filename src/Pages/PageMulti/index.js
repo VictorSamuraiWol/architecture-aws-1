@@ -1,10 +1,10 @@
-import styles from './PageMulti.module.css';
-import Header from '../../Components/Header';
-import MultiMain from '../../Components/MultiMain';
-import Loader from '../../Components/Loader';
-import { useContext, useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { DataContext } from '../../Components/DataContext';
+import styles from './PageMulti.module.css'
+import Header from '../../Components/Header'
+import MultiMain from '../../Components/MultiMain'
+import Loader from '../../Components/Loader'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { DataContext } from '../../Components/DataContext'
 
 function PageMulti() {
     
@@ -23,30 +23,10 @@ function PageMulti() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-    useEffect(() => {
-        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return; // se a lista de questões não existir, retorne
-
-        // toda a lista de questões da página multi
-        setListMultiQuestions(listMultiQuestionsContext)       
-    
-        // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página main (PASSAR PARA DataContext)
-        setRequestData(true)
-
-        // tornar o cronômetro e os icones dos audios ativos ao sair da página forms (PASSAR PARA DataContext)?
-        setActivePageFormsQuestionsOptions(false)
-        
-        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-        const random = uniqueRandomMulti(listMultiQuestionsContextLength)
-        const next = listMultiQuestionsContext[random]
-
-        setRandomIndexMulti(random); 
-        setMultiQuestion(next);           
-
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
-
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    function uniqueRandomMulti(dataLength) {
-        let random;
+    const uniqueRandomMulti = useCallback((dataLength) => {
+        let random
+
         do {
             random = Math.floor(Math.random()*dataLength)
         }
@@ -56,7 +36,28 @@ function PageMulti() {
         
         return random                
     
-    }
+    }, [])
+    
+    useEffect(() => {
+        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return; // se a lista de questões não existir, retorne
+
+        // toda a lista de questões da página Multi
+        setListMultiQuestions(listMultiQuestionsContext)       
+    
+        // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página Multi
+        setRequestData(true)
+
+        // tornar o cronômetro e os icones dos audios ativos ao sair da página Forms
+        setActivePageFormsQuestionsOptions(false)
+        
+        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+        const random = uniqueRandomMulti(listMultiQuestionsContextLength)
+        const next = listMultiQuestionsContext[random]
+
+        setRandomIndexMulti(random); 
+        setMultiQuestion(next);           
+
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData, uniqueRandomMulti])
 
     return(
         <div>     

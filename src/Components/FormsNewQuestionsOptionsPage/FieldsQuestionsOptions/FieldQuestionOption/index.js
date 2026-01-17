@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './FieldQuestionOption.module.css'
 import DetailsFieldsForms from '../../../DetailsFieldsForms'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
     nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, 

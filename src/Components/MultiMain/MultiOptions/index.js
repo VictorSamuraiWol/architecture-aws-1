@@ -1,6 +1,6 @@
-import styles from './MultiOptions.module.css';
-import { useContext, useEffect, useState } from 'react';
-import { DataContext } from '../../DataContext';
+import styles from './MultiOptions.module.css'
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../../DataContext'
 
 function MultiOptions({ 
     listMultiOptions, setListMultiOptions, optionColorMulti, setCaptureValueMulti, randomIndexMulti, captureValueMulti, 
