@@ -17,7 +17,7 @@ function AnswerDescription({
 }) {
 
     // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem usadas nas suas respectivas questões dinamicamente
-    const [imagesDescriptions, setImagesDescriptions] = useState({
+    const [imagesDescriptions] = useState({
         storageGateway: storageGateway,
         simpleStoragesService: simpleStoragesService,
         fsxForLustre: fsxForLustre,

@@ -10,8 +10,8 @@ function PageMain() {
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);   
-    const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
-    const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
+    const [optionValidate] = useState(styles.optionValidate);
+    const [optionInvalidate] = useState(styles.optionInvalidate);
     const [listQuestions, setListQuestions] = useState([]);
     const [nextQuestion, setNextQuestion] = useState('');
     const [listOptions, setListOptions] = useState('');
@@ -42,7 +42,7 @@ function PageMain() {
         setRandomIndex(random); 
         setNextQuestion(next);    
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMain(dataLength) {

@@ -1,4 +1,4 @@
-import styles from './App.module.css';
+// import styles from './App.module.css';
 import PageBase from './Pages/PageBase';
 import PageMain from './Pages/PageMain';
 import PageMulti from './Pages/PageMulti';

@@ -43,7 +43,7 @@ function MultiOptions({
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
     
-    }, [listMultiOptionsContext]);
+    }, [listMultiOptionsContext, setListMultiOptions]);
 
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
@@ -118,7 +118,7 @@ function MultiOptions({
         
         questionMultiOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
 
-    }, [listMultiOptions, multiQuestion, listMultiQuestions])
+    }, [listMultiQuestions, multiQuestion, setMultiQuestion, listMultiOptions, setMultiOptionMap, setMultiOptionMapNumberId, setLoading])
 
     useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
         function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção

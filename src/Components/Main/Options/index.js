@@ -39,7 +39,7 @@ function Options({
         setOptNum4(randomNumbers[3]);
         setOptNum5(randomNumbers[4]);  
 
-    }, [listUnicOptionsContext]);
+    }, [listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5]);
 
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValueFunc(e) {
@@ -112,7 +112,7 @@ function Options({
         
         questionOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
 
-    }, [listOptions, nextQuestion, listQuestions])
+    }, [listQuestions, listOptions, nextQuestion, setNextQuestion, setOptionMap, setOptionMapNumberId, setLoading])
   
     useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
         function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção

@@ -21,7 +21,7 @@ function Main({
     const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
    
     const [captureValue, setCaptureValue] = useState('')
-    const [optionColor, setOptionColor] = useState(styles.optionColor)  
+    const [optionColor] = useState(styles.optionColor)  
     const [optNum1, setOptNum1] = useState('');
     const [optNum2, setOptNum2] = useState('');
     const [optNum3, setOptNum3] = useState('');

@@ -53,7 +53,7 @@ const Timer = () => {
       alert("Ops!!! Tempo acabou! Fique atento ao tempo de realização da prova.")      
     }
 
-  }, [time]);
+  }, [time, pauseTimer]);
 
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {

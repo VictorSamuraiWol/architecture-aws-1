@@ -1,4 +1,4 @@
-import styles from './PopupRepeatedAlternatives.module.css'
+// import styles from './PopupRepeatedAlternatives.module.css'
 import PopupDefault from '../PopupDefault';
 
 function PopupRepeatedAlternatives({ specificStyles, textPopup, activePopup }) {

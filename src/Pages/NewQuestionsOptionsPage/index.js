@@ -20,7 +20,7 @@ function NewQuestionsOptionsPage() {
         // desabilitar o loading
         setLoading(false)
 
-    }, [setLoading])
+    }, [setActivePageFormsQuestionsOptions, setLoading])
 
     return(
         <div className={styles.newQuestionsOptionsPage}>

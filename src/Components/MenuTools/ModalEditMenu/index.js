@@ -20,7 +20,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [answer, setAnswer] = useState(nextQuestion?.answer);
   const [srcImg, setSrcImg] = useState(nextQuestion?.srcImg);
   const [description, setDescription] = useState(nextQuestion?.descriptionP);
-  const [numberQuestionMain, setNumberQuestionMain] = useState(nextQuestion?.numberQuestion)
+  const [numberQuestionMain] = useState(nextQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções
   const [option1, setOption1] = useState(optionMap && optionMap[0]);
@@ -34,7 +34,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
   const [answerMulti, setAnswerMulti] = useState(multiQuestion?.answerText);
   const [srcImgMulti, setSrcImgMulti] = useState(multiQuestion?.srcImg);
   const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP);
-  const [numberQuestionMultiMain, setNumberQuestionMultiMain] = useState(multiQuestion?.numberQuestion)
+  const [numberQuestionMultiMain] = useState(multiQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
   const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0]);

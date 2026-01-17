@@ -16,7 +16,7 @@ function MultiMain({
     optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
 }) {
 
-    const [optionColorMulti, setOptionColorMulti] = useState(styles.optionColorMulti)
+    const [optionColorMulti] = useState(styles.optionColorMulti)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain

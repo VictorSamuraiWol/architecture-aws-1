@@ -42,7 +42,7 @@ function PageMulti() {
         setRandomIndexMulti(random); 
         setMultiQuestion(next);           
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength])
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     function uniqueRandomMulti(dataLength) {

@@ -23,10 +23,10 @@ function FieldQuestionOption({
     const [valuesForms, setValuesForms] = useState("")
 
     // valores para aparecer as descrições dos campos
-    const [detailsFields, setDetailsFields] = useState(styles.invisible)
+    const [detailsFields] = useState(styles.invisible)
 
     //variáveis para mostrar os detalhes dos campos
-    const [textDetail, setTextDetail] = useState("")
+    const [textDetail] = useState("")
 
     function newValueFunc(e) {
 
