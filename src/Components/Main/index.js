@@ -1,15 +1,15 @@
 import styles from './Main.module.css'
+import Question from '../Question';
+import Options from './Options';
+import ButtonAnswer from '../ButtonAnswer';
+import ButtonNext from '../ButtonNext';
+import AnswerDescription from '../AnswerDescription';
+import MenuTools from '../MenuTools';
+import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
+import ModalResults from '../ModalResults';
 import { useContext, useState } from 'react';
 import { DataContext } from '../DataContext';
 import { Link } from 'react-router-dom';
-import Question from './Question';
-import Options from './Options';
-import MenuTools from './MenuTools';
-import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
-import ModalResults from '../ModalResults';
-import ButtonAnswer from './ButtonAnswer';
-import AnswerDescription from './AnswerDescription';
-import ButtonNext from './ButtonNext';
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 

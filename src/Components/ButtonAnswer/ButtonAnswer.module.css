@@ -1,4 +1,5 @@
 .buttonAnswer {
+    background-color: var(--color-second);
     z-index: 1;
 }
 

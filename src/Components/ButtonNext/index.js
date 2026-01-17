@@ -1,7 +1,7 @@
 import styles from './ButtonNext.module.css';
-import soundNextPage from '../../../audios/paperNextPage.mp3';
+import ButtonDefault from '../ButtonDefault';
+import soundNextPage from '../../audios/paperNextPage.mp3';
 import { useOutletContext } from 'react-router-dom';
-import ButtonDefault from '../../ButtonDefault';
 
 function ButtonNext({ 
     questionAnswerButtonNextMain, questionAnswerButtonNextMulti, uniqueRandomMain, uniqueRandomMulti, getPath, number, 

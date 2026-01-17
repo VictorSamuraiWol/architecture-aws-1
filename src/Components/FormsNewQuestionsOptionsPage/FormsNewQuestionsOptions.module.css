@@ -56,7 +56,8 @@
     max-width: max-content;
 }
 
-.buttonSubmit {
+.buttonSave {
+    background-color: transparent;
     z-index: 1;
 }
 

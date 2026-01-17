@@ -1,12 +1,12 @@
-import styles from './NewPageMain.module.css';
+import styles from './PageMain.module.css';
 import Header from '../../Components/Header';
 import Main from '../../Components/Main';
+import Loader from '../../Components/Loader';
 import { useContext, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import Loader from '../../Components/Loader';
 import { DataContext } from '../../Components/DataContext';
 
-function NewPageMain() {
+function PageMain() {
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);   
@@ -108,4 +108,4 @@ function NewPageMain() {
 
 }
 
-export default NewPageMain
+export default PageMain

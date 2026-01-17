@@ -1,9 +1,9 @@
 import styles from './MenuTools.module.css'
-import { MdDelete } from "react-icons/md"
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../../DataContext'
 import ModalEditMenu from './ModalEditMenu'
-import PopupDeleteQuestionOption from '../../PopupDeleteQuestionOption'
+import PopupDeleteQuestionOption from '../PopupDeleteQuestionOption'
+import { useContext, useState } from 'react'
+import { DataContext } from '../DataContext'
+import { MdDelete } from "react-icons/md"
 
 function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
   multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {

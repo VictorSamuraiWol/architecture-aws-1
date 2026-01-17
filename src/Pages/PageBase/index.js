@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import Footer from '../../Components/Footer';
 import styles from './PageBase.module.css';
+import IllustrativePage from '../IllustrativePage';
+import backgroundImage from '../../imgs/cloud-neon-vibe.png';
+import DataProvider from '../../Components/DataContext';
+import Footer from '../../Components/Footer';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi";
-import backgroundImage from '../../imgs/cloud-neon-vibe.png';
-import IllustrativePage from '../IllustrativePage';
-import DataProvider from '../../Components/DataContext';
 
 function PageBase() {
 

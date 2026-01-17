@@ -1,9 +1,9 @@
 import styles from './PageMulti.module.css';
-import MultiMain from '../../Components/MultiMain';
-import { useContext, useEffect, useState } from 'react';
 import Header from '../../Components/Header';
-import { useOutletContext } from 'react-router-dom';
+import MultiMain from '../../Components/MultiMain';
 import Loader from '../../Components/Loader';
+import { useContext, useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { DataContext } from '../../Components/DataContext';
 
 function PageMulti() {

@@ -33,12 +33,6 @@
     width: 98%;
 }
 
-.alternativeMultiOptions:hover {
-    font-weight: bold;
-    transform: scale(1.01);
-    transition: all 0.1s ease-in-out;
-}
-
 /* personalizando o estilo do input checkbox */
 .inputMultiOptions {
     appearance: none; /* remove o estilo padrão */
@@ -75,6 +69,12 @@
     align-items: center;
     text-align: justify;
     cursor: pointer;
+}
+
+.textMultiOptions:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
 }
 
 .textMultiOptions p {

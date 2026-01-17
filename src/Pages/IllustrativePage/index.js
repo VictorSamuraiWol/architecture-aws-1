@@ -1,9 +1,9 @@
 import styles from './IllustrativePage.module.css'
-import image from '../../imgs/icone-wolverine-sem-fundo.png'
-import { Link } from 'react-router-dom'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
-import { useEffect } from 'react'
+import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import imageStart from '../../imgs/icon-start.png'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { GoPlus } from "react-icons/go";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdEditSquare } from "react-icons/md";

@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
 import styles from './Options.module.css';
+import { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../DataContext';
 
 function Options({ 

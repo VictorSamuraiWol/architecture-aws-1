@@ -1,14 +1,14 @@
 import styles from './MultiMain.module.css';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Question from '../Main/Question'; // reutilizando componente presente no Main
+import Question from '../Question';
 import MultiOptions from './MultiOptions';
-import MenuTools from '../Main/MenuTools';
+import ButtonAnswer from '../ButtonAnswer';
+import ButtonNext from '../ButtonNext';
+import AnswerDescription from '../AnswerDescription';
+import MenuTools from '../MenuTools';
 import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives';
 import ModalResults from '../ModalResults';
-import ButtonAnswer from '../Main/ButtonAnswer'; // reutilizando componente presente no Main
-import AnswerDescription from '../Main/AnswerDescription';
-import ButtonNext from '../Main/ButtonNext'; // reutilizando componente presente no Main
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 

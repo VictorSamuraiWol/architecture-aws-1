@@ -1,12 +1,12 @@
 import styles from './NewQuestionsOptionsPage.module.css'
-import { useOutletContext } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
 import Header from '../../Components/Header'
+import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
 import Loader from '../../Components/Loader'
+import { useContext, useEffect } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
-function CreateNewQuestionsOptions () {
+function NewQuestionsOptionsPage() {
  
     const { setActivePageFormsQuestionsOptions } = useOutletContext()
 
@@ -14,11 +14,11 @@ function CreateNewQuestionsOptions () {
     
     useEffect(() => {
 
-            // tornar a página ativa ao entrar na rota dela
-            setActivePageFormsQuestionsOptions(true)
-            
-            // desabilitar o loading
-            setLoading(false)
+        // tornar a página ativa ao entrar na rota dela
+        setActivePageFormsQuestionsOptions(true)
+        
+        // desabilitar o loading
+        setLoading(false)
 
     }, [setLoading])
 
@@ -31,7 +31,9 @@ function CreateNewQuestionsOptions () {
             {loading && <Loader />}
 
         </div>
+
     )
+
 }
 
-export default CreateNewQuestionsOptions
+export default NewQuestionsOptionsPage

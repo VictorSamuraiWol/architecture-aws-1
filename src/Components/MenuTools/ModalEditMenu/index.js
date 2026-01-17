@@ -1,13 +1,13 @@
 import styles from './ModalEditMenu.module.css';
 import Modal from 'react-modal';
 import FieldModalEdit from './FieldModalEdit';
-import ButtonDefault from '../../../ButtonDefault';
-import PopupRepeatedAlternatives from '../../../PopupRepeatedAlternatives';
+import ButtonDefault from '../../ButtonDefault';
+import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { MdEditSquare } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
-import PopupCheckAlternativeAnswer from '../../../PopupCheckAlternativeAnswer';
+import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer';
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -509,12 +509,14 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
               onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
               buttonName='Save' 
               specificType='submit'
+              specificStyleButton={styles.button}
 
             />
             <ButtonDefault 
               onClick={cleanForm} 
               buttonName='Clean' 
               specificType='button'
+              specificStyleButton={styles.button}
               
             />
 
@@ -597,12 +599,14 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
               onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
               buttonName='Save' 
               specificType='submit'
+              specificStyleButton={styles.button}
 
             />
             <ButtonDefault 
               onClick={cleanForm} 
               buttonName='Clean' 
               specificType='button'
+              specificStyleButton={styles.button}
               
             />
 

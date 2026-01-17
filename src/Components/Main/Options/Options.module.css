@@ -34,12 +34,6 @@
     width: 98%;
 }
 
-.alternativeOptions:hover {
-    font-weight: bold;
-    transform: scale(1.01);
-    transition: all 0.1s ease-in-out;
-}
-
 /* personalizando o estilo do input radio */
 .inputOptions {    
     appearance: none; /* remove o estilo padrão */
@@ -80,6 +74,12 @@
     align-items: center;
     text-align: justify;
     cursor: pointer;
+}
+
+.textOptions:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
 }
 
 .textOptions p {

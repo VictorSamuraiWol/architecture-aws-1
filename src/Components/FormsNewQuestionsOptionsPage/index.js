@@ -1156,11 +1156,11 @@ function FormsNewQuestionsOptionsPage() {
 
                     />
                     <ButtonDefault 
-                        buttonName='Submit' 
-                        specificType='submit' 
-                        specificStyleButton={styles.buttonSubmit}
                         // tornar readyToSendForm1 'true' antes de entrar na função onSaveForm1 ao submeter o formulário 1
                         onClick={() => {setReadyToSendForm1(true)}}
+                        buttonName='Save' 
+                        specificStyleButton={styles.buttonSave}
+                        specificType='submit' 
 
                     />
 
@@ -1201,11 +1201,11 @@ function FormsNewQuestionsOptionsPage() {
 
                     />
                     <ButtonDefault 
-                        buttonName='Submit' 
-                        specificType='submit' 
-                        specificStyleButton={styles.buttonSubmit}
                         // tornar readyToSendForm2 'true' antes de entrar na função onSaveForm2 ao submeter o formulário 2
                         onClick={() => {setReadyToSendForm2(true)}}
+                        buttonName='Save' 
+                        specificStyleButton={styles.buttonSave}
+                        specificType='submit' 
          
                     />
 
@@ -1244,11 +1244,11 @@ function FormsNewQuestionsOptionsPage() {
 
                     />
                     <ButtonDefault 
-                        buttonName='Submit' 
-                        specificType='submit' 
-                        specificStyleButton={styles.buttonSubmit}
                         // tornar readyToSendForm3 'true' antes de entrar na função onSaveForm3 ao submeter o formulário 3
                         onClick={() => {setReadyToSendForm3(true)}}
+                        buttonName='Save' 
+                        specificStyleButton={styles.buttonSave}
+                        specificType='submit' 
                     />
 
                 </form>
@@ -1288,11 +1288,11 @@ function FormsNewQuestionsOptionsPage() {
 
                     />
                     <ButtonDefault 
-                        buttonName='Submit' 
-                        specificType='submit' 
-                        specificStyleButton={styles.buttonSubmit}
                         // tornar readyToSendForm4 'true' antes de entrar na função onSaveForm4 ao submeter o formulário 4
                         onClick={() => {setReadyToSendForm4(true)}}
+                        buttonName='Save' 
+                        specificStyleButton={styles.buttonSave}
+                        specificType='submit' 
                     />
 
                 </form>

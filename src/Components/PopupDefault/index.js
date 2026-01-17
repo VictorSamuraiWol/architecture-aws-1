@@ -13,6 +13,17 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
 
   }
 
+  function handleClick() { // função que irá deletar a questão e opção correspondentes, exclusivo do componente 'PopupDeleteQuestionOption'
+    if (nextQuestion !== undefined) {
+      multiDeleteQuestionOption() // deleta a questão e opção correspondentes da 'PageMain' 
+      
+    } else if (multiQuestion !== undefined) {
+      multiDeleteMultiQuestionMultiOption() // deleta a questão e opção correspondentes da 'PageMulti' 
+
+    }
+
+  }
+
   return (
     <div
       className={specificStyles}
@@ -35,8 +46,8 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
 
       {/* Os botões serão ativados somente quando o 'PopupDeleteQuestionOption' estiver ativo. */}
       {activeButtons === true && <div className={specificStyleButtons}>
-        <ButtonDefault 
-          onClick={() => (nextQuestion !== undefined ? multiDeleteQuestionOption() : null) || (multiQuestion !== undefined ? multiDeleteMultiQuestionMultiOption() : null)}
+        <ButtonDefault
+          onClick={handleClick}
           buttonName='Yes'
           specificStyleButton={specificStyleButton} 
         />

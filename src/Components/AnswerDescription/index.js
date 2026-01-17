@@ -1,15 +1,15 @@
 import styles from './AnswerDescription.module.css';
+import apiGateway from '../../imgs/answers-imgs/API_Gateway.png'
+import dynamoDB from '../../imgs/answers-imgs/DynamoDB.png'
+import ec2 from '../../imgs/answers-imgs/EC2.png'
+import elasticLoadBalancing from '../../imgs/answers-imgs/Elastic_Load_Balancing.png'
+import fsxForLustre from '../../imgs/answers-imgs/FSx_for_Lustre.png'
+import globalAccelerator from '../../imgs/answers-imgs/Global_Accelerator.png'
+import identityAndAccessManagement from '../../imgs/answers-imgs/Identity_and_Access_Management.png'
+import simpleQueueService from '../../imgs/answers-imgs/Simple_Queue_Service.png'
+import simpleStoragesService from '../../imgs/answers-imgs/Simple_Storage_Service.png'
+import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
 import { useState } from 'react';
-import storageGateway from '../../../imgs/answers-imgs/Storage_Gateway.png'
-import simpleStoragesService from '../../../imgs/answers-imgs/Simple_Storage_Service.png'
-import fsxForLustre from '../../../imgs/answers-imgs/FSx_for_Lustre.png'
-import globalAccelerator from '../../../imgs/answers-imgs/Global_Accelerator.png'
-import ec2 from '../../../imgs/answers-imgs/EC2.png'
-import apiGateway from '../../../imgs/answers-imgs/API_Gateway.png'
-import simpleQueueService from '../../../imgs/answers-imgs/Simple_Queue_Service.png'
-import elasticLoadBalancing from '../../../imgs/answers-imgs/Elastic_Load_Balancing.png'
-import identityAndAccessManagement from '../../../imgs/answers-imgs/Identity_and_Access_Management.png'
-import dynamoDB from '../../../imgs/answers-imgs/DynamoDB.png'
 
 function AnswerDescription({ 
     answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 

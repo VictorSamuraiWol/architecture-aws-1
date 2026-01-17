@@ -1,11 +1,11 @@
 import styles from './ButtonAnswer.module.css';
-import errorAudio from '../../../audios/errorAudio.mp3';
-import correctAudio from '../../../audios/correctAudio.mp3';
-import { useOutletContext } from 'react-router-dom';
+import ButtonDefault from '../ButtonDefault';
+import PopupCheckAlternativeAnswer from '../PopupCheckAlternativeAnswer';
+import Animation from '../Animation';
+import correctAudio from '../../audios/correctAudio.mp3';
+import errorAudio from '../../audios/errorAudio.mp3';
 import { useState } from 'react';
-import ButtonDefault from '../../ButtonDefault';
-import Animation from '../../Animation';
-import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer';
+import { useOutletContext } from 'react-router-dom';
 
 function ButtonAnswer({ 
     answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, 
