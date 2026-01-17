@@ -13,8 +13,8 @@ function PageMulti() {
     const [listMultiOptions, setListMultiOptions] = useState([]);
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
-    const [optionValidate, setOptionValidate] = useState(styles.optionValidate);
-    const [optionInvalidate, setOptionInvalidate] = useState(styles.optionInvalidate);
+    const [optionValidate] = useState(styles.optionValidate);
+    const [optionInvalidate] = useState(styles.optionInvalidate);
     const [randomIndexMulti, setRandomIndexMulti] = useState('');
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
