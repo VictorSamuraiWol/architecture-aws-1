@@ -6,11 +6,10 @@ import { useOutletContext } from 'react-router-dom'
 
 const Timer = () => {
   
-  const [time, setTime] = useState(120); // 2 minutos = 120 segundos
-  const [isRunning, setIsRunning] = useState(true);
-  const timerRef = useRef(null);
-  const timerStartSound = new Audio(timerStart);
-  const timerPauseSound = new Audio(timerPause);
+  const [time, setTime] = useState(120) // 2 minutos = 120 segundos
+  const [isRunning, setIsRunning] = useState(true)
+  const timerRef = useRef(null)
+  const timerStartSound = new Audio(timerStart)
 
   const { validateSound } = useOutletContext()
 
@@ -28,6 +27,7 @@ const Timer = () => {
 
   const pauseTimer = useCallback(() => {    
     setIsRunning(false) // Muda o estado para indicar que está desativado
+    const timerPauseSound = new Audio(timerPause)
 
     clearInterval(timerRef.current) // Limpa o intervalo, parando o cronômetro
 
@@ -40,7 +40,7 @@ const Timer = () => {
 
     })
 
-  }, [timerPauseSound, validateSound])
+  }, [validateSound])
 
   // Inicia o tempo automaticamente quando carregar a página
   useEffect(() => {

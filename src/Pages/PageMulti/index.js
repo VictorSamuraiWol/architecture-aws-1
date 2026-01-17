@@ -36,7 +36,7 @@ function PageMulti() {
         
         return random                
     
-    }, [])
+    }, [setLastRandomMulti])
     
     useEffect(() => {
         if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return; // se a lista de questões não existir, retorne

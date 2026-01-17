@@ -35,7 +35,7 @@ function PageMain() {
         setLastRandomMain(random) // atualiza o último número gerado
         return random                
     
-    }, [])
+    }, [setLastRandomMain])
     
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
