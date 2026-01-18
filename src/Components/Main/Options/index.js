@@ -18,28 +18,28 @@ function Options({
     const { listUnicOptionsContext, setLoading } = useContext(DataContext)
 
     useEffect(() => {        
-        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return; // se a lista de opções não existir, retorne
+        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
 
         // capturando toda a lista de opções da página main
-        setListOptions(listUnicOptionsContext);
+        setListOptions(listUnicOptionsContext)
 
-        const randomNumbers = []; // armazena a lista de números randômicos
+        const randomNumbers = [] // armazena a lista de números randômicos
         // gerando um número para randomizar toda vez que renderizar
         while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
-            const random = Math.floor(Math.random() * 5);
+            const random = Math.floor(Math.random() * 5)
             if (!randomNumbers.includes(random)) {
-                randomNumbers.push(random);                
+                randomNumbers.push(random)              
             }
         }
         
         // gerando números radômicos para alterar a ordem das opções
-        setOptNum1(randomNumbers[0]);
-        setOptNum2(randomNumbers[1]);
-        setOptNum3(randomNumbers[2]);
-        setOptNum4(randomNumbers[3]);
-        setOptNum5(randomNumbers[4]);  
+        setOptNum1(randomNumbers[0])
+        setOptNum2(randomNumbers[1])
+        setOptNum3(randomNumbers[2])
+        setOptNum4(randomNumbers[3])
+        setOptNum5(randomNumbers[4]) 
 
-    }, [listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5]);
+    }, [listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
 
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValueFunc(e) {
@@ -85,12 +85,12 @@ function Options({
                         return question.numberQuestion === option.numberOption // procura uma questão que tenha uma opção correspondente
 
                     })
-                        
+ 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
                         matchedOption = option
                         setNextQuestion(matchedQuestion) // atualizando a questão
 
-                    setLoading(false) // desabilita o componente 'Loader'
+                        setLoading(false) // desabilita o componente 'Loader'
                         
                     }
 
@@ -98,10 +98,10 @@ function Options({
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
+                setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
                 setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
 
-                setLoading(false) // desabilita o componente 'Loader'
+                 setLoading(false) // desabilita o componente 'Loader'
 
             } else {
                 console.error('não encontrou uma opção que possua uma questão correspondente, crie uma nova questão ou opção com o mesmo número para haver correspondênciam, obrigado.')
@@ -139,7 +139,7 @@ function Options({
     }, [optionMap, optNum1, optNum2, optNum3, optNum4, optNum5]) 
 
     return(                 
-        <div 
+        optionMap && <div 
         className={styles.optionsMain}  
         id='option' 
         key={listOptions && listOptions.id}

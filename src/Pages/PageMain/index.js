@@ -2,7 +2,7 @@ import styles from './PageMain.module.css'
 import Header from '../../Components/Header'
 import Main from '../../Components/Main'
 import Loader from '../../Components/Loader'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
@@ -21,22 +21,29 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, lastRandomMain, setLastRandomMain, setActivePageFormsQuestionsOptions } = useOutletContext();
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
 
+    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente
+    const lastRandomMainRef = useRef(null)  
+    
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    const uniqueRandomMain = useCallback((dataLength) => {
+    const uniqueRandomMain = (dataLength) => { // função para obter um número randômico diferente do anterior, evitando repetição
+        if (dataLength <= 1) return 0
+
         let random
 
         do {
-            random = Math.floor(Math.random()*dataLength) 
+            random = Math.floor(Math.random() * dataLength)
+
         }
-        while (random === lastRandomMain) // repete até obter um número diferente
-        
-        setLastRandomMain(random) // atualiza o último número gerado
-        return random                
+        while (random === lastRandomMainRef.current) // repete até obter um número diferente
+
+        lastRandomMainRef.current = random
+
+        return random            
     
-    }, [setLastRandomMain])
-    
+    } 
+   
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
      
@@ -53,10 +60,10 @@ function PageMain() {
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setRandomIndex(random); 
-        setNextQuestion(next);    
+        setRandomIndex(random)
+        setNextQuestion(next) 
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData, uniqueRandomMain])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
     return(
         <div>
@@ -69,7 +76,6 @@ function PageMain() {
                 {nextQuestion &&
                     <Header 
                         title="Architecture Questions - Randomly"
-
                     />
                     
                 }
@@ -95,8 +101,7 @@ function PageMain() {
                         listQuestions={listQuestions}
                         setNextQuestion={setNextQuestion}
                         setRandomIndex={setRandomIndex}                        
-                        nextQuestion={nextQuestion}
-                    
+                        nextQuestion={nextQuestion}                    
                     />
                 }
 

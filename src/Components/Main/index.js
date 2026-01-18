@@ -69,8 +69,7 @@ function Main({
     return(
         <div className={styles.main}>           
             <Question 
-                question={question} 
-            
+                question={question}             
             />
 
             <MenuTools 
@@ -79,8 +78,7 @@ function Main({
                 optionMap={optionMap} 
                 setOptionMap={setOptionMap} 
                 optionMapNumberId={optionMapNumberId}
-                generateNewQuestionMain={generateNewQuestionMain}
-                
+                generateNewQuestionMain={generateNewQuestionMain}                
             />
 
             {activePopupRepeatedAlternativesMain === true && 
@@ -88,7 +86,6 @@ function Main({
                     specificStyles={styles.popupRepeatedMain} 
                     textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga respondendo. Obrigado."} 
                     activePopup={setActivePopupRepeatedAlternativesMain}
-
                 />
             }
 
@@ -114,7 +111,6 @@ function Main({
                 setNextQuestion={setNextQuestion}
                 setOptionMapNumberId={setOptionMapNumberId}
                 listQuestions={listQuestions}
-
             />
 
             <ButtonAnswer            
@@ -139,7 +135,6 @@ function Main({
                 optionMap={optionMap}
                 activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
                 setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
-
             />
 
             <AnswerDescription 
@@ -150,8 +145,7 @@ function Main({
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listOptions={listOptions}
-                
+                listOptions={listOptions}                
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
@@ -171,7 +165,6 @@ function Main({
                     
                     // tornar a descrição invisível ao mudar de questão
                     setDescriptionDisplay={setDescriptionDisplay}
-
                 />
             </Link>
 

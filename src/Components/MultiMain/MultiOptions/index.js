@@ -7,11 +7,11 @@ function MultiOptions({
     multiOptionMap, setMultiOptionMap, multiQuestion, setMultiQuestion, setMultiOptionMapNumberId, listMultiQuestions
 }) {
 
-    const [optNum1, setOptNum1] = useState('');
-    const [optNum2, setOptNum2] = useState('');
-    const [optNum3, setOptNum3] = useState('');
-    const [optNum4, setOptNum4] = useState('');
-    const [optNum5, setOptNum5] = useState('');
+    const [optNum1, setOptNum1] = useState('')
+    const [optNum2, setOptNum2] = useState('')
+    const [optNum3, setOptNum3] = useState('')
+    const [optNum4, setOptNum4] = useState('')
+    const [optNum5, setOptNum5] = useState('')
 
     const [itemA, setItemA] = useState('') // valor do item A
     const [itemB, setItemB] = useState('') // valor do item B
@@ -23,14 +23,14 @@ function MultiOptions({
     const { listMultiOptionsContext, setLoading } = useContext(DataContext)
 
     useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return; // se a lista de opções não existir, retorne 
+        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
         
         setListMultiOptions(listMultiOptionsContext)
 
-        const randomNumbers = []; // armazena a lista de números randômicos
+        const randomNumbers = [] // armazena a lista de números randômicos
         // gerando um número para randomizar toda vez que renderizar
         while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
-            const random = Math.floor(Math.random() * 5);
+            const random = Math.floor(Math.random() * 5)
             if (!randomNumbers.includes(random)) {
                 randomNumbers.push(random)
             }                    
@@ -43,7 +43,7 @@ function MultiOptions({
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
     
-    }, [listMultiOptionsContext, setListMultiOptions]);
+    }, [listMultiOptionsContext, setListMultiOptions])
 
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
@@ -107,7 +107,7 @@ function MultiOptions({
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5])
+                setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
                 setMultiOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
 
                 setLoading(false) // desabilita o componente 'Loader'
@@ -145,7 +145,7 @@ function MultiOptions({
     }, [multiOptionMap, optNum1, optNum2, optNum3, optNum4, optNum5]) 
 
     return (
-        <div className={styles.multiOptions}>
+        multiOptionMap && <div className={styles.multiOptions}>
             {multiOptionMap[optNum1] && <div className={`optionNextMulti ${optionColorMulti} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'multiOptionMap[optNum1]' existir */}
                 <input
                     onChange={captureValueMultiFunc}                    

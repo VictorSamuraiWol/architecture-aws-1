@@ -2,41 +2,47 @@ import styles from './PageMulti.module.css'
 import Header from '../../Components/Header'
 import MultiMain from '../../Components/MultiMain'
 import Loader from '../../Components/Loader'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
 function PageMulti() {
     
-    const [listMultiQuestions, setListMultiQuestions] = useState([]);
-    const [multiQuestion, setMultiQuestion] = useState([]);
-    const [listMultiOptions, setListMultiOptions] = useState([]);
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);
-    const [optionValidate] = useState(styles.optionValidate);
-    const [optionInvalidate] = useState(styles.optionInvalidate);
-    const [randomIndexMulti, setRandomIndexMulti] = useState('');
+    const [listMultiQuestions, setListMultiQuestions] = useState([])
+    const [multiQuestion, setMultiQuestion] = useState([])
+    const [listMultiOptions, setListMultiOptions] = useState([])
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
+    const [optionValidate] = useState(styles.optionValidate)
+    const [optionInvalidate] = useState(styles.optionInvalidate)
+    const [randomIndexMulti, setRandomIndexMulti] = useState('')
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, loading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, lastRandomMulti, setLastRandomMulti, setActivePageFormsQuestionsOptions } = useOutletContext();
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
+
+    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente
+    const lastRandomMultiRef = useRef(null)  
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    const uniqueRandomMulti = useCallback((dataLength) => {
+    const uniqueRandomMulti = (dataLength) => {
+        if (dataLength <= 1) return 0
+
         let random
 
         do {
-            random = Math.floor(Math.random()*dataLength)
+            random = Math.floor(Math.random() * dataLength)
+
         }
-        while (random === lastRandomMulti) // repete até obter um número diferente
+        while (random === lastRandomMultiRef.current) // repete até obter um número diferente
         
-        setLastRandomMulti(random) // atualiza o último número gerado
+        lastRandomMultiRef.current = random // atualiza o último número gerado
         
         return random                
     
-    }, [setLastRandomMulti])
+    }
     
     useEffect(() => {
         if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return; // se a lista de questões não existir, retorne
@@ -54,10 +60,10 @@ function PageMulti() {
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)
         const next = listMultiQuestionsContext[random]
 
-        setRandomIndexMulti(random); 
-        setMultiQuestion(next);           
+        setRandomIndexMulti(random) 
+        setMultiQuestion(next)          
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData, uniqueRandomMulti])
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
     return(
         <div>     
@@ -69,7 +75,6 @@ function PageMulti() {
                 {multiQuestion &&
                     <Header 
                         title="Architecture Questions - Randomly"
-
                     />
                 }
 
@@ -94,7 +99,6 @@ function PageMulti() {
                         multiQuestion={multiQuestion}
                         setMultiQuestion={setMultiQuestion}
                         listMultiQuestions={listMultiQuestions}
-
                     />
                 }
 

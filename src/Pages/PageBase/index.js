@@ -22,10 +22,6 @@ function PageBase() {
     const [numCorrectOption, setNumCorrectOption] = useState(0)
     const [numIncorrectOption, setNumIncorrectOption] = useState(0)
 
-    // inicializar com um valor que não existe no intervalo (número das questões) para poder ser gerado um número dentro do intervalo nas funções 'uniqueRandomMain e uniqueRandomMulti'
-    const [lastRandomMain, setLastRandomMain] = useState(-1);
-    const [lastRandomMulti, setLastRandomMulti] = useState(-1);
-
     // resultados estatísticos
     const dataResults = {
         numCorrectOption, 
@@ -116,8 +112,7 @@ function PageBase() {
                 <Outlet 
                     context={{ validateSound, setValidateSound, requestData, 
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
-                        setNumIncorrectOption, dataResults, lastRandomMain, setLastRandomMain, 
-                        lastRandomMulti, setLastRandomMulti, activePageFormsQuestionsOptions, 
+                        setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
                         checkAlternativeAnswerDefault
                         }} 

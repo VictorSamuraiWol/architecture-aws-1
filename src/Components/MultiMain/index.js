@@ -29,8 +29,7 @@ function MultiMain({
     return (
         <div className={styles.multiMain}>
             <Question 
-                question={question} 
-            
+                question={question}            
             />
 
             <MenuTools
@@ -38,8 +37,7 @@ function MultiMain({
                 setMultiQuestion={setMultiQuestion} 
                 multiOptionMap={multiOptionMap} 
                 setMultiOptionMap={setMultiOptionMap}
-                multiOptionMapNumberId={multiOptionMapNumberId}
-                
+                multiOptionMapNumberId={multiOptionMapNumberId}                
             />
 
             {activePopupRepeatedAlternativesMultiMain === true && 
@@ -47,7 +45,6 @@ function MultiMain({
                     specificStyles={styles.popupRepeatedMultiMain} 
                     textPopup={"Há alternativas repetidas! Por favor, antes de responder, altere as alternativas no Menu para que todas sejam diferentes, e então prossiga respondendo. Obrigado."}
                     activePopup={setActivePopupRepeatedAlternativesMultiMain}
-
                 />
             }
 
@@ -64,7 +61,6 @@ function MultiMain({
                 setMultiQuestion={setMultiQuestion}
                 setMultiOptionMapNumberId={setMultiOptionMapNumberId}
                 listMultiQuestions={listMultiQuestions}
-
             />
             
             <ButtonAnswer            
@@ -84,7 +80,6 @@ function MultiMain({
                 multiOptionMap={multiOptionMap}
                 activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
                 setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
-
             />
 
             <AnswerDescription
@@ -96,8 +91,7 @@ function MultiMain({
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listMultiOptions={listMultiOptions}
-                
+                listMultiOptions={listMultiOptions}                
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
@@ -112,7 +106,6 @@ function MultiMain({
 
                     // tornar a descrição invisível ao mudar de questão
                     setDescriptionDisplay={setDescriptionDisplay}
-
                 />
             </Link>
 
