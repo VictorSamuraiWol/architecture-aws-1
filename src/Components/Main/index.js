@@ -33,6 +33,8 @@ function Main({
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
+
+    const [item, setItem] = useState('') // captura o item correto
  
     // Gera um número aleatório entre 1 e 3 para usar na função getPath
     const number = Math.floor(Math.random() * 3) + 1;
@@ -64,7 +66,7 @@ function Main({
 
         }
 
-    }  
+    } 
 
     return(
         <div className={styles.main}>           
@@ -135,6 +137,7 @@ function Main({
                 optionMap={optionMap}
                 activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
                 setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
+                setItem={setItem}
             />
 
             <AnswerDescription 
@@ -145,7 +148,8 @@ function Main({
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listOptions={listOptions}                
+                listOptions={listOptions}             
+                item={item}
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}

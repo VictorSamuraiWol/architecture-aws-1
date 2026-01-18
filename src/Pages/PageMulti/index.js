@@ -23,7 +23,8 @@ function PageMulti() {
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente
+    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
+    // usado na função 'uniqueRandomMulti'
     const lastRandomMultiRef = useRef(null)  
 
     // função para garantir que o novo número aleatório seja sempre diferente do anterior

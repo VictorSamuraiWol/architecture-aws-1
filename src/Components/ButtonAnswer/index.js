@@ -10,8 +10,8 @@ import { useOutletContext } from 'react-router-dom';
 function ButtonAnswer({ 
     answerDisplay, setAnswerDisplay, setDescriptionDisplay, captureValue, optionValidate, optionInvalidate, answer, 
     optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, 
-    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain, 
-    activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion
+    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, setActivePopupRepeatedAlternativesMain, 
+    setActivePopupRepeatedAlternativesMultiMain, numberQuestion, setItem, setItens
 }) {
     
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
@@ -100,7 +100,11 @@ function ButtonAnswer({
                         if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
                             // adicionando a validação na opção correta
-                            const correctOption = document.querySelectorAll('.optionNext')[i];
+                            const correctOption = document.querySelectorAll('.optionNext')[i]
+                            const correctOptionItem = document.querySelectorAll('.optionNext .item')[i].innerText
+
+                            setItem(correctOptionItem) // capturar o item correto
+
                             correctOption?.classList.add(optionValidate)
                             correctOption?.classList.remove(optionColor)
 
@@ -150,6 +154,10 @@ function ButtonAnswer({
         const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti') // captura todas as alternativas      
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input') // captura todas os campos input
         const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti div p') // captura todos os parágrafos
+        const captureOptionsNextMultiItens = document.querySelectorAll('.optionNextMulti .item') // captura todos os itens
+
+        let correctItens = [] // para capturar os itens corretos
+        let uniqueItens = [] // para retirar os itens duplicados
 
         if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
@@ -180,13 +188,21 @@ function ButtonAnswer({
                             .filter(input => input.checked)
                             .map(input => input.parentElement.children[1].childNodes[3])
 
-                    const allParagraph =  [...captureOptionsNextMultiP] // captura todos as alternativas
+                    const checkedItens = [...captureOptionsNextMultiInput] // captura somente os itens marcados
+                        .filter(input => input.checked)
+                        .map(input => input.parentElement.children[1].childNodes[0])
+
+                    const allParagraph =  [...captureOptionsNextMultiP] // captura todas as alternativas
+
+                    const allItens = [...captureOptionsNextMultiItens] // captura todos os itens                    
 
                     for(let i=0; i<checkedValuesInput.length; i++) {
                         if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
                             // as alternativas verdadeiras serão destacadas em verde
                             checkedParagraph[i].classList.add(optionValidate)
                             checkedParagraph[i].classList.remove(optionColorMulti)
+
+                            correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
 
                             if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {   
                                 validateSound === true && correctSound.play(); // som ao acertar
@@ -205,15 +221,21 @@ function ButtonAnswer({
                             // as alternativas falsas serão destacadas em vermelho
                             checkedParagraph[i].classList.add(optionInvalidate)
                             checkedParagraph[i].classList.remove(optionColorMulti)
-
+                          
                             for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
                                 if (allParagraph[i].innerText.includes('true')) {
                                     allParagraph[i].classList.add(optionValidate)
-                                    allParagraph[i].classList.remove(optionColorMulti) 
+                                    allParagraph[i].classList.remove(optionColorMulti)
 
-                                }
+                                    correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
 
-                            }  
+                                } 
+                                
+                            } 
+
+                            uniqueItens = [...new Set(correctItens)] // elimina itens repetidos, pois aparecem duplicados
+
+                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos, neste caso, quando errou a questão
 
                             validateSound === true && errorSound.play() // som ao errar
 
@@ -226,6 +248,8 @@ function ButtonAnswer({
                         } 
 
                     }
+
+                    setItens(`${correctItens[0]} // ${correctItens[1]}`) // armazena os itens corretos, neste caso, quando acertou a questão
 
                     // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
                     if (captureOptionsNextMulti.length > 0 && ((checkedValuesInput.length === 0) || (checkedValuesInput.length < 2) || (checkedValuesInput.length > 2))) {

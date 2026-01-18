@@ -14,8 +14,8 @@ function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, act
       multiQuestion={multiQuestion}
       multiDeleteQuestionOption={multiDeleteQuestionOption}
       multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
-      specificStyleButtons={styles.specificStyleButtons}
-      specificStyleButton={styles.specificStyleButton}
+      specificStyleButtons={styles.buttons}
+      specificStyleButton={styles.button}
     />
 
   )

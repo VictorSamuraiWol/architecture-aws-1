@@ -61,7 +61,7 @@ function Options({
         }
 
     }
-
+    
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
            
@@ -77,7 +77,7 @@ function Options({
             matchedOption = listOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
                 return option.numberOption === nextQuestion.numberQuestion
             })
-            
+           
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listOptions.forEach(option => {
@@ -88,12 +88,13 @@ function Options({
  
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
                         matchedOption = option
-                        setNextQuestion(matchedQuestion) // atualizando a questão
 
-                        setLoading(false) // desabilita o componente 'Loader'
+                        setNextQuestion(matchedQuestion) // atualizando a questão
+                        
+                        setLoading(false) // desabilita o componente 'Loader'                    
                         
                     }
-
+                    
                 })
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
@@ -101,7 +102,9 @@ function Options({
                 setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
                 setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
 
-                 setLoading(false) // desabilita o componente 'Loader'
+                matchedQuestion = nextQuestion // matchedQuestion recebe o valor 'nextQuestion'
+                
+                setLoading(false) // desabilita o componente 'Loader'
 
             } else {
                 console.error('não encontrou uma opção que possua uma questão correspondente, crie uma nova questão ou opção com o mesmo número para haver correspondênciam, obrigado.')
@@ -158,7 +161,7 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}              
                 >
-                    <span>
+                    <span className='item'>
                         {itemA}
                     </span>
 
@@ -186,7 +189,7 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item A ou B */}
                         {(!optionMap[optNum1] && itemA) || itemB}
                     </span>
@@ -215,7 +218,7 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item B ou C */}
                         {((!optionMap[optNum1] || !optionMap[optNum2]) && itemB) || itemC}
                     </span>
@@ -244,7 +247,7 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item C ou D */}
                         {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3]) && itemC) || itemD}
                     </span>
@@ -273,7 +276,7 @@ function Options({
                     onClick={mouseClickOptionsMain}
                     className={styles.textOptions}   
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item D ou E */}
                         {((!optionMap[optNum1] || !optionMap[optNum2] || !optionMap[optNum3] || !optionMap[optNum4]) && itemD) || itemE}
                     </span>

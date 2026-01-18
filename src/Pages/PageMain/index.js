@@ -18,12 +18,13 @@ function PageMain() {
     const [randomIndex, setRandomIndex] = useState('');
   
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
 
-    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente
+    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
+    // usado na função 'uniqueRandomMain'
     const lastRandomMainRef = useRef(null)  
     
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
@@ -42,9 +43,10 @@ function PageMain() {
 
         return random            
     
-    } 
-   
+    }
+
     useEffect(() => {
+        
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
      
         // toda a lista de questões da página Main

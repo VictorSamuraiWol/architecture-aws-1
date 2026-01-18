@@ -24,6 +24,8 @@ function MultiMain({
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
 
+    const [itens, setItens] = useState('') // captura os itens corretos
+
     const [multiOptionMapNumberId, setMultiOptionMapNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
 
     return (
@@ -80,6 +82,7 @@ function MultiMain({
                 multiOptionMap={multiOptionMap}
                 activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
                 setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
+                setItens={setItens}
             />
 
             <AnswerDescription
@@ -91,7 +94,8 @@ function MultiMain({
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listMultiOptions={listMultiOptions}                
+                listMultiOptions={listMultiOptions} 
+                itens={itens}               
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}

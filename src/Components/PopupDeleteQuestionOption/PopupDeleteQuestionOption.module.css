@@ -1,13 +1,17 @@
-.specificStyleButtons {
+.buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
 }
 
+.button {
+  background-color: var(--color-second);
+}
+
 /* Responsividade */
 @media (max-width: 1100px) {
-  .specificStyleButton {
+  .button {
     font-size: 0.8rem;
     padding: 12px;
   }
@@ -15,7 +19,7 @@
 }
 
 @media (max-width: 860px) {
-  .specificStyleButton {
+  .button {
     font-size: 0.7rem;
     padding: 10px;
   }
@@ -23,12 +27,12 @@
 }
 
 @media (max-width: 580px) {
-  .specificStyleButton {
-    font-size: 0.6rem;
+  .buttons {
+    gap: 2px
   }
 
-  .specificStyleButtons {
-    gap: 2px
+  .button {
+    font-size: 0.6rem;
   }
 
 }

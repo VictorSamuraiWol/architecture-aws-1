@@ -158,7 +158,7 @@ function MultiOptions({
                     onClick={mouseClickOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    <span>
+                    <span className='item'>
                         {itemA}
                     </span>
 
@@ -188,7 +188,7 @@ function MultiOptions({
                     onClick={mouseClickOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    <span>
+                    <span className='item'>
                         {/* {condição para aparecer o item A ou B} */}
                         {(!multiOptionMap[optNum1] && itemA) || itemB}
                     </span>
@@ -219,7 +219,7 @@ function MultiOptions({
                     onClick={mouseClickOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item B ou C */}
                         {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2]) && itemB) || itemC}
                     </span>
@@ -250,7 +250,7 @@ function MultiOptions({
                     onClick={mouseClickOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item C ou D */}
                         {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2] || !multiOptionMap[optNum3]) && itemC) || itemD}
                     </span>
@@ -281,7 +281,7 @@ function MultiOptions({
                     onClick={mouseClickOptionsMulti}
                     className={styles.textMultiOptions}
                 >
-                    <span>
+                    <span className='item'>
                         {/* condição para aparecer o item D ou E */}
                         {((!multiOptionMap[optNum1] || !multiOptionMap[optNum2] || !multiOptionMap[optNum3] || !multiOptionMap[optNum4]) && itemD) || itemE}
                     </span>

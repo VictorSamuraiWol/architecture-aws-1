@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 function AnswerDescription({ 
     answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
-    listOptions, listMultiOptions
+    listOptions, listMultiOptions, item, itens
 }) {
 
     // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem usadas nas suas respectivas questões dinamicamente
@@ -65,6 +65,8 @@ function AnswerDescription({
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
+                <h3>{item}</h3>
+                <h3>{itens}</h3>
                 <h3>{(listOptions && answer) || (listMultiOptions && answer)}</h3>
                 <p>Click here for more information</p>
             </div>
