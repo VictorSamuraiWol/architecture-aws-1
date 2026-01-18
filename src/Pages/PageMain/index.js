@@ -18,7 +18,7 @@ function PageMain() {
     const [randomIndex, setRandomIndex] = useState('');
   
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading  } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
@@ -46,7 +46,7 @@ function PageMain() {
     }
 
     useEffect(() => {
-        
+
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
      
         // toda a lista de questões da página Main
