@@ -22,11 +22,11 @@ function Main({
    
     const [captureValue, setCaptureValue] = useState('')
     const [optionColor] = useState(styles.optionColor)  
-    const [optNum1, setOptNum1] = useState('');
-    const [optNum2, setOptNum2] = useState('');
-    const [optNum3, setOptNum3] = useState('');
-    const [optNum4, setOptNum4] = useState('');
-    const [optNum5, setOptNum5] = useState('');
+    const [optNum1, setOptNum1] = useState('')
+    const [optNum2, setOptNum2] = useState('')
+    const [optNum3, setOptNum3] = useState('')
+    const [optNum4, setOptNum4] = useState('')
+    const [optNum5, setOptNum5] = useState('')
     const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
     const [optionMapNumberId, setOptionMapNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
     const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
@@ -37,7 +37,7 @@ function Main({
     const [item, setItem] = useState('') // captura o item correto
  
     // Gera um número aleatório entre 1 e 3 para usar na função getPath
-    const number = Math.floor(Math.random() * 3) + 1;
+    const number = Math.floor(Math.random() * 3) + 1
 
     // Definindo o caminho com base no número gerado
     // função para aumentar a probabilidade de cair mais questões de uma escolha do que de múltipla escolha
@@ -47,10 +47,10 @@ function Main({
             case 2:
                 return generateNewQuestionMain(); // quando o número randômico for 1 ou 2 ativar a função
             case 3:
-                return '/page-multi'; // quando o número randômico for 3 ir para página multi
+                return '/page-multi' // quando o número randômico for 3 ir para página multi
 
             default:
-                return '/';
+                return '/'
 
         }
 
@@ -119,7 +119,6 @@ function Main({
                 answerDisplay={answerDisplay}
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
                 answer={answer}
                 numberQuestion={numberQuestion}
                 optionValidate={optionValidate}

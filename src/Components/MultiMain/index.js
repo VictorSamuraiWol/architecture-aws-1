@@ -95,7 +95,7 @@ function MultiMain({
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 listMultiOptions={listMultiOptions} 
-                itens={itens}               
+                itens={itens}             
             />
 
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}

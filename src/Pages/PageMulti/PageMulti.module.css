@@ -17,7 +17,7 @@
 .optionValidate {
     color: var(--color-correct);
     font-weight: bold;
-    border: 1px solid var(--color-correct);
+    border: 2px solid var(--color-correct);
     border-radius: 16px;
 }
 
