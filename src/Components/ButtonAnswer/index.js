@@ -100,7 +100,7 @@ function ButtonAnswer({
                         if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
 
                             // adicionando a validação na opção correta
-                            const correctOption = document.querySelectorAll('.optionNext')[i]
+                            const correctOption = document.querySelectorAll('.optionNext div')[i]
                             const correctOptionItem = document.querySelectorAll('.optionNext .item')[i].innerText
 
                             setItem(correctOptionItem) // capturar o item correto
@@ -153,11 +153,12 @@ function ButtonAnswer({
         const correctSound = new Audio(correctAudio);
         const captureOptionsNextMulti = document.querySelectorAll('.optionNextMulti') // captura todas as alternativas      
         const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input') // captura todas os campos input
-        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti div p') // captura todos os parágrafos
+        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti div') // captura todas as alternativas
         const captureOptionsNextMultiItens = document.querySelectorAll('.optionNextMulti .item') // captura todos os itens
 
         let correctItens = [] // para capturar os itens corretos
         let uniqueItens = [] // para retirar os itens duplicados
+        let sortedItems = [] // ordenar os itens (a, b, c, d ou e)
 
         if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
@@ -186,7 +187,7 @@ function ButtonAnswer({
                     
                     const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
                             .filter(input => input.checked)
-                            .map(input => input.parentElement.children[1].childNodes[3])
+                            .map(input => input.parentElement.children[1])
 
                     const checkedItens = [...captureOptionsNextMultiInput] // captura somente os itens marcados
                         .filter(input => input.checked)
@@ -221,9 +222,9 @@ function ButtonAnswer({
                             // as alternativas falsas serão destacadas em vermelho
                             checkedParagraph[i].classList.add(optionInvalidate)
                             checkedParagraph[i].classList.remove(optionColorMulti)
-                          
+                       
                             for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
-                                if (allParagraph[i].innerText.includes('true')) {
+                                if (allParagraph[i].childNodes[3].innerText.includes('true')) {
                                     allParagraph[i].classList.add(optionValidate)
                                     allParagraph[i].classList.remove(optionColorMulti)
 
@@ -233,9 +234,9 @@ function ButtonAnswer({
                                 
                             } 
 
-                            uniqueItens = [...new Set(correctItens)] // elimina itens repetidos, pois aparecem duplicados
+                            uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
 
-                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos, neste caso, quando errou a questão
+                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos
 
                             validateSound === true && errorSound.play() // som ao errar
 
@@ -248,12 +249,15 @@ function ButtonAnswer({
                         } 
 
                     }
+                    
+                    uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
 
-                    setItens(`${correctItens[0]} // ${correctItens[1]}`) // armazena os itens corretos, neste caso, quando acertou a questão
+                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)                     
+
+                    setItens(`${sortedItems[0]} // ${sortedItems[1]}`) // armazena os itens corretos
 
                     // alerta para marcar as opções quando não tiver nenhuma ou mais do que duas marcadas e ser ativada somente na página multi       
                     if (captureOptionsNextMulti.length > 0 && ((checkedValuesInput.length === 0) || (checkedValuesInput.length < 2) || (checkedValuesInput.length > 2))) {
-
                         alert('Por favor, marque 2 opções!')
                         clearAnswer()
 

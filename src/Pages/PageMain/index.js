@@ -8,20 +8,20 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageMain() {
 
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible);
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible);   
-    const [optionValidate] = useState(styles.optionValidate);
-    const [optionInvalidate] = useState(styles.optionInvalidate);
-    const [listQuestions, setListQuestions] = useState([]);
-    const [nextQuestion, setNextQuestion] = useState('');
-    const [listOptions, setListOptions] = useState('');
-    const [randomIndex, setRandomIndex] = useState('');
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
+    const [optionValidate] = useState(styles.optionValidate)
+    const [optionInvalidate] = useState(styles.optionInvalidate)
+    const [listQuestions, setListQuestions] = useState([])
+    const [nextQuestion, setNextQuestion] = useState('')
+    const [listOptions, setListOptions] = useState('')
+    const [randomIndex, setRandomIndex] = useState('')
   
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext();
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain'

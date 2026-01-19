@@ -65,8 +65,8 @@ function AnswerDescription({
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
-                <h3>{item}</h3>
-                <h3>{itens}</h3>
+                <h3>{item}</h3> {/* item que será mostrado na PageMain */}
+                <h3>{itens}</h3> {/* itens que serão mostrados na PageMulti */}
                 <h3>{(listOptions && answer) || (listMultiOptions && answer)}</h3>
                 <p>Click here for more information</p>
             </div>
