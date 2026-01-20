@@ -33,36 +33,6 @@
     width: 98%;
 }
 
-/* personalizando o estilo do input checkbox */
-.inputMultiOptions {
-    appearance: none; /* remove o estilo padrão */
-    width: 20px;
-    height: 20px;
-    position: relative;
-    background-color: var(--color-first);
-    border: 2px solid var(--color-second);
-    transition: 0.3s;
-    padding: 4px;
-    margin: 0;
-    cursor: pointer;
-}
-
-.inputMultiOptions:checked {
-    background-color: var(--color-second);
-    border: 2px solid var(--color-fourth);
-}
-
-.inputMultiOptions:checked::after {
-    content: "✓";
-    font-size: 15px;
-    color: var(--color-fourth);
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* centralizar o ponto */
-}
-
 .textMultiOptions {
     display: flex;
     justify-content: start;

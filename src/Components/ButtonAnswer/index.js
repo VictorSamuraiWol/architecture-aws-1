@@ -8,10 +8,11 @@ import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 function ButtonAnswer({ 
-    answerDisplay, setAnswerDisplay, captureValue, optionValidate, optionInvalidate, answer, 
-    optionColor, optionColorMulti, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, setQuestionAnswerButtonNextMain, 
-    setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, setActivePopupRepeatedAlternativesMain, 
-    setActivePopupRepeatedAlternativesMultiMain, numberQuestion, setItem, setItens
+    answerDisplay, setAnswerDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
+    inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, 
+    setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, 
+    setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion, setItem, 
+    setItens
 }) {
     
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
@@ -69,6 +70,7 @@ function ButtonAnswer({
             .filter(input => input.checked)
             .map(input => input.parentElement.children[1].childNodes[3])[0]
 
+        let correctItem = null
         let setterQuestionAnswer = false
         let setterQuestionAnswerButtonNextMain = false
         let setterNumIncorrectOption = 0
@@ -106,19 +108,30 @@ function ButtonAnswer({
                             // adicionando a validação na opção correta
                             const correctOption = document.querySelectorAll('.optionNext div')[i]
                             const correctOptionItem = document.querySelectorAll('.optionNext .item')[i].innerText
+                            const correctOptionInput = document.querySelectorAll('.optionNext input')[i]
                             
-                            correctOption?.classList.add(optionValidate)
-                            correctOption?.classList.remove(optionColor)
+                            // estilizando o parágrafo correto
+                            correctOption?.classList.add(optionValidateStyle)
+                            correctOption?.classList.remove(optionColorStyle)
 
-                            setItem(correctOptionItem) // capturar o item correto
+                            // estilizando o input correto
+                            correctOptionInput?.classList.add(inputValidateStyle)
+                            correctOptionInput?.classList.remove(inputColorStyle)
+
+                            correctItem = correctOptionItem // capturar o item correto
 
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
                             setterQuestionAnswerButtonNextMain = true // ao clicar no botão next se torna 'true'
 
                             // adicionando a invalidação nas opções incorretas
                             if ((checkedParagraph.innerText !== answer) && captureValue !== '') {
-                                checkedParagraph?.classList.add(optionInvalidate)
-                                checkedParagraph?.classList.remove(optionColor)                                
+                                // estilizando o parágrafo marcado incorretamente
+                                checkedParagraph.parentElement?.classList.add(optionInvalidateStyle) 
+                                checkedParagraph.parentElement?.classList.remove(optionColorStyle)
+                               
+                                // estilizando o input marcado incorretamente
+                                checkedParagraph.parentElement.parentElement.children[0]?.classList.add(inputInvalidateStyle)
+                                checkedParagraph.parentElement.parentElement.children[0]?.classList.remove(inputColorStyle)
                 
                                 setterNumIncorrectOption++ // incrementa '1' se responder errado
 
@@ -133,6 +146,11 @@ function ButtonAnswer({
 
                             }
                         }
+                    }
+
+                    if (correctItem) {
+                        setItem(correctItem) // capturar o item correto
+
                     }
             
                     // usando setters fora do loop 'for'
@@ -202,7 +220,6 @@ function ButtonAnswer({
         let correctItens = [] // para capturar os itens corretos
         let uniqueItens = [] // para retirar os itens duplicados
         let sortedItems = [] // ordenar os itens (a, b, c, d ou e)
-
         let setterQuestionAnswer = false
         let setterQuestionAnswerButtonNextMulti = false
         let setterNumIncorrectOption = 0
@@ -235,9 +252,13 @@ function ButtonAnswer({
                 } else {
                     for(let i=0; i<checkedValuesInput.length; i++) {
                         if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
-                            // as alternativas verdadeiras serão destacadas em verde
-                            checkedParagraph[i].classList.add(optionValidate)
-                            checkedParagraph[i].classList.remove(optionColorMulti)
+                            // estilizando os parágrafos marcados corretamente
+                            checkedParagraph[i].classList.add(optionValidateStyle)
+                            checkedParagraph[i].classList.remove(optionColorStyle)
+
+                            // estilizando os inputs marcados corretamente
+                            checkedParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
+                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
 
                             correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
 
@@ -252,17 +273,26 @@ function ButtonAnswer({
                             }
 
                         } else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
-                            // as alternativas falsas serão destacadas em vermelho
-                            checkedParagraph[i].classList.add(optionInvalidate)
-                            checkedParagraph[i].classList.remove(optionColorMulti)
+                            // estilizando os parágrafos marcados incorretamente
+                            checkedParagraph[i].classList.add(optionInvalidateStyle)
+                            checkedParagraph[i].classList.remove(optionColorStyle)
+
+                            // estilizando os inputs marcados incorretamente
+                            checkedParagraph[i].parentElement.children[0].classList.add(inputInvalidateStyle)
+                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
 
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
                             setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next se torna 'true'
                        
                             for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
                                 if (allParagraph[i].childNodes[3].innerText.includes('true')) {
-                                    allParagraph[i].classList.add(optionValidate)
-                                    allParagraph[i].classList.remove(optionColorMulti)
+                                    // estilizando os parágrafos corretos
+                                    allParagraph[i].classList.add(optionValidateStyle)
+                                    allParagraph[i].classList.remove(optionColorStyle)
+
+                                    // estilizando os inputs corretos
+                                    allParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
+                                    allParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
 
                                     correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
 

@@ -13,15 +13,20 @@ import { Link } from 'react-router-dom'
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, optionValidate, optionInvalidate, randomIndex, listOptions, 
-    setListOptions, uniqueRandomMain, setNextQuestion, setRandomIndex, nextQuestion, listQuestions
+    setAnswerDisplay, setDescriptionDisplay, listOptions, setListOptions, uniqueRandomMain, 
+    setNextQuestion, nextQuestion, listQuestions
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
    
     const [captureValue, setCaptureValue] = useState('')
-    const [optionColor] = useState(styles.optionColor)  
+    const [optionColorStyle] = useState(styles.optionColorMain)
+    const [optionValidateStyle] = useState(styles.optionValidate)
+    const [optionInvalidateStyle] = useState(styles.optionInvalidate)
+    const [inputColorStyle] = useState(styles.inputOptions)
+    const [inputValidateStyle] = useState(styles.inputValidate)
+    const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -59,7 +64,6 @@ function Main({
     function generateNewQuestionMain() {
         if (nextQuestion) {            
             const random = uniqueRandomMain(listUnicQuestionsContextLength) // chamando a função que gera número randômico
-            setRandomIndex(random)
     
             // gerando novas questões
             setNextQuestion(listUnicQuestionsContext[random])
@@ -91,9 +95,9 @@ function Main({
                 />
             }
 
-            <Options  
-                randomIndex={randomIndex}
-                optionColor={optionColor}
+            <Options
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}
                 listOptions={listOptions}
                 setListOptions={setListOptions}        
                 setCaptureValue={setCaptureValue}
@@ -121,17 +125,19 @@ function Main({
                 descriptionDisplay={descriptionDisplay}
                 answer={answer}
                 numberQuestion={numberQuestion}
-                optionValidate={optionValidate}
-                optionInvalidate={optionInvalidate}
+                optionColorStyle={optionColorStyle}
+                optionValidateStyle={optionValidateStyle}
+                optionInvalidateStyle={optionInvalidateStyle}
+                inputColorStyle={inputColorStyle}
+                inputValidateStyle={inputValidateStyle}
+                inputInvalidateStyle={inputInvalidateStyle}
                 listOptions={listOptions}                      
                 captureValue={captureValue}
-                optionColor={optionColor}
                 optNum1={optNum1}
                 optNum2={optNum2}
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                randomIndex={randomIndex}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
                 optionMap={optionMap}
                 activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}

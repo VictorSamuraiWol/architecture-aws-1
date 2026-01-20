@@ -8,7 +8,7 @@
   height: 82vh;
 }
 
-.optionColor {
+.optionColorMain {
   color: var(--color-third);
 }
 
@@ -26,6 +26,104 @@
   border: 1px solid var(--color-third);
   border-radius: 8px;
   z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+}
+
+.optionValidate {
+  color: var(--color-correct);
+  font-weight: bold;
+  border: 2px solid var(--color-correct);
+  border-radius: 16px;
+}
+
+.optionInvalidate {
+  color: var(--color-incorrect); 
+  font-weight: bold;
+}
+
+/* personalizando o estilo do input radio */
+.inputOptions {    
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-second);
+  border-radius: 50%;
+  transition: 0.1s ease-in-out;
+  padding: 8px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Quando o radio está marcado */
+.inputOptions:checked {    
+  background-color: var(--color-second);
+  border: 2px solid var(--color-fourth);
+}
+
+/* Criando o ponto interno ao ser checado */
+.inputOptions:checked::after {    
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-fourth);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
+.inputValidate {
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-correct);
+  border-radius: 50%;
+  transition: 0.1s ease-in-out;
+  padding: 8px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.inputValidate::after {   
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-correct);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
+.inputInvalidate {
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-incorrect);
+  border-radius: 50%;
+  transition: 0.1s ease-in-out;
+  padding: 8px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.inputInvalidate::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-incorrect);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
 /* Responsividade */

@@ -10,12 +10,9 @@ function PageMain() {
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
-    const [optionValidate] = useState(styles.optionValidate)
-    const [optionInvalidate] = useState(styles.optionInvalidate)
     const [listQuestions, setListQuestions] = useState([])
     const [nextQuestion, setNextQuestion] = useState('')
     const [listOptions, setListOptions] = useState('')
-    const [randomIndex, setRandomIndex] = useState('')
   
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
@@ -62,7 +59,6 @@ function PageMain() {
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setRandomIndex(random)
         setNextQuestion(next) 
 
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
@@ -94,15 +90,11 @@ function PageMain() {
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        optionValidate={optionValidate}
-                        optionInvalidate={optionInvalidate}
-                        randomIndex={randomIndex}
                         listOptions={listOptions}
                         setListOptions={setListOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
                         listQuestions={listQuestions}
-                        setNextQuestion={setNextQuestion}
-                        setRandomIndex={setRandomIndex}                        
+                        setNextQuestion={setNextQuestion}                        
                         nextQuestion={nextQuestion}                    
                     />
                 }

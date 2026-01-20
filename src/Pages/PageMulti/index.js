@@ -13,9 +13,6 @@ function PageMulti() {
     const [listMultiOptions, setListMultiOptions] = useState([])
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
-    const [optionValidate] = useState(styles.optionValidate)
-    const [optionInvalidate] = useState(styles.optionInvalidate)
-    const [randomIndexMulti, setRandomIndexMulti] = useState('')
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, loading } = useContext(DataContext)
@@ -61,7 +58,6 @@ function PageMulti() {
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)
         const next = listMultiQuestionsContext[random]
 
-        setRandomIndexMulti(random) 
         setMultiQuestion(next)          
 
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
@@ -93,9 +89,6 @@ function PageMulti() {
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        optionValidate={optionValidate}
-                        optionInvalidate={optionInvalidate}
-                        randomIndexMulti={randomIndexMulti}
                         uniqueRandomMulti={uniqueRandomMulti}
                         multiQuestion={multiQuestion}
                         setMultiQuestion={setMultiQuestion}

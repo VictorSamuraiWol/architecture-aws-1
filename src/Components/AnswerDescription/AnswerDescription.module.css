@@ -7,7 +7,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
     width: 80%;
     cursor: pointer;
     overflow-wrap: break-word;
@@ -25,6 +25,12 @@
 
 .answerTitle h3 {
     margin: 0;
+}
+
+.item {
+    padding: 6px;
+    border: 2px solid var(--color-fourth);
+    border-radius: 16px;
 }
 
 .answerTitle p {

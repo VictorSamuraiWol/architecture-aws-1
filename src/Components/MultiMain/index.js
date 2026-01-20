@@ -12,11 +12,16 @@ import { Link } from 'react-router-dom'
 
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 
-    numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, optionValidate, 
-    optionInvalidate, randomIndexMulti, multiQuestion, setMultiQuestion, listMultiQuestions
+    numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, 
+    multiQuestion, setMultiQuestion, listMultiQuestions
 }) {
 
-    const [optionColorMulti] = useState(styles.optionColorMulti)
+    const [optionColorStyle] = useState(styles.optionColorMulti)
+    const [optionValidateStyle] = useState(styles.optionValidate)
+    const [optionInvalidateStyle] = useState(styles.optionInvalidate)
+    const [inputColorStyle] = useState(styles.inputMultiOptions)
+    const [inputValidateStyle] = useState(styles.inputValidate)
+    const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
@@ -53,9 +58,9 @@ function MultiMain({
             <MultiOptions
                 listMultiOptions={listMultiOptions}
                 setListMultiOptions={setListMultiOptions}
-                optionColorMulti={optionColorMulti}
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}
                 setCaptureValueMulti={setCaptureValueMulti}
-                randomIndexMulti={randomIndexMulti}
                 captureValueMulti={captureValueMulti}
                 multiOptionMap={multiOptionMap}
                 setMultiOptionMap={setMultiOptionMap}
@@ -72,9 +77,12 @@ function MultiMain({
                 setDescriptionDisplay={setDescriptionDisplay}              
                 answer={answer}
                 numberQuestion={numberQuestion}
-                optionValidate={optionValidate}
-                optionInvalidate={optionInvalidate}
-                optionColorMulti={optionColorMulti}
+                optionValidateStyle={optionValidateStyle}
+                optionInvalidateStyle={optionInvalidateStyle}
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}
+                inputValidateStyle={inputValidateStyle}
+                inputInvalidateStyle={inputInvalidateStyle}
                 listMultiOptions={listMultiOptions}
                 setListMultiOptions={setListMultiOptions}
                 captureValueMulti={captureValueMulti}

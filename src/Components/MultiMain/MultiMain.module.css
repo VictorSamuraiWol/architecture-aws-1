@@ -28,6 +28,96 @@
   z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
 }
 
+.optionValidate {
+  color: var(--color-correct);
+  font-weight: bold;
+  border: 2px solid var(--color-correct);
+  border-radius: 16px;
+}
+
+.optionInvalidate {
+  color: var(--color-incorrect);
+  font-weight: bold;
+}
+
+/* personalizando o estilo do input checkbox */
+.inputMultiOptions {
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-second);
+  transition: 0.1s ease-in-out;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.inputMultiOptions:checked {
+  background-color: var(--color-second);
+  border: 2px solid var(--color-fourth);
+}
+
+.inputMultiOptions:checked::after {
+  content: "✓";
+  font-size: 15px;
+  color: var(--color-fourth);
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
+.inputValidate {
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-correct);
+  transition: 0.1s ease-in-out;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.inputValidate::after {   
+  content: "✓";
+  font-size: 15px;
+  color: var(--color-correct);
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
+.inputInvalidate {
+  appearance: none; /* remove o estilo padrão */
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--color-incorrect);
+  transition: 0.1s ease-in-out;
+  padding: 4px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.inputInvalidate::after {
+  content: "✖";
+  font-size: 15px;
+  color: var(--color-incorrect);
+  font-weight: bold;
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centralizar o ponto */
+}
+
 /* Responsividade */
 @media (max-width: 860px) {
   .popupRepeatedMultiMain {

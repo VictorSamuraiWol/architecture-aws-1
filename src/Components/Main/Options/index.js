@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../../DataContext'
 
 function Options({ 
-    setCaptureValue, optionColor, randomIndex, listOptions, setListOptions, 
+    setCaptureValue, optionColorStyle, inputColorStyle, listOptions, setListOptions, 
     optNum1, optNum2, optNum3, optNum4, optNum5, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5, 
     optionMap, setOptionMap, nextQuestion, setNextQuestion, setOptionMapNumberId, listQuestions
 }) {
@@ -148,10 +148,10 @@ function Options({
         key={listOptions && listOptions.id}
         >
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
-            {optionMap[optNum1] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
+            {optionMap[optNum1] && <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 
                 <input 
                     onClick={captureValueFunc}
-                    className={styles.inputOptions}  
+                    className={inputColorStyle}                                                                
                     type='radio' 
                     name='options' 
                     value={optNum1}
@@ -176,13 +176,13 @@ function Options({
             </div>}
 
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum2]' existir */}
-            {optionMap[optNum2] &&  <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
+            {optionMap[optNum2] &&  <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
-                    className={styles.inputOptions} 
+                    className={inputColorStyle}
                     type='radio' 
                     name='options' 
-                    value={optNum2} 
+                    value={optNum2}
                 />
 
                 <div
@@ -205,10 +205,10 @@ function Options({
             </div>}
 
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum3]' existir */}
-            {optionMap[optNum3] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
+            {optionMap[optNum3] && <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 
                 <input 
                     onClick={captureValueFunc}
-                    className={styles.inputOptions} 
+                    className={inputColorStyle}
                     type='radio' 
                     name='options' 
                     value={optNum3}
@@ -234,10 +234,10 @@ function Options({
             </div>}
 
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum4]' existir */}
-            {optionMap[optNum4] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
+            {optionMap[optNum4] && <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
-                    className={styles.inputOptions} 
+                    className={inputColorStyle}
                     type='radio' 
                     name='options' 
                     value={optNum4}
@@ -263,10 +263,10 @@ function Options({
             </div>}
 
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum5]' existir */}
-            {optionMap[optNum5] && <div className={`optionNext ${optionColor} ${styles.alternativeOptions}`}> 
+            {optionMap[optNum5] && <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 
                 <input
                     onClick={captureValueFunc}
-                    className={styles.inputOptions} 
+                    className={inputColorStyle}
                     type='radio' 
                     name='options' 
                     value={optNum5}

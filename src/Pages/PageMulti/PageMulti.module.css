@@ -13,15 +13,3 @@
 .invisible {
     display: none;
 }
-
-.optionValidate {
-    color: var(--color-correct);
-    font-weight: bold;
-    border: 2px solid var(--color-correct);
-    border-radius: 16px;
-}
-
-.optionInvalidate {
-    color: var(--color-incorrect);
-    font-weight: bold;
-}
