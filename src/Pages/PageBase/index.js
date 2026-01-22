@@ -18,7 +18,6 @@ function PageBase() {
 
     const [mute, setMute] = useState(false)
 
-
     // questões corretas das páginas main e multi
     const [numCorrectOption, setNumCorrectOption] = useState(0)
     const [numIncorrectOption, setNumIncorrectOption] = useState(0)
@@ -108,14 +107,14 @@ function PageBase() {
                         }} 
                 />
 
-                {(requestData && mute === false && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull
+                {(requestData && mute === false && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull // unmute sound icon
                     onClick={validateSound}
                     id='soundFull'
                     className={styles.soundFull}
                     />
                 }
 
-                {(requestData && mute === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute
+                {(requestData && mute === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute // mute sound icon
                     onClick={validateSound}
                     id='soundMute'
                     className={styles.soundMute}

@@ -11,7 +11,7 @@ const Timer = () => {
   const timerRef = useRef(null)
   const timerStartSound = new Audio(timerStart)
 
-  const { validateSound } = useOutletContext()
+  const { mute } = useOutletContext()
 
   const startTimer = () => {
     if (!isRunning) {
@@ -21,7 +21,7 @@ const Timer = () => {
 
       }, 1000); // 1000 ms
 
-    } validateSound === true && timerStartSound.play() //toca o audio
+    } mute === false && timerStartSound.play() //toca o audio
 
   }
 
@@ -31,7 +31,7 @@ const Timer = () => {
 
     clearInterval(timerRef.current) // Limpa o intervalo, parando o cronômetro
 
-    validateSound === true && timerPauseSound.play().then(() => {
+    mute === false && timerPauseSound.play().then(() => {
       console.log("TimerPaused played successfully")
 
     }).catch(error => {
@@ -40,7 +40,7 @@ const Timer = () => {
 
     })
 
-  }, [validateSound])
+  }, [mute])
 
   // Inicia o tempo automaticamente quando carregar a página
   useEffect(() => {
