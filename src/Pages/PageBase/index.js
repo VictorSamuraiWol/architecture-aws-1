@@ -96,7 +96,7 @@ function PageBase() {
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='imagem de fundo'
-                />}          
+                />}       
 
                 <Outlet 
                     context={{ mute, requestData, 
@@ -107,21 +107,21 @@ function PageBase() {
                         }} 
                 />
 
-                {(requestData && mute === false && activePageFormsQuestionsOptions === false) && <BiSolidVolumeFull // unmute sound icon
+                {mute === false && <BiSolidVolumeFull // unmute sound icon
                     onClick={validateSound}
                     id='soundFull'
                     className={styles.soundFull}
                     />
-                }
+                }                
 
-                {(requestData && mute === true && activePageFormsQuestionsOptions === false) && <BiSolidVolumeMute // mute sound icon
+                {mute === true && <BiSolidVolumeMute // mute sound icon
                     onClick={validateSound}
                     id='soundMute'
                     className={styles.soundMute}
                     />
                 }
 
-                {(requestData || activePageFormsQuestionsOptions) && <Footer />}
+                {(requestData || activePageFormsQuestionsOptions) && <Footer />}    
 
                 {showIllustrativePage && requestData === false && activePageFormsQuestionsOptions === false && <IllustrativePage />}
                 

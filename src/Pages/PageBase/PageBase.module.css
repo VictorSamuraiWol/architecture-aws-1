@@ -3,7 +3,8 @@
 }
 
 .soundFull {
-    top: 91vh;
+    /* top: 91vh; */
+    /* bottom: 9%; */
     left: 2px;
     position: absolute;
     /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
@@ -14,7 +15,8 @@
 }
 
 .soundMute {
-    top: 91vh;  
+    /* top: 91vh;   */
+    /* bottom: 9vh; */
     left: 2px;
     position: absolute;
     /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */

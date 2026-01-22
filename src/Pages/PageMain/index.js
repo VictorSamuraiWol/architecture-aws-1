@@ -52,8 +52,8 @@ function PageMain() {
         // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
 
-        // tornar o cronômetro e os icones dos audios ativos ao sair da página Forms
-        setActivePageFormsQuestionsOptions(false) // verifica se a página Forms está ativa
+        // verifica se a página Forms está ativa
+        setActivePageFormsQuestionsOptions(false) 
 
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMain(listUnicQuestionsContextLength)

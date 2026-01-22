@@ -51,8 +51,8 @@ function PageMulti() {
         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página Multi
         setRequestData(true)
 
-        // tornar o cronômetro e os icones dos audios ativos ao sair da página Forms
-        setActivePageFormsQuestionsOptions(false) // verifica se a página Forms está ativa
+        // verifica se a página Forms está ativa
+        setActivePageFormsQuestionsOptions(false)
         
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)

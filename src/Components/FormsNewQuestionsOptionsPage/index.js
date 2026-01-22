@@ -4,6 +4,8 @@ import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import PopupRepeatedAlternatives from '../PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../PopupCheckAlternativeAnswer'
 import ButtonDefault from '../ButtonDefault'
+import saveAudio from '../../audios/save.mp3'
+import errorAudio from '../../audios/errorForms.mp3'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
@@ -13,10 +15,14 @@ function FormsNewQuestionsOptionsPage() {
 
     const uniqueId = uuidv4(); // gerar uma id aleatória para a questão e a opção correspondente
 
+    const saveSound = new Audio(saveAudio) // som ao salvar corretamente
+
+    const errorSound = new Audio(errorAudio) // som ao tentar salvar incorretamente
+
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
-    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault } = useOutletContext()
+    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute } = useOutletContext()
 
     // capturando o conteúdo da label
     const [labelTarget, setLabelTarget] = useState("")
@@ -295,6 +301,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 cleanLabels()
+                mute === false && saveSound.play() // toca o som 'saveSound'
 
             } else if (readyToSendForm1 === true && isValid === true && (newQuestionQuestions === "" || newAnswerQuestions === "" || newDescriptionQuestions === "" || newQuestionsNumberQuestions === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
@@ -318,6 +325,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 1!')
                 alert("Por favor! Preencha todos os campos necessários do form 1!")
@@ -344,6 +352,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 1!')
                 alert("Este número já foi utilizado em questões anteriores, por favor, utilize outro número que ainda não foi utilizado.")
@@ -371,6 +380,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 1!')
                 alert("Por favor! Preencha todos os campos necessários do form 1! Este número já foi utilizado em questões anteriores, utilize outro número que ainda não foi utilizado.")
@@ -397,6 +407,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 1!')
                 alert("Por favor! Preencha todos os campos do formulário 1 corretamente!")
@@ -489,6 +500,8 @@ function FormsNewQuestionsOptionsPage() {
 
                     cleanLabels()
                     setActivePopupRepeatedAlternativesForms2(false) // desativar o popup, caso esteja visível na tela
+                    mute === false && saveSound.play() // toca o som 'saveSound'
+
                 }
 
             } else if (readyToSendForm2 === true && isValid === true && (newOption1Question === "" || newOption2Question === "" || newOption3Question === "" || newOption4Question === "" || newOptionsNumberQuestions === "")) {
@@ -514,6 +527,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
                 
                 console.error('Erro nos dados recebidos do form 2!')
                 alert("Por favor! Preencha todos os campos necessários do form 2!")
@@ -552,6 +566,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 2!')
                 alert("Este número já foi utilizado em opções anteriores, por favor, utilize outro número que ainda não foi utilizado.")
@@ -590,6 +605,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 2!')
                 alert("Por favor! Preencha todos os campos necessários do form 2! Este número já foi utilizado em opções anteriores, utilize outro número que ainda não foi utilizado.")
@@ -628,6 +644,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 2!')
                 alert("Por favor! Preencha todos os campos do formulário 2 corretamente!")
@@ -709,6 +726,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 cleanLabels()
+                mute === false && saveSound.play() // toca o som 'saveSound'
 
             } else if (readyToSendForm3 === true && isValid === true && (newQuestionMultiQuestions === "" || newAnswerTextMultiQuestions === "" || newDescriptionMultiQuestions === "" || newQuestionsNumberMultiQuestions === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -731,6 +749,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 3!')
                 alert("Por favor! Preencha todos os campos necessários do form 3!")
@@ -756,6 +775,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 3!')
                 alert("Este número já foi utilizado em questões anteriores, por favor, utilize outro número que ainda não foi utilizado.")
@@ -781,6 +801,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
                 
                 console.error('Erro nos dados recebidos do form 3!')
                 alert("Por favor! Preencha todos os campos necessários do form 3! Este número já foi utilizado em questões anteriores, utilize outro número que ainda não foi utilizado.")
@@ -806,6 +827,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 3!')
                 alert("Por favor! Preencha todos os campos do formulário 3 corretamente!")
@@ -898,6 +920,7 @@ function FormsNewQuestionsOptionsPage() {
 
                     cleanLabels()
                     setActivePopupRepeatedAlternativesForms4(false) // desativar o popup, caso esteja visível na tela
+                    mute === false && saveSound.play() // toca o som 'saveSound'
 
                 }
             } else if (readyToSendForm4 === true && isValid === true && (newOption1MultiQuestion === "" || newOption2MultiQuestion === "" || newOption3MultiQuestion === "" || newOption4MultiQuestion === "" || newOptionsNumberMultiQuestions === "")) {
@@ -922,6 +945,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 4!')
                 alert("Por favor! Preencha todos os campos necessários do form 4!")
@@ -959,6 +983,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 4!')
                 alert("Este número já foi utilizado em opções anteriores, por favor, utilize outro número que ainda não foi utilizado.")
@@ -996,6 +1021,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
                 
                 console.error('Erro nos dados recebidos do form 4!')
                 alert("Por favor! Preencha todos os campos necessários do form 4! Este número já foi utilizado em opções anteriores, utilize outro número que ainda não foi utilizado.")
@@ -1033,6 +1059,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
+                mute === false && errorSound.play() // toca o som 'errorSound'
 
                 console.error('Erro nos dados recebidos do form 4!')
                 alert("Por favor! Preencha todos os campos do formulário 4 corretamente!")
