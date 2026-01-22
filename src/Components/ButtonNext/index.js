@@ -1,6 +1,6 @@
 import styles from './ButtonNext.module.css';
 import ButtonDefault from '../ButtonDefault';
-import soundNextPage from '../../audios/paperNextPage.mp3';
+import audioNextPage from '../../audios/paperNextPage.mp3';
 import { useOutletContext } from 'react-router-dom';
 
 function ButtonNext({ 
@@ -11,11 +11,12 @@ function ButtonNext({
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { mute } = useOutletContext();
 
-    const newSoundNextPage = new Audio(soundNextPage);
+    const newSoundNextPage = new Audio(audioNextPage);
     
-    // som quando mudar de página
-    function soundNextPageFunc() {
-        mute === false && (questionAnswerButtonNextMain === true || questionAnswerButtonNextMulti === true) && newSoundNextPage.play()
+    // som ao mudar de questão e opção na página Main e MultiMain
+    function soundNextPage() {
+        mute === false && questionAnswerButtonNextMain === true && newSoundNextPage.play()
+        mute === false && questionAnswerButtonNextMulti === true && newSoundNextPage.play() 
 
     }
 
@@ -38,7 +39,7 @@ function ButtonNext({
     
     return(
         <ButtonDefault 
-            onClick={() => { soundNextPageFunc(); newRequest && newRequest(); questionAnswerButtonNextMain === true && getPath(number) }} 
+            onClick={() => { soundNextPage(); newRequest && newRequest(); questionAnswerButtonNextMain === true && getPath(number) }} 
             specificStyleButton={styles.buttonNext} 
             buttonName='Next'
             
