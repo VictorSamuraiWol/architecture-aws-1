@@ -52,7 +52,7 @@ function PageMulti() {
         setRequestData(true)
 
         // tornar o cronômetro e os icones dos audios ativos ao sair da página Forms
-        setActivePageFormsQuestionsOptions(false)
+        setActivePageFormsQuestionsOptions(false) // verifica se a página Forms está ativa
         
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)

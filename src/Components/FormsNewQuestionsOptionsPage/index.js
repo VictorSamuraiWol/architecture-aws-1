@@ -16,7 +16,7 @@ function FormsNewQuestionsOptionsPage() {
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
-    const { repeatedAlternativesDefault } = useOutletContext()
+    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault } = useOutletContext()
 
     // capturando o conteúdo da label
     const [labelTarget, setLabelTarget] = useState("")
@@ -89,6 +89,9 @@ function FormsNewQuestionsOptionsPage() {
 
     // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage
     const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false) 
+
+    // passando a cor incorreta
+    const [colorIncorrect] = useState('#B71C1C')
 
     const [matchedOptionMainPopup, setMatchedOptionMainPopup] = useState('') // capturar a opção única (form1)
     const [matchedOptionMainPopupNumber, setMatchedOptionMainPopupNumber] = useState('') // capturar o número da opção única (form1)
@@ -203,6 +206,11 @@ function FormsNewQuestionsOptionsPage() {
 
     }, [newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOption5Question, newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOption5MultiQuestion])
 
+    useEffect(() => {
+        setActivePageFormsQuestionsOptions(true) // verifica se a página Forms está ativa
+
+    }, [setActivePageFormsQuestionsOptions])
+
     function cleanAllForms() {         
         // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
         if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
@@ -303,7 +311,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -329,7 +337,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -355,7 +363,8 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
+
 
                         }
                     }
@@ -381,7 +390,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -498,7 +507,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -536,7 +545,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -574,7 +583,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -612,7 +621,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     }
@@ -715,7 +724,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -740,7 +749,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -765,7 +774,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -790,7 +799,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -906,7 +915,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -943,7 +952,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -980,7 +989,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                
@@ -1017,7 +1026,7 @@ function FormsNewQuestionsOptionsPage() {
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
                         if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
-                            label.style.color = "#B71C1C"
+                            label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
                     })                                

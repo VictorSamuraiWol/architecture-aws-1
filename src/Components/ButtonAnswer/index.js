@@ -16,7 +16,7 @@ function ButtonAnswer({
 }) {
     
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-    const { validateSound, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext()
+    const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
@@ -179,7 +179,7 @@ function ButtonAnswer({
 
                     }
 
-                    if (validateSound) {
+                    if (mute === false) {
                         playCorrectSound && correctSound.play()
                         playErrorSound && errorSound.play()
 
@@ -345,7 +345,7 @@ function ButtonAnswer({
 
                     }
 
-                    if (validateSound) {
+                    if (mute === false) {
                         playCorrectSound && correctSound.play()
                         playErrorSound && errorSound.play()
 
