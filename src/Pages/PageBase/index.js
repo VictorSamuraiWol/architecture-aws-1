@@ -35,8 +35,6 @@ function PageBase() {
         mute === false 
             ? setMute(true)
             : setMute(false)
-
-        return mute
         
     }
    
@@ -96,7 +94,7 @@ function PageBase() {
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='imagem de fundo'
-                />}       
+                />}
 
                 <Outlet 
                     context={{ mute, requestData, 
@@ -105,7 +103,7 @@ function PageBase() {
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
                         checkAlternativeAnswerDefault
                         }} 
-                />
+                />                
 
                 {mute === false && <BiSolidVolumeFull // unmute sound icon
                     onClick={validateSound}
@@ -114,7 +112,7 @@ function PageBase() {
                     />
                 }                
 
-                {mute === true && <BiSolidVolumeMute // mute sound icon
+                {mute && <BiSolidVolumeMute // mute sound icon
                     onClick={validateSound}
                     id='soundMute'
                     className={styles.soundMute}
@@ -124,7 +122,7 @@ function PageBase() {
                 {(requestData || activePageFormsQuestionsOptions) && <Footer />}    
 
                 {showIllustrativePage && requestData === false && activePageFormsQuestionsOptions === false && <IllustrativePage />}
-                
+
             </DataProvider>
 
         </div>

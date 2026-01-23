@@ -187,12 +187,12 @@ export default function DataProvider({ children }) {
                 listMultiOptionsContext,
                 loading,
                 setLoading,
-                updateList,
+                postApi,
                 setPostApi,
+                updateList,
                 setDeleteApi,
                 ableDisableMenuTools,
                 setAbleDisableMenuTools
-
             }}
         >
 

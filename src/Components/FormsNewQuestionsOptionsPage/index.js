@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
+import PopupCompareAllQuestionsAllOptions from '../PopupCompareAllQuestionsAllOptions'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -19,7 +20,7 @@ function FormsNewQuestionsOptionsPage() {
 
     const errorSound = new Audio(errorAudio) // som ao tentar salvar incorretamente
 
-    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, postApi, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
     const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute } = useOutletContext()
@@ -78,23 +79,26 @@ function FormsNewQuestionsOptionsPage() {
     // capturando os números usados nos formulários 2 e 4
     const [listNumbersForms2and4, setListNumbersForms2and4] = useState([])
 
-    // ativa o componente PopupRepeatedAlternatives no formulário 2
+    // ativa o componente 'PopupRepeatedAlternatives' no formulário 2
     const [activePopupRepeatedAlternativesForms2, setActivePopupRepeatedAlternativesForms2] = useState(false) 
 
-    // ativa o componente PopupRepeatedAlternatives nao formulário 4
+    // ativa o componente 'PopupRepeatedAlternatives' nao formulário 4
     const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false)
 
-    // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage
+    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage
     const [activePopupcheckAlternativeAnswerForms1, setActivePopupcheckAlternativeAnswerForms1] = useState(false)
 
-    // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage 
+    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage 
     const [activePopupcheckAlternativeAnswerForms2, setActivePopupcheckAlternativeAnswerForms2] = useState(false)  
 
-    // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage 
+    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage 
     const [activePopupcheckAlternativeAnswerForms3, setActivePopupcheckAlternativeAnswerForms3] = useState(false) 
 
-    // ativa o componente PopupCheckAlternativeAnswer no FormsNewQuestionsOptionsPage
-    const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false) 
+    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage
+    const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false)
+
+    // ativa o componente 'PopupCompareAllQuestionsAllOptions' no FormsNewQuestionsOptionsPage
+    const [activePopupCompareAllQuestionsAllOptions, setActivePopupCompareAllQuestionsAllOptions] = useState(false)
 
     // passando a cor incorreta
     const [colorIncorrect] = useState('#B71C1C')
@@ -1093,62 +1097,44 @@ function FormsNewQuestionsOptionsPage() {
         setReadyToSendForm4(false) // volta ao estado inicial ao submeter o formulário (false)
         
     }
-
+        
     useEffect(() => {
-        function formsCheck() { // verifica se existem mais questões que opções ou mais opções que questões nos 4 formulários e avisa na tela
-
+        function formsCheck() { // verifica se existem mais questões que opções ou mais opções que questões nos 4 formulários
             if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more questions in form 1" than options in "form 2." Dont forget to add the missing options to "form 2".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listUnicOptionsContext.length > listUnicQuestionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more options in "form 2" than questions in "form 1." Dont forget to add the missing questions to "form 1".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listMultiQuestionsContext.length > listMultiOptionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
                 setAlertMessage('⚠ There are more questions in "form 3" than options in "form 4." Dont forget to add the missing options to "form 4".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listMultiOptionsContext.length > listMultiQuestionsContext.length && listUnicQuestionsContext.length === listUnicOptionsContext.length) {
                 setAlertMessage('⚠ There are more options in "form 4" than questions in "form 3." Dont forget to add the missing questions to "form 3".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more questions in "forms 1 and 3" than options in "forms 2 and 4." Dont forget to add the missing options to "forms 2 and 4".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more questions in "form 1" than options in "form 2," and more options in "form 4" than questions in "form 3." Dont forget to add the missing options to "form 2" and the missing questions to "form 3".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length > listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more options in "form 2" than questions in "form 1," and more questions in "form 3" than options in "form 4." Dont forget to add the missing questions to "form 1" and the missing options to "form 4".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             } else if (listUnicQuestionsContext.length < listUnicOptionsContext.length && listMultiQuestionsContext.length < listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more options in "forms 2 and 4" than questions in "forms 1 and 3." Dont forget to add the missing questions to "forms 1 and 3".')
-                setTimeout(() => {
-                    setAlertMessage('') // tempo para sair da tela
-                }, 15000)
+
             }
 
-            setPostApi(false)
-
         } 
+        
+        if (postApi) {
+            setActivePopupCompareAllQuestionsAllOptions(true) // habilita o 'PopupCompareAllQuestionsAllOptions'
+            formsCheck()
 
-        updateList && setTimeout(() => {
-            formsCheck() // disparar a função após atualizar o backend, após 1 segundo
+        }
 
-        }, 1000)
-
-    }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, updateList, setPostApi])
+    }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, postApi])
 
     return(
         <div className={styles.formsNewQuestionsOptions}>            
@@ -1157,8 +1143,6 @@ function FormsNewQuestionsOptionsPage() {
                 src={backgroundImage} 
                 alt='backgroundImage' 
             />
-
-            <div className={styles.messageAlert}>{alertMessage}</div>
 
             <div className={styles.forms}>
                 <form 
@@ -1336,62 +1320,65 @@ function FormsNewQuestionsOptionsPage() {
             </div>  
 
             {/* PopupRepeatedAlternatives */}
-            {activePopupRepeatedAlternativesForms2 === true && 
+            {activePopupRepeatedAlternativesForms2 && 
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupRepeatedForms} 
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 2 so that all of them are different, and then proceed with creating the option. Thank you."} 
-                    activePopup={setActivePopupRepeatedAlternativesForms2}
-                    
+                    activePopup={setActivePopupRepeatedAlternativesForms2}                    
                 />
             }
 
-            {activePopupRepeatedAlternativesForms4 === true && 
+            {activePopupRepeatedAlternativesForms4 && 
                 <PopupRepeatedAlternatives 
                     specificStyles={styles.popupRepeatedForms} 
                     textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives in Form 4 so that all of them are different, and then proceed with creating the option. Thank you."} 
-                    activePopup={setActivePopupRepeatedAlternativesForms4}
-                    
+                    activePopup={setActivePopupRepeatedAlternativesForms4}                    
                 />
             }
 
             {/* PopupCheckAlternativeAnswer */}
-            {activePopupcheckAlternativeAnswerForms1 === true && 
+            {activePopupcheckAlternativeAnswerForms1 && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms1}
                     textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopupNumber}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopupNumber}, and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Include in the answer to question ${newQuestionsNumberQuestions} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? ` or ${matchedOptionMainPopup[4]}.` : `.`}`}
-
                 />
             }
 
-            {activePopupcheckAlternativeAnswerForms2 === true && 
+            {activePopupcheckAlternativeAnswerForms2 && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms2}
                     textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopupNumber} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Include in one of the alternatives of option ${newOptionsNumberQuestions} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
-
                 />
             }
 
-            {activePopupcheckAlternativeAnswerForms3 === true && 
+            {activePopupcheckAlternativeAnswerForms3 && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3}
                     textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Include in the "answer's text" to question ${newQuestionsNumberMultiQuestions} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
-
                 />
             }
 
-            {activePopupcheckAlternativeAnswerForms4 === true && 
+            {activePopupcheckAlternativeAnswerForms4 && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms4}
                     textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionsNumberMultiQuestions} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
+                />
+            }
 
+            {/* PopupCompareAllQuestionsAllOptions */}
+            {activePopupCompareAllQuestionsAllOptions &&
+                <PopupCompareAllQuestionsAllOptions
+                    specificStyles={styles.popupCompare} 
+                    textPopup={alertMessage}
+                    activePopup={setActivePopupCompareAllQuestionsAllOptions}                
                 />
             }
       

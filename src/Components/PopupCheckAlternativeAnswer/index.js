@@ -11,7 +11,6 @@ function PopupCheckAlternativeAnswer({ specificStyles, textPopup, activePopup, t
         activeModalPopupCheckAlternativeAnswer={true}
         textModalForMoreInformation={"For more information"}
         textModalDescription={textModalDescription}
-
       />
   )
 
