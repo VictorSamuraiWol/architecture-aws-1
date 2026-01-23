@@ -1,18 +1,22 @@
 import styles from './ModalResults.module.css';
-import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { useOutletContext } from 'react-router-dom';
 import ButtonDefault from '../ButtonDefault';
+import soundClick from '../../audios/clickAudio.mp3'
+import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { TiDeleteOutline } from "react-icons/ti";
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
 function ModalResults() {
+
+    const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
+    
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     // pegando os dados do resultado
-    const { dataResults } = useOutletContext()
+    const { dataResults, mute } = useOutletContext()
 
     function openModal() {
         setModalIsOpen(true);
@@ -47,7 +51,12 @@ function ModalResults() {
     }
 
     function closeModal() {
-        setModalIsOpen(false);
+        setModalIsOpen(false)
+
+    }
+
+    const sound = () => { // ativa o som 'audioClick'
+        mute === false && audioClick.play()
     }
 
     return (
@@ -57,7 +66,8 @@ function ModalResults() {
                 className={styles.iconesTextos} 
             >
 
-                <ButtonDefault 
+                <ButtonDefault
+                    onClick={sound}
                     specificStyleButton={styles.buttonResultsModal} 
                     buttonName='Results'
                 />

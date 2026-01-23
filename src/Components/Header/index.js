@@ -1,14 +1,17 @@
 import styles from './Header.module.css'
 import image from '../../imgs/icon-start.png'
-import { Link, useOutletContext } from 'react-router-dom'
 import Timer from './Timer'
 import NavigationItem from './NavigationItem'
+import soundClick from '../../audios/clickAudio.mp3'
+import { Link, useOutletContext } from 'react-router-dom'
 import { GoPlus } from 'react-icons/go'
 import { RxHamburgerMenu } from "react-icons/rx"
 
 function Header({ title }) {
 
-    const { requestData, activePageFormsQuestionsOptions } = useOutletContext()
+    const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
+
+    const { requestData, activePageFormsQuestionsOptions, mute } = useOutletContext()
 
     const allLinks = document.querySelectorAll('.ulHeader')
 
@@ -26,13 +29,22 @@ function Header({ title }) {
 
     }
 
+    const sound = () => { // ativa o som 'audioClick'
+        mute === false && audioClick.play()
+    }
+
     return(
         <div className={styles.header}>
             <Link 
                 to='/'
                 className={styles.linkHeader} 
             >
-                <img className={styles.iconStart} src={image} alt='icon-start' />
+                <img
+                onClick={sound}
+                    className={styles.iconStart} 
+                    src={image}
+                    alt='icon-start' 
+                />
             </Link>
 
             <h1 className={styles.headerTitle}>{title}</h1>
@@ -48,7 +60,8 @@ function Header({ title }) {
                         to='/'
                         className={styles.linksNavigation} 
                     >
-                        <NavigationItem 
+                        <NavigationItem
+                            onClick={sound}
                             itemName='Home' 
                         />
                     </Link>
@@ -58,13 +71,13 @@ function Header({ title }) {
                         className={styles.linksNavigation}
                     >
                         <NavigationItem 
+                            onClick={sound}
                             component={<GoPlus />} 
                             itemName='Create' 
                         />
                     </Link>
 
                 </ul>
-
             </nav>
             
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
