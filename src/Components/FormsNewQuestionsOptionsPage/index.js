@@ -427,7 +427,7 @@ function FormsNewQuestionsOptionsPage() {
                 }); 
                             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 1! Preencha um formulário por vez.");
+                    console.log(data, "Dados enviados com sucesso do form 1! Preencha um formulário por vez.")
                     alert('Questão adicionada com sucesso do form 1! Preencha um formulário por vez.')
                     cleanAllForms(); // limpar o formulário
                 
@@ -436,7 +436,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
                 
             } catch(error) {
-            console.error("Erro ao enviar os dados", error);
+            console.error("Erro ao enviar os dados", error)
 
             }
 
@@ -664,7 +664,7 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 2! Preencha um formulário por vez.");
+                    console.log(data, "Dados enviados com sucesso do form 2! Preencha um formulário por vez.")
                     alert('Questão adicionada com sucesso do form 2! Preencha um formulário por vez.')
                     cleanAllForms(); // limpar o formulário
                     
@@ -673,7 +673,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error);
+                console.error("Erro ao enviar os dados", error)
                 
             }
 
@@ -847,7 +847,7 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 3! Preencha um formulário por vez.");
+                    console.log(data, "Dados enviados com sucesso do form 3! Preencha um formulário por vez.")
                     alert('Questão adicionada com sucesso do form 3! Preencha um formulário por vez.')
                     cleanAllForms(); // limpar o formulário
                     
@@ -856,7 +856,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error);
+                console.error("Erro ao enviar os dados", error)
                 
             }
             
@@ -1079,7 +1079,7 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 4! Preencha um formulário por vez.");
+                    console.log(data, "Dados enviados com sucesso do form 4! Preencha um formulário por vez.")
                     alert('Questão adicionada com sucesso do form 4! Preencha um formulário por vez.')
                     cleanAllForms(); // limpar o formulário
                 
@@ -1088,7 +1088,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error);
+                console.error("Erro ao enviar os dados", error)
                 
             }
 

@@ -11,6 +11,7 @@ import { MdEditSquare } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
 import { DataContext } from '../../DataContext'
 import { isEqual } from 'lodash'
+import soundClick from '../../../audios/clickAudio.mp3'
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
@@ -65,6 +66,8 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const { repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext();
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
+
+  const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
   
   useEffect(() => {
     setOption1(optionMap && optionMap[0])
@@ -572,14 +575,14 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
+              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
 
             />
             <ButtonDefault 
-              onClick={cleanForm} 
+              onClick={() => {cleanForm(); audioClick.play()}}
               buttonName='Clean' 
               specificType='button'
               specificStyleButton={styles.button}
@@ -662,14 +665,14 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => repeatedAlternativesDefault(newOption, newMultiOption)} 
+              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
 
             />
-            <ButtonDefault 
-              onClick={cleanForm} 
+            <ButtonDefault
+              onClick={() => {cleanForm(); audioClick.play()}}
               buttonName='Clean' 
               specificType='button'
               specificStyleButton={styles.button}
