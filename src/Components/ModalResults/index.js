@@ -1,10 +1,10 @@
-import styles from './ModalResults.module.css';
-import Modal from 'react-modal';
-import ButtonDefault from '../ButtonDefault';
+import styles from './ModalResults.module.css'
+import Modal from 'react-modal'
+import ButtonDefault from '../ButtonDefault'
 import soundClick from '../../audios/clickAudio.mp3'
-import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { TiDeleteOutline } from "react-icons/ti";
+import { useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
+import { TiDeleteOutline } from "react-icons/ti"
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
@@ -23,7 +23,6 @@ function ModalResults() {
  
         // setTimeout para dar tempo de capturar as variáveis ao abrir a modal e, em seguida, mudar a cor de acordo com os resultados
         setTimeout(() => {
-
             if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
                 const corrects = document.querySelector('#corrects')
                 const pontuations = document.querySelector('#pontuations')
@@ -41,9 +40,6 @@ function ModalResults() {
                 incorrects?.classList.add(`${styles.incorrect}`)
                 pontuations?.classList.add(`${styles.incorrect}`)
                 performances?.classList.add(`${styles.incorrect}`)
-
-            } else {
-                console.error('Há algo errado com o setTimeout do componente ModalResults, l.41')
 
             }
 
@@ -81,6 +77,11 @@ function ModalResults() {
                 overlayClassName={styles.modalOverlay}
                 className={styles.modalContent}
             >
+                {/* imagem delete do react icon */}
+                <TiDeleteOutline
+                    onClick={() => {closeModal(); mute === false && audioClick.play()}} 
+                    className={styles.modalImageDelete} 
+                />
 
                 <h1>✔REAL-TIME RESULT:</h1>
                 <p id='corrects' className={styles.test}>Correct questions: {dataResults.numCorrectOption}</p>
@@ -89,12 +90,6 @@ function ModalResults() {
                 <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
                 <p id='performances'>Performance: {dataResults.performanceResults}</p>
                 <p>Obs: Performance para aprovação: 72% em 65 questões</p>
-
-                {/* imagem do react icon */}
-                <TiDeleteOutline
-                    onClick={closeModal} 
-                    className={styles.modalImageDelete} 
-                />
 
             </Modal>
 

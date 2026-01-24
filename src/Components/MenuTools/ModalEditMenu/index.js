@@ -5,13 +5,13 @@ import ButtonDefault from '../../ButtonDefault'
 import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer'
 import PopupAlreadySavedModalEdit from '../../PopupAlreadySavedModalEdit'
+import soundClick from '../../../audios/clickAudio.mp3'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { MdEditSquare } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
 import { DataContext } from '../../DataContext'
 import { isEqual } from 'lodash'
-import soundClick from '../../../audios/clickAudio.mp3'
 
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
@@ -63,7 +63,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const [activePopupAlreadySavedModalEdit, setActivePopupAlreadySavedModalEdit] = useState(false)
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext();
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute } = useOutletContext();
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
 
@@ -497,7 +497,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
       >
         {/* imagem delete do react icon */}
         <TiDeleteOutline
-            onClick={closeModal} 
+            onClick={() => {closeModal(); mute === false && audioClick.play()}} 
             className={styles.modalImageDelete} 
         />      
 
@@ -575,14 +575,14 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
 
             />
             <ButtonDefault 
-              onClick={() => {cleanForm(); audioClick.play()}}
+              onClick={() => {cleanForm(); mute === false && audioClick.play()}}
               buttonName='Clean' 
               specificType='button'
               specificStyleButton={styles.button}
@@ -665,14 +665,14 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
 
             />
             <ButtonDefault
-              onClick={() => {cleanForm(); audioClick.play()}}
+              onClick={() => {cleanForm(); mute === false && audioClick.play()}}
               buttonName='Clean' 
               specificType='button'
               specificStyleButton={styles.button}

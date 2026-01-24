@@ -1,7 +1,7 @@
-import styles from './Timer.module.css';
+import styles from './Timer.module.css'
 import timerStart from '../../../audios/timer-start.mp3'
 import timerPause from '../../../audios/timer-pause.mp3'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 const Timer = () => {
@@ -10,6 +10,7 @@ const Timer = () => {
   const [isRunning, setIsRunning] = useState(true)
   const timerRef = useRef(null)
   const timerStartSound = new Audio(timerStart)
+  const timerPauseSound = new Audio(timerPause)
 
   const { mute } = useOutletContext()
 
@@ -25,22 +26,11 @@ const Timer = () => {
 
   }
 
-  const pauseTimer = useCallback(() => {    
+  const pauseTimer = () => {    
     setIsRunning(false) // Muda o estado para indicar que está desativado
-    const timerPauseSound = new Audio(timerPause)
-
     clearInterval(timerRef.current) // Limpa o intervalo, parando o cronômetro
 
-    mute === false && timerPauseSound.play().then(() => {
-      console.log("TimerPaused played successfully")
-
-    }).catch(error => {
-      // captura o erro e mostra no console
-      console.log("Error attempting to play the audio:" ,error.message)
-
-    })
-
-  }, [mute])
+  }
 
   // Inicia o tempo automaticamente quando carregar a página
   useEffect(() => {
@@ -54,13 +44,14 @@ const Timer = () => {
   }, [])
 
   // Para o cronômetro quando chegar a 0
-  useEffect(() => {    
+  useEffect(() => {
     if (time === 0) {
-      pauseTimer() 
-      alert("Ops!!! Tempo acabou! Fique atento ao tempo de realização da prova.")      
+      pauseTimer()
+      alert('Oops! Time is up! Please pay attention to the exam time limit.')
+
     }
 
-  }, [time, pauseTimer])
+  }, [time])
 
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {
@@ -77,7 +68,7 @@ const Timer = () => {
 
       <div>
         <button onClick={startTimer} disabled={isRunning || time === 0}>Play</button>
-        <button onClick={pauseTimer} disabled={!isRunning}>Pause</button>
+        <button onClick={() => {pauseTimer(); mute === false && timerPauseSound.play()}} disabled={!isRunning}>Pause</button>
       </div>
 
     </div>
