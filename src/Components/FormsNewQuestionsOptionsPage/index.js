@@ -331,8 +331,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 1!')
-                alert("Por favor! Preencha todos os campos necessários do form 1!")
+                console.error('Error in data received from Form 1!')
+                alert('Please fill in all required fields in Form 1!')
 
             } else if (readyToSendForm1 === true && isValid === false && newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
@@ -358,8 +358,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 1!')
-                alert("Este número já foi utilizado em questões anteriores, por favor, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 1!')
+                alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
             } else if (readyToSendForm1 === true && isValid === false && (newQuestionQuestions === "" || newAnswerQuestions === "" || newDescriptionQuestions === "" || newQuestionsNumberQuestions === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
@@ -386,8 +386,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 1!')
-                alert("Por favor! Preencha todos os campos necessários do form 1! Este número já foi utilizado em questões anteriores, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 1!')
+                alert('Please fill in all required fields in Form 1. This number has already been used in previous questions. Please use a number that has not been used yet.')
                     
             } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
@@ -413,8 +413,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 1!')
-                alert("Por favor! Preencha todos os campos do formulário 1 corretamente!")
+                console.error('Error in data received from Form 1!')
+                alert('Please correctly fill in all fields in Form 1.')
 
             }     
                 
@@ -427,8 +427,9 @@ function FormsNewQuestionsOptionsPage() {
                 }); 
                             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 1! Preencha um formulário por vez.")
-                    alert('Questão adicionada com sucesso do form 1! Preencha um formulário por vez.')
+                    console.log(data, 'Data successfully submitted from Form 1. Please complete one form at a time.')
+                    alert('Question successfully added from Form 1. Please complete one form at a time.')
+
                     cleanAllForms(); // limpar o formulário
                 
                     setPostApi(true) // tornar verdadeiro a cada POST
@@ -436,7 +437,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
                 
             } catch(error) {
-            console.error("Erro ao enviar os dados", error)
+            console.error('Error while submitting data', error)
 
             }
 
@@ -533,8 +534,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
                 
-                console.error('Erro nos dados recebidos do form 2!')
-                alert("Por favor! Preencha todos os campos necessários do form 2!")
+                console.error('Error in data received from Form 2!')
+                alert('Please fill in all required fields in Form 2.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -572,8 +573,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 2!')
-                alert("Este número já foi utilizado em opções anteriores, por favor, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 2!')
+                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -611,8 +612,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 2!')
-                alert("Por favor! Preencha todos os campos necessários do form 2! Este número já foi utilizado em opções anteriores, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 2!')
+                alert('Please fill in all required fields in Form 2. This number has already been used in previous options. Please use a number that has not been used yet.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -650,8 +651,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 2!')
-                alert("Por favor! Preencha todos os campos do formulário 2 corretamente!")
+                console.error('Error in data received from Form 2!')
+                alert('Please correctly fill in all fields in Form 2.')
 
             }
 
@@ -664,8 +665,9 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 2! Preencha um formulário por vez.")
-                    alert('Questão adicionada com sucesso do form 2! Preencha um formulário por vez.')
+                    console.log(data, 'Data successfully submitted from Form 2. Please complete one form at a time.')
+                    alert('Option successfully added from Form 2. Please complete one form at a time.')
+
                     cleanAllForms(); // limpar o formulário
                     
                     setPostApi(true) // tornar verdadeiro a cada POST
@@ -673,7 +675,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error)
+                console.error('Error while submitting data', error)
                 
             }
 
@@ -755,8 +757,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 3!')
-                alert("Por favor! Preencha todos os campos necessários do form 3!")
+                console.error('Error in data received from Form 3!')
+                alert('Please fill in all required fields in Form 3.')
 
             } else if (readyToSendForm3 === true && isValid === false && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -781,8 +783,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 3!')
-                alert("Este número já foi utilizado em questões anteriores, por favor, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 3!')
+                alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
             } else if (readyToSendForm3 === true && isValid === false && (newQuestionMultiQuestions === "" || newAnswerTextMultiQuestions === "" || newDescriptionMultiQuestions === "" || newQuestionsNumberMultiQuestions === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -807,8 +809,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
                 
-                console.error('Erro nos dados recebidos do form 3!')
-                alert("Por favor! Preencha todos os campos necessários do form 3! Este número já foi utilizado em questões anteriores, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 3!')
+                alert('Please fill in all required fields in Form 3. This number has already been used in previous questions. Please use a number that has not been used yet.')
                     
             } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -833,8 +835,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 3!')
-                alert("Por favor! Preencha todos os campos do formulário 3 corretamente!")
+                console.error('Error in data received from Form 3!')
+                alert('Please correctly fill in all fields in Form 3.')
 
             }     
 
@@ -847,8 +849,9 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 3! Preencha um formulário por vez.")
-                    alert('Questão adicionada com sucesso do form 3! Preencha um formulário por vez.')
+                    console.log(data, 'Data successfully submitted from Form 3. Please complete one form at a time.')
+                    alert('Question successfully added from Form 3. Please complete one form at a time.')
+
                     cleanAllForms(); // limpar o formulário
                     
                     setPostApi(true) // tornar verdadeiro a cada POST
@@ -856,7 +859,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error)
+                console.error('Error while submitting data', error)
                 
             }
             
@@ -951,8 +954,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 4!')
-                alert("Por favor! Preencha todos os campos necessários do form 4!")
+                console.error('Error in data received from Form 4!')
+                alert('Please fill in all required fields in Form 4.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -989,8 +992,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 4!')
-                alert("Este número já foi utilizado em opções anteriores, por favor, utilize outro número que ainda não foi utilizado.")
+                console.error('Error in data received from Form 4!')
+                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -1026,9 +1029,9 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-                
-                console.error('Erro nos dados recebidos do form 4!')
-                alert("Por favor! Preencha todos os campos necessários do form 4! Este número já foi utilizado em opções anteriores, utilize outro número que ainda não foi utilizado.")
+
+                console.error('Error in data received from Form 4!')
+                alert('Please fill in all required fields in Form 4. This number has already been used in previous options. Please use a number that has not been used yet.')
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -1065,8 +1068,8 @@ function FormsNewQuestionsOptionsPage() {
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Erro nos dados recebidos do form 4!')
-                alert("Por favor! Preencha todos os campos do formulário 4 corretamente!")
+                console.error('Error in data received from Form 4!')
+                alert('Please correctly fill in all fields in Form 4.')
 
             }
 
@@ -1079,8 +1082,9 @@ function FormsNewQuestionsOptionsPage() {
                 });        
             
                 if (response.ok) {
-                    console.log(data, "Dados enviados com sucesso do form 4! Preencha um formulário por vez.")
-                    alert('Questão adicionada com sucesso do form 4! Preencha um formulário por vez.')
+                    console.log(data, 'Data successfully submitted from Form 4. Please complete one form at a time.')
+                    alert('Option successfully added from Form 4. Please complete one form at a time.')
+
                     cleanAllForms(); // limpar o formulário
                 
                     setPostApi(true) // tornar verdadeiro a cada POST
@@ -1088,7 +1092,7 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
             } catch(error) {
-                console.error("Erro ao enviar os dados", error)
+                console.error('Error while submitting data', error)
                 
             }
 
