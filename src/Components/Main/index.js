@@ -80,9 +80,7 @@ function Main({
 
             <MenuTools 
                 nextQuestion={nextQuestion} 
-                setNextQuestion={setNextQuestion} 
-                optionMap={optionMap} 
-                setOptionMap={setOptionMap} 
+                optionMap={optionMap}
                 optionMapNumberId={optionMapNumberId}
                 generateNewQuestionMain={generateNewQuestionMain}                
             />

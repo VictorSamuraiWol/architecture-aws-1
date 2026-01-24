@@ -4,60 +4,68 @@ import FieldModalEdit from './FieldModalEdit'
 import ButtonDefault from '../../ButtonDefault'
 import PopupRepeatedAlternatives from '../../PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../../PopupCheckAlternativeAnswer'
-import { useEffect, useState } from 'react'
+import PopupAlreadySavedModalEdit from '../../PopupAlreadySavedModalEdit'
+import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { MdEditSquare } from "react-icons/md"
 import { TiDeleteOutline } from "react-icons/ti"
+import { DataContext } from '../../DataContext'
+import { isEqual } from 'lodash'
 
 // certifique-se de vincular o modal ao seu appElement
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
-function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
-  multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuestion, 
+  multiOptionMap, multiOptionMapNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [question, setQuestion] = useState(nextQuestion?.question);
-  const [answer, setAnswer] = useState(nextQuestion?.answer);
-  const [srcImg, setSrcImg] = useState(nextQuestion?.srcImg);
-  const [description, setDescription] = useState(nextQuestion?.descriptionP);
+  const [question, setQuestion] = useState(nextQuestion?.question)
+  const [answer, setAnswer] = useState(nextQuestion?.answer)
+  const [srcImg, setSrcImg] = useState(nextQuestion?.srcImg)
+  const [description, setDescription] = useState(nextQuestion?.descriptionP)
   const [numberQuestionMain] = useState(nextQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções
-  const [option1, setOption1] = useState(optionMap && optionMap[0]);
-  const [option2, setOption2] = useState(optionMap && optionMap[1]);
-  const [option3, setOption3] = useState(optionMap && optionMap[2]);
-  const [option4, setOption4] = useState(optionMap && optionMap[3]);
-  const [option5, setOption5] = useState(optionMap && optionMap[4]);
+  const [option1, setOption1] = useState(optionMap && optionMap[0])
+  const [option2, setOption2] = useState(optionMap && optionMap[1])
+  const [option3, setOption3] = useState(optionMap && optionMap[2])
+  const [option4, setOption4] = useState(optionMap && optionMap[3])
+  const [option5, setOption5] = useState(optionMap && optionMap[4])
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
-  const [questionMulti, setQuestionMulti] = useState(multiQuestion?.question);
-  const [answerMulti, setAnswerMulti] = useState(multiQuestion?.answerText);
-  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestion?.srcImg);
-  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP);
+  const [questionMulti, setQuestionMulti] = useState(multiQuestion?.question)
+  const [answerMulti, setAnswerMulti] = useState(multiQuestion?.answerText)
+  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestion?.srcImg)
+  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP)
   const [numberQuestionMultiMain] = useState(multiQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
-  const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0]);
-  const [option2Multi, setOption2Multi] = useState(multiOptionMap && multiOptionMap[1]);
-  const [option3Multi, setOption3Multi] = useState(multiOptionMap && multiOptionMap[2]);
-  const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3]);
-  const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4]);
+  const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0])
+  const [option2Multi, setOption2Multi] = useState(multiOptionMap && multiOptionMap[1])
+  const [option3Multi, setOption3Multi] = useState(multiOptionMap && multiOptionMap[2])
+  const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3])
+  const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4])
 
   const [newOption, setNewOption] = useState([]) // lista das alternativas da opção única
   const [newMultiOption, setNewMultiOption] = useState([]) // lista das alternativas da opção múltipla
 
-  // ativa o componente PopupRepeatedAlternatives na ModalEditMenu
+  // ativa o componente 'PopupRepeatedAlternatives' na ModalEditMenu
   const [activePopupRepeatedAlternativesModalEdit, setActivePopupRepeatedAlternativesModalEdit] = useState(false) 
 
-  // ativa o componente PopupCheckAlternativeAnswer na ModalEditMenu
+  // ativa o componente 'PopupCheckAlternativeAnswer' na ModalEditMenu
   const [activePopupcheckAlternativeAnswerModalForms1, setActivePopupcheckAlternativeAnswerModalForms1] = useState(false)
 
-  // ativa o componente PopupCheckAlternativeAnswer na ModalEditMenu
+  // ativa o componente 'PopupCheckAlternativeAnswer' na ModalEditMenu
   const [activePopupcheckAlternativeAnswerModalForms2, setActivePopupcheckAlternativeAnswerModalForms2] = useState(false)
+  
+  // ativa o componente 'PopupAlreadySavedModalEdit' na ModalEditMenu
+  const [activePopupAlreadySavedModalEdit, setActivePopupAlreadySavedModalEdit] = useState(false)
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
   const { repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext();
 
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
+  
   useEffect(() => {
     setOption1(optionMap && optionMap[0])
     setOption2(optionMap && optionMap[1])
@@ -221,30 +229,79 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   }
 
-  // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
-  function multiFunctionsNewPageMain(event) {
-    if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
-      event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-      setActivePopupcheckAlternativeAnswerModalForms1(true)
+  function activePopupAlreadySaved() {
+    let active
+
+    // formulário 1
+    const questionMainEdit = [question, answer, srcImg, description] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const optionMainEdit = [option1, option2, option3, option4, option5] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
+      
+    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.question, questions.answer, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    
+    const findQuestionMain = newListUnicQuestionsContext.filter(question => isEqual(question, questionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
+
+    // formulário 2    
+    const questionMultiEdit = [questionMulti, answerMulti, srcImgMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const optionMultiEdit = [option1Multi, option2Multi, option3Multi, option4Multi, option5Multi] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+
+    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.question, questions.answerText, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+
+    const findQuestionMulti = newListMultiQuestionsContext.filter(question => isEqual(question, questionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMulti = newListMultiOptionsContext.filter(question => isEqual(question, optionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
+
+    if (findQuestionMain && findOptionMain) {
+    // condição: se a questão ou opção única editada já existe no 'backend'
+      active = true
+
+    } else if (findQuestionMulti && findOptionMulti) {
+    // condição: se a questão ou opção múltipla editada já existe no 'backend'
+      active = true
 
     } else {
-      if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+      active = false
+      
+    }
+    
+    return active
+
+  }
+
+  // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
+  function multiFunctionsNewPageMain(event) {
+    if (activePopupAlreadySaved() === true) {
+      event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
+      setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
+
+    } else {
+      setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
+
+      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
         event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-        setActivePopupRepeatedAlternativesModalEdit(true)
-
-        setTimeout(() => {
-          setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-        }, 10000)
+        setActivePopupcheckAlternativeAnswerModalForms1(true)
 
       } else {
-        onSaveModalQuestion(); // salvando a questão única
-        onSaveModalOption(); // salvando a opção única
-        
-        setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+        if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
+          setActivePopupRepeatedAlternativesModalEdit(true)
 
-        console.log('Saved!!!')
-        alert('Saved successfully!!!')
+          setTimeout(() => {
+            setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+          }, 10000)
+
+        } else {
+          onSaveModalQuestion(); // salvando a questão única
+          onSaveModalOption(); // salvando a opção única
+          
+          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+
+          console.log('Saved!!!')
+          alert('Saved successfully!!!')
+
+        }
 
       }
 
@@ -254,31 +311,40 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
 
   // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsPageMulti(event) {
-    if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
-        event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-        setActivePopupcheckAlternativeAnswerModalForms2(true)
+    if (activePopupAlreadySaved() === true) {
+      event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
+      setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
-      } else {
-      if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-        event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-        setActivePopupRepeatedAlternativesModalEdit(true)
+    } else {
+      setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-        setTimeout(() => {
-          setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
+          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
+          setActivePopupcheckAlternativeAnswerModalForms2(true)
 
-        }, 10000)
+        } else {
+        if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
+          setActivePopupRepeatedAlternativesModalEdit(true)
 
-      } else {    
-        onSaveModalMultiQuestion(); // salvando a questão múltipla
-        onSaveModalMultiOption(); // salvando a opção múltipla
-        
-        setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+          setTimeout(() => {
+            setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
 
-        console.log('Saved!!!')
-        alert('Saved successfully!!!')
+          }, 10000)
+
+        } else {    
+          onSaveModalMultiQuestion(); // salvando a questão múltipla
+          onSaveModalMultiOption(); // salvando a opção múltipla
+          
+          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+
+          console.log('Saved!!!')
+          alert('Saved successfully!!!')
+
+        }
 
       }
-
+    
     }
 
   }
@@ -432,7 +498,7 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
             className={styles.modalImageDelete} 
         />      
 
-        <h1>EDITAR CARD:</h1>          
+        <h1>EDITAR CARD:</h1>
 
         {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
           onSubmit={multiFunctionsNewPageMain}
@@ -615,33 +681,39 @@ function ModalEditMenu({ nextQuestion, setNextQuestion, optionMap, setOptionMap,
         </form>}
 
         {/* PopupRepeatedAlternatives */}
-        {activePopupRepeatedAlternativesModalEdit === true && 
+        {activePopupRepeatedAlternativesModalEdit && 
           <PopupRepeatedAlternatives 
             specificStyles={styles.popupRepeatedModalEdit} 
             textPopup={"There are repeated alternatives. Please, before editing the option, modify the duplicated alternatives and then proceed with editing the question and the option. Thank you."} 
-            activePopup={setActivePopupRepeatedAlternativesModalEdit}
-            
+            activePopup={setActivePopupRepeatedAlternativesModalEdit}            
           />
         }
 
         {/* PopupCheckAlternativeAnswer */}
-        {activePopupcheckAlternativeAnswerModalForms1 === true && 
+        {activePopupcheckAlternativeAnswerModalForms1 && 
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
             textPopup={`No alternative matching the answer to question ${numberQuestionMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below. Thank you.`} 
             textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestionMain} the correct alternative from the option highlighted below: ${option1}, ${option2}, ${option3}, ${option4}${option5 !== '' ? ` or ${option5}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestionMain}, highlighted below: ${answer}.`}
-
           />
         }
 
-        {activePopupcheckAlternativeAnswerModalForms2 === true && 
+        {activePopupcheckAlternativeAnswerModalForms2 && 
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
             textPopup={`The two alternatives included in the answer of question ${numberQuestionMultiMain} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below. Thank you.`} 
             textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestionMultiMain} the two correct alternatives from the option highlighted below: ${option1Multi} e ${option2Multi}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestionMultiMain}, highlighted below: ${answerMulti}. `}
+          />
+        }
 
+        {/* PopupAlreadySavedModalEdit */}
+        {activePopupAlreadySavedModalEdit &&  
+          <PopupAlreadySavedModalEdit
+            specificStyles={styles.popupAlreadySaved} 
+            activePopup={setActivePopupAlreadySavedModalEdit}
+            textPopup={'No changes detected. Please update one or more fields and try saving again.'}
           />
         }
       

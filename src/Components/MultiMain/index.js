@@ -41,9 +41,7 @@ function MultiMain({
 
             <MenuTools
                 multiQuestion={multiQuestion} 
-                setMultiQuestion={setMultiQuestion} 
                 multiOptionMap={multiOptionMap} 
-                setMultiOptionMap={setMultiOptionMap}
                 multiOptionMapNumberId={multiOptionMapNumberId}                
             />
 

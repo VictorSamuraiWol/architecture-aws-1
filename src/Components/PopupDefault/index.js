@@ -47,7 +47,7 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
     > 
       {/* imagem delete do react icon */}
       <TiDeleteOutline
-          onClick={closePopup} 
+          onClick={closePopup}
           className={styles.modalImageDelete} 
       />
 

@@ -5,8 +5,8 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
 
-function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, optionMapNumberId, multiQuestion, setMultiQuestion, 
-  multiOptionMap, setMultiOptionMap, multiOptionMapNumberId }) {
+function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion, 
+  multiOptionMap, multiOptionMapNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
@@ -198,14 +198,10 @@ function MenuTools({ nextQuestion, setNextQuestion, optionMap, setOptionMap, opt
       >
         <ModalEditMenu 
           nextQuestion={nextQuestion} 
-          setNextQuestion={setNextQuestion} 
           optionMap={optionMap} 
-          setOptionMap={setOptionMap} 
           optionMapNumberId={optionMapNumberId}
           multiQuestion={multiQuestion}
-          setMultiQuestion={setMultiQuestion}
           multiOptionMap={multiOptionMap}
-          setMultiOptionMap={setMultiOptionMap}
           multiOptionMapNumberId={multiOptionMapNumberId}
         />
 
