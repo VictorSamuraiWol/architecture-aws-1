@@ -6,11 +6,11 @@ import PopupCheckAlternativeAnswer from '../PopupCheckAlternativeAnswer'
 import ButtonDefault from '../ButtonDefault'
 import saveAudio from '../../audios/save.mp3'
 import errorAudio from '../../audios/errorForms.mp3'
+import PopupCompareAllQuestionsAllOptions from '../PopupCompareAllQuestionsAllOptions'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
-import PopupCompareAllQuestionsAllOptions from '../PopupCompareAllQuestionsAllOptions'
 
 function FormsNewQuestionsOptionsPage() {
 

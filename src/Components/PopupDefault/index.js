@@ -1,15 +1,23 @@
 import styles from './PopupDefault.module.css'
-import ModalPopupCheckAlternativeAnswer from './ModalPopupCheckAlternativeAnswer';
-import { TiDeleteOutline } from "react-icons/ti";
-import ButtonDefault from '../ButtonDefault';
+import ModalPopupCheckAlternativeAnswer from './ModalPopupCheckAlternativeAnswer'
+import ButtonDefault from '../ButtonDefault'
+import soundClick from '../../audios/clickAudio.mp3'
+import { TiDeleteOutline } from "react-icons/ti"
+import { useOutletContext } from 'react-router-dom'
 
 function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheckAlternativeAnswer, 
   textModalForMoreInformation, textModalDescription, activeButtons, nextQuestion, multiQuestion, 
   multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption, specificStyleButton,
   specificStyleButtons }) {
 
+  const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
+
+  const { mute } = useOutletContext()
+
   function closePopup() { // função para desativar o popup ao clicar no icone delete    
     activePopup(false)
+
+    mute === false && audioClick.play() // ativa o som 'audioClick'
 
   }
 
@@ -21,6 +29,15 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
       multiDeleteMultiQuestionMultiOption() // deleta a questão e opção correspondentes da 'PageMulti' 
 
     }
+
+    mute === false && audioClick.play() // ativa o som 'audioClick'
+
+  }
+
+  const disablePopupButton = () => {
+    activePopup(false)
+
+    mute === false && audioClick.play() // ativa o som 'audioClick'
 
   }
 
@@ -53,7 +70,7 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
         />
 
         <ButtonDefault 
-          onClick={() => activePopup(false)} 
+          onClick={disablePopupButton} 
           buttonName='No'
           specificStyleButton={specificStyleButton} 
         />

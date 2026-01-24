@@ -1,8 +1,8 @@
 import styles from './PopupDeleteQuestionOption.module.css'
 import PopupDefault from '../PopupDefault'
 
-function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, activeButtons, nextQuestion, multiQuestion, 
-  multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption }) {
+function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, activeButtons, nextQuestion, 
+  multiQuestion, multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption }) {
   
   return (
     <PopupDefault 
