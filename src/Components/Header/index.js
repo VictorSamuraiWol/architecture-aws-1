@@ -75,8 +75,7 @@ function Header({ title }) {
                             component={<GoPlus />} 
                             itemName='Create' 
                         />
-                    </Link>
-
+                    </Link>                    
                 </ul>
             </nav>
             

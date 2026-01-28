@@ -89,7 +89,6 @@ function PageMulti() {
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        uniqueRandomMulti={uniqueRandomMulti}
                         multiQuestion={multiQuestion}
                         setMultiQuestion={setMultiQuestion}
                         listMultiQuestions={listMultiQuestions}

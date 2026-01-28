@@ -119,9 +119,8 @@ function ButtonAnswer({
                             correctOptionInput?.classList.remove(inputColorStyle)
 
                             correctItem = correctOptionItem // capturar o item correto
-
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMain = true // ao clicar no botão next se torna 'true'
+                            setterQuestionAnswerButtonNextMain = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
                             // adicionando a invalidação nas opções incorretas
                             if ((checkedParagraph.innerText !== answer) && captureValue !== '') {
@@ -134,14 +133,11 @@ function ButtonAnswer({
                                 checkedParagraph.parentElement.parentElement.children[0]?.classList.remove(inputColorStyle)
                 
                                 setterNumIncorrectOption++ // incrementa '1' se responder errado
-
                                 playErrorSound = true // toca o som de erro
 
                             } else {
                                 setterNumCorrectOption++ // incrementa '1' se responder correto
-
                                 functionHandleAnswer = true // ativa a animação de fogos de artifícil
-
                                 playCorrectSound = true // toca o som de acerto
 
                             }
@@ -261,13 +257,11 @@ function ButtonAnswer({
                             checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
 
                             correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
-
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next se torna 'true'
+                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
                             if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {
                                 functionHandleAnswer = true // ativa a animação de fogos de artifícil
-
                                 playCorrectSound = true // toca o som de acerto
 
                             }
@@ -282,7 +276,7 @@ function ButtonAnswer({
                             checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
 
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next se torna 'true'
+                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
                        
                             for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
                                 if (allParagraph[i].childNodes[3].innerText.includes('true')) {
@@ -301,9 +295,7 @@ function ButtonAnswer({
                             } 
 
                             uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-
                             setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos
-
                             playErrorSound = true // toca o som de erro
 
                         } 
@@ -352,9 +344,7 @@ function ButtonAnswer({
                     }
                     
                     uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-
-                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)                     
-
+                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)        
                     setItens(`${sortedItems[0]} // ${sortedItems[1]}`) // armazena os itens corretos
 
                 }
@@ -383,8 +373,7 @@ function ButtonAnswer({
             <ButtonDefault 
                 onClick={displayAndValidate}
                 specificStyleButton={styles.buttonAnswer} 
-                buttonName='Answer' 
-
+                buttonName='Answer'
             />
 
             <Animation correct={correct} />
@@ -396,7 +385,6 @@ function ButtonAnswer({
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
                     textPopup={`No alternative matching the answer to question ${numberQuestion} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestion} the correct alternative from the option highlighted below: ${optionMap[0]}, ${optionMap[1]}, ${optionMap[2]}, ${optionMap[3]}${optionMap[4] !== '' ? ` or ${optionMap[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestion}, highlighted below: ${answer}.`}
-
                 />
             }
 
@@ -406,7 +394,6 @@ function ButtonAnswer({
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
                     textPopup={`The two alternatives included in the answer to question ${numberQuestion} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option 1 and Option 2 exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
                     textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestion} the two correct alternatives from the option highlighted below: ${multiOptionMap[0]} e ${multiOptionMap[1]}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestion}, highlighted below: ${answer}. `}
-
                 />
             }
 

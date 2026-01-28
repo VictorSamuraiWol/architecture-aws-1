@@ -33,6 +33,14 @@ function MultiMain({
 
     const [multiOptionMapNumberId, setMultiOptionMapNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
 
+    function alertQuestionAnswerButtonNextMulti() {
+        if (questionAnswerButtonNextMulti === false) {
+            alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
+
+        }
+
+    }
+
     return (
         <div className={styles.multiMain}>
             <Question 
@@ -107,15 +115,11 @@ function MultiMain({
             {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
             <Link 
                 to={questionAnswerButtonNextMulti === true ? '/' : null}
+                // condição: se a questão da página Multi foi respondida muda para a página Main 
             >
                 <ButtonNext 
+                    onClick={alertQuestionAnswerButtonNextMulti}
                     questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
-
-                    // tornar a resposta invisível ao mudar de questão
-                    setAnswerDisplay={setAnswerDisplay}
-
-                    // tornar a descrição invisível ao mudar de questão
-                    setDescriptionDisplay={setDescriptionDisplay}
                 />
             </Link>
 

@@ -40,37 +40,29 @@ function Main({
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
 
     const [item, setItem] = useState('') // captura o item correto
- 
-    // Gera um número aleatório entre 1 e 3 para usar na função getPath
-    const number = Math.floor(Math.random() * 3) + 1
 
-    // Definindo o caminho com base no número gerado
-    // função para aumentar a probabilidade de cair mais questões de uma escolha do que de múltipla escolha
-    const getPath = (number) => {        
-        switch (number) {
-            case 1:
-            case 2:
-                return generateNewQuestionMain(); // quando o número randômico for 1 ou 2 ativar a função
-            case 3:
-                return '/page-multi' // quando o número randômico for 3 ir para página multi
+    const [numberPath] = useState(Math.floor(Math.random() * 3) + 1) // Gera um número aleatório entre 1 e 3
 
-            default:
-                return '/'
+    function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
+        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+        const random = uniqueRandomMain(listUnicQuestionsContextLength)
+        const next = listUnicQuestionsContext[random]
 
-        }
-
-    };
-
-    function generateNewQuestionMain() {
-        if (nextQuestion) {            
-            const random = uniqueRandomMain(listUnicQuestionsContextLength) // chamando a função que gera número randômico
-    
-            // gerando novas questões
-            setNextQuestion(listUnicQuestionsContext[random])
-
-        }
+        setNextQuestion(next) // nova questão
 
     } 
+    
+    function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
+        if (questionAnswerButtonNextMain === true) {
+        // condição: se a questão da página Main já foi respondida 
+            (numberPath === 1 || numberPath === 2) && generateNewQuestionMain()
+
+        } else if (questionAnswerButtonNextMain === false) {
+            alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
+
+        }
+
+    }
 
     return(
         <div className={styles.main}>           
@@ -81,8 +73,7 @@ function Main({
             <MenuTools 
                 nextQuestion={nextQuestion} 
                 optionMap={optionMap}
-                optionMapNumberId={optionMapNumberId}
-                generateNewQuestionMain={generateNewQuestionMain}                
+                optionMapNumberId={optionMapNumberId}               
             />
 
             {activePopupRepeatedAlternativesMain === true && 
@@ -144,38 +135,28 @@ function Main({
             />
 
             <AnswerDescription 
-                answer={answer} 
+                answer={answer}
                 srcImg={srcImg} 
                 descriptionP={descriptionP}
                 numberQuestion={numberQuestion}
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listOptions={listOptions}             
+                listOptions={listOptions}
                 item={item}
             />
 
-            {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
             <Link
-                to={questionAnswerButtonNextMain === true ? number === 3 && getPath(number) : '/'}                
+                to={questionAnswerButtonNextMain === true ? numberPath === 3 && '/page-multi' : null}
+                // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' muda para a página Multi, se for igual a 1 ou 2 continuará na rota da página Main e executará a função 'numbersOneTwoGenerateNewQuestionMain()' ao clicar 
             >
                 <ButtonNext
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
-                    uniqueRandomMain={uniqueRandomMain}
-                    
-                    // passar a função para usar no onClick do componente ButtonNext
-                    getPath={getPath}
-                    number={number}
-
-                    // tornar a resposta invisível ao mudar de questão
-                    setAnswerDisplay={setAnswerDisplay}
-                    
-                    // tornar a descrição invisível ao mudar de questão
-                    setDescriptionDisplay={setDescriptionDisplay}
+                    onClick={numbersOneTwoGenerateNewQuestionMain} 
                 />
             </Link>
 
-            <ModalResults /> 
+            <ModalResults />
                       
         </div>
     )
