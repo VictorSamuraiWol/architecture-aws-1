@@ -41,6 +41,17 @@ function MultiMain({
 
     }
 
+    function ablePageMain() { // função que muda a rota da página Multi para a página Main
+        let able
+
+        if (questionAnswerButtonNextMulti) {
+        // condição: se a questão da página Multi foi respondida
+            able = '/'
+        } 
+
+        return able
+    }
+
     return (
         <div className={styles.multiMain}>
             <Question 
@@ -112,10 +123,8 @@ function MultiMain({
                 itens={itens}             
             />
 
-            {/* fazer com que o Link só mude a página se tiver respondido alguma opção, seja correta ou incorreta */}
-            <Link 
-                to={questionAnswerButtonNextMulti === true ? '/' : null}
-                // condição: se a questão da página Multi foi respondida muda para a página Main 
+            <Link
+                to={ablePageMain()} 
             >
                 <ButtonNext 
                     onClick={alertQuestionAnswerButtonNextMulti}

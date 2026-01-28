@@ -64,6 +64,21 @@ function Main({
 
     }
 
+    function ablePageMulti() { // função que muda a rota da página Main para a página Multi, 
+    // só mudará para a página Multi quando o numberPath for igual a '3' e permanecerá na página Main se o numberPath for igual a '1' ou '2',
+    // a probabilidade de permanecer na página Main é de 66% (números 1 ou 2) e de ir para a página Multi é de 33% (número 3)
+        let able
+
+        if (questionAnswerButtonNextMain === true && numberPath === 3) {
+        // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
+            able = '/page-multi'
+
+        } 
+
+        return able
+
+    }
+
     return(
         <div className={styles.main}>           
             <Question 
@@ -147,8 +162,7 @@ function Main({
             />
 
             <Link
-                to={questionAnswerButtonNextMain === true ? numberPath === 3 && '/page-multi' : null}
-                // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' muda para a página Multi, se for igual a 1 ou 2 continuará na rota da página Main e executará a função 'numbersOneTwoGenerateNewQuestionMain()' ao clicar 
+                to={ablePageMulti()}
             >
                 <ButtonNext
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
