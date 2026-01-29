@@ -13,7 +13,8 @@ import { Link } from 'react-router-dom'
 function MultiMain({ 
     question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 
     numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, 
-    multiQuestion, setMultiQuestion, listMultiQuestions
+    multiQuestion, multiOptionMap, multiOptionMapNumberId,
+    optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -23,15 +24,12 @@ function MultiMain({
     const [inputValidateStyle] = useState(styles.inputValidate)
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
-    const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
 
     const [itens, setItens] = useState('') // captura os itens corretos
-
-    const [multiOptionMapNumberId, setMultiOptionMapNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
 
     function alertQuestionAnswerButtonNextMulti() {
         if (questionAnswerButtonNextMulti === false) {
@@ -73,18 +71,16 @@ function MultiMain({
             }
 
             <MultiOptions
-                listMultiOptions={listMultiOptions}
-                setListMultiOptions={setListMultiOptions}
                 optionColorStyle={optionColorStyle}
                 inputColorStyle={inputColorStyle}
                 setCaptureValueMulti={setCaptureValueMulti}
                 captureValueMulti={captureValueMulti}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
                 multiOptionMap={multiOptionMap}
-                setMultiOptionMap={setMultiOptionMap}
-                multiQuestion={multiQuestion}
-                setMultiQuestion={setMultiQuestion}
-                setMultiOptionMapNumberId={setMultiOptionMapNumberId}
-                listMultiQuestions={listMultiQuestions}
             />
             
             <ButtonAnswer            

@@ -13,8 +13,9 @@ import { Link } from 'react-router-dom'
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, listOptions, setListOptions, uniqueRandomMain, 
-    setNextQuestion, nextQuestion, listQuestions
+    setAnswerDisplay, setDescriptionDisplay, listOptions, uniqueRandomMain, 
+    setNextQuestion, nextQuestion, optionMap, optionMapNumberId, 
+    optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -27,13 +28,6 @@ function Main({
     const [inputColorStyle] = useState(styles.inputOptions)
     const [inputValidateStyle] = useState(styles.inputValidate)
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
-    const [optNum1, setOptNum1] = useState('')
-    const [optNum2, setOptNum2] = useState('')
-    const [optNum3, setOptNum3] = useState('')
-    const [optNum4, setOptNum4] = useState('')
-    const [optNum5, setOptNum5] = useState('')
-    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
-    const [optionMapNumberId, setOptionMapNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
     const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
@@ -53,7 +47,7 @@ function Main({
     } 
     
     function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
-        if (questionAnswerButtonNextMain === true) {
+        if (listUnicQuestionsContext.length >= 2 && questionAnswerButtonNextMain === true) {
         // condição: se a questão da página Main já foi respondida 
             (numberPath === 1 || numberPath === 2) && generateNewQuestionMain()
 
@@ -71,6 +65,10 @@ function Main({
 
         if (questionAnswerButtonNextMain === true && numberPath === 3) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
+            able = '/page-multi'
+
+        } else if ((questionAnswerButtonNextMain === true) && (numberPath === 1 || numberPath === 2) && (listUnicQuestionsContext.length < 2)) {
+        // condição: se a questão da página Main foi respondida e o numberPath for igual a '1' ou '2' e tiver menos de 2 questões únicas
             able = '/page-multi'
 
         } 
@@ -102,25 +100,14 @@ function Main({
             <Options
                 optionColorStyle={optionColorStyle}
                 inputColorStyle={inputColorStyle}
-                listOptions={listOptions}
-                setListOptions={setListOptions}        
+                listOptions={listOptions}        
                 setCaptureValue={setCaptureValue}
                 optNum1={optNum1}
                 optNum2={optNum2}
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                setOptNum1={setOptNum1}
-                setOptNum2={setOptNum2}
-                setOptNum3={setOptNum3}
-                setOptNum4={setOptNum4}
-                setOptNum5={setOptNum5}
                 optionMap={optionMap}
-                setOptionMap={setOptionMap}
-                nextQuestion={nextQuestion}
-                setNextQuestion={setNextQuestion}
-                setOptionMapNumberId={setOptionMapNumberId}
-                listQuestions={listQuestions}
             />
 
             <ButtonAnswer            
@@ -162,11 +149,11 @@ function Main({
             />
 
             <Link
-                to={ablePageMulti()}
+                to={ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'               
             >
                 <ButtonNext
+                    onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
-                    onClick={numbersOneTwoGenerateNewQuestionMain} 
                 />
             </Link>
 

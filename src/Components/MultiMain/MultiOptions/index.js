@@ -1,49 +1,16 @@
 import styles from './MultiOptions.module.css'
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../../DataContext'
+import { useEffect, useState } from 'react'
 
 function MultiOptions({ 
-    listMultiOptions, setListMultiOptions, optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
-    multiOptionMap, setMultiOptionMap, multiQuestion, setMultiQuestion, setMultiOptionMapNumberId, listMultiQuestions
+    optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
+    multiOptionMap, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
-
-    const [optNum1, setOptNum1] = useState('')
-    const [optNum2, setOptNum2] = useState('')
-    const [optNum3, setOptNum3] = useState('')
-    const [optNum4, setOptNum4] = useState('')
-    const [optNum5, setOptNum5] = useState('')
 
     const [itemA, setItemA] = useState('') // valor do item A
     const [itemB, setItemB] = useState('') // valor do item B
     const [itemC, setItemC] = useState('') // valor do item C
     const [itemD, setItemD] = useState('') // valor do item D
     const [itemE, setItemE] = useState('') // valor do item E
-
-    // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listMultiOptionsContext, setLoading } = useContext(DataContext)
-
-    useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
-        
-        setListMultiOptions(listMultiOptionsContext)
-
-        const randomNumbers = [] // armazena a lista de números randômicos
-        // gerando um número para randomizar toda vez que renderizar
-        while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
-            const random = Math.floor(Math.random() * 5)
-            if (!randomNumbers.includes(random)) {
-                randomNumbers.push(random)
-            }                    
-        }
-        
-        // gerando números radômicos para alterar a ordem das opções
-        setOptNum1(randomNumbers[0])
-        setOptNum2(randomNumbers[1])
-        setOptNum3(randomNumbers[2])
-        setOptNum4(randomNumbers[3])
-        setOptNum5(randomNumbers[4])
-    
-    }, [listMultiOptionsContext, setListMultiOptions])
 
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
@@ -67,58 +34,6 @@ function MultiOptions({
         }
         
     }
-
-    useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
-        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
-
-        if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return
-
-        function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null
-            let matchedQuestion = null
-
-            setLoading(true) // habilita o componente 'Loader'
-
-            // tenta corresponder diretamente com a questão atual
-            matchedOption = listMultiOptions.find(option => { // encontrar uma opção que tenha uma questão correspondente               
-                return option.numberOption === multiQuestion.numberQuestion
-
-            })
-     
-            // Se não encontrou, tenta corresponder via lista de questões
-            if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listMultiOptions.forEach(option => {
-                    matchedQuestion = listMultiQuestions.find(question => {
-                        return question.numberQuestion === option.numberOption // procura uma questão que tenha uma opção correspondente
-
-                    })
-
-                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
-                        matchedOption = option;
-                        setMultiQuestion(matchedQuestion) // atualizando a questão
-
-                        setLoading(false) // desabilita o componente 'Loader'
-                        
-                    }
-                    
-                })
-                
-                
-
-            } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
-                // atualizando a opção correspondente
-                setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
-                setMultiOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
-
-                setLoading(false) // desabilita o componente 'Loader'
-
-            }
-
-        }        
-        
-        questionMultiOptionMatch() // chamando a função que escolhe a questão e a opção correspondentes e mostra na tela
-
-    }, [listMultiQuestions, multiQuestion, setMultiQuestion, listMultiOptions, setMultiOptionMap, setMultiOptionMapNumberId, setLoading])
 
     useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
         function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção

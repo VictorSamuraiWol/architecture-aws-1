@@ -13,16 +13,26 @@ function PageMain() {
     const [listQuestions, setListQuestions] = useState([])
     const [nextQuestion, setNextQuestion] = useState('')
     const [listOptions, setListOptions] = useState('')
-  
+    const [optNum1, setOptNum1] = useState('')
+    const [optNum2, setOptNum2] = useState('')
+    const [optNum3, setOptNum3] = useState('')
+    const [optNum4, setOptNum4] = useState('')
+    const [optNum5, setOptNum5] = useState('')
+    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
+    const [optionMapNumberId, setOptionMapNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
+
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, loading  } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
-    // usado na função 'uniqueRandomMain'
-    const lastRandomMainRef = useRef(null)  
+    // usado na função 'uniqueRandomMain()'
+    const lastRandomMainRef = useRef(null)
+
+    // usado na função 'questionOptionMatch()'
+    const lastNumberMatchedQuestionOptionRef = useRef(null) // guarda o último número da questão e opção correspondentes
     
     // função para garantir que o novo número aleatório seja sempre diferente do anterior
     const uniqueRandomMain = (dataLength) => { // função para obter um número randômico diferente do anterior, evitando repetição
@@ -40,10 +50,9 @@ function PageMain() {
 
         return random            
     
-    }
+    }   
 
     useEffect(() => {
-
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
      
         // toda a lista de questões da página Main
@@ -59,9 +68,86 @@ function PageMain() {
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setNextQuestion(next) 
-
+        setNextQuestion(next) // armazena a questão que será mostrada na página Main
+        
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
+
+    useEffect(() => {
+        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
+
+        // capturando toda a lista de opções da página main
+        setListOptions(listUnicOptionsContext)
+
+        const randomNumbers = [] // armazena a lista de números randômicos
+        
+        // gerando um número para randomizar toda vez que renderizar
+        while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
+            const random = Math.floor(Math.random() * 5)
+
+            if (!randomNumbers.includes(random)) {
+                randomNumbers.push(random)   
+
+            }
+
+        }
+        
+        // gerando números radômicos para alterar a ordem das opções
+        setOptNum1(randomNumbers[0])
+        setOptNum2(randomNumbers[1])
+        setOptNum3(randomNumbers[2])
+        setOptNum4(randomNumbers[3])
+        setOptNum5(randomNumbers[4]) 
+
+    }, [listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
+
+    useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
+        // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão           
+        if (!listQuestions || !nextQuestion || !listOptions) return
+
+        function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
+            let matchedOption = null
+            let matchedQuestion = null
+
+            setLoading(true) // habilita o componente 'Loader'
+
+            // busca uma opção que corresponde diretamente com a questão atual
+            matchedOption = listOptions.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior                        
+                return ((option.numberOption === nextQuestion.numberQuestion) && (option.numberOption !== lastNumberMatchedQuestionOptionRef.current))
+            })
+            // Se não encontrou, tenta corresponder via lista de questões
+            if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
+                listOptions.forEach(option => {
+                    matchedQuestion = listQuestions.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
+                        return ((question.numberQuestion === option.numberOption) && (question.numberQuestion !== lastNumberMatchedQuestionOptionRef.current))
+                    })
+
+                    if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
+                        matchedOption = option // armazena a opção correspondente
+                        setNextQuestion(matchedQuestion) // atualizando a questão                        
+                        setLoading(false) // desabilita o componente 'Loader'                   
+
+                    }
+        
+                })
+
+            } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
+                // atualizando a opção correspondente
+                setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
+                setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+                matchedQuestion = nextQuestion // matchedQuestion recebe o valor 'nextQuestion'                
+                setLoading(false) // desabilita o componente 'Loader'
+                lastNumberMatchedQuestionOptionRef.current = matchedQuestion.numberQuestion // armazena o número da questão correspondente
+
+            } else {
+                console.error('não encontrou uma opção que possua uma questão correspondente, crie uma nova questão ou opção com o mesmo número para haver correspondênciam, obrigado.')
+
+            }
+
+        } 
+        
+        questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'nextQuestion' da página Main
+
+    }, [listQuestions, listOptions, nextQuestion, setNextQuestion, setOptionMap, setOptionMapNumberId, setLoading])
 
     return(
         <div>
@@ -93,9 +179,20 @@ function PageMain() {
                         listOptions={listOptions}
                         setListOptions={setListOptions}                       
                         uniqueRandomMain={uniqueRandomMain}
-                        listQuestions={listQuestions}
                         setNextQuestion={setNextQuestion}                        
-                        nextQuestion={nextQuestion}                    
+                        nextQuestion={nextQuestion}
+                        optNum1={optNum1}
+                        optNum2={optNum2}
+                        optNum3={optNum3}
+                        optNum4={optNum4}
+                        optNum5={optNum5}
+                        setOptNum1={setOptNum1}
+                        setOptNum2={setOptNum2}
+                        setOptNum3={setOptNum3}
+                        setOptNum4={setOptNum4}
+                        setOptNum5={setOptNum5}
+                        optionMap={optionMap}
+                        optionMapNumberId={optionMapNumberId}
                     />
                 }
 
