@@ -8,9 +8,7 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageMulti() {
     
-    const [listMultiQuestions, setListMultiQuestions] = useState([])
     const [multiQuestion, setMultiQuestion] = useState([])
-    const [listMultiOptions, setListMultiOptions] = useState([])
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
     const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
@@ -50,10 +48,7 @@ function PageMulti() {
     }
     
     useEffect(() => {
-        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return // se a lista de questões não existir, retorne
-
-        // toda a lista de questões da página Multi
-        setListMultiQuestions(listMultiQuestionsContext)       
+        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return // se a lista de questões não existir, retorne    
     
         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página Multi
         setRequestData(true)
@@ -71,8 +66,6 @@ function PageMulti() {
 
     useEffect(() => {
         if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
-        
-        setListMultiOptions(listMultiOptionsContext)
 
         const randomNumbers = [] // armazena a lista de números randômicos
 
@@ -94,12 +87,12 @@ function PageMulti() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
     
-    }, [listMultiOptionsContext, setListMultiOptions])
+    }, [listMultiOptionsContext])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
 
-        if (!listMultiQuestions || !multiQuestion || !listMultiOptions) return
+        if (!listMultiQuestionsContext || !multiQuestion || !listMultiOptionsContext) return     
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -108,17 +101,15 @@ function PageMulti() {
             setLoading(true) // habilita o componente 'Loader'
 
             // tenta corresponder diretamente com a questão atual
-            matchedOption = listMultiOptions.find(option => { // retorna uma opção que tenha uma questão correspondente                
+            matchedOption = listMultiOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente                
                 return option.numberOption === multiQuestion.numberQuestion
-
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listMultiOptions.forEach(option => {
-                    matchedQuestion = listMultiQuestions.find(question => { // retorna uma questão que tenha uma opção correspondente
+                listMultiOptionsContext.forEach(option => {
+                      matchedQuestion = listMultiQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente
                         return question.numberQuestion === option.numberOption
-
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
@@ -144,7 +135,7 @@ function PageMulti() {
         
         questionMultiOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'multiQuestion' da página Multi
 
-    }, [listMultiQuestions, multiQuestion, setMultiQuestion, listMultiOptions, setMultiOptionMap, setMultiOptionMapNumberId, setLoading])
+    }, [listMultiQuestionsContext, listMultiOptionsContext, multiQuestion, setMultiQuestion, setMultiOptionMap, setMultiOptionMapNumberId, setLoading])
 
     return(
         <div>     
@@ -167,14 +158,11 @@ function PageMulti() {
                         descriptionP={multiQuestion.descriptionP}
                         elementId={multiQuestion.id}
                         numberQuestion={multiQuestion.numberQuestion}
-                        listMultiOptions={listMultiOptions}
-                        setListMultiOptions={setListMultiOptions}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
                         multiQuestion={multiQuestion}
-                        listMultiQuestions={listMultiQuestions}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}

@@ -9,12 +9,15 @@ import identityAndAccessManagement from '../../imgs/answers-imgs/Identity_and_Ac
 import simpleQueueService from '../../imgs/answers-imgs/Simple_Queue_Service.png'
 import simpleStoragesService from '../../imgs/answers-imgs/Simple_Storage_Service.png'
 import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { DataContext } from '../DataContext'
 
 function AnswerDescription({ 
     answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
-    listOptions, listMultiOptions, item, itens
+    item, itens
 }) {
+
+    const { listUnicOptionsContext, listMultiOptionsContext } = useContext(DataContext)
 
     // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem usadas nas suas respectivas questões dinamicamente
     const [imagesDescriptions] = useState({
@@ -67,7 +70,7 @@ function AnswerDescription({
             >
                 {item && <h3 className={styles.item}>{item}</h3>} {/* item que será mostrado na PageMain */}
                 {itens && <h3 className={styles.item}>{itens}</h3>} {/* itens que serão mostrados na PageMulti */}
-                <h3>{(listOptions && answer) || (listMultiOptions && answer)}</h3>
+                <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer)}</h3>
                 <p>Click here for more information</p>
             </div>
 

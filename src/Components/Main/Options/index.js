@@ -1,8 +1,9 @@
 import styles from './Options.module.css'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { DataContext } from '../../DataContext'
 
 function Options({ 
-    setCaptureValue, optionColorStyle, inputColorStyle, listOptions,  
+    setCaptureValue, optionColorStyle, inputColorStyle,  
     optNum1, optNum2, optNum3, optNum4, optNum5, optionMap
 }) {
     
@@ -12,9 +13,11 @@ function Options({
     const [itemD, setItemD] = useState('') // valor do item D
     const [itemE, setItemE] = useState('') // valor do item E
 
+    const { listUnicOptionsContext } = useContext(DataContext)
+
     // função para capturar o valor que está marcado quando clicados no campo caixa de marcação (input)
     function captureValueFunc(e) {
-        listOptions && setCaptureValue(e.target.value)
+        listUnicOptionsContext && setCaptureValue(e.target.value)
 
     }
 
@@ -60,8 +63,8 @@ function Options({
     return(                 
         optionMap && <div 
         className={styles.optionsMain}  
-        id='option' 
-        key={listOptions && listOptions.id}
+        id='option'
+        key={listUnicOptionsContext && listUnicOptionsContext.id}
         >
             {/* esta alternativa da opção única só irá aparecer se 'optionMap[optNum1]' existir */}
             {optionMap[optNum1] && <div className={`optionNext ${optionColorStyle} ${styles.alternativeOptions}`}> 

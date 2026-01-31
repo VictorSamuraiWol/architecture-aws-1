@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function MultiMain({ 
-    question, listMultiOptions, setListMultiOptions, answer, srcImg, descriptionP, 
+    question, answer, srcImg, descriptionP, 
     numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, 
     multiQuestion, multiOptionMap, multiOptionMapNumberId,
     optNum1, optNum2, optNum3, optNum4, optNum5
@@ -96,8 +96,6 @@ function MultiMain({
                 inputColorStyle={inputColorStyle}
                 inputValidateStyle={inputValidateStyle}
                 inputInvalidateStyle={inputInvalidateStyle}
-                listMultiOptions={listMultiOptions}
-                setListMultiOptions={setListMultiOptions}
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
                 multiOptionMap={multiOptionMap}
@@ -115,7 +113,6 @@ function MultiMain({
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listMultiOptions={listMultiOptions} 
                 itens={itens}             
             />
 

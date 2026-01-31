@@ -10,9 +10,7 @@ function PageMain() {
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
-    const [listQuestions, setListQuestions] = useState([])
     const [nextQuestion, setNextQuestion] = useState('')
-    const [listOptions, setListOptions] = useState('')
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -54,9 +52,6 @@ function PageMain() {
 
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
-     
-        // toda a lista de questões da página Main
-        setListQuestions(listUnicQuestionsContext)
 
         // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
@@ -74,9 +69,6 @@ function PageMain() {
 
     useEffect(() => {
         if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
-
-        // capturando toda a lista de opções da página main
-        setListOptions(listUnicOptionsContext)
 
         const randomNumbers = [] // armazena a lista de números randômicos
         
@@ -98,11 +90,11 @@ function PageMain() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4]) 
 
-    }, [listUnicOptionsContext, setListOptions, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
+    }, [listUnicOptionsContext, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão           
-        if (!listQuestions || !nextQuestion || !listOptions) return
+        if (!listUnicQuestionsContext || !nextQuestion || !listUnicOptionsContext) return
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -111,13 +103,13 @@ function PageMain() {
             setLoading(true) // habilita o componente 'Loader'
 
             // busca uma opção que corresponde diretamente com a questão atual
-            matchedOption = listOptions.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior                        
+             matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior                        
                 return ((option.numberOption === nextQuestion.numberQuestion) && (option.numberOption !== lastNumberMatchedQuestionOptionRef.current))
             })
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listOptions.forEach(option => {
-                    matchedQuestion = listQuestions.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
+                listUnicOptionsContext.forEach(option => {
+                    matchedQuestion = listUnicQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
                         return ((question.numberQuestion === option.numberOption) && (question.numberQuestion !== lastNumberMatchedQuestionOptionRef.current))
                     })
 
@@ -147,7 +139,7 @@ function PageMain() {
         
         questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'nextQuestion' da página Main
 
-    }, [listQuestions, listOptions, nextQuestion, setNextQuestion, setOptionMap, setOptionMapNumberId, setLoading])
+    }, [listUnicQuestionsContext, listUnicOptionsContext, nextQuestion, setNextQuestion, setOptionMap, setOptionMapNumberId, setLoading])
 
     return(
         <div>
@@ -175,9 +167,7 @@ function PageMain() {
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}
-                        listOptions={listOptions}
-                        setListOptions={setListOptions}                       
+                        setDescriptionDisplay={setDescriptionDisplay}                  
                         uniqueRandomMain={uniqueRandomMain}
                         setNextQuestion={setNextQuestion}                        
                         nextQuestion={nextQuestion}

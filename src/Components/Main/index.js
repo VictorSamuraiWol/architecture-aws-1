@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, listOptions, uniqueRandomMain, 
+    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain, 
     setNextQuestion, nextQuestion, optionMap, optionMapNumberId, 
     optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
@@ -99,8 +99,7 @@ function Main({
 
             <Options
                 optionColorStyle={optionColorStyle}
-                inputColorStyle={inputColorStyle}
-                listOptions={listOptions}        
+                inputColorStyle={inputColorStyle}   
                 setCaptureValue={setCaptureValue}
                 optNum1={optNum1}
                 optNum2={optNum2}
@@ -121,8 +120,7 @@ function Main({
                 optionInvalidateStyle={optionInvalidateStyle}
                 inputColorStyle={inputColorStyle}
                 inputValidateStyle={inputValidateStyle}
-                inputInvalidateStyle={inputInvalidateStyle}
-                listOptions={listOptions}                      
+                inputInvalidateStyle={inputInvalidateStyle}                      
                 captureValue={captureValue}
                 optNum1={optNum1}
                 optNum2={optNum2}
@@ -144,7 +142,6 @@ function Main({
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
-                listOptions={listOptions}
                 item={item}
             />
 
