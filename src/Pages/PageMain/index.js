@@ -16,8 +16,8 @@ function PageMain() {
     const [optNum3, setOptNum3] = useState('')
     const [optNum4, setOptNum4] = useState('')
     const [optNum5, setOptNum5] = useState('')
-    const [optionMap, setOptionMap] = useState([]) // mapear todas as opções presente na página main
-    const [optionMapNumberId, setOptionMapNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
+    const [optionMain, setOptionMain] = useState([]) // mapear todas as opções presente na página main
+    const [optionMainNumberId, setOptionMainNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
@@ -124,8 +124,8 @@ function PageMain() {
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
-                setOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+                setOptionMain([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
+                setOptionMainNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
                 matchedQuestion = nextQuestion // matchedQuestion recebe o valor 'nextQuestion'                
                 setLoading(false) // desabilita o componente 'Loader'
                 lastNumberMatchedQuestionOptionRef.current = matchedQuestion.numberQuestion // armazena o número da questão correspondente
@@ -139,7 +139,7 @@ function PageMain() {
         
         questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'nextQuestion' da página Main
 
-    }, [listUnicQuestionsContext, listUnicOptionsContext, nextQuestion, setNextQuestion, setOptionMap, setOptionMapNumberId, setLoading])
+    }, [listUnicQuestionsContext, listUnicOptionsContext, nextQuestion, setNextQuestion, setOptionMain, setOptionMainNumberId, setLoading])
 
     return(
         <div>
@@ -181,8 +181,8 @@ function PageMain() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        optionMap={optionMap}
-                        optionMapNumberId={optionMapNumberId}
+                        optionMain={optionMain}
+                        optionMainNumberId={optionMainNumberId}
                     />
                 }
 

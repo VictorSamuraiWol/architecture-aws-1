@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 function MultiMain({ 
     question, answer, srcImg, descriptionP, 
     numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, 
-    multiQuestion, multiOptionMap, multiOptionMapNumberId,
+    multiQuestion, optionMulti, optionMultiNumberId,
     optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
@@ -58,8 +58,8 @@ function MultiMain({
 
             <MenuTools
                 multiQuestion={multiQuestion} 
-                multiOptionMap={multiOptionMap} 
-                multiOptionMapNumberId={multiOptionMapNumberId}                
+                optionMulti={optionMulti} 
+                optionMultiNumberId={optionMultiNumberId}                
             />
 
             {activePopupRepeatedAlternativesMultiMain === true && 
@@ -80,7 +80,7 @@ function MultiMain({
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                multiOptionMap={multiOptionMap}
+                optionMulti={optionMulti}
             />
             
             <ButtonAnswer            
@@ -98,7 +98,7 @@ function MultiMain({
                 inputInvalidateStyle={inputInvalidateStyle}
                 captureValueMulti={captureValueMulti}
                 setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
-                multiOptionMap={multiOptionMap}
+                optionMulti={optionMulti}
                 activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
                 setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
                 setItens={setItens}

@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom'
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain, 
-    setNextQuestion, nextQuestion, optionMap, optionMapNumberId, 
+    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain,
+    setNextQuestion, nextQuestion, optionMain, optionMainNumberId,
     optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
@@ -85,8 +85,8 @@ function Main({
 
             <MenuTools 
                 nextQuestion={nextQuestion} 
-                optionMap={optionMap}
-                optionMapNumberId={optionMapNumberId}               
+                optionMain={optionMain}
+                optionMainNumberId={optionMainNumberId}               
             />
 
             {activePopupRepeatedAlternativesMain === true && 
@@ -106,7 +106,7 @@ function Main({
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                optionMap={optionMap}
+                optionMain={optionMain}
             />
 
             <ButtonAnswer            
@@ -128,7 +128,7 @@ function Main({
                 optNum4={optNum4}
                 optNum5={optNum5}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
-                optionMap={optionMap}
+                optionMain={optionMain}
                 activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
                 setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
                 setItem={setItem}

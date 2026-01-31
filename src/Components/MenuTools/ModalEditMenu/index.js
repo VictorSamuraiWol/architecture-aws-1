@@ -16,8 +16,8 @@ import { isEqual } from 'lodash'
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
 
-function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuestion, 
-  multiOptionMap, multiOptionMapNumberId }) {
+function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQuestion, 
+  optionMulti, optionMultiNumberId }) {
 
   // criando variáveis para todos os atributos das questões
   const [questionTextMain, setQuestionTextMain] = useState(nextQuestion?.question)
@@ -27,11 +27,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const [questionNumberMain] = useState(nextQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções
-  const [optionAMain, setOptionAMain] = useState(optionMap && optionMap[0])
-  const [optionBMain, setOptionBMain] = useState(optionMap && optionMap[1])
-  const [optionCMain, setOptionCMain] = useState(optionMap && optionMap[2])
-  const [optionDMain, setOptionDMain] = useState(optionMap && optionMap[3])
-  const [optionEMain, setOptionEMain] = useState(optionMap && optionMap[4])
+  const [optionAMain, setOptionAMain] = useState(optionMain && optionMain[0])
+  const [optionBMain, setOptionBMain] = useState(optionMain && optionMain[1])
+  const [optionCMain, setOptionCMain] = useState(optionMain && optionMain[2])
+  const [optionDMain, setOptionDMain] = useState(optionMain && optionMain[3])
+  const [optionEMain, setOptionEMain] = useState(optionMain && optionMain[4])
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
   const [questionTextMulti, setQuestionTextMulti] = useState(multiQuestion?.question)
@@ -41,11 +41,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const [questionNumberMulti] = useState(multiQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
-  const [optionAMulti, setOptionAMulti] = useState(multiOptionMap && multiOptionMap[0])
-  const [optionBMulti, setOptionBMulti] = useState(multiOptionMap && multiOptionMap[1])
-  const [optionCMulti, setOptionCMulti] = useState(multiOptionMap && multiOptionMap[2])
-  const [optionDMulti, setOptionDMulti] = useState(multiOptionMap && multiOptionMap[3])
-  const [optionEMulti, setOptionEMulti] = useState(multiOptionMap && multiOptionMap[4])
+  const [optionAMulti, setOptionAMulti] = useState(optionMulti && optionMulti[0])
+  const [optionBMulti, setOptionBMulti] = useState(optionMulti && optionMulti[1])
+  const [optionCMulti, setOptionCMulti] = useState(optionMulti && optionMulti[2])
+  const [optionDMulti, setOptionDMulti] = useState(optionMulti && optionMulti[3])
+  const [optionEMulti, setOptionEMulti] = useState(optionMulti && optionMulti[4])
 
   const [newOption, setNewOption] = useState([]) // lista das alternativas da opção única
   const [newMultiOption, setNewMultiOption] = useState([]) // lista das alternativas da opção múltipla
@@ -70,19 +70,19 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
   
   useEffect(() => {
-    setOptionAMain(optionMap && optionMap[0])
-    setOptionBMain(optionMap && optionMap[1])
-    setOptionCMain(optionMap && optionMap[2])
-    setOptionDMain(optionMap && optionMap[3])
-    setOptionEMain(optionMap && optionMap[4])
+    setOptionAMain(optionMain && optionMain[0])
+    setOptionBMain(optionMain && optionMain[1])
+    setOptionCMain(optionMain && optionMain[2])
+    setOptionDMain(optionMain && optionMain[3])
+    setOptionEMain(optionMain && optionMain[4])
 
-    setOptionAMulti(multiOptionMap && multiOptionMap[0])
-    setOptionBMulti(multiOptionMap && multiOptionMap[1])
-    setOptionCMulti(multiOptionMap && multiOptionMap[2])
-    setOptionDMulti(multiOptionMap && multiOptionMap[3])
-    setOptionEMulti(multiOptionMap && multiOptionMap[4])
+    setOptionAMulti(optionMulti && optionMulti[0])
+    setOptionBMulti(optionMulti && optionMulti[1])
+    setOptionCMulti(optionMulti && optionMulti[2])
+    setOptionDMulti(optionMulti && optionMulti[3])
+    setOptionEMulti(optionMulti && optionMulti[4])
 
-  }, [optionMap, multiOptionMap]) // sempre atualizar as opções quando houver mudança
+  }, [optionMain, optionMulti]) // sempre atualizar as opções quando houver mudança
 
   useEffect(() => {
     setNewOption([optionAMain, optionBMain, optionCMain, optionDMain, optionEMain]) // lista das alternativas da opção única
@@ -144,11 +144,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
       option3: optionCMain,
       option4: optionDMain,
       option5: optionEMain,
-      numberOption: optionMapNumberId[0], // não será alterado 
-      id: optionMapNumberId[1] // não será alterado
+      numberOption: optionMainNumberId[0], // não será alterado 
+      id: optionMainNumberId[1] // não será alterado
 
     })
-    await fetch(`http://localhost:3001/options/${optionMapNumberId[1]}`, {
+    await fetch(`http://localhost:3001/options/${optionMainNumberId[1]}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -208,11 +208,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
       option3: optionCMulti,
       option4: optionDMulti,
       option5: optionEMulti,
-      numberOption: multiOptionMapNumberId[0], // não será alterado 
-      id: multiOptionMapNumberId[1] // não será alterado
+      numberOption: optionMultiNumberId[0], // não será alterado 
+      id: optionMultiNumberId[1] // não será alterado
 
     })
-    await fetch(`http://localhost:3001/multiOptions/${multiOptionMapNumberId[1]}`, {
+    await fetch(`http://localhost:3001/multiOptions/${optionMultiNumberId[1]}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -448,7 +448,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
   // função que limpa todos os campos do formulário
   function cleanForm() {
-    if (nextQuestion && optionMap) {
+    if (nextQuestion && optionMain) {
       setQuestionTextMain('')
       setCorrectAnswerMain('')
       setImageKeyMain('')
@@ -461,7 +461,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
     }
 
-    if (multiQuestion && multiOptionMap) {
+    if (multiQuestion && optionMulti) {
       setQuestionTextMulti('')
       setCorrectAnswerMulti('')
       setImageKeyMulti('')
@@ -503,7 +503,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
         <h1>EDITAR CARD:</h1>
 
-        {nextQuestion && optionMap && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
+        {nextQuestion && optionMain && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={multiFunctionsNewPageMain}
           className={styles.formModal}
         > 
@@ -593,7 +593,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
         
         </form>}
 
-        {multiQuestion && multiOptionMap && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
+        {multiQuestion && optionMulti && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
           onSubmit={multiFunctionsPageMulti}
           className={styles.formModal}
         > 

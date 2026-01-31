@@ -11,8 +11,8 @@ function PageMulti() {
     const [multiQuestion, setMultiQuestion] = useState([])
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
-    const [multiOptionMap, setMultiOptionMap] = useState([]) // mapear todas as opções da página multi    
-    const [multiOptionMapNumberId, setMultiOptionMapNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
+    const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
+    const [optionMultiNumberId, setOptionMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -125,8 +125,8 @@ function PageMulti() {
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setMultiOptionMap([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
-                setMultiOptionMapNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+                setOptionMulti([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
+                setOptionMultiNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
 
             }
@@ -135,7 +135,7 @@ function PageMulti() {
         
         questionMultiOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'multiQuestion' da página Multi
 
-    }, [listMultiQuestionsContext, listMultiOptionsContext, multiQuestion, setMultiQuestion, setMultiOptionMap, setMultiOptionMapNumberId, setLoading])
+    }, [listMultiQuestionsContext, listMultiOptionsContext, multiQuestion, setMultiQuestion, setOptionMulti, setOptionMultiNumberId, setLoading])
 
     return(
         <div>     
@@ -173,8 +173,8 @@ function PageMulti() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        multiOptionMap={multiOptionMap}
-                        multiOptionMapNumberId={multiOptionMapNumberId}
+                        optionMulti={optionMulti}
+                        optionMultiNumberId={optionMultiNumberId}
                     />
                 }
 

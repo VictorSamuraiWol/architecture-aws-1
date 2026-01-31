@@ -5,8 +5,8 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
 
-function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion, 
-  multiOptionMap, multiOptionMapNumberId }) {
+function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion, 
+  optionMulti, optionMultiNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
@@ -42,8 +42,8 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
   }
 
   // função que deleta a opção de única escolha atual
-  async function onDeleteOption(optionMapNumberId) {
-    const url = `http://localhost:3001/options/${optionMapNumberId[1]}`
+  async function onDeleteOption(optionMainNumberId) {
+    const url = `http://localhost:3001/options/${optionMainNumberId[1]}`
 
     const options = {
         method: "DELETE",
@@ -98,8 +98,8 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
   }
 
   // função que deleta a opção de múltipla escolha atual
-  async function onDeleteOptionMulti(multiOptionMapNumberId) {
-    const url = `http://localhost:3001/multiOptions/${multiOptionMapNumberId[1]}`
+  async function onDeleteOptionMulti(optionMultiNumberId) {
+    const url = `http://localhost:3001/multiOptions/${optionMultiNumberId[1]}`
 
     const options = {
         method: "DELETE",
@@ -149,7 +149,7 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
   function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
     if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
         onDeleteQuestion(nextQuestion)
-        onDeleteOption(optionMapNumberId)
+        onDeleteOption(optionMainNumberId)
         alert('Deleted successfully!')
     
     } else {
@@ -163,7 +163,7 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
   function multiDeleteMultiQuestionMultiOption() { // função que deleta a questão e opção correspondente da página 'PageMulti'
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(multiQuestion)
-      onDeleteOptionMulti(multiOptionMapNumberId)
+      onDeleteOptionMulti(optionMultiNumberId)
       alert('Deleted successfully!')
     
     } else {
@@ -199,10 +199,10 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
         <ModalEditMenu 
           nextQuestion={nextQuestion} 
           multiQuestion={multiQuestion}
-          optionMap={optionMap} 
-          optionMapNumberId={optionMapNumberId}
-          multiOptionMap={multiOptionMap}
-          multiOptionMapNumberId={multiOptionMapNumberId}
+          optionMain={optionMain} 
+          optionMainNumberId={optionMainNumberId}
+          optionMulti={optionMulti}
+          optionMultiNumberId={optionMultiNumberId}
         />
 
         <MdDelete

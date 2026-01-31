@@ -10,7 +10,7 @@ import { useOutletContext } from 'react-router-dom'
 function ButtonAnswer({ 
     answerDisplay, setAnswerDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
     inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, 
-    setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMap, multiOptionMap, 
+    setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMain, optionMulti, 
     setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion, setItem, 
     setItens
 }) {
@@ -46,10 +46,10 @@ function ButtonAnswer({
     }
 
     function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente, tanto na página Main quanto na página Multi  
-        if (optionMap && captureValue === '') {            
+        if (optionMain && captureValue === '') {            
             alert('Please select an option!') 
             answerDisplay && setAnswerDisplay(styles.invisible)
-        } else if ((multiOptionMap && captureValueMulti.length < 2) || (multiOptionMap && captureValueMulti.length > 2)) {
+        } else if ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2)) {
             alert('Please select 2 options!') 
             answerDisplay && setAnswerDisplay(styles.invisible)
 
@@ -63,7 +63,7 @@ function ButtonAnswer({
         const correctSound = new Audio(correctAudio)
 
         // passar somente os valores que não forem vazios de todas as opções para a const 'convertObjArray' antes da validação
-        const convertObjArray = optionMap && [optionMap[optNum1], optionMap[optNum2], optionMap[optNum3], optionMap[optNum4], optionMap[optNum5]].filter(option => option !== '')
+        const convertObjArray = optionMain && [optionMain[optNum1], optionMain[optNum2], optionMain[optNum3], optionMain[optNum4], optionMain[optNum5]].filter(option => option !== '')
         const captureOptionsNextInput = document.querySelectorAll('.optionNext input') // captura todas os campos input
 
         const checkedParagraph = [...captureOptionsNextInput] // captura somente a alternativa marcada
@@ -81,11 +81,11 @@ function ButtonAnswer({
 
         alertOption() // alertar quando tiver nenhuma alternativa marcada na página Main
 
-        if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
+        if (checkAlternativeAnswerDefault(optionMain, optionMulti, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMain(true)
 
         } else {
-            if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
+            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
                 setActivePopupRepeatedAlternativesMain(true)
 
                 setTimeout(() => {
@@ -104,7 +104,7 @@ function ButtonAnswer({
 
                 } else {
                     for(let i=0; i < convertObjArray.length; i++) {
-                        if (optionMap && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
+                        if (optionMain && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
                             // adicionando a validação na opção correta
                             const correctOption = document.querySelectorAll('.optionNext div')[i]
                             const correctOptionItem = document.querySelectorAll('.optionNext .item')[i].innerText
@@ -226,11 +226,11 @@ function ButtonAnswer({
 
         alertOption() // alertar quando menos de 2 alternativas ou mais de 2 alternativas estiverem marcadas na página múltipla
 
-        if (checkAlternativeAnswerDefault(optionMap, multiOptionMap, answer) === true) {
+        if (checkAlternativeAnswerDefault(optionMain, optionMulti, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
 
         } else {
-            if (repeatedAlternativesDefault(optionMap, multiOptionMap).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
+            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
                 setActivePopupRepeatedAlternativesMultiMain(true)
 
                 setTimeout(() => {
@@ -356,11 +356,11 @@ function ButtonAnswer({
     }
 
     function displayAndValidate () {
-        optionMap && validateAnswerPageMain()
-        multiOptionMap && validateAnswerPageMulti()
+        optionMain && validateAnswerPageMain()
+        optionMulti && validateAnswerPageMulti()
 
         // enquanto tiver alternativas repetidas, não será mostrado a resposta na tela 
-        if ((optionMap && !multiOptionMap && repeatedAlternativesDefault(optionMap, multiOptionMap).length === 0 && captureValue !== '') || (multiOptionMap && !optionMap && repeatedAlternativesDefault(optionMap, multiOptionMap).length === 0 && captureValueMulti.length === 2)) {
+        if ((optionMain && !optionMulti && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValue !== '') || (optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 2)) {
         // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
 
@@ -384,7 +384,7 @@ function ButtonAnswer({
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
                     textPopup={`No alternative matching the answer to question ${numberQuestion} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestion} the correct alternative from the option highlighted below: ${optionMap[0]}, ${optionMap[1]}, ${optionMap[2]}, ${optionMap[3]}${optionMap[4] !== '' ? ` or ${optionMap[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestion}, highlighted below: ${answer}.`}
+                    textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestion} the correct alternative from the option highlighted below: ${optionMain[0]}, ${optionMain[1]}, ${optionMain[2]}, ${optionMain[3]}${optionMain[4] !== '' ? ` or ${optionMain[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestion}, highlighted below: ${answer}.`}
                 />
             }
 
@@ -393,7 +393,7 @@ function ButtonAnswer({
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
                     textPopup={`The two alternatives included in the answer to question ${numberQuestion} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option 1 and Option 2 exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestion} the two correct alternatives from the option highlighted below: ${multiOptionMap[0]} e ${multiOptionMap[1]}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestion}, highlighted below: ${answer}. `}
+                    textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestion} the two correct alternatives from the option highlighted below: ${optionMulti[0]} e ${optionMulti[1]}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestion}, highlighted below: ${answer}. `}
                 />
             }
 
