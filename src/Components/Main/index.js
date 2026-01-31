@@ -13,9 +13,8 @@ import { Link } from 'react-router-dom'
 
 function Main({ 
     question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain,
-    setNextQuestion, nextQuestion, optionMain, optionMainNumberId,
-    optNum1, optNum2, optNum3, optNum4, optNum5
+    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
+    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -42,7 +41,7 @@ function Main({
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setNextQuestion(next) // nova questão
+        setQuestionMain(next) // nova questão
 
     } 
     
@@ -84,7 +83,7 @@ function Main({
             />
 
             <MenuTools 
-                nextQuestion={nextQuestion} 
+                questionMain={questionMain} 
                 optionMain={optionMain}
                 optionMainNumberId={optionMainNumberId}               
             />

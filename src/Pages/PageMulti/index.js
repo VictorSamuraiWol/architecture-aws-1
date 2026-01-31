@@ -8,7 +8,7 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageMulti() {
     
-    const [multiQuestion, setMultiQuestion] = useState([])
+    const [questionMulti, setQuestionMulti] = useState([])
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
     const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
@@ -60,7 +60,7 @@ function PageMulti() {
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)
         const next = listMultiQuestionsContext[random]
 
-        setMultiQuestion(next)          
+        setQuestionMulti(next)          
 
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
@@ -92,7 +92,7 @@ function PageMulti() {
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
 
-        if (!listMultiQuestionsContext || !multiQuestion || !listMultiOptionsContext) return     
+        if (!listMultiQuestionsContext || !questionMulti || !listMultiOptionsContext) return     
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -102,7 +102,7 @@ function PageMulti() {
 
             // tenta corresponder diretamente com a questão atual
             matchedOption = listMultiOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente                
-                return option.numberOption === multiQuestion.numberQuestion
+                return option.numberOption === questionMulti.numberQuestion
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
@@ -114,7 +114,7 @@ function PageMulti() {
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
                         matchedOption = option;
-                        setMultiQuestion(matchedQuestion) // atualizando a questão
+                        setQuestionMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
                     }
@@ -133,36 +133,36 @@ function PageMulti() {
 
         }        
         
-        questionMultiOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'multiQuestion' da página Multi
+        questionMultiOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
 
-    }, [listMultiQuestionsContext, listMultiOptionsContext, multiQuestion, setMultiQuestion, setOptionMulti, setOptionMultiNumberId, setLoading])
+    }, [listMultiQuestionsContext, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading])
 
     return(
         <div>     
             {requestData && <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
-                key={multiQuestion.id}
+                key={questionMulti.id}
             >
-                {multiQuestion &&
+                {questionMulti &&
                     <Header 
                         title="Architecture Questions - Randomly"
                     />
                 }
 
-                {multiQuestion &&
+                {questionMulti &&
                     <MultiMain 
-                        question={multiQuestion.question} 
-                        answer={multiQuestion.answerText}
-                        srcImg={multiQuestion.srcImg}
-                        descriptionP={multiQuestion.descriptionP}
-                        elementId={multiQuestion.id}
-                        numberQuestion={multiQuestion.numberQuestion}
+                        question={questionMulti.question} 
+                        answer={questionMulti.answerText}
+                        srcImg={questionMulti.srcImg}
+                        descriptionP={questionMulti.descriptionP}
+                        elementId={questionMulti.id}
+                        numberQuestion={questionMulti.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        multiQuestion={multiQuestion}
+                        questionMulti={questionMulti}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}

@@ -5,7 +5,7 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
 
-function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion, 
+function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti, 
   optionMulti, optionMultiNumberId }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -14,8 +14,8 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
 
   // função que deleta a questão de única escolha atual
-  async function onDeleteQuestion(nextQuestion) {
-    const url = `http://localhost:3001/questions/${nextQuestion.id}`
+  async function onDeleteQuestion(questionMain) {
+    const url = `http://localhost:3001/questions/${questionMain.id}`
 
     const options = {
         method: "DELETE",
@@ -70,8 +70,8 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
   }
 
   // função que deleta a questão de múltipla escolha atual
-  async function onDeleteQuestionMulti(multiQuestion) {
-    const url = `http://localhost:3001/multiQuestions/${multiQuestion.id}`
+  async function onDeleteQuestionMulti(questionMulti) {
+    const url = `http://localhost:3001/multiQuestions/${questionMulti.id}`
 
     const options = {
         method: "DELETE",
@@ -134,10 +134,10 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
  
     let matched = null
 
-    if (nextQuestion) {      
+    if (questionMain) {      
       matched = listNumbersQuestionsMain.filter(question => listNumbersOptionsMain.includes(question))
 
-    } else if (multiQuestion) {
+    } else if (questionMulti) {
       matched = listNumbersQuestionsMulti.filter(question => listNumbersOptionsMulti.includes(question))
 
     }
@@ -148,7 +148,7 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
 
   function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
     if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
-        onDeleteQuestion(nextQuestion)
+        onDeleteQuestion(questionMain)
         onDeleteOption(optionMainNumberId)
         alert('Deleted successfully!')
     
@@ -162,7 +162,7 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
 
   function multiDeleteMultiQuestionMultiOption() { // função que deleta a questão e opção correspondente da página 'PageMulti'
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
-      onDeleteQuestionMulti(multiQuestion)
+      onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
       alert('Deleted successfully!')
     
@@ -197,8 +197,8 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
         className={`menuToolsSelector ${styles.menuToolsSelector} ${ableDisableMenuTools}`}        
       >
         <ModalEditMenu 
-          nextQuestion={nextQuestion} 
-          multiQuestion={multiQuestion}
+          questionMain={questionMain} 
+          questionMulti={questionMulti}
           optionMain={optionMain} 
           optionMainNumberId={optionMainNumberId}
           optionMulti={optionMulti}
@@ -216,8 +216,8 @@ function MenuTools({ nextQuestion, optionMain, optionMainNumberId, multiQuestion
           textPopup={"Are you sure you want to delete?"}
           activePopup={setActivePopupDelete}
           activeButtons={activePopupDelete}
-          nextQuestion={nextQuestion}
-          multiQuestion={multiQuestion}
+          questionMain={questionMain}
+          questionMulti={questionMulti}
           multiDeleteQuestionOption={multiDeleteQuestionOption}
           multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
         />}   

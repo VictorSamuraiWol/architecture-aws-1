@@ -11,10 +11,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function MultiMain({ 
-    question, answer, srcImg, descriptionP, 
-    numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, setDescriptionDisplay, 
-    multiQuestion, optionMulti, optionMultiNumberId,
-    optNum1, optNum2, optNum3, optNum4, optNum5
+    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, setAnswerDisplay, descriptionDisplay, 
+    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -57,7 +55,7 @@ function MultiMain({
             />
 
             <MenuTools
-                multiQuestion={multiQuestion} 
+                questionMulti={questionMulti} 
                 optionMulti={optionMulti} 
                 optionMultiNumberId={optionMultiNumberId}                
             />

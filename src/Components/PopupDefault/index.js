@@ -6,7 +6,7 @@ import { TiDeleteOutline } from "react-icons/ti"
 import { useOutletContext } from 'react-router-dom'
 
 function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheckAlternativeAnswer, 
-  textModalForMoreInformation, textModalDescription, activeButtons, nextQuestion, multiQuestion, 
+  textModalForMoreInformation, textModalDescription, activeButtons, questionMain, questionMulti, 
   multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption, specificStyleButton,
   specificStyleButtons }) {
 
@@ -22,10 +22,10 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
   }
 
   function handleClick() { // função que irá deletar a questão e opção correspondentes, exclusivo do componente 'PopupDeleteQuestionOption'
-    if (nextQuestion !== undefined) {
+    if (questionMain !== undefined) {
       multiDeleteQuestionOption() // deleta a questão e opção correspondentes da 'PageMain' 
       
-    } else if (multiQuestion !== undefined) {
+    } else if (questionMulti !== undefined) {
       multiDeleteMultiQuestionMultiOption() // deleta a questão e opção correspondentes da 'PageMulti' 
 
     }

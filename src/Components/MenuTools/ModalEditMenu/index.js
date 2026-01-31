@@ -16,15 +16,15 @@ import { isEqual } from 'lodash'
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
 
-function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQuestion, 
+function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionMulti, 
   optionMulti, optionMultiNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [questionTextMain, setQuestionTextMain] = useState(nextQuestion?.question)
-  const [correctAnswerMain, setCorrectAnswerMain] = useState(nextQuestion?.answer)
-  const [imageKeyMain, setImageKeyMain] = useState(nextQuestion?.srcImg)
-  const [descriptionMain, setDescriptionMain] = useState(nextQuestion?.descriptionP)
-  const [questionNumberMain] = useState(nextQuestion?.numberQuestion)
+  const [questionTextMain, setQuestionTextMain] = useState(questionMain?.question)
+  const [correctAnswerMain, setCorrectAnswerMain] = useState(questionMain?.answer)
+  const [imageKeyMain, setImageKeyMain] = useState(questionMain?.srcImg)
+  const [descriptionMain, setDescriptionMain] = useState(questionMain?.descriptionP)
+  const [questionNumberMain] = useState(questionMain?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções
   const [optionAMain, setOptionAMain] = useState(optionMain && optionMain[0])
@@ -34,11 +34,11 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
   const [optionEMain, setOptionEMain] = useState(optionMain && optionMain[4])
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
-  const [questionTextMulti, setQuestionTextMulti] = useState(multiQuestion?.question)
-  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(multiQuestion?.answerText)
-  const [imageKeyMulti, setImageKeyMulti] = useState(multiQuestion?.srcImg)
-  const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP)
-  const [questionNumberMulti] = useState(multiQuestion?.numberQuestion)
+  const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.question)
+  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.answerText)
+  const [imageKeyMulti, setImageKeyMulti] = useState(questionMulti?.srcImg)
+  const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.descriptionP)
+  const [questionNumberMulti] = useState(questionMulti?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
   const [optionAMulti, setOptionAMulti] = useState(optionMulti && optionMulti[0])
@@ -112,11 +112,11 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
       answer: correctAnswerMain,
       srcImg: imageKeyMain,
       descriptionP: descriptionMain,
-      numberQuestion: nextQuestion.numberQuestion, // não será alterado
-      id: nextQuestion.id // não será alterado
+      numberQuestion: questionMain.numberQuestion, // não será alterado
+      id: questionMain.id // não será alterado
 
     })
-    await fetch(`http://localhost:3001/questions/${nextQuestion.id}`, {
+    await fetch(`http://localhost:3001/questions/${questionMain.id}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -175,11 +175,11 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
       answerText: correctAnswerMulti,
       srcImg: imageKeyMulti,
       descriptionP: descriptionMulti,
-      numberQuestion: multiQuestion.numberQuestion, // não será alterado
-      id: multiQuestion.id // não será alterado
+      numberQuestion: questionMulti.numberQuestion, // não será alterado
+      id: questionMulti.id // não será alterado
 
     })
-    await fetch(`http://localhost:3001/multiQuestions/${multiQuestion.id}`, {
+    await fetch(`http://localhost:3001/multiQuestions/${questionMulti.id}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -448,7 +448,7 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
 
   // função que limpa todos os campos do formulário
   function cleanForm() {
-    if (nextQuestion && optionMain) {
+    if (questionMain && optionMain) {
       setQuestionTextMain('')
       setCorrectAnswerMain('')
       setImageKeyMain('')
@@ -461,7 +461,7 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
 
     }
 
-    if (multiQuestion && optionMulti) {
+    if (questionMulti && optionMulti) {
       setQuestionTextMulti('')
       setCorrectAnswerMulti('')
       setImageKeyMulti('')
@@ -503,7 +503,7 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
 
         <h1>EDITAR CARD:</h1>
 
-        {nextQuestion && optionMain && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
+        {questionMain && optionMain && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={multiFunctionsNewPageMain}
           className={styles.formModal}
         > 
@@ -593,7 +593,7 @@ function ModalEditMenu({ nextQuestion, optionMain, optionMainNumberId, multiQues
         
         </form>}
 
-        {multiQuestion && optionMulti && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
+        {questionMulti && optionMulti && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
           onSubmit={multiFunctionsPageMulti}
           className={styles.formModal}
         > 

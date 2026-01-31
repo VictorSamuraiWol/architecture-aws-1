@@ -10,7 +10,7 @@ function PageMain() {
 
     const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
-    const [nextQuestion, setNextQuestion] = useState('')
+    const [questionMain, setQuestionMain] = useState('')
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -63,7 +63,7 @@ function PageMain() {
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setNextQuestion(next) // armazena a questão que será mostrada na página Main
+        setQuestionMain(next) // armazena a questão que será mostrada na página Main
         
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
 
@@ -94,7 +94,7 @@ function PageMain() {
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão           
-        if (!listUnicQuestionsContext || !nextQuestion || !listUnicOptionsContext) return
+        if (!listUnicQuestionsContext || !questionMain || !listUnicOptionsContext) return
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -104,7 +104,7 @@ function PageMain() {
 
             // busca uma opção que corresponde diretamente com a questão atual
              matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior                        
-                return ((option.numberOption === nextQuestion.numberQuestion) && (option.numberOption !== lastNumberMatchedQuestionOptionRef.current))
+                return ((option.numberOption === questionMain.numberQuestion) && (option.numberOption !== lastNumberMatchedQuestionOptionRef.current))
             })
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
@@ -115,7 +115,7 @@ function PageMain() {
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
                         matchedOption = option // armazena a opção correspondente
-                        setNextQuestion(matchedQuestion) // atualizando a questão                        
+                        setQuestionMain(matchedQuestion) // atualizando a questão                        
                         setLoading(false) // desabilita o componente 'Loader'                   
 
                     }
@@ -126,7 +126,7 @@ function PageMain() {
                 // atualizando a opção correspondente
                 setOptionMain([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
                 setOptionMainNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
-                matchedQuestion = nextQuestion // matchedQuestion recebe o valor 'nextQuestion'                
+                matchedQuestion = questionMain // matchedQuestion recebe o valor 'questionMain'                
                 setLoading(false) // desabilita o componente 'Loader'
                 lastNumberMatchedQuestionOptionRef.current = matchedQuestion.numberQuestion // armazena o número da questão correspondente
 
@@ -137,40 +137,40 @@ function PageMain() {
 
         } 
         
-        questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'nextQuestion' da página Main
+        questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
 
-    }, [listUnicQuestionsContext, listUnicOptionsContext, nextQuestion, setNextQuestion, setOptionMain, setOptionMainNumberId, setLoading])
+    }, [listUnicQuestionsContext, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading])
 
     return(
         <div>
             {requestData && <div 
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
-                key={nextQuestion.id}
+                key={questionMain.id}
 
             >        
-                {nextQuestion &&
+                {questionMain &&
                     <Header 
                         title="Architecture Questions - Randomly"
                     />
                     
                 }
                 
-                {nextQuestion &&
+                {questionMain &&
                     <Main 
-                        question={nextQuestion.question}
-                        answer={nextQuestion.answer}
-                        srcImg={nextQuestion.srcImg}
-                        descriptionP={nextQuestion.descriptionP}
-                        elementId={nextQuestion.id}
-                        numberQuestion={nextQuestion.numberQuestion}
+                        question={questionMain.question}
+                        answer={questionMain.answer}
+                        srcImg={questionMain.srcImg}
+                        descriptionP={questionMain.descriptionP}
+                        elementId={questionMain.id}
+                        numberQuestion={questionMain.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}                  
                         uniqueRandomMain={uniqueRandomMain}
-                        setNextQuestion={setNextQuestion}                        
-                        nextQuestion={nextQuestion}
+                        questionMain={questionMain}
+                        setQuestionMain={setQuestionMain}                        
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}
