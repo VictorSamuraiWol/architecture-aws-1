@@ -20,32 +20,32 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   multiOptionMap, multiOptionMapNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [question, setQuestion] = useState(nextQuestion?.question)
-  const [answer, setAnswer] = useState(nextQuestion?.answer)
-  const [srcImg, setSrcImg] = useState(nextQuestion?.srcImg)
-  const [description, setDescription] = useState(nextQuestion?.descriptionP)
-  const [numberQuestionMain] = useState(nextQuestion?.numberQuestion)
+  const [questionTextMain, setQuestionTextMain] = useState(nextQuestion?.question)
+  const [correctAnswerMain, setCorrectAnswerMain] = useState(nextQuestion?.answer)
+  const [imageKeyMain, setImageKeyMain] = useState(nextQuestion?.srcImg)
+  const [descriptionMain, setDescriptionMain] = useState(nextQuestion?.descriptionP)
+  const [questionNumberMain] = useState(nextQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções
-  const [option1, setOption1] = useState(optionMap && optionMap[0])
-  const [option2, setOption2] = useState(optionMap && optionMap[1])
-  const [option3, setOption3] = useState(optionMap && optionMap[2])
-  const [option4, setOption4] = useState(optionMap && optionMap[3])
-  const [option5, setOption5] = useState(optionMap && optionMap[4])
+  const [optionAMain, setOptionAMain] = useState(optionMap && optionMap[0])
+  const [optionBMain, setOptionBMain] = useState(optionMap && optionMap[1])
+  const [optionCMain, setOptionCMain] = useState(optionMap && optionMap[2])
+  const [optionDMain, setOptionDMain] = useState(optionMap && optionMap[3])
+  const [optionEMain, setOptionEMain] = useState(optionMap && optionMap[4])
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
-  const [questionMulti, setQuestionMulti] = useState(multiQuestion?.question)
-  const [answerMulti, setAnswerMulti] = useState(multiQuestion?.answerText)
-  const [srcImgMulti, setSrcImgMulti] = useState(multiQuestion?.srcImg)
+  const [questionTextMulti, setQuestionTextMulti] = useState(multiQuestion?.question)
+  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(multiQuestion?.answerText)
+  const [imageKeyMulti, setImageKeyMulti] = useState(multiQuestion?.srcImg)
   const [descriptionMulti, setDescriptionMulti] = useState(multiQuestion?.descriptionP)
-  const [numberQuestionMultiMain] = useState(multiQuestion?.numberQuestion)
+  const [questionNumberMulti] = useState(multiQuestion?.numberQuestion)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
-  const [option1Multi, setOption1Multi] = useState(multiOptionMap && multiOptionMap[0])
-  const [option2Multi, setOption2Multi] = useState(multiOptionMap && multiOptionMap[1])
-  const [option3Multi, setOption3Multi] = useState(multiOptionMap && multiOptionMap[2])
-  const [option4Multi, setOption4Multi] = useState(multiOptionMap && multiOptionMap[3])
-  const [option5Multi, setOption5Multi] = useState(multiOptionMap && multiOptionMap[4])
+  const [optionAMulti, setOptionAMulti] = useState(multiOptionMap && multiOptionMap[0])
+  const [optionBMulti, setOptionBMulti] = useState(multiOptionMap && multiOptionMap[1])
+  const [optionCMulti, setOptionCMulti] = useState(multiOptionMap && multiOptionMap[2])
+  const [optionDMulti, setOptionDMulti] = useState(multiOptionMap && multiOptionMap[3])
+  const [optionEMulti, setOptionEMulti] = useState(multiOptionMap && multiOptionMap[4])
 
   const [newOption, setNewOption] = useState([]) // lista das alternativas da opção única
   const [newMultiOption, setNewMultiOption] = useState([]) // lista das alternativas da opção múltipla
@@ -70,26 +70,26 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
   
   useEffect(() => {
-    setOption1(optionMap && optionMap[0])
-    setOption2(optionMap && optionMap[1])
-    setOption3(optionMap && optionMap[2])
-    setOption4(optionMap && optionMap[3])
-    setOption5(optionMap && optionMap[4])
+    setOptionAMain(optionMap && optionMap[0])
+    setOptionBMain(optionMap && optionMap[1])
+    setOptionCMain(optionMap && optionMap[2])
+    setOptionDMain(optionMap && optionMap[3])
+    setOptionEMain(optionMap && optionMap[4])
 
-    setOption1Multi(multiOptionMap && multiOptionMap[0])
-    setOption2Multi(multiOptionMap && multiOptionMap[1])
-    setOption3Multi(multiOptionMap && multiOptionMap[2])
-    setOption4Multi(multiOptionMap && multiOptionMap[3])
-    setOption5Multi(multiOptionMap && multiOptionMap[4])
+    setOptionAMulti(multiOptionMap && multiOptionMap[0])
+    setOptionBMulti(multiOptionMap && multiOptionMap[1])
+    setOptionCMulti(multiOptionMap && multiOptionMap[2])
+    setOptionDMulti(multiOptionMap && multiOptionMap[3])
+    setOptionEMulti(multiOptionMap && multiOptionMap[4])
 
   }, [optionMap, multiOptionMap]) // sempre atualizar as opções quando houver mudança
 
   useEffect(() => {
-    setNewOption([option1, option2, option3, option4, option5]) // lista das alternativas da opção única
+    setNewOption([optionAMain, optionBMain, optionCMain, optionDMain, optionEMain]) // lista das alternativas da opção única
 
-    setNewMultiOption([option1Multi, option2Multi, option3Multi, option4Multi, option5Multi]) // lista das alternativas da opção múltipla
+    setNewMultiOption([optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti]) // lista das alternativas da opção múltipla
 
-  }, [option1, option2, option3, option4, option5, option1Multi, option2Multi, option3Multi, option4Multi, option5Multi])
+  }, [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain, optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti])
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -108,10 +108,10 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
     const jsonBody = JSON.stringify({
-      question: question,
-      answer: answer,
-      srcImg: srcImg,
-      descriptionP: description,
+      question: questionTextMain,
+      answer: correctAnswerMain,
+      srcImg: imageKeyMain,
+      descriptionP: descriptionMain,
       numberQuestion: nextQuestion.numberQuestion, // não será alterado
       id: nextQuestion.id // não será alterado
 
@@ -139,11 +139,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   //função utilizando PUT para alterar as opções na API
   async function onSaveModalOption() {
     const jsonBody = JSON.stringify({
-      option1: option1,
-      option2: option2,
-      option3: option3,
-      option4: option4,
-      option5: option5,
+      option1: optionAMain,
+      option2: optionBMain,
+      option3: optionCMain,
+      option4: optionDMain,
+      option5: optionEMain,
       numberOption: optionMapNumberId[0], // não será alterado 
       id: optionMapNumberId[1] // não será alterado
 
@@ -171,9 +171,9 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   //função utilizando PUT para alterar as questões de múltipla escolha na API
   async function onSaveModalMultiQuestion() {
     const jsonBody = JSON.stringify({
-      question: questionMulti,
-      answerText: answerMulti,
-      srcImg: srcImgMulti,
+      question: questionTextMulti,
+      answerText: correctAnswerMulti,
+      srcImg: imageKeyMulti,
       descriptionP: descriptionMulti,
       numberQuestion: multiQuestion.numberQuestion, // não será alterado
       id: multiQuestion.id // não será alterado
@@ -203,11 +203,11 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
   //função utilizando PUT para alterar as opções de múltipla escolha na API
   async function onSaveModalMultiOption() {
     const jsonBody = JSON.stringify({
-      option1: option1Multi,
-      option2: option2Multi,
-      option3: option3Multi,
-      option4: option4Multi,
-      option5: option5Multi,
+      option1: optionAMulti,
+      option2: optionBMulti,
+      option3: optionCMulti,
+      option4: optionDMulti,
+      option5: optionEMulti,
       numberOption: multiOptionMapNumberId[0], // não será alterado 
       id: multiOptionMapNumberId[1] // não será alterado
 
@@ -236,8 +236,8 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
     let active
 
     // formulário 1
-    const questionMainEdit = [question, answer, srcImg, description] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
-    const optionMainEdit = [option1, option2, option3, option4, option5] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
+    const questionMainEdit = [questionTextMain, correctAnswerMain, imageKeyMain, descriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const optionMainEdit = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
       
     const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.question, questions.answer, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
     const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
@@ -246,8 +246,8 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
     const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
 
     // formulário 2    
-    const questionMultiEdit = [questionMulti, answerMulti, srcImgMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
-    const optionMultiEdit = [option1Multi, option2Multi, option3Multi, option4Multi, option5Multi] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+    const questionMultiEdit = [questionTextMulti, correctAnswerMulti, imageKeyMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const optionMultiEdit = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
     const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.question, questions.answerText, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
     const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
@@ -281,7 +281,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
     } else {
       setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
+      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
         event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
         setActivePopupcheckAlternativeAnswerModalForms1(true)
 
@@ -321,7 +321,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
     } else {
       setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (answer || answerMulti)) === true) {
+      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
           event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
           setActivePopupcheckAlternativeAnswerModalForms2(true)
 
@@ -354,64 +354,64 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
   // funções para capturar os valores dos campos das questões de única escolha
   function onChangeModalQuestion(event) {
-    setQuestion(event.target.value)
+    setQuestionTextMain(event.target.value)
 
   }
 
   function onChangeModalAnswer(event) {
-    setAnswer(event.target.value)
+    setCorrectAnswerMain(event.target.value)
 
   }
 
   function onChangeModalImage(event) {
-    setSrcImg(event.target.value)
+    setImageKeyMain(event.target.value)
 
   }
 
   function onChangeModalDescription(event) {
-    setDescription(event.target.value)
+    setDescriptionMain(event.target.value)
 
   }
 
   //funções para capturar os valores dos campos das opções de única escolha
   function onChangeModalOption1(event) {
-    setOption1(event.target.value)
+    setOptionAMain(event.target.value)
 
   }
 
   function onChangeModalOption2(event) {
-    setOption2(event.target.value)
+    setOptionBMain(event.target.value)
 
   }
 
   function onChangeModalOption3(event) {
-    setOption3(event.target.value)
+    setOptionCMain(event.target.value)
 
   }
 
   function onChangeModalOption4(event) {
-    setOption4(event.target.value)
+    setOptionDMain(event.target.value)
 
   }
 
   function onChangeModalOption5(event) {
-    setOption5(event.target.value)
+    setOptionEMain(event.target.value)
 
   }
 
   // funções para capturar os valores dos campos das questões de múltipla escolha
   function onChangeModalQuestionMulti(event) {
-    setQuestionMulti(event.target.value)
+    setQuestionTextMulti(event.target.value)
 
   }
 
   function onChangeModalAnswerMulti(event) {
-    setAnswerMulti(event.target.value)
+    setCorrectAnswerMulti(event.target.value)
 
   }
 
   function onChangeModalImageMulti(event) {
-    setSrcImgMulti(event.target.value)
+    setImageKeyMulti(event.target.value)
 
   }
 
@@ -422,55 +422,55 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
   //funções para capturar os valores dos campos das opções de múltipla escolha
   function onChangeModalOption1Multi(event) {
-    setOption1Multi(event.target.value)
+    setOptionAMulti(event.target.value)
 
   }
 
   function onChangeModalOption2Multi(event) {
-    setOption2Multi(event.target.value)
+    setOptionBMulti(event.target.value)
 
   }
 
   function onChangeModalOption3Multi(event) {
-    setOption3Multi(event.target.value)
+    setOptionCMulti(event.target.value)
 
   }
 
   function onChangeModalOption4Multi(event) {
-    setOption4Multi(event.target.value)
+    setOptionDMulti(event.target.value)
 
   }
 
   function onChangeModalOption5Multi(event) {
-    setOption5Multi(event.target.value)
+    setOptionEMulti(event.target.value)
 
   }
 
   // função que limpa todos os campos do formulário
   function cleanForm() {
     if (nextQuestion && optionMap) {
-      setQuestion('')
-      setAnswer('')
-      setSrcImg('')
-      setDescription('')
-      setOption1('')
-      setOption2('')
-      setOption3('')
-      setOption4('')
-      setOption5('')
+      setQuestionTextMain('')
+      setCorrectAnswerMain('')
+      setImageKeyMain('')
+      setDescriptionMain('')
+      setOptionAMain('')
+      setOptionBMain('')
+      setOptionCMain('')
+      setOptionDMain('')
+      setOptionEMain('')
 
     }
 
     if (multiQuestion && multiOptionMap) {
-      setQuestionMulti('')
-      setAnswerMulti('')
-      setSrcImgMulti('')
+      setQuestionTextMulti('')
+      setCorrectAnswerMulti('')
+      setImageKeyMulti('')
       setDescriptionMulti('')
-      setOption1Multi('')
-      setOption2Multi('')
-      setOption3Multi('')
-      setOption4Multi('')
-      setOption5Multi('')
+      setOptionAMulti('')
+      setOptionBMulti('')
+      setOptionCMulti('')
+      setOptionDMulti('')
+      setOptionEMulti('')
 
     }
       
@@ -503,7 +503,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
 
         <h1>EDITAR CARD:</h1>
 
-        {nextQuestion && optionMap && <form // este form só aparecerá se tiver uma questão e opção da NewPageMain
+        {nextQuestion && optionMap && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={multiFunctionsNewPageMain}
           className={styles.formModal}
         > 
@@ -511,27 +511,27 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <FieldModalEdit
             onChangeModal={onChangeModalQuestion}
             name="Question*"
-            newValue={question}
+            newValue={questionTextMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalAnswer}
             name="Answer*"
-            newValue={answer}
+            newValue={correctAnswerMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalImage}
             name="Image Source"
-            newValue={srcImg}
+            newValue={imageKeyMain}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalDescription}
             name="Description*"
-            newValue={description}
+            newValue={descriptionMain}
             required={true}
 
           />
@@ -540,35 +540,35 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <FieldModalEdit
             onChangeModal={onChangeModalOption1}
             name="Option1*"
-            newValue={option1}
+            newValue={optionAMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption2}
             name="Option2*"
-            newValue={option2}
+            newValue={optionBMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption3}
             name="Option3*"
-            newValue={option3}
+            newValue={optionCMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption4}
             name="Option4*"
-            newValue={option4}
+            newValue={optionDMain}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption5}
             name="Option5"
-            newValue={option5}
+            newValue={optionEMain}
 
           />
 
@@ -593,7 +593,7 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
         
         </form>}
 
-        {multiQuestion && multiOptionMap && <form // este form só aparecerá se tiver uma questão e opção da PageMulti
+        {multiQuestion && multiOptionMap && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
           onSubmit={multiFunctionsPageMulti}
           className={styles.formModal}
         > 
@@ -601,21 +601,21 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <FieldModalEdit
             onChangeModal={onChangeModalQuestionMulti}
             name="Question*"
-            newValue={questionMulti}
+            newValue={questionTextMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalAnswerMulti}
             name="Answer*"
-            newValue={answerMulti}
+            newValue={correctAnswerMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalImageMulti}
             name="Image Source"
-            newValue={srcImgMulti}
+            newValue={imageKeyMulti}
 
           />
           <FieldModalEdit
@@ -630,35 +630,35 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <FieldModalEdit
             onChangeModal={onChangeModalOption1Multi}
             name="Option1*"
-            newValue={option1Multi}
+            newValue={optionAMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption2Multi}
             name="Option2*"
-            newValue={option2Multi}
+            newValue={optionBMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption3Multi}
             name="Option3*"
-            newValue={option3Multi}
+            newValue={optionCMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption4Multi}
             name="Option4*"
-            newValue={option4Multi}
+            newValue={optionDMulti}
             required={true}
 
           />
           <FieldModalEdit
             onChangeModal={onChangeModalOption5Multi}
             name="Option5"
-            newValue={option5Multi}
+            newValue={optionEMulti}
 
           />
 
@@ -697,8 +697,8 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
-            textPopup={`No alternative matching the answer to question ${numberQuestionMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below. Thank you.`} 
-            textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestionMain} the correct alternative from the option highlighted below: ${option1}, ${option2}, ${option3}, ${option4}${option5 !== '' ? ` or ${option5}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestionMain}, highlighted below: ${answer}.`}
+            textPopup={`No alternative matching the answer to question ${questionNumberMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below. Thank you.`} 
+            textModalDescription={`Choose one: (1)Include in the answer to question ${questionNumberMain} the correct alternative from the option highlighted below: ${optionAMain}, ${optionBMain}, ${optionCMain}, ${optionDMain}${optionEMain !== '' ? ` or ${optionEMain}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${questionNumberMain}, highlighted below: ${correctAnswerMain}.`}
           />
         }
 
@@ -706,8 +706,8 @@ function ModalEditMenu({ nextQuestion, optionMap, optionMapNumberId, multiQuesti
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
-            textPopup={`The two alternatives included in the answer of question ${numberQuestionMultiMain} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below. Thank you.`} 
-            textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestionMultiMain} the two correct alternatives from the option highlighted below: ${option1Multi} e ${option2Multi}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestionMultiMain}, highlighted below: ${answerMulti}. `}
+            textPopup={`The two alternatives included in the answer of question ${questionNumberMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below. Thank you.`} 
+            textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberMulti} the two correct alternatives from the option highlighted below: ${optionAMulti} e ${optionBMulti}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${questionNumberMulti}, highlighted below: ${correctAnswerMulti}. `}
           />
         }
 

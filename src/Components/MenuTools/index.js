@@ -198,9 +198,9 @@ function MenuTools({ nextQuestion, optionMap, optionMapNumberId, multiQuestion,
       >
         <ModalEditMenu 
           nextQuestion={nextQuestion} 
+          multiQuestion={multiQuestion}
           optionMap={optionMap} 
           optionMapNumberId={optionMapNumberId}
-          multiQuestion={multiQuestion}
           multiOptionMap={multiOptionMap}
           multiOptionMapNumberId={multiOptionMapNumberId}
         />
