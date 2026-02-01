@@ -47,15 +47,15 @@ function FieldQuestionOption({
             setValuesForms(valueForm1)
 
             if (readyToCleanAll === false) {
-                labelTarget === "Question:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionQuestions'
+                labelTarget === "Question:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionTextMain'
             
-                labelTarget === "Answer:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewAnswerQuestions'
+                labelTarget === "Answer:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMain'
 
-                labelTarget === "Source Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewSourceImageQuestions'
+                labelTarget === "Source Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMain'
 
-                labelTarget === "Description:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionQuestions'
+                labelTarget === "Description:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMain'
 
-                labelTarget === "Number:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionsNumberQuestions'
+                labelTarget === "Number:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionNumberMain'
             
             } else if (readyToCleanAll === true) {
                 // zera
@@ -70,17 +70,17 @@ function FieldQuestionOption({
             setValuesForms(valueForm2)
 
             if (readyToCleanAll === false) {
-                labelTarget === "Option 1:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOption1Question'
+                labelTarget === "Option 1:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMain'
 
-                labelTarget === "Option 2:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOption2Question'
+                labelTarget === "Option 2:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMain'
 
-                labelTarget === "Option 3:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOption3Question'                
+                labelTarget === "Option 3:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMain'                
 
-                labelTarget === "Option 4:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOption4Question'
+                labelTarget === "Option 4:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMain'
 
-                labelTarget === "Option 5:" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOption5Question'
+                labelTarget === "Option 5:" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMain'
 
-                labelTarget === "Number:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionsNumberQuestions'
+                labelTarget === "Number:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionNumberMain'
 
             } else if (readyToCleanAll === true) {
                 //zera
@@ -95,15 +95,15 @@ function FieldQuestionOption({
             setValuesForms(valueForm3)
 
             if (readyToCleanAll === false) {
-                labelTarget === "Question:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionMultiQuestions'
+                labelTarget === "Question:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionTextMulti'
 
-                labelTarget === "Answer's Text:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewAnswerTextMultiQuestions'
+                labelTarget === "Answer's Text:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMulti'
 
-                labelTarget === "Source Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewSourceImageMultiQuestions'
+                labelTarget === "Source Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMulti'
 
-                labelTarget === "Description:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMultiQuestions'
+                labelTarget === "Description:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMulti'
                 
-                labelTarget === "Number:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionsNumberMultiQuestions'
+                labelTarget === "Number:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionNumberMulti'
 
             } else if (readyToCleanAll === true) {
                 // zera
@@ -118,17 +118,17 @@ function FieldQuestionOption({
             setValuesForms(valueForm4)  
 
             if (readyToCleanAll === false) {
-                labelTarget === "Option 1:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOption1MultiQuestion'
+                labelTarget === "Option 1:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMulti'
         
-                labelTarget === "Option 2:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOption2MultiQuestion'
+                labelTarget === "Option 2:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMulti'
                 
-                labelTarget === "Option 3:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOption3MultiQuestion'
+                labelTarget === "Option 3:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMulti'
                 
-                labelTarget === "Option 4:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOption4MultiQuestion'
+                labelTarget === "Option 4:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMulti'
                 
-                labelTarget === "Option 5:" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOption5MultiQuestion'
+                labelTarget === "Option 5:" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMulti'
                 
-                labelTarget === "Number:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionsNumberMultiQuestions'
+                labelTarget === "Number:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionNumberMulti'
 
             } else if (readyToCleanAll === true) {
                 // zera

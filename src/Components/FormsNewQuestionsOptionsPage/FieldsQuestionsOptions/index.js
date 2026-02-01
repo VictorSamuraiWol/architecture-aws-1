@@ -3,10 +3,10 @@ import FieldQuestionOption from './FieldQuestionOption'
 
 function FieldsQuestionsOptions({ 
     nome1, nome2, nome3, nome4, nome5, nome6, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
-    /* campos form1 */ newQuestionQuestions, setNewQuestionQuestions, newAnswerQuestions, setNewAnswerQuestions, newSourceImageQuestions, setNewSourceImageQuestions, newDescriptionQuestions, setNewDescriptionQuestions, newQuestionsNumberQuestions, setNewQuestionsNumberQuestions, 
-    /* campos form2 */ newOption1Question, setNewOption1Question, newOption2Question, setNewOption2Question, newOption3Question, setNewOption3Question, newOption4Question, setNewOption4Question, newOption5Question, setNewOption5Question, newOptionsNumberQuestions, setNewOptionsNumberQuestions, 
-    /* campos form3 */ newQuestionMultiQuestions, setNewQuestionMultiQuestions, newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions, newSourceImageMultiQuestions, setNewSourceImageMultiQuestions, newDescriptionMultiQuestions, setNewDescriptionMultiQuestions, newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions,
-    /* campos form4 */ newOption1MultiQuestion, setNewOption1MultiQuestion, newOption2MultiQuestion, setNewOption2MultiQuestion, newOption3MultiQuestion, setNewOption3MultiQuestion, newOption4MultiQuestion, setNewOption4MultiQuestion, newOption5MultiQuestion, setNewOption5MultiQuestion, newOptionsNumberMultiQuestions, setNewOptionsNumberMultiQuestions
+    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newCorrectAnswerMain, setNewCorrectAnswerMain, newImageKeyMain, setNewImageKeyMain, newDescriptionMain, setNewDescriptionMain, newQuestionNumberMain, setNewQuestionNumberMain, 
+    /* campos form2 */ newOptionAMain, setNewOptionAMain, newOptionBMain, setNewOptionBMain, newOptionCMain, setNewOptionCMain, newOptionDMain, setNewOptionDMain, newOptionEMain, setNewOptionEMain, newOptionNumberMain, setNewOptionNumberMain, 
+    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newImageKeyMulti, setNewImageKeyMulti, newDescriptionMulti, setNewDescriptionMulti, newQuestionNumberMulti, setNewQuestionNumberMulti,
+    /* campos form4 */ newOptionAMulti, setNewOptionAMulti, newOptionBMulti, setNewOptionBMulti, newOptionCMulti, setNewOptionCMulti, newOptionDMulti, setNewOptionDMulti, newOptionEMulti, setNewOptionEMulti, newOptionNumberMulti, setNewOptionNumberMulti
     
 }) {
 
@@ -23,20 +23,20 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 1 (4 forms)
                 // campo 1 do form 1
-                valueForm1={newQuestionQuestions}
-                setValueForm1={setNewQuestionQuestions}
+                valueForm1={newQuestionTextMain}
+                setValueForm1={setNewQuestionTextMain}
 
                 //campo 1 do form 2
-                valueForm2={newOption1Question}
-                setValueForm2={setNewOption1Question}
+                valueForm2={newOptionAMain}
+                setValueForm2={setNewOptionAMain}
 
                 //campo 1 do form 3
-                valueForm3={newQuestionMultiQuestions}
-                setValueForm3={setNewQuestionMultiQuestions}
+                valueForm3={newQuestionTextMulti}
+                setValueForm3={setNewQuestionTextMulti}
 
                 //campo 1 do form 4
-                valueForm4={newOption1MultiQuestion}
-                setValueForm4={setNewOption1MultiQuestion}
+                valueForm4={newOptionAMulti}
+                setValueForm4={setNewOptionAMulti}
 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
@@ -59,20 +59,20 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 2 (4 forms)
                 // campo 2 do form 1
-                valueForm1={newAnswerQuestions}
-                setValueForm1={setNewAnswerQuestions}
+                valueForm1={newCorrectAnswerMain}
+                setValueForm1={setNewCorrectAnswerMain}
 
                 // campo 2 do form 2
-                valueForm2={newOption2Question}
-                setValueForm2={setNewOption2Question}
+                valueForm2={newOptionBMain}
+                setValueForm2={setNewOptionBMain}
 
                 // campo 2 do form 3
-                valueForm3={newAnswerTextMultiQuestions}
-                setValueForm3={setNewAnswerTextMultiQuestions}
+                valueForm3={newCorrectAnswerMulti}
+                setValueForm3={setNewCorrectAnswerMulti}
 
                 // campo 2 do form 4
-                valueForm4={newOption2MultiQuestion}
-                setValueForm4={setNewOption2MultiQuestion}
+                valueForm4={newOptionBMulti}
+                setValueForm4={setNewOptionBMulti}
 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
@@ -95,20 +95,20 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 3 (4 forms)
                 // campo 3 do form 1
-                valueForm1={newSourceImageQuestions}
-                setValueForm1={setNewSourceImageQuestions}
+                valueForm1={newImageKeyMain}
+                setValueForm1={setNewImageKeyMain}
 
                 // campo 3 do form 2
-                valueForm2={newOption3Question}
-                setValueForm2={setNewOption3Question} 
+                valueForm2={newOptionCMain}
+                setValueForm2={setNewOptionCMain} 
                 
                 // campo 3 do form 3
-                valueForm3={newSourceImageMultiQuestions}
-                setValueForm3={setNewSourceImageMultiQuestions}
+                valueForm3={newImageKeyMulti}
+                setValueForm3={setNewImageKeyMulti}
 
                 // campo 3 do form 4
-                valueForm4={newOption3MultiQuestion}
-                setValueForm4={setNewOption3MultiQuestion}
+                valueForm4={newOptionCMulti}
+                setValueForm4={setNewOptionCMulti}
 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
@@ -131,20 +131,20 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 4 (4 forms)
                 // campo 4 do form 1
-                valueForm1={newDescriptionQuestions}
-                setValueForm1={setNewDescriptionQuestions}
+                valueForm1={newDescriptionMain}
+                setValueForm1={setNewDescriptionMain}
 
                 // campo 4 do form 2
-                valueForm2={newOption4Question}
-                setValueForm2={setNewOption4Question} 
+                valueForm2={newOptionDMain}
+                setValueForm2={setNewOptionDMain} 
                 
                 // campo 4 do form 3
-                valueForm3={newDescriptionMultiQuestions}
-                setValueForm3={setNewDescriptionMultiQuestions}
+                valueForm3={newDescriptionMulti}
+                setValueForm3={setNewDescriptionMulti}
 
                 // campo 4 do form 4
-                valueForm4={newOption4MultiQuestion}
-                setValueForm4={setNewOption4MultiQuestion}                
+                valueForm4={newOptionDMulti}
+                setValueForm4={setNewOptionDMulti}                
                 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
@@ -167,20 +167,20 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 5 (4 forms)
                 // campo 5 do form 1
-                valueForm1={newQuestionsNumberQuestions}
-                setValueForm1={setNewQuestionsNumberQuestions}
+                valueForm1={newQuestionNumberMain}
+                setValueForm1={setNewQuestionNumberMain}
                 
                 // campo 5 do form 2
-                valueForm2={newOption5Question}
-                setValueForm2={setNewOption5Question} 
+                valueForm2={newOptionEMain}
+                setValueForm2={setNewOptionEMain} 
                 
                 // campo 5 do form 3
-                valueForm3={newQuestionsNumberMultiQuestions}
-                setValueForm3={setNewQuestionsNumberMultiQuestions}               
+                valueForm3={newQuestionNumberMulti}
+                setValueForm3={setNewQuestionNumberMulti}               
 
                 // campo 5 do form 4
-                valueForm4={newOption5MultiQuestion}
-                setValueForm4={setNewOption5MultiQuestion}                
+                valueForm4={newOptionEMulti}
+                setValueForm4={setNewOptionEMulti}                
                 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}
@@ -203,12 +203,12 @@ function FieldsQuestionsOptions({
 
                 // 2 possíveis elementos do campo 6 (2 forms)             
                 // campo 6 do form 2
-                valueForm2={newOptionsNumberQuestions}
-                setValueForm2={setNewOptionsNumberQuestions}
+                valueForm2={newOptionNumberMain}
+                setValueForm2={setNewOptionNumberMain}
 
                 // campo 6 do form 4
-                valueForm4={newOptionsNumberMultiQuestions}
-                setValueForm4={setNewOptionsNumberMultiQuestions}
+                valueForm4={newOptionNumberMulti}
+                setValueForm4={setNewOptionNumberMulti}
 
                 // ativar para zerar os campos
                 readyToCleanAll={readyToCleanAll}

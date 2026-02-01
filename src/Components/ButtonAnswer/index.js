@@ -107,7 +107,7 @@ function ButtonAnswer({
                         if (optionMain && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
                             // adicionando a validação na opção correta
                             const correctOption = document.querySelectorAll('.optionNext div')[i]
-                            const correctOptionItem = document.querySelectorAll('.optionNext .item')[i].innerText
+                            const correctOptionItem = document.querySelectorAll('.optionNext .item')[i]?.innerText
                             const correctOptionInput = document.querySelectorAll('.optionNext input')[i]
                             
                             // estilizando o parágrafo correto
@@ -123,7 +123,7 @@ function ButtonAnswer({
                             setterQuestionAnswerButtonNextMain = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
                             // adicionando a invalidação nas opções incorretas
-                            if ((checkedParagraph.innerText !== answer) && captureValue !== '') {
+                            if ((checkedParagraph?.innerText !== answer) && captureValue !== '') {
                                 // estilizando o parágrafo marcado incorretamente
                                 checkedParagraph.parentElement?.classList.add(optionInvalidateStyle) 
                                 checkedParagraph.parentElement?.classList.remove(optionColorStyle)

@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 function FormsNewQuestionsOptionsPage() {
 
-    const uniqueId = uuidv4(); // gerar uma id aleatória para a questão e a opção correspondente
+    const uniqueId = uuidv4() // gerar uma id aleatória para a questão e a opção correspondente
 
     const saveSound = new Audio(saveAudio) // som ao salvar corretamente
 
@@ -29,34 +29,34 @@ function FormsNewQuestionsOptionsPage() {
     const [labelTarget, setLabelTarget] = useState("")
 
     // atributos da questão única (formulário 1):
-    const [newQuestionQuestions, setNewQuestionQuestions] = useState("")
-    const [newAnswerQuestions, setNewAnswerQuestions] = useState("")
-    const [newSourceImageQuestions, setNewSourceImageQuestions] = useState("")
-    const [newDescriptionQuestions, setNewDescriptionQuestions] = useState("")
-    const [newQuestionsNumberQuestions, setNewQuestionsNumberQuestions] = useState("")
+    const [newQuestionTextMain, setNewQuestionTextMain] = useState('')
+    const [newCorrectAnswerMain, setNewCorrectAnswerMain] = useState('')
+    const [newImageKeyMain, setNewImageKeyMain] = useState('')
+    const [newDescriptionMain, setNewDescriptionMain] = useState('')
+    const [newQuestionNumberMain, setNewQuestionNumberMain] = useState('')
 
     // atributos da opção única (formulário 2):
-    const [newOption1Question, setNewOption1Question] = useState("")
-    const [newOption2Question, setNewOption2Question] = useState("")
-    const [newOption3Question, setNewOption3Question] = useState("")
-    const [newOption4Question, setNewOption4Question] = useState("")
-    const [newOption5Question, setNewOption5Question] = useState("")
-    const [newOptionsNumberQuestions, setNewOptionsNumberQuestions] = useState("")
+    const [newOptionAMain, setNewOptionAMain] = useState('')
+    const [newOptionBMain, setNewOptionBMain] = useState('')
+    const [newOptionCMain, setNewOptionCMain] = useState('')
+    const [newOptionDMain, setNewOptionDMain] = useState('')
+    const [newOptionEMain, setNewOptionEMain] = useState('')
+    const [newOptionNumberMain, setNewOptionNumberMain] = useState('')
 
     // atributos da questão múltipla (formulário 3)
-    const [newQuestionMultiQuestions, setNewQuestionMultiQuestions] = useState("")
-    const [newAnswerTextMultiQuestions, setNewAnswerTextMultiQuestions] = useState("")
-    const [newSourceImageMultiQuestions, setNewSourceImageMultiQuestions] = useState("")
-    const [newDescriptionMultiQuestions, setNewDescriptionMultiQuestions] = useState("")
-    const [newQuestionsNumberMultiQuestions, setNewQuestionsNumberMultiQuestions] = useState("")
+    const [newQuestionTextMulti, setNewQuestionTextMulti] = useState('')
+    const [newCorrectAnswerMulti, setNewCorrectAnswerMulti] = useState('')
+    const [newImageKeyMulti, setNewImageKeyMulti] = useState('')
+    const [newDescriptionMulti, setNewDescriptionMulti] = useState('')
+    const [newQuestionNumberMulti, setNewQuestionNumberMulti] = useState('')
 
     // atributos da opção múltipla (formulário 4)
-    const [newOption1MultiQuestion, setNewOption1MultiQuestion] = useState("")
-    const [newOption2MultiQuestion, setNewOption2MultiQuestion] = useState("")
-    const [newOption3MultiQuestion, setNewOption3MultiQuestion] = useState("")
-    const [newOption4MultiQuestion, setNewOption4MultiQuestion] = useState("")
-    const [newOption5MultiQuestion, setNewOption5MultiQuestion] = useState("")
-    const [newOptionsNumberMultiQuestions, setNewOptionsNumberMultiQuestions] = useState("")
+    const [newOptionAMulti, setNewOptionAMulti] = useState('')
+    const [newOptionBMulti, setNewOptionBMulti] = useState('')
+    const [newOptionCMulti, setNewOptionCMulti] = useState('')
+    const [newOptionDMulti, setNewOptionDMulti] = useState('')
+    const [newOptionEMulti, setNewOptionEMulti] = useState('')
+    const [newOptionNumberMulti, setNewOptionNumberMulti] = useState('')
 
     // lista de todas as alternativas da opção única (formulário 2)
     const [optionForm2, setOptionForm2] = useState('')
@@ -138,32 +138,32 @@ function FormsNewQuestionsOptionsPage() {
         let checkWithoutMatched = false
       
         // filtra a opção única correspondente, ao preencher o formulário 1
-        matchedOptionMain = listUnicOptionsContext.filter(option => option.numberOption === newQuestionsNumberQuestions).map(option => [option.option1, option.option2, option.option3, option.option4, option.option5])[0]
+        matchedOptionMain = listUnicOptionsContext.filter(option => option.numberOption === newQuestionNumberMain).map(option => [option.option1, option.option2, option.option3, option.option4, option.option5])[0]
 
         // capturar o número da opção correspondente, ao preencher o formulário 1
-        matchedOptionMainNumber = listUnicOptionsContext.filter(option => option.numberOption === newQuestionsNumberQuestions).map(option => option.numberOption)
+        matchedOptionMainNumber = listUnicOptionsContext.filter(option => option.numberOption === newQuestionNumberMain).map(option => option.numberOption)
 
         // filtra a alternativa que corresponde a resposta que está sendo criada na questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 1
-        matchedAnswerAnternativeMain = matchedOptionMain?.filter(value => value === newAnswerQuestions)[0]
+        matchedAnswerAnternativeMain = matchedOptionMain?.filter(value => value === newCorrectAnswerMain)[0]
 
         // filtra a questão única correspondente, ao preencher o formulário 2
-        matchedQuestionMain = listUnicQuestionsContext.filter(question => question.numberQuestion === newOptionsNumberQuestions)[0]
+        matchedQuestionMain = listUnicQuestionsContext.filter(question => question.numberQuestion === newOptionNumberMain)[0]
         matchedQuestionMainAnswer = matchedQuestionMain?.answer // capturando a resposta da questão única
 
         // filtra a alternativa que corresponde a resposta da questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 2
         matchedAlternativeAnswerMain = optionForm2 && optionForm2.filter(alternative => (alternative !== '') && (alternative === matchedQuestionMainAnswer))
 
         // filtra a opção múltipla correspondente, ao preencher o formulário 3
-        matchedOptionMultiMain = listMultiOptionsContext.filter(option => option.numberOption === newQuestionsNumberMultiQuestions).map(option => [option.option1, option.option2])[0]
+        matchedOptionMultiMain = listMultiOptionsContext.filter(option => option.numberOption === newQuestionNumberMulti).map(option => [option.option1, option.option2])[0]
 
         // capturar o número da opção correspondente, ao preencher o formulário 3
-        matchedOptionMultiMainNumber = listMultiOptionsContext.filter(option => option.numberOption === newQuestionsNumberMultiQuestions).map(option => option.numberOption)
+        matchedOptionMultiMainNumber = listMultiOptionsContext.filter(option => option.numberOption === newQuestionNumberMulti).map(option => option.numberOption)
         
         // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, que está criando, ao preencher o formulário 3
-        matchedAnswerAnternativeMultiMain = newAnswerTextMultiQuestions.includes(matchedOptionMultiMain && matchedOptionMultiMain[0]) && newAnswerTextMultiQuestions.includes(matchedOptionMultiMain && matchedOptionMultiMain[1])
+        matchedAnswerAnternativeMultiMain = newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[0]) && newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[1])
 
         // filtra a questão múltipla correspondente, ao preencher o formulário 4
-        matchedQuestionMultiMain = listMultiQuestionsContext.filter(question => question.numberQuestion === newOptionsNumberMultiQuestions)[0]
+        matchedQuestionMultiMain = listMultiQuestionsContext.filter(question => question.numberQuestion === newOptionNumberMulti)[0]
         matchedQuestionMultiMainAnswerText = matchedQuestionMultiMain?.answerText // capturando a resposta da questão múltipla
 
         // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias, ao preencher o formulário 4
@@ -211,10 +211,10 @@ function FormsNewQuestionsOptionsPage() {
 
     useEffect(() => {
         // atualizando as listas dos formulários 2 e 4 com o valores colocados nos campos das alternativas
-        setOptionForm2([newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOption5Question])
-        setOptionForm4([newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOption5MultiQuestion])
+        setOptionForm2([newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionEMain])
+        setOptionForm4([newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionEMulti])
 
-    }, [newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOption5Question, newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOption5MultiQuestion])
+    }, [newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionEMain, newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionEMulti])
 
     useEffect(() => {
         setActivePageFormsQuestionsOptions(true) // verifica se a página Forms está ativa
@@ -225,34 +225,34 @@ function FormsNewQuestionsOptionsPage() {
         // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
         if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
             // form 1
-            setNewQuestionQuestions('')
-            setNewAnswerQuestions('')
-            setNewSourceImageQuestions('')
-            setNewDescriptionQuestions('')
-            setNewQuestionsNumberQuestions('')
+            setNewQuestionTextMain('')
+            setNewCorrectAnswerMain('')
+            setNewImageKeyMain('')
+            setNewDescriptionMain('')
+            setNewQuestionNumberMain('')
 
             // form 2
-            setNewOption1Question('')
-            setNewOption2Question('')
-            setNewOption3Question('')
-            setNewOption4Question('')
-            setNewOption5Question('')
-            setNewOptionsNumberQuestions('')
+            setNewOptionAMain('')
+            setNewOptionBMain('')
+            setNewOptionCMain('')
+            setNewOptionDMain('')
+            setNewOptionEMain('')
+            setNewOptionNumberMain('')
 
             // form 3
-            setNewQuestionMultiQuestions('')
-            setNewAnswerTextMultiQuestions('')
-            setNewSourceImageMultiQuestions('')
-            setNewDescriptionMultiQuestions('')
-            setNewQuestionsNumberMultiQuestions('')
+            setNewQuestionTextMulti('')
+            setNewCorrectAnswerMulti('')
+            setNewImageKeyMulti('')
+            setNewDescriptionMulti('')
+            setNewQuestionNumberMulti('')
 
             // form 4
-            setNewOption1MultiQuestion('')
-            setNewOption2MultiQuestion('')
-            setNewOption3MultiQuestion('')
-            setNewOption4MultiQuestion('')
-            setNewOption5MultiQuestion('')
-            setNewOptionsNumberMultiQuestions('')
+            setNewOptionAMulti('')
+            setNewOptionBMulti('')
+            setNewOptionCMulti('')
+            setNewOptionDMulti('')
+            setNewOptionEMulti('')
+            setNewOptionNumberMulti('')
 
         }
 
@@ -268,7 +268,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
-                if ((number === newQuestionsNumberQuestions)) {
+                if ((number === newQuestionNumberMain)) {
                     isValid = false;
                     
                 } 
@@ -277,18 +277,18 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da questão que irá ser criada já existe na lista das questões
 
-        if (checkAlternativeAnswer() === true && (newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions)) {
+        if (checkAlternativeAnswer() === true && (newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms1(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
-            if (readyToSendForm1 === true && isValid === true && newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions) { 
+            if (readyToSendForm1 === true && isValid === true && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) { 
                 data = {
-                    question: newQuestionQuestions,
-                    answer: newAnswerQuestions,
-                    srcImg: newSourceImageQuestions, // não obrigatório
-                    descriptionP: newDescriptionQuestions,
-                    numberQuestion: newQuestionsNumberQuestions,
+                    question: newQuestionTextMain,
+                    answer: newCorrectAnswerMain,
+                    srcImg: newImageKeyMain, // não obrigatório
+                    descriptionP: newDescriptionMain,
+                    numberQuestion: newQuestionNumberMain,
                     id: uniqueId
                 }
 
@@ -307,7 +307,7 @@ function FormsNewQuestionsOptionsPage() {
                 cleanLabels()
                 mute === false && saveSound.play() // toca o som 'saveSound'
 
-            } else if (readyToSendForm1 === true && isValid === true && (newQuestionQuestions === "" || newAnswerQuestions === "" || newDescriptionQuestions === "" || newQuestionsNumberQuestions === "")) {
+            } else if (readyToSendForm1 === true && isValid === true && (newQuestionTextMain === "" || newCorrectAnswerMain === "" || newDescriptionMain === "" || newQuestionNumberMain === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form1 = document.querySelector("#form1");
@@ -334,7 +334,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 1!')
                 alert('Please fill in all required fields in Form 1!')
 
-            } else if (readyToSendForm1 === true && isValid === false && newQuestionQuestions && newAnswerQuestions && newDescriptionQuestions && newQuestionsNumberQuestions) {
+            } else if (readyToSendForm1 === true && isValid === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form1 = document.querySelector("#form1");
@@ -361,7 +361,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 1!')
                 alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
-            } else if (readyToSendForm1 === true && isValid === false && (newQuestionQuestions === "" || newAnswerQuestions === "" || newDescriptionQuestions === "" || newQuestionsNumberQuestions === "")) {
+            } else if (readyToSendForm1 === true && isValid === false && (newQuestionTextMain === "" || newCorrectAnswerMain === "" || newDescriptionMain === "" || newQuestionNumberMain === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form1 = document.querySelector("#form1");
@@ -455,7 +455,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
-                if ((number === newOptionsNumberQuestions)) {
+                if ((number === newOptionNumberMain)) {
                     isValid = false;
                     
                 } 
@@ -464,13 +464,13 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
 
-        if (checkAlternativeAnswer() === true && (newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions)) {
+        if (checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
-            if (readyToSendForm2 === true && isValid === true && (newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions)) { 
-            // condição 1: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOptionsNumberQuestions)
+            if (readyToSendForm2 === true && isValid === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) { 
+            // condição 1: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
                     setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
@@ -482,12 +482,12 @@ function FormsNewQuestionsOptionsPage() {
                 
                 } else {
                     data = {
-                        option1: newOption1Question,
-                        option2: newOption2Question,
-                        option3: newOption3Question,
-                        option4: newOption4Question,
-                        option5: newOption5Question, // não obrigatório
-                        numberOption: newOptionsNumberQuestions,
+                        option1: newOptionAMain,
+                        option2: newOptionBMain,
+                        option3: newOptionCMain,
+                        option4: newOptionDMain,
+                        option5: newOptionEMain, // não obrigatório
+                        numberOption: newOptionNumberMain,
                         id: uniqueId
                     }
 
@@ -509,8 +509,8 @@ function FormsNewQuestionsOptionsPage() {
 
                 }
 
-            } else if (readyToSendForm2 === true && isValid === true && (newOption1Question === "" || newOption2Question === "" || newOption3Question === "" || newOption4Question === "" || newOptionsNumberQuestions === "")) {
-            // condição 2: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se tem campos obrigatórios vazios (newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOptionsNumberQuestions)
+            } else if (readyToSendForm2 === true && isValid === true && (newOptionAMain === "" || newOptionBMain === "" || newOptionCMain === "" || newOptionDMain === "" || newOptionNumberMain === "")) {
+            // condição 2: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se tem campos obrigatórios vazios (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form2 = document.querySelector("#form2");
@@ -548,8 +548,8 @@ function FormsNewQuestionsOptionsPage() {
                 
                 }
                 
-            } else if (readyToSendForm2 === true && isValid === false && (newOption1Question && newOption2Question && newOption3Question && newOption4Question && newOptionsNumberQuestions)) {
-            // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOptionsNumberQuestions)
+            } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
+            // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form2 = document.querySelector("#form2");
@@ -587,8 +587,8 @@ function FormsNewQuestionsOptionsPage() {
                 
                 }
 
-            } else if (readyToSendForm2 === true && isValid === false && (newOption1Question === "" || newOption2Question === "" || newOption3Question === "" || newOption4Question === "" || newOptionsNumberQuestions === "")) {
-            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOption1Question, newOption2Question, newOption3Question, newOption4Question, newOptionsNumberQuestions)
+            } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain === "" || newOptionBMain === "" || newOptionCMain === "" || newOptionDMain === "" || newOptionNumberMain === "")) {
+            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form2 = document.querySelector("#form2");
@@ -693,7 +693,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
-                if ((number === newQuestionsNumberMultiQuestions)) {
+                if ((number === newQuestionNumberMulti)) {
                     isValid = false;
                     
                 } 
@@ -704,18 +704,18 @@ function FormsNewQuestionsOptionsPage() {
 
         checkAlternativeAnswer()
 
-        if (checkAlternativeAnswer() === true && (newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions)) {
+        if (checkAlternativeAnswer() === true && (newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti)) {
             setActivePopupcheckAlternativeAnswerForms3(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
-            if (readyToSendForm3 === true && isValid === true && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {  
+            if (readyToSendForm3 === true && isValid === true && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {  
                 data = {
-                    question: newQuestionMultiQuestions,
-                    answerText: newAnswerTextMultiQuestions,
-                    srcImg: newSourceImageMultiQuestions, // não obrigatório
-                    descriptionP: newDescriptionMultiQuestions,
-                    numberQuestion: newQuestionsNumberMultiQuestions,
+                    question: newQuestionTextMulti,
+                    answerText: newCorrectAnswerMulti,
+                    srcImg: newImageKeyMulti, // não obrigatório
+                    descriptionP: newDescriptionMulti,
+                    numberQuestion: newQuestionNumberMulti,
                     id: uniqueId
                 }
 
@@ -734,7 +734,7 @@ function FormsNewQuestionsOptionsPage() {
                 cleanLabels()
                 mute === false && saveSound.play() // toca o som 'saveSound'
 
-            } else if (readyToSendForm3 === true && isValid === true && (newQuestionMultiQuestions === "" || newAnswerTextMultiQuestions === "" || newDescriptionMultiQuestions === "" || newQuestionsNumberMultiQuestions === "")) {
+            } else if (readyToSendForm3 === true && isValid === true && (newQuestionTextMulti === "" || newCorrectAnswerMulti === "" || newDescriptionMulti === "" || newQuestionNumberMulti === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form3= document.querySelector("#form3");
@@ -760,7 +760,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 3!')
                 alert('Please fill in all required fields in Form 3.')
 
-            } else if (readyToSendForm3 === true && isValid === false && newQuestionMultiQuestions && newAnswerTextMultiQuestions && newDescriptionMultiQuestions && newQuestionsNumberMultiQuestions) {
+            } else if (readyToSendForm3 === true && isValid === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form3= document.querySelector("#form3");
@@ -786,7 +786,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 3!')
                 alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
-            } else if (readyToSendForm3 === true && isValid === false && (newQuestionMultiQuestions === "" || newAnswerTextMultiQuestions === "" || newDescriptionMultiQuestions === "" || newQuestionsNumberMultiQuestions === "")) {
+            } else if (readyToSendForm3 === true && isValid === false && (newQuestionTextMulti === "" || newCorrectAnswerMulti === "" || newDescriptionMulti === "" || newQuestionNumberMulti === "")) {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form3= document.querySelector("#form3");
@@ -877,7 +877,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
-                if ((number === newOptionsNumberMultiQuestions)) {
+                if ((number === newOptionNumberMulti)) {
                     isValid = false;
                     
                 } 
@@ -886,13 +886,13 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
        
-        if (checkAlternativeAnswer() === true && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
+        if (checkAlternativeAnswer() === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
             setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
-            if (readyToSendForm4 === true && isValid === true && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
-            // condição 1: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions)
+            if (readyToSendForm4 === true && isValid === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
+            // condição 1: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
                     setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
@@ -904,12 +904,12 @@ function FormsNewQuestionsOptionsPage() {
                 
                 } else {
                     data = {
-                        option1: newOption1MultiQuestion,
-                        option2: newOption2MultiQuestion,
-                        option3: newOption3MultiQuestion,
-                        option4: newOption4MultiQuestion,
-                        option5: newOption5MultiQuestion, // não obrigatório
-                        numberOption: newOptionsNumberMultiQuestions,
+                        option1: newOptionAMulti,
+                        option2: newOptionBMulti,
+                        option3: newOptionCMulti,
+                        option4: newOptionDMulti,
+                        option5: newOptionEMulti, // não obrigatório
+                        numberOption: newOptionNumberMulti,
                         id: uniqueId
                     }
 
@@ -930,8 +930,8 @@ function FormsNewQuestionsOptionsPage() {
                     mute === false && saveSound.play() // toca o som 'saveSound'
 
                 }
-            } else if (readyToSendForm4 === true && isValid === true && (newOption1MultiQuestion === "" || newOption2MultiQuestion === "" || newOption3MultiQuestion === "" || newOption4MultiQuestion === "" || newOptionsNumberMultiQuestions === "")) {
-            // condição 2: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se tem campos obrigatórios vazios (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions)
+            } else if (readyToSendForm4 === true && isValid === true && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
+            // condição 2: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form4= document.querySelector("#form4");
@@ -968,8 +968,8 @@ function FormsNewQuestionsOptionsPage() {
 
                 }
 
-            } else if (readyToSendForm4 === true && isValid === false && (newOption1MultiQuestion && newOption2MultiQuestion && newOption3MultiQuestion && newOption4MultiQuestion && newOptionsNumberMultiQuestions)) {
-                // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions)
+            } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
+                // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form4= document.querySelector("#form4");
@@ -1006,8 +1006,8 @@ function FormsNewQuestionsOptionsPage() {
                 
                 }
 
-            } else if (readyToSendForm4 === true && isValid === false && (newOption1MultiQuestion === "" || newOption2MultiQuestion === "" || newOption3MultiQuestion === "" || newOption4MultiQuestion === "" || newOptionsNumberMultiQuestions === "")) {
-            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOption1MultiQuestion, newOption2MultiQuestion, newOption3MultiQuestion, newOption4MultiQuestion, newOptionsNumberMultiQuestions)
+            } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
+            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form4= document.querySelector("#form4");
@@ -1164,16 +1164,16 @@ function FormsNewQuestionsOptionsPage() {
 
                         labelTarget={labelTarget} 
                         setLabelTarget={setLabelTarget}
-                        newQuestionQuestions={newQuestionQuestions}
-                        setNewQuestionQuestions={setNewQuestionQuestions}
-                        newAnswerQuestions={newAnswerQuestions}
-                        setNewAnswerQuestions={setNewAnswerQuestions}
-                        newSourceImageQuestions={newSourceImageQuestions}
-                        setNewSourceImageQuestions={setNewSourceImageQuestions}
-                        newDescriptionQuestions={newDescriptionQuestions}
-                        setNewDescriptionQuestions={setNewDescriptionQuestions}
-                        newQuestionsNumberQuestions={newQuestionsNumberQuestions}
-                        setNewQuestionsNumberQuestions={setNewQuestionsNumberQuestions}     
+                        newQuestionTextMain={newQuestionTextMain}
+                        setNewQuestionTextMain={setNewQuestionTextMain}
+                        newCorrectAnswerMain={newCorrectAnswerMain}
+                        setNewCorrectAnswerMain={setNewCorrectAnswerMain}
+                        newImageKeyMain={newImageKeyMain}
+                        setNewImageKeyMain={setNewImageKeyMain}
+                        newDescriptionMain={newDescriptionMain}
+                        setNewDescriptionMain={setNewDescriptionMain}
+                        newQuestionNumberMain={newQuestionNumberMain}
+                        setNewQuestionNumberMain={setNewQuestionNumberMain}     
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm1={readyToSendForm1}
@@ -1207,18 +1207,18 @@ function FormsNewQuestionsOptionsPage() {
 
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
-                        newOption1Question={newOption1Question} 
-                        setNewOption1Question={setNewOption1Question}    
-                        newOption2Question={newOption2Question} 
-                        setNewOption2Question={setNewOption2Question}    
-                        newOption3Question={newOption3Question} 
-                        setNewOption3Question={setNewOption3Question}    
-                        newOption4Question={newOption4Question} 
-                        setNewOption4Question={setNewOption4Question}    
-                        newOption5Question={newOption5Question} 
-                        setNewOption5Question={setNewOption5Question}    
-                        newOptionsNumberQuestions={newOptionsNumberQuestions} 
-                        setNewOptionsNumberQuestions={setNewOptionsNumberQuestions}
+                        newOptionAMain={newOptionAMain} 
+                        setNewOptionAMain={setNewOptionAMain}    
+                        newOptionBMain={newOptionBMain} 
+                        setNewOptionBMain={setNewOptionBMain}    
+                        newOptionCMain={newOptionCMain} 
+                        setNewOptionCMain={setNewOptionCMain}    
+                        newOptionDMain={newOptionDMain} 
+                        setNewOptionDMain={setNewOptionDMain}    
+                        newOptionEMain={newOptionEMain} 
+                        setNewOptionEMain={setNewOptionEMain}    
+                        newOptionNumberMain={newOptionNumberMain} 
+                        setNewOptionNumberMain={setNewOptionNumberMain}
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm2={readyToSendForm2}
@@ -1252,16 +1252,16 @@ function FormsNewQuestionsOptionsPage() {
                         
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
-                        newQuestionMultiQuestions={newQuestionMultiQuestions}
-                        setNewQuestionMultiQuestions={setNewQuestionMultiQuestions}
-                        newAnswerTextMultiQuestions={newAnswerTextMultiQuestions}
-                        setNewAnswerTextMultiQuestions={setNewAnswerTextMultiQuestions}
-                        newSourceImageMultiQuestions={newSourceImageMultiQuestions}
-                        setNewSourceImageMultiQuestions={setNewSourceImageMultiQuestions}
-                        newDescriptionMultiQuestions={newDescriptionMultiQuestions}
-                        setNewDescriptionMultiQuestions={setNewDescriptionMultiQuestions}
-                        newQuestionsNumberMultiQuestions={newQuestionsNumberMultiQuestions}
-                        setNewQuestionsNumberMultiQuestions={setNewQuestionsNumberMultiQuestions}
+                        newQuestionTextMulti={newQuestionTextMulti}
+                        setNewQuestionTextMulti={setNewQuestionTextMulti}
+                        newCorrectAnswerMulti={newCorrectAnswerMulti}
+                        setNewCorrectAnswerMulti={setNewCorrectAnswerMulti}
+                        newImageKeyMulti={newImageKeyMulti}
+                        setNewImageKeyMulti={setNewImageKeyMulti}
+                        newDescriptionMulti={newDescriptionMulti}
+                        setNewDescriptionMulti={setNewDescriptionMulti}
+                        newQuestionNumberMulti={newQuestionNumberMulti}
+                        setNewQuestionNumberMulti={setNewQuestionNumberMulti}
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm3={readyToSendForm3}
@@ -1294,18 +1294,18 @@ function FormsNewQuestionsOptionsPage() {
 
                         labelTarget={labelTarget}
                         setLabelTarget={setLabelTarget}
-                        newOption1MultiQuestion={newOption1MultiQuestion}
-                        setNewOption1MultiQuestion={setNewOption1MultiQuestion}
-                        newOption2MultiQuestion={newOption2MultiQuestion}
-                        setNewOption2MultiQuestion={setNewOption2MultiQuestion}
-                        newOption3MultiQuestion={newOption3MultiQuestion}
-                        setNewOption3MultiQuestion={setNewOption3MultiQuestion}
-                        newOption4MultiQuestion={newOption4MultiQuestion}
-                        setNewOption4MultiQuestion={setNewOption4MultiQuestion}
-                        newOption5MultiQuestion={newOption5MultiQuestion}
-                        setNewOption5MultiQuestion={setNewOption5MultiQuestion}
-                        newOptionsNumberMultiQuestions={newOptionsNumberMultiQuestions}
-                        setNewOptionsNumberMultiQuestions={setNewOptionsNumberMultiQuestions}
+                        newOptionAMulti={newOptionAMulti}
+                        setNewOptionAMulti={setNewOptionAMulti}
+                        newOptionBMulti={newOptionBMulti}
+                        setNewOptionBMulti={setNewOptionBMulti}
+                        newOptionCMulti={newOptionCMulti}
+                        setNewOptionCMulti={setNewOptionCMulti}
+                        newOptionDMulti={newOptionDMulti}
+                        setNewOptionDMulti={setNewOptionDMulti}
+                        newOptionEMulti={newOptionEMulti}
+                        setNewOptionEMulti={setNewOptionEMulti}
+                        newOptionNumberMulti={newOptionNumberMulti}
+                        setNewOptionNumberMulti={setNewOptionNumberMulti}
                         readyToCleanAll={readyToCleanAll}
                         setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm4={readyToSendForm4}
@@ -1346,7 +1346,7 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms1}
                     textPopup={`Your answer does not contain any alternative from option ${matchedOptionMainPopupNumber}! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option ${matchedOptionMainPopupNumber}, and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Include in the answer to question ${newQuestionsNumberQuestions} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? ` or ${matchedOptionMainPopup[4]}.` : `.`}`}
+                    textModalDescription={`Include in the answer to question ${newQuestionNumberMain} the correct alternative from option ${matchedOptionMainPopupNumber}, highlighted below: ${matchedOptionMainPopup[0]}, ${matchedOptionMainPopup[1]}, ${matchedOptionMainPopup[2]}, ${matchedOptionMainPopup[3]}${matchedOptionMainPopup[4] !== '' ? ` or ${matchedOptionMainPopup[4]}.` : `.`}`}
                 />
             }
 
@@ -1355,7 +1355,7 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms2}
                     textPopup={`No alternative matching the answer of question ${matchedQuestionMainPopupNumber} was found. Please, before creating the option, make sure that one of the alternatives is exactly the same as the answer of the already created question ${matchedQuestionMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Include in one of the alternatives of option ${newOptionsNumberQuestions} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
+                    textModalDescription={`Include in one of the alternatives of option ${newOptionNumberMain} the answer to question ${matchedQuestionMainPopupNumber}, highlighted below: ${matchedQuestionMainPopupAnswer}.`}
                 />
             }
 
@@ -1364,7 +1364,7 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3}
                     textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Include in the "answer's text" to question ${newQuestionsNumberMultiQuestions} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
+                    textModalDescription={`Include in the "answer's text" to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
                 />
             }
 
@@ -1373,7 +1373,7 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms4}
                     textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionsNumberMultiQuestions} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
+                    textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionNumberMulti} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
                 />
             }
 
