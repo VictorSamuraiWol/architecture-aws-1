@@ -15,7 +15,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(questionMain) {
-    const url = `http://localhost:3001/questions/${questionMain.id}`
+    const url = `http://localhost:3001/listQuestionsMain/${questionMain.id}`
 
     const options = {
         method: "DELETE",
@@ -29,7 +29,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         throw new Error('Error deleting')
 
       } else {
-        response.json();
+        response.json()
         setDeleteApi(true)
 
       }
@@ -43,11 +43,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   // função que deleta a opção de única escolha atual
   async function onDeleteOption(optionMainNumberId) {
-    const url = `http://localhost:3001/options/${optionMainNumberId[1]}`
+    const url = `http://localhost:3001/listOptionsMain/${optionMainNumberId[1]}`
 
     const options = {
         method: "DELETE",
-    };
+    }
 
     setDeleteApi(false)
 
@@ -71,11 +71,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   // função que deleta a questão de múltipla escolha atual
   async function onDeleteQuestionMulti(questionMulti) {
-    const url = `http://localhost:3001/multiQuestions/${questionMulti.id}`
+    const url = `http://localhost:3001/listQuestionsMulti/${questionMulti.id}`
 
     const options = {
         method: "DELETE",
-    };
+    }
 
     setDeleteApi(false)
 
@@ -99,11 +99,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   // função que deleta a opção de múltipla escolha atual
   async function onDeleteOptionMulti(optionMultiNumberId) {
-    const url = `http://localhost:3001/multiOptions/${optionMultiNumberId[1]}`
+    const url = `http://localhost:3001/listOptionsMulti/${optionMultiNumberId[1]}`
 
     const options = {
         method: "DELETE",
-    };
+    }
 
     setDeleteApi(false)
 
@@ -200,8 +200,8 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           questionMain={questionMain} 
           questionMulti={questionMulti}
           optionMain={optionMain} 
-          optionMainNumberId={optionMainNumberId}
           optionMulti={optionMulti}
+          optionMainNumberId={optionMainNumberId}
           optionMultiNumberId={optionMultiNumberId}
         />
 

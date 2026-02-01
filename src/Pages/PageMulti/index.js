@@ -8,16 +8,16 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageMulti() {
     
-    const [questionMulti, setQuestionMulti] = useState([])
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
-    const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
-    const [optionMultiNumberId, setOptionMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
+    const [questionMulti, setQuestionMulti] = useState('')
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
     const [optNum4, setOptNum4] = useState('')
     const [optNum5, setOptNum5] = useState('')
+    const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
+    const [optionMultiNumberId, setOptionMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
@@ -62,7 +62,7 @@ function PageMulti() {
 
         setQuestionMulti(next)          
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
 
     useEffect(() => {
         if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
@@ -102,32 +102,32 @@ function PageMulti() {
 
             // tenta corresponder diretamente com a questão atual
             matchedOption = listMultiOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente                
-                return option.numberOption === questionMulti.numberQuestion
+                return option.optionNumber === questionMulti.questionNumber
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listMultiOptionsContext.forEach(option => {
                       matchedQuestion = listMultiQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente
-                        return question.numberQuestion === option.numberOption
+                        return question.questionNumber === option.optionNumber
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
-                        matchedOption = option;
+                        matchedOption = option // armazena a opção correspondente
                         setQuestionMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
-                    }
-                    
+                    } 
                 })
-                
-                
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionMulti([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
-                setOptionMultiNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+                setOptionMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
+                setOptionMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
+
+            } else {
+                console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
 
@@ -152,17 +152,19 @@ function PageMulti() {
 
                 {questionMulti &&
                     <MultiMain 
-                        question={questionMulti.question} 
-                        answer={questionMulti.answerText}
-                        srcImg={questionMulti.srcImg}
-                        descriptionP={questionMulti.descriptionP}
+                        question={questionMulti.questionText} 
+                        answer={questionMulti.correctAnswer}
+                        srcImg={questionMulti.imageKey}
+                        descriptionP={questionMulti.description}
+                        numberQuestion={questionMulti.questionNumber}
                         elementId={questionMulti.id}
-                        numberQuestion={questionMulti.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
                         questionMulti={questionMulti}
+                        optionMulti={optionMulti}
+                        optionMultiNumberId={optionMultiNumberId}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}
@@ -173,8 +175,6 @@ function PageMulti() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        optionMulti={optionMulti}
-                        optionMultiNumberId={optionMultiNumberId}
                     />
                 }
 

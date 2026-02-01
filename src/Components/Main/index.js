@@ -100,12 +100,12 @@ function Main({
                 optionColorStyle={optionColorStyle}
                 inputColorStyle={inputColorStyle}   
                 setCaptureValue={setCaptureValue}
+                optionMain={optionMain}
                 optNum1={optNum1}
                 optNum2={optNum2}
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                optionMain={optionMain}
             />
 
             <ButtonAnswer            
@@ -121,13 +121,13 @@ function Main({
                 inputValidateStyle={inputValidateStyle}
                 inputInvalidateStyle={inputInvalidateStyle}                      
                 captureValue={captureValue}
+                optionMain={optionMain}
                 optNum1={optNum1}
                 optNum2={optNum2}
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
                 setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
-                optionMain={optionMain}
                 activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
                 setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
                 setItem={setItem}

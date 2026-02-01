@@ -20,11 +20,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   optionMulti, optionMultiNumberId }) {
 
   // criando variáveis para todos os atributos das questões
-  const [questionTextMain, setQuestionTextMain] = useState(questionMain?.question)
-  const [correctAnswerMain, setCorrectAnswerMain] = useState(questionMain?.answer)
-  const [imageKeyMain, setImageKeyMain] = useState(questionMain?.srcImg)
-  const [descriptionMain, setDescriptionMain] = useState(questionMain?.descriptionP)
-  const [questionNumberMain] = useState(questionMain?.numberQuestion)
+  const [questionTextMain, setQuestionTextMain] = useState(questionMain?.questionText)
+  const [correctAnswerMain, setCorrectAnswerMain] = useState(questionMain?.correctAnswer)
+  const [imageKeyMain, setImageKeyMain] = useState(questionMain?.imageKey)
+  const [descriptionMain, setDescriptionMain] = useState(questionMain?.description)
+  const [questionNumberMain] = useState(questionMain?.questionNumber)
 
   // criando variáveis para todos os atributos das opções
   const [optionAMain, setOptionAMain] = useState(optionMain && optionMain[0])
@@ -34,11 +34,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [optionEMain, setOptionEMain] = useState(optionMain && optionMain[4])
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
-  const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.question)
-  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.answerText)
-  const [imageKeyMulti, setImageKeyMulti] = useState(questionMulti?.srcImg)
-  const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.descriptionP)
-  const [questionNumberMulti] = useState(questionMulti?.numberQuestion)
+  const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.questionText)
+  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.correctAnswer)
+  const [imageKeyMulti, setImageKeyMulti] = useState(questionMulti?.imageKey)
+  const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.description)
+  const [questionNumberMulti] = useState(questionMulti?.questionNumber)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
   const [optionAMulti, setOptionAMulti] = useState(optionMulti && optionMulti[0])
@@ -108,15 +108,15 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
     const jsonBody = JSON.stringify({
-      question: questionTextMain,
-      answer: correctAnswerMain,
-      srcImg: imageKeyMain,
-      descriptionP: descriptionMain,
-      numberQuestion: questionMain.numberQuestion, // não será alterado
+      questionText: questionTextMain,
+      correctAnswer: correctAnswerMain,
+      imageKey: imageKeyMain,
+      description: descriptionMain,
+      questionNumber: questionMain.questionNumber, // não será alterado
       id: questionMain.id // não será alterado
 
     })
-    await fetch(`http://localhost:3001/questions/${questionMain.id}`, {
+    await fetch(`http://localhost:3001/listQuestionsMain/${questionMain.id}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -139,16 +139,16 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   //função utilizando PUT para alterar as opções na API
   async function onSaveModalOption() {
     const jsonBody = JSON.stringify({
-      option1: optionAMain,
-      option2: optionBMain,
-      option3: optionCMain,
-      option4: optionDMain,
-      option5: optionEMain,
-      numberOption: optionMainNumberId[0], // não será alterado 
+      optionA: optionAMain,
+      optionB: optionBMain,
+      optionC: optionCMain,
+      optionD: optionDMain,
+      optionE: optionEMain,
+      optionNumber: optionMainNumberId[0], // não será alterado 
       id: optionMainNumberId[1] // não será alterado
 
     })
-    await fetch(`http://localhost:3001/options/${optionMainNumberId[1]}`, {
+    await fetch(`http://localhost:3001/listOptionsMain/${optionMainNumberId[1]}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -171,15 +171,15 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   //função utilizando PUT para alterar as questões de múltipla escolha na API
   async function onSaveModalMultiQuestion() {
     const jsonBody = JSON.stringify({
-      question: questionTextMulti,
-      answerText: correctAnswerMulti,
-      srcImg: imageKeyMulti,
-      descriptionP: descriptionMulti,
-      numberQuestion: questionMulti.numberQuestion, // não será alterado
+      questionText: questionTextMulti,
+      correctAnswer: correctAnswerMulti,
+      imageKey: imageKeyMulti,
+      description: descriptionMulti,
+      questionNumber: questionMulti.questionNumber, // não será alterado
       id: questionMulti.id // não será alterado
 
     })
-    await fetch(`http://localhost:3001/multiQuestions/${questionMulti.id}`, {
+    await fetch(`http://localhost:3001/listQuestionsMulti/${questionMulti.id}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -203,16 +203,16 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   //função utilizando PUT para alterar as opções de múltipla escolha na API
   async function onSaveModalMultiOption() {
     const jsonBody = JSON.stringify({
-      option1: optionAMulti,
-      option2: optionBMulti,
-      option3: optionCMulti,
-      option4: optionDMulti,
-      option5: optionEMulti,
-      numberOption: optionMultiNumberId[0], // não será alterado 
+      optionA: optionAMulti,
+      optionB: optionBMulti,
+      optionC: optionCMulti,
+      optionD: optionDMulti,
+      optionE: optionEMulti,
+      optionNumber: optionMultiNumberId[0], // não será alterado 
       id: optionMultiNumberId[1] // não será alterado
 
     })
-    await fetch(`http://localhost:3001/multiOptions/${optionMultiNumberId[1]}`, {
+    await fetch(`http://localhost:3001/listOptionsMulti/${optionMultiNumberId[1]}`, {
       method: 'PUT',
       headers: {
           "Content-Type": "application/json"
@@ -239,8 +239,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const questionMainEdit = [questionTextMain, correctAnswerMain, imageKeyMain, descriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
     const optionMainEdit = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
       
-    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.question, questions.answer, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageKey, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
     
     const findQuestionMain = newListUnicQuestionsContext.filter(question => isEqual(question, questionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
     const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
@@ -249,8 +249,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const questionMultiEdit = [questionTextMulti, correctAnswerMulti, imageKeyMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
     const optionMultiEdit = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
-    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.question, questions.answerText, questions.srcImg, questions.descriptionP]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.option1, options.option2, options.option3, options.option4, options.option5]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageKey, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
 
     const findQuestionMulti = newListMultiQuestionsContext.filter(question => isEqual(question, questionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
     const findOptionMulti = newListMultiOptionsContext.filter(question => isEqual(question, optionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
@@ -296,13 +296,13 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           }, 10000)
 
         } else {
-          onSaveModalQuestion(); // salvando a questão única
-          onSaveModalOption(); // salvando a opção única
+          onSaveModalQuestion() // salvando a questão única
+          onSaveModalOption() // salvando a opção única
           
           setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
 
-          console.log('Saved!!!')
-          alert('Saved successfully!!!')
+          console.log('Saved!')
+          alert('Saved successfully!')
 
         }
 
@@ -336,13 +336,13 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           }, 10000)
 
         } else {    
-          onSaveModalMultiQuestion(); // salvando a questão múltipla
-          onSaveModalMultiOption(); // salvando a opção múltipla
+          onSaveModalMultiQuestion() // salvando a questão múltipla
+          onSaveModalMultiOption() // salvando a opção múltipla
           
           setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
 
-          console.log('Saved!!!')
-          alert('Saved successfully!!!')
+          console.log('Saved!')
+          alert('Saved successfully!')
 
         }
 
@@ -687,7 +687,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         {activePopupRepeatedAlternativesModalEdit && 
           <PopupRepeatedAlternatives 
             specificStyles={styles.popupRepeatedModalEdit} 
-            textPopup={"There are repeated alternatives. Please, before editing the option, modify the duplicated alternatives and then proceed with editing the question and the option. Thank you."} 
+            textPopup={"There are repeated alternatives. Please, before editing the option, modify the duplicated alternatives and then proceed with editing the question and the option."} 
             activePopup={setActivePopupRepeatedAlternativesModalEdit}            
           />
         }
@@ -697,7 +697,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
-            textPopup={`No alternative matching the answer to question ${questionNumberMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below. Thank you.`} 
+            textPopup={`No alternative matching the answer to question ${questionNumberMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
             textModalDescription={`Choose one: (1)Include in the answer to question ${questionNumberMain} the correct alternative from the option highlighted below: ${optionAMain}, ${optionBMain}, ${optionCMain}, ${optionDMain}${optionEMain !== '' ? ` or ${optionEMain}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${questionNumberMain}, highlighted below: ${correctAnswerMain}.`}
           />
         }
@@ -706,7 +706,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
-            textPopup={`The two alternatives included in the answer of question ${questionNumberMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below. Thank you.`} 
+            textPopup={`The two alternatives included in the answer of question ${questionNumberMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
             textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberMulti} the two correct alternatives from the option highlighted below: ${optionAMulti} e ${optionBMulti}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${questionNumberMulti}, highlighted below: ${correctAnswerMulti}. `}
           />
         }

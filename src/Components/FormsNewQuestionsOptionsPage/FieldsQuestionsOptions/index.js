@@ -2,11 +2,16 @@ import styles from './FieldsQuestionsOptions.module.css'
 import FieldQuestionOption from './FieldQuestionOption'
 
 function FieldsQuestionsOptions({ 
-    nome1, nome2, nome3, nome4, nome5, nome6, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
-    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newCorrectAnswerMain, setNewCorrectAnswerMain, newImageKeyMain, setNewImageKeyMain, newDescriptionMain, setNewDescriptionMain, newQuestionNumberMain, setNewQuestionNumberMain, 
-    /* campos form2 */ newOptionAMain, setNewOptionAMain, newOptionBMain, setNewOptionBMain, newOptionCMain, setNewOptionCMain, newOptionDMain, setNewOptionDMain, newOptionEMain, setNewOptionEMain, newOptionNumberMain, setNewOptionNumberMain, 
-    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newImageKeyMulti, setNewImageKeyMulti, newDescriptionMulti, setNewDescriptionMulti, newQuestionNumberMulti, setNewQuestionNumberMulti,
-    /* campos form4 */ newOptionAMulti, setNewOptionAMulti, newOptionBMulti, setNewOptionBMulti, newOptionCMulti, setNewOptionCMulti, newOptionDMulti, setNewOptionDMulti, newOptionEMulti, setNewOptionEMulti, newOptionNumberMulti, setNewOptionNumberMulti
+    nome1, nome2, nome3, nome4, nome5, nome6, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, 
+    readyToSendForm2, readyToSendForm3, readyToSendForm4,
+    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newCorrectAnswerMain, setNewCorrectAnswerMain, newImageKeyMain, setNewImageKeyMain, 
+    newDescriptionMain, setNewDescriptionMain, newQuestionNumberMain, setNewQuestionNumberMain, 
+    /* campos form2 */ newOptionAMain, setNewOptionAMain, newOptionBMain, setNewOptionBMain, newOptionCMain, setNewOptionCMain, newOptionDMain, 
+    setNewOptionDMain, newOptionEMain, setNewOptionEMain, newOptionNumberMain, setNewOptionNumberMain, 
+    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newImageKeyMulti, setNewImageKeyMulti, 
+    newDescriptionMulti, setNewDescriptionMulti, newQuestionNumberMulti, setNewQuestionNumberMulti,
+    /* campos form4 */ newOptionAMulti, setNewOptionAMulti, newOptionBMulti, setNewOptionBMulti, newOptionCMulti, setNewOptionCMulti, newOptionDMulti, 
+    setNewOptionDMulti, newOptionEMulti, setNewOptionEMulti, newOptionNumberMulti, setNewOptionNumberMulti
     
 }) {
 

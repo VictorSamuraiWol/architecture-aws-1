@@ -73,12 +73,12 @@ function MultiMain({
                 inputColorStyle={inputColorStyle}
                 setCaptureValueMulti={setCaptureValueMulti}
                 captureValueMulti={captureValueMulti}
+                optionMulti={optionMulti}
                 optNum1={optNum1}
                 optNum2={optNum2}
                 optNum3={optNum3}
                 optNum4={optNum4}
                 optNum5={optNum5}
-                optionMulti={optionMulti}
             />
             
             <ButtonAnswer            
@@ -95,8 +95,8 @@ function MultiMain({
                 inputValidateStyle={inputValidateStyle}
                 inputInvalidateStyle={inputInvalidateStyle}
                 captureValueMulti={captureValueMulti}
-                setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
                 optionMulti={optionMulti}
+                setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
                 activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
                 setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
                 setItens={setItens}

@@ -8,8 +8,6 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageMain() {
 
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
     const [questionMain, setQuestionMain] = useState('')
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
@@ -18,6 +16,8 @@ function PageMain() {
     const [optNum5, setOptNum5] = useState('')
     const [optionMain, setOptionMain] = useState([]) // mapear todas as opções presente na página main
     const [optionMainNumberId, setOptionMainNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
+    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
@@ -51,7 +51,7 @@ function PageMain() {
     }   
 
     useEffect(() => {
-        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return; // se a lista de questões não existir, retorne
+        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return // se a lista de questões não existir, retorne
 
         // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
@@ -65,7 +65,7 @@ function PageMain() {
 
         setQuestionMain(next) // armazena a questão que será mostrada na página Main
         
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setActivePageFormsQuestionsOptions, setRequestData])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
 
     useEffect(() => {
         if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
@@ -103,14 +103,15 @@ function PageMain() {
             setLoading(true) // habilita o componente 'Loader'
 
             // busca uma opção que corresponde diretamente com a questão atual
-             matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior                        
-                return ((option.numberOption === questionMain.numberQuestion) && (option.numberOption !== lastNumberMatchedQuestionOptionRef.current))
+            matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
+                        
+                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))
             })
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listUnicOptionsContext.forEach(option => {
                     matchedQuestion = listUnicQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
-                        return ((question.numberQuestion === option.numberOption) && (question.numberQuestion !== lastNumberMatchedQuestionOptionRef.current))
+                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
@@ -119,19 +120,18 @@ function PageMain() {
                         setLoading(false) // desabilita o componente 'Loader'                   
 
                     }
-        
                 })
-
+      
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionMain([matchedOption.option1, matchedOption.option2, matchedOption.option3, matchedOption.option4, matchedOption.option5]) // atualizando a opção
-                setOptionMainNumberId([matchedOption.numberOption, matchedOption.id]) // capturar o número e o id da opção atual
+                setOptionMain([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
+                setOptionMainNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 matchedQuestion = questionMain // matchedQuestion recebe o valor 'questionMain'                
                 setLoading(false) // desabilita o componente 'Loader'
-                lastNumberMatchedQuestionOptionRef.current = matchedQuestion.numberQuestion // armazena o número da questão correspondente
+                lastNumberMatchedQuestionOptionRef.current = matchedQuestion.questionNumber // armazena o número da questão correspondente
 
             } else {
-                console.error('não encontrou uma opção que possua uma questão correspondente, crie uma nova questão ou opção com o mesmo número para haver correspondênciam, obrigado.')
+                console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
 
@@ -158,12 +158,12 @@ function PageMain() {
                 
                 {questionMain &&
                     <Main 
-                        question={questionMain.question}
-                        answer={questionMain.answer}
-                        srcImg={questionMain.srcImg}
-                        descriptionP={questionMain.descriptionP}
+                        question={questionMain.questionText}
+                        answer={questionMain.correctAnswer}
+                        srcImg={questionMain.imageKey}
+                        descriptionP={questionMain.description}
+                        numberQuestion={questionMain.questionNumber}
                         elementId={questionMain.id}
-                        numberQuestion={questionMain.numberQuestion}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}
                         descriptionDisplay={descriptionDisplay}
@@ -171,6 +171,8 @@ function PageMain() {
                         uniqueRandomMain={uniqueRandomMain}
                         questionMain={questionMain}
                         setQuestionMain={setQuestionMain}                        
+                        optionMain={optionMain}
+                        optionMainNumberId={optionMainNumberId}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}
@@ -181,8 +183,6 @@ function PageMain() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        optionMain={optionMain}
-                        optionMainNumberId={optionMainNumberId}
                     />
                 }
 

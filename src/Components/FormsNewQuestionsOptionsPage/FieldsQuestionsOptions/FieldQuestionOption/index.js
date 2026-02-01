@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react'
 import styles from './FieldQuestionOption.module.css'
 import DetailsFieldsForms from '../../../DetailsFieldsForms'
+import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
     nome, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, 
     readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, 
     valueForm3, setValueForm3, valueForm4, setValueForm4
-
 }) {
 
     // id única para somente para os campos
-    const uniqueId = uuidv4();
+    const uniqueId = uuidv4()
 
     // valor capturado do textarea
     const [newValue, setNewValue] = useState("")
@@ -156,6 +155,7 @@ function FieldQuestionOption({
                 >
                     {nome}
                 </label>
+
                 {/* aparecer o campo do tipo textarea se for textos e números */}
                 {(nome !== "Number:*") &&
                     <textarea 
@@ -165,6 +165,7 @@ function FieldQuestionOption({
                         
                     />
                 }
+
                 {/* aparecer o campo do tipo input se for somente numérico */}
                 {(nome === "Number:*") && 
                     <input 
@@ -175,11 +176,13 @@ function FieldQuestionOption({
                         
                     />
                 }
+
                 <DetailsFieldsForms 
                     detailsFields={detailsFields}
                     textDetail={textDetail}
                 />
             </div>
+
         </div>
 
     )

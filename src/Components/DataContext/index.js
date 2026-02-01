@@ -1,5 +1,5 @@
 import styles from './DataContext.module.css'
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react'
 
 // criando um contexto
 export const DataContext = createContext()
@@ -7,8 +7,8 @@ export const DataContext = createContext()
 export default function DataProvider({ children }) {
     
     //colocando todas as variáveis que precisam utilizar os dados do backend neste contexto, podendo utilizar todas as variáveis em qualquer lugar do projeto através do 'useContext' 
-    const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState([]);
-    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState('');
+    const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState([])
+    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState('')
     const [listUnicOptionsContext, setListUnicOptionsContext] = useState([])
 
     const [listMultiQuestionsContext, setListMultiQuestionsContext] = useState([])
@@ -32,11 +32,11 @@ export default function DataProvider({ children }) {
                 // habilitar o loading
                 setLoading(true)
 
-                const res = await fetch("http://localhost:3001/questions");
-                const data = await res.json(); 
+                const res = await fetch("http://localhost:3001/listQuestionsMain")
+                const data = await res.json() 
 
                 if (!data) {
-                    throw new Error("Dados inválidos");
+                    throw new Error("Dados inválidos")
 
                 } else {
 
@@ -54,7 +54,7 @@ export default function DataProvider({ children }) {
                 }
             
             } catch (error) {
-                console.error('Erro ao buscar as questões:', error);
+                console.error('Erro ao buscar as questões:', error)
 
                 // desabilitar o loading               
                 setLoading(false)
@@ -62,6 +62,7 @@ export default function DataProvider({ children }) {
             }
         
         }
+
         fetchData1()
 
         const fetchData2 = async () => {
@@ -70,11 +71,11 @@ export default function DataProvider({ children }) {
                 // habilitar o loading
                 setLoading(true)
 
-                const res = await fetch("http://localhost:3001/options");
-                const data = await res.json(); 
+                const res = await fetch("http://localhost:3001/listOptionsMain")
+                const data = await res.json() 
                 
                 if (!data) {
-                    throw new Error("Dados inválidos");
+                    throw new Error("Dados inválidos")
 
                 } else {
 
@@ -91,14 +92,15 @@ export default function DataProvider({ children }) {
                 }  
     
             } catch (error) {
-                console.error('Erro ao buscar as opções:', error);
+                console.error('Erro ao buscar as opções:', error)
 
                 // desabilitar o loading               
                 setLoading(false)
 
             }
 
-        }    
+        } 
+
         fetchData2()
 
         const fetchData3 = async () => {
@@ -106,11 +108,11 @@ export default function DataProvider({ children }) {
                 // habilitar o loading
                 setLoading(true)
 
-                const res = await fetch("http://localhost:3001/multiQuestions");
-                const data = await res.json();
+                const res = await fetch("http://localhost:3001/listQuestionsMulti")
+                const data = await res.json()
 
                 if (!data) {
-                    throw new Error("Dados inválidos");
+                    throw new Error("Dados inválidos")
                     
                 } else {
 
@@ -128,7 +130,7 @@ export default function DataProvider({ children }) {
                 }   
 
             } catch (error) {
-                console.log('Erro ao buscar as questões:', error);
+                console.log('Erro ao buscar as questões:', error)
 
                 // desabilitar o loading                  
                 setLoading(false)
@@ -136,6 +138,7 @@ export default function DataProvider({ children }) {
             }
 
         }
+
         fetchData3()
 
         const fetchData4 = async () => {
@@ -143,11 +146,11 @@ export default function DataProvider({ children }) {
                 // habilitar o loading
                 setLoading(true)
 
-                const res = await fetch("http://localhost:3001/multiOptions");
-                const data = await res.json();
+                const res = await fetch("http://localhost:3001/listOptionsMulti")
+                const data = await res.json()
 
                 if (!data) {
-                    throw new Error("Dados inválidos");
+                    throw new Error("Dados inválidos")
 
                 } else {
 
@@ -164,7 +167,7 @@ export default function DataProvider({ children }) {
                 }         
                 
             } catch (error) {
-                console.log('Erro ao buscar as opções:', error);
+                console.log('Erro ao buscar as opções:', error)
 
                 // desabilitar o loading                  
                 setLoading(false)
@@ -172,6 +175,7 @@ export default function DataProvider({ children }) {
             }
 
         }
+
         fetchData4()
 
     }, [postApi, updateList, deleteApi])
