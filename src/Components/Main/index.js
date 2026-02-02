@@ -12,7 +12,7 @@ import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
 
 function Main({ 
-    question, answer, srcImg, descriptionP, numberQuestion, answerDisplay, descriptionDisplay, 
+    question, answer, imageDescription, description, questionNumber, answerDisplay, descriptionDisplay, 
     setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
     optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
@@ -113,7 +113,7 @@ function Main({
                 setAnswerDisplay={setAnswerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 answer={answer}
-                numberQuestion={numberQuestion}
+                questionNumber={questionNumber}
                 optionColorStyle={optionColorStyle}
                 optionValidateStyle={optionValidateStyle}
                 optionInvalidateStyle={optionInvalidateStyle}
@@ -135,9 +135,8 @@ function Main({
 
             <AnswerDescription 
                 answer={answer}
-                srcImg={srcImg} 
-                descriptionP={descriptionP}
-                numberQuestion={numberQuestion}
+                imageDescription={imageDescription} 
+                description={description}
                 answerDisplay={answerDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}

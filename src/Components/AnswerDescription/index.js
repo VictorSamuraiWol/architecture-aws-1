@@ -13,7 +13,7 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 
 function AnswerDescription({ 
-    answer, descriptionP, srcImg, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
+    answer, description, imageDescription, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
     item, itens
 }) {
 
@@ -33,13 +33,12 @@ function AnswerDescription({
         dynamoDB: dynamoDB
     })
 
-    function description() {
+    function ableDisableDescription() {
 
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
                 descriptionDisplay && setDescriptionDisplay(styles.invisible)
 
         } else {
-
             descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
             
         }
@@ -64,7 +63,7 @@ function AnswerDescription({
             className={`${styles.answerClass} ${answerDisplay}`}
         >   
             <div
-                onClick={description}
+                onClick={ableDisableDescription}
                 id='answerTitle'                
                 className={styles.answerTitle}
             >
@@ -80,8 +79,8 @@ function AnswerDescription({
                 id='descriptionId' 
                 className={`${styles.descriptionClass} ${descriptionDisplay}`}
             >
-                {srcImg !== '' && <img className={styles.imageDescription} src={imagesDescriptions[srcImg]} alt='img' />}
-                {descriptionP}
+                {imageDescription !== '' && <img className={styles.imageDescription} src={imagesDescriptions[imageDescription]} alt='img' />}
+                {description}
             </p>
 
         </section>

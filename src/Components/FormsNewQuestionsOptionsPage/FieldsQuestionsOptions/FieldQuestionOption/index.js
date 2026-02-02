@@ -50,7 +50,7 @@ function FieldQuestionOption({
             
                 labelTarget === "Answer:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMain'
 
-                labelTarget === "Source Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMain'
+                labelTarget === "Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMain'
 
                 labelTarget === "Description:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMain'
 
@@ -69,15 +69,15 @@ function FieldQuestionOption({
             setValuesForms(valueForm2)
 
             if (readyToCleanAll === false) {
-                labelTarget === "Option 1:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMain'
+                labelTarget === "Option A:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMain'
 
-                labelTarget === "Option 2:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMain'
+                labelTarget === "Option B:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMain'
 
-                labelTarget === "Option 3:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMain'                
+                labelTarget === "Option C:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMain'                
 
-                labelTarget === "Option 4:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMain'
+                labelTarget === "Option D:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMain'
 
-                labelTarget === "Option 5:" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMain'
+                labelTarget === "Option E:" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMain'
 
                 labelTarget === "Number:*" && setValueForm2(newValue) // setValueForm2 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionNumberMain'
 
@@ -96,9 +96,9 @@ function FieldQuestionOption({
             if (readyToCleanAll === false) {
                 labelTarget === "Question:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewQuestionTextMulti'
 
-                labelTarget === "Answer's Text:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMulti'
+                labelTarget === "Answer:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMulti'
 
-                labelTarget === "Source Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMulti'
+                labelTarget === "Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMulti'
 
                 labelTarget === "Description:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMulti'
                 
@@ -117,15 +117,15 @@ function FieldQuestionOption({
             setValuesForms(valueForm4)  
 
             if (readyToCleanAll === false) {
-                labelTarget === "Option 1:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMulti'
+                labelTarget === "Option A:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionAMulti'
         
-                labelTarget === "Option 2:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMulti'
+                labelTarget === "Option B:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionBMulti'
                 
-                labelTarget === "Option 3:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMulti'
+                labelTarget === "Option C:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionCMulti'
                 
-                labelTarget === "Option 4:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMulti'
+                labelTarget === "Option D:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionDMulti'
                 
-                labelTarget === "Option 5:" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMulti'
+                labelTarget === "Option E:" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionEMulti'
                 
                 labelTarget === "Number:*" && setValueForm4(newValue) // setValueForm4 é uma props que, neste caso, corresponde a variável de estado 'setNewOptionNumberMulti'
 

@@ -374,27 +374,27 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   }
 
   //funções para capturar os valores dos campos das opções de única escolha
-  function onChangeModalOption1(event) {
+  function onChangeModalOptionA(event) {
     setOptionAMain(event.target.value)
 
   }
 
-  function onChangeModalOption2(event) {
+  function onChangeModalOptionB(event) {
     setOptionBMain(event.target.value)
 
   }
 
-  function onChangeModalOption3(event) {
+  function onChangeModalOptionC(event) {
     setOptionCMain(event.target.value)
 
   }
 
-  function onChangeModalOption4(event) {
+  function onChangeModalOptionD(event) {
     setOptionDMain(event.target.value)
 
   }
 
-  function onChangeModalOption5(event) {
+  function onChangeModalOptionE(event) {
     setOptionEMain(event.target.value)
 
   }
@@ -421,27 +421,27 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   }
 
   //funções para capturar os valores dos campos das opções de múltipla escolha
-  function onChangeModalOption1Multi(event) {
+  function onChangeModalOptionAMulti(event) {
     setOptionAMulti(event.target.value)
 
   }
 
-  function onChangeModalOption2Multi(event) {
+  function onChangeModalOptionBMulti(event) {
     setOptionBMulti(event.target.value)
 
   }
 
-  function onChangeModalOption3Multi(event) {
+  function onChangeModalOptionCMulti(event) {
     setOptionCMulti(event.target.value)
 
   }
 
-  function onChangeModalOption4Multi(event) {
+  function onChangeModalOptionDMulti(event) {
     setOptionDMulti(event.target.value)
 
   }
 
-  function onChangeModalOption5Multi(event) {
+  function onChangeModalOptionEMulti(event) {
     setOptionEMulti(event.target.value)
 
   }
@@ -524,7 +524,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           />
           <FieldModalEdit
             onChangeModal={onChangeModalImage}
-            name="Image Source"
+            name="Image"
             newValue={imageKeyMain}
 
           />
@@ -538,36 +538,36 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
           {/* todos os campos das opções */}
           <FieldModalEdit
-            onChangeModal={onChangeModalOption1}
-            name="Option1*"
+            onChangeModal={onChangeModalOptionA}
+            name="OptionA*"
             newValue={optionAMain}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption2}
-            name="Option2*"
+            onChangeModal={onChangeModalOptionB}
+            name="OptionB*"
             newValue={optionBMain}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption3}
-            name="Option3*"
+            onChangeModal={onChangeModalOptionC}
+            name="OptionC*"
             newValue={optionCMain}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption4}
-            name="Option4*"
+            onChangeModal={onChangeModalOptionD}
+            name="OptionD*"
             newValue={optionDMain}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption5}
-            name="Option5"
+            onChangeModal={onChangeModalOptionE}
+            name="OptionE"
             newValue={optionEMain}
 
           />
@@ -614,7 +614,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           />
           <FieldModalEdit
             onChangeModal={onChangeModalImageMulti}
-            name="Image Source"
+            name="Image"
             newValue={imageKeyMulti}
 
           />
@@ -628,36 +628,36 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
           {/* todos os campos das opções de múltipla escolha */}
           <FieldModalEdit
-            onChangeModal={onChangeModalOption1Multi}
-            name="Option1*"
+            onChangeModal={onChangeModalOptionAMulti}
+            name="OptionA*"
             newValue={optionAMulti}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption2Multi}
-            name="Option2*"
+            onChangeModal={onChangeModalOptionBMulti}
+            name="OptionB*"
             newValue={optionBMulti}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption3Multi}
-            name="Option3*"
+            onChangeModal={onChangeModalOptionCMulti}
+            name="OptionC*"
             newValue={optionCMulti}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption4Multi}
-            name="Option4*"
+            onChangeModal={onChangeModalOptionDMulti}
+            name="OptionD*"
             newValue={optionDMulti}
             required={true}
 
           />
           <FieldModalEdit
-            onChangeModal={onChangeModalOption5Multi}
-            name="Option5"
+            onChangeModal={onChangeModalOptionEMulti}
+            name="OptionE"
             newValue={optionEMulti}
 
           />
@@ -707,7 +707,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
             textPopup={`The two alternatives included in the answer of question ${questionNumberMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberMulti} the two correct alternatives from the option highlighted below: ${optionAMulti} e ${optionBMulti}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${questionNumberMulti}, highlighted below: ${correctAnswerMulti}. `}
+            textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberMulti} the two correct alternatives from the option highlighted below: ${optionAMulti} e ${optionBMulti}. (2)Include in the first two alternatives (Option A and Option B) of this option the answer included in question ${questionNumberMulti}, highlighted below: ${correctAnswerMulti}. `}
           />
         }
 

@@ -11,7 +11,7 @@ function ButtonAnswer({
     answerDisplay, setAnswerDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
     inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, 
     setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMain, optionMulti, 
-    setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, numberQuestion, setItem, 
+    setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, questionNumber, setItem, 
     setItens
 }) {
     
@@ -383,8 +383,8 @@ function ButtonAnswer({
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
-                    textPopup={`No alternative matching the answer to question ${numberQuestion} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Choose one: (1)Include in the answer to question ${numberQuestion} the correct alternative from the option highlighted below: ${optionMain[0]}, ${optionMain[1]}, ${optionMain[2]}, ${optionMain[3]}${optionMain[4] !== '' ? ` or ${optionMain[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${numberQuestion}, highlighted below: ${answer}.`}
+                    textPopup={`No alternative matching the answer to question ${questionNumber} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`Choose one: (1)Include in the answer to question ${questionNumber} the correct alternative from the option highlighted below: ${optionMain[0]}, ${optionMain[1]}, ${optionMain[2]}, ${optionMain[3]}${optionMain[4] !== '' ? ` or ${optionMain[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${questionNumber}, highlighted below: ${answer}.`}
                 />
             }
 
@@ -392,8 +392,8 @@ function ButtonAnswer({
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
-                    textPopup={`The two alternatives included in the answer to question ${numberQuestion} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option 1 and Option 2 exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below. Thank you.`} 
-                    textModalDescription={`Choose One: (1)Include in the answer of question ${numberQuestion} the two correct alternatives from the option highlighted below: ${optionMulti[0]} e ${optionMulti[1]}. (2)Include in the first two alternatives (Option1 and Option2) of this option the answer included in question ${numberQuestion}, highlighted below: ${answer}. `}
+                    textPopup={`The two alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A and Option B exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the two correct alternatives from the option highlighted below: ${optionMulti[0]} e ${optionMulti[1]}. (2)Include in the first two alternatives (Option A and Option B) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}. `}
                 />
             }
 

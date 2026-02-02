@@ -126,11 +126,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   }
 
   function listMatchedQuestionsOptions() { // função que mostra todas as questões e opções correspondentes da Main e MultiMain
-    const listNumbersQuestionsMain = listUnicQuestionsContext.map(question => question.numberQuestion)    
-    const listNumbersOptionsMain = listUnicOptionsContext.map(option => option.numberOption) 
+    const listNumbersQuestionsMain = listUnicQuestionsContext.map(question => question.questionNumber)    
+    const listNumbersOptionsMain = listUnicOptionsContext.map(option => option.optionNumber) 
 
-    const listNumbersQuestionsMulti = listMultiQuestionsContext.map(question => question.numberQuestion)    
-    const listNumbersOptionsMulti = listMultiOptionsContext.map(option => option.numberOption) 
+    const listNumbersQuestionsMulti = listMultiQuestionsContext.map(question => question.questionNumber)    
+    const listNumbersOptionsMulti = listMultiOptionsContext.map(option => option.optionNumber) 
  
     let matched = null
 

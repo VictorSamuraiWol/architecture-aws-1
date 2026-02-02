@@ -154,9 +154,9 @@ function PageMulti() {
                     <MultiMain 
                         question={questionMulti.questionText} 
                         answer={questionMulti.correctAnswer}
-                        srcImg={questionMulti.imageKey}
-                        descriptionP={questionMulti.description}
-                        numberQuestion={questionMulti.questionNumber}
+                        imageDescription={questionMulti.imageKey}
+                        description={questionMulti.description}
+                        questionNumber={questionMulti.questionNumber}
                         elementId={questionMulti.id}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}

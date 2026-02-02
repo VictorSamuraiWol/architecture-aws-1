@@ -160,9 +160,9 @@ function PageMain() {
                     <Main 
                         question={questionMain.questionText}
                         answer={questionMain.correctAnswer}
-                        srcImg={questionMain.imageKey}
-                        descriptionP={questionMain.description}
-                        numberQuestion={questionMain.questionNumber}
+                        imageDescription={questionMain.imageKey}
+                        description={questionMain.description}
+                        questionNumber={questionMain.questionNumber}
                         elementId={questionMain.id}
                         answerDisplay={answerDisplay}
                         setAnswerDisplay={setAnswerDisplay}

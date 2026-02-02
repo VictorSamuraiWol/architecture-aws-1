@@ -111,7 +111,7 @@ function FormsNewQuestionsOptionsPage() {
     const [matchedOptionMultiMainPopupNumber, setMatchedOptionMultiMainPopupNumber] = useState('') // capturar o número da opção múltipla (form3)
     const [matchedQuestionMultiMainPopupAnswer, setMatchedQuestionMultiMainPopupAnswer] = useState('') // capturar a resposta da questão múltipla (form4) 
     const [matchedQuestionMultiMainPopupNumber, setMatchedQuestionMultiMainPopupNumber] = useState('') // capturar o número da questão múltipla (form4)
-    
+
     // obs: não usar o checkAlternativeAnswerDefault da PageBase usando o 'useOutletContext' neste forms, pois são necessárias outras variáveis e 4 condições
     function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão
         // variáveis usadas ao preencher o formulário 1
@@ -138,35 +138,35 @@ function FormsNewQuestionsOptionsPage() {
         let checkWithoutMatched = false
       
         // filtra a opção única correspondente, ao preencher o formulário 1
-        matchedOptionMain = listUnicOptionsContext.filter(option => option.numberOption === newQuestionNumberMain).map(option => [option.option1, option.option2, option.option3, option.option4, option.option5])[0]
+        matchedOptionMain = listUnicOptionsContext.filter(option => option.optionNumber === newQuestionNumberMain).map(option => [option.optionA, option.optionB, option.optionC, option.optionD, option.optionE])[0]
 
         // capturar o número da opção correspondente, ao preencher o formulário 1
-        matchedOptionMainNumber = listUnicOptionsContext.filter(option => option.numberOption === newQuestionNumberMain).map(option => option.numberOption)
+        matchedOptionMainNumber = listUnicOptionsContext.filter(option => option.optionNumber === newQuestionNumberMain).map(option => option.optionNumber)
 
         // filtra a alternativa que corresponde a resposta que está sendo criada na questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 1
         matchedAnswerAnternativeMain = matchedOptionMain?.filter(value => value === newCorrectAnswerMain)[0]
 
         // filtra a questão única correspondente, ao preencher o formulário 2
-        matchedQuestionMain = listUnicQuestionsContext.filter(question => question.numberQuestion === newOptionNumberMain)[0]
-        matchedQuestionMainAnswer = matchedQuestionMain?.answer // capturando a resposta da questão única
+        matchedQuestionMain = listUnicQuestionsContext.filter(question => question.questionNumber === newOptionNumberMain)[0]
+        matchedQuestionMainAnswer = matchedQuestionMain?.correctAnswer // capturando a resposta da questão única
 
         // filtra a alternativa que corresponde a resposta da questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 2
         matchedAlternativeAnswerMain = optionForm2 && optionForm2.filter(alternative => (alternative !== '') && (alternative === matchedQuestionMainAnswer))
 
         // filtra a opção múltipla correspondente, ao preencher o formulário 3
-        matchedOptionMultiMain = listMultiOptionsContext.filter(option => option.numberOption === newQuestionNumberMulti).map(option => [option.option1, option.option2])[0]
+        matchedOptionMultiMain = listMultiOptionsContext.filter(option => option.optionNumber === newQuestionNumberMulti).map(option => [option.optionA, option.optionB])[0]
 
         // capturar o número da opção correspondente, ao preencher o formulário 3
-        matchedOptionMultiMainNumber = listMultiOptionsContext.filter(option => option.numberOption === newQuestionNumberMulti).map(option => option.numberOption)
+        matchedOptionMultiMainNumber = listMultiOptionsContext.filter(option => option.optionNumber === newQuestionNumberMulti).map(option => option.optionNumber)
         
-        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, que está criando, ao preencher o formulário 3
+        // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, que está criando, ao preencher o formulário 3
         matchedAnswerAnternativeMultiMain = newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[0]) && newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[1])
 
         // filtra a questão múltipla correspondente, ao preencher o formulário 4
-        matchedQuestionMultiMain = listMultiQuestionsContext.filter(question => question.numberQuestion === newOptionNumberMulti)[0]
-        matchedQuestionMultiMainAnswerText = matchedQuestionMultiMain?.answerText // capturando a resposta da questão múltipla
+        matchedQuestionMultiMain = listMultiQuestionsContext.filter(question => question.questionNumber === newOptionNumberMulti)[0]
+        matchedQuestionMultiMainAnswerText = matchedQuestionMultiMain?.correctAnswer // capturando a resposta da questão múltipla
 
-        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias, ao preencher o formulário 4
+        // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias, ao preencher o formulário 4
         matchedAlternativeAnswerMultiMain = optionForm4 && ((optionForm4[0] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[0])) && (optionForm4[1] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[1])))
 
         if (readyToSendForm1 === true && (matchedOptionMain?.length > 0) && (matchedAnswerAnternativeMain === undefined)) {
@@ -190,11 +190,11 @@ function FormsNewQuestionsOptionsPage() {
         setMatchedOptionMainPopup(matchedOptionMain) // capturar a opção única (form1)
         setMatchedOptionMainPopupNumber(matchedOptionMainNumber) // capturar o número da opção única (form1)
         setMatchedQuestionMainPopupAnswer(matchedQuestionMainAnswer) // capturar a resposta da questão única (form2)
-        setMatchedQuestionMainPopupNumber(matchedQuestionMain?.numberQuestion) // capturar o número da questão única (form2)
+        setMatchedQuestionMainPopupNumber(matchedQuestionMain?.questionNumber) // capturar o número da questão única (form2)
         setMatchedOptionMultiMainPopupAnswers([matchedOptionMultiMain && matchedOptionMultiMain[0], matchedOptionMultiMain && matchedOptionMultiMain[1]]) // capturar as duas alternativas corretas da opção múltipla (form3)
         setMatchedOptionMultiMainPopupNumber(matchedOptionMultiMainNumber) // capturar o número da opção múltipla (form3)
         setMatchedQuestionMultiMainPopupAnswer(matchedQuestionMultiMainAnswerText) // capturar a resposta da questão múltipla (form4)
-        setMatchedQuestionMultiMainPopupNumber(matchedQuestionMultiMain?.numberQuestion) // capturar o número da questão múltipla (form4)       
+        setMatchedQuestionMultiMainPopupNumber(matchedQuestionMultiMain?.questionNumber) // capturar o número da questão múltipla (form4)       
         
         return checkWithoutMatched
   
@@ -202,10 +202,10 @@ function FormsNewQuestionsOptionsPage() {
 
     useEffect(() => {
         // capturando o número de todas as questões presentes nos formulários 1 e 3
-        listUnicQuestionsContext && listMultiQuestionsContext && setListNumbersForms1and3([...listUnicQuestionsContext.map(questions => {return questions.numberQuestion}), ...listMultiQuestionsContext.map(questions => {return questions.numberQuestion})])
+        listUnicQuestionsContext && listMultiQuestionsContext && setListNumbersForms1and3([...listUnicQuestionsContext.map(questions => {return questions.questionNumber}), ...listMultiQuestionsContext.map(questions => {return questions.questionNumber})])
         
         // capturando o número de todas as opções presentes nos formulários 2 e 4
-        listUnicOptionsContext && listMultiOptionsContext && setListNumbersForms2and4([...listUnicOptionsContext.map(options => {return options.numberOption}), ...listMultiOptionsContext.map(options => {return options.numberOption})])
+        listUnicOptionsContext && listMultiOptionsContext && setListNumbersForms2and4([...listUnicOptionsContext.map(options => {return options.optionNumber}), ...listMultiOptionsContext.map(options => {return options.optionNumber})])
 
     },[listUnicQuestionsContext, listMultiQuestionsContext, listUnicOptionsContext, listMultiOptionsContext])
 
@@ -323,7 +323,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -352,7 +352,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -381,7 +381,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -410,7 +410,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -533,7 +533,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -574,7 +574,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -615,7 +615,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -656,7 +656,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -764,7 +764,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -791,7 +791,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -818,7 +818,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -845,7 +845,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Source Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -965,7 +965,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -1004,7 +1004,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -1043,7 +1043,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -1082,7 +1082,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option 5:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -1182,7 +1182,7 @@ function FormsNewQuestionsOptionsPage() {
                     <FieldsQuestionsOptions
                         nome1="Question:*"
                         nome2="Answer:*"
-                        nome3="Source Image:"
+                        nome3="Image:"
                         nome4="Description:*" 
                         nome5="Number:*"
 
@@ -1221,11 +1221,11 @@ function FormsNewQuestionsOptionsPage() {
                 >
                     <h1>Form 2 (Options)</h1>
                     <FieldsQuestionsOptions 
-                        nome1="Option 1:*" 
-                        nome2="Option 2:*" 
-                        nome3="Option 3:*" 
-                        nome4="Option 4:*"                
-                        nome5="Option 5:" 
+                        nome1="Option A:*" 
+                        nome2="Option B:*" 
+                        nome3="Option C:*" 
+                        nome4="Option D:*"                
+                        nome5="Option E:" 
                         nome6="Number:*"
                         optionClass={styles.optionClass}
 
@@ -1269,8 +1269,8 @@ function FormsNewQuestionsOptionsPage() {
                     <h1>Form 3 (MultiQuestions)</h1>
                     <FieldsQuestionsOptions
                         nome1="Question:*" 
-                        nome2="Answer's Text:*"
-                        nome3="Source Image:"
+                        nome2="Answer:*"
+                        nome3="Image:"
                         nome4="Description:*" 
                         nome5="Number:*"
                         
@@ -1308,11 +1308,11 @@ function FormsNewQuestionsOptionsPage() {
                 >
                     <h1>Form 4 (MultiOptions)</h1>
                     <FieldsQuestionsOptions 
-                        nome1="Option 1:*" 
-                        nome2="Option 2:*" 
-                        nome3="Option 3:*" 
-                        nome4="Option 4:*"                
-                        nome5="Option 5:" 
+                        nome1="Option A:*" 
+                        nome2="Option B:*" 
+                        nome3="Option C:*" 
+                        nome4="Option D:*"                
+                        nome5="Option E:" 
                         nome6="Number:*"
                         optionClass={styles.optionClass}
 
@@ -1387,8 +1387,8 @@ function FormsNewQuestionsOptionsPage() {
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3}
-                    textPopup={`Your "answer's text" does not contain the two correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option1 and Option2) from option ${matchedOptionMultiMainPopupNumber} in the "answer's text", and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`Include in the "answer's text" to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
+                    textPopup={`Your answer does not contain the two correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber} in the answer, and then proceed with creating the question. For more information, click the phrase below.`} 
+                    textModalDescription={`Include in the answer to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
                 />
             }
 
@@ -1396,8 +1396,8 @@ function FormsNewQuestionsOptionsPage() {
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms4}
-                    textPopup={`The two alternatives included in the "answer's text" of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option1" and "Option2" are exactly the same as those included in the "answer's text" of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below.`} 
-                    textModalDescription={`Include in the first two alternatives (Option1 and Option2) of option ${newOptionNumberMulti} the "answers's text" included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
+                    textPopup={`The two alternatives included in the answer of question ${matchedQuestionMultiMainPopupNumber} were not found. Please, before creating the option, always ensure that the alternatives "Option A" and "Option B" are exactly the same as those included in the answer of the already created question ${matchedQuestionMultiMainPopupNumber}, and then proceed with creating the option. For more information, click the phrase below.`} 
+                    textModalDescription={`Include in the first two alternatives (Option A and Option B) of option ${newOptionNumberMulti} the answers included in question ${matchedQuestionMultiMainPopupNumber}, highlighted below: ${matchedQuestionMultiMainPopupAnswer}.`}
                 />
             }
 
