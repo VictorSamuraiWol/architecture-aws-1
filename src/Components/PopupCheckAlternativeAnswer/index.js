@@ -16,4 +16,4 @@ function PopupCheckAlternativeAnswer({ specificStyles, textPopup, activePopup, t
 
 }
 
-export default PopupCheckAlternativeAnswer;
+export default PopupCheckAlternativeAnswer

@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
+import PopupMessagesTitlesForms from './PopupMessagesTitlesForms'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -99,6 +100,11 @@ function FormsNewQuestionsOptionsPage() {
 
     // ativa o componente 'PopupCompareAllQuestionsAllOptions' no FormsNewQuestionsOptionsPage
     const [activePopupCompareAllQuestionsAllOptions, setActivePopupCompareAllQuestionsAllOptions] = useState(false)
+
+    const [activePopupMessagesTitlesForms1, setActivePopupMessagesTitlesForms1] = useState(false)
+    const [activePopupMessagesTitlesForms2, setActivePopupMessagesTitlesForms2] = useState(false)
+    const [activePopupMessagesTitlesForms3, setActivePopupMessagesTitlesForms3] = useState(false)
+    const [activePopupMessagesTitlesForms4, setActivePopupMessagesTitlesForms4] = useState(false)
 
     // passando a cor incorreta
     const [colorIncorrect] = useState('#B71C1C')
@@ -1178,7 +1184,22 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form1'
                 >
-                    <h1>Form 1 (Questions)</h1>
+
+                    {activePopupMessagesTitlesForms1 && 
+                        <PopupMessagesTitlesForms 
+                            text="Form 1 and Form 2 complement each other." 
+                            specificStyles={styles.popupMessageTitle1}    
+                        />
+                    }
+
+                    <h1 
+                        onMouseOver={() =>setActivePopupMessagesTitlesForms1(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms1(false)}
+                    >
+                            Form 1 (Questions)
+                    </h1>
+
+
                     <FieldsQuestionsOptions
                         nome1="Question:*"
                         nome2="Answer:*"
@@ -1219,7 +1240,20 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form2'
                 >
-                    <h1>Form 2 (Options)</h1>
+                    {activePopupMessagesTitlesForms2 && 
+                        <PopupMessagesTitlesForms 
+                            text="Form 1 and Form 2 complement each other." 
+                            specificStyles={styles.popupMessageTitle2}    
+                        />
+                    }
+
+                    <h1
+                        onMouseOver={() => setActivePopupMessagesTitlesForms2(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms2(false)}
+                    >
+                        Form 2 (Options)
+                    </h1>
+
                     <FieldsQuestionsOptions 
                         nome1="Option A:*" 
                         nome2="Option B:*" 
@@ -1265,8 +1299,21 @@ function FormsNewQuestionsOptionsPage() {
                     onSubmit={onSaveForm3} 
                     className={styles.form}
                     id='form3'
-                >                    
-                    <h1>Form 3 (MultiQuestions)</h1>
+                > 
+                    {activePopupMessagesTitlesForms3 && 
+                        <PopupMessagesTitlesForms 
+                            text="Form 3 and Form 4 complement each other." 
+                            specificStyles={styles.popupMessageTitle3}    
+                        />
+                    }
+
+                    <h1
+                        onMouseOver={() =>setActivePopupMessagesTitlesForms3(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms3(false)}
+                    >
+                        Form 3 (MultiQuestions)
+                    </h1>
+
                     <FieldsQuestionsOptions
                         nome1="Question:*" 
                         nome2="Answer:*"
@@ -1306,7 +1353,20 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form4'
                 >
-                    <h1>Form 4 (MultiOptions)</h1>
+                    {activePopupMessagesTitlesForms4 && 
+                        <PopupMessagesTitlesForms 
+                            text="Form 3 and Form 4 complement each other." 
+                            specificStyles={styles.popupMessageTitle4}    
+                        />
+                    }
+
+                    <h1
+                        onMouseOver={() => setActivePopupMessagesTitlesForms4(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms4(false)}
+                    >
+                            Form 4 (MultiOptions)
+                    </h1>
+
                     <FieldsQuestionsOptions 
                         nome1="Option A:*" 
                         nome2="Option B:*" 

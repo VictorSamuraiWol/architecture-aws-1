@@ -14,4 +14,4 @@ function PopupRepeatedAlternatives({ specificStyles, textPopup, activePopup }) {
 
 }
 
-export default PopupRepeatedAlternatives;
+export default PopupRepeatedAlternatives
