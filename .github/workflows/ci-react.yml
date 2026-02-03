@@ -1,5 +1,9 @@
-name: CI - React Build
+# Nome do workflow exibido na aba Actions
+name: CI - React Build + Docker
 
+# Define os gatilhos do CI:
+# - push direto na branch main
+# - abertura ou atualização de Pull Requests para main
 on:
   push:
     branches: [ "main" ]
@@ -7,21 +11,51 @@ on:
     branches: [ "main" ]
 
 jobs:
+  # Job único de CI responsável por validar o build do projeto
   build:
+    # Runner Linux gerenciado pelo GitHub
     runs-on: ubuntu-latest
 
     steps:
+      # Faz o checkout do código do repositório para o runner
+      # Necessário para acessar o código-fonte e o Dockerfile
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Configura o ambiente Node.js
+      # - node-version: garante versão consistente entre dev e CI
+      # - cache: npm acelera builds reutilizando node_modules
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
+      # Instala as dependências usando npm ci
+      # - Usa package-lock.json
+      # - Garante builds reproduzíveis
+      # - Falha se houver inconsistências de dependência
       - name: Install dependencies
         run: npm ci
 
+      # Executa o build de produção do React (CRA)
+      # Valida que a aplicação compila corretamente para produção
       - name: Build React app
         run: npm run build
+
+      # Inicializa o Docker Buildx
+      # Buildx é o builder moderno do Docker
+      # Necessário para usar docker/build-push-action "futuramente", pois neste caso sem push para o registry é CI puro
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Realiza o build da imagem Docker
+      # - push: false garante que a imagem NÃO será publicada
+      # - Valida o Dockerfile e o processo de build
+      # - Útil para CI sem CD
+      - name: Build Docker image (no push)
+        uses: docker/build-push-action@v5
+        with:
+          context: .           # Diretório de build (raiz do projeto)
+          push: false          # Não publica a imagem em registry
+          tags: react-cra-ci:latest

@@ -35,6 +35,7 @@
 - [ChatGPT](https://chatgpt.com/)
 - [Lexica](https://lexica.art/)
 - [Github](https://github.com/)
+- [Github Actions](https://github.com/features/actions)
 - [Vercel](https://vercel.com/)
 - [Trello](https://trello.com/pt-BR)
 
