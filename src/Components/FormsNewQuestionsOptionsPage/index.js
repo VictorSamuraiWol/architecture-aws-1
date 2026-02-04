@@ -983,14 +983,11 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
        
-        if (checkAlternativeAnswer() === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
-            if (isValid === false) {
-                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
-                
-            } else {
-                setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
-            
-            }
+        if (isValid === false) {
+            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
+            setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
