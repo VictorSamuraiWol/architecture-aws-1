@@ -17,8 +17,6 @@ export default function DataProvider({ children }) {
 
     const [loading, setLoading] = useState(true)
 
-    const [updateList, setUpdateList] = useState(false)
-
     const [postApi, setPostApi] = useState(false)
 
     const [deleteApi, setDeleteApi] = useState(false) // torna verdadeiro ao deletar
@@ -45,11 +43,6 @@ export default function DataProvider({ children }) {
 
                     // desabilitar o loading
                     setLoading(false)
-
-                    postApi && setTimeout(() => {
-                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
-
-                    }, 300)
 
                 }
             
@@ -84,11 +77,6 @@ export default function DataProvider({ children }) {
                     // desabilitar o loading
                     setLoading(false)
 
-                    postApi && setTimeout(() => {
-                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
-
-                    }, 300)
-
                 }  
     
             } catch (error) {
@@ -122,11 +110,6 @@ export default function DataProvider({ children }) {
                     // desabilitar o loading
                     setLoading(false)
 
-                    postApi && setTimeout(() => {
-                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
-
-                    }, 300)
-
                 }   
 
             } catch (error) {
@@ -158,13 +141,8 @@ export default function DataProvider({ children }) {
 
                     // desabilitar o loading
                     setLoading(false)
-
-                    postApi && setTimeout(() => {
-                        setUpdateList(true) // torna a variável verdadeira em 300ms após o post ter sido realizado para dar tempo de atualizar a lista
-
-                    }, 300)
-
-                }         
+                
+                }       
                 
             } catch (error) {
                 console.log('Erro ao buscar as opções:', error)
@@ -178,7 +156,7 @@ export default function DataProvider({ children }) {
 
         fetchData4()
 
-    }, [postApi, updateList, deleteApi])
+    }, [postApi, deleteApi])
 
     return (        
         <DataContext.Provider
@@ -193,7 +171,6 @@ export default function DataProvider({ children }) {
                 setLoading,
                 postApi,
                 setPostApi,
-                updateList,
                 setDeleteApi,
                 ableDisableMenuTools,
                 setAbleDisableMenuTools

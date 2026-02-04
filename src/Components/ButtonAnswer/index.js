@@ -295,7 +295,7 @@ function ButtonAnswer({
                             } 
 
                             uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                            setItens(`${uniqueItens[0]} //  ${uniqueItens[1]}`) // armazena os itens corretos
+                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos
                             playErrorSound = true // toca o som de erro
 
                         } 

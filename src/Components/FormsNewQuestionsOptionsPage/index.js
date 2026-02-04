@@ -129,8 +129,8 @@ function FormsNewQuestionsOptionsPage() {
     function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão
         // variáveis usadas ao preencher o formulário 1
         let matchedOptionMain = null
+        let matchedOptionMainNumber = null     
         let matchedAnswerAnternativeMain = null
-        let matchedOptionMainNumber = null        
         
         // variáveis usadas ao preencher o formulário 2
         let matchedQuestionMain = null
@@ -139,8 +139,8 @@ function FormsNewQuestionsOptionsPage() {
 
         // variáveis usadas para preencher o formulário 3
         let matchedOptionMultiMain = null
-        let matchedAnswerAnternativeMultiMain = null
         let matchedOptionMultiMainNumber = null
+        let matchedAnswerAnternativeMultiMain = null
 
         // variáveis usadas ao preencher o formulário 4
         let matchedQuestionMultiMain = null
@@ -151,50 +151,76 @@ function FormsNewQuestionsOptionsPage() {
         let checkWithoutMatched = false
       
         // filtra a opção única correspondente, ao preencher o formulário 1
-        matchedOptionMain = listUnicOptionsContext.filter(option => option.optionNumber === newQuestionNumberMain).map(option => [option.optionA, option.optionB, option.optionC, option.optionD, option.optionE])[0]
+        matchedOptionMain = listUnicOptionsContext
+            .filter(option => option.optionNumber === newQuestionNumberMain)
+            .map(option => [option.optionA, option.optionB, option.optionC, option.optionD, option.optionE])[0]
 
-        // capturar o número da opção correspondente, ao preencher o formulário 1
-        matchedOptionMainNumber = listUnicOptionsContext.filter(option => option.optionNumber === newQuestionNumberMain).map(option => option.optionNumber)
+        if (matchedOptionMain) {
+            // capturar o número da opção correspondente, ao preencher o formulário 1
+            matchedOptionMainNumber = listUnicOptionsContext
+                .filter(option => option.optionNumber === newQuestionNumberMain)
+                .map(option => option.optionNumber)
+            
+            // filtra a alternativa que corresponde a resposta que está sendo criada na questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 1
+            matchedAnswerAnternativeMain = matchedOptionMain
+                .filter(value => value === newCorrectAnswerMain)[0]
 
-        // filtra a alternativa que corresponde a resposta que está sendo criada na questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 1
-        matchedAnswerAnternativeMain = matchedOptionMain?.filter(value => value === newCorrectAnswerMain)[0]
+        }
 
         // filtra a questão única correspondente, ao preencher o formulário 2
-        matchedQuestionMain = listUnicQuestionsContext.filter(question => question.questionNumber === newOptionNumberMain)[0]
-        matchedQuestionMainAnswer = matchedQuestionMain?.correctAnswer // capturando a resposta da questão única
+        matchedQuestionMain = listUnicQuestionsContext
+        .filter(question => question.questionNumber === newOptionNumberMain)[0]
+        
+        if (matchedQuestionMain) {
+            matchedQuestionMainAnswer = matchedQuestionMain.correctAnswer // capturando a resposta da questão única
+    
+            // filtra a alternativa que corresponde a resposta da questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 2
+            matchedAlternativeAnswerMain = optionForm2 && optionForm2
+                .filter(alternative => (alternative !== '') && (alternative === matchedQuestionMainAnswer))
 
-        // filtra a alternativa que corresponde a resposta da questão única correspondente, não incluindo alternativas vazias, ao preencher o formulário 2
-        matchedAlternativeAnswerMain = optionForm2 && optionForm2.filter(alternative => (alternative !== '') && (alternative === matchedQuestionMainAnswer))
+        }
 
         // filtra a opção múltipla correspondente, ao preencher o formulário 3
-        matchedOptionMultiMain = listMultiOptionsContext.filter(option => option.optionNumber === newQuestionNumberMulti).map(option => [option.optionA, option.optionB])[0]
+        matchedOptionMultiMain = listMultiOptionsContext
+        .filter(option => option.optionNumber === newQuestionNumberMulti)
+        .map(option => [option.optionA, option.optionB])[0]
 
-        // capturar o número da opção correspondente, ao preencher o formulário 3
-        matchedOptionMultiMainNumber = listMultiOptionsContext.filter(option => option.optionNumber === newQuestionNumberMulti).map(option => option.optionNumber)
-        
-        // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, que está criando, ao preencher o formulário 3
-        matchedAnswerAnternativeMultiMain = newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[0]) && newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[1])
+        if (matchedOptionMultiMain) {
+            // capturar o número da opção correspondente, ao preencher o formulário 3
+            matchedOptionMultiMainNumber = listMultiOptionsContext
+                .filter(option => option.optionNumber === newQuestionNumberMulti)
+                .map(option => option.optionNumber)
+            
+            // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, que está criando, ao preencher o formulário 3
+            matchedAnswerAnternativeMultiMain = newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[0]) && newCorrectAnswerMulti.includes(matchedOptionMultiMain && matchedOptionMultiMain[1])
+
+        }
 
         // filtra a questão múltipla correspondente, ao preencher o formulário 4
         matchedQuestionMultiMain = listMultiQuestionsContext.filter(question => question.questionNumber === newOptionNumberMulti)[0]
-        matchedQuestionMultiMainAnswerText = matchedQuestionMultiMain?.correctAnswer // capturando a resposta da questão múltipla
 
-        // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias, ao preencher o formulário 4
-        matchedAlternativeAnswerMultiMain = optionForm4 && ((optionForm4[0] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[0])) && (optionForm4[1] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[1])))
+        if (matchedQuestionMultiMain) {
+            matchedQuestionMultiMainAnswerText = matchedQuestionMultiMain.correctAnswer // capturando a resposta da questão múltipla
+    
+            // retorna 'true' se os valores de 'Option A' e 'Option B' estiverem incluídos na resposta da questão múltipla, não incluindo alternativas vazias, ao preencher o formulário 4
+            matchedAlternativeAnswerMultiMain = optionForm4 && ((optionForm4[0] !== '') && (matchedQuestionMultiMainAnswerText.includes(optionForm4[0])) && (optionForm4[1] !== '') && (matchedQuestionMultiMainAnswerText?.includes(optionForm4[1])))
+
+        }
 
         if (readyToSendForm1 === true && (matchedOptionMain?.length > 0) && (matchedAnswerAnternativeMain === undefined)) {
         // condição: se existe a opção correspondente e se não há alguma alternativa igual a resposta da questão, ao preencher o formulário 1
             checkWithoutMatched = true
+            console.log(checkWithoutMatched,matchedAnswerAnternativeMain, 191)
 
-        } else if (readyToSendForm2 === true && (matchedQuestionMain && (matchedAlternativeAnswerMain.length === 0))) {
+        } else if (readyToSendForm2 === true && matchedQuestionMain && matchedAlternativeAnswerMain.length === 0) {
         // condição: se existe questão correspondente e se não há alguma alternativa igual a resposta da questão, ao preencher o formulário 2
             checkWithoutMatched = true
 
-        } else if (readyToSendForm3 === true && (matchedOptionMultiMain?.length > 0) && matchedAnswerAnternativeMultiMain === false) {
+        } else if (readyToSendForm3 === true && matchedOptionMultiMain?.length > 0 && matchedAnswerAnternativeMultiMain === false) {
         // condição: se existe a opção correspondente e se as duas alternativas corretas não estão incluídas na resposta da questão, ao preencher o formulário 3
             checkWithoutMatched = true
 
-        } else if (readyToSendForm4 === true && (matchedQuestionMultiMain && (matchedAlternativeAnswerMultiMain === false))) {
+        } else if (readyToSendForm4 === true && matchedQuestionMultiMain && matchedAlternativeAnswerMultiMain === false) {
         // condição: se existe questão correspondente e se as duas alternativas corretas não estão incluídas na resposta da questão, ao preencher o formulário 4
             checkWithoutMatched = true
 
@@ -207,8 +233,8 @@ function FormsNewQuestionsOptionsPage() {
         setMatchedOptionMultiMainPopupAnswers([matchedOptionMultiMain && matchedOptionMultiMain[0], matchedOptionMultiMain && matchedOptionMultiMain[1]]) // capturar as duas alternativas corretas da opção múltipla (form3)
         setMatchedOptionMultiMainPopupNumber(matchedOptionMultiMainNumber) // capturar o número da opção múltipla (form3)
         setMatchedQuestionMultiMainPopupAnswer(matchedQuestionMultiMainAnswerText) // capturar a resposta da questão múltipla (form4)
-        setMatchedQuestionMultiMainPopupNumber(matchedQuestionMultiMain?.questionNumber) // capturar o número da questão múltipla (form4)       
-        
+        setMatchedQuestionMultiMainPopupNumber(matchedQuestionMultiMain?.questionNumber) // capturar o número da questão múltipla (form4)
+
         return checkWithoutMatched
   
     }
@@ -278,6 +304,7 @@ function FormsNewQuestionsOptionsPage() {
         e.preventDefault()
         let data = ''
         let isValid = true // variável que precisa de resposta imediata para validação, então não precisa usar 'useState' para mudança de estado
+        setPostApi(false) // volta ao estado inicial
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
@@ -291,8 +318,11 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da questão que irá ser criada já existe na lista das questões
 
-        if (checkAlternativeAnswer() === true && (newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain)) {
-            setActivePopupcheckAlternativeAnswerForms1(true) // ativa o popup
+        if (isValid === false) {
+                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+                
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain)) {          
+                setActivePopupcheckAlternativeAnswerForms1(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -351,65 +381,71 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 1!')
                 alert('Please fill in all required fields in Form 1!')
 
-            } else if (readyToSendForm1 === true && isValid === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) {
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-                function redVoidField() {
-                    const form1 = document.querySelector("#form1")
-                    const fields = form1.querySelectorAll(".labelTextarea")
+            } 
+            
+            
+            
+            // else if (readyToSendForm1 === true && isValid === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) {
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
+            //     function redVoidField() {
+            //         const form1 = document.querySelector("#form1")
+            //         const fields = form1.querySelectorAll(".labelTextarea")
 
-                    for(let i=0; i<fields.length; i++) {
-                        // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-                        const label = fields[i].children[0]
-                        const textAreaInput = fields[i].children[1]
+            //         for(let i=0; i<fields.length; i++) {
+            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
+            //             const label = fields[i].children[0]
+            //             const textAreaInput = fields[i].children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
+            //             }
 
-                    }
+            //         }
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 1!')
-                alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 1!')
+            //     alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
-            } else if (readyToSendForm1 === true && isValid === false && (newQuestionTextMain === "" || newCorrectAnswerMain === "" || newDescriptionMain === "" || newQuestionNumberMain === "")) {
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-                function redVoidField() {
-                    const form1 = document.querySelector("#form1")
-                    const fields = form1.querySelectorAll(".labelTextarea")
+            // } else if (readyToSendForm1 === true && isValid === false && (newQuestionTextMain === "" || newCorrectAnswerMain === "" || newDescriptionMain === "" || newQuestionNumberMain === "")) {
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
+            //     function redVoidField() {
+            //         const form1 = document.querySelector("#form1")
+            //         const fields = form1.querySelectorAll(".labelTextarea")
 
-                    for(let i=0; i<fields.length; i++) {
-                        // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-                        const label = fields[i].children[0]
-                        const textAreaInput = fields[i].children[1]
+            //         for(let i=0; i<fields.length; i++) {
+            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
+            //             const label = fields[i].children[0]
+            //             const textAreaInput = fields[i].children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
+            //             }
 
-                    }
+            //         }
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 1!')
-                alert('Please fill in all required fields in Form 1. This number has already been used in previous questions. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 1!')
+            //     alert('Please fill in all required fields in Form 1. This number has already been used in previous questions. Please use a number that has not been used yet.')
                     
-            } else {
+            // } 
+            
+            else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form1 = document.querySelector("#form1")
@@ -465,7 +501,7 @@ function FormsNewQuestionsOptionsPage() {
         }
 
         setReadyToSendForm1(false) // volta ao estado inicial ao submeter o formulário (false)
-      
+
     }
 
 // função utilizando POST para salvar os dados do form2 na API
@@ -473,6 +509,7 @@ function FormsNewQuestionsOptionsPage() {
         e.preventDefault()
         let data = ''
         let isValid = true // variável que precisa de resposta imediata para validação, então não precisa usar 'useState' para mudança de estado
+        setPostApi(false) // volta ao estado inicial
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
@@ -480,13 +517,18 @@ function FormsNewQuestionsOptionsPage() {
                     isValid = false
                     
                 }
+
             })
+
 
         }
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
 
-        if (checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
+        if (isValid === false) {
+            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
 
         } else {
@@ -572,89 +614,97 @@ function FormsNewQuestionsOptionsPage() {
                 
                 }
                 
-            } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
-            // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-                function redVoidField() {
-                    const form2 = document.querySelector("#form2")
-                    const fields = form2.querySelectorAll(".labelTextarea")
+            } 
+            
+            
+            
+            // else if (readyToSendForm2 === true && isValid === false && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
+            // // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
+            //     function redVoidField() {
+            //         const form2 = document.querySelector("#form2")
+            //         const fields = form2.querySelectorAll(".labelTextarea")
 
-                    for(let i=0; i<fields.length; i++) {
-                        // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-                        const label = fields[i].children[0]
-                        const textAreaInput = fields[i].children[1]
+            //         for(let i=0; i<fields.length; i++) {
+            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
+            //             const label = fields[i].children[0]
+            //             const textAreaInput = fields[i].children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
+            //             }
 
-                    }
+            //         }
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 2!')
-                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 2!')
+            //     alert('This number has already been used in previous options. Please use a number that has not been used yet.')
 
-                if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-                // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                    setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
+            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
+            //         setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
-                    setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
+            //         setTimeout(() => {
+            //             setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 15000)
+            //         }, 15000)
                 
-                }
+            //     }
 
-            } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain === "" || newOptionBMain === "" || newOptionCMain === "" || newOptionDMain === "" || newOptionNumberMain === "")) {
-            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-                function redVoidField() {
-                    const form2 = document.querySelector("#form2")
-                    const fields = form2.querySelectorAll(".labelTextarea")
+            // } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain === "" || newOptionBMain === "" || newOptionCMain === "" || newOptionDMain === "" || newOptionNumberMain === "")) {
+            // // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
+            //     function redVoidField() {
+            //         const form2 = document.querySelector("#form2")
+            //         const fields = form2.querySelectorAll(".labelTextarea")
 
-                    for(let i=0; i<fields.length; i++) {
-                        // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-                        const label = fields[i].children[0]
-                        const textAreaInput = fields[i].children[1]
+            //         for(let i=0; i<fields.length; i++) {
+            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
+            //             const label = fields[i].children[0]
+            //             const textAreaInput = fields[i].children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
+            //             }
 
-                    }
+            //         }
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 2!')
-                alert('Please fill in all required fields in Form 2. This number has already been used in previous options. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 2!')
+            //     alert('Please fill in all required fields in Form 2. This number has already been used in previous options. Please use a number that has not been used yet.')
 
-                if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-                // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                    setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
+            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
+            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
+            //         setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
 
-                    setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
+            //         setTimeout(() => {
+            //             setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
 
-                    }, 15000)
+            //         }, 15000)
                 
-                }
+            //     }
                     
-            } else {
+            // } 
+            
+            
+            
+            else {
             //condição 5: o que não atender as condições acima
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
@@ -719,6 +769,7 @@ function FormsNewQuestionsOptionsPage() {
         e.preventDefault()
         let data = ''
         let isValid = true // variável que precisa de resposta imediata para validação, então não precisa usar 'useState' para mudança de estado
+        setPostApi(false) // volta ao estado inicial
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
@@ -734,8 +785,11 @@ function FormsNewQuestionsOptionsPage() {
 
         checkAlternativeAnswer()
 
-        if (checkAlternativeAnswer() === true && (newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti)) {
-            setActivePopupcheckAlternativeAnswerForms3(true) // ativa o popup
+        if (isValid === false) {
+            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
+            setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -791,61 +845,69 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 3!')
                 alert('Please fill in all required fields in Form 3.')
 
-            } else if (readyToSendForm3 === true && isValid === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-                function redVoidField() {
-                    const form3= document.querySelector("#form3")
-                    const fields = form3.querySelectorAll(".labelTextarea")
+            } 
+            
+            
+            
+            // else if (readyToSendForm3 === true && isValid === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
+            //     function redVoidField() {
+            //         const form3= document.querySelector("#form3")
+            //         const fields = form3.querySelectorAll(".labelTextarea")
 
-                    fields.forEach(field => {
-                        const label = field.children[0]
-                        const textAreaInput = field.children[1]
+            //         fields.forEach(field => {
+            //             const label = field.children[0]
+            //             const textAreaInput = field.children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
-                    })
+            //             }
+            //         })
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 3!')
-                alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 3!')
+            //     alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
 
-            } else if (readyToSendForm3 === true && isValid === false && (newQuestionTextMulti === "" || newCorrectAnswerMulti === "" || newDescriptionMulti === "" || newQuestionNumberMulti === "")) {
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-                function redVoidField() {
-                    const form3= document.querySelector("#form3")
-                    const fields = form3.querySelectorAll(".labelTextarea")
+            // } else if (readyToSendForm3 === true && isValid === false && (newQuestionTextMulti === "" || newCorrectAnswerMulti === "" || newDescriptionMulti === "" || newQuestionNumberMulti === "")) {
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
+            //     function redVoidField() {
+            //         const form3= document.querySelector("#form3")
+            //         const fields = form3.querySelectorAll(".labelTextarea")
 
-                    fields.forEach(field => {
-                        const label = field.children[0]
-                        const textAreaInput = field.children[1]
+            //         fields.forEach(field => {
+            //             const label = field.children[0]
+            //             const textAreaInput = field.children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
-                    })
+            //             }
+            //         })
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
                 
-                console.error('Error in data received from Form 3!')
-                alert('Please fill in all required fields in Form 3. This number has already been used in previous questions. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 3!')
+            //     alert('Please fill in all required fields in Form 3. This number has already been used in previous questions. Please use a number that has not been used yet.')
                     
-            } else {
+            // }
+            
+            
+            
+            else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form3= document.querySelector("#form3")
@@ -907,6 +969,7 @@ function FormsNewQuestionsOptionsPage() {
         e.preventDefault()
         let data = ''
         let isValid = true // variável que precisa de resposta imediata para validação, então não precisa usar 'useState' para mudança de estado
+        setPostApi(false) // volta ao estado inicial
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
@@ -921,7 +984,13 @@ function FormsNewQuestionsOptionsPage() {
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
        
         if (checkAlternativeAnswer() === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
-            setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
+            if (isValid === false) {
+                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+                
+            } else {
+                setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
+            
+            }
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -1003,85 +1072,93 @@ function FormsNewQuestionsOptionsPage() {
 
                 }
 
-            } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
-                // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-                function redVoidField() {
-                    const form4= document.querySelector("#form4")
-                    const fields = form4.querySelectorAll(".labelTextarea")
+            } 
+            
+            
+            
+            // else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
+            //     // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
+            //     function redVoidField() {
+            //         const form4= document.querySelector("#form4")
+            //         const fields = form4.querySelectorAll(".labelTextarea")
 
-                    fields.forEach(field => {
-                        const label = field.children[0]
-                        const textAreaInput = field.children[1]
+            //         fields.forEach(field => {
+            //             const label = field.children[0]
+            //             const textAreaInput = field.children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
-                    }) 
+            //             }
+            //         }) 
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 4!')
-                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 4!')
+            //     alert('This number has already been used in previous options. Please use a number that has not been used yet.')
 
-                if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-                // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                    setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
+            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
+            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
+            //         setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
-                    setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
+            //         setTimeout(() => {
+            //             setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 15000)
+            //         }, 15000)
                 
-                }
+            //     }
 
-            } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
-            // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
-                // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-                function redVoidField() {
-                    const form4= document.querySelector("#form4")
-                    const fields = form4.querySelectorAll(".labelTextarea")
+            // } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
+            // // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
+            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
+            //     function redVoidField() {
+            //         const form4= document.querySelector("#form4")
+            //         const fields = form4.querySelectorAll(".labelTextarea")
 
-                    fields.forEach(field => {
-                        const label = field.children[0]
-                        const textAreaInput = field.children[1]
+            //         fields.forEach(field => {
+            //             const label = field.children[0]
+            //             const textAreaInput = field.children[1]
 
-                        label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
+            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
-                        // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-                            label.style.color = colorIncorrect // passando a cor incorreta
+            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
+            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
+            //                 label.style.color = colorIncorrect // passando a cor incorreta
 
-                        }
-                    }) 
+            //             }
+            //         }) 
 
-                }
+            //     }
 
-                redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
+            //     redVoidField()
+            //     mute === false && errorSound.play() // toca o som 'errorSound'
 
-                console.error('Error in data received from Form 4!')
-                alert('Please fill in all required fields in Form 4. This number has already been used in previous options. Please use a number that has not been used yet.')
+            //     console.error('Error in data received from Form 4!')
+            //     alert('Please fill in all required fields in Form 4. This number has already been used in previous options. Please use a number that has not been used yet.')
 
-                if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-                // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-                    setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
+            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
+            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
+            //         setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
 
-                    setTimeout(() => {
-                        setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
+            //         setTimeout(() => {
+            //             setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
 
-                    }, 15000)
+            //         }, 15000)
                 
-                }
+            //     }
                     
-            } else {
+            // } 
+            
+            
+            
+            else {
             //condição 5: o que não atender as condições acima
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
