@@ -12,6 +12,7 @@ import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
 import PopupMessagesTitlesForms from './PopupMessagesTitlesForms'
+import PopupCheckNumbers from '../PopupCheckNumbers'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -112,6 +113,12 @@ function FormsNewQuestionsOptionsPage() {
     
     // ativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms4, setActivePopupMessagesTitlesForms4] = useState(false)
+
+    // ativa o componente 'PopupCheckNumbers'
+    const [activePopupCheckNumbers1, setActivePopupCheckNumbers1] = useState(false)
+
+    // ativa o componente 'PopupCheckNumbers'
+    const [activePopupCheckNumbers2, setActivePopupCheckNumbers2] = useState(false)
 
     // passando a cor incorreta
     const [colorIncorrect] = useState('#B71C1C')
@@ -319,7 +326,7 @@ function FormsNewQuestionsOptionsPage() {
         numberValidationForms() // chamando a função que verifica se o número da questão que irá ser criada já existe na lista das questões
 
         if (isValid === false) {
-                alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+                setActivePopupCheckNumbers1(true)
                 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain)) {          
                 setActivePopupcheckAlternativeAnswerForms1(true) // ativa o popup
@@ -381,71 +388,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 1!')
                 alert('Please fill in all required fields in Form 1!')
 
-            } 
-            
-            
-            
-            // else if (readyToSendForm1 === true && isValid === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) {
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-            //     function redVoidField() {
-            //         const form1 = document.querySelector("#form1")
-            //         const fields = form1.querySelectorAll(".labelTextarea")
-
-            //         for(let i=0; i<fields.length; i++) {
-            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-            //             const label = fields[i].children[0]
-            //             const textAreaInput = fields[i].children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-
-            //         }
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 1!')
-            //     alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
-
-            // } else if (readyToSendForm1 === true && isValid === false && (newQuestionTextMain === "" || newCorrectAnswerMain === "" || newDescriptionMain === "" || newQuestionNumberMain === "")) {
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-            //     function redVoidField() {
-            //         const form1 = document.querySelector("#form1")
-            //         const fields = form1.querySelectorAll(".labelTextarea")
-
-            //         for(let i=0; i<fields.length; i++) {
-            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-            //             const label = fields[i].children[0]
-            //             const textAreaInput = fields[i].children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-
-            //         }
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 1!')
-            //     alert('Please fill in all required fields in Form 1. This number has already been used in previous questions. Please use a number that has not been used yet.')
-                    
-            // } 
-            
-            else {
+            } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
                     const form1 = document.querySelector("#form1")
@@ -526,7 +469,7 @@ function FormsNewQuestionsOptionsPage() {
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
 
         if (isValid === false) {
-            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+            setActivePopupCheckNumbers2(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
@@ -614,97 +557,7 @@ function FormsNewQuestionsOptionsPage() {
                 
                 }
                 
-            } 
-            
-            
-            
-            // else if (readyToSendForm2 === true && isValid === false && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
-            // // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-            //     function redVoidField() {
-            //         const form2 = document.querySelector("#form2")
-            //         const fields = form2.querySelectorAll(".labelTextarea")
-
-            //         for(let i=0; i<fields.length; i++) {
-            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-            //             const label = fields[i].children[0]
-            //             const textAreaInput = fields[i].children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-
-            //         }
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 2!')
-            //     alert('This number has already been used in previous options. Please use a number that has not been used yet.')
-
-            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-            //         setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
-
-            //         setTimeout(() => {
-            //             setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
-
-            //         }, 15000)
-                
-            //     }
-
-            // } else if (readyToSendForm2 === true && isValid === false && (newOptionAMain === "" || newOptionBMain === "" || newOptionCMain === "" || newOptionDMain === "" || newOptionNumberMain === "")) {
-            // // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMain, newOptionBMain, newOptionCMain, newOptionDMain, newOptionNumberMain)
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
-            //     function redVoidField() {
-            //         const form2 = document.querySelector("#form2")
-            //         const fields = form2.querySelectorAll(".labelTextarea")
-
-            //         for(let i=0; i<fields.length; i++) {
-            //             // "fields[i].children[0]" captura as labels e "fields[i].children[1]" captura os campos input e textarea  
-            //             const label = fields[i].children[0]
-            //             const textAreaInput = fields[i].children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-
-            //         }
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 2!')
-            //     alert('Please fill in all required fields in Form 2. This number has already been used in previous options. Please use a number that has not been used yet.')
-
-            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-            //         setActivePopupRepeatedAlternativesForms2(true) // para mostrar o popup na tela
-
-            //         setTimeout(() => {
-            //             setActivePopupRepeatedAlternativesForms2(false) // desativa o popup em 15s
-
-            //         }, 15000)
-                
-            //     }
-                    
-            // } 
-            
-            
-            
-            else {
+            } else {
             //condição 5: o que não atender as condições acima
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
                 function redVoidField() {
@@ -786,7 +639,7 @@ function FormsNewQuestionsOptionsPage() {
         checkAlternativeAnswer()
 
         if (isValid === false) {
-            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+            setActivePopupCheckNumbers1(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
@@ -845,69 +698,7 @@ function FormsNewQuestionsOptionsPage() {
                 console.error('Error in data received from Form 3!')
                 alert('Please fill in all required fields in Form 3.')
 
-            } 
-            
-            
-            
-            // else if (readyToSendForm3 === true && isValid === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-            //     function redVoidField() {
-            //         const form3= document.querySelector("#form3")
-            //         const fields = form3.querySelectorAll(".labelTextarea")
-
-            //         fields.forEach(field => {
-            //             const label = field.children[0]
-            //             const textAreaInput = field.children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-            //         })
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 3!')
-            //     alert('This number has already been used in previous questions. Please use a number that has not been used yet.')
-
-            // } else if (readyToSendForm3 === true && isValid === false && (newQuestionTextMulti === "" || newCorrectAnswerMulti === "" || newDescriptionMulti === "" || newQuestionNumberMulti === "")) {
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-            //     function redVoidField() {
-            //         const form3= document.querySelector("#form3")
-            //         const fields = form3.querySelectorAll(".labelTextarea")
-
-            //         fields.forEach(field => {
-            //             const label = field.children[0]
-            //             const textAreaInput = field.children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Image:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-            //         })
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-                
-            //     console.error('Error in data received from Form 3!')
-            //     alert('Please fill in all required fields in Form 3. This number has already been used in previous questions. Please use a number that has not been used yet.')
-                    
-            // }
-            
-            
-            
-            else {
+            } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
                     const form3= document.querySelector("#form3")
@@ -984,7 +775,7 @@ function FormsNewQuestionsOptionsPage() {
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
        
         if (isValid === false) {
-            alert('This number has already been used in previous options. Please use a number that has not been used yet.')
+            setActivePopupCheckNumbers2(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
             setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
@@ -1069,93 +860,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 }
 
-            } 
-            
-            
-            
-            // else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
-            //     // condição 3: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se todos os campos obrigatórios foram preenchidos (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-            //     function redVoidField() {
-            //         const form4= document.querySelector("#form4")
-            //         const fields = form4.querySelectorAll(".labelTextarea")
-
-            //         fields.forEach(field => {
-            //             const label = field.children[0]
-            //             const textAreaInput = field.children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-            //         }) 
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 4!')
-            //     alert('This number has already been used in previous options. Please use a number that has not been used yet.')
-
-            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-            //         setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
-
-            //         setTimeout(() => {
-            //             setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
-
-            //         }, 15000)
-                
-            //     }
-
-            // } else if (readyToSendForm4 === true && isValid === false && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
-            // // condição 4: se clicou no botão submit (readyToSendForm2), se o número da questão se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
-            //     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
-            //     function redVoidField() {
-            //         const form4= document.querySelector("#form4")
-            //         const fields = form4.querySelectorAll(".labelTextarea")
-
-            //         fields.forEach(field => {
-            //             const label = field.children[0]
-            //             const textAreaInput = field.children[1]
-
-            //             label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
-
-            //             // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-            //             if (textAreaInput.value === "" && label.innerText !== "Option E:") {
-            //                 label.style.color = colorIncorrect // passando a cor incorreta
-
-            //             }
-            //         }) 
-
-            //     }
-
-            //     redVoidField()
-            //     mute === false && errorSound.play() // toca o som 'errorSound'
-
-            //     console.error('Error in data received from Form 4!')
-            //     alert('Please fill in all required fields in Form 4. This number has already been used in previous options. Please use a number that has not been used yet.')
-
-            //     if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
-            //     // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
-            //         setActivePopupRepeatedAlternativesForms4(true) // para mostrar o popup na tela
-
-            //         setTimeout(() => {
-            //             setActivePopupRepeatedAlternativesForms4(false) // desativa o popup em 15s
-
-            //         }, 15000)
-                
-            //     }
-                    
-            // } 
-            
-            
-            
-            else {
+            } else {
             //condição 5: o que não atender as condições acima
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
                 function redVoidField() {
@@ -1551,6 +1256,23 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCompare} 
                     textPopup={alertMessage}
                     activePopup={setActivePopupCompareAllQuestionsAllOptions}                
+                />
+            }
+
+            {/* PopupCheckNumbers */}
+            {activePopupCheckNumbers1 &&
+                <PopupCheckNumbers
+                    specificStyles={styles.popupCheckNumbers}
+                    text={'This number has already been used in previous questions. Please use a number that has not been used yet.'}
+                    activePopup={setActivePopupCheckNumbers1}
+                />
+            }
+
+            {activePopupCheckNumbers2 &&
+                <PopupCheckNumbers
+                    specificStyles={styles.popupCheckNumbers}
+                    text={'This number has already been used in previous options. Please use a number that has not been used yet.'}
+                    activePopup={setActivePopupCheckNumbers2}
                 />
             }
       
