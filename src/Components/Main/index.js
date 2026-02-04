@@ -12,8 +12,8 @@ import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
 
 function Main({ 
-    question, answer, imageDescription, description, questionNumber, answerDisplay, descriptionDisplay, 
-    setAnswerDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
+    question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
+    setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
     optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
@@ -49,6 +49,8 @@ function Main({
         if (listUnicQuestionsContext.length >= 2 && questionAnswerButtonNextMain === true) {
         // condição: se a questão da página Main já foi respondida 
             (numberPath === 1 || numberPath === 2) && generateNewQuestionMain()
+            setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
+            setDescriptionDisplay(styles.invisibleDescription)
 
         } else if (questionAnswerButtonNextMain === false) {
             alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
@@ -109,8 +111,8 @@ function Main({
             />
 
             <ButtonAnswer            
-                answerDisplay={answerDisplay}
-                setAnswerDisplay={setAnswerDisplay}
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
                 answer={answer}
                 questionNumber={questionNumber}
@@ -137,7 +139,7 @@ function Main({
                 answer={answer}
                 imageDescription={imageDescription} 
                 description={description}
-                answerDisplay={answerDisplay}
+                answerDescriptionDisplay={answerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 item={item}

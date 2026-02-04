@@ -11,7 +11,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function MultiMain({ 
-    question, answer, imageDescription, description, questionNumber, answerDisplay, setAnswerDisplay, descriptionDisplay, 
+    question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
     setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
@@ -82,8 +82,8 @@ function MultiMain({
             />
             
             <ButtonAnswer            
-                answerDisplay={answerDisplay}
-                setAnswerDisplay={setAnswerDisplay}
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}              
                 answer={answer}
@@ -106,8 +106,8 @@ function MultiMain({
                 answer={answer}
                 imageDescription={imageDescription}
                 description={description}
-                answerDisplay={answerDisplay}
-                setAnswerDisplay={setAnswerDisplay}
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
                 setDescriptionDisplay={setDescriptionDisplay}
                 itens={itens}             

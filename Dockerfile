@@ -37,3 +37,13 @@ EXPOSE 3000
 
 # Comando de inicialização
 CMD ["serve", "-s", "build", "-l", "3000"]
+
+# Observações importantes dos comandos build e run:
+# Criar (buildar) a imagem a partir do Dockerfile:
+# comando: "docker build -t nome-do-projeto ."
+# "-t" define o nome (tag) da imagem
+# "." indica o diretório atual, onde está o Dockerfile
+# Rodar um container a partir da imagem:
+# comando: "docker run -p porta_host:porta_container nome-do-projeto"
+# "-p" faz o mapeamento de portas
+# "nome-do-projeto" é a imagem criada no build

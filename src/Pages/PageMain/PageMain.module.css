@@ -3,13 +3,12 @@
     background-color: var(--color-first);
 }
 
-.visible {
-    visibility: visible;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.invisibleAnswerDescription {
+    visibility: hidden;
+
 }
 
-.invisible {
-    display: none;
+.invisibleDescription {
+    visibility: hidden;
+ 
 }

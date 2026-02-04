@@ -86,24 +86,31 @@ function FormsNewQuestionsOptionsPage() {
     // ativa o componente 'PopupRepeatedAlternatives' nao formulário 4
     const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false)
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage
+    // ativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms1, setActivePopupcheckAlternativeAnswerForms1] = useState(false)
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage 
+    // ativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms2, setActivePopupcheckAlternativeAnswerForms2] = useState(false)  
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage 
+    // ativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms3, setActivePopupcheckAlternativeAnswerForms3] = useState(false) 
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' no FormsNewQuestionsOptionsPage
+    // ativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false)
 
-    // ativa o componente 'PopupCompareAllQuestionsAllOptions' no FormsNewQuestionsOptionsPage
+    // ativa o componente 'PopupCompareAllQuestionsAllOptions'
     const [activePopupCompareAllQuestionsAllOptions, setActivePopupCompareAllQuestionsAllOptions] = useState(false)
 
+    // ativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms1, setActivePopupMessagesTitlesForms1] = useState(false)
+    
+    // ativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms2, setActivePopupMessagesTitlesForms2] = useState(false)
+    
+    // ativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms3, setActivePopupMessagesTitlesForms3] = useState(false)
+    
+    // ativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms4, setActivePopupMessagesTitlesForms4] = useState(false)
 
     // passando a cor incorreta
@@ -1184,7 +1191,7 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form1'
                 >
-
+                    {/* PopupMessagesTitlesForms */}
                     {activePopupMessagesTitlesForms1 && 
                         <PopupMessagesTitlesForms 
                             text="Form 1 and Form 2 complement each other." 
@@ -1240,6 +1247,7 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form2'
                 >
+                    {/* PopupMessagesTitlesForms */}
                     {activePopupMessagesTitlesForms2 && 
                         <PopupMessagesTitlesForms 
                             text="Form 1 and Form 2 complement each other." 
@@ -1299,7 +1307,8 @@ function FormsNewQuestionsOptionsPage() {
                     onSubmit={onSaveForm3} 
                     className={styles.form}
                     id='form3'
-                > 
+                >
+                    {/* PopupMessagesTitlesForms  */}
                     {activePopupMessagesTitlesForms3 && 
                         <PopupMessagesTitlesForms 
                             text="Form 3 and Form 4 complement each other." 
@@ -1353,6 +1362,7 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form4'
                 >
+                    {/* PopupMessagesTitlesForms */}
                     {activePopupMessagesTitlesForms4 && 
                         <PopupMessagesTitlesForms 
                             text="Form 3 and Form 4 complement each other." 

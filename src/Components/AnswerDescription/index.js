@@ -13,7 +13,7 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 
 function AnswerDescription({ 
-    answer, description, imageDescription, answerDisplay, descriptionDisplay, setDescriptionDisplay, 
+    answer, description, imageDescription, answerDescriptionDisplay, descriptionDisplay, setDescriptionDisplay, 
     item, itens
 }) {
 
@@ -34,7 +34,6 @@ function AnswerDescription({
     })
 
     function ableDisableDescription() {
-
         if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
                 descriptionDisplay && setDescriptionDisplay(styles.invisible)
 
@@ -60,15 +59,15 @@ function AnswerDescription({
     return(
         <section            
             id='answerId' 
-            className={`${styles.answerClass} ${answerDisplay}`}
-        >   
+            className={`${styles.answerDescription} ${answerDescriptionDisplay}`}
+        > 
+            {itens && <h3 className={styles.itens}>{itens}</h3>} {/* itens que serão mostrados na PageMulti */}   
             <div
                 onClick={ableDisableDescription}
                 id='answerTitle'                
-                className={styles.answerTitle}
+                className={styles.answerDisplay}
             >
                 {item && <h3 className={styles.item}>{item}</h3>} {/* item que será mostrado na PageMain */}
-                {itens && <h3 className={styles.item}>{itens}</h3>} {/* itens que serão mostrados na PageMulti */}
                 <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer)}</h3>
                 <p>Click here for more information</p>
             </div>
@@ -77,7 +76,7 @@ function AnswerDescription({
                 onMouseOver={descriptionOnMouseOver}
                 onMouseOut={descriptionOnMouseOut} 
                 id='descriptionId' 
-                className={`${styles.descriptionClass} ${descriptionDisplay}`}
+                className={`${styles.descriptionDisplay} ${descriptionDisplay}`}
             >
                 {imageDescription !== '' && <img className={styles.imageDescription} src={imagesDescriptions[imageDescription]} alt='img' />}
                 {description}

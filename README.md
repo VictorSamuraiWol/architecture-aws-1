@@ -36,6 +36,7 @@
 - [Lexica](https://lexica.art/)
 - [Github](https://github.com/)
 - [Github Actions](https://github.com/features/actions)
+- [Docker](https://www.docker.com/)
 - [Vercel](https://vercel.com/)
 - [Trello](https://trello.com/pt-BR)
 

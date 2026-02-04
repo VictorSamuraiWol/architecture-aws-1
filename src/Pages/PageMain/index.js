@@ -16,8 +16,10 @@ function PageMain() {
     const [optNum5, setOptNum5] = useState('')
     const [optionMain, setOptionMain] = useState([]) // mapear todas as opções presente na página main
     const [optionMainNumberId, setOptionMainNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)   
+    const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)  
+
+
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
@@ -164,8 +166,8 @@ function PageMain() {
                         description={questionMain.description}
                         questionNumber={questionMain.questionNumber}
                         elementId={questionMain.id}
-                        answerDisplay={answerDisplay}
-                        setAnswerDisplay={setAnswerDisplay}
+                        answerDescriptionDisplay={answerDescriptionDisplay}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}                  
                         uniqueRandomMain={uniqueRandomMain}

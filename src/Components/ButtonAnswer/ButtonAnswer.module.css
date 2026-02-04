@@ -5,12 +5,7 @@
 
 .visibleAnswer {
     visibility: visible;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: var(--color-fourth);
-    z-index: 1;
+
 }
 
 .invisible{

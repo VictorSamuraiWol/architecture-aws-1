@@ -126,6 +126,14 @@
   transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
+.invisibleAnswerDescription {
+  visibility: hidden;
+}
+
+.invisibleDescription {
+  visibility: hidden;
+}
+
 /* Responsividade */
 @media (max-width: 860px) {
   .popupRepeatedMain {

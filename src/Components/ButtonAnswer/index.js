@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 function ButtonAnswer({ 
-    answerDisplay, setAnswerDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
+    answerDescriptionDisplay, setAnswerDescriptionDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
     inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5, 
     setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMulti, optionMain, optionMulti, 
     setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, questionNumber, setItem, 
@@ -41,17 +41,17 @@ function ButtonAnswer({
     }
 
     function display() {
-        setAnswerDisplay(styles.visibleAnswer)
+        setAnswerDescriptionDisplay(styles.visibleAnswer)
 
     }
 
     function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente, tanto na página Main quanto na página Multi  
         if (optionMain && captureValue === '') {            
             alert('Please select an option!') 
-            answerDisplay && setAnswerDisplay(styles.invisible)
+            answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
         } else if ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2)) {
             alert('Please select 2 options!') 
-            answerDisplay && setAnswerDisplay(styles.invisible)
+            answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         }
 
@@ -97,7 +97,7 @@ function ButtonAnswer({
                 // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
                 if(questionAnswer === true) {
                     // para manter a resposta sempre visível
-                    answerDisplay && setAnswerDisplay(styles.visibleAnswer)
+                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer)
                     
                     // alerta avisando para passar para a próxima questão
                     alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
@@ -240,7 +240,7 @@ function ButtonAnswer({
 
             } else {
                 if(questionAnswer === true) {           
-                    answerDisplay && setAnswerDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
                     
                     // alerta avisando para passar para a próxima questão
                     alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
@@ -295,7 +295,7 @@ function ButtonAnswer({
                             } 
 
                             uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]}`) // armazena os itens corretos
+                            setItens(`${uniqueItens[0]} //  ${uniqueItens[1]}`) // armazena os itens corretos
                             playErrorSound = true // toca o som de erro
 
                         } 

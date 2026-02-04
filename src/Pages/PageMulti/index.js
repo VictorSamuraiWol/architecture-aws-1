@@ -16,8 +16,8 @@ function PageMulti() {
     const [optNum5, setOptNum5] = useState('')
     const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
     const [optionMultiNumberId, setOptionMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
-    const [answerDisplay, setAnswerDisplay] = useState(styles.invisible)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisible)
+    const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
@@ -158,8 +158,8 @@ function PageMulti() {
                         description={questionMulti.description}
                         questionNumber={questionMulti.questionNumber}
                         elementId={questionMulti.id}
-                        answerDisplay={answerDisplay}
-                        setAnswerDisplay={setAnswerDisplay}
+                        answerDescriptionDisplay={answerDescriptionDisplay}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
                         questionMulti={questionMulti}

@@ -30,7 +30,7 @@
     justify-content: start;
     align-items: center;
     gap: 12px;
-    padding: 16px;
+    padding: 8px;
     width: 98%;
 }
 
@@ -87,6 +87,10 @@
         font-size: 1.2rem;
     }
 
+    .alternativeOptions {
+        padding: 6px;
+    }
+
     .textOptions {
         font-size: 1.2rem;
     }
@@ -100,6 +104,10 @@
 
     .itemAlternativeMain {
         font-size: 1rem;
+    }
+
+    .alternativeOptions {
+        padding: 4px;
     }
 
     .textOptions {
