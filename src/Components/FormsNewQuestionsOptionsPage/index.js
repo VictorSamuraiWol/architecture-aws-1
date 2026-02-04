@@ -7,12 +7,12 @@ import ButtonDefault from '../ButtonDefault'
 import saveAudio from '../../audios/save.mp3'
 import errorAudio from '../../audios/errorForms.mp3'
 import PopupCompareAllQuestionsAllOptions from '../PopupCompareAllQuestionsAllOptions'
+import PopupMessagesTitlesForms from './PopupMessagesTitlesForms'
+import PopupCheckNumbers from '../PopupCheckNumbers'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
-import PopupMessagesTitlesForms from './PopupMessagesTitlesForms'
-import PopupCheckNumbers from '../PopupCheckNumbers'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -217,7 +217,6 @@ function FormsNewQuestionsOptionsPage() {
         if (readyToSendForm1 === true && (matchedOptionMain?.length > 0) && (matchedAnswerAnternativeMain === undefined)) {
         // condição: se existe a opção correspondente e se não há alguma alternativa igual a resposta da questão, ao preencher o formulário 1
             checkWithoutMatched = true
-            console.log(checkWithoutMatched,matchedAnswerAnternativeMain, 191)
 
         } else if (readyToSendForm2 === true && matchedQuestionMain && matchedAlternativeAnswerMain.length === 0) {
         // condição: se existe questão correspondente e se não há alguma alternativa igual a resposta da questão, ao preencher o formulário 2
@@ -641,8 +640,8 @@ function FormsNewQuestionsOptionsPage() {
         if (isValid === false) {
             setActivePopupCheckNumbers1(true)
 
-        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
-            setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti)) {
+            setActivePopupcheckAlternativeAnswerForms3(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
@@ -777,8 +776,8 @@ function FormsNewQuestionsOptionsPage() {
         if (isValid === false) {
             setActivePopupCheckNumbers2(true)
 
-        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
-            setActivePopupcheckAlternativeAnswerForms2(true) // ativa o popup
+        } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
+            setActivePopupcheckAlternativeAnswerForms4(true) // ativa o popup
 
         } else {
             // colocando somente os campos que serão obrigatórios
