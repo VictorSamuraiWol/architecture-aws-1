@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
+import PopupCheckRequiredFields from '../PopupCheckRequiredFields'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -66,11 +67,11 @@ function FormsNewQuestionsOptionsPage() {
     // list de todas as alternativas da opção múltipla (formulário 4)
     const [optionForm4, setOptionForm4] = useState('')
 
-    const [readyToSendForm1, setReadyToSendForm1] = useState(false);
-    const [readyToSendForm2, setReadyToSendForm2] = useState(false);
-    const [readyToSendForm3, setReadyToSendForm3] = useState(false);
-    const [readyToSendForm4, setReadyToSendForm4] = useState(false);
-    const [readyToCleanAll, setReadyToCleanAll] = useState(false);
+    const [readyToSendForm1, setReadyToSendForm1] = useState(false)
+    const [readyToSendForm2, setReadyToSendForm2] = useState(false)
+    const [readyToSendForm3, setReadyToSendForm3] = useState(false)
+    const [readyToSendForm4, setReadyToSendForm4] = useState(false)
+    const [readyToCleanAll, setReadyToCleanAll] = useState(false)
 
     // capturar a mensagem de alerta para exibir na tela dos formulários
     const [alertMessage, setAlertMessage] = useState('')
@@ -119,6 +120,18 @@ function FormsNewQuestionsOptionsPage() {
 
     // ativa o componente 'PopupCheckNumbers'
     const [activePopupCheckNumbers2, setActivePopupCheckNumbers2] = useState(false)
+
+    // ativa o componente 'PopupCheckRequiredFields'
+    const [activePopupCheckRequiredFields1, setActivePopupCheckRequiredFields1] = useState(false)
+
+    // ativa o componente 'PopupCheckRequiredFields'
+    const [activePopupCheckRequiredFields2, setActivePopupCheckRequiredFields2] = useState(false)
+
+    // ativa o componente 'PopupCheckRequiredFields'
+    const [activePopupCheckRequiredFields3, setActivePopupCheckRequiredFields3] = useState(false)
+
+    // ativa o componente 'PopupCheckRequiredFields'
+    const [activePopupCheckRequiredFields4, setActivePopupCheckRequiredFields4] = useState(false)
 
     // passando a cor incorreta
     const [colorIncorrect] = useState('#B71C1C')
@@ -324,7 +337,7 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da questão que irá ser criada já existe na lista das questões
 
-        if (isValid === false) {
+        if (isValid === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
                 setActivePopupCheckNumbers1(true)
                 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain)) {          
@@ -382,10 +395,9 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
-
+                mute === false && errorSound.play() // toca o som 'errorSound'                
                 console.error('Error in data received from Form 1!')
-                alert('Please fill in all required fields in Form 1!')
+                setActivePopupCheckRequiredFields1(true) // ativa o 'PopupCheckRequiredFields'
 
             } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'for'
@@ -412,9 +424,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 1!')
-                alert('Please correctly fill in all fields in Form 1.')
 
             }     
                 
@@ -428,15 +438,13 @@ function FormsNewQuestionsOptionsPage() {
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 1. Please complete one form at a time.')
                     alert('Question successfully added from Form 1. Please complete one form at a time.')
-
-                    cleanAllForms() // limpar o formulário
-                
+                    cleanAllForms() // limpar o formulário                
                     setPostApi(true) // tornar verdadeiro a cada POST
 
                 }
                 
             } catch(error) {
-            console.error('Error while submitting data', error)
+                console.error('Error while submitting data', error)
 
             }
 
@@ -459,15 +467,13 @@ function FormsNewQuestionsOptionsPage() {
                     isValid = false
                     
                 }
-
             })
-
 
         }
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
 
-        if (isValid === false) {
+        if (isValid === false) { // se o número da opção for repetido ativa o 'PopupCheckNumbers'
             setActivePopupCheckNumbers2(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain)) {
@@ -504,7 +510,7 @@ function FormsNewQuestionsOptionsPage() {
             
                         fields.forEach(field => {
                                 const label = field.children[0]
-                                label.style.color = ""            
+                                label.style.color = ""                                            
                         })
 
                     }
@@ -540,10 +546,9 @@ function FormsNewQuestionsOptionsPage() {
                 }
 
                 redVoidField()
-                mute === false && errorSound.play() // toca o som 'errorSound'
-                
+                mute === false && errorSound.play() // toca o som 'errorSound'                
                 console.error('Error in data received from Form 2!')
-                alert('Please fill in all required fields in Form 2.')
+                setActivePopupCheckRequiredFields2(true) // ativa o 'PopupCheckRequiredFields'
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -582,9 +587,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 2!')
-                alert('Please correctly fill in all fields in Form 2.')
 
             }
 
@@ -598,9 +601,7 @@ function FormsNewQuestionsOptionsPage() {
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 2. Please complete one form at a time.')
                     alert('Option successfully added from Form 2. Please complete one form at a time.')
-
-                    cleanAllForms() // limpar o formulário
-                    
+                    cleanAllForms() // limpar o formulário                    
                     setPostApi(true) // tornar verdadeiro a cada POST
                     
                 }
@@ -635,9 +636,7 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da questão que irá ser criada já existe na lista das questões
 
-        checkAlternativeAnswer()
-
-        if (isValid === false) {
+        if (isValid === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
             setActivePopupCheckNumbers1(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti)) {
@@ -693,9 +692,8 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 3!')
-                alert('Please fill in all required fields in Form 3.')
+                setActivePopupCheckRequiredFields3(true) // ativa o 'PopupCheckRequiredFields'
 
             } else {
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -720,9 +718,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 3!')
-                alert('Please correctly fill in all fields in Form 3.')
 
             }     
 
@@ -736,9 +732,7 @@ function FormsNewQuestionsOptionsPage() {
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 3. Please complete one form at a time.')
                     alert('Question successfully added from Form 3. Please complete one form at a time.')
-
-                    cleanAllForms() // limpar o formulário
-                    
+                    cleanAllForms() // limpar o formulário                    
                     setPostApi(true) // tornar verdadeiro a cada POST
                     
                 }
@@ -773,7 +767,7 @@ function FormsNewQuestionsOptionsPage() {
     
         numberValidationForms() // chamando a função que verifica se o número da opção que irá ser criada já existe na lista das opções
        
-        if (isValid === false) {
+        if (isValid === false) { // se o número da opção for repetido ativa o 'PopupCheckNumbers'
             setActivePopupCheckNumbers2(true)
 
         } else if (isValid === true && checkAlternativeAnswer() === true && (newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti)) {
@@ -820,6 +814,7 @@ function FormsNewQuestionsOptionsPage() {
                     mute === false && saveSound.play() // toca o som 'saveSound'
 
                 }
+
             } else if (readyToSendForm4 === true && isValid === true && (newOptionAMulti === "" || newOptionBMulti === "" || newOptionCMulti === "" || newOptionDMulti === "" || newOptionNumberMulti === "")) {
             // condição 2: se clicou no botão submit (readyToSendForm2), se o número da questão não se repete (isValid), se tem campos obrigatórios vazios (newOptionAMulti, newOptionBMulti, newOptionCMulti, newOptionDMulti, newOptionNumberMulti)
                 // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900), usando 'forEach'
@@ -844,9 +839,8 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 4!')
-                alert('Please fill in all required fields in Form 4.')
+                setActivePopupCheckRequiredFields4(true) // ativa o 'PopupCheckRequiredFields'
 
                 if (repeatedAlternativesDefault(optionForm2, optionForm4).length > 0) {
                 // condição: se as alternativas se repetem (repeatedAlternativesDefault(optionForm2, optionForm4)
@@ -883,9 +877,7 @@ function FormsNewQuestionsOptionsPage() {
 
                 redVoidField()
                 mute === false && errorSound.play() // toca o som 'errorSound'
-
                 console.error('Error in data received from Form 4!')
-                alert('Please correctly fill in all fields in Form 4.')
 
             }
 
@@ -899,9 +891,7 @@ function FormsNewQuestionsOptionsPage() {
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 4. Please complete one form at a time.')
                     alert('Option successfully added from Form 4. Please complete one form at a time.')
-
-                    cleanAllForms() // limpar o formulário
-                
+                    cleanAllForms() // limpar o formulário                
                     setPostApi(true) // tornar verdadeiro a cada POST
 
                 }
@@ -1274,7 +1264,39 @@ function FormsNewQuestionsOptionsPage() {
                     activePopup={setActivePopupCheckNumbers2}
                 />
             }
-      
+
+            {/* PopupCheckRequiredFields */}
+            {activePopupCheckRequiredFields1 &&
+                <PopupCheckRequiredFields
+                    specificStyles={styles.popupCheckRequiredFields}
+                    text={'Please fill in all required fields in Form 1!'}
+                    activePopup={setActivePopupCheckRequiredFields1}
+                />                
+            }
+
+            {activePopupCheckRequiredFields2 &&
+                <PopupCheckRequiredFields
+                    specificStyles={styles.popupCheckRequiredFields}
+                    text={'Please fill in all required fields in Form 2!'}
+                    activePopup={setActivePopupCheckRequiredFields2}
+                />                
+            }
+
+            {activePopupCheckRequiredFields3 &&
+                <PopupCheckRequiredFields
+                    specificStyles={styles.popupCheckRequiredFields}
+                    text={'Please fill in all required fields in Form 3!'}
+                    activePopup={setActivePopupCheckRequiredFields3}
+                />                
+            }
+
+            {activePopupCheckRequiredFields4 &&
+                <PopupCheckRequiredFields
+                    specificStyles={styles.popupCheckRequiredFields}
+                    text={'Please fill in all required fields in Form 4!'}
+                    activePopup={setActivePopupCheckRequiredFields4}
+                />                
+            }      
         </div>
     )
 }

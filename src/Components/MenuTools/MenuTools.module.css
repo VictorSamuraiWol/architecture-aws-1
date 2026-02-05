@@ -62,6 +62,16 @@
   border-radius: 8px;
 }
 
+.invisibleAnswerDescription {
+    visibility: hidden;
+
+}
+
+.invisibleDescription {
+    visibility: hidden;
+ 
+}
+
 /* Responsividade */
 @media (max-width: 1100px) {
   .menu {

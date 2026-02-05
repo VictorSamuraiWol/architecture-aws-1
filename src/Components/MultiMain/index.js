@@ -57,7 +57,9 @@ function MultiMain({
             <MenuTools
                 questionMulti={questionMulti} 
                 optionMulti={optionMulti} 
-                optionMultiNumberId={optionMultiNumberId}                
+                optionMultiNumberId={optionMultiNumberId}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}               
             />
 
             {activePopupRepeatedAlternativesMultiMain === true && 

@@ -6,7 +6,7 @@ import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
 
 function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti, 
-  optionMulti, optionMultiNumberId }) {
+  optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
@@ -151,6 +151,8 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         onDeleteQuestion(questionMain)
         onDeleteOption(optionMainNumberId)
         alert('Deleted successfully!')
+        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+        setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
     
     } else {
       alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
@@ -165,6 +167,8 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
       alert('Deleted successfully!')
+      setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+      setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
     
     } else {
       alert('There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')

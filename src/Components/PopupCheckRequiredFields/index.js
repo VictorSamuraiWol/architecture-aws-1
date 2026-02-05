@@ -1,7 +1,7 @@
-// import styles from './PopupCheckNumbers.module.css'
+// import styles from './PopupCheckRequiredFields.module.css'
 import PopupDefault from '../PopupDefault'
 
-function PopupCheckNumbers({ text, specificStyles, activePopup }) {
+function PopupCheckRequiredFields({ text, specificStyles, activePopup }) {
 
   return (
     <PopupDefault 
@@ -13,4 +13,4 @@ function PopupCheckNumbers({ text, specificStyles, activePopup }) {
 
 }
 
-export default PopupCheckNumbers
+export default PopupCheckRequiredFields

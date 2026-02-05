@@ -87,7 +87,9 @@ function Main({
             <MenuTools 
                 questionMain={questionMain} 
                 optionMain={optionMain}
-                optionMainNumberId={optionMainNumberId}               
+                optionMainNumberId={optionMainNumberId}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}              
             />
 
             {activePopupRepeatedAlternativesMain === true && 
