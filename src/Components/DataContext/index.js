@@ -1,8 +1,7 @@
 import styles from './DataContext.module.css'
 import { createContext, useEffect, useState } from 'react'
 
-// criando um contexto
-export const DataContext = createContext()
+export const DataContext = createContext() // criando um contexto
 
 export default function DataProvider({ children }) {
     
@@ -26,10 +25,7 @@ export default function DataProvider({ children }) {
     useEffect(() => {
         const fetchData1 = async () => {
             try {
-
-                // habilitar o loading
-                setLoading(true)
-
+                setLoading(true) // habilitar o loading
                 const res = await fetch("http://localhost:3001/listQuestionsMain")
                 const data = await res.json() 
 
@@ -37,20 +33,15 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-
-                    setListUnicQuestionsContext(data)
-                    setListUnicQuestionsContextLength(data.length)
-
-                    // desabilitar o loading
-                    setLoading(false)
+                    setListUnicQuestionsContext(data) // capturando os dados do backend
+                    setListUnicQuestionsContextLength(data.length) // capturando o comprimento dos dados do backend                  
+                    setLoading(false) // desabilitar o loading
 
                 }
             
             } catch (error) {
-                console.error('Erro ao buscar as questões:', error)
-
-                // desabilitar o loading               
-                setLoading(false)
+                console.error('Erro ao buscar as questões:', error)                          
+                setLoading(false) // desabilitar o loading 
 
             }
         
@@ -59,11 +50,8 @@ export default function DataProvider({ children }) {
         fetchData1()
 
         const fetchData2 = async () => {
-            try {
-
-                // habilitar o loading
-                setLoading(true)
-
+            try {                
+                setLoading(true) // habilitar o loading
                 const res = await fetch("http://localhost:3001/listOptionsMain")
                 const data = await res.json() 
                 
@@ -71,19 +59,14 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-
-                    setListUnicOptionsContext(data)
-                    
-                    // desabilitar o loading
-                    setLoading(false)
+                    setListUnicOptionsContext(data) // capturando os dados do backend
+                    setLoading(false) // desabilitar o loading
 
                 }  
     
             } catch (error) {
-                console.error('Erro ao buscar as opções:', error)
-
-                // desabilitar o loading               
-                setLoading(false)
+                console.error('Erro ao buscar as opções:', error)                               
+                setLoading(false) // desabilitar o loading
 
             }
 
@@ -92,10 +75,8 @@ export default function DataProvider({ children }) {
         fetchData2()
 
         const fetchData3 = async () => {
-            try {
-                // habilitar o loading
-                setLoading(true)
-
+            try {                
+                setLoading(true) // habilitar o loading
                 const res = await fetch("http://localhost:3001/listQuestionsMulti")
                 const data = await res.json()
 
@@ -103,20 +84,15 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
                     
                 } else {
-
-                    setListMultiQuestionsContext(data)
-                    setListMultiQuestionsContextLength(data.length)
-                
-                    // desabilitar o loading
-                    setLoading(false)
+                    setListMultiQuestionsContext(data) // capturando os dados do backend
+                    setListMultiQuestionsContextLength(data.length) // capturando o comprimento dos dados do backend                           
+                    setLoading(false) // desabilitar o loading
 
                 }   
 
             } catch (error) {
-                console.log('Erro ao buscar as questões:', error)
-
-                // desabilitar o loading                  
-                setLoading(false)
+                console.log('Erro ao buscar as questões:', error)                            
+                setLoading(false) // desabilitar o loading 
                 
             }
 
@@ -125,10 +101,8 @@ export default function DataProvider({ children }) {
         fetchData3()
 
         const fetchData4 = async () => {
-            try {
-                // habilitar o loading
-                setLoading(true)
-
+            try {                
+                setLoading(true) // habilitar o loading
                 const res = await fetch("http://localhost:3001/listOptionsMulti")
                 const data = await res.json()
 
@@ -136,19 +110,14 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-
-                    setListMultiOptionsContext(data)                   
-
-                    // desabilitar o loading
-                    setLoading(false)
+                    setListMultiOptionsContext(data) // capturando os dados do backend
+                    setLoading(false) // desabilitar o loading
                 
                 }       
                 
             } catch (error) {
-                console.log('Erro ao buscar as opções:', error)
-
-                // desabilitar o loading                  
-                setLoading(false)
+                console.log('Erro ao buscar as opções:', error)                         
+                setLoading(false) // desabilitar o loading
                 
             }
 
@@ -176,7 +145,6 @@ export default function DataProvider({ children }) {
                 setAbleDisableMenuTools
             }}
         >
-
             {children}
 
         </DataContext.Provider> 

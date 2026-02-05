@@ -9,11 +9,11 @@ import errorAudio from '../../audios/errorForms.mp3'
 import PopupCompareAllQuestionsAllOptions from '../PopupCompareAllQuestionsAllOptions'
 import PopupMessagesTitlesForms from './PopupMessagesTitlesForms'
 import PopupCheckNumbers from '../PopupCheckNumbers'
+import PopupCheckRequiredFields from '../PopupCheckRequiredFields'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
-import PopupCheckRequiredFields from '../PopupCheckRequiredFields'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -603,7 +603,7 @@ function FormsNewQuestionsOptionsPage() {
                     alert('Option successfully added from Form 2. Please complete one form at a time.')
                     cleanAllForms() // limpar o formulário                    
                     setPostApi(true) // tornar verdadeiro a cada POST
-                    
+
                 }
 
             } catch(error) {
@@ -908,8 +908,12 @@ function FormsNewQuestionsOptionsPage() {
     }
         
     useEffect(() => {
-        function formsCheck() { // verifica se existem mais questões que opções ou mais opções que questões nos 4 formulários
-            if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
+        function formsCheck() { // função que verifica se existem mais questões que opções ou mais opções que questões nos 4 formulários
+            if (listUnicQuestionsContext.length === listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
+                setActivePopupCompareAllQuestionsAllOptions(false) // não ativa o 'PopupCompareAllQuestionsAllOptions'
+                setAlertMessage(null) // anula a menssage
+
+            } else if (listUnicQuestionsContext.length > listUnicOptionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
                 setAlertMessage('⚠ There are more questions in form 1" than options in "form 2". Dont forget to add the missing options to "form 2".')
 
             } else if (listUnicOptionsContext.length > listUnicQuestionsContext.length && listMultiQuestionsContext.length === listMultiOptionsContext.length) {
@@ -936,12 +940,16 @@ function FormsNewQuestionsOptionsPage() {
             }
 
         } 
-        
-        if (postApi) {
-            setActivePopupCompareAllQuestionsAllOptions(true) // habilita o 'PopupCompareAllQuestionsAllOptions'
-            formsCheck()
 
-        }
+        formsCheck()
+        
+        setTimeout(() => {
+            if (postApi) {
+                setActivePopupCompareAllQuestionsAllOptions(true) // habilita o 'PopupCompareAllQuestionsAllOptions' se postApi for 'true'
+
+            }
+
+        }, 300)
 
     }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, postApi])
 
@@ -1226,7 +1234,7 @@ function FormsNewQuestionsOptionsPage() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3}
                     textPopup={`Your answer does not contain the two correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber} in the answer, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`Include in the answer to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} e ${matchedOptionMultiMainPopupAnswers[1]}.`}
+                    textModalDescription={`Include in the answer to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} and ${matchedOptionMultiMainPopupAnswers[1]}.`}
                 />
             }
 
@@ -1240,7 +1248,7 @@ function FormsNewQuestionsOptionsPage() {
             }
 
             {/* PopupCompareAllQuestionsAllOptions */}
-            {activePopupCompareAllQuestionsAllOptions &&
+            {activePopupCompareAllQuestionsAllOptions && alertMessage !== null && 
                 <PopupCompareAllQuestionsAllOptions
                     specificStyles={styles.popupCompare} 
                     textPopup={alertMessage}
