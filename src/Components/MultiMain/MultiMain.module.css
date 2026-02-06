@@ -43,13 +43,13 @@
 /* personalizando o estilo do input checkbox */
 .inputMultiOptions {
   appearance: none; /* remove o estilo padrão */
+  position: relative;
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-second);
+  border-radius: 25%;
   transition: 0.1s ease-in-out;
-  padding: 4px;
   margin: 0;
   cursor: pointer;
 }
@@ -60,66 +60,159 @@
 }
 
 .inputMultiOptions:checked::after {
+  position: absolute;
   content: "✓";
+  top: 50%;
+  left: 50%;
   font-size: 15px;
   color: var(--color-fourth);
   font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
 .inputValidate {
+  position: relative;
   appearance: none; /* remove o estilo padrão */
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-correct);
+  border-radius: 25%;
   transition: 0.1s ease-in-out;
-  padding: 4px;
   margin: 0;
   cursor: pointer;
 }
 
-.inputValidate::after {   
+.inputValidate:checked::after {   
+  position: absolute;
   content: "✓";
+  top: 50%;
+  left: 50%;
   font-size: 15px;
   color: var(--color-correct);
   font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
 .inputInvalidate {
+  position: relative;
   appearance: none; /* remove o estilo padrão */
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-incorrect);
+  border-radius: 25%;
   transition: 0.1s ease-in-out;
-  padding: 4px;
   margin: 0;
   cursor: pointer;
 }
 
-.inputInvalidate::after {
+.inputInvalidate:checked::after {
+  position: absolute; 
   content: "✖";
+  top: 50%;
+  left: 50%;
   font-size: 15px;
   color: var(--color-incorrect);
   font-weight: bold;
-  position: absolute; 
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
 /* Responsividade */
+@media (min-width: 1700px) {
+  .inputMultiOptions {
+    padding: 8px;
+  }
+
+  .inputValidate {
+    padding: 8px;
+  }
+
+  .inputInvalidate {
+    padding: 8px;
+  }
+
+}
+
+@media (max-width: 1700px) {
+  .inputMultiOptions {
+    padding: 8px;
+  }
+
+  .inputValidate {
+    padding: 8px;
+  }
+
+  .inputInvalidate {
+    padding: 8px;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .inputMultiOptions {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+    
+  .inputMultiOptions:checked::after {
+    font-size: 12px;
+  }
+
+  .inputValidate {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+
+  .inputValidate:checked::after {
+    font-size: 12px;
+  }
+
+  .inputInvalidate {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+
+  .inputInvalidate:checked::after {
+    font-size: 12px;
+  }
+
+}
+
 @media (max-width: 860px) {
+  .inputMultiOptions {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputMultiOptions:checked::after {
+    font-size: 10px;
+  }
+
+  .inputValidate {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputValidate:checked::after {
+    font-size: 10px;
+  }
+
+  .inputInvalidate {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputInvalidate:checked::after {
+    font-size: 10px;
+  }
+
   .popupRepeatedMultiMain {
     font-size: 0.8rem;
     width: 20%;
@@ -128,6 +221,36 @@
 }
 
 @media (max-width: 580px) {
+  .inputMultiOptions {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+  
+  .inputMultiOptions:checked::after {
+    font-size: 9px;
+  }
+
+  .inputValidate {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+
+  .inputValidate:checked::after {
+    font-size: 9px;
+  }
+
+  .inputInvalidate {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+
+  .inputInvalidate:checked::after {
+    font-size: 9px;
+  }
+
   .popupRepeatedMultiMain {
     font-size: 0.7rem;
     width: 25%;

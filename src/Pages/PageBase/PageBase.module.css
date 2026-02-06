@@ -3,6 +3,7 @@
 }
 
 .soundFull {
+    color: var(--color-fourth);
     left: 2px;
     position: absolute;
     /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
@@ -13,6 +14,7 @@
 }
 
 .soundMute {
+    color: var(--color-fourth);
     left: 2px;
     position: absolute;
     /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */

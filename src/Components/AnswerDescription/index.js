@@ -46,13 +46,13 @@ function AnswerDescription({
 
     function descriptionOnMouseOver() {
         const descriptionNewStyle = document.querySelector('#descriptionId')
-        descriptionNewStyle.classList.add(styles.descriptionNewStyleClass)
+        descriptionNewStyle.classList.add(styles.descriptionNewStyle)
         
     }
 
     function descriptionOnMouseOut() {
         const descriptionDefaultStyle = document.querySelector('#descriptionId')
-        descriptionDefaultStyle.classList.remove(styles.descriptionNewStyleClass)
+        descriptionDefaultStyle.classList.remove(styles.descriptionNewStyle)
 
     }
 

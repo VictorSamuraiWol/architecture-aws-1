@@ -74,7 +74,7 @@
     background-color: var(--color-fourth);
 }
 
-.descriptionNewStyleClass {
+.descriptionNewStyle {
     cursor: default;
     font-style: italic;
     font-weight: bold;

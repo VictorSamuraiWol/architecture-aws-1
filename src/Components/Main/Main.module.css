@@ -42,15 +42,14 @@
 
 /* personalizando o estilo do input radio */
 .inputOptions {    
+  position: relative;
   appearance: none; /* remove o estilo padrão */
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-second);
   border-radius: 50%;
   transition: 0.1s ease-in-out;
-  padding: 8px;
   margin: 0;
   cursor: pointer;
 }
@@ -63,8 +62,8 @@
 
 /* Criando o ponto interno ao ser checado */
 .inputOptions:checked::after {    
-  content: "";
   position: absolute;
+  content: "";
   width: 10px;
   height: 10px;
   background-color: var(--color-fourth);
@@ -75,22 +74,21 @@
 }
 
 .inputValidate {
+  position: relative;
   appearance: none; /* remove o estilo padrão */
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-correct);
   border-radius: 50%;
   transition: 0.1s ease-in-out;
-  padding: 8px;
   margin: 0;
   cursor: pointer;
 }
 
-.inputValidate::after {   
-  content: "";
+.inputValidate:checked::after {   
   position: absolute;
+  content: "";
   width: 10px;
   height: 10px;
   background-color: var(--color-correct);
@@ -101,22 +99,21 @@
 }
 
 .inputInvalidate {
+  position: relative;
   appearance: none; /* remove o estilo padrão */
   width: 20px;
   height: 20px;
-  position: relative;
   background-color: transparent;
   border: 2px solid var(--color-incorrect);
   border-radius: 50%;
   transition: 0.1s ease-in-out;
-  padding: 8px;
   margin: 0;
   cursor: pointer;
 }
 
-.inputInvalidate::after {
-  content: "";
+.inputInvalidate:checked:after {
   position: absolute;
+  content: "";
   width: 10px;
   height: 10px;
   background-color: var(--color-incorrect);
@@ -135,7 +132,92 @@
 }
 
 /* Responsividade */
+@media (min-width: 1700px) {
+  .inputOptions {
+    padding: 8px;
+  }
+
+  .inputValidate {
+    padding: 8px;
+  }
+
+  .inputInvalidate {
+    padding: 8px;
+  }
+
+}
+
+@media (max-width: 1700px) {
+  .inputOptions {
+    padding: 8px;
+  }
+
+  .inputValidate {
+    padding: 8px;
+  }
+
+  .inputInvalidate {
+    padding: 8px;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .inputOptions {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+
+  .inputValidate {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+
+  .inputInvalidate {
+    width: 16px;
+    height: 16px;
+    padding: 7px;
+  }
+
+}
+
+
 @media (max-width: 860px) {
+  .inputOptions {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputOptions:checked::after {
+    width: 8px;
+    height: 8px;
+  }
+
+  .inputValidate {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputValidate:checked::after {
+    width: 8px;
+    height: 8px;
+  }
+
+  .inputInvalidate {
+    width: 14px;
+    height: 14px;
+    padding: 6px;
+  }
+
+  .inputInvalidate:checked::after {
+    width: 8px;
+    height: 8px;
+  }
+
   .popupRepeatedMain {
     font-size: 0.8rem;
     width: 20%;
@@ -144,6 +226,39 @@
 }
 
 @media (max-width: 580px) {
+  .inputOptions {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+  
+  .inputOptions:checked::after {
+    width: 6px;
+    height: 6px;
+  }
+
+  .inputValidate {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+
+  .inputValidate:checked::after {
+    width: 6px;
+    height: 6px;
+  }
+
+  .inputInvalidate {
+    width: 12px;
+    height: 12px;
+    padding: 5px;
+  }
+
+  .inputInvalidate:checked::after {
+    width: 6px;
+    height: 6px;
+  }
+
   .popupRepeatedMain {
     font-size: 0.7rem;
     width: 25%;

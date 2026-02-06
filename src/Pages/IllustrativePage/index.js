@@ -2,12 +2,14 @@ import styles from './IllustrativePage.module.css'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import imageStart from '../../imgs/icon-start.png'
+import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { GoPlus } from "react-icons/go";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { MdEditSquare } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
+import { GoPlus } from "react-icons/go"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { MdEditSquare } from "react-icons/md"
+import { MdDelete } from "react-icons/md"
+import { BiSolidVolumeFull } from "react-icons/bi"
 
 function IllustrativePage() {
 
@@ -172,8 +174,8 @@ function IllustrativePage() {
     
     useEffect(() => {
         //capturando as páginas main e multi e certificando que elas não irão aparecer ao renderizar a página ilustrativa
-        const allQuestionsMain = document.querySelector('#allQuestionsMainId');
-        const allQuestionsMulti = document.querySelector('#allQuestionsMultiId');
+        const allQuestionsMain = document.querySelector('#allQuestionsMainId')
+        const allQuestionsMulti = document.querySelector('#allQuestionsMultiId')
 
         allQuestionsMain && (allQuestionsMain.style.display = 'none')
         allQuestionsMulti && (allQuestionsMulti.style.display = 'none')
@@ -187,11 +189,14 @@ function IllustrativePage() {
             className={styles.IllustrativePage}
         >
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
+
             <div className={styles.header}>
-                <img className={styles.iconStart} src={imageStart} alt='icon-start' />                    
-                <h1 id='headerH1' className={styles.headerH1}>
-                    PÁGINA ILUSTRATIVA / Resolution 1 - Randomly              
+                <img className={styles.iconStart} src={imageStart} alt='icon-start' />
+
+                <h1 id='headerH1' className={styles.headerTitle}>
+                    ILLUSTRATIVE PAGE / Resolution 1 - Randomly              
                 </h1>
+
                 <nav>
                     <RxHamburgerMenu className={styles.hamburger} />   
                     <ul className={styles.ulIllustrative}>
@@ -205,9 +210,6 @@ function IllustrativePage() {
                 <h2 id='questionId' className={styles.question}>
                     "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?"
                 </h2>
-
-
-
 
                 <div className={styles.menu}>
                     <div className={styles.menuTools}>
@@ -224,66 +226,65 @@ function IllustrativePage() {
 
                 </div>
 
-
-
                 <div className={styles.optionsMain}>
-                    <div className={styles.checkOpt}>
+                    <div className={styles.alternativeOptions}>
                         <input
                             className={styles.inputOptions}  
                             type='radio' 
                             name='options' 
                             value='0'
                         />
-                        <p id='opt1' className={styles.option}>
-                            "Storage Gateway - Volume Gateway."
+                        <p id='opt1' className={styles.textOptions}>
+                            a) Storage Gateway - Volume Gateway.
                         </p>
                     </div>
 
-                    <div className={styles.checkOpt}>
+                    <div className={styles.alternativeOptions}>
                         <input
                             className={styles.inputOptions} 
                             type='radio' 
                             name='options' 
                             value='1' 
                         />
-                        <p id='opt2' className={styles.option}>
-                            "Site-to-Site VPN."
+                        <p id='opt2' className={styles.textOptions}>
+                            b) Site-to-Site VPN.
                         </p>
                     </div>
 
-                    <div className={styles.checkOpt}>
+                    <div className={styles.alternativeOptions}>
                         <input 
-                            className={styles.inputOptions} 
+                            className={styles.inputValidate} 
                             type='radio' 
                             name='options' 
                             value='2' 
                         />
-                        <p id='opt3' className={styles.option}>
-                            "Storage Gateway - File Gateway."
+                        <p id='opt3' className={styles.optionValidate}>
+                            c) Storage Gateway - File Gateway.
                         </p>
                     </div>
 
-                    <div className={styles.checkOpt}>
+                    <div className={styles.alternativeOptions}>
                         <input 
                             className={styles.inputOptions} 
                             type='radio' 
                             name='options' 
                             value='3' 
                         />
-                        <p id='opt4' className={styles.option}>
-                            "Storage Gateway - Tape Gateway."
+                        <p id='opt4' className={styles.textOptions}>
+                            d) Storage Gateway - Tape Gateway.
                         </p>
                     </div>
 
-                    <div className={styles.checkOpt}>
+                    <div className={styles.alternativeOptions}>
                         <input 
-                            className={styles.inputOptions} 
-                            type='radio' 
+                            className={styles.inputInvalidate}
+                            checked='true' 
+                            type='radio'
                             name='options' 
                             value='4' 
                         />
-                        <p id='opt5' className={styles.option}>
-                            "Instance Store."
+                        <p id='opt5' className={styles.optionInvalidate}>
+                            e) Instance Store.
                         </p>
                     </div>
                 </div>
@@ -294,12 +295,13 @@ function IllustrativePage() {
 
                 <section className={styles.answerClass}>   
                     <div className={styles.answerTitle}>
-                        <h3 id='answerTitleId'>"Storage Gateway - File Gateway."</h3>
+                        <h3 id='answerTitleId'>c) Storage Gateway - File Gateway.</h3>
                         <p id='answerClickId'>Click here for more information</p>
                     </div>
 
-                    <p id='descriptionId' className={styles.descriptionClass}>
-                        "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching."
+                    <p id='descriptionId' className={styles.description}>
+                        <img className={styles.imageDescription} src={storageGateway} alt='img' />
+                        AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.
                     </p>
                 </section>
 
@@ -313,6 +315,9 @@ function IllustrativePage() {
             </div>
 
             <div className={styles.footer}>
+                <BiSolidVolumeFull // unmute sound icon
+                    className={styles.soundFull}
+                />
                 <div id='timerId' className={styles.timer}>
                     <h1>2:00</h1>
                     <div>
@@ -320,7 +325,9 @@ function IllustrativePage() {
                         <button>Pause</button>
                     </div>
                 </div>
+
                 <img src={image} alt="icon wolverine" />
+
                 <p>Created by Victor Cardoso. Feel free to connect on  
                     <Link id='contactLink' to="https://www.linkedin.com/in/victor-cardoso-cloud-front/" target="_blank"> Linkedin.
                     </Link>

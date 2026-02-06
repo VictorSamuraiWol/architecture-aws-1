@@ -40,7 +40,7 @@ function Header({ title }) {
                 className={styles.linkHeader} 
             >
                 <img
-                onClick={sound}
+                    onClick={sound}
                     className={styles.iconStart} 
                     src={image}
                     alt='icon-start' 
@@ -87,4 +87,4 @@ function Header({ title }) {
 
 }
 
-export default Header;
+export default Header

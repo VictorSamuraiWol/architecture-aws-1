@@ -25,14 +25,14 @@
     transform: scale(1.03);
 }
 
-.headerH1 {
-    width:80%;
-    max-width: max-content;
-    background-color: var(--color-first);
-    border-radius: 16px;
-    box-shadow: 2px 2px 2px var(--color-fourth);
+.headerTitle {
     cursor: default;
     z-index: 1;
+}
+
+.test {
+    padding: 500px;
+    background-color: red;
 }
 
 nav {
@@ -135,14 +135,13 @@ ul {
     flex-direction: column;
     gap: 8px;
     position: relative;
+    color: var(--color-third);
     width: 90%;
-    color: var(--color-fourth);
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;    
     line-height: 20px;
     padding: 8px 12px;
-    height: 380px;
     overflow: auto;
     z-index: 1;
 }
@@ -156,37 +155,123 @@ ul {
     background-color: var(--color-fourth);
 }
 
-.checkOpt {
+.alternativeOptions {
     display: flex;
+    justify-content: start;
     align-items: center;
-    gap: 8px;
-}
-
-.checkOpt:hover {
-    font-weight: bold;
-    transform: scale(1.01);
-    transition: 0.1s;
+    gap: 12px;
+    padding: 8px;
+    width: 98%;
 }
 
 .inputOptions {
+    appearance: none; /* remove o estilo padrão */
+    position: relative;
     width: 20px;
     height: 20px;
+    background-color: transparent;
+    border: 2px solid var(--color-second);
+    border-radius: 50%;
+    transition: 0.1s ease-in-out;
     margin: 0;
-    padding: 8px;
     cursor: pointer;
 }
 
-.option {
-    margin: 12px;
-    font-size: 1.3rem;
+.textOptions {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    padding: 4px 12px;
     margin: 0;
-    padding: 16px;
     cursor: pointer;
+}
+
+.textOptions:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
+}
+
+.inputValidate {
+    appearance: none; /* remove o estilo padrão */
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid var(--color-correct);
+    border-radius: 50%;
+    transition: 0.1s ease-in-out;
+    margin: 0;
+    cursor: pointer;
+}
+
+.inputValidate:checked::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-correct);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.inputInvalidate {
+    appearance: none; /* remove o estilo padrão */
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid var(--color-incorrect);
+    border-radius: 50%;
+    transition: 0.1s ease-in-out;
+    margin: 0;
+    cursor: pointer;
+}
+
+.optionValidate {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: var(--color-correct);
+    font-weight: bold;
+    padding: 4px 12px;
+    border: 2px solid var(--color-correct);
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.optionValidate:hover {
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
+}
+
+.optionInvalidate {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: var(--color-incorrect); 
+    font-weight: bold;
+    padding: 4px 12px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.optionInvalidate:hover {
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
 }
 
 .buttonAnswer {
     color: var(--color-fourth);
     background-color: var(--color-second);
+    font-style: italic;
+    font-weight: bold;
     padding: 16px;
     border: 1px solid var(--color-fourth);
     border-radius: 16px;
@@ -213,7 +298,7 @@ ul {
 
 .answerTitle {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 12px;
     width: 80%;
@@ -231,7 +316,7 @@ ul {
     margin: 0;
 }
 
-.descriptionClass {
+.description {
     text-align: justify;
     line-height: 24px;
     height: 110px;
@@ -243,7 +328,7 @@ ul {
     overflow: auto;
 }
 
-.descriptionClass:hover {
+.description:hover {
     cursor: default;
     font-style: italic;
     font-weight: bold;
@@ -253,13 +338,21 @@ ul {
     transition: 0.3s;
 }
 
-.descriptionClass::-webkit-scrollbar {
+.description::-webkit-scrollbar {
     height: 3px;
     width: 3px;
 }
 
-.descriptionClass::-webkit-scrollbar-thumb {
+.description::-webkit-scrollbar-thumb {
     background-color: var(--color-fourth);
+}
+
+.imageDescription {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 6px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px var(--color-fourth);
 }
 
 .buttonNext {
@@ -268,9 +361,12 @@ ul {
     right: 25px;
     color: var(--color-fourth);
     background-color: var(--color-second);
+    font-style: italic;
+    font-weight: bold;
     padding: 16px;
     border: 1px solid var(--color-third);
     border-radius: 16px;
+    transition: all 0.2s ease;
     cursor: pointer;
     z-index: 1;
 }
@@ -288,9 +384,12 @@ ul {
     left: 25px;
     color: var(--color-fourth);
     background-color: var(--color-second);
+    font-style: italic;
+    font-weight: bold;
     padding: 16px;
     border: 1px solid var(--color-fourth);
-    border-radius: 50%;
+    border-radius: 16px;
+    transition: all 0.2s ease;
     cursor: pointer;
     z-index: 1;
 }
@@ -310,6 +409,16 @@ ul {
     position: relative;
     height: 10vh;
     width: 100%;
+}
+
+.soundFull {
+    left: 2px;
+    position: absolute;
+    /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .timer {
@@ -370,9 +479,9 @@ ul {
 
 /* Responsividade */
 @media (min-width: 1701px) {
-    .header h1 {
+    .headerTitle {
         font-size: 1.6rem;
-        padding: 0 8px;
+        /* padding: 0 8px; */
     }
 
     .question {
@@ -380,7 +489,34 @@ ul {
         padding: 0 8px;
     }
 
-    .option {
+    .alternativeOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+        
+    .inputOptions {
+        padding: 8px;
+    }
+
+    .inputValidate {
+        padding: 8px;
+    }
+
+    .inputInvalidate {
+        padding: 8px;
+    }
+
+    .textOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+
+    .optionValidate {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+
+    .optionInvalidate {
         font-size: 1.5rem;
         line-height: 28px;
     }
@@ -390,16 +526,16 @@ ul {
         padding: 0 8px;
     }
 
-    .descriptionClass {
+    .description {
         font-size: 1.5rem;
     }
 
 }
 
 @media (max-width: 1700px) {
-    .header h1 {
+    .headerTitle {
         font-size: 1.5rem;
-        padding: 0 8px;
+        /* padding: 0 8px; */
     }
 
     .ulIllustrative {
@@ -410,7 +546,34 @@ ul {
         font-size: 1.5rem;
     }
 
-    .option {
+    .alternativeOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+
+    .inputOptions {
+        padding: 8px;
+    }
+        
+    .inputValidate {
+        padding: 8px;
+    }
+
+    .inputInvalidate {
+        padding: 8px;
+    }
+
+    .textOptions {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+
+    .optionValidate {
+        font-size: 1.5rem;
+        line-height: 28px;
+    }
+
+    .optionInvalidate {
         font-size: 1.5rem;
         line-height: 28px;
     }
@@ -420,7 +583,7 @@ ul {
         padding: 0 8px;
     }
 
-    .descriptionClass {
+    .description {
         font-size: 1.5rem;
     }
 
@@ -431,7 +594,7 @@ ul {
         width: 70px;
     }
     
-    .header h1 {
+    .headerTitle {
         font-size: 1.2rem;
     }
 
@@ -458,9 +621,34 @@ ul {
     .inputOptions {
         width: 16px;
         height: 16px;
+        padding: 7px;
     }
 
-    .option {
+    .inputValidate {
+        width: 16px;
+        height: 16px;
+        padding: 7px;
+    }
+
+    .inputInvalidate {
+        width: 16px;
+        height: 16px;
+        padding: 7px;
+    }
+
+    .alternativeOptions {
+        font-size: 1.2rem;
+    }
+
+    .textOptions {
+        font-size: 1.2rem;
+    }
+
+    .optionValidate {
+        font-size: 1.2rem;
+    }
+
+    .optionInvalidate {
         font-size: 1.2rem;
     }
 
@@ -476,7 +664,7 @@ ul {
         font-size: 10px;
     }
 
-    .descriptionClass {
+    .description {
         font-size: 1.2rem;
     }
 
@@ -507,7 +695,7 @@ ul {
         width: 60px;
     }
 
-    .header h1 {
+    .headerTitle {
         font-size: 0.8rem;
         text-align: center;
     }
@@ -543,9 +731,39 @@ ul {
     .inputOptions {
         width: 14px;
         height: 14px;
+        padding: 6px;
     }
 
-    .option {
+    .inputValidate {
+        width: 14px;
+        height: 14px;
+        padding: 6px;
+    }
+
+    .inputValidate:checked::after {
+        width: 8px;
+        height: 8px;
+    }
+
+    .inputInvalidate {
+        width: 14px;
+        height: 14px;
+        padding: 6px;
+    }
+
+    .alternativeOptions {
+        font-size: 1rem;
+    }
+
+    .textOptions {
+        font-size: 1rem;
+    }
+
+    .optionValidate {
+        font-size: 1rem;
+    }
+
+    .optionInvalidate {
         font-size: 1rem;
     }
 
@@ -570,7 +788,7 @@ ul {
         font-size: 9px;
     }
 
-    .descriptionClass {
+    .description {
         font-size: 1rem;
         width: 75%;
         border: 1px dashed var(--color-fourth);
@@ -676,9 +894,39 @@ ul {
     .inputOptions {
         width: 12px;
         height: 12px;
+        padding: 5px;
     }
 
-    .option {
+    .inputValidate {
+        width: 12px;
+        height: 12px;
+        padding: 5px;
+    }
+
+    .inputValidate:checked::after {
+        width: 6px;
+        height: 6px;
+    }
+
+    .inputInvalidate {
+        width: 12px;
+        height: 12px;
+        padding: 5px;
+    }
+
+    .alternativeOptions {
+        font-size: 0.8rem;
+    }
+
+    .textOptions {
+        font-size: 0.8rem;
+    }
+
+    .optionValidate {
+        font-size: 0.8rem;
+    }
+
+    .optionInvalidate {
         font-size: 0.8rem;
     }
 
@@ -704,12 +952,12 @@ ul {
         background-color: var(--color-fourth);
     }
     
-    .descriptionClass {
+    .description {
         font-size: 0.8rem;
         width: 65%;
     }
     
-    .descriptionClass::-webkit-scrollbar {
+    .description::-webkit-scrollbar {
         width: 2px;
         height: 2px;    
     }

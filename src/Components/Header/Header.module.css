@@ -21,7 +21,7 @@
     transform: scale(1.03);
 }
 
-.header h1 {
+.headerTitle {
     cursor: default;
     z-index: 1;
 }
@@ -54,14 +54,14 @@ ul {
 
 /* Responsividade */
 @media (min-width: 1701px) {
-    .header h1 {
+    .headerTitle {
         font-size: 1.8rem;
     }
 
 }
 
 @media (max-width: 1700px) {
-    .header h1 {
+    .headerTitle {
         font-size: 1.5rem;
     }
 
@@ -76,7 +76,7 @@ ul {
         width: 70px;
     }
     
-    .header h1 {
+    .headerTitle {
         font-size: 1.2rem;
     }
 
@@ -91,7 +91,7 @@ ul {
         width: 60px;
     }
 
-    .header h1 {
+    .headerTitle {
         font-size: 1rem;
         text-align: center;
     }

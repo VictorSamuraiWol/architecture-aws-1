@@ -93,7 +93,7 @@ function PageBase() {
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
-                    alt='imagem de fundo'
+                    alt='backgoundIimage'
                 />}
 
                 <Outlet 
@@ -105,17 +105,21 @@ function PageBase() {
                         }} 
                 />                
 
-                {mute === false && <BiSolidVolumeFull // unmute sound icon
-                    onClick={validateSound}
-                    id='soundFull'
-                    className={styles.soundFull}
+                {mute === false && (requestData || activePageFormsQuestionsOptions) &&
+                // condição: se o mute for false, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
+                    <BiSolidVolumeFull // unmute sound icon
+                        onClick={validateSound}
+                        id='soundFull'
+                        className={styles.soundFull}
                     />
                 }                
 
-                {mute && <BiSolidVolumeMute // mute sound icon
-                    onClick={validateSound}
-                    id='soundMute'
-                    className={styles.soundMute}
+                {mute && (requestData || activePageFormsQuestionsOptions) &&
+                // condição: se o mute for true, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
+                    <BiSolidVolumeMute // mute sound icon
+                        onClick={validateSound}
+                        id='soundMute'
+                        className={styles.soundMute}
                     />
                 }
 
