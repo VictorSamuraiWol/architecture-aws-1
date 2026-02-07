@@ -204,7 +204,7 @@ function IllustrativePage() {
 
             <div className={styles.main}>
                 <h2 id='questionId' className={styles.question}>
-                    "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?"
+                    1) What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?
                 </h2>
 
                 <div className={styles.menu}>
