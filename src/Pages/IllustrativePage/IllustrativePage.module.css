@@ -476,17 +476,18 @@ ul {
     font-size: 1.3rem;
     color: var(--color-fourth);
     padding: 4px 12px;
+    border-radius: 16px;
+    transition: 0.3s;
     overflow: auto;
+    cursor: default;
 }
 
 .description:hover {
-    cursor: default;
     font-style: italic;
     font-weight: bold;
     background-color: var(--color-second);
     box-shadow: 3px 3px 3px var(--color-fourth);
     transform: scale(1.03);
-    transition: 0.3s;
 }
 
 .description::-webkit-scrollbar {
@@ -499,16 +500,12 @@ ul {
 }
 
 .newDescription {
-    /* display: flex;
-    justify-content: start; */
     font-size: 1.3rem;
-    /* text-align: left; */
     color: Silver;
     background-color: #430A5D;
     padding: 4px 12px;
     border: 1px solid Silver;
     border-radius: 16px;
-    /* margin: 0; */
     z-index: 1;
 }
 
