@@ -48,15 +48,13 @@
 }
 
 .descriptionDisplay {
-    font-size: 12px;
-    margin: 0;
-    font-size: 1.3rem;
     text-align: justify;
     line-height: 24px;
     height: 110px;
     width: 80%;
     padding: 8px 12px;
     border-radius: 16px;
+    margin: 0;
     overflow-wrap: break-word;
     overflow: auto;
 }
@@ -75,13 +73,13 @@
 }
 
 .descriptionNewStyle {
-    cursor: default;
-    font-style: italic;
     font-weight: bold;
+    font-style: italic;
     background-color: var(--color-second);
     box-shadow: 3px 3px 3px var(--color-fourth);
     transform: scale(1.03);
     transition: 0.3s;
+    cursor: default;
 }
 
 .imageDescription {

@@ -30,6 +30,18 @@
     z-index: 1;
 }
 
+.newHeaderTitle {
+    color: Crimson;
+    font-weight: bold;
+    background-color: #430A5D;
+    max-width: max-content;
+    max-height: max-content;
+    padding: 8px;
+    border: 1px solid Crimson;
+    border-radius: 16px;
+    z-index: 1;
+}
+
 .test {
     padding: 500px;
     background-color: red;
@@ -85,6 +97,19 @@ ul {
     color: var(--color-fourth);
     width: 85%;
     text-align: center;
+    padding: 8px;
+    z-index: 1;
+}
+
+.newQuestion {
+    color: PaleVioletRed;
+    font-weight: bold;
+    background-color: #430A5D;
+    max-width: max-content;
+    max-height: max-content;
+    padding: 8px;
+    border: 1px solid PaleVioletRed;
+    border-radius: 16px;
     z-index: 1;
 }
 
@@ -182,6 +207,7 @@ ul {
     justify-content: start;
     align-items: center;
     text-align: justify;
+    color: var(--color-third);
     padding: 4px 12px;
     margin: 0;
     cursor: pointer;
@@ -191,6 +217,51 @@ ul {
     font-weight: bold;
     transform: scale(1.01);
     transition: all 0.1s ease-in-out;
+}
+
+.newTextOptionsA {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Tomato;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Tomato;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.newTextOptionsB {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Gold;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Gold;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.newTextOptionsD {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: MediumSpringGreen;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid MediumSpringGreen;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .inputValidate {
@@ -206,16 +277,17 @@ ul {
     cursor: pointer;
 }
 
-.inputValidate:checked::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-correct);
+.newInputValidate {
+    appearance: none; /* remove o estilo padrão */
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid var(--color-second);
     border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: 0.1s ease-in-out;
+    margin: 0;
+    cursor: pointer;
 }
 
 .inputInvalidate {
@@ -229,6 +301,43 @@ ul {
     transition: 0.1s ease-in-out;
     margin: 0;
     cursor: pointer;
+}
+
+.inputInvalidate:checked::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-incorrect);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.newInputInvalidate {
+    appearance: none; /* remove o estilo padrão */
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid var(--color-second);
+    border-radius: 50%;
+    transition: 0.1s ease-in-out;
+    margin: 0;
+    cursor: pointer;
+}
+
+.newInputInvalidate:checked::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-third);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .optionValidate {
@@ -250,6 +359,21 @@ ul {
     transition: all 0.1s ease-in-out;
 }
 
+.newOptionValidate {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Lavender;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Lavender;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
 .optionInvalidate {
     display: flex;
     justify-content: start;
@@ -265,6 +389,22 @@ ul {
 .optionInvalidate:hover {
     transform: scale(1.01);
     transition: all 0.1s ease-in-out;
+}
+
+.newOptionInvalidate {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Cyan;
+    background-color: #430A5D;
+    font-weight: bold;
+    padding: 4px 12px;
+    border: 1px solid Cyan;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .buttonAnswer {
@@ -287,12 +427,12 @@ ul {
     transform: scale(1.03);
 }
 
-.answerClass {
+.answer {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     flex-direction: column;
-    width: 90%;
+    width: 80%;
     z-index: 1;
 }
 
@@ -302,17 +442,29 @@ ul {
     align-items: center;
     gap: 12px;
     width: 80%;
-    color: var(--color-fourth);
     cursor: pointer;
 }
 
-.answerTitle h3 {
+.answerTitleText {
     font-size: 1.3rem;
+    color: var(--color-fourth);
     margin: 0;
 }
 
-.answerTitle p {
+.newAnswerTitleText {
+    font-size: 1.3rem;
+    color: Chocolate;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Chocolate;
+    border-radius: 16px;
+    margin: 0;
+    z-index: 1;
+}
+
+.answerClickText {
     font-size: 12px;
+    color: var(--color-fourth);
     margin: 0;
 }
 
@@ -323,8 +475,7 @@ ul {
     width: 80%;
     font-size: 1.3rem;
     color: var(--color-fourth);
-    padding: 8px 12px;
-    border-radius: 16px;
+    padding: 4px 12px;
     overflow: auto;
 }
 
@@ -345,6 +496,20 @@ ul {
 
 .description::-webkit-scrollbar-thumb {
     background-color: var(--color-fourth);
+}
+
+.newDescription {
+    /* display: flex;
+    justify-content: start; */
+    font-size: 1.3rem;
+    /* text-align: left; */
+    color: Silver;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Silver;
+    border-radius: 16px;
+    /* margin: 0; */
+    z-index: 1;
 }
 
 .imageDescription {
@@ -463,16 +628,6 @@ ul {
     margin: 0;
 }
 
-.onClickClass {
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 16px;
-    text-shadow: 1px 3px 3px #430A5D;
-    background-color: #430A5D;
-    max-width: max-content;
-    max-height: max-content;
-}
-
 .invisible {
     display: none;
 }
@@ -481,12 +636,10 @@ ul {
 @media (min-width: 1701px) {
     .headerTitle {
         font-size: 1.6rem;
-        /* padding: 0 8px; */
     }
 
     .question {
         font-size: 1.5rem;
-        padding: 0 8px;
     }
 
     .alternativeOptions {
@@ -521,7 +674,7 @@ ul {
         line-height: 28px;
     }
 
-    .answerTitle h3 {
+    .answerTitleText {
         font-size: 1.5rem;
         padding: 0 8px;
     }
@@ -535,7 +688,6 @@ ul {
 @media (max-width: 1700px) {
     .headerTitle {
         font-size: 1.5rem;
-        /* padding: 0 8px; */
     }
 
     .ulIllustrative {
@@ -578,7 +730,7 @@ ul {
         line-height: 28px;
     }
 
-    .answerTitle h3 {
+    .answerTitleText {
         font-size: 1.5rem;
         padding: 0 8px;
     }
@@ -660,7 +812,7 @@ ul {
         font-size: 1.2rem;
     }
 
-    .answerTitle p {
+    .answerClickText {
         font-size: 10px;
     }
 
@@ -780,11 +932,11 @@ ul {
         border-radius: 8px;
     }
 
-    .answerTitle h3 {        
+    .answerTitleText {        
         padding: 2px;        
     }
 
-    .answerTitle p {
+    .answerClickText {
         font-size: 9px;
     }
 
@@ -938,17 +1090,17 @@ ul {
         font-size: 0.8rem;
     }
     
-    .answerTitle h3 {
+    .answerTitleText {
         overflow: auto;
         height: 50px;
     }
     
-    .answerTitle h3::-webkit-scrollbar {
+    .answerTitleText::-webkit-scrollbar {
         width: 2px;
         height: 2px;    
     }
     
-    .answerTitle h3::-webkit-scrollbar-thumb {    
+    .answerTitleText::-webkit-scrollbar-thumb {    
         background-color: var(--color-fourth);
     }
     

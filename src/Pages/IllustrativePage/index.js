@@ -3,7 +3,7 @@ import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import imageStart from '../../imgs/icon-start.png'
 import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GoPlus } from "react-icons/go"
 import { RxHamburgerMenu } from "react-icons/rx"
@@ -13,165 +13,161 @@ import { BiSolidVolumeFull } from "react-icons/bi"
 
 function IllustrativePage() {
 
-    function IllustrativePageFunc() {
+    // ativa ou desativa a imagem da descrição
+    const [activeImageDescription, setActiveImageDescription] = useState(true)
+
+    function onClickIllustrativePage() { // função que destaca uma frase em cada elemento da página em sequência
         const headerH1 = document.querySelector('#headerH1')
         const questionId = document.querySelector('#questionId')
-        const opt1 = document.querySelector('#opt1')
-        const opt2 = document.querySelector('#opt2')
-        const opt3 = document.querySelector('#opt3')
-        const opt4 = document.querySelector('#opt4')
-        const opt5 = document.querySelector('#opt5')
+        const optionA = document.querySelector('#optionA')
+        const optionB = document.querySelector('#optionB')
+        const optionC = document.querySelector('#optionC')
+        const optionD = document.querySelector('#optionD')
+        const optionE = document.querySelector('#optionE')
+        const inputValidate = document.querySelector('#inputValidateId')
+        const inputInvalidate = document.querySelector('#inputInvalidateId')
         const answerTitleId = document.querySelector('#answerTitleId')
         const answerClickId = document.querySelector('#answerClickId')
         const descriptionId = document.querySelector('#descriptionId')
+        const textDescriptionId = document.querySelector('#textDescriptionId')
 
-        headerH1.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-        headerH1.classList.add(`${styles.onClickClass}`)
-        headerH1.style.color = 'Crimson'
-        headerH1.style.border = '1px solid Crimson'
+        headerH1.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+        headerH1.classList.add(`${styles.newHeaderTitle}`)
+        headerH1.classList.remove(`${styles.headerTitle}`)
 
         setTimeout(() => {
-            headerH1.innerHTML = "PÁGINA ILUSTRATIVA / Resolution 1 - Randomly"        
-            headerH1.classList.remove(`${styles.onClickClass}`)
-            headerH1.style.color = '#430A5D'
-            headerH1.style.border = 'none'            
+            headerH1.innerHTML = "ILLUSTRATIVE PAGE / Resolution 1 - Randomly"        
+            headerH1.classList.remove(`${styles.newHeaderTitle}`)
+            headerH1.classList.add(`${styles.headerTitle}`)
 
         }, 3000)
 
         setTimeout(() => {
-            questionId.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            questionId.classList.add(`${styles.onClickClass}`)
-            questionId.style.color = 'PaleVioletRed'
-            questionId.style.border = '1px solid PaleVioletRed' 
+            questionId.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            questionId.classList.add(`${styles.newQuestion}`)
+            questionId.classList.remove(`${styles.question}`) 
 
         }, 3000)
 
         setTimeout(() => {
             questionId.innerText = "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?"
-            questionId.classList.remove(`${styles.onClickClass}`)
-            questionId.style.color = '#430A5D'
-            questionId.style.border = 'none'
+            questionId.classList.add(`${styles.question}`) 
+            questionId.classList.remove(`${styles.newQuestion}`)
 
         }, 6000)
 
         setTimeout(() => {
-            opt1.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            opt1.classList.add(`${styles.onClickClass}`)
-            opt1.style.color = 'Tomato'
-            opt1.style.border = '1px solid Tomato'
+            optionA.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            optionA.classList.add(`${styles.newTextOptionsA}`)
+            optionA.classList.remove(`${styles.textOptions}`)
 
         }, 6000)
 
         setTimeout(() => {
-            opt1.innerText = "Storage Gateway - Volume Gateway."
-            opt1.classList.remove(`${styles.onClickClass}`)
-            opt1.style.color = '#430A5D'
-            opt1.style.border = 'none'
+            optionA.innerText = "a) Storage Gateway - Volume Gateway."
+            optionA.classList.add(`${styles.textOptions}`)
+            optionA.classList.remove(`${styles.newTextOptionsA}`)
 
         }, 9000)
 
         setTimeout(() => {
-            opt2.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            opt2.classList.add(`${styles.onClickClass}`)
-            opt2.style.color = 'Gold'
-            opt2.style.border = '1px solid Gold'
+            optionB.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            optionB.classList.add(`${styles.newTextOptionsB}`)
+            optionB.classList.remove(`${styles.textOptions}`)
 
         }, 9000)
 
         setTimeout(() => {
-            opt2.innerText = "Site-to-Site VPN."
-            opt2.classList.remove(`${styles.onClickClass}`)
-            opt2.style.color = '#430A5D'
-            opt2.style.border = 'none'
+            optionB.innerText = "b) Site-to-Site VPN."
+            optionB.classList.add(`${styles.textOptions}`)
+            optionB.classList.remove(`${styles.newTextOptionsB}`)
 
         }, 12000)
 
         setTimeout(() => {
-            opt3.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            opt3.classList.add(`${styles.onClickClass}`)
-            opt3.style.color = 'Lavender'
-            opt3.style.border = '1px solid Lavender'
+            optionC.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            optionC.classList.add(`${styles.newOptionValidate}`)
+            inputValidate.classList.add(`${styles.newInputValidate}`)
+            optionC.classList.remove(`${styles.optionValidate}`)
+            inputValidate.classList.remove(`${styles.inputValidate}`)
 
         }, 12000)
 
         setTimeout(() => {
-            opt3.innerText = "Storage Gateway - File Gateway."
-            opt3.classList.remove(`${styles.onClickClass}`)
-            opt3.style.color = '#430A5D'
-            opt3.style.border = 'none'
+            optionC.innerText = "c) Storage Gateway - File Gateway."
+            optionC.classList.add(`${styles.optionValidate}`)
+            inputValidate.classList.add(`${styles.inputValidate}`)
+            optionC.classList.remove(`${styles.newOptionValidate}`)
+            inputValidate.classList.remove(`${styles.newInputValidate}`)
 
         }, 15000)
 
         setTimeout(() => {
-            opt4.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            opt4.classList.add(`${styles.onClickClass}`)
-            opt4.style.color = 'MediumSpringGreen'
-            opt4.style.border = '1px solid MediumSpringGreen'
+            optionD.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            optionD.classList.add(`${styles.newTextOptionsD}`)
+            optionD.classList.remove(`${styles.textOptions}`)
 
         }, 15000)
 
         setTimeout(() => {
-            opt4.innerText = "Storage Gateway - Tape Gateway."
-            opt4.classList.remove(`${styles.onClickClass}`)
-            opt4.style.color = '#430A5D'
-            opt4.style.border = 'none'
+            optionD.innerText = "d) Storage Gateway - Tape Gateway."
+            optionD.classList.add(`${styles.textOptions}`)
+            optionD.classList.remove(`${styles.newTextOptionsD}`)
 
         }, 18000)
 
         setTimeout(() => {
-            opt5.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            opt5.classList.add(`${styles.onClickClass}`)
-            opt5.style.color = 'Cyan'
-            opt5.style.border = '1px solid Cyan'
+            optionE.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            optionE.classList.add(`${styles.newOptionInvalidate}`)
+            inputInvalidate.classList.add(`${styles.newInputInvalidate}`)
+            optionE.classList.remove(`${styles.optionInvalidate}`)
+            inputInvalidate.classList.remove(`${styles.inputInvalidate}`)
 
         }, 18000)
 
         setTimeout(() => {
-            opt5.innerText = "Instance Store."
-            opt5.classList.remove(`${styles.onClickClass}`)
-            opt5.style.color = '#430A5D'
-            opt5.style.border = 'none'
+            optionE.innerText = "e) Instance Store."
+            optionE.classList.add(`${styles.optionInvalidate}`)
+            inputInvalidate.classList.add(`${styles.inputInvalidate}`)
+            optionE.classList.remove(`${styles.newOptionInvalidate}`)
+            inputInvalidate.classList.remove(`${styles.newInputInvalidate}`)
 
         }, 21000)
 
         setTimeout(() => {
-            answerTitleId.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            answerTitleId.classList.add(`${styles.onClickClass}`)
-            answerTitleId.style.color = 'Chocolate'
-            answerTitleId.style.border = '1px solid Chocolate'
+            answerTitleId.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
             answerClickId.innerText = ''
-
+            answerTitleId.classList.add(`${styles.newAnswerTitleText}`)
+            answerTitleId.classList.remove(`${styles.answerTitleText}`)
 
         }, 21000)
 
         setTimeout(() => {
-            answerTitleId.innerText = "Storage Gateway - File Gateway."
-            answerTitleId.classList.remove(`${styles.onClickClass}`)
-            answerTitleId.style.color = '#430A5D'
-            answerTitleId.style.border = 'none'
+            answerTitleId.innerText = "c) Storage Gateway - File Gateway."
             answerClickId.innerText = 'Click here for more information'
-
-
-        }, 24000)
-
-        setTimeout(() => {
-            descriptionId.innerText = 'Bem-vindo!!! Para melhor experiência, inicialize uma API com o arquivo "db.json" incluido neste projeto.'
-            descriptionId.classList.add(`${styles.onClickClass}`)
-            descriptionId.style.color = 'Silver'
-            descriptionId.style.border = '1px solid Silver'
+            answerTitleId.classList.add(`${styles.answerTitleText}`)
+            answerTitleId.classList.remove(`${styles.newAnswerTitleText}`)
 
         }, 24000)
 
         setTimeout(() => {
-            descriptionId.innerText = "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching."
-            descriptionId.classList.remove(`${styles.onClickClass}`)
-            descriptionId.style.color = '#430A5D'
-            descriptionId.style.border = 'none'
+            setActiveImageDescription(false)    
+            textDescriptionId.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+            descriptionId.classList.add(`${styles.newDescription}`)
+            descriptionId.classList.remove(`${styles.description}`)
+
+        }, 24000)
+
+        setTimeout(() => {
+            setActiveImageDescription(true)
+            textDescriptionId.innerText = "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching."
+            descriptionId.classList.add(`${styles.description}`)
+            descriptionId.classList.remove(`${styles.newDescription}`)
 
         }, 27000)
         
     }
-    
+
     useEffect(() => {
         //capturando as páginas main e multi e certificando que elas não irão aparecer ao renderizar a página ilustrativa
         const allQuestionsMain = document.querySelector('#allQuestionsMainId')
@@ -184,9 +180,9 @@ function IllustrativePage() {
 
     return(
         <div
-            onClick={IllustrativePageFunc}
-            id='IllustrativePageId' 
-            className={styles.IllustrativePage}
+            onClick={onClickIllustrativePage}
+            id='illustrativePageId' 
+            className={styles.illustrativePage}
         >
             <img className={styles.backgroundImage} src={backgroundImage} alt='imagem de fundo' />
 
@@ -234,7 +230,7 @@ function IllustrativePage() {
                             name='options' 
                             value='0'
                         />
-                        <p id='opt1' className={styles.textOptions}>
+                        <p id='optionA' className={styles.textOptions}>
                             a) Storage Gateway - Volume Gateway.
                         </p>
                     </div>
@@ -246,19 +242,20 @@ function IllustrativePage() {
                             name='options' 
                             value='1' 
                         />
-                        <p id='opt2' className={styles.textOptions}>
+                        <p id='optionB' className={styles.textOptions}>
                             b) Site-to-Site VPN.
                         </p>
                     </div>
 
                     <div className={styles.alternativeOptions}>
                         <input 
+                            id='inputValidateId'
                             className={styles.inputValidate} 
                             type='radio' 
                             name='options' 
                             value='2' 
                         />
-                        <p id='opt3' className={styles.optionValidate}>
+                        <p id='optionC' className={styles.optionValidate}>
                             c) Storage Gateway - File Gateway.
                         </p>
                     </div>
@@ -270,20 +267,21 @@ function IllustrativePage() {
                             name='options' 
                             value='3' 
                         />
-                        <p id='opt4' className={styles.textOptions}>
+                        <p id='optionD' className={styles.textOptions}>
                             d) Storage Gateway - Tape Gateway.
                         </p>
                     </div>
 
                     <div className={styles.alternativeOptions}>
                         <input 
+                            id='inputInvalidateId'
                             className={styles.inputInvalidate}
                             checked='true' 
                             type='radio'
                             name='options' 
                             value='4' 
                         />
-                        <p id='opt5' className={styles.optionInvalidate}>
+                        <p id='optionE' className={styles.optionInvalidate}>
                             e) Instance Store.
                         </p>
                     </div>
@@ -293,15 +291,24 @@ function IllustrativePage() {
                     Answer
                 </button>
 
-                <section className={styles.answerClass}>   
+                <section className={styles.answer}>   
                     <div className={styles.answerTitle}>
-                        <h3 id='answerTitleId'>c) Storage Gateway - File Gateway.</h3>
-                        <p id='answerClickId'>Click here for more information</p>
+                        <h3 id='answerTitleId' className={styles.answerTitleText}>c) Storage Gateway - File Gateway.</h3>
+                        <p id='answerClickId' className={styles.answerClickText}>Click here for more information</p>
                     </div>
 
                     <p id='descriptionId' className={styles.description}>
-                        <img className={styles.imageDescription} src={storageGateway} alt='img' />
-                        AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.
+                        {activeImageDescription && 
+                            <img
+                                className={styles.imageDescription}
+                                src={storageGateway} 
+                                alt='img' 
+                            />
+                        }
+                        <span
+                            id='textDescriptionId' 
+                            className={styles.textDescription}>AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.
+                        </span>
                     </p>
                 </section>
 
