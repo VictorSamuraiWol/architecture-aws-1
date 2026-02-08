@@ -82,55 +82,55 @@ function FormsNewQuestionsOptionsPage() {
     // capturando os números usados nos formulários 2 e 4
     const [listNumbersForms2and4, setListNumbersForms2and4] = useState([])
 
-    // ativa o componente 'PopupRepeatedAlternatives' no formulário 2
+    // ativa ou desativa o componente 'PopupRepeatedAlternatives' no formulário 2
     const [activePopupRepeatedAlternativesForms2, setActivePopupRepeatedAlternativesForms2] = useState(false) 
 
-    // ativa o componente 'PopupRepeatedAlternatives' nao formulário 4
+    // ativa ou desativa o componente 'PopupRepeatedAlternatives' nao formulário 4
     const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false)
 
-    // ativa o componente 'PopupCheckAlternativeAnswer'
+    // ativa ou desativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms1, setActivePopupcheckAlternativeAnswerForms1] = useState(false)
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' 
+    // ativa ou desativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms2, setActivePopupcheckAlternativeAnswerForms2] = useState(false)  
 
-    // ativa o componente 'PopupCheckAlternativeAnswer' 
+    // ativa ou desativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms3, setActivePopupcheckAlternativeAnswerForms3] = useState(false) 
 
-    // ativa o componente 'PopupCheckAlternativeAnswer'
+    // ativa ou desativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false)
 
-    // ativa o componente 'PopupCompareAllQuestionsAllOptions'
+    // ativa ou desativa o componente 'PopupCompareAllQuestionsAllOptions'
     const [activePopupCompareAllQuestionsAllOptions, setActivePopupCompareAllQuestionsAllOptions] = useState(false)
 
-    // ativa o componente 'PopupMessagesTitlesForms'
+    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms1, setActivePopupMessagesTitlesForms1] = useState(false)
     
-    // ativa o componente 'PopupMessagesTitlesForms'
+    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms2, setActivePopupMessagesTitlesForms2] = useState(false)
     
-    // ativa o componente 'PopupMessagesTitlesForms'
+    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms3, setActivePopupMessagesTitlesForms3] = useState(false)
     
-    // ativa o componente 'PopupMessagesTitlesForms'
+    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
     const [activePopupMessagesTitlesForms4, setActivePopupMessagesTitlesForms4] = useState(false)
 
-    // ativa o componente 'PopupCheckNumbers'
+    // ativa ou desativa o componente 'PopupCheckNumbers'
     const [activePopupCheckNumbers1, setActivePopupCheckNumbers1] = useState(false)
 
-    // ativa o componente 'PopupCheckNumbers'
+    // ativa ou desativa o componente 'PopupCheckNumbers'
     const [activePopupCheckNumbers2, setActivePopupCheckNumbers2] = useState(false)
 
-    // ativa o componente 'PopupCheckRequiredFields'
+    // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields1, setActivePopupCheckRequiredFields1] = useState(false)
 
-    // ativa o componente 'PopupCheckRequiredFields'
+    // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields2, setActivePopupCheckRequiredFields2] = useState(false)
 
-    // ativa o componente 'PopupCheckRequiredFields'
+    // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields3, setActivePopupCheckRequiredFields3] = useState(false)
 
-    // ativa o componente 'PopupCheckRequiredFields'
+    // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields4, setActivePopupCheckRequiredFields4] = useState(false)
 
     // passando a cor incorreta

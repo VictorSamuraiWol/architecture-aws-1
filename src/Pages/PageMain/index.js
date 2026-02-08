@@ -19,8 +19,6 @@ function PageMain() {
     const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)  
 
-
-
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
     

@@ -24,10 +24,10 @@ function ButtonAnswer({
     // variável usada na animação fogos de artifício
     const [correct, setCorrect] = useState(false)
 
-    // ativa o componente PopupCheckAlternativeAnswer no ButtonAnswer
+    // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMain, setActivePopupCheckAlternativeAnswerButtonAnswerMain] = useState(false)
 
-    // ativa o componente PopupCheckAlternativeAnswer no ButtonAnswer
+    // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMulti, setActivePopupCheckAlternativeAnswerButtonAnswerMulti] = useState(false)
     
     // habilitar a animação fogos de artifício ao acertar
