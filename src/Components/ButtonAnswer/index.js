@@ -45,7 +45,7 @@ function ButtonAnswer({
 
     }
 
-    function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente, tanto na página Main quanto na página Multi  
+    function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente na página Main e Multi 
         if (optionMain && captureValue === '') {            
             alert('Please select an option!') 
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
