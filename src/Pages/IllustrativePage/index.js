@@ -210,14 +210,11 @@ function IllustrativePage() {
                 <div className={styles.menu}>
                     <div className={styles.menuTools}>
                         <span>Menu</span>
-
                     </div>
 
                     <div className={styles.menuToolsSelector}>
                         <MdEditSquare className={styles.editIcon}/>
-
-                        <MdDelete className={styles.deleteIcon}/>
-                        
+                        <MdDelete className={styles.deleteIcon}/>                        
                     </div>
 
                 </div>

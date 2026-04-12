@@ -1073,9 +1073,7 @@ ul {
     }
 
     .menuToolsSelector {
-        border: 2px solid var(--color-fourth);
-        padding-top: 2px;
-        padding-bottom: 2px;
+        display: none;
     }
 
     .optionsMain {
