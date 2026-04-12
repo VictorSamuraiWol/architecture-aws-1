@@ -1,6 +1,6 @@
 import styles from './MenuTools.module.css'
 import ModalEditMenu from './ModalEditMenu'
-import PopupDeleteQuestionOption from '../PopupDeleteQuestionOption'
+import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"

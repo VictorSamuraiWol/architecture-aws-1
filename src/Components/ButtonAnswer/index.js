@@ -1,6 +1,6 @@
 import styles from './ButtonAnswer.module.css'
 import ButtonDefault from '../ButtonDefault'
-import PopupCheckAlternativeAnswer from '../PopupCheckAlternativeAnswer'
+import PopupCheckAlternativeAnswer from '../Popups/PopupCheckAlternativeAnswer'
 import Animation from '../Animation'
 import correctAudio from '../../audios/correctAudio.mp3'
 import errorAudio from '../../audios/errorAudio.mp3'

@@ -1,7 +1,7 @@
 import styles from './PopupDefault.module.css'
 import ModalPopupCheckAlternativeAnswer from './ModalPopupCheckAlternativeAnswer'
-import ButtonDefault from '../ButtonDefault'
-import soundClick from '../../audios/clickAudio.mp3'
+import ButtonDefault from '../../ButtonDefault'
+import soundClick from '../../../audios/clickAudio.mp3'
 import { TiDeleteOutline } from "react-icons/ti"
 import { useOutletContext } from 'react-router-dom'
 

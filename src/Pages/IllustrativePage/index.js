@@ -144,6 +144,7 @@ function IllustrativePage() {
             answerClickId.innerText = ''
             answerTitleId.classList.add(`${styles.newAnswerDisplayTitleText}`)
             answerTitleId.classList.remove(`${styles.answerDisplayTitleText}`)
+            answerClickId.classList.remove(`${styles.answerDisplayClickText}`)
 
         }, 21000)
 
@@ -151,6 +152,7 @@ function IllustrativePage() {
             answerTitleId.innerText = "c) Storage Gateway - File Gateway."
             answerClickId.innerText = 'Click here for more information'
             answerTitleId.classList.add(`${styles.answerDisplayTitleText}`)
+            answerClickId.classList.add(`${styles.answerDisplayClickText}`)
             answerTitleId.classList.remove(`${styles.newAnswerDisplayTitleText}`)
 
         }, 24000)
@@ -324,7 +326,7 @@ function IllustrativePage() {
             </div>
 
             <div className={styles.footer}>
-                <BiSolidVolumeFull // unmute sound icon
+                <BiSolidVolumeFull
                     className={styles.soundFull}
                 />
                 <div id='timerId' className={styles.timer}>
