@@ -114,6 +114,7 @@
 
 @media (max-width: 580px) {
     .optionsMain {
+        gap: 0;
         padding: 4px;
     }
 
@@ -122,8 +123,14 @@
         height: 2px;  
     }
 
+    .alternativeOptions {
+        font-size: 0.8rem;
+        padding: 2px;
+    }
+
     .textOptions {
         font-size: 0.8rem;
+        padding: 2px;
     }
 
 }

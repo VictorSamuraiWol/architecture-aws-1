@@ -1077,6 +1077,7 @@ ul {
     }
 
     .optionsMain {
+        gap: 0;
         padding: 4px;
     }
     
@@ -1087,6 +1088,7 @@ ul {
 
     .alternativeOptions {
         font-size: 0.8rem;
+        padding: 2px;
     }
 
     .inputOptions {
@@ -1119,6 +1121,7 @@ ul {
 
     .textOptions {
         font-size: 0.8rem;
+        padding: 2px;
     }
 
     .optionValidate {
