@@ -18,6 +18,7 @@ function IllustrativePage() {
 
     function onClickIllustrativePage() { // função que destaca uma frase em cada elemento da página em sequência
         const headerTitle = document.querySelector('#headerTitle')
+        const menuId = document.querySelector('#menuId')
         const questionId = document.querySelector('#questionId')
         const optionA = document.querySelector('#optionA')
         const optionB = document.querySelector('#optionB')
@@ -34,11 +35,15 @@ function IllustrativePage() {
         headerTitle.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
         headerTitle.classList.add(`${styles.newHeaderTitle}`)
         headerTitle.classList.remove(`${styles.headerTitle}`)
+        menuId.classList.add(`${styles.newMenu}`)
+        menuId.classList.remove(`${styles.menu}`)
 
         setTimeout(() => {
             headerTitle.innerHTML = "ILLUSTRATIVE PAGE / Resolution 1 - Randomly"        
-            headerTitle.classList.remove(`${styles.newHeaderTitle}`)
             headerTitle.classList.add(`${styles.headerTitle}`)
+            headerTitle.classList.remove(`${styles.newHeaderTitle}`)
+            menuId.classList.add(`${styles.menu}`)
+            menuId.classList.remove(`${styles.newMenu}`)
 
         }, 3000)
 
@@ -207,7 +212,7 @@ function IllustrativePage() {
                     1) What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?
                 </h2>
 
-                <div className={styles.menu}>
+                <div id='menuId' className={styles.menu}>
                     <div className={styles.menuTools}>
                         <span>Menu</span>
                     </div>
