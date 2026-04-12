@@ -53,7 +53,7 @@ function Main({
             setDescriptionDisplay(styles.invisibleDescription)
 
         } else if (questionAnswerButtonNextMain === false) {
-            alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
+            alert('Oops!!! Please answer the question before moving on to the next one!')
 
         }
 

@@ -17,7 +17,7 @@ function IllustrativePage() {
     const [activeImageDescription, setActiveImageDescription] = useState(true)
 
     function onClickIllustrativePage() { // função que destaca uma frase em cada elemento da página em sequência
-        const headerH1 = document.querySelector('#headerH1')
+        const headerTitle = document.querySelector('#headerTitle')
         const questionId = document.querySelector('#questionId')
         const optionA = document.querySelector('#optionA')
         const optionB = document.querySelector('#optionB')
@@ -31,14 +31,14 @@ function IllustrativePage() {
         const descriptionId = document.querySelector('#descriptionId')
         const textDescriptionId = document.querySelector('#textDescriptionId')
 
-        headerH1.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
-        headerH1.classList.add(`${styles.newHeaderTitle}`)
-        headerH1.classList.remove(`${styles.headerTitle}`)
+        headerTitle.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
+        headerTitle.classList.add(`${styles.newHeaderTitle}`)
+        headerTitle.classList.remove(`${styles.headerTitle}`)
 
         setTimeout(() => {
-            headerH1.innerHTML = "ILLUSTRATIVE PAGE / Resolution 1 - Randomly"        
-            headerH1.classList.remove(`${styles.newHeaderTitle}`)
-            headerH1.classList.add(`${styles.headerTitle}`)
+            headerTitle.innerHTML = "ILLUSTRATIVE PAGE / Resolution 1 - Randomly"        
+            headerTitle.classList.remove(`${styles.newHeaderTitle}`)
+            headerTitle.classList.add(`${styles.headerTitle}`)
 
         }, 3000)
 
@@ -137,16 +137,16 @@ function IllustrativePage() {
         setTimeout(() => {
             answerTitleId.innerText = 'Welcome! For the best experience, initialize an API using the "db.json" file included in this project.'
             answerClickId.innerText = ''
-            answerTitleId.classList.add(`${styles.newAnswerTitleText}`)
-            answerTitleId.classList.remove(`${styles.answerTitleText}`)
+            answerTitleId.classList.add(`${styles.newAnswerDisplayTitleText}`)
+            answerTitleId.classList.remove(`${styles.answerDisplayTitleText}`)
 
         }, 21000)
 
         setTimeout(() => {
             answerTitleId.innerText = "c) Storage Gateway - File Gateway."
             answerClickId.innerText = 'Click here for more information'
-            answerTitleId.classList.add(`${styles.answerTitleText}`)
-            answerTitleId.classList.remove(`${styles.newAnswerTitleText}`)
+            answerTitleId.classList.add(`${styles.answerDisplayTitleText}`)
+            answerTitleId.classList.remove(`${styles.newAnswerDisplayTitleText}`)
 
         }, 24000)
 
@@ -189,13 +189,13 @@ function IllustrativePage() {
             <div className={styles.header}>
                 <img className={styles.iconStart} src={imageStart} alt='icon-start' />
 
-                <h1 id='headerH1' className={styles.headerTitle}>
+                <h1 id='headerTitle' className={styles.headerTitle}>
                     ILLUSTRATIVE PAGE / Resolution 1 - Randomly              
                 </h1>
 
                 <nav>
                     <RxHamburgerMenu className={styles.hamburger} />   
-                    <ul className={styles.ulIllustrative}>
+                    <ul className={styles.ulHeader}>
                         <li className={styles.link}>Home</li>                
                         <li className={styles.link}><GoPlus />Create</li>                 
                     </ul>
@@ -291,10 +291,10 @@ function IllustrativePage() {
                     Answer
                 </button>
 
-                <section className={styles.answer}>   
-                    <div className={styles.answerTitle}>
-                        <h3 id='answerTitleId' className={styles.answerTitleText}>c) Storage Gateway - File Gateway.</h3>
-                        <p id='answerClickId' className={styles.answerClickText}>Click here for more information</p>
+                <section className={styles.answerDescription}>   
+                    <div className={styles.answerDisplay}>
+                        <h3 id='answerTitleId' className={styles.answerDisplayTitleText}>c) Storage Gateway - File Gateway.</h3>
+                        <p id='answerClickId' className={styles.answerDisplayClickText}>Click here for more information</p>
                     </div>
 
                     <p id='descriptionId' className={styles.description}>

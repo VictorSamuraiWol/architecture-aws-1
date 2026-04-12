@@ -160,14 +160,14 @@ ul {
     flex-direction: column;
     gap: 8px;
     position: relative;
-    color: var(--color-third);
     width: 90%;
+    padding: 12px;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;    
     line-height: 20px;
-    padding: 8px 12px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 1;
 }
 
@@ -190,8 +190,8 @@ ul {
 }
 
 .inputOptions {
-    appearance: none; /* remove o estilo padrão */
     position: relative;
+    appearance: none;
     width: 20px;
     height: 20px;
     background-color: transparent;
@@ -200,68 +200,6 @@ ul {
     transition: 0.1s ease-in-out;
     margin: 0;
     cursor: pointer;
-}
-
-.textOptions {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: justify;
-    color: var(--color-third);
-    padding: 4px 12px;
-    margin: 0;
-    cursor: pointer;
-}
-
-.textOptions:hover {
-    font-weight: bold;
-    transform: scale(1.01);
-    transition: all 0.1s ease-in-out;
-}
-
-.newTextOptionsA {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: justify;
-    color: Tomato;
-    background-color: #430A5D;
-    padding: 4px 12px;
-    border: 1px solid Tomato;
-    border-radius: 16px;
-    margin: 0;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.newTextOptionsB {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: justify;
-    color: Gold;
-    background-color: #430A5D;
-    padding: 4px 12px;
-    border: 1px solid Gold;
-    border-radius: 16px;
-    margin: 0;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.newTextOptionsD {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: justify;
-    color: MediumSpringGreen;
-    background-color: #430A5D;
-    padding: 4px 12px;
-    border: 1px solid MediumSpringGreen;
-    border-radius: 16px;
-    margin: 0;
-    cursor: pointer;
-    z-index: 1;
 }
 
 .inputValidate {
@@ -338,6 +276,68 @@ ul {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.textOptions {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: var(--color-third);
+    padding: 4px 12px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.textOptions:hover {
+    font-weight: bold;
+    transform: scale(1.01);
+    transition: all 0.1s ease-in-out;
+}
+
+.newTextOptionsA {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Tomato;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Tomato;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.newTextOptionsB {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: Gold;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid Gold;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.newTextOptionsD {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: justify;
+    color: MediumSpringGreen;
+    background-color: #430A5D;
+    padding: 4px 12px;
+    border: 1px solid MediumSpringGreen;
+    border-radius: 16px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .optionValidate {
@@ -427,31 +427,45 @@ ul {
     transform: scale(1.03);
 }
 
-.answer {
+.answerDescription {
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
-    width: 80%;
+    gap: 2px;
+    color: var(--color-fourth);
+    width: 90%;
     z-index: 1;
 }
 
-.answerTitle {
+.answerDisplay {
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
+    color: var(--color-fourth);
     width: 80%;
     cursor: pointer;
+    overflow-wrap: break-word;
+    overflow: auto;
 }
 
-.answerTitleText {
+.answerDisplay::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+.answerDisplay::-webkit-scrollbar-thumb {
+    background-color: var(--color-fourth);
+}
+
+.answerDisplayTitleText {
     font-size: 1.3rem;
     color: var(--color-fourth);
     margin: 0;
 }
 
-.newAnswerTitleText {
+.newAnswerDisplayTitleText {
     font-size: 1.3rem;
     color: Chocolate;
     background-color: #430A5D;
@@ -462,7 +476,7 @@ ul {
     z-index: 1;
 }
 
-.answerClickText {
+.answerDisplayClickText {
     font-size: 12px;
     color: var(--color-fourth);
     margin: 0;
@@ -564,21 +578,21 @@ ul {
 }
 
 .footer {
+    position: relative;
     color: var(--color-fourth);
     background-color: var(--color-second);
     font-size: 1rem;
     text-align: center;
-    position: relative;
     height: 10vh;
     width: 100%;
 }
 
 .soundFull {
+    top: 0;
     left: 2px;
     position: absolute;
-    /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
-    width: 1.1em;
-    height: 1.1em;
+    width: 1.1rem;
+    height: 1.1rem;
     cursor: pointer;
     z-index: 1;
 }
@@ -632,7 +646,7 @@ ul {
 /* Responsividade */
 @media (min-width: 1701px) {
     .headerTitle {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .question {
@@ -671,13 +685,13 @@ ul {
         line-height: 28px;
     }
 
-    .answerTitleText {
-        font-size: 1.5rem;
+    .answerDisplayTitleText {
+        font-size: 1.3rem;
         padding: 0 8px;
     }
 
     .description {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
 }
@@ -687,7 +701,7 @@ ul {
         font-size: 1.5rem;
     }
 
-    .ulIllustrative {
+    .ulHeader {
         font-size: 1.5rem;
     }
 
@@ -727,13 +741,13 @@ ul {
         line-height: 28px;
     }
 
-    .answerTitleText {
-        font-size: 1.5rem;
+    .answerDisplayTitleText {
+        font-size: 1.3rem;
         padding: 0 8px;
     }
 
     .description {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
 }
@@ -747,7 +761,7 @@ ul {
         font-size: 1.2rem;
     }
 
-    .ulIllustrative {
+    .ulHeader {
         font-size: 1.2rem;
     }
 
@@ -764,7 +778,7 @@ ul {
     }
 
     .optionsMain {
-        height: 320px;
+        padding: 8px;
     }
 
     .inputOptions {
@@ -805,16 +819,25 @@ ul {
         padding: 14px;
     }
 
-    .answerTitle {
+    .answerDisplay {
         font-size: 1.2rem;
     }
 
-    .answerClickText {
+    .answerDisplayTitleText {
+        font-size: 1.2rem;
+    }
+
+    .answerDisplayClickText {
         font-size: 10px;
     }
 
     .description {
         font-size: 1.2rem;
+    }
+
+    .imageDescription {
+        width: 1.2rem;
+        height: 1.2rem;
     }
 
     .buttonNext {
@@ -845,11 +868,11 @@ ul {
     }
 
     .headerTitle {
-        font-size: 0.8rem;
+        font-size: 1rem;
         text-align: center;
     }
 
-    .ulIllustrative {
+    .ulHeader {
         font-size: 1rem;
     }
 
@@ -859,7 +882,6 @@ ul {
         line-height: 28px;
         height: 80px;
         width: 77%;
-        border: 1px dashed var(--color-fourth);
         border-radius: 8px;
         overflow: auto;
     }
@@ -874,7 +896,11 @@ ul {
     }
 
     .optionsMain {
-        height: 300px;
+        padding: 6px;
+    }
+
+    .alternativeOptions {
+        padding: 4px;
     }
 
     .inputOptions {
@@ -900,16 +926,36 @@ ul {
         padding: 6px;
     }
 
-    .alternativeOptions {
-        font-size: 1rem;
-    }
-
     .textOptions {
         font-size: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .textOptions::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+    }
+
+    .textOptions::-webkit-scrollbar-thumb {
+        background-color: var(--color-fourth);
     }
 
     .optionValidate {
         font-size: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .optionValidate::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+    }
+
+    .optionValidate::-webkit-scrollbar-thumb {
+        background-color: var(--color-fourth);
     }
 
     .optionInvalidate {
@@ -920,28 +966,34 @@ ul {
         padding: 12px;
     }
 
-    .answerTitle {
+    .answerDisplay {
         font-size: 1rem;
         text-align: center;
         max-height: max-content;
         max-width: max-content;
-        border: 1px dashed var(--color-fourth);
+        border: 1px solid var(--color-fourth);
         border-radius: 8px;
     }
 
-    .answerTitleText {        
+    .answerDisplayTitleText {
+        font-size: 1rem;
         padding: 2px;        
     }
 
-    .answerClickText {
+    .answerDisplayClickText {
         font-size: 9px;
     }
 
     .description {
         font-size: 1rem;
         width: 75%;
-        border: 1px dashed var(--color-fourth);
+        border: 1px solid var(--color-fourth);
         border-radius: 8px;
+    }
+
+    .imageDescription {
+        width: 1rem;
+        height: 1rem;
     }
 
     .buttonNext {
@@ -976,7 +1028,7 @@ ul {
         width: 50px;
     } 
     
-    .headerH1 {
+    .headerTitle {
         display: none;
     }
 
@@ -984,13 +1036,8 @@ ul {
         position: relative;
     }
 
-    .ulIllustrative {
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        font-size: 0.8rem;
-        margin: 0;
-        border-radius: 16px;
+    .ulHeader {
+        display: none;
     } 
     
     .hamburger {
@@ -1032,12 +1079,16 @@ ul {
     }
 
     .optionsMain {
-        height: 350px;
+        padding: 4px;
     }
     
     .optionsMain::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
+    }
+
+    .alternativeOptions {
+        font-size: 0.8rem;
     }
 
     .inputOptions {
@@ -1063,8 +1114,9 @@ ul {
         padding: 5px;
     }
 
-    .alternativeOptions {
-        font-size: 0.8rem;
+    .inputInvalidate:checked::after {
+        width: 6px;
+        height: 6px;
     }
 
     .textOptions {
@@ -1083,27 +1135,32 @@ ul {
         padding: 8px;
     }
 
-    .answerTitle {
+    .answerDisplay {
         font-size: 0.8rem;
     }
     
-    .answerTitleText {
+    .answerDisplayTitleText {
+        font-size: 0.8rem;
         overflow: auto;
-        height: 50px;
     }
     
-    .answerTitleText::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;    
+    .answerDisplayTitleText::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;    
     }
     
-    .answerTitleText::-webkit-scrollbar-thumb {    
+    .answerDisplayTitleText::-webkit-scrollbar-thumb {    
         background-color: var(--color-fourth);
     }
     
     .description {
         font-size: 0.8rem;
         width: 65%;
+    }
+
+    .imageDescription {
+        width: 0.8rem;
+        height: 0.8rem;
     }
     
     .description::-webkit-scrollbar {
@@ -1133,7 +1190,7 @@ ul {
 
     .footer p {
         font-size: 0.8rem;
-        width: 200px;
+        width: 90px;
 
     }
 

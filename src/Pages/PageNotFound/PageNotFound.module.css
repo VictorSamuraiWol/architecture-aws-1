@@ -4,7 +4,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    padding: 0 1.5rem 6.5rem;
+    padding: 24px 104px;
     background-color: var(--color-first);
     height: 100vh;
 }
@@ -16,14 +16,12 @@
     font-weight: 700;
     margin-bottom: 2rem;
     color: var(--color-third);
-
 }
 
 .titulo {
     font-size: 3rem;
     margin-bottom: 2rem;
     color: var(--color-third);
-
 }
 
 .paragrafo {

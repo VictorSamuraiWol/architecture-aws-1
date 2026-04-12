@@ -55,10 +55,6 @@
 
 /* Responsividade */
 @media (min-width: 1701px) {
-    .itemAlternativeMain {
-        font-size: 1.5rem;
-    }
-
     .textOptions {
         font-size: 1.5rem;
         line-height: 28px;
@@ -67,10 +63,6 @@
 }
 
 @media (max-width: 1700px) {
-    .itemAlternativeMain {
-        font-size: 1.5rem;
-    }
-
     .textOptions {
         font-size: 1.5rem;
         line-height: 28px;
@@ -81,10 +73,6 @@
 @media (max-width: 1100px) {
     .optionsMain {
         padding: 8px;
-    }
-
-    .itemAlternativeMain {
-        font-size: 1.2rem;
     }
 
     .alternativeOptions {
@@ -100,10 +88,6 @@
 @media (max-width: 860px) {
     .optionsMain {
         padding: 6px;
-    }
-
-    .itemAlternativeMain {
-        font-size: 1rem;
     }
 
     .alternativeOptions {
@@ -136,10 +120,6 @@
     .optionsMain::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
-    }
-    
-    .itemAlternativeMain {
-        font-size: 0.8rem;
     }
 
     .textOptions {

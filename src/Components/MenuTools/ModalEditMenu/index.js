@@ -68,6 +68,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
+
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   
   useEffect(() => {
     setOptionAMain(optionMain && optionMain[0])
@@ -90,8 +92,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     setNewMultiOption([optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti]) // lista das alternativas da opção múltipla
 
   }, [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain, optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti])
-
-  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   function openModal() {
     setModalIsOpen(true)
@@ -491,7 +491,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          contentLabel="Example Modal"
+          contentLabel="Modal"
           overlayClassName={styles.modalOverlay}
           className={styles.modalContent}
       >
@@ -501,7 +501,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             className={styles.modalImageDelete} 
         />      
 
-        <h1>EDITAR CARD:</h1>
+        <h1>EDIT CARD:</h1>
 
         {questionMain && optionMain && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={multiFunctionsNewPageMain}

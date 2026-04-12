@@ -57,7 +57,7 @@
     margin: 0;
     overflow-wrap: break-word;
     overflow: auto;
-    transition: 0.3s;
+    transition: 0.1s;
     cursor: default;
 }
 
@@ -75,7 +75,6 @@
 }
 
 .descriptionNewStyle {
-    font-style: italic;
     font-weight: bold;
     background-color: var(--color-second);
     box-shadow: 3px 3px 3px var(--color-fourth);

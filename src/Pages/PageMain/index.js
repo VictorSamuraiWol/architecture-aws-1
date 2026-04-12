@@ -147,13 +147,11 @@ function PageMain() {
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
                 key={questionMain.id}
-
             >        
                 {questionMain &&
                     <Header 
                         title="Architecture Questions - Randomly"
-                    />
-                    
+                    />                    
                 }
                 
                 {questionMain &&

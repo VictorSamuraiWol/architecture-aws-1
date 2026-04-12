@@ -14,7 +14,7 @@ export default function DataProvider({ children }) {
     const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState('')
     const [listMultiOptionsContext, setListMultiOptionsContext] = useState([])
 
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const [postApi, setPostApi] = useState(false)
 

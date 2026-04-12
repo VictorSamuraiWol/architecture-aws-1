@@ -114,22 +114,11 @@ ul {
     .nav {
         position: relative;
     }
-
-    .hamburger {
-        display: flex;
-        padding: 8px;
-        cursor: pointer;
-    }
-
-    .hamburger:hover {
-        background-color: rgba(0, 0, 0, 80%);
-        border-radius: 50%;
-    }   
-
+    
     .ulHeader {
         display: none;      
     }
-
+    
     .ulAble {
         display: flex;
         flex-direction: column;
@@ -143,5 +132,16 @@ ul {
         border-bottom-left-radius: 8px;
         z-index: 1;
     }
-   
+    
+    .hamburger {
+        display: flex;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .hamburger:hover {
+        background-color: rgba(0, 0, 0, 80%);
+        border-radius: 50%;
+    }   
+    
 }

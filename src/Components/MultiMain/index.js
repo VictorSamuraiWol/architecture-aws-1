@@ -31,7 +31,7 @@ function MultiMain({
 
     function alertQuestionAnswerButtonNextMulti() {
         if (questionAnswerButtonNextMulti === false) {
-            alert('Ops!!! Por favor, responda a questão antes de ir para a próxima!')
+            alert('Oops!!! Please answer the question before moving on to the next one!')
 
         }
 
