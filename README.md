@@ -17,10 +17,10 @@
 
 ✅ Welcome! This is a project aimed at creating a React application with an AWS Cloud Computing theme, featuring functionalities to check correct or incorrect answers, as well as display the correct answer with detailed information, measuring knowledge on AWS architectures at the associate level. My gratitude to God for the completion of this project.
 
-<a href="https://architecture-react-cloud-questions.vercel.app/" title="View Project now"> 📟 Clique aqui para visualizar a aplicação</a><br/>
-<a href="https://github.com/VictorSamuraiWol/architecture-aws-1" title="View Repository now"> 📜 Clique aqui para visualizar o repositório</a>
+<a href="https://architecture-react-cloud-questions.vercel.app/" title="View Project now"> 📟 Click here to view the application</a><br/>
+<a href="https://github.com/VictorSamuraiWol/architecture-aws-1" title="View Repository now"> 📜 Click here to view the repository</a>
 
-## 💻 Tecnologias utilizadas no projeto
+## 💻 Technologies used in the project
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [HTML](https://html.com/) 
@@ -42,7 +42,7 @@
 - [Vercel](https://vercel.com/)
 - [Trello](https://trello.com/pt-BR)
 
-## <img src="src/imgs/icone-wolverine-sem-fundo.png" width="50" /> AWS Certified Cloud Practitioner, AWS Cloud Computing and Front-End Student 
+## <img src="src/imgs/icone-wolverine-sem-fundo.png" width="50" /> AWS and Oracle Certified in Cloud Computing, Front-End Student 
 <br>
 <p>
     <img 
@@ -50,6 +50,7 @@
       margin=10 
       width=80 
       src="https://github.com/VictorSamuraiWol.png"
+      style="border: 1px solid grey; border-radius:50px"
     />
     <p>&nbsp&nbsp&nbspVictor Cardoso<br>
     &nbsp&nbsp&nbsp
@@ -69,4 +70,4 @@
 
 ---
 
-⌨️ com 💚 por [Victor Cardoso](https://github.com/VictorSamuraiWol)
+⌨️ with 💚 by [Victor Cardoso](https://github.com/VictorSamuraiWol)
