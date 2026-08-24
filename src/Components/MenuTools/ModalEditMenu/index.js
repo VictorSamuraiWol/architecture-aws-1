@@ -63,7 +63,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [activePopupAlreadySavedModalEdit, setActivePopupAlreadySavedModalEdit] = useState(false)
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute } = useOutletContext();
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute } = useOutletContext()
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
 

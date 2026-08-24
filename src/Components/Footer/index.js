@@ -8,8 +8,7 @@ function Footer() {
             <img src={image} alt="icon wolverine" />
 
             <p>Created by Victor Cardoso. Feel free to connect on  
-                <Link id='contactLink' to="https://www.linkedin.com/in/victor-cardoso-cloud-front/" target="_blank"> Linkedin.
-                </Link>
+                <Link id='contactLink' to="https://www.linkedin.com/in/victor-cardoso-cloud-front/" target="_blank"> Linkedin.</Link>
             </p>
 
         </div>

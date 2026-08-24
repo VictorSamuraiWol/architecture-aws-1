@@ -51,7 +51,8 @@ function MultiMain({
     return (
         <div className={styles.multiMain}>
             <Question 
-                question={question}            
+                question={question}
+                questionNumber={questionNumber}            
             />
 
             <MenuTools

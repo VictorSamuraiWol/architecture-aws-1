@@ -1,8 +1,9 @@
 import styles from './Question.module.css';
 
-function Question({ question }) {
+function Question({ question, questionNumber }) {
+
     return(     
-        <h2 className={styles.question}>{question}</h2>
+        question && <h2 className={styles.question}>{`${questionNumber}) ${question}`}</h2>
     )
 }
 

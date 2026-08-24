@@ -280,7 +280,7 @@ function IllustrativePage() {
                         <input 
                             id='inputInvalidateId'
                             className={styles.inputInvalidate}
-                            checked='true' 
+                            checked={true}
                             type='radio'
                             name='options' 
                             value='4' 

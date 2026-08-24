@@ -81,7 +81,8 @@ function Main({
     return(
         <div className={styles.main}>           
             <Question 
-                question={question}             
+                question={question}
+                questionNumber={questionNumber}             
             />
 
             <MenuTools 
