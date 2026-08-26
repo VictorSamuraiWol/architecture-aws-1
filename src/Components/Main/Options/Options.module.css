@@ -1,28 +1,16 @@
 .optionsMain {
+    position: relative;
     display: flex;
     justify-content: start;
     align-items: start;
     flex-direction: column;
     gap: 8px;
-    position: relative;
-    width: 90%;
-    padding: 12px;
+    width: 99%;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;    
     line-height: 20px;
-    overflow-y: auto;
-    overflow-x: hidden;
     z-index: 1;
-}
-
-.optionsMain::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-}
-
-.optionsMain::-webkit-scrollbar-thumb {
-    background-color: var(--color-fourth);
 }
 
 .alternativeOptions {
@@ -44,8 +32,7 @@
 }
 
 .textOptions:hover {
-    font-weight: bold;
-    transform: scale(1.01);
+    transform: scale(0.99);
     transition: all 0.1s ease-in-out;
 }
 
@@ -53,7 +40,7 @@
     margin: 0;
 }
 
-/* Responsividade */
+/* Responsiveness */
 @media (min-width: 1701px) {
     .textOptions {
         font-size: 1.5rem;
@@ -64,7 +51,7 @@
 
 @media (max-width: 1700px) {
     .textOptions {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         line-height: 28px;
     }    
 
@@ -80,7 +67,7 @@
     }
 
     .textOptions {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
 }
@@ -95,7 +82,7 @@
     }
 
     .textOptions {
-        font-size: 1rem;
+        font-size: 0.9rem;
         width: 100%;
         overflow-x: auto;
         white-space: nowrap;

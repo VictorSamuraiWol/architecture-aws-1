@@ -9,6 +9,7 @@ import identityAndAccessManagement from '../../imgs/answers-imgs/Identity_and_Ac
 import simpleQueueService from '../../imgs/answers-imgs/Simple_Queue_Service.png'
 import simpleStoragesService from '../../imgs/answers-imgs/Simple_Storage_Service.png'
 import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
+import DescriptionModal from './DescriptionModal'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 
@@ -33,29 +34,6 @@ function AnswerDescription({
         dynamoDB: dynamoDB
     })
 
-    function ableDisableDescription() {
-        if (document.querySelector('#descriptionId').classList.contains(`${styles.visibleDescription}`)) {
-                descriptionDisplay && setDescriptionDisplay(styles.invisible)
-
-        } else {
-            descriptionDisplay && setDescriptionDisplay(styles.visibleDescription)
-            
-        }
-
-    }
-
-    function descriptionOnMouseOver() {
-        const descriptionNewStyle = document.querySelector('#descriptionId')
-        descriptionNewStyle.classList.add(styles.descriptionNewStyle)
-        
-    }
-
-    function descriptionOnMouseOut() {
-        const descriptionDefaultStyle = document.querySelector('#descriptionId')
-        descriptionDefaultStyle.classList.remove(styles.descriptionNewStyle)
-
-    }
-
     return(
         <section            
             id='answerId' 
@@ -63,24 +41,18 @@ function AnswerDescription({
         > 
             {itens && <h3 className={styles.itens}>{itens}</h3>} {/* itens que serão mostrados na PageMulti */}   
             <div
-                onClick={ableDisableDescription}
                 id='answerTitle'                
                 className={styles.answerDisplay}
             >
-                {item && <h3 className={styles.item}>{item}</h3>} {/* item que será mostrado na PageMain */}
+                {item && <span className={styles.item}>{item}</span>} {/* item que será mostrado na PageMain */}
                 <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer)}</h3>
-                <p>Click here for more information</p>
             </div>
 
-            <p
-                onMouseOver={descriptionOnMouseOver}
-                onMouseOut={descriptionOnMouseOut} 
-                id='descriptionId' 
-                className={`${styles.descriptionDisplay} ${descriptionDisplay}`}
-            >
-                {imageDescription !== '' && <img className={styles.imageDescription} src={imagesDescriptions[imageDescription]} alt='img' />}
-                {description}
-            </p>
+            <DescriptionModal 
+                imagesDescriptions={imagesDescriptions}
+                imageDescription={imageDescription}
+                description={description}
+            />
 
         </section>
     )

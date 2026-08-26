@@ -12,10 +12,10 @@
     color: var(--color-second);
     background-color: var(--color-fourth);
     border: 1px solid var(--color-third);
-    transform: scale(1.03);
+    transform: scale(0.97);
 }
 
-/* Responsividade */
+/* Responsiveness */
 @media (min-width: 1101px) {
     .buttonDefault {
         padding: 14px;
