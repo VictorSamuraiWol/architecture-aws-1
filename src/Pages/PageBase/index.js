@@ -3,7 +3,7 @@ import IllustrativePage from '../IllustrativePage'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import DataProvider from '../../Components/DataContext'
 import Footer from '../../Components/Footer'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
 

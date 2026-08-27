@@ -1,5 +1,5 @@
 .container {
-  height: 16px; /* para ficar do tamanho do conteúdo */
+  height: 16px;
   z-index: 1;
 }
 
@@ -27,23 +27,23 @@
   flex-direction: column;
   position: absolute;
   color: var(--color-fourth);
-  background: transparent;
+  background-color: var(--color-first);
   font-weight: bold;
   width: 80%;
   padding: 20px 12px 40px 12px;
-  border: 5px solid var(--color-fourth);
+  border: 2px solid var(--color-fourth);
   border-radius: 12px;
   z-index: 1;
 }
 
 .modalContent h1 {
-  color: var(--color-first);
+  color: var(--color-fourth);
   text-shadow: 2px 2px 3px var(--color-first);
   cursor: default;
 }
 
 .modalContent h1:hover {
-  transform: scale(1.03);
+  transform: scale(0.97);
 }
 
 .formModal {
@@ -59,14 +59,13 @@
   right: 5px;
   height: 2em;
   width: 2em;
-  background-color: var(--color-second);
   border-radius: 50%;
   cursor: pointer;
   z-index: 1;
 }
 
 .modalImageDelete:hover {
-  transform: scale(1.03);
+  transform: scale(0.97);
 }
 
 .buttons {

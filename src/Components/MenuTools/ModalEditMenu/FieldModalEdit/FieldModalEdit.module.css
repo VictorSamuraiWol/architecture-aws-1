@@ -6,15 +6,14 @@
 }
 
 .fieldModalEdit label {
-  color: var(--color-first);
-  text-shadow: 2px 2px 3px var(--color-first);
+  color: var(--color-fourth);
 }
 
 .fieldModalEdit label:hover {
-  transform: scale(1.03);
+  transform: scale(0.97);
 }
 
-/* Responsividade */
+/* Responsiveness */
 @media (max-width: 860px) {
   .fieldModalEdit input {
     height: 50px;
