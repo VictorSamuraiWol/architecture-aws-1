@@ -1,15 +1,26 @@
-/* Loader animado */
-.loader {
-    position: absolute;
-    top: 20vh;
-    left: 47%;
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(0, 0, 0, 0.2);
-    border-top: 5px solid var(--color-fourth); /* Cor do spinner */
-    border-radius: 50%;
-    animation: spin 1s linear infinite; /* Animação giratória */
+.loaderSpan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    cursor: default;
     z-index: 1;
+}
+
+.loaderSpanAnimation {
+    width: 20px;
+    height: 20px;
+    border: 5px solid var(--color-fourth);
+    border-top: 5px solid var(--color-third);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loaderSpanText {
+    color: var(--color-fourth);
+    text-shadow: 3px 2px 3px var(--color-third);
 }
   
 @keyframes spin {

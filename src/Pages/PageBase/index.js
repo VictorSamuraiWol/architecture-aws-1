@@ -3,7 +3,7 @@ import IllustrativePage from '../IllustrativePage'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import DataProvider from '../../Components/DataContext'
 import Footer from '../../Components/Footer'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
 
@@ -21,6 +21,9 @@ function PageBase() {
     // questões corretas das páginas main e multi
     const [numCorrectOption, setNumCorrectOption] = useState(0)
     const [numIncorrectOption, setNumIncorrectOption] = useState(0)
+
+    const counterZeroImgMain = useRef(0) // contador para limitar 'loop infinito' na função questionOptionMatch()
+    const counterZeroImgMulti = useRef(0) // contador para limitar 'loop infinito' na função questionOptionMatch()
 
     // resultados estatísticos
     const dataResults = {
@@ -101,7 +104,7 @@ function PageBase() {
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
                         setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
-                        checkAlternativeAnswerDefault
+                        checkAlternativeAnswerDefault, counterZeroImgMain, counterZeroImgMulti
                         }} 
                 />                
 

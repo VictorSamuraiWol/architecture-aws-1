@@ -1,12 +1,14 @@
 import styles from "./Loader.module.css"
 
-// Componente de Loader com animação
-function Loader() {
+function Loader() { // Componente de Loader com animação
 
     return (
-        <div className={styles.loader}></div>
+        <div className={styles.loaderSpan}>
+            <div className={styles.loaderSpanAnimation}></div>
+            <span className={styles.loaderSpanText}>Loading Content...</span>
+        </div>
     )
 
 }
 
-export default Loader
+export default Loader;

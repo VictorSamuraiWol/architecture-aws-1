@@ -119,6 +119,13 @@
   transform: translate(-50%, -50%); /* centralizar o ponto */
 }
 
+.zeroImg {
+  width: 50%;
+  margin-top: 16px;
+  border-radius: 16px;
+  z-index: 1;
+}
+
 /* Responsividade */
 @media (min-width: 1700px) {
   .inputMultiOptions {

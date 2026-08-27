@@ -7,6 +7,7 @@ import AnswerDescription from '../AnswerDescription'
 import MenuTools from '../MenuTools'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import ModalResults from '../ModalResults'
+import zeroImage from '../../imgs/zero-question.png'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
@@ -14,7 +15,7 @@ import { Link } from 'react-router-dom'
 function Main({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
-    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5
+    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, counterZeroImg
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -79,86 +80,101 @@ function Main({
     }
 
     return(
-        <div className={styles.main}>           
-            <Question 
-                question={question}
-                questionNumber={questionNumber}             
-            />
+        <div className={styles.main}>
+            {counterZeroImg < 10 && <>
+                <div className={styles.containerQuestionMenuTools}>
+                    <Question 
+                        question={question}
+                        questionNumber={questionNumber}             
+                    />
 
-            <MenuTools 
-                questionMain={questionMain} 
-                optionMain={optionMain}
-                optionMainNumberId={optionMainNumberId}
-                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}              
-            />
+                    <MenuTools 
+                        questionMain={questionMain} 
+                        optionMain={optionMain}
+                        optionMainNumberId={optionMainNumberId}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}              
+                    />
 
-            {activePopupRepeatedAlternativesMain === true && 
-                <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupRepeatedMain} 
-                    textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
-                    activePopup={setActivePopupRepeatedAlternativesMain}
+                </div>
+
+                {activePopupRepeatedAlternativesMain === true && 
+                    <PopupRepeatedAlternatives 
+                        specificStyles={styles.popupRepeatedMain} 
+                        textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
+                        activePopup={setActivePopupRepeatedAlternativesMain}
+                    />
+                }
+
+                <Options
+                    optionColorStyle={optionColorStyle}
+                    inputColorStyle={inputColorStyle}   
+                    setCaptureValue={setCaptureValue}
+                    optionMain={optionMain}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                />
+       
+                <ButtonAnswer            
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    answer={answer}
+                    questionNumber={questionNumber}
+                    optionColorStyle={optionColorStyle}
+                    optionValidateStyle={optionValidateStyle}
+                    optionInvalidateStyle={optionInvalidateStyle}
+                    inputColorStyle={inputColorStyle}
+                    inputValidateStyle={inputValidateStyle}
+                    inputInvalidateStyle={inputInvalidateStyle}                      
+                    captureValue={captureValue}
+                    optionMain={optionMain}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                    setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
+                    activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
+                    setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
+                    setItem={setItem}
+                />
+    
+                <AnswerDescription 
+                    answer={answer}
+                    imageDescription={imageDescription} 
+                    description={description}
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    item={item}
+                />
+    
+                <Link
+                    to={ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'               
+                >
+                    <ButtonNext
+                        onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  
+                        questionAnswerButtonNextMain={questionAnswerButtonNextMain}
+                    />
+                </Link>
+            
+                <ModalResults />
+
+            </>}
+
+            {/* somente aparecer a imagem ao tentar encontrar alguma questão disponível em no máximo 10 tentativas */}
+            {counterZeroImg === 10 && 
+                <img 
+                    src={zeroImage} 
+                    alt='zero img'
+                    className={styles.zeroImg}
                 />
             }
-
-            <Options
-                optionColorStyle={optionColorStyle}
-                inputColorStyle={inputColorStyle}   
-                setCaptureValue={setCaptureValue}
-                optionMain={optionMain}
-                optNum1={optNum1}
-                optNum2={optNum2}
-                optNum3={optNum3}
-                optNum4={optNum4}
-                optNum5={optNum5}
-            />
-
-            <ButtonAnswer            
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                answer={answer}
-                questionNumber={questionNumber}
-                optionColorStyle={optionColorStyle}
-                optionValidateStyle={optionValidateStyle}
-                optionInvalidateStyle={optionInvalidateStyle}
-                inputColorStyle={inputColorStyle}
-                inputValidateStyle={inputValidateStyle}
-                inputInvalidateStyle={inputInvalidateStyle}                      
-                captureValue={captureValue}
-                optionMain={optionMain}
-                optNum1={optNum1}
-                optNum2={optNum2}
-                optNum3={optNum3}
-                optNum4={optNum4}
-                optNum5={optNum5}
-                setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
-                activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
-                setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
-                setItem={setItem}
-            />
-
-            <AnswerDescription 
-                answer={answer}
-                imageDescription={imageDescription} 
-                description={description}
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
-                item={item}
-            />
-
-            <Link
-                to={ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'               
-            >
-                <ButtonNext
-                    onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  
-                    questionAnswerButtonNextMain={questionAnswerButtonNextMain}
-                />
-            </Link>
-
-            <ModalResults />
-                      
+                                  
         </div>
     )
 

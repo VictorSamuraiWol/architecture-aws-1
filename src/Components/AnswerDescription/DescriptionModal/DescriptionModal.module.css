@@ -2,7 +2,7 @@
   z-index: 1;
 }
 
-.textModal {
+.longTextModal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,24 @@
   cursor: pointer;
 }
 
-.textModal:hover {
+.longTextModal:hover {
+  color: var(--color-third);
+  border: 1px solid var(--color-third);
+  transform: scale(1.02);
+}
+
+.shortTextModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 2px;
+  border: 1px solid var(--color-fourth);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.shortTextModal:hover {
   color: var(--color-third);
   border: 1px solid var(--color-third);
   transform: scale(1.02);
@@ -90,26 +107,27 @@
 
 /* Responsiveness */
 @media (min-width: 1701px) {
-  .modalContent {
-    font-size: 1.5rem;
-  }
-    
-}
-
-@media (min-width: 1701px) {
-  .textModal {
+  .longTextModal {
     font-size: 1.1rem;
   }
 
+  .shortTextModal {
+    display: none;
+  }
+
   .modalContent {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
 }
 
 @media (max-width: 1700px) {
-  .textModal {
+  .longTextModal {
     font-size: 1.1rem;
+  }
+
+  .shortTextModal {
+    display: none;
   }
 
   .modalContent {
@@ -124,7 +142,7 @@
 }
 
 @media (max-width: 1100px) {
-  .textModal {
+  .longTextModal {
     font-size: 1rem;
   }
 
@@ -140,7 +158,8 @@
 }
 
 @media (max-width: 860px) { 
-  .textModal {
+  .longTextModal {
+    display: flex;
     font-size: 0.8rem;
   }
   
@@ -171,8 +190,13 @@
 }
 
 @media (max-width: 580px) {
-  .textModal {
+  .longTextModal {
+    display: none;
+  }
+
+  .shortTextModal {
     font-size: 0.6rem;
+    display: flex;
   }
 
   .modalContent {

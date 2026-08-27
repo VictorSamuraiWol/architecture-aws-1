@@ -24,9 +24,16 @@ function DescriptionModal({ imagesDescriptions, imageDescription, description })
     <div className={styles.container}>
       <span
         onClick={openModal}
-        className={styles.textModal} 
+        className={styles.longTextModal} 
       >
-        Click here for more information
+        click here for more information
+      </span>
+
+      <span
+        onClick={openModal}
+        className={styles.shortTextModal} 
+      >
+        more information
       </span>
 
       <Modal

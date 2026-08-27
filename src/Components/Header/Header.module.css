@@ -105,10 +105,6 @@ ul {
 @media (max-width: 580px) {
     .iconStart {
         width: 50px;
-    } 
-    
-    .headerTitle {
-        display: none;
     }
 
     .nav {

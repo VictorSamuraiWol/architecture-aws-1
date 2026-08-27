@@ -3,11 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  position: absolute;
-  right: 1%;
   color: var(--color-fourth);
-  margin-top: 19.92px;
-  padding: 1px 4px;
   z-index: 2;
 }
 
@@ -85,25 +81,6 @@
 
   .menuToolsSelector {
     width: 80%;
-  }
-
-}
-
-@media (max-width: 580px) {
-  .menu {
-    position: absolute;
-    height: 7vh;
-    right: 45%;
-    top: -10%;
-    color: var(--color-first);         
-  }
-
-  .menuTools {
-    border: 2px solid var(--color-fourth);
-  }
-
-  .menuToolsSelector {
-    border: 2px solid var(--color-fourth);
   }
 
 }

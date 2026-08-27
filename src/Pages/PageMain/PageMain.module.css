@@ -1,4 +1,9 @@
+.pageMainStyles {
+    position: relative;
+}
+
 .allQuestionsMainClass {
+    position: relative;
     height: 90vh;
     background-color: var(--color-first);
 }

@@ -17,13 +17,13 @@ function PageMain() {
     const [optionMain, setOptionMain] = useState([]) // mapear todas as opções presente na página main
     const [optionMainNumberId, setOptionMainNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
     const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
-    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)  
+    const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, counterZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -105,13 +105,14 @@ function PageMain() {
             // busca uma opção que corresponde diretamente com a questão atual
             matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
                         
-                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))
+                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current) && (questionMain.questionText !== ''))
             })
+            
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listUnicOptionsContext.forEach(option => {
                     matchedQuestion = listUnicQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
-                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current))
+                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current) && (questionMain.questionText !== ''))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
@@ -119,8 +120,18 @@ function PageMain() {
                         setQuestionMain(matchedQuestion) // atualizando a questão                        
                         setLoading(false) // desabilita o componente 'Loader'                   
 
-                    }
+                    } 
+
                 })
+
+                if (questionMain.correctAnswer === '') {
+                    // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                    const random = uniqueRandomMain(listUnicQuestionsContextLength)
+                    const next = listUnicQuestionsContext[random]
+
+                    setQuestionMain(next) // armazena a questão que será mostrada na página Main
+
+                }
       
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
@@ -135,14 +146,18 @@ function PageMain() {
 
             }
 
-        } 
-        
-        questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
+            counterZeroImgMain.current++
+            
+        }
 
-    }, [listUnicQuestionsContext, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading])
+        // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
+        // utilizar um contador (até 10 tentativas, margem de segurança) para limitar e não entrar em loop caso não encontre uma questão e opção disponíveis
+        counterZeroImgMain.current <= 9 && questionOptionMatch()
+
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, counterZeroImgMain])
 
     return(
-        <div>
+        <div className={styles.pageMainStyles}>
             {requestData && <div 
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
@@ -181,12 +196,14 @@ function PageMain() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
+                        counterZeroImg={counterZeroImgMain.current}
                     />
                 }
 
-                {loading && <Loader />}            
+                {loading && <Loader />}
 
             </div>}
+
 
         </div>
     )

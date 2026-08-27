@@ -5,6 +5,7 @@ import Loader from '../../Components/Loader'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
+import { GiConsoleController } from 'react-icons/gi'
 
 function PageMulti() {
     
@@ -23,7 +24,7 @@ function PageMulti() {
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, counterZeroImgMulti } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -102,14 +103,14 @@ function PageMulti() {
 
             // tenta corresponder diretamente com a questão atual
             matchedOption = listMultiOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente                
-                return option.optionNumber === questionMulti.questionNumber
+                return ((option.optionNumber === questionMulti.questionNumber) && (questionMulti.questionText !== ''))
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listMultiOptionsContext.forEach(option => {
                       matchedQuestion = listMultiQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente
-                        return question.questionNumber === option.optionNumber
+                        return ((question.questionNumber === option.optionNumber) && (questionMulti.questionText !== ''))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
@@ -117,7 +118,14 @@ function PageMulti() {
                         setQuestionMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
-                    } 
+                    }
+
+                    // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                    const random = uniqueRandomMulti(listMultiQuestionsContextLength)
+                    const next = listMultiQuestionsContext[random]
+
+                    setQuestionMulti(next)
+
                 })
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
@@ -131,12 +139,16 @@ function PageMulti() {
 
             }
 
-        }        
+            counterZeroImgMulti.current++
+
+        } 
         
-        questionMultiOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
+        // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
+        // utilizar um contador (até 3 tentativas, margem de segurança) para limitar caso não encontre uma questão e opção disponíveis
+        counterZeroImgMulti.current <= 5 && questionMultiOptionMatch()
 
-    }, [listMultiQuestionsContext, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading])
-
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading, counterZeroImgMulti])
+console.log(counterZeroImgMulti, 151)
     return(
         <div>     
             {requestData && <div
@@ -175,6 +187,7 @@ function PageMulti() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
+                        counterZeroImg={counterZeroImgMulti.current}
                     />
                 }
 

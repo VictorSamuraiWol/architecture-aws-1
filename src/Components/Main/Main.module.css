@@ -8,6 +8,14 @@
   height: 82vh;
 }
 
+.containerQuestionMenuTools {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  padding: 8px;
+}
+
 .optionColorMain {
   color: var(--color-third);
 }
@@ -132,7 +140,14 @@
   visibility: hidden;
 }
 
-/* Responsividade */
+.zeroImg {
+  width: 50%;
+  margin-top: 16px;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+/* Responsiveness */
 @media (min-width: 1700px) {
   .inputOptions {
     padding: 8px;

@@ -6,7 +6,7 @@ function Options({
     setCaptureValue, optionColorStyle, inputColorStyle,  
     optNum1, optNum2, optNum3, optNum4, optNum5, optionMain
 }) {
-    
+  
     const [itemA, setItemA] = useState('') // valor do item A
     const [itemB, setItemB] = useState('') // valor do item B
     const [itemC, setItemC] = useState('') // valor do item C
