@@ -23,7 +23,7 @@ function PageMulti() {
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMulti, setActiveZeroImgMulti } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -55,12 +55,10 @@ function PageMulti() {
 
         // tornar a página ativa ao entrar na rota dela
         setActivePageMulti(true)
-        
-        // verifica se a página Main está ativa
-        setActivePageMain(false)
 
-        // verifica se a página Forms está ativa
+        setActivePageMain(false)
         setActivePageFormsQuestionsOptions(false)
+        setActivePageDemo(false)
         
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)
@@ -68,7 +66,7 @@ function PageMulti() {
 
         setQuestionMulti(next)          
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti ])
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo ])
 
     useEffect(() => {
         if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
@@ -157,9 +155,7 @@ function PageMulti() {
                 key={questionMulti.id}
             >
                 {questionMulti &&
-                    <Header 
-                        title="Architecture Questions - Randomly"
-                    />
+                    <Header title="Architecture Questions - Randomly" />
                 }
 
                 {questionMulti &&

@@ -26,7 +26,7 @@ function FormsNewQuestionsOptionsPage() {
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, postApi, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
-    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute } = useOutletContext()
+    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute, setActivePageMain, setActivePageMulti, setActivePageDemo } = useOutletContext()
 
     // capturando o conteúdo da label
     const [labelTarget, setLabelTarget] = useState("")
@@ -277,7 +277,11 @@ function FormsNewQuestionsOptionsPage() {
     useEffect(() => {
         setActivePageFormsQuestionsOptions(true) // verifica se a página Forms está ativa
 
-    }, [setActivePageFormsQuestionsOptions])
+        setActivePageMain(false)
+        setActivePageMulti(false)
+        setActivePageDemo(false)
+
+    }, [setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo])
 
     function cleanAllForms() {         
         // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário

@@ -43,7 +43,7 @@ function MultiMain({
 
         if (questionAnswerButtonNextMulti) {
         // condição: se a questão da página Multi foi respondida
-            able = '/'
+            able = '/page-main'
         } 
 
         return able

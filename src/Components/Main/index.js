@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 function Main({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
-    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMain
+    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMain, activePageDemo, activePageMain
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -42,9 +42,9 @@ function Main({
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
         const next = listUnicQuestionsContext[random]
 
-        setQuestionMain(next) // nova questão
+        activePageMain && setQuestionMain(next) // nova questão
 
-    } 
+    }
     
     function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
         if (listUnicQuestionsContext.length >= 2 && questionAnswerButtonNextMain === true) {
@@ -55,6 +55,9 @@ function Main({
 
         } else if (questionAnswerButtonNextMain === false) {
             alert('Oops!!! Please answer the question before moving on to the next one!')
+
+        } else if (activePageDemo && !listUnicQuestionsContextLength) {
+            alert('No data found. Need to mock the API.')
 
         }
 
@@ -74,6 +77,21 @@ function Main({
             able = '/page-multi'
 
         } 
+
+        return able
+
+    }
+
+    function ablePageMain() {
+        let able = null
+
+        if (questionAnswerButtonNextMain === true && listUnicQuestionsContextLength > 0) {
+            able = '/page-main'
+
+        } else if (!listUnicQuestionsContextLength) {
+            able = '/'
+
+        }
 
         return able
 
@@ -155,7 +173,7 @@ function Main({
                 />
     
                 <Link
-                    to={ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'               
+                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'              
                 >
                     <ButtonNext
                         onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  

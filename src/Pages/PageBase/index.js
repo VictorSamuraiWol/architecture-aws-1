@@ -1,5 +1,4 @@
 import styles from './PageBase.module.css'
-import IllustrativePage from '../IllustrativePage'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import DataProvider from '../../Components/DataContext'
 import Footer from '../../Components/Footer'
@@ -11,13 +10,12 @@ function PageBase() {
 
     //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
     const [requestData, setRequestData] = useState(false)
- 
-    const [showIllustrativePage, setShowIllustrativePage] = useState(false) // para habilitar ou não a página ilustrativa
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
 
     const [activePageMain, setActivePageMain] = useState(false)
     const [activePageMulti, setActivePageMulti] = useState(false)
+    const [activePageDemo, setActivePageDemo] = useState(false)
 
     const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
     const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
@@ -43,12 +41,6 @@ function PageBase() {
             : setMute(false)
         
     }
-   
-    // torna showIllustrativePage true para verificar se mostrará ou não a página ilustrativa, dependendo do recebimento dos dados do backend    
-    setTimeout(() => {
-        setShowIllustrativePage(true)
-        
-    }, 1000)
 
     function repeatedAlternativesDefault(option1, option2) { // função padrão (será reutilizada) que verifica se as alternativas se repetem e retorna os que forem repetidos
         let repeated = '';
@@ -95,7 +87,7 @@ function PageBase() {
     return(   
         <div className={styles.pageBaseOutlet}>
             <DataProvider>
-                {(requestData && activePageFormsQuestionsOptions === false) && 
+                {((requestData && activePageFormsQuestionsOptions === false) || activePageDemo) && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
@@ -108,11 +100,11 @@ function PageBase() {
                         setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
                         checkAlternativeAnswerDefault, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti,
-                        activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti, setActiveZeroImgMulti
-                        }} 
+                        setActivePageDemo, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti, activePageDemo, setActiveZeroImgMulti
+                    }} 
                 />                
 
-                {mute === false && (requestData || activePageFormsQuestionsOptions) &&
+                {mute === false && (requestData || activePageFormsQuestionsOptions || activePageDemo) &&
                 // condição: se o mute for false, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeFull // unmute sound icon
                         onClick={validateSound}
@@ -121,7 +113,7 @@ function PageBase() {
                     />
                 }                
 
-                {mute && (requestData || activePageFormsQuestionsOptions) &&
+                {mute && (requestData || activePageFormsQuestionsOptions || activePageDemo) &&
                 // condição: se o mute for true, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeMute // mute sound icon
                         onClick={validateSound}
@@ -130,9 +122,7 @@ function PageBase() {
                     />
                 }
 
-                {(requestData || activePageFormsQuestionsOptions) && <Footer />}    
-
-                {showIllustrativePage && requestData === false && activePageFormsQuestionsOptions === false && <IllustrativePage />}
+                {(requestData || activePageFormsQuestionsOptions || activePageDemo) && <Footer />}
 
             </DataProvider>
 

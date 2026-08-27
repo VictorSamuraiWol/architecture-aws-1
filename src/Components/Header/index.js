@@ -11,7 +11,7 @@ function Header({ title }) {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { requestData, activePageFormsQuestionsOptions, activePageMain, activePageMulti, mute, activeZeroImgMain, activeZeroImgMulti } = useOutletContext()
+    const { requestData, activePageFormsQuestionsOptions, activePageMain, activePageMulti, activePageDemo, mute, activeZeroImgMain, activeZeroImgMulti } = useOutletContext()
 
     const allLinks = document.querySelectorAll('.ulHeader')
 
@@ -80,7 +80,7 @@ function Header({ title }) {
             </nav>
             
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
-            {requestData && activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti)) && <Timer />}
+            {((requestData && activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti))) || activePageDemo) && <Timer />}
             
         </div>
     )

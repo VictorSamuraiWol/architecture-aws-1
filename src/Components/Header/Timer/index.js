@@ -4,7 +4,7 @@ import timerPause from '../../../audios/timer-pause.mp3'
 import { useState, useEffect, useRef } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
-const Timer = () => {
+const Timer = ({ activePageDemo }) => {
   
   const [time, setTime] = useState(120) // 2 minutos = 120 segundos
   const [isRunning, setIsRunning] = useState(true)

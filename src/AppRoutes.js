@@ -2,6 +2,7 @@
 import PageBase from './Pages/PageBase'
 import PageMain from './Pages/PageMain'
 import PageMulti from './Pages/PageMulti'
+import PageDemo from './Pages/PageDemo'
 import PageNotFound from './Pages/PageNotFound'
 import NewQuestionsOptionsPage from './Pages/NewQuestionsOptionsPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -13,7 +14,8 @@ function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PageBase />}>
-          <Route index element={<PageMain />} />
+          <Route index element={<PageDemo />} />
+          <Route path='/page-main' element={<PageMain />} />
           <Route path='/page-multi' element={<PageMulti />} />
           <Route path='/page-forms-new-questions-options' element={<NewQuestionsOptionsPage />} />
           
