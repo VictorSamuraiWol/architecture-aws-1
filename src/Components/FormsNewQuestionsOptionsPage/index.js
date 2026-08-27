@@ -327,7 +327,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
-                if ((number === newQuestionNumberMain)) {
+                if ((number === newQuestionNumberMain) && (number !== '' && newQuestionNumberMain !== '' )) {
                     isValid = false
                     
                 }                 
@@ -463,7 +463,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
-                if ((number === newOptionNumberMain)) {
+                if ((number === newOptionNumberMain) && (number !== '' && newOptionNumberMain !== '' )) {
                     isValid = false
                     
                 }
@@ -626,7 +626,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da questão que irá ser criada já existe na lista das questões, para evitar repetição
             listNumbersForms1and3.forEach(number => {
-                if ((number === newQuestionNumberMulti)) {
+                if ((number === newQuestionNumberMulti) && (number !== '' && newQuestionNumberMulti !== '' )) {
                     isValid = false
                     
                 } 
@@ -757,7 +757,7 @@ function FormsNewQuestionsOptionsPage() {
 
         function numberValidationForms() { // função que verifica se o número da opção que irá ser criada já existe na lista das opções, para evitar repetição
             listNumbersForms2and4.forEach(number => {
-                if ((number === newOptionNumberMulti)) {
+                if ((number === newOptionNumberMulti) && (number !== '' && newOptionNumberMulti !== '' )) {
                     isValid = false
                     
                 } 
