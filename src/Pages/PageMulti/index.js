@@ -5,7 +5,6 @@ import Loader from '../../Components/Loader'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
-import { GiConsoleController } from 'react-icons/gi'
 
 function PageMulti() {
     
@@ -24,7 +23,7 @@ function PageMulti() {
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, counterZeroImgMulti } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMulti, setActiveZeroImgMulti } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -54,6 +53,12 @@ function PageMulti() {
         // habilitar os icones de som, imagem e footer presentes na 'página base' ao renderizar o conteúdo da página Multi
         setRequestData(true)
 
+        // tornar a página ativa ao entrar na rota dela
+        setActivePageMulti(true)
+        
+        // verifica se a página Main está ativa
+        setActivePageMain(false)
+
         // verifica se a página Forms está ativa
         setActivePageFormsQuestionsOptions(false)
         
@@ -63,7 +68,7 @@ function PageMulti() {
 
         setQuestionMulti(next)          
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti ])
 
     useEffect(() => {
         if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
@@ -118,13 +123,10 @@ function PageMulti() {
                         setQuestionMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
+                    } else {
+                        setActiveZeroImgMulti(true)
+
                     }
-
-                    // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                    const random = uniqueRandomMulti(listMultiQuestionsContextLength)
-                    const next = listMultiQuestionsContext[random]
-
-                    setQuestionMulti(next)
 
                 })
 
@@ -133,22 +135,20 @@ function PageMulti() {
                 setOptionMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
                 setOptionMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
+                setActiveZeroImgMulti(false)
 
             } else {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
 
-            counterZeroImgMulti.current++
-
         } 
         
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
-        // utilizar um contador (até 3 tentativas, margem de segurança) para limitar caso não encontre uma questão e opção disponíveis
-        counterZeroImgMulti.current <= 5 && questionMultiOptionMatch()
+        questionMultiOptionMatch()
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading, counterZeroImgMulti])
-console.log(counterZeroImgMulti, 151)
+    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading, setActiveZeroImgMulti])
+
     return(
         <div>     
             {requestData && <div
@@ -187,7 +187,7 @@ console.log(counterZeroImgMulti, 151)
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        counterZeroImg={counterZeroImgMulti.current}
+                        activeZeroImgMulti={activeZeroImgMulti}
                     />
                 }
 

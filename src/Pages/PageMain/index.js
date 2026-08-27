@@ -23,7 +23,7 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading  } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, counterZeroImgMain } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -56,8 +56,14 @@ function PageMain() {
         // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
 
+        // tornar a página ativa ao entrar na rota dela
+        setActivePageMain(true)
+
         // verifica se a página Forms está ativa
-        setActivePageFormsQuestionsOptions(false) 
+        setActivePageFormsQuestionsOptions(false)
+        
+        // verifica se a página Multi está ativa
+        setActivePageMulti(false)
 
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
@@ -65,7 +71,7 @@ function PageMain() {
 
         setQuestionMain(next) // armazena a questão que será mostrada na página Main
         
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions ])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti ])
 
     useEffect(() => {
         if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
@@ -107,7 +113,7 @@ function PageMain() {
                         
                 return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current) && (questionMain.questionText !== ''))
             })
-            
+
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
                 listUnicOptionsContext.forEach(option => {
@@ -118,20 +124,22 @@ function PageMain() {
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
                         matchedOption = option // armazena a opção correspondente
                         setQuestionMain(matchedQuestion) // atualizando a questão                        
-                        setLoading(false) // desabilita o componente 'Loader'                   
+                        setLoading(false) // desabilita o componente 'Loader'
 
-                    } 
+                    } else {
+                        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
+                        const random = uniqueRandomMain(listUnicQuestionsContextLength)
+                        const next = listUnicQuestionsContext[random]
+
+                        setQuestionMain(next) // armazena a questão que será mostrada na página Main
+
+                        // se não encontrar uma questão e opção correspondentes, mostrará uma imagem 
+                        !matchedQuestion && setActiveZeroImgMain(true)
+                        
+                    }
 
                 })
 
-                if (questionMain.correctAnswer === '') {
-                    // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                    const random = uniqueRandomMain(listUnicQuestionsContextLength)
-                    const next = listUnicQuestionsContext[random]
-
-                    setQuestionMain(next) // armazena a questão que será mostrada na página Main
-
-                }
       
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
@@ -140,21 +148,19 @@ function PageMain() {
                 matchedQuestion = questionMain // matchedQuestion recebe o valor 'questionMain'                
                 setLoading(false) // desabilita o componente 'Loader'
                 lastNumberMatchedQuestionOptionRef.current = matchedQuestion.questionNumber // armazena o número da questão correspondente
+                setActiveZeroImgMain(false)
 
             } else {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
-
-            counterZeroImgMain.current++
             
         }
 
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
-        // utilizar um contador (até 10 tentativas, margem de segurança) para limitar e não entrar em loop caso não encontre uma questão e opção disponíveis
-        counterZeroImgMain.current <= 9 && questionOptionMatch()
+        questionOptionMatch()
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, counterZeroImgMain])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, setActiveZeroImgMain])
 
     return(
         <div className={styles.pageMainStyles}>
@@ -196,7 +202,7 @@ function PageMain() {
                         setOptNum3={setOptNum3}
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
-                        counterZeroImg={counterZeroImgMain.current}
+                        activeZeroImgMain={activeZeroImgMain}
                     />
                 }
 

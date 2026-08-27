@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 function Main({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
-    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, counterZeroImg
+    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMain
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -81,7 +81,8 @@ function Main({
 
     return(
         <div className={styles.main}>
-            {counterZeroImg < 10 && <>
+            {activeZeroImgMain === false &&
+            <>
                 <div className={styles.containerQuestionMenuTools}>
                     <Question 
                         question={question}
@@ -166,8 +167,7 @@ function Main({
 
             </>}
 
-            {/* somente aparecer a imagem ao tentar encontrar alguma questão disponível em no máximo 10 tentativas */}
-            {counterZeroImg === 10 && 
+            {activeZeroImgMain &&
                 <img 
                     src={zeroImage} 
                     alt='zero img'

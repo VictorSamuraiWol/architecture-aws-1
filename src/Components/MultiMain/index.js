@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 function MultiMain({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
-    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5,counterZeroImg
+    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMulti
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -51,19 +51,23 @@ function MultiMain({
 
     return (
         <div className={styles.multiMain}>
-            {counterZeroImg < 6 && <>
-                <Question 
-                    question={question}
-                    questionNumber={questionNumber}            
-                />
+            {activeZeroImgMulti === false && 
+            <>
+                <div className={styles.containerQuestionMenuTools}>
+                    <Question 
+                        question={question}
+                        questionNumber={questionNumber}            
+                    />
 
-                <MenuTools
-                    questionMulti={questionMulti} 
-                    optionMulti={optionMulti} 
-                    optionMultiNumberId={optionMultiNumberId}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}               
-                />
+                    <MenuTools
+                        questionMulti={questionMulti} 
+                        optionMulti={optionMulti} 
+                        optionMultiNumberId={optionMultiNumberId}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}               
+                    />
+                
+                </div>            
 
                 {activePopupRepeatedAlternativesMultiMain === true && 
                     <PopupRepeatedAlternatives 
@@ -132,13 +136,11 @@ function MultiMain({
             </>}
 
             {/* somente aparecer a imagem ao tentar encontrar alguma questão disponível em no máximo 10 tentativas */}
-            {counterZeroImg === 6 && 
-                <img 
-                    src={zeroImage} 
-                    alt='zero img'
-                    className={styles.zeroImg}
-                />
-            }
+            {activeZeroImgMulti && <img 
+                src={zeroImage} 
+                alt='zero img'
+                className={styles.zeroImg}
+            />}
                        
         </div>
     )

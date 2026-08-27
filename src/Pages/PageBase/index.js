@@ -16,14 +16,17 @@ function PageBase() {
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
 
+    const [activePageMain, setActivePageMain] = useState(false)
+    const [activePageMulti, setActivePageMulti] = useState(false)
+
+    const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
+    const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
+
     const [mute, setMute] = useState(false)
 
     // questões corretas das páginas main e multi
     const [numCorrectOption, setNumCorrectOption] = useState(0)
     const [numIncorrectOption, setNumIncorrectOption] = useState(0)
-
-    const counterZeroImgMain = useRef(0) // contador para limitar 'loop infinito' na função questionOptionMatch()
-    const counterZeroImgMulti = useRef(0) // contador para limitar 'loop infinito' na função questionOptionMatch()
 
     // resultados estatísticos
     const dataResults = {
@@ -104,7 +107,8 @@ function PageBase() {
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
                         setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
-                        checkAlternativeAnswerDefault, counterZeroImgMain, counterZeroImgMulti
+                        checkAlternativeAnswerDefault, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti,
+                        activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti, setActiveZeroImgMulti
                         }} 
                 />                
 

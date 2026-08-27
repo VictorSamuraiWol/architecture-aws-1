@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 function MultiOptions({ 
     optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
-    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, counterZeroImg
+    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5
 }) {
 
     const [itemA, setItemA] = useState('') // valor do item A
