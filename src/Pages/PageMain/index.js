@@ -108,16 +108,23 @@ function PageMain() {
             setLoading(true) // habilita o componente 'Loader'
 
             // busca uma opção que corresponde diretamente com a questão atual
-            matchedOption = listUnicOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
+            matchedOption = listUnicOptionsContext
+                            .filter(options => options.optionNumber !== '')
+                            .find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
                         
-                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current) && (questionMain.questionText !== ''))
+                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))
             })
 
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listUnicOptionsContext.forEach(option => {
-                    matchedQuestion = listUnicQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior           
-                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current) && (questionMain.questionText !== ''))
+                listUnicOptionsContext
+                .filter(options => options.optionNumber !== '')
+                .forEach(option => {
+                    matchedQuestion = listUnicQuestionsContext
+                                      .filter(questions => questions.questionNumber !== '')
+                                      .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
+
+                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
@@ -126,19 +133,22 @@ function PageMain() {
                         setLoading(false) // desabilita o componente 'Loader'
 
                     } else {
-                        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-                        const random = uniqueRandomMain(listUnicQuestionsContextLength)
-                        const next = listUnicQuestionsContext[random]
+                        listUnicOptionsContext
+                        .filter(options => options.optionNumber !== '')
+                        .forEach(option => {
+                            matchedQuestion = listUnicQuestionsContext
+                                            .filter(questions => questions.questionNumber !== '')
+                                            .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
 
-                        setQuestionMain(next) // armazena a questão que será mostrada na página Main
-
-                        // se não encontrar uma questão e opção correspondentes, mostrará uma imagem 
-                        !matchedQuestion && setActiveZeroImgMain(true)
+                                return (question.questionNumber === option.optionNumber) // tenta mais uma vez, desta vez sem utilizar a variável que verifica o último número 'lastNumberMatchedQuestionOptionRef.current'
+                            })})
                         
                     }
 
                 })
 
+                // se não encontrar uma questão e opção correspondentes, mostrará uma imagem de zero questão
+                !matchedOption && !matchedQuestion && setActiveZeroImgMain(true)
       
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
@@ -153,7 +163,7 @@ function PageMain() {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
-            
+
         }
 
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main

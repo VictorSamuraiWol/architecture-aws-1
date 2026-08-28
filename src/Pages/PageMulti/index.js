@@ -105,15 +105,23 @@ function PageMulti() {
             setLoading(true) // habilita o componente 'Loader'
 
             // tenta corresponder diretamente com a questão atual
-            matchedOption = listMultiOptionsContext.find(option => { // retorna uma opção que tenha uma questão correspondente                
-                return ((option.optionNumber === questionMulti.questionNumber) && (questionMulti.questionText !== ''))
+            matchedOption = listMultiOptionsContext
+                            .filter(options => options.optionNumber !== '')
+                            .find(option => { // retorna uma opção que tenha uma questão correspondente
+
+                return ((option.optionNumber === questionMulti.questionNumber))
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listMultiOptionsContext.forEach(option => {
-                      matchedQuestion = listMultiQuestionsContext.find(question => { // retorna uma questão que tenha uma opção correspondente
-                        return ((question.questionNumber === option.optionNumber) && (questionMulti.questionText !== ''))
+                listMultiOptionsContext
+                .filter(options => options.optionNumber !== '')
+                .forEach(option => {
+                    matchedQuestion = listMultiQuestionsContext
+                                      .filter(questions => questions.questionNumber !== '')
+                                      .find(question => { // retorna uma questão que tenha uma opção correspondente
+
+                        return ((question.questionNumber === option.optionNumber))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
@@ -121,12 +129,11 @@ function PageMulti() {
                         setQuestionMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
-                    } else {
-                        setActiveZeroImgMulti(true)
-
                     }
-
                 })
+
+                // se não encontrar uma questão e opção correspondentes, mostrará uma imagem de zero questão 
+                !matchedQuestion && !matchedOption && setActiveZeroImgMulti(true)
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
