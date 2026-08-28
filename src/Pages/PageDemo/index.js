@@ -62,6 +62,7 @@ function PageDemo() {
           className={styles.allQuestionsDemoClass} 
           key='0'
       >
+        {/* reutilizando componentes da página Main */}
         <Header title="Architecture Questions - Randomly" />
 
         <Main 

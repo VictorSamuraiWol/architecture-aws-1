@@ -89,7 +89,6 @@ function ModalResults() {
                 <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>
                 <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
                 <p id='performances'>Performance: {dataResults.performanceResults}</p>
-                <p>Note: Minimum passing performance: 72% across 65 questions.</p>
 
             </Modal>
 

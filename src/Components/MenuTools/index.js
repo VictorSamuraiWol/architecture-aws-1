@@ -4,12 +4,15 @@ import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
+import { useOutletContext } from 'react-router-dom'
 
 function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti, 
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
+
+  const { activePageDemo } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
 
@@ -147,17 +150,24 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   }
 
   function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
-    if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
-        onDeleteQuestion(questionMain)
-        onDeleteOption(optionMainNumberId)
-        alert('Deleted successfully!')
-        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
-        setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
-    
+    if (activePageDemo) {
+      alert("This is a static question and cannot be removed.")
+      setActivePopupDelete(false)
+
     } else {
-      alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
-      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption' 
-    
+      if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
+          onDeleteQuestion(questionMain)
+          onDeleteOption(optionMainNumberId)
+          alert('Deleted successfully!')
+          setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+          setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+      
+      } else {
+        alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
+        setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption' 
+      
+      }
+
     }
 
   }

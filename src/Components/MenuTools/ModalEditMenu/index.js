@@ -63,7 +63,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [activePopupAlreadySavedModalEdit, setActivePopupAlreadySavedModalEdit] = useState(false)
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute } = useOutletContext()
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo } = useOutletContext()
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
 
@@ -274,40 +274,47 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsNewPageMain(event) {
-    if (activePopupAlreadySaved() === true) {
-      event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
-      setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
+    if (activePageDemo) { // se a página demo estiver aberta
+      event.preventDefault()
+      alert('This is a static question and cannot be edited here.')
+      closeModal()
 
     } else {
-      setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
-
-      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-        event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-        setActivePopupcheckAlternativeAnswerModalForms1(true)
+      if (activePopupAlreadySaved() === true) {
+        event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
+        setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
       } else {
-        if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+        setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
+
+        if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
           event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
-          setActivePopupRepeatedAlternativesModalEdit(true)
-
-          setTimeout(() => {
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-          }, 10000)
+          setActivePopupcheckAlternativeAnswerModalForms1(true)
 
         } else {
-          onSaveModalQuestion() // salvando a questão única
-          onSaveModalOption() // salvando a opção única
-          
-          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+            event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
+            setActivePopupRepeatedAlternativesModalEdit(true)
 
-          console.log('Saved!')
-          alert('Saved successfully!')
+            setTimeout(() => {
+              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+            }, 10000)
+
+          } else {
+            onSaveModalQuestion() // salvando a questão única
+            onSaveModalOption() // salvando a opção única
+            
+            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+
+            console.log('Saved!')
+            alert('Saved successfully!')
+
+          }
 
         }
 
       }
-
     }
 
   }
@@ -448,30 +455,37 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   // função que limpa todos os campos do formulário
   function cleanForm() {
-    if (questionMain && optionMain) {
-      setQuestionTextMain('')
-      setCorrectAnswerMain('')
-      setImageKeyMain('')
-      setDescriptionMain('')
-      setOptionAMain('')
-      setOptionBMain('')
-      setOptionCMain('')
-      setOptionDMain('')
-      setOptionEMain('')
+    if (activePageDemo) {
+      alert("This is a static question and clearing is disabled.")
+      closeModal()
 
-    }
+    } else {
+      if (questionMain && optionMain) {
+        setQuestionTextMain('')
+        setCorrectAnswerMain('')
+        setImageKeyMain('')
+        setDescriptionMain('')
+        setOptionAMain('')
+        setOptionBMain('')
+        setOptionCMain('')
+        setOptionDMain('')
+        setOptionEMain('')
 
-    if (questionMulti && optionMulti) {
-      setQuestionTextMulti('')
-      setCorrectAnswerMulti('')
-      setImageKeyMulti('')
-      setDescriptionMulti('')
-      setOptionAMulti('')
-      setOptionBMulti('')
-      setOptionCMulti('')
-      setOptionDMulti('')
-      setOptionEMulti('')
+      }
 
+      if (questionMulti && optionMulti) {
+        setQuestionTextMulti('')
+        setCorrectAnswerMulti('')
+        setImageKeyMulti('')
+        setDescriptionMulti('')
+        setOptionAMulti('')
+        setOptionBMulti('')
+        setOptionCMulti('')
+        setOptionDMulti('')
+        setOptionEMulti('')
+
+      }
+    
     }
       
   }
@@ -503,7 +517,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
         <h1>EDIT CARD:</h1>
 
-        {questionMain && optionMain && <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
+        {questionMain && optionMain && 
+        <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={multiFunctionsNewPageMain}
           className={styles.formModal}
         > 
@@ -593,7 +608,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         
         </form>}
 
-        {questionMulti && optionMulti && <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
+        {questionMulti && optionMulti && 
+        <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
           onSubmit={multiFunctionsPageMulti}
           className={styles.formModal}
         > 
