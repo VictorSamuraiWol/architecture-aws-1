@@ -142,6 +142,7 @@
 
 .zeroImg {
   width: 50%;
+  max-height: 95%;
   margin-top: 16px;
   border-radius: 16px;
   z-index: 1;
