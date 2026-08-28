@@ -100,7 +100,7 @@ function ButtonAnswer({
                     answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer)
                     
                     // alerta avisando para passar para a próxima questão
-                    alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
 
                 } else {
                     for(let i=0; i < convertObjArray.length; i++) {
@@ -243,7 +243,7 @@ function ButtonAnswer({
                     answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
                     
                     // alerta avisando para passar para a próxima questão
-                    alert('Ops!!! Já foi respondida está questão, por favor, passe para a próxima questão.')
+                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
 
                 } else {
                     for(let i=0; i<checkedValuesInput.length; i++) {
