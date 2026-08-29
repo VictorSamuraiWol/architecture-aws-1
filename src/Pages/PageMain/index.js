@@ -23,7 +23,7 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, activePageMain, setActivePageMain, setActivePageMulti, activeZeroImgMain, setActiveZeroImgMain, setActivePageDemo } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, setActivePageDemo } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -51,18 +51,21 @@ function PageMain() {
     }   
 
     useEffect(() => {
-        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return // se a lista de questões não existir, retorne
-
         // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
         setRequestData(true)
 
         // tornar a página ativa ao entrar na rota dela
         setActivePageMain(true)
 
-
-        setActivePageFormsQuestionsOptions(false)
         setActivePageMulti(false)
         setActivePageDemo(false)
+        setActivePageThreeMulti(false)
+        setActivePageFormsQuestionsOptions(false)
+
+    }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+
+    useEffect(() => {
+        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return // se a lista de questões não existir, retorne
 
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
@@ -70,7 +73,7 @@ function PageMain() {
 
         setQuestionMain(next) // armazena a questão que será mostrada na página Main
         
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo ])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
 
     useEffect(() => {
         if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
@@ -179,10 +182,9 @@ function PageMain() {
                 key={questionMain.id}
             >        
                 {questionMain &&
+                <>
                     <Header title="Architecture Questions - Randomly" />                    
-                }
-                
-                {questionMain &&
+
                     <Main 
                         question={questionMain.questionText}
                         answer={questionMain.correctAnswer}
@@ -212,6 +214,7 @@ function PageMain() {
                         activeZeroImgMain={activeZeroImgMain}
                         activePageMain={activePageMain}
                     />
+                </>
                 }
 
                 {loading && <Loader />}

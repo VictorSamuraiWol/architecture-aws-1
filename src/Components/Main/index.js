@@ -20,7 +20,6 @@ function Main({
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
-   
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
     const [optionValidateStyle] = useState(styles.optionValidate)
@@ -35,7 +34,7 @@ function Main({
 
     const [item, setItem] = useState('') // captura o item correto
 
-    const [numberPath] = useState(Math.floor(Math.random() * 3) + 1) // Gera um número aleatório entre 1 e 3
+    const [numberPath] = useState(Math.floor(Math.random() * 4) + 1) // Gera um número aleatório entre 1 e 4
 
     function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
@@ -71,6 +70,10 @@ function Main({
         if (questionAnswerButtonNextMain === true && numberPath === 3) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
             able = '/page-multi'
+
+        } else if (questionAnswerButtonNextMain === true && numberPath === 4) {
+        // condição: se a questão da página Main foi respondida e o numberPath for igual a '4'
+            able = '/page-three-multi'
 
         } else if ((questionAnswerButtonNextMain === true) && (numberPath === 1 || numberPath === 2) && (listUnicQuestionsContext.length < 2)) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '1' ou '2' e tiver menos de 2 questões únicas
@@ -173,7 +176,7 @@ function Main({
                 />
     
                 <Link
-                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'              
+                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
                 >
                     <ButtonNext
                         onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  

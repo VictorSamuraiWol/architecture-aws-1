@@ -1,0 +1,14 @@
+.allQuestionsMultiClass {
+    height: 90vh;
+    background-color: var(--color-first);
+}
+
+.invisibleAnswerDescription {
+    visibility: hidden;
+
+}
+
+.invisibleDescription {
+    visibility: hidden;
+ 
+}

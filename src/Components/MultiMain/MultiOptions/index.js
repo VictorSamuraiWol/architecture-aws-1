@@ -1,5 +1,6 @@
 import styles from './MultiOptions.module.css'
 import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 function MultiOptions({ 
     optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
@@ -12,11 +13,13 @@ function MultiOptions({
     const [itemD, setItemD] = useState('') // valor do item D
     const [itemE, setItemE] = useState('') // valor do item E
 
+    const { activePageThreeMulti } = useOutletContext()
+
     // função para capturar os dois valores que estão marcados quando clicados no campo caixa de marcação (input)
     function captureValueMultiFunc(e) {
         const { value, checked } = e.target
         setCaptureValueMulti(prevValues => checked ? [...prevValues, value] : prevValues.filter(v => v !== value))
-
+        
     }
 
     // função para capturar os dois valores que estão marcados quando clicados no campo texto (p)
@@ -83,7 +86,14 @@ function MultiOptions({
                         {optionMulti[optNum1]}
 
                         <span className={styles.answerBool} id='answerBool1'>
-                            {(optNum1 === 0 || optNum1 === 1) && 'true'} 
+                            {activePageThreeMulti ? 
+                                (optNum1 === 0 || optNum1 === 1 || optNum1 === 2) && 'true' 
+                                :
+                                (optNum1 === 0 || optNum1 === 1) && 'true'}
+
+
+
+                            {/* {(optNum1 === 0 || optNum1 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -114,7 +124,14 @@ function MultiOptions({
                         {optionMulti[optNum2]}
 
                         <span className={styles.answerBool} id='answerBool2'>
-                            {(optNum2 === 0 || optNum2 === 1) && 'true'} 
+                            {activePageThreeMulti ? 
+                                (optNum2 === 0 || optNum2 === 1 || optNum2 === 2) && 'true' 
+                                :
+                                (optNum2 === 0 || optNum2 === 1) && 'true'}
+
+
+
+                            {/* {(optNum2 === 0 || optNum2 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -145,7 +162,14 @@ function MultiOptions({
                         {optionMulti[optNum3]}
 
                         <span className={styles.answerBool} id='answerBool3'>
-                            {(optNum3 === 0 || optNum3 === 1) && 'true'} 
+                            {activePageThreeMulti ? 
+                                (optNum3 === 0 || optNum3 === 1 || optNum3 === 2) && 'true' 
+                                :
+                                (optNum3 === 0 || optNum3 === 1) && 'true'}
+
+
+
+                            {/* {(optNum3 === 0 || optNum3 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -176,7 +200,14 @@ function MultiOptions({
                         {optionMulti[optNum4]}
 
                         <span className={styles.answerBool} id='answerBool4'>
-                            {(optNum4 === 0 || optNum4 === 1) && 'true'} 
+                            {activePageThreeMulti ? 
+                                (optNum4 === 0 || optNum4 === 1 || optNum4 === 2) && 'true' 
+                                :
+                                (optNum4 === 0 || optNum4 === 1) && 'true'}
+
+
+
+                            {/* {(optNum4 === 0 || optNum4 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -207,7 +238,14 @@ function MultiOptions({
                         {optionMulti[optNum5]}
 
                         <span className={styles.answerBool} id='answerBool5'>
-                            {(optNum5 === 0 || optNum5 === 1) && 'true'} 
+                            {activePageThreeMulti ? 
+                                (optNum5 === 0 || optNum5 === 1 || optNum5 === 2) && 'true' 
+                                :
+                                (optNum5 === 0 || optNum5 === 1) && 'true'}
+
+
+
+                            {/* {(optNum5 === 0 || optNum5 === 1) && 'true'}  */}
                         </span>
                     </p>
 

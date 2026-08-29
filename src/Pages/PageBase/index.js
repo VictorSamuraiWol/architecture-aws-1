@@ -13,9 +13,10 @@ function PageBase() {
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
 
+    const [activePageDemo, setActivePageDemo] = useState(false)
     const [activePageMain, setActivePageMain] = useState(false)
     const [activePageMulti, setActivePageMulti] = useState(false)
-    const [activePageDemo, setActivePageDemo] = useState(false)
+    const [activePageThreeMulti, setActivePageThreeMulti] = useState(false)
 
     const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
     const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
@@ -63,23 +64,30 @@ function PageBase() {
 
     function checkAlternativeAnswerDefault(option, multiOption, answer) { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
         let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
-        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2    
+        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2
+        let matchedOptionThreeMultiMain = null // variáveis usadas para preencher o formulário 3  
         let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
         
-        // filtra a opção única correspondente, ao preencher o formulário 1
+        // filtra a opção única correspondente
         matchedOptionMain = option && option.filter(option => option === answer)[0]
         
-        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla, ao preencher o formulário 2
-        matchedOptionMultiMain = answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
+        // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla
+        matchedOptionMultiMain = activePageMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
+
+        // retorna 'true' se os valores de 'Option1', 'Option2' e 'Option3' estiverem incluídos na resposta da questão múltipla
+        matchedOptionThreeMultiMain = activePageThreeMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1]) && answer.includes(multiOption && multiOption[2])
         
         if (answer && option && (option[0] !== undefined && option[1] !== undefined && option[2] !== undefined && option[3] !== undefined) && matchedOptionMain === undefined) {
         checkWithoutMatched = true
         
-        } else if (answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionMultiMain === false) {
+        } else if (activePageMulti && answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionMultiMain === false) {
+        checkWithoutMatched = true
+
+        } else if (activePageThreeMulti && answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionThreeMultiMain === false) {
         checkWithoutMatched = true
 
         }
-        
+
         return checkWithoutMatched
     
     }
@@ -99,8 +107,9 @@ function PageBase() {
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
                         setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
-                        checkAlternativeAnswerDefault, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti,
-                        setActivePageDemo, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti, activePageDemo, setActiveZeroImgMulti
+                        checkAlternativeAnswerDefault, activePageDemo, setActivePageDemo, activePageMain, setActivePageMain, 
+                        activePageMulti, setActivePageMulti, activePageThreeMulti, setActivePageThreeMulti, activeZeroImgMain, 
+                        setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti
                     }} 
                 />                
 

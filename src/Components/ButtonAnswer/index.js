@@ -16,7 +16,7 @@ function ButtonAnswer({
 }) {
     
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-    const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault } = useOutletContext()
+    const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageMain, activePageMulti, activePageThreeMulti } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
@@ -29,6 +29,9 @@ function ButtonAnswer({
 
     // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMulti, setActivePopupCheckAlternativeAnswerButtonAnswerMulti] = useState(false)
+
+    // ativa ou desativa o componente PopupCheckAlternativeAnswer
+    const [activePopupCheckAlternativeAnswerButtonAnswerThreeMulti, setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti] = useState(false)
     
     // habilitar a animação fogos de artifício ao acertar
     const handleAnswer = (isCorrect) => {
@@ -49,8 +52,12 @@ function ButtonAnswer({
         if (optionMain && captureValue === '') {            
             alert('Please select an option!') 
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
-        } else if ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2)) {
+        } else if (activePageMulti && ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2))) {
             alert('Please select 2 options!') 
+            answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
+
+        } else if (activePageThreeMulti && ((optionMulti && captureValueMulti.length < 3) || (optionMulti && captureValueMulti.length > 3))) {
+            alert('Please select 3 options!') 
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         }
@@ -355,12 +362,180 @@ function ButtonAnswer({
    
     }
 
+    function validateAnswerPageThreeMulti() {
+        const errorSound = new Audio(errorAudio)
+        const correctSound = new Audio(correctAudio)     
+        const captureOptionsNextMultiInput = document.querySelectorAll('.optionNextMulti input') // captura todas os campos input
+        const captureOptionsNextMultiP = document.querySelectorAll('.optionNextMulti div') // captura todas as alternativas
+        const captureOptionsNextMultiItens = document.querySelectorAll('.optionNextMulti .item') // captura todos os itens
+
+        const checkedValuesInput = [...captureOptionsNextMultiInput] // captura somente os inputs marcados
+            .filter(input => input.checked)
+            .map(input => input.value)
+          
+        const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
+            .filter(input => input.checked)
+            .map(input => input.parentElement.children[1])
+
+        const checkedItens = [...captureOptionsNextMultiInput] // captura somente os itens marcados
+            .filter(input => input.checked)
+            .map(input => input.parentElement.children[1].childNodes[0])
+
+        const allParagraph =  [...captureOptionsNextMultiP] // captura todas as alternativas
+
+        const allItens = [...captureOptionsNextMultiItens] // captura todos os itens    
+
+        let correctItens = [] // para capturar os itens corretos
+        let uniqueItens = [] // para retirar os itens duplicados
+        let sortedItems = [] // ordenar os itens (a, b, c, d ou e)
+        let setterQuestionAnswer = false
+        let setterQuestionAnswerButtonNextMulti = false
+        let setterNumIncorrectOption = 0
+        let setterNumCorrectOption = 0
+        let functionHandleAnswer = false
+        let playCorrectSound = false
+        let playErrorSound = false
+
+        alertOption() // alertar quando menos de 3 alternativas ou mais de 3 alternativas estiverem marcadas na página múltipla
+
+        if (checkAlternativeAnswerDefault(optionMain, optionMulti, answer) === true) {
+            setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti(true)
+
+        } else {
+            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
+                setActivePopupRepeatedAlternativesMultiMain(true)
+
+                setTimeout(() => {
+                    setActivePopupRepeatedAlternativesMultiMain(false) // desativa o popup em 10s
+
+                }, 10000)
+
+            } else {
+                if(questionAnswer === true) {           
+                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                    
+                    // alerta avisando para passar para a próxima questão
+                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
+
+                } else {
+                    for(let i=0; i<checkedValuesInput.length; i++) {
+                        if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
+                            // estilizando os parágrafos marcados corretamente
+                            checkedParagraph[i].classList.add(optionValidateStyle)
+                            checkedParagraph[i].classList.remove(optionColorStyle)
+
+                            // estilizando os inputs marcados corretamente
+                            checkedParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
+                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+
+                            correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
+                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
+
+                            if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true') && checkedParagraph[2].innerText.includes('true')) {
+                                functionHandleAnswer = true // ativa a animação de fogos de artifícil
+                                playCorrectSound = true // toca o som de acerto
+
+                            }
+
+                        } else if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true') === false) { 
+                            // estilizando os parágrafos marcados incorretamente
+                            checkedParagraph[i].classList.add(optionInvalidateStyle)
+                            checkedParagraph[i].classList.remove(optionColorStyle)
+
+                            // estilizando os inputs marcados incorretamente
+                            checkedParagraph[i].parentElement.children[0].classList.add(inputInvalidateStyle)
+                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+
+                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
+
+                            for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
+                                if (allParagraph[i].childNodes[3].innerText.includes('true')) {
+                                    // estilizando os parágrafos corretos
+                                    allParagraph[i].classList.add(optionValidateStyle)
+                                    allParagraph[i].classList.remove(optionColorStyle)
+
+                                    // estilizando os inputs corretos
+                                    allParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
+                                    allParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+
+                                    correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
+
+                                } 
+                                
+                            } 
+
+                            uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
+                            setItens(`${uniqueItens[0]} // ${uniqueItens[1]} // ${uniqueItens[2]}`) // armazena os itens corretos
+                            playErrorSound = true // toca o som de erro
+
+                        }
+
+                    }
+
+                    // incremento da resposta correta ou errada
+                    if (playCorrectSound) {
+                        setterNumCorrectOption++ // incrementa '1' se responder correto
+
+                    } else if (playErrorSound) {
+                        setterNumIncorrectOption++ // incrementa '1' se responder errado
+
+                    }
+
+                    // usando setters fora do loop 'for'
+                    if (setterQuestionAnswer) {
+                        setQuestionAnswer(setterQuestionAnswer)
+
+                    }
+
+                    if (setterQuestionAnswerButtonNextMulti) {
+                        setQuestionAnswerButtonNextMulti(setterQuestionAnswerButtonNextMulti)
+
+                    }
+
+                    if (setterNumIncorrectOption > 0) {
+                        setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
+
+                    }
+
+                    if (setterNumCorrectOption > 0) {
+                        setNumCorrectOption(prev => prev + setterNumCorrectOption)
+
+                    }
+
+                    if (functionHandleAnswer) {
+                        handleAnswer(functionHandleAnswer)
+
+                    }
+
+                    if (mute === false) {
+                        playCorrectSound && correctSound.play()
+                        playErrorSound && errorSound.play()
+
+                    }
+                    
+                    uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
+                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)        
+                    setItens(`${sortedItems[0]} // ${sortedItems[1]} // ${uniqueItens[2]}`) // armazena os itens corretos
+
+                }
+
+            }
+        
+        }
+
+    }
+
     function displayAndValidate () {
         optionMain && validateAnswerPageMain()
-        optionMulti && validateAnswerPageMulti()
+        optionMulti && activePageMulti && validateAnswerPageMulti()
+        optionMulti && activePageThreeMulti && validateAnswerPageThreeMulti()
 
         // enquanto tiver alternativas repetidas, não será mostrado a resposta na tela 
-        if ((optionMain && !optionMulti && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValue !== '') || (optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 2)) {
+        if ((optionMain && !optionMulti && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValue !== '') || 
+        (activePageMulti && optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 2) || 
+        (activePageThreeMulti && optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 3)) {
         // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
 
@@ -379,7 +554,7 @@ function ButtonAnswer({
             <Animation correct={correct} />
 
             {/* PopupCheckAlternativeAnswer */}
-            {activePopupCheckAlternativeAnswerButtonAnswerMain === true && 
+            {activePageMain && activePopupCheckAlternativeAnswerButtonAnswerMain === true && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
@@ -388,12 +563,21 @@ function ButtonAnswer({
                 />
             }
 
-            {activePopupCheckAlternativeAnswerButtonAnswerMulti === true && 
+            {activePageMulti && activePopupCheckAlternativeAnswerButtonAnswerMulti === true && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
                     textPopup={`The two alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A and Option B exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
                     textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the two correct alternatives from the option highlighted below: ${optionMulti[0]} e ${optionMulti[1]}. (2)Include in the first two alternatives (Option A and Option B) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}. `}
+                />
+            }
+
+            {activePageThreeMulti && activePopupCheckAlternativeAnswerButtonAnswerThreeMulti === true && 
+                <PopupCheckAlternativeAnswer 
+                    specificStyles={styles.popupCheckButtonAnswer} 
+                    activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti}
+                    textPopup={`The three alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A, Option B and Option C exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the three correct alternatives from the option highlighted below: ${optionMulti[0]}, ${optionMulti[1]} e ${optionMulti[2]}. (2)Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}.`}
                 />
             }
 

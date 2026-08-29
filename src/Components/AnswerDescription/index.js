@@ -14,11 +14,10 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 
 function AnswerDescription({ 
-    answer, description, imageDescription, answerDescriptionDisplay, descriptionDisplay, setDescriptionDisplay, 
-    item, itens
+    answer, description, imageDescription, answerDescriptionDisplay, item, itens
 }) {
 
-    const { listUnicOptionsContext, listMultiOptionsContext } = useContext(DataContext)
+    const { listUnicOptionsContext, listMultiOptionsContext, listThreeMultiOptionsContext } = useContext(DataContext)
 
     // colocando todas as imagens disponíveis das questões relacionadas em um objeto para serem usadas nas suas respectivas questões dinamicamente
     const [imagesDescriptions] = useState({
@@ -45,7 +44,7 @@ function AnswerDescription({
                 className={styles.answerDisplay}
             >
                 {item && <span className={styles.item}>{item}</span>} {/* item que será mostrado na PageMain */}
-                <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer)}</h3>
+                <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer) || (listThreeMultiOptionsContext && answer)}</h3>
             </div>
 
             <DescriptionModal 
@@ -58,4 +57,4 @@ function AnswerDescription({
     )
 }
 
-export default AnswerDescription;
+export default AnswerDescription

@@ -1,4 +1,4 @@
-import styles from './PageMulti.module.css'
+import styles from './PageThreeMulti.module.css'
 import Header from '../../Components/Header'
 import MultiMain from '../../Components/MultiMain'
 import Loader from '../../Components/Loader'
@@ -6,11 +6,11 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
-function PageMulti() {
+function PageThreeMulti() {
     
-    const [questionMulti, setQuestionMulti] = useState('')
-    const [optionMulti, setOptionMulti] = useState([]) // mapear todas as opções da página multi    
-    const [optionMultiNumberId, setOptionMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
+    const [questionThreeMulti, setQuestionThreeMulti] = useState('')
+    const [optionThreeMulti, setOptionThreeMulti] = useState([]) // mapear todas as opções da página multi    
+    const [optionThreeMultiNumberId, setOptionThreeMultiNumberId] = useState([]) // capturar o número e a ID da opção de múltipla escolha atual do componente MultiMain
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -20,10 +20,10 @@ function PageMulti() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
+    const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -52,28 +52,28 @@ function PageMulti() {
         setRequestData(true)
 
         // tornar a página ativa ao entrar na rota dela
-        setActivePageMulti(true)
-
+        setActivePageThreeMulti(true)
+        
+        setActivePageMulti(false)
         setActivePageMain(false)
         setActivePageDemo(false)
-        setActivePageThreeMulti(false)
         setActivePageFormsQuestionsOptions(false)
 
     }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
     
     useEffect(() => {
-        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return // se a lista de questões não existir, retorne    
+        if (!listThreeMultiQuestionsContext || !listThreeMultiQuestionsContextLength) return // se a lista de questões não existir, retorne
         
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-        const random = uniqueRandomMulti(listMultiQuestionsContextLength)
-        const next = listMultiQuestionsContext[random]
+        const random = uniqueRandomMulti(listThreeMultiQuestionsContextLength)
+        const next = listThreeMultiQuestionsContext[random]
 
-        setQuestionMulti(next)          
+        setQuestionThreeMulti(next)          
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength])
+    }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength])
 
     useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
+        if (!listThreeMultiOptionsContext || !listThreeMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
 
         const randomNumbers = [] // armazena a lista de números randômicos
 
@@ -95,33 +95,33 @@ function PageMulti() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
     
-    }, [listMultiOptionsContext])
+    }, [listThreeMultiOptionsContext])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
 
-        if (!listMultiQuestionsContext || !questionMulti || !listMultiOptionsContext) return     
+        if (!listThreeMultiQuestionsContext || !questionThreeMulti || !listThreeMultiOptionsContext) return     
 
-        function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
+        function questionThreeMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
             let matchedQuestion = null
 
             setLoading(true) // habilita o componente 'Loader'
 
             // tenta corresponder diretamente com a questão atual
-            matchedOption = listMultiOptionsContext
+            matchedOption = listThreeMultiOptionsContext
                             .filter(options => options.optionNumber !== '')
                             .find(option => { // retorna uma opção que tenha uma questão correspondente
 
-                return ((option.optionNumber === questionMulti.questionNumber))
+                return ((option.optionNumber === questionThreeMulti.questionNumber))
             })
      
             // Se não encontrou, tenta corresponder via lista de questões
             if (!matchedOption) { // se a opção não tiver questão correspondente, procura uma nova questão e opção correspondentes
-                listMultiOptionsContext
+                listThreeMultiOptionsContext
                 .filter(options => options.optionNumber !== '')
                 .forEach(option => {
-                    matchedQuestion = listMultiQuestionsContext
+                    matchedQuestion = listThreeMultiQuestionsContext
                                       .filter(questions => questions.questionNumber !== '')
                                       .find(question => { // retorna uma questão que tenha uma opção correspondente
 
@@ -130,7 +130,7 @@ function PageMulti() {
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção
                         matchedOption = option // armazena a opção correspondente
-                        setQuestionMulti(matchedQuestion) // atualizando a questão
+                        setQuestionThreeMulti(matchedQuestion) // atualizando a questão
                         setLoading(false) // desabilita o componente 'Loader'
                         
                     }
@@ -141,8 +141,8 @@ function PageMulti() {
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
-                setOptionMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
+                setOptionThreeMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
+                setOptionThreeMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
                 setActiveZeroImgMulti(false)
 
@@ -154,35 +154,37 @@ function PageMulti() {
         } 
         
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
-        questionMultiOptionMatch()
+        questionThreeMultiOptionMatch()
 
-    }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading, setActiveZeroImgMulti])
+    }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, questionThreeMulti, setQuestionThreeMulti, setOptionThreeMulti, setOptionThreeMultiNumberId, setLoading, setActiveZeroImgMulti])
 
     return(
         <div>     
             {requestData && <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
-                key={questionMulti.id}
+                key={questionThreeMulti.id}
             >
-                {questionMulti &&
-                <>
+                {questionThreeMulti &&
+                  <>
+                    {/* reutilizando os componentes da página Multi */}
                     <Header title="Architecture Questions - Randomly" />
 
+
                     <MultiMain 
-                        question={questionMulti.questionText} 
-                        answer={questionMulti.correctAnswer}
-                        imageDescription={questionMulti.imageKey}
-                        description={questionMulti.description}
-                        questionNumber={questionMulti.questionNumber}
-                        elementId={questionMulti.id}
+                        question={questionThreeMulti.questionText} 
+                        answer={questionThreeMulti.correctAnswer}
+                        imageDescription={questionThreeMulti.imageKey}
+                        description={questionThreeMulti.description}
+                        questionNumber={questionThreeMulti.questionNumber}
+                        elementId={questionThreeMulti.id}
                         answerDescriptionDisplay={answerDescriptionDisplay}
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        questionMulti={questionMulti}
-                        optionMulti={optionMulti}
-                        optionMultiNumberId={optionMultiNumberId}
+                        questionMulti={questionThreeMulti}
+                        optionMulti={optionThreeMulti}
+                        optionMultiNumberId={optionThreeMultiNumberId}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}
@@ -194,8 +196,9 @@ function PageMulti() {
                         setOptNum4={setOptNum4}
                         setOptNum5={setOptNum5}
                         activeZeroImgMulti={activeZeroImgMulti}
-                    />                   
-                </>
+                    />
+
+                  </>
                 }
 
                 {loading && <Loader />}           
@@ -207,4 +210,4 @@ function PageMulti() {
     )
 }
 
-export default PageMulti
+export default PageThreeMulti
