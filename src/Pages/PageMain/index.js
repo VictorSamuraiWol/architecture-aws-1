@@ -206,11 +206,6 @@ function PageMain() {
                         optNum3={optNum3}
                         optNum4={optNum4}
                         optNum5={optNum5}
-                        setOptNum1={setOptNum1}
-                        setOptNum2={setOptNum2}
-                        setOptNum3={setOptNum3}
-                        setOptNum4={setOptNum4}
-                        setOptNum5={setOptNum5}
                         activeZeroImgMain={activeZeroImgMain}
                         activePageMain={activePageMain}
                     />

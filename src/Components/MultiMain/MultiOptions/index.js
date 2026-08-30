@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom'
 
 function MultiOptions({ 
     optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
-    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5
+    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
 }) {
 
     const [itemA, setItemA] = useState('') // valor do item A
@@ -12,6 +12,7 @@ function MultiOptions({
     const [itemC, setItemC] = useState('') // valor do item C
     const [itemD, setItemD] = useState('') // valor do item D
     const [itemE, setItemE] = useState('') // valor do item E
+    const [itemF, setItemF] = useState('') // valor do item F, somente para a página 'ThreeMulti'
 
     const { activePageThreeMulti } = useOutletContext()
 
@@ -38,16 +39,24 @@ function MultiOptions({
         
     }
 
-    useEffect(() => { // atualizar os itens A, B, C, D e E, dependendo do número de alternativas da opção, se for 4 (A, B, C e D) se for 5 (A, B, C, D e E) 
+    useEffect(() => { // atualizar os itens A, B, C, D, E e F, dependendo do número de alternativas da opção, se for 4 (A, B, C e D), se for 5 (A, B, C, D e E), se for 6 (A, B, C, D, E e F) 
         function itemOrderSelection() { // função que atualiza a ordem dos itens A, B, C, D e E da opção
-            if (optionMulti[optNum1] && optionMulti[optNum2] && optionMulti[optNum3] && optionMulti[optNum4] && optionMulti[optNum5]) {
+            if (optionMulti[optNum1] && optionMulti[optNum2] && optionMulti[optNum3] && optionMulti[optNum4] && optionMulti[optNum5] && !optionMulti[optNum6]) { // páginas Main e MultiMain
                 setItemA('a)') 
                 setItemB('b)') 
                 setItemC('c)') 
                 setItemD('d)') 
                 setItemE('e)')
 
-            } else if (!optionMulti[optNum1] || !optionMulti[optNum2] || !optionMulti[optNum3] || !optionMulti[optNum4] || !optionMulti[optNum5]) {
+            } else if (optionMulti[optNum1] && optionMulti[optNum2] && optionMulti[optNum3] && optionMulti[optNum4] && optionMulti[optNum5] && optionMulti[optNum6]) { // página ThreeMulti
+                setItemA('a)') 
+                setItemB('b)') 
+                setItemC('c)') 
+                setItemD('d)') 
+                setItemE('e)')
+                setItemF('f)')
+
+            } else if (!optionMulti[optNum1] || !optionMulti[optNum2] || !optionMulti[optNum3] || !optionMulti[optNum4] || !optionMulti[optNum5]) { // páginas Main e MultiMain
                 setItemA('a)') 
                 setItemB('b)') 
                 setItemC('c)') 
@@ -60,8 +69,8 @@ function MultiOptions({
 
         itemOrderSelection()
         
-    }, [optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5]) 
-
+    }, [optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6])
+    
     return (
         optionMulti && <div className={styles.multiOptions}>
             {optionMulti[optNum1] && <div className={`optionNextMulti ${optionColorStyle} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'optionMulti[optNum1]' existir */}
@@ -90,10 +99,6 @@ function MultiOptions({
                                 (optNum1 === 0 || optNum1 === 1 || optNum1 === 2) && 'true' 
                                 :
                                 (optNum1 === 0 || optNum1 === 1) && 'true'}
-
-
-
-                            {/* {(optNum1 === 0 || optNum1 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -128,10 +133,6 @@ function MultiOptions({
                                 (optNum2 === 0 || optNum2 === 1 || optNum2 === 2) && 'true' 
                                 :
                                 (optNum2 === 0 || optNum2 === 1) && 'true'}
-
-
-
-                            {/* {(optNum2 === 0 || optNum2 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -166,10 +167,6 @@ function MultiOptions({
                                 (optNum3 === 0 || optNum3 === 1 || optNum3 === 2) && 'true' 
                                 :
                                 (optNum3 === 0 || optNum3 === 1) && 'true'}
-
-
-
-                            {/* {(optNum3 === 0 || optNum3 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -204,10 +201,6 @@ function MultiOptions({
                                 (optNum4 === 0 || optNum4 === 1 || optNum4 === 2) && 'true' 
                                 :
                                 (optNum4 === 0 || optNum4 === 1) && 'true'}
-
-
-
-                            {/* {(optNum4 === 0 || optNum4 === 1) && 'true'}  */}
                         </span>
                     </p>
 
@@ -242,10 +235,41 @@ function MultiOptions({
                                 (optNum5 === 0 || optNum5 === 1 || optNum5 === 2) && 'true' 
                                 :
                                 (optNum5 === 0 || optNum5 === 1) && 'true'}
+                        </span>
+                    </p>
 
+                </div>
 
+            </div>}
 
-                            {/* {(optNum5 === 0 || optNum5 === 1) && 'true'}  */}
+            {optionMulti[optNum6] && <div className={`optionNextMulti ${optionColorStyle} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'optionMulti[optNum6]' existir */}
+                <input
+                    onClick={captureValueMultiFunc}
+                    className={inputColorStyle}
+                    type='checkbox'
+                    value={optNum6}
+                />
+
+                <div 
+                    onClick={mouseClickOptionsMulti}
+                    className={styles.textMultiOptions}
+                >
+                    <span className='item'>
+                        {/* condição para aparecer o item E ou F */}
+                        {((!optionMulti[optNum1] || !optionMulti[optNum2] || !optionMulti[optNum3] || !optionMulti[optNum4] || !optionMulti[optNum5]) && itemE) || itemF}
+                    </span>
+
+                    <span>&nbsp;</span> {/* espaço em branco que o HTML não colapsa e não quebra linha (non-breaking space) */}
+
+                    <p>
+                        {optionMulti[optNum6]}
+
+                        <span className={styles.answerBool} id='answerBool6'>
+                            {activePageThreeMulti ? 
+                                (optNum6 === 0 || optNum6 === 1 || optNum6 === 2) && 'true' 
+                                :
+                                null
+                            }
                         </span>
                     </p>
 

@@ -1,7 +1,6 @@
 import styles from './ButtonAnswer.module.css'
 import ButtonDefault from '../ButtonDefault'
 import PopupCheckAlternativeAnswer from '../Popups/PopupCheckAlternativeAnswer'
-import Animation from '../Animation'
 import correctAudio from '../../audios/correctAudio.mp3'
 import errorAudio from '../../audios/errorAudio.mp3'
 import { useState } from 'react'
@@ -21,9 +20,6 @@ function ButtonAnswer({
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
 
-    // variável usada na animação fogos de artifício
-    const [correct, setCorrect] = useState(false)
-
     // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMain, setActivePopupCheckAlternativeAnswerButtonAnswerMain] = useState(false)
 
@@ -32,16 +28,6 @@ function ButtonAnswer({
 
     // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerThreeMulti, setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti] = useState(false)
-    
-    // habilitar a animação fogos de artifício ao acertar
-    const handleAnswer = (isCorrect) => {
-        if (isCorrect) {
-            setCorrect(true)
-            setTimeout(() => setCorrect(false), 2500) // Remove partículas após 2,5s 
-
-        }
-
-    }
 
     function display() {
         setAnswerDescriptionDisplay(styles.visibleAnswer)
@@ -82,7 +68,6 @@ function ButtonAnswer({
         let setterQuestionAnswerButtonNextMain = false
         let setterNumIncorrectOption = 0
         let setterNumCorrectOption = 0
-        let functionHandleAnswer = false
         let playCorrectSound = false
         let playErrorSound = false
 
@@ -144,7 +129,6 @@ function ButtonAnswer({
 
                             } else {
                                 setterNumCorrectOption++ // incrementa '1' se responder correto
-                                functionHandleAnswer = true // ativa a animação de fogos de artifícil
                                 playCorrectSound = true // toca o som de acerto
 
                             }
@@ -174,11 +158,6 @@ function ButtonAnswer({
 
                     if (setterNumCorrectOption > 0) {
                         setNumCorrectOption(prev => prev + setterNumCorrectOption)
-
-                    }
-
-                    if (functionHandleAnswer) {
-                        handleAnswer(functionHandleAnswer)
 
                     }
 
@@ -227,7 +206,6 @@ function ButtonAnswer({
         let setterQuestionAnswerButtonNextMulti = false
         let setterNumIncorrectOption = 0
         let setterNumCorrectOption = 0
-        let functionHandleAnswer = false
         let playCorrectSound = false
         let playErrorSound = false
 
@@ -268,7 +246,6 @@ function ButtonAnswer({
                             setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
                             if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {
-                                functionHandleAnswer = true // ativa a animação de fogos de artifícil
                                 playCorrectSound = true // toca o som de acerto
 
                             }
@@ -339,11 +316,6 @@ function ButtonAnswer({
 
                     }
 
-                    if (functionHandleAnswer) {
-                        handleAnswer(functionHandleAnswer)
-
-                    }
-
                     if (mute === false) {
                         playCorrectSound && correctSound.play()
                         playErrorSound && errorSound.play()
@@ -392,7 +364,6 @@ function ButtonAnswer({
         let setterQuestionAnswerButtonNextMulti = false
         let setterNumIncorrectOption = 0
         let setterNumCorrectOption = 0
-        let functionHandleAnswer = false
         let playCorrectSound = false
         let playErrorSound = false
 
@@ -433,7 +404,6 @@ function ButtonAnswer({
                             setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
                             if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true') && checkedParagraph[2].innerText.includes('true')) {
-                                functionHandleAnswer = true // ativa a animação de fogos de artifícil
                                 playCorrectSound = true // toca o som de acerto
 
                             }
@@ -504,11 +474,6 @@ function ButtonAnswer({
 
                     }
 
-                    if (functionHandleAnswer) {
-                        handleAnswer(functionHandleAnswer)
-
-                    }
-
                     if (mute === false) {
                         playCorrectSound && correctSound.play()
                         playErrorSound && errorSound.play()
@@ -516,8 +481,9 @@ function ButtonAnswer({
                     }
                     
                     uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)        
-                    setItens(`${sortedItems[0]} // ${sortedItems[1]} // ${uniqueItens[2]}`) // armazena os itens corretos
+                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d, e ou f)        
+                    setItens(`${sortedItems[0]} // ${sortedItems[1]} // ${sortedItems[2]}`) // armazena os itens corretos
+
 
                 }
 
@@ -550,8 +516,6 @@ function ButtonAnswer({
                 specificStyleButton={styles.buttonAnswer} 
                 buttonName='Answer'
             />
-
-            <Animation correct={correct} />
 
             {/* PopupCheckAlternativeAnswer */}
             {activePageMain && activePopupCheckAlternativeAnswerButtonAnswerMain === true && 

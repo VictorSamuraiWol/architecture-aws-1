@@ -4,7 +4,7 @@
   flex-direction: column;
   position: relative;
   background-color: var(--color-first);
-  gap: 12px;
+  gap: 8px;
   height: 82vh;
 }
 

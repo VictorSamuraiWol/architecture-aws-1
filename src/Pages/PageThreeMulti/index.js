@@ -16,6 +16,7 @@ function PageThreeMulti() {
     const [optNum3, setOptNum3] = useState('')
     const [optNum4, setOptNum4] = useState('')
     const [optNum5, setOptNum5] = useState('')
+    const [optNum6, setOptNum6] = useState('')
     const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
@@ -78,8 +79,8 @@ function PageThreeMulti() {
         const randomNumbers = [] // armazena a lista de números randômicos
 
         // gerando um número para randomizar toda vez que renderizar
-        while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
-            const random = Math.floor(Math.random() * 5)
+        while (randomNumbers.length < 6) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '6'
+            const random = Math.floor(Math.random() * 6)
 
             if (!randomNumbers.includes(random)) {
                 randomNumbers.push(random)
@@ -94,6 +95,7 @@ function PageThreeMulti() {
         setOptNum3(randomNumbers[2])
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
+        setOptNum6(randomNumbers[5])
     
     }, [listThreeMultiOptionsContext])
 
@@ -141,7 +143,7 @@ function PageThreeMulti() {
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
-                setOptionThreeMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE]) // atualizando a opção
+                setOptionThreeMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE, matchedOption.optionF]) // atualizando a opção
                 setOptionThreeMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
                 setActiveZeroImgMulti(false)
@@ -190,11 +192,7 @@ function PageThreeMulti() {
                         optNum3={optNum3}
                         optNum4={optNum4}
                         optNum5={optNum5}
-                        setOptNum1={setOptNum1}
-                        setOptNum2={setOptNum2}
-                        setOptNum3={setOptNum3}
-                        setOptNum4={setOptNum4}
-                        setOptNum5={setOptNum5}
+                        optNum6={optNum6}
                         activeZeroImgMulti={activeZeroImgMulti}
                     />
 

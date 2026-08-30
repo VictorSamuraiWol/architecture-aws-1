@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  text-align: center;
   padding: 2px;
   border: 1px solid var(--color-fourth);
   border-radius: 8px;
@@ -16,7 +17,7 @@
 .longTextModal:hover {
   color: var(--color-third);
   border: 1px solid var(--color-third);
-  transform: scale(1.02);
+  transform: scale(0.98);
 }
 
 .shortTextModal {
@@ -33,7 +34,7 @@
 .shortTextModal:hover {
   color: var(--color-third);
   border: 1px solid var(--color-third);
-  transform: scale(1.02);
+  transform: scale(0.98);
 }
 
 .modalOverlay {

@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 function MultiMain({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
-    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMulti
+    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6, activeZeroImgMulti
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -88,6 +88,7 @@ function MultiMain({
                     optNum3={optNum3}
                     optNum4={optNum4}
                     optNum5={optNum5}
+                    optNum6={optNum6}
                 />
    
                 <ButtonAnswer            

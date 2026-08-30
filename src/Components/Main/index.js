@@ -176,7 +176,7 @@ function Main({
                 />
     
                 <Link
-                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
+                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' ou '4' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
                 >
                     <ButtonNext
                         onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  

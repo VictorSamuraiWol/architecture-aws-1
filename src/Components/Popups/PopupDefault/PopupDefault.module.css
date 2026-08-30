@@ -2,7 +2,6 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  /* utilize a unidade 'em' para alterar o tamanho da imagem do react icon */
   height: 1.1em;
   width: 1.1em;
   background-color: var(--color-second);
@@ -12,5 +11,5 @@
 }
 
 .modalImageDelete:hover {
-  transform: scale(1.03); 
+  transform: scale(0.97); 
 }

@@ -1,5 +1,5 @@
 // import styles from './PopupMessagesTitlesForms.module.css'
-import PopupDefault from '../../Popups/PopupDefault'
+import PopupDefault from '../PopupDefault'
 
 function PopupMessagesTitlesForms({ text, specificStyles }) {
   
