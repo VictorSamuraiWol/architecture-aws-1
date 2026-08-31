@@ -8,7 +8,7 @@ import MenuTools from '../MenuTools'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import ModalResults from '../ModalResults'
 import zeroImage from '../../imgs/zero-question.png'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
 
@@ -37,35 +37,59 @@ function Main({
 
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
 
-    function numberRandomPath() { // gere números aleatórios dependendo dos tipos de questões disponíveis
-        let listNumbers
-        let able
+    // function numberRandomPath() { // gere números aleatórios dependendo dos tipos de questões disponíveis
+    //     let listNumbers
+    //     let able
 
-        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
-            able = (Math.floor(Math.random() * 4) + 1)
+    //     if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
+    //         able = (Math.floor(Math.random() * 4) + 1)
 
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
-            able = (Math.floor(Math.random() * 2) + 1)
+    //     } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
+    //         able = (Math.floor(Math.random() * 2) + 1)
 
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver apenas as páginas Main e Multi gere entre 1 e 3
-            listNumbers = [1, 2, 3]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+    //     } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver apenas as páginas Main e Multi gere entre 1 e 3
+    //         listNumbers = [1, 2, 3]
+    //         able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver apenas as páginas Main e ThreeMain gere entre os 1, 2 e 4
-            listNumbers = [1, 2, 4]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+    //     } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver apenas as páginas Main e ThreeMain gere entre os 1, 2 e 4
+    //         listNumbers = [1, 2, 4]
+    //         able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-        }
+    //     }
 
-        return able
+    //     return able
 
+    // }
+
+    // useEffect(() => {
+    //     setNumberPath(numberRandomPath())
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // }, [])
+
+    const numberRandomPath = useCallback(() => {
+    let listNumbers
+    let able
+
+    if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+        able = (Math.floor(Math.random() * 4) + 1)
+    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
+        able = (Math.floor(Math.random() * 2) + 1)
+    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+        listNumbers = [1, 2, 3]
+        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+        listNumbers = [1, 2, 4]
+        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
     }
+
+    return able
+    }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
 
     useEffect(() => {
         setNumberPath(numberRandomPath())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    }, [])
+    }, [numberRandomPath])
 
     function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
