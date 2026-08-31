@@ -20,6 +20,7 @@ function PageBase() {
 
     const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
     const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
+    const [activeZeroImgThreeMulti, setActiveZeroImgThreeMulti] = useState(false)
 
     const [mute, setMute] = useState(false)
 
@@ -109,7 +110,7 @@ function PageBase() {
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
                         checkAlternativeAnswerDefault, activePageDemo, setActivePageDemo, activePageMain, setActivePageMain, 
                         activePageMulti, setActivePageMulti, activePageThreeMulti, setActivePageThreeMulti, activeZeroImgMain, 
-                        setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti
+                        setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti
                     }} 
                 />                
 

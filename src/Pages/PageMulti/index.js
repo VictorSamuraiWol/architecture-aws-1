@@ -151,7 +151,7 @@ function PageMulti() {
 
             }
 
-        } 
+        }
         
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
         questionMultiOptionMatch()

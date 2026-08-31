@@ -8,7 +8,7 @@ import MenuTools from '../MenuTools'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import ModalResults from '../ModalResults'
 import zeroImage from '../../imgs/zero-question.png'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
 
@@ -19,7 +19,8 @@ function Main({
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength } = useContext(DataContext)
+
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
     const [optionValidateStyle] = useState(styles.optionValidate)
@@ -34,7 +35,36 @@ function Main({
 
     const [item, setItem] = useState('') // captura o item correto
 
-    const [numberPath] = useState(Math.floor(Math.random() * 4) + 1) // Gera um número aleatório entre 1 e 4
+    const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
+
+    function numberRandomPath() { // gere números aleatórios dependendo dos tipos de questões disponíveis
+        let listNumbers
+        let able
+
+        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
+            able = (Math.floor(Math.random() * 4) + 1)
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver todas as páginas disponíveis gere entre 1 e 4
+            able = (Math.floor(Math.random() * 2) + 1)
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) { // se tiver apenas as páginas Main e Multi gere entre 1 e 3
+            listNumbers = [1, 2, 3]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) { // se tiver apenas as páginas Main e ThreeMain gere entre os 1, 2 e 4
+            listNumbers = [1, 2, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        }
+
+        return able
+
+    }
+
+    useEffect(() => {
+        setNumberPath(numberRandomPath())
+
+    }, [])
 
     function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
@@ -46,17 +76,20 @@ function Main({
     }
     
     function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
-        if (listUnicQuestionsContext.length >= 2 && questionAnswerButtonNextMain === true) {
+        if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain === true && (numberPath === 1 || numberPath === 2)) {
         // condição: se a questão da página Main já foi respondida 
-            (numberPath === 1 || numberPath === 2) && generateNewQuestionMain()
+            generateNewQuestionMain()
             setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
             setDescriptionDisplay(styles.invisibleDescription)
 
         } else if (questionAnswerButtonNextMain === false) {
-            alert('Oops!!! Please answer the question before moving on to the next one!')
+            alert("Oops!!! Please answer the question before moving on to the next one!")
 
-        } else if (activePageDemo && !listUnicQuestionsContextLength) {
-            alert('No data found. Need to mock the API.')
+        } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
+            alert("No data found. Need to mock the API.")
+
+        } else if (activePageDemo && !listUnicQuestionsContextLength && (listMultiQuestionsContextLength > 0 || listThreeMultiQuestionsContextLength > 0)) {
+            alert("Add at least one single-choice question to use the app.")
 
         }
 
@@ -67,19 +100,19 @@ function Main({
     // a probabilidade de permanecer na página Main é de 66% (números 1 ou 2) e de ir para a página Multi é de 33% (número 3)
         let able
 
-        if (questionAnswerButtonNextMain === true && numberPath === 3) {
+        if (listMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && numberPath === 3) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
             able = '/page-multi'
 
-        } else if (questionAnswerButtonNextMain === true && numberPath === 4) {
-        // condição: se a questão da página Main foi respondida e o numberPath for igual a '4'
-            able = '/page-three-multi'
-
-        } else if ((questionAnswerButtonNextMain === true) && (numberPath === 1 || numberPath === 2) && (listUnicQuestionsContext.length < 2)) {
+        } else if (listMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength < 2) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '1' ou '2' e tiver menos de 2 questões únicas
             able = '/page-multi'
 
-        } 
+        } else if (listThreeMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && numberPath === 4) {
+        // condição: se a questão da página Main foi respondida e o numberPath for igual a '4'
+            able = '/page-three-multi'
+
+        }
 
         return able
 
@@ -179,7 +212,7 @@ function Main({
                     to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' ou '4' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
                 >
                     <ButtonNext
-                        onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' executa a função 'ablePageMulti()' do Link  
+                        onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' ou '4' executa a função 'ablePageMulti()' do Link  
                         questionAnswerButtonNextMain={questionAnswerButtonNextMain}
                     />
                 </Link>

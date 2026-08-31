@@ -24,7 +24,7 @@ function PageThreeMulti() {
     const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
+    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -139,26 +139,26 @@ function PageThreeMulti() {
                 })
 
                 // se não encontrar uma questão e opção correspondentes, mostrará uma imagem de zero questão 
-                !matchedQuestion && !matchedOption && setActiveZeroImgMulti(true)
+                !matchedQuestion && !matchedOption && setActiveZeroImgThreeMulti(true)
 
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
                 setOptionThreeMulti([matchedOption.optionA, matchedOption.optionB, matchedOption.optionC, matchedOption.optionD, matchedOption.optionE, matchedOption.optionF]) // atualizando a opção
                 setOptionThreeMultiNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 setLoading(false) // desabilita o componente 'Loader'
-                setActiveZeroImgMulti(false)
+                setActiveZeroImgThreeMulti(false)
 
             } else {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
 
             }
 
-        } 
+        }
         
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
         questionThreeMultiOptionMatch()
 
-    }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, questionThreeMulti, setQuestionThreeMulti, setOptionThreeMulti, setOptionThreeMultiNumberId, setLoading, setActiveZeroImgMulti])
+    }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, questionThreeMulti, setQuestionThreeMulti, setOptionThreeMulti, setOptionThreeMultiNumberId, setLoading, setActiveZeroImgThreeMulti])
 
     return(
         <div>     
@@ -193,7 +193,7 @@ function PageThreeMulti() {
                         optNum4={optNum4}
                         optNum5={optNum5}
                         optNum6={optNum6}
-                        activeZeroImgMulti={activeZeroImgMulti}
+                        activeZeroImgMulti={activeZeroImgThreeMulti}
                     />
 
                   </>
