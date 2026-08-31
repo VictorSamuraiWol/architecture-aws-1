@@ -6,6 +6,7 @@
   background-color: var(--color-first);
   gap: 8px;
   height: 82vh;
+  padding: 0 8px;
 }
 
 .containerQuestionMenuTools {
@@ -14,6 +15,7 @@
   align-items: start;
   gap: 16px;
   padding: 8px;
+  width: 100%;
 }
 
 .optionColorMulti {
