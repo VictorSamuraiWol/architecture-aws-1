@@ -6,6 +6,7 @@ import soundClick from '../../../audios/clickAudio.mp3'
 import PopupRepeatedAlternatives from '../../Popups/PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../../Popups/PopupCheckAlternativeAnswer'
 import PopupAlreadySavedModalEdit from '../../Popups/PopupAlreadySavedModalEdit'
+import PopupAlertMessage from '../../Popups/PopupAlertMessage'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { MdEditSquare } from "react-icons/md"
@@ -62,10 +63,13 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // ativa o componente 'PopupAlreadySavedModalEdit' na ModalEditMenu
   const [activePopupAlreadySavedModalEdit, setActivePopupAlreadySavedModalEdit] = useState(false)
 
+  const [staticQuestionEditAlert, setStaticQuestionEditAlert] = useState(false) // ativa o componente PopupAlertMessage
+  const [staticQuestionClearDisabledAlert, setStaticQuestionClearDisabledAlert] = useState(false) // ativa o componente PopupAlertMessage
+
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
   const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo } = useOutletContext()
 
-  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setPutApi } = useContext(DataContext)
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
@@ -107,6 +111,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
+    setPutApi(false)
+
     const jsonBody = JSON.stringify({
       questionText: questionTextMain,
       correctAnswer: correctAnswerMain,
@@ -128,6 +134,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((data) => {
       console.log(data)
 
+      setPutApi(true)
+
     }) 
     .catch((error) => {
         console.log(error)
@@ -138,6 +146,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as opções na API
   async function onSaveModalOption() {
+    setPutApi(false)
+
     const jsonBody = JSON.stringify({
       optionA: optionAMain,
       optionB: optionBMain,
@@ -159,6 +169,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
+      setPutApi(true)
 
     }) 
     .catch((error) => {
@@ -170,6 +181,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as questões de múltipla escolha na API
   async function onSaveModalMultiQuestion() {
+    setPutApi(false)
+
     const jsonBody = JSON.stringify({
       questionText: questionTextMulti,
       correctAnswer: correctAnswerMulti,
@@ -191,6 +204,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
+      setPutApi(true)
 
     }) 
     .catch((error) => {
@@ -202,6 +216,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as opções de múltipla escolha na API
   async function onSaveModalMultiOption() {
+    setPutApi(false)
+
     const jsonBody = JSON.stringify({
       optionA: optionAMulti,
       optionB: optionBMulti,
@@ -223,6 +239,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
+      setPutApi(true)
       
     }) 
 
@@ -274,26 +291,23 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsNewPageMain(event) {
+    event.preventDefault()
+
     if (activePageDemo) { // se a página demo estiver aberta
-      event.preventDefault()
-      alert('This is a static question and cannot be edited here.')
-      closeModal()
+      setStaticQuestionEditAlert(true)
 
     } else {
       if (activePopupAlreadySaved() === true) {
-        event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
         setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
       } else {
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
         if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
           setActivePopupcheckAlternativeAnswerModalForms1(true)
 
         } else {
           if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-            event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
             setActivePopupRepeatedAlternativesModalEdit(true)
 
             setTimeout(() => {
@@ -304,11 +318,9 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           } else {
             onSaveModalQuestion() // salvando a questão única
             onSaveModalOption() // salvando a opção única
-            
             setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-
-            console.log('Saved!')
-            alert('Saved successfully!')
+            console.log('Saved successfully!')
+            closeModal()
 
           }
 
@@ -321,20 +333,19 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   // função que vai salvar quaisquer alterações feitas na questão e opção de múltipla escolha atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsPageMulti(event) {
+    event.preventDefault()
+
     if (activePopupAlreadySaved() === true) {
-      event.preventDefault() // prevenir atualização, caso esta questão e opção já exista no 'backend'
       setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
     } else {
       setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
       if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
           setActivePopupcheckAlternativeAnswerModalForms2(true)
 
         } else {
         if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-          event.preventDefault() // prevenir atualização, caso tenha alternativas repetidas
           setActivePopupRepeatedAlternativesModalEdit(true)
 
           setTimeout(() => {
@@ -347,9 +358,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           onSaveModalMultiOption() // salvando a opção múltipla
           
           setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-
-          console.log('Saved!')
-          alert('Saved successfully!')
+          console.log('Saved successfully!')
+          closeModal()
 
         }
 
@@ -456,8 +466,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // função que limpa todos os campos do formulário
   function cleanForm() {
     if (activePageDemo) {
-      alert("This is a static question and clearing is disabled.")
-      closeModal()
+      setStaticQuestionClearDisabledAlert(true)
 
     } else {
       if (questionMain && optionMain) {
@@ -519,7 +528,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
         {questionMain && optionMain && 
         <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
-          onSubmit={multiFunctionsNewPageMain}
+          onSubmit={(event) => multiFunctionsNewPageMain(event)}
           className={styles.formModal}
         > 
           {/* todos os campos das questões */}
@@ -685,14 +694,12 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
-
             />
             <ButtonDefault
               onClick={() => {cleanForm(); mute === false && audioClick.play()}}
               buttonName='Clean' 
               specificType='button'
-              specificStyleButton={styles.button}
-              
+              specificStyleButton={styles.button}   
             />
 
           </div>
@@ -733,6 +740,23 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             specificStyles={styles.popupAlreadySaved} 
             activePopup={setActivePopupAlreadySavedModalEdit}
             textPopup={'No changes detected. Please update one or more fields and try saving again.'}
+          />
+        }
+
+        {/* {PopupAlertMessage} */}
+        {staticQuestionEditAlert &&
+          <PopupAlertMessage 
+            text="This is a static question and cannot be edited here."
+            activePopup={setStaticQuestionEditAlert}
+            specificStyles={styles.popupAlertMessage}
+          />
+        }
+
+        {staticQuestionClearDisabledAlert &&
+          <PopupAlertMessage 
+            text="This is a static question and clearing is disabled."
+            activePopup={setStaticQuestionClearDisabledAlert}
+            specificStyles={styles.popupAlertMessage}
           />
         }
       

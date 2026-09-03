@@ -43,7 +43,7 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
 
   return (
     <div
-      className={specificStyles}
+      className={`${styles.popupDefault} ${specificStyles}`}
     > 
       {/* imagem delete do react icon */}
       {activePopup && <TiDeleteOutline

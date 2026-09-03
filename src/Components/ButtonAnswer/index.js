@@ -5,6 +5,7 @@ import correctAudio from '../../audios/correctAudio.mp3'
 import errorAudio from '../../audios/errorAudio.mp3'
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import PopupAlertMessage from '../Popups/PopupAlertMessage'
 
 function ButtonAnswer({ 
     answerDescriptionDisplay, setAnswerDescriptionDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle, 
@@ -29,21 +30,29 @@ function ButtonAnswer({
     // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerThreeMulti, setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti] = useState(false)
 
+    const [select1OptionAlert, setSelect1OptionAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [select2OptionAlert, setSelect2OptionAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [select3OptionAlert, setSelect3OptionAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [questionAlreadyAnswerMainAlert, setQuestionAlreadyAnswerMainAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [questionAlreadyAnswerMultiAlert, setQuestionAlreadyAnswerMultiAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [questionAlreadyAnswerThreeMultiAlert, setQuestionAlreadyAnswerThreeMultiAlert] = useState(false) // ativa o componente PopupAlertMessage
+
     function display() {
         setAnswerDescriptionDisplay(styles.visibleAnswer)
 
     }
 
     function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente na página Main e Multi 
-        if (optionMain && captureValue === '') {            
-            alert('Please select an option!') 
+        if (optionMain && captureValue === '') {
+            setSelect1OptionAlert(true) 
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
+
         } else if (activePageMulti && ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2))) {
-            alert('Please select 2 options!') 
+            setSelect2OptionAlert(true) 
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         } else if (activePageThreeMulti && ((optionMulti && captureValueMulti.length < 3) || (optionMulti && captureValueMulti.length > 3))) {
-            alert('Please select 3 options!') 
+            setSelect3OptionAlert(true)
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         }
@@ -92,7 +101,7 @@ function ButtonAnswer({
                     answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer)
                     
                     // alerta avisando para passar para a próxima questão
-                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
+                    setQuestionAlreadyAnswerMainAlert(true)
 
                 } else {
                     for(let i=0; i < convertObjArray.length; i++) {
@@ -228,7 +237,7 @@ function ButtonAnswer({
                     answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
                     
                     // alerta avisando para passar para a próxima questão
-                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
+                    setQuestionAlreadyAnswerMultiAlert(true)
 
                 } else {
                     for(let i=0; i<checkedValuesInput.length; i++) {
@@ -386,7 +395,7 @@ function ButtonAnswer({
                     answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
                     
                     // alerta avisando para passar para a próxima questão
-                    alert('Oops!!! This question has already been answered. Please move on to the next question.')
+                    setQuestionAlreadyAnswerThreeMultiAlert(true)
 
                 } else {
                     for(let i=0; i<checkedValuesInput.length; i++) {
@@ -518,7 +527,7 @@ function ButtonAnswer({
             />
 
             {/* PopupCheckAlternativeAnswer */}
-            {activePageMain && activePopupCheckAlternativeAnswerButtonAnswerMain === true && 
+            {activePageMain && activePopupCheckAlternativeAnswerButtonAnswerMain && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
@@ -527,7 +536,7 @@ function ButtonAnswer({
                 />
             }
 
-            {activePageMulti && activePopupCheckAlternativeAnswerButtonAnswerMulti === true && 
+            {activePageMulti && activePopupCheckAlternativeAnswerButtonAnswerMulti && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
@@ -536,12 +545,45 @@ function ButtonAnswer({
                 />
             }
 
-            {activePageThreeMulti && activePopupCheckAlternativeAnswerButtonAnswerThreeMulti === true && 
+            {activePageThreeMulti && activePopupCheckAlternativeAnswerButtonAnswerThreeMulti && 
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti}
                     textPopup={`The three alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A, Option B and Option C exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
                     textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the three correct alternatives from the option highlighted below: ${optionMulti[0]}, ${optionMulti[1]} e ${optionMulti[2]}. (2)Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}.`}
+                />
+            }
+
+            {/* {PopupAlertMessage} */}
+            {select1OptionAlert &&
+                <PopupAlertMessage 
+                    text="Please select an option!"
+                    activePopup={setSelect1OptionAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {select2OptionAlert &&
+                <PopupAlertMessage 
+                    text="Please select 2 options!"
+                    activePopup={setSelect2OptionAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {select3OptionAlert &&
+                <PopupAlertMessage 
+                    text="Please select 3 options!"
+                    activePopup={setSelect3OptionAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {(questionAlreadyAnswerMainAlert || questionAlreadyAnswerMultiAlert || questionAlreadyAnswerThreeMultiAlert) &&
+                <PopupAlertMessage 
+                    text="Oops!!! This question has already been answered. Please move on to the next question."
+                    activePopup={setQuestionAlreadyAnswerMainAlert || setQuestionAlreadyAnswerMultiAlert || setQuestionAlreadyAnswerThreeMultiAlert}
+                    specificStyles={styles.popupAlertMessage}
                 />
             }
 

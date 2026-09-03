@@ -11,6 +11,19 @@
     padding: 0 16px;
 }
 
+.footerForms {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    text-align: center;
+    color: var(--color-fourth);
+    background-color: var(--color-second);
+    height: 8vh;
+    padding: 0 16px;
+}
+
 .imgText img {
     width: 50px;
 }

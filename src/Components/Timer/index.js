@@ -12,7 +12,7 @@ const Timer = () => {
   const timerStartSound = new Audio(timerStart)
   const timerPauseSound = new Audio(timerPause)
 
-  const { mute } = useOutletContext()
+  const { mute, setActivePopupZeroTimer } = useOutletContext()
 
   const startTimer = () => {
     if (!isRunning) {
@@ -48,11 +48,11 @@ const Timer = () => {
   useEffect(() => {
     if (time === 0) {
       pauseTimer()
-      alert('Oops! Time is up! Please pay attention to the exam time limit.')
+      setActivePopupZeroTimer(true)
 
     }
 
-  }, [time])
+  }, [time, setActivePopupZeroTimer])
 
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {

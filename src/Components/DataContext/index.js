@@ -21,8 +21,8 @@ export default function DataProvider({ children }) {
     const [loading, setLoading] = useState(false)
 
     const [postApi, setPostApi] = useState(false)
-
-    const [deleteApi, setDeleteApi] = useState(false) // torna verdadeiro ao deletar
+    const [putApi, setPutApi] = useState(false)
+    const [deleteApi, setDeleteApi] = useState(false)
 
     const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
 
@@ -186,7 +186,7 @@ export default function DataProvider({ children }) {
 
         fetchData6()
 
-    }, [postApi, deleteApi])
+    }, [postApi, putApi, deleteApi])
 
     return (        
         <DataContext.Provider
@@ -203,7 +203,8 @@ export default function DataProvider({ children }) {
                 loading,
                 setLoading,
                 postApi,
-                setPostApi,
+                setPostApi, 
+                setPutApi,
                 setDeleteApi,
                 ableDisableMenuTools,
                 setAbleDisableMenuTools

@@ -47,161 +47,28 @@
     z-index: 1;
 }
 
-.popupRepeatedForms {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: 15%;
-    padding: 20px 12px 12px 12px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+.popupRepeatedForms, .popupCheckForm, .popupCompare, .popupCheckNumbers, .popupCheckRequiredFields {
+    top: 20%;
+    left: 40%;
 }
 
-.popupCheckForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: 15%;
-    padding: 20px 12px 12px 12px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
-}
-
-.popupCompare {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: 15%;
-    padding: 20px 12px 12px 12px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
-}
-
-.popupMessageTitle1 {
-    position: absolute;
-    top: 10%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-style: italic;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
+.popupMessageTitle1and2 {
+    top: 30%;
+    left: 40%;
     width: max-content;
-    padding: 2px 4px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; 
+    padding: 12px;
 }
 
-.popupMessageTitle2 {
-    position: absolute;
-    top: 7%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-style: italic;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: max-content;
-    padding: 2px 4px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; 
-}
-
-.popupMessageTitle3 {
-    position: absolute;
-    top: 60%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-style: italic;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: max-content;
-    padding: 2px 4px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; 
-}
-
-.popupMessageTitle4 {
-    position: absolute;
-    top: 57%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-style: italic;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: max-content;
-    padding: 2px 4px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; 
-}
-
-.popupCheckNumbers {
-    position: fixed;
+.popupMessageTitle3and4 {
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: 15%;
-    padding: 20px 12px 12px 12px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+    left: 40%;
+    width: max-content;
+    padding: 12px;
 }
 
-.popupCheckRequiredFields {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: bold;
-    color: var(--color-first);
-    background-color: var(--color-fourth);
-    box-shadow: 3px 3px 3px var(--color-third);
-    width: 15%;
-    padding: 20px 12px 12px 12px;
-    border: 1px solid var(--color-third);
-    border-radius: 8px;
-    z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+.popupSuccessfully {
+    top: 40%;
+    left: 40%;
 }
 
 /* responsividade */

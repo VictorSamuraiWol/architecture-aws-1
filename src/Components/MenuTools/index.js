@@ -1,6 +1,7 @@
 import styles from './MenuTools.module.css'
 import ModalEditMenu from './ModalEditMenu'
 import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
+import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
@@ -15,6 +16,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   const { activePageDemo } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
+  const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
+  const [unicDeleteSuccessfully, setUnicDeleteSuccessfully] = useState(false) // ativa o componente PopupAlertMessage
+  const [multiDeleteSuccessfully, setMultiDeleteSuccessfully] = useState(false) // ativa o componente PopupAlertMessage
+  const [fewer3SigleChoice, setFewer3SigleChoice] = useState(false) // ativa o componente PopupAlertMessage
+  const [fewer3MultipleChoice, setFewer3MultipleChoice] = useState(false) // ativa o componente PopupAlertMessage
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(questionMain) {
@@ -151,19 +157,20 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
     if (activePageDemo) {
-      alert("This is a static question and cannot be removed.")
+      setStaticQuestionAlert(true)
       setActivePopupDelete(false)
 
     } else {
       if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
           onDeleteQuestion(questionMain)
           onDeleteOption(optionMainNumberId)
-          alert('Deleted successfully!')
+          setUnicDeleteSuccessfully(true)
           setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
           setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+          console.log('Deleted successfully!')
       
       } else {
-        alert('There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
+        setFewer3SigleChoice(true)
         setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption' 
       
       }
@@ -176,12 +183,13 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
-      alert('Deleted successfully!')
+      setMultiDeleteSuccessfully(true)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+      console.log('Deleted successfully!')
     
     } else {
-      alert('There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!')
+      setFewer3MultipleChoice(true)
       setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption'
     
     }
@@ -224,9 +232,9 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           className={styles.deleteIcon}            
         /> 
 
-        {activePopupDelete === true && 
+        {activePopupDelete && 
         <PopupDeleteQuestionOption
-          specificStyles={styles.popupDeleteMain} 
+          specificStyles={styles.popupDelete} 
           textPopup={"Are you sure you want to delete?"}
           activePopup={setActivePopupDelete}
           activeButtons={activePopupDelete}
@@ -234,7 +242,40 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           questionMulti={questionMulti}
           multiDeleteQuestionOption={multiDeleteQuestionOption}
           multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
-        />}   
+        />}
+
+        {/* PopupAlertMessage */}
+        {staticQuestionAlert && 
+          <PopupAlertMessage
+            text="This is a static question and cannot be removed."
+            activePopup={setStaticQuestionAlert}
+            specificStyles={styles.popupAlertMessage}
+          /> 
+        }
+
+        {(unicDeleteSuccessfully || multiDeleteSuccessfully) && 
+          <PopupAlertMessage 
+            text="Deleted successfully!"
+            activePopup={setUnicDeleteSuccessfully || setMultiDeleteSuccessfully}
+            specificStyles={styles.popupAlertMessage}
+          /> 
+        }
+
+        {fewer3SigleChoice && 
+          <PopupAlertMessage 
+            text="There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!"
+            activePopup={setFewer3SigleChoice}
+            specificStyles={styles.popupAlertMessage}
+          /> 
+        }
+
+        {fewer3MultipleChoice && 
+          <PopupAlertMessage 
+            text="There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!"
+            activePopup={setFewer3MultipleChoice}
+            specificStyles={styles.popupAlertMessage}
+          /> 
+        }
 
       </div>
 

@@ -7,7 +7,7 @@ function Footer() {
     const { requestData, activePageFormsQuestionsOptions, activePageDemo, activePageMain, activePageMulti, activeZeroImgMain, activeZeroImgMulti,activePageThreeMulti } = useOutletContext()
 
     return(
-        <div className={styles.footer}>
+        <div className={activePageFormsQuestionsOptions ? styles.footerForms : styles.footer}>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
             {((requestData && activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti))) || activePageDemo || activePageThreeMulti) && <Timer />}
             

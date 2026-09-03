@@ -14,6 +14,10 @@ import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
+import Footer from '../Footer'
+import PopupDefault from '../Popups/PopupDefault'
+import PopupQuestionSuccessfully from '../Popups/PopupQuestionSuccessfully'
+import PopupOptionSuccessfully from '../Popups/PopupOptionSuccessfully'
 
 function FormsNewQuestionsOptionsPage() {
 
@@ -75,67 +79,50 @@ function FormsNewQuestionsOptionsPage() {
 
     // capturar a mensagem de alerta para exibir na tela dos formulários
     const [alertMessage, setAlertMessage] = useState('')
-
     // capturando os números usados nos formulários 1 e 3
     const [listNumbersForms1and3, setListNumbersForms1and3] = useState([])
-
     // capturando os números usados nos formulários 2 e 4
     const [listNumbersForms2and4, setListNumbersForms2and4] = useState([])
-
     // ativa ou desativa o componente 'PopupRepeatedAlternatives' no formulário 2
     const [activePopupRepeatedAlternativesForms2, setActivePopupRepeatedAlternativesForms2] = useState(false) 
-
     // ativa ou desativa o componente 'PopupRepeatedAlternatives' nao formulário 4
     const [activePopupRepeatedAlternativesForms4, setActivePopupRepeatedAlternativesForms4] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms1, setActivePopupcheckAlternativeAnswerForms1] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms2, setActivePopupcheckAlternativeAnswerForms2] = useState(false)  
-
     // ativa ou desativa o componente 'PopupCheckAlternativeAnswer' 
     const [activePopupcheckAlternativeAnswerForms3, setActivePopupcheckAlternativeAnswerForms3] = useState(false) 
-
     // ativa ou desativa o componente 'PopupCheckAlternativeAnswer'
     const [activePopupcheckAlternativeAnswerForms4, setActivePopupcheckAlternativeAnswerForms4] = useState(false)
-
     // ativa ou desativa o componente 'PopupCompareAllQuestionsAllOptions'
     const [activePopupCompareAllQuestionsAllOptions, setActivePopupCompareAllQuestionsAllOptions] = useState(false)
-
     // ativa ou desativa o componente 'PopupMessagesTitlesForms'
-    const [activePopupMessagesTitlesForms1, setActivePopupMessagesTitlesForms1] = useState(false)
-    
+    const [activePopupMessagesTitlesForms1and2, setActivePopupMessagesTitlesForms1and2] = useState(false)
     // ativa ou desativa o componente 'PopupMessagesTitlesForms'
-    const [activePopupMessagesTitlesForms2, setActivePopupMessagesTitlesForms2] = useState(false)
-    
-    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
-    const [activePopupMessagesTitlesForms3, setActivePopupMessagesTitlesForms3] = useState(false)
-    
-    // ativa ou desativa o componente 'PopupMessagesTitlesForms'
-    const [activePopupMessagesTitlesForms4, setActivePopupMessagesTitlesForms4] = useState(false)
-
+    const [activePopupMessagesTitlesForms3and4, setActivePopupMessagesTitlesForms3and4] = useState(false)
     // ativa ou desativa o componente 'PopupCheckNumbers'
     const [activePopupCheckNumbers1, setActivePopupCheckNumbers1] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckNumbers'
     const [activePopupCheckNumbers2, setActivePopupCheckNumbers2] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields1, setActivePopupCheckRequiredFields1] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields2, setActivePopupCheckRequiredFields2] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields3, setActivePopupCheckRequiredFields3] = useState(false)
-
     // ativa ou desativa o componente 'PopupCheckRequiredFields'
     const [activePopupCheckRequiredFields4, setActivePopupCheckRequiredFields4] = useState(false)
-
+    // ativa ou desativa o componente 'PopupQuestionSuccessfully'
+    const [activePopupQuestionSuccessfull1, setActivePopupQuestionSuccessfull1] = useState(false)
+    // ativa ou desativa o componente 'PopupQuestionSuccessfully'
+    const [activePopupQuestionSuccessfull2, setActivePopupQuestionSuccessfull2] = useState(false)
+    // ativa ou desativa o componente 'PopupOptionSuccessfully'
+    const [activePopupOptionSuccessfull1, setActivePopupOptionSuccessfull1] = useState(false)
+    // ativa ou desativa o componente 'PopupOptionSuccessfully'
+    const [activePopupOptionSuccessfull2, setActivePopupOptionSuccessfull2] = useState(false)
     // passando a cor incorreta
     const [colorIncorrect] = useState('#B71C1C')
-
     const [matchedOptionMainPopup, setMatchedOptionMainPopup] = useState('') // capturar a opção única (form1)
     const [matchedOptionMainPopupNumber, setMatchedOptionMainPopupNumber] = useState('') // capturar o número da opção única (form1)
     const [matchedQuestionMainPopupAnswer, setMatchedQuestionMainPopupAnswer] = useState('') // capturar a resposta da questão única (form2)
@@ -441,7 +428,7 @@ function FormsNewQuestionsOptionsPage() {
                             
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 1. Please complete one form at a time.')
-                    alert('Question successfully added from Form 1. Please complete one form at a time.')
+                    setActivePopupQuestionSuccessfull1(true)
                     cleanAllForms() // limpar o formulário                
                     setPostApi(true) // tornar verdadeiro a cada POST
 
@@ -604,7 +591,7 @@ function FormsNewQuestionsOptionsPage() {
             
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 2. Please complete one form at a time.')
-                    alert('Option successfully added from Form 2. Please complete one form at a time.')
+                    setActivePopupOptionSuccessfull1(true)
                     cleanAllForms() // limpar o formulário                    
                     setPostApi(true) // tornar verdadeiro a cada POST
 
@@ -735,7 +722,7 @@ function FormsNewQuestionsOptionsPage() {
             
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 3. Please complete one form at a time.')
-                    alert('Question successfully added from Form 3. Please complete one form at a time.')
+                    setActivePopupQuestionSuccessfull2(true)
                     cleanAllForms() // limpar o formulário                    
                     setPostApi(true) // tornar verdadeiro a cada POST
                     
@@ -894,7 +881,7 @@ function FormsNewQuestionsOptionsPage() {
             
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 4. Please complete one form at a time.')
-                    alert('Option successfully added from Form 4. Please complete one form at a time.')
+                    setActivePopupOptionSuccessfull2(true)
                     cleanAllForms() // limpar o formulário                
                     setPostApi(true) // tornar verdadeiro a cada POST
 
@@ -971,19 +958,11 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form1'
                 >
-                    {/* PopupMessagesTitlesForms */}
-                    {activePopupMessagesTitlesForms1 && 
-                        <PopupMessagesTitlesForms 
-                            text="Form 1 and Form 2 complement each other." 
-                            specificStyles={styles.popupMessageTitle1}    
-                        />
-                    }
-
                     <h1 
-                        onMouseOver={() =>setActivePopupMessagesTitlesForms1(true)}
-                        onMouseOut={() => setActivePopupMessagesTitlesForms1(false)}
+                        onMouseOver={() =>setActivePopupMessagesTitlesForms1and2(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms1and2(false)}
                     >
-                            Form 1 (Questions)
+                        Form 1 (Questions)
                     </h1>
 
 
@@ -1027,17 +1006,9 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form2'
                 >
-                    {/* PopupMessagesTitlesForms */}
-                    {activePopupMessagesTitlesForms2 && 
-                        <PopupMessagesTitlesForms 
-                            text="Form 1 and Form 2 complement each other." 
-                            specificStyles={styles.popupMessageTitle2}    
-                        />
-                    }
-
                     <h1
-                        onMouseOver={() => setActivePopupMessagesTitlesForms2(true)}
-                        onMouseOut={() => setActivePopupMessagesTitlesForms2(false)}
+                        onMouseOver={() => setActivePopupMessagesTitlesForms1and2(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms1and2(false)}
                     >
                         Form 2 (Options)
                     </h1>
@@ -1088,17 +1059,9 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form3'
                 >
-                    {/* PopupMessagesTitlesForms  */}
-                    {activePopupMessagesTitlesForms3 && 
-                        <PopupMessagesTitlesForms 
-                            text="Form 3 and Form 4 complement each other." 
-                            specificStyles={styles.popupMessageTitle3}    
-                        />
-                    }
-
                     <h1
-                        onMouseOver={() =>setActivePopupMessagesTitlesForms3(true)}
-                        onMouseOut={() => setActivePopupMessagesTitlesForms3(false)}
+                        onMouseOver={() =>setActivePopupMessagesTitlesForms3and4(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms3and4(false)}
                     >
                         Form 3 (MultiQuestions)
                     </h1>
@@ -1142,19 +1105,11 @@ function FormsNewQuestionsOptionsPage() {
                     className={styles.form}
                     id='form4'
                 >
-                    {/* PopupMessagesTitlesForms */}
-                    {activePopupMessagesTitlesForms4 && 
-                        <PopupMessagesTitlesForms 
-                            text="Form 3 and Form 4 complement each other." 
-                            specificStyles={styles.popupMessageTitle4}    
-                        />
-                    }
-
                     <h1
-                        onMouseOver={() => setActivePopupMessagesTitlesForms4(true)}
-                        onMouseOut={() => setActivePopupMessagesTitlesForms4(false)}
+                        onMouseOver={() => setActivePopupMessagesTitlesForms3and4(true)}
+                        onMouseOut={() => setActivePopupMessagesTitlesForms3and4(false)}
                     >
-                            Form 4 (MultiOptions)
+                        Form 4 (MultiOptions)
                     </h1>
 
                     <FieldsQuestionsOptions 
@@ -1195,7 +1150,24 @@ function FormsNewQuestionsOptionsPage() {
 
                 </form>
 
-            </div>  
+            </div>
+
+            <Footer />
+
+            {/* PopupMessagesTitlesForms */}
+            {activePopupMessagesTitlesForms1and2 && 
+                <PopupMessagesTitlesForms 
+                    text="Form 1 and Form 2 complement each other." 
+                    specificStyles={styles.popupMessageTitle1and2}    
+                />
+            }
+
+            {activePopupMessagesTitlesForms3and4 && 
+                <PopupMessagesTitlesForms 
+                    text="Form 3 and Form 4 complement each other." 
+                    specificStyles={styles.popupMessageTitle3and4}    
+                />
+            }
 
             {/* PopupRepeatedAlternatives */}
             {activePopupRepeatedAlternativesForms2 && 
@@ -1308,7 +1280,44 @@ function FormsNewQuestionsOptionsPage() {
                     text={'Please fill in all required fields in Form 4!'}
                     activePopup={setActivePopupCheckRequiredFields4}
                 />                
-            }      
+            } 
+
+            {/* PopupQuestionSuccessfully */}
+            {activePopupQuestionSuccessfull1 &&
+                <PopupQuestionSuccessfully 
+                    specificStyles={styles.popupSuccessfully}
+                    text='Question successfully added from Form 1. Please complete one form at a time.' 
+                    activePopup={setActivePopupQuestionSuccessfull1}
+                />
+
+            }
+
+            {activePopupQuestionSuccessfull2 && 
+                <PopupQuestionSuccessfully
+                    specificStyles={styles.popupSuccessfully}
+                    text='Question successfully added from Form 3. Please complete one form at a time.' 
+                    activePopup={setActivePopupQuestionSuccessfull2}
+                />
+            }
+
+            {/* PopupOptionSuccessfully */}
+            {activePopupOptionSuccessfull1 &&
+                <PopupOptionSuccessfully
+                    specificStyles={styles.popupSuccessfully}
+                    text='Option successfully added from Form 2. Please complete one form at a time.' 
+                    activePopup={setActivePopupOptionSuccessfull1}
+                />
+
+            }
+
+            {activePopupOptionSuccessfull2 && 
+                <PopupOptionSuccessfully
+                    specificStyles={styles.popupSuccessfully} 
+                    text='Option successfully added from Form 4. Please complete one form at a time.' 
+                    activePopup={setActivePopupOptionSuccessfull2}
+                />
+            }
+
         </div>
     )
 }

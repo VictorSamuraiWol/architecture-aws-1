@@ -8,6 +8,7 @@ import MenuTools from '../MenuTools'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import ModalResults from '../ModalResults'
 import zeroImage from '../../imgs/zero-question.png'
+import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link } from 'react-router-dom'
@@ -29,6 +30,9 @@ function Main({
     const [inputValidateStyle] = useState(styles.inputValidate)
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
+    const [answerMainQuestionAlert, setAnswerMainQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [noDataAlert, setNoDataAlert] = useState(false) // ativa o componente PopupAlertMessage
+    const [addOneSingleChoiceAlert, setAddOneSingleChoiceAlert] = useState(false) // ativa o componente PopupAlertMessage
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
@@ -74,7 +78,7 @@ function Main({
         activePageMain && setQuestionMain(next) // nova questão
 
     }
-    
+
     function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
         if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain === true && (numberPath === 1 || numberPath === 2)) {
         // condição: se a questão da página Main já foi respondida 
@@ -83,13 +87,13 @@ function Main({
             setDescriptionDisplay(styles.invisibleDescription)
 
         } else if (questionAnswerButtonNextMain === false) {
-            alert("Oops!!! Please answer the question before moving on to the next one!")
+            setAnswerMainQuestionAlert(true)
 
         } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
-            alert("No data found. Need to mock the API.")
+            setNoDataAlert(true)
 
         } else if (activePageDemo && !listUnicQuestionsContextLength && (listMultiQuestionsContextLength > 0 || listThreeMultiQuestionsContextLength > 0)) {
-            alert("Add at least one single-choice question to use the app.")
+            setAddOneSingleChoiceAlert(true)
 
         }
 
@@ -153,7 +157,7 @@ function Main({
 
                 </div>
 
-                {activePopupRepeatedAlternativesMain === true && 
+                {activePopupRepeatedAlternativesMain && 
                     <PopupRepeatedAlternatives 
                         specificStyles={styles.popupRepeatedMain} 
                         textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
@@ -228,6 +232,32 @@ function Main({
                     className={styles.zeroImg}
                 />
             }
+
+            {/* {PopupAlertMessage} */}
+            {answerMainQuestionAlert &&
+                <PopupAlertMessage 
+                    text="Oops!!! Please answer the question before moving on to the next one!"
+                    activePopup={setAnswerMainQuestionAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {noDataAlert &&
+                <PopupAlertMessage 
+                    text="No data found. Need to mock the API."
+                    activePopup={setNoDataAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {addOneSingleChoiceAlert &&
+                <PopupAlertMessage 
+                    text="Add at least one single-choice question to use the app."
+                    activePopup={setAddOneSingleChoiceAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
                                   
         </div>
     )

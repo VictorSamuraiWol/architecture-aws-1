@@ -23,20 +23,13 @@
 }
 
 .popupRepeatedMain {
-  position: fixed;
-  left: 85%;
-  bottom: 15%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-weight: bold;
-  color: var(--color-first);
-  background-color: var(--color-fourth);
-  box-shadow: 3px 3px 3px var(--color-third);
-  width: 15%;
-  padding: 20px 12px 12px 12px;
-  border: 1px solid var(--color-third);
-  border-radius: 8px;
-  z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+  left: 80%;
+  bottom: 20%;
+}
+
+.popupAlertMessage {
+  top: 20%;
+  left: 40%;
 }
 
 .optionValidate {

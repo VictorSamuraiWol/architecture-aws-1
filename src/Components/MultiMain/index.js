@@ -8,6 +8,7 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import zeroImage from '../../imgs/zero-question.png'
+import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -30,9 +31,11 @@ function MultiMain({
 
     const [itens, setItens] = useState('') // captura os itens corretos
 
+    const [answerMultiQuestionAlert, setAnswerMultiQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
+
     function alertQuestionAnswerButtonNextMulti() {
         if (questionAnswerButtonNextMulti === false) {
-            alert('Oops!!! Please answer the question before moving on to the next one!')
+            setAnswerMultiQuestionAlert(true)
 
         }
 
@@ -142,6 +145,15 @@ function MultiMain({
                 alt='zero img'
                 className={styles.zeroImg}
             />}
+
+            {/* {PopupAlertMessage} */}
+            {answerMultiQuestionAlert &&
+                <PopupAlertMessage 
+                    text="Oops!!! Please answer the question before moving on to the next one!"
+                    activePopup={setAnswerMultiQuestionAlert}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
                        
         </div>
     )
