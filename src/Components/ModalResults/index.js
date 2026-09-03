@@ -88,7 +88,7 @@ function ModalResults() {
                 <p id='incorrects'>Incorrect questions: {dataResults.numIncorrectOption}</p>
                 <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>
                 <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
-                <p id='performances'>Performance: {dataResults.performanceResults}</p>
+                <p id='performances'>Performance: {dataResults.performanceResults}%</p>
 
             </Modal>
 

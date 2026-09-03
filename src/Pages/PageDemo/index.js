@@ -1,12 +1,14 @@
 import styles from './PageDemo.module.css'
 import Header from '../../Components/Header'
 import Main from '../../Components/Main'
+import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+import Footer from '../../Components/Footer'
 import { useOutletContext } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
 function PageDemo() {
 
-  const { setRequestData, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions } = useOutletContext()
+  const { requestData, setRequestData, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions } = useOutletContext()
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -70,6 +72,14 @@ function PageDemo() {
           className={styles.allQuestionsDemoClass} 
           key='0'
       >
+        {/* background image */}
+        {(requestData && activePageFormsQuestionsOptions === false) && 
+        <img 
+            className={`backgroundImageClass ${styles.backgroundImage}`} 
+            src={backgroundImage} 
+            alt='backgoundIimage'
+        />}
+
         {/* reutilizando componentes da página Main */}
         <Header title="Architecture Questions - Randomly" />
 
@@ -96,6 +106,8 @@ function PageDemo() {
           activeZeroImgMain={false}
           activePageDemo={activePageDemo}
         />
+
+        <Footer />
 
       </div>
 

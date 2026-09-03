@@ -1,40 +1,30 @@
 import styles from './PageBase.module.css'
-import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import DataProvider from '../../Components/DataContext'
-import Footer from '../../Components/Footer'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
 
 function PageBase() {
 
-    //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
-    const [requestData, setRequestData] = useState(false)
-
+    const [requestData, setRequestData] = useState(false) //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
-
     const [activePageDemo, setActivePageDemo] = useState(false)
     const [activePageMain, setActivePageMain] = useState(false)
     const [activePageMulti, setActivePageMulti] = useState(false)
     const [activePageThreeMulti, setActivePageThreeMulti] = useState(false)
-
     const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
     const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
     const [activeZeroImgThreeMulti, setActiveZeroImgThreeMulti] = useState(false)
-
     const [mute, setMute] = useState(false)
-
-    // questões corretas das páginas main e multi
-    const [numCorrectOption, setNumCorrectOption] = useState(0)
-    const [numIncorrectOption, setNumIncorrectOption] = useState(0)
-
-    // resultados estatísticos
-    const dataResults = {
+    const [numCorrectOption, setNumCorrectOption] = useState(0) // questões corretas das páginas main e multi
+    const [numIncorrectOption, setNumIncorrectOption] = useState(0) // questões corretas das páginas main e multi  
+    
+    const dataResults = { // resultados estatísticos
         numCorrectOption, 
         numIncorrectOption, 
         allCorrectIncorrectResults: (numCorrectOption + numIncorrectOption), 
         pontuationResults: (numCorrectOption + numIncorrectOption > 0) ? `${Math.floor(Number((((numCorrectOption/(numCorrectOption + numIncorrectOption))*1000))))}/1000` : 0,
-        performanceResults: (numCorrectOption + numIncorrectOption > 0) ? `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100).toFixed(2)}%` : 0
+        performanceResults: (numCorrectOption + numIncorrectOption > 0) ? Number.isInteger(Number((((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100))) ? `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100)}` : `${(((((numCorrectOption/(numCorrectOption+ numIncorrectOption))*1000))/1000)*100).toFixed(2)}` : 0
     }
 
     function validateSound() { // ativa ou desativa os sons e os icones dos sons
@@ -96,13 +86,6 @@ function PageBase() {
     return(   
         <div className={styles.pageBaseOutlet}>
             <DataProvider>
-                {((requestData && activePageFormsQuestionsOptions === false) || activePageDemo) && 
-                <img 
-                    className={`backgroundImageClass ${styles.backgroundImage}`} 
-                    src={backgroundImage} 
-                    alt='backgoundIimage'
-                />}
-
                 <Outlet 
                     context={{ mute, requestData, 
                         setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
@@ -131,8 +114,6 @@ function PageBase() {
                         className={styles.soundMute}
                     />
                 }
-
-                {(requestData || activePageFormsQuestionsOptions || activePageDemo) && <Footer />}
 
             </DataProvider>
 

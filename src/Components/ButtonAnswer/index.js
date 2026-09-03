@@ -61,7 +61,7 @@ function ButtonAnswer({
 
         const checkedParagraph = [...captureOptionsNextInput] // captura somente a alternativa marcada
             .filter(input => input.checked)
-            .map(input => input.parentElement.children[1].childNodes[3])[0]
+            .map(input => input.parentElement?.children[1].childNodes[3])[0]
 
         let correctItem = null
         let setterQuestionAnswer = false
@@ -121,8 +121,8 @@ function ButtonAnswer({
                                 checkedParagraph.parentElement?.classList.remove(optionColorStyle)
                                
                                 // estilizando o input marcado incorretamente
-                                checkedParagraph.parentElement.parentElement.children[0]?.classList.add(inputInvalidateStyle)
-                                checkedParagraph.parentElement.parentElement.children[0]?.classList.remove(inputColorStyle)
+                                checkedParagraph.parentElement?.parentElement.children[0]?.classList.add(inputInvalidateStyle)
+                                checkedParagraph.parentElement?.parentElement.children[0]?.classList.remove(inputColorStyle)
                 
                                 setterNumIncorrectOption++ // incrementa '1' se responder errado
                                 playErrorSound = true // toca o som de erro
@@ -189,11 +189,11 @@ function ButtonAnswer({
           
         const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
             .filter(input => input.checked)
-            .map(input => input.parentElement.children[1])
+            .map(input => input.parentElement?.children[1])
 
         const checkedItens = [...captureOptionsNextMultiInput] // captura somente os itens marcados
             .filter(input => input.checked)
-            .map(input => input.parentElement.children[1].childNodes[0])
+            .map(input => input.parentElement?.children[1].childNodes[0])
 
         const allParagraph =  [...captureOptionsNextMultiP] // captura todas as alternativas
 
@@ -238,8 +238,8 @@ function ButtonAnswer({
                             checkedParagraph[i].classList.remove(optionColorStyle)
 
                             // estilizando os inputs marcados corretamente
-                            checkedParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
-                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                             correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
@@ -256,8 +256,8 @@ function ButtonAnswer({
                             checkedParagraph[i].classList.remove(optionColorStyle)
 
                             // estilizando os inputs marcados incorretamente
-                            checkedParagraph[i].parentElement.children[0].classList.add(inputInvalidateStyle)
-                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
                             setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
@@ -269,8 +269,8 @@ function ButtonAnswer({
                                     allParagraph[i].classList.remove(optionColorStyle)
 
                                     // estilizando os inputs corretos
-                                    allParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
-                                    allParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                                    allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                                    allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                                     correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
 
@@ -347,11 +347,11 @@ function ButtonAnswer({
           
         const checkedParagraph = [...captureOptionsNextMultiInput] // captura somente as alternativas marcadas
             .filter(input => input.checked)
-            .map(input => input.parentElement.children[1])
+            .map(input => input.parentElement?.children[1])
 
         const checkedItens = [...captureOptionsNextMultiInput] // captura somente os itens marcados
             .filter(input => input.checked)
-            .map(input => input.parentElement.children[1].childNodes[0])
+            .map(input => input.parentElement?.children[1].childNodes[0])
 
         const allParagraph =  [...captureOptionsNextMultiP] // captura todas as alternativas
 
@@ -396,8 +396,8 @@ function ButtonAnswer({
                             checkedParagraph[i].classList.remove(optionColorStyle)
 
                             // estilizando os inputs marcados corretamente
-                            checkedParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
-                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                             correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
@@ -414,8 +414,8 @@ function ButtonAnswer({
                             checkedParagraph[i].classList.remove(optionColorStyle)
 
                             // estilizando os inputs marcados incorretamente
-                            checkedParagraph[i].parentElement.children[0].classList.add(inputInvalidateStyle)
-                            checkedParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
+                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                             setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
                             setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
@@ -427,8 +427,8 @@ function ButtonAnswer({
                                     allParagraph[i].classList.remove(optionColorStyle)
 
                                     // estilizando os inputs corretos
-                                    allParagraph[i].parentElement.children[0].classList.add(inputValidateStyle)
-                                    allParagraph[i].parentElement.children[0].classList.remove(inputColorStyle)
+                                    allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                                    allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
                                     correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
 

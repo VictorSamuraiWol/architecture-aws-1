@@ -6,6 +6,7 @@
     flex-direction: column;
     gap: 8px;
     width: 99%;
+    padding: 8px 0;
     border-top: 2px solid var(--color-third);
     border-bottom: 2px solid var(--color-third);
     border-radius: 16px;
@@ -17,7 +18,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 8px;
+    padding: 0 8px;
     width: 98%;
 }
 
@@ -75,7 +76,7 @@
 
 @media (max-width: 1100px) {
     .multiOptions {
-        padding: 8px;
+        padding: 6px 0;
     }
 
     .inputMultiOptions {
@@ -92,7 +93,7 @@
     }
 
     .alternativeMultiOptions {
-        padding: 6px;
+        padding: 0 6px;
     }
 
     .textMultiOptions {
@@ -103,7 +104,7 @@
 
 @media (max-width: 860px) {
     .multiOptions {
-        padding: 6px;
+        padding: 4px 0;
     }
 
     .inputMultiOptions {
@@ -120,7 +121,7 @@
     }
 
     .alternativeMultiOptions {
-        padding: 4px;
+        padding: 0 4px;
     }
 
     .textMultiOptions {
@@ -143,12 +144,16 @@
 
 @media (max-width: 580px) {
     .multiOptions {
-        padding: 4px;
+        padding: 2px 0;
     }
 
     .multiOptions::-webkit-scrollbar {
         width: 2px;
         height: 2px;  
+    }
+
+    .alternativeMultiOptions {
+        padding: 0 2px;
     }
 
     .inputMultiOptions {

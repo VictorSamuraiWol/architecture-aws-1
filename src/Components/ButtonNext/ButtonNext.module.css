@@ -1,7 +1,7 @@
 .buttonNext {
     position: absolute;
-    bottom: 25px;
-    right: 25px;
+    bottom: 10px;
+    right: 10px;
     background-color: var(--color-second);
     z-index: 1;
 }
@@ -23,8 +23,7 @@
 
 @media (max-width: 580px) {
     .buttonNext {
-        bottom: 10px;
-        right: 10px;
+        right: 2px;
         padding: 4px;
     }
 

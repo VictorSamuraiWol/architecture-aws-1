@@ -1,11 +1,6 @@
 .pageDemoStyles {
     position: relative;
-}
-
-.allQuestionsDemoClass {
-    position: relative;
-    height: 90vh;
-    background-color: var(--color-first);
+    height: 100vh;
 }
 
 .invisibleAnswerDescription {
@@ -14,4 +9,12 @@
 
 .invisibleDescription {
     visibility: hidden;
+}
+
+.backgroundImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.1;
+    z-index: 1;
 }

@@ -1,6 +1,5 @@
 import styles from './Header.module.css'
 import image from '../../imgs/icon-start.png'
-import Timer from './Timer'
 import NavigationItem from './NavigationItem'
 import soundClick from '../../audios/clickAudio.mp3'
 import { Link, useOutletContext } from 'react-router-dom'
@@ -11,7 +10,7 @@ function Header({ title }) {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { requestData, activePageFormsQuestionsOptions, activePageMain, activePageMulti, activePageDemo, activePageThreeMulti, mute, activeZeroImgMain, activeZeroImgMulti } = useOutletContext()
+    const { mute } = useOutletContext()
 
     const allLinks = document.querySelectorAll('.ulHeader')
 
@@ -78,9 +77,6 @@ function Header({ title }) {
                     </Link>                    
                 </ul>
             </nav>
-            
-            {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
-            {((requestData && activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti))) || activePageDemo || activePageThreeMulti) && <Timer />}
             
         </div>
     )

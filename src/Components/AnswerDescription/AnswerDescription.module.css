@@ -40,27 +40,28 @@
     cursor: default;
 }
 
-.answerDisplay h3 {
+.textAnswer {
     margin: 0;
+    text-align: justify;
 }
 
-/* Responsiveness */
+/* Responsividade */
 @media (min-width: 1701px) {
-    .item, .itens, .answerDisplay h3 {
+    .item, .itens, .textAnswer {
         font-size: 1.5rem;
     }
 
 }
 
 @media (max-width: 1700px) {
-    .item, .itens, .answerDisplay h3 {
+    .item, .itens, .textAnswer {
         font-size: 1.3rem;
     }
 
 }
 
 @media (max-width: 1100px) {
-    .item, .itens, .answerDisplay h3 {
+    .item, .itens, .textAnswer {
         font-size: 1.1rem;
     }
   
@@ -71,8 +72,23 @@
         width: 70%;
     }
 
-    .item, .itens, .answerDisplay h3 {
+    .item, .itens, .textAnswer {
         font-size: 0.9rem;
+    }
+
+    .textAnswer {
+        height: 130px;
+        padding-right: 2px;
+        overflow: auto;
+    }
+
+    .textAnswer::-webkit-scrollbar {
+        height: 3px;    
+        width: 3px;
+    }
+    
+    .textAnswer::-webkit-scrollbar-thumb {    
+        background-color: var(--color-fourth);
     }
 
 }
@@ -82,18 +98,9 @@
         font-size: 0.8rem;
     }
 
-    .answerDisplay h3 {
+    .textAnswer {
         font-size: 0.8rem;
-        overflow: auto;
-    }
-
-    .answerDisplay h3::-webkit-scrollbar {
-        height: 3px;    
-        width: 3px;
-    }
-    
-    .answerDisplay h3::-webkit-scrollbar-thumb {    
-        background-color: var(--color-fourth);
+        height: 110px;
     }
 
 }

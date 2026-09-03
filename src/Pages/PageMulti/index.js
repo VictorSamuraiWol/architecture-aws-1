@@ -2,6 +2,8 @@ import styles from './PageMulti.module.css'
 import Header from '../../Components/Header'
 import MultiMain from '../../Components/MultiMain'
 import Loader from '../../Components/Loader'
+import Footer from '../../Components/Footer'
+import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
@@ -23,7 +25,7 @@ function PageMulti() {
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
+    const { requestData, setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -165,6 +167,14 @@ function PageMulti() {
                 className={styles.allQuestionsMultiClass} 
                 key={questionMulti.id}
             >
+                {/* background image */}
+                {(requestData && activePageFormsQuestionsOptions === false) && 
+                <img 
+                    className={`backgroundImageClass ${styles.backgroundImage}`} 
+                    src={backgroundImage} 
+                    alt='backgoundIimage'
+                />} 
+
                 {questionMulti &&
                 <>
                     <Header title="Architecture Questions - Randomly" />
@@ -189,7 +199,10 @@ function PageMulti() {
                         optNum4={optNum4}
                         optNum5={optNum5}
                         activeZeroImgMulti={activeZeroImgMulti}
-                    />                   
+                    />
+
+                    <Footer />
+
                 </>
                 }
 

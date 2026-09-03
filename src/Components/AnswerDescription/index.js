@@ -44,7 +44,7 @@ function AnswerDescription({
                 className={styles.answerDisplay}
             >
                 {item && <span className={styles.item}>{item}</span>} {/* item que será mostrado na PageMain */}
-                <h3>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer) || (listThreeMultiOptionsContext && answer)}</h3>
+                <h3 className={styles.textAnswer}>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer) || (listThreeMultiOptionsContext && answer)}</h3>
             </div>
 
             <DescriptionModal 

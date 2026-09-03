@@ -2,6 +2,8 @@ import styles from './PageMain.module.css'
 import Header from '../../Components/Header'
 import Main from '../../Components/Main'
 import Loader from '../../Components/Loader'
+import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+import Footer from '../../Components/Footer'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
@@ -23,7 +25,7 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
+    const { requestData, setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -180,7 +182,15 @@ function PageMain() {
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
                 key={questionMain.id}
-            >        
+            >
+                {/* background image */}
+                {(requestData && activePageFormsQuestionsOptions === false) && 
+                <img 
+                    className={`backgroundImageClass ${styles.backgroundImage}`} 
+                    src={backgroundImage} 
+                    alt='backgoundIimage'
+                />}
+
                 {questionMain &&
                 <>
                     <Header title="Architecture Questions - Randomly" />                    
@@ -209,6 +219,9 @@ function PageMain() {
                         activeZeroImgMain={activeZeroImgMain}
                         activePageMain={activePageMain}
                     />
+
+                    <Footer />
+
                 </>
                 }
 

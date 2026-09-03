@@ -1,10 +1,10 @@
 import styles from './Timer.module.css'
-import timerStart from '../../../audios/timer-start.mp3'
-import timerPause from '../../../audios/timer-pause.mp3'
+import timerStart from '../../audios/timer-start.mp3'
+import timerPause from '../../audios/timer-pause.mp3'
 import { useState, useEffect, useRef } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
-const Timer = ({ activePageDemo }) => {
+const Timer = () => {
   
   const [time, setTime] = useState(120) // 2 minutos = 120 segundos
   const [isRunning, setIsRunning] = useState(true)
@@ -22,7 +22,8 @@ const Timer = ({ activePageDemo }) => {
 
       }, 1000); // 1000 ms
 
-    } mute === false && timerStartSound.play() //toca o audio
+    } 
+    mute === false && timerStartSound.play() //toca o audio
 
   }
 

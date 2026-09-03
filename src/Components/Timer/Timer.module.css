@@ -3,9 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 91vh;
-    left: 20px;
     padding: 4px;
     border: 2px dotted var(--color-first);
     border-radius: 26px;
@@ -15,6 +12,7 @@
 .timer h1 {
     font-size: 16px;
     margin: 0;
+    cursor: default;
 }
 
 .timer button {
@@ -32,6 +30,7 @@
 .timer button:hover {
     color: var(--color-first);
     background-color: var(--color-fourth);
+    transform: scale(0.97);
 }
 
 /* Responsividade */
