@@ -26,7 +26,7 @@ function PageThreeMulti() {
     const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
+    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -51,9 +51,6 @@ function PageThreeMulti() {
     }
 
     useEffect(() => {
-        // habilitar os icones de som ao renderizar o conteúdo da página ThreeMulti
-        setRequestData(true)
-
         // tornar a página ativa ao entrar na rota dela
         setActivePageThreeMulti(true)
         
@@ -62,7 +59,7 @@ function PageThreeMulti() {
         setActivePageDemo(false)
         setActivePageFormsQuestionsOptions(false)
 
-    }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+    }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
     
     useEffect(() => {
         if (!listThreeMultiQuestionsContext || !listThreeMultiQuestionsContextLength || listThreeMultiQuestionsContextLength === 0) return // se a lista de questões não existir, retorne

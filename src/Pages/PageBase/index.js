@@ -6,7 +6,6 @@ import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
 
 function PageBase() {
 
-    const [requestData, setRequestData] = useState(false) //constante booleana para saber se os dados da api foram recebidos com sucesso e mostrar as páginas em seguida ou não mostrar se não receber
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
     const [activePageDemo, setActivePageDemo] = useState(false)
     const [activePageMain, setActivePageMain] = useState(false)
@@ -89,8 +88,7 @@ function PageBase() {
         <div className={styles.pageBaseOutlet}>
             <DataProvider>
                 <Outlet 
-                    context={{ mute, requestData, 
-                        setRequestData, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
+                    context={{ mute, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
                         setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
                         checkAlternativeAnswerDefault, activePageDemo, setActivePageDemo, activePageMain, setActivePageMain, 
@@ -100,7 +98,7 @@ function PageBase() {
                     }} 
                 />                
 
-                {mute === false && (requestData || activePageFormsQuestionsOptions || activePageDemo) &&
+                {mute === false && (activePageFormsQuestionsOptions || activePageDemo) &&
                 // condição: se o mute for false, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeFull // unmute sound icon
                         onClick={validateSound}
@@ -109,7 +107,7 @@ function PageBase() {
                     />
                 }                
 
-                {mute && (requestData || activePageFormsQuestionsOptions || activePageDemo) &&
+                {mute && (activePageFormsQuestionsOptions || activePageDemo) &&
                 // condição: se o mute for true, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeMute // mute sound icon
                         onClick={validateSound}

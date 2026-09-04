@@ -3,7 +3,7 @@
     font-weight: bold;
     font-style: italic;
     border: 1px solid var(--color-fourth);
-    border-radius: 16px;
+    border-radius: 12px;
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -15,10 +15,31 @@
     transform: scale(0.97);
 }
 
-/* Responsiveness */
+/* Responsividade */
 @media (min-width: 1101px) {
     .buttonDefault {
-        padding: 14px;
+        padding: 10px;
+    }
+
+}
+
+@media (max-width: 1100px) {
+    .buttonDefault {
+        padding: 8px;
+    }
+
+}
+
+@media (max-width: 860px) {
+    .buttonDefault {
+        padding: 6px;
+    }
+
+}
+
+@media (max-width: 580px) {
+    .buttonDefault {
+        padding: 4px;
     }
 
 }

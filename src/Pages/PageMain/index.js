@@ -25,7 +25,7 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, listUnicOptionsContextLength, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
+    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
         activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
@@ -54,9 +54,6 @@ function PageMain() {
     }   
 
     useEffect(() => {
-        // habilitar os icones de som ao renderizar o conteúdo da página Main
-        setRequestData(true)
-
         // tornar a página ativa ao entrar na rota dela
         setActivePageMain(true)
 
@@ -65,7 +62,7 @@ function PageMain() {
         setActivePageThreeMulti(false)
         setActivePageFormsQuestionsOptions(false)
 
-    }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+    }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
 
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength || listUnicQuestionsContextLength === 0) return // se a lista de questões não existir, retorne

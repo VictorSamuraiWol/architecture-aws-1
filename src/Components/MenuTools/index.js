@@ -17,8 +17,6 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
-  const [unicDeleteSuccessfully, setUnicDeleteSuccessfully] = useState(false) // ativa o componente PopupAlertMessage
-  const [multiDeleteSuccessfully, setMultiDeleteSuccessfully] = useState(false) // ativa o componente PopupAlertMessage
   const [fewer3SigleChoice, setFewer3SigleChoice] = useState(false) // ativa o componente PopupAlertMessage
   const [fewer3MultipleChoice, setFewer3MultipleChoice] = useState(false) // ativa o componente PopupAlertMessage
 
@@ -164,7 +162,6 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
           onDeleteQuestion(questionMain)
           onDeleteOption(optionMainNumberId)
-          setUnicDeleteSuccessfully(true)
           setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
           setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
           console.log('Deleted successfully!')
@@ -183,7 +180,6 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
-      setMultiDeleteSuccessfully(true)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
@@ -232,6 +228,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           className={styles.deleteIcon}            
         /> 
 
+        {/* PopupDeleteQuestionOption */}
         {activePopupDelete && 
         <PopupDeleteQuestionOption
           specificStyles={styles.popupDelete} 
@@ -249,14 +246,6 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           <PopupAlertMessage
             text="This is a static question and cannot be removed."
             activePopup={setStaticQuestionAlert}
-            specificStyles={styles.popupAlertMessage}
-          /> 
-        }
-
-        {(unicDeleteSuccessfully || multiDeleteSuccessfully) && 
-          <PopupAlertMessage 
-            text="Deleted successfully!"
-            activePopup={setUnicDeleteSuccessfully || setMultiDeleteSuccessfully}
             specificStyles={styles.popupAlertMessage}
           /> 
         }

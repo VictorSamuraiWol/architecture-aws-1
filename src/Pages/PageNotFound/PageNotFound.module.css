@@ -1,35 +1,175 @@
-.PaginaNaoEncontrada {
+.pageNotFound {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: start;
     align-items: center;
-    gap: 20px;
-    padding: 24px 104px;
-    background-color: var(--color-first);
+    gap: 48px;
     height: 100vh;
+    background-color: var(--color-first);
+    padding: 0 16px;
 }
 
-.texto404 {
+.pageNotFoundText404Title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 24px;
+}
+
+.text404 {
     display: block;
     text-align: center;
     font-size: 6rem;
     font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--color-third);
+    color: var(--color-fourth);
+    text-shadow: 3px 2px 3px var(--color-third);
+    padding: 24px;
 }
 
-.titulo {
+.title {
     font-size: 3rem;
-    margin-bottom: 2rem;
-    color: var(--color-third);
+    text-align: center;
+    color: var(--color-fourth);
+    text-shadow: 3px 2px 3px var(--color-third);
+    margin: 0;
 }
 
-.paragrafo {
+.paragrafh {
     font-size: 1.5rem;
+    text-align: center;
     line-height: 1.75rem;
+    color: var(--color-fourth);
+    text-shadow: 3px 2px 3px var(--color-third);
+}
+
+.linkPreviousPage {
+    color: var(--color-fourth);
+    text-shadow: 3px 2px 3px var(--color-third);
+}
+
+.linkPreviousPage:hover {
     color: var(--color-third);
+    text-shadow: 3px 2px 3px var(--color-fourth);
 }
 
 .backPage {
     font-size: 3rem;
+}
+
+/* Responsividade */
+@media (min-width: 1441px) {
+  .text404 {
+    font-size: 6rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .paragrafh {
+    font-size: 1.5rem;
+  }
+
+  .backPage {
+    font-size: 3rem;
+  }
+
+}
+
+@media (max-width: 1440px) {
+  .text404 {
+    font-size: 6rem;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .paragrafh {
+    font-size: 1.5rem;
+  }
+
+  .backPage {
+    font-size: 3rem;
+  }
+
+}
+
+
+@media (max-width: 1280px) {
+  .text404 {
+    font-size: 5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .paragrafh {
+    font-size: 1.3rem;
+  }
+
+  .backPage {
+    font-size: 2.5rem;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .text404 {
+    font-size: 4rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .paragrafh {
+    font-size: 1.2rem;
+  }
+
+  .backPage {
+    font-size: 2rem;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .text404 {
+    font-size: 3.5rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .paragrafh {
+    font-size: 1rem;
+  }
+
+  .backPage {
+    font-size: 1.7rem;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .text404 {
+    font-size: 3rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .paragrafh {
+    font-size: 0.8rem;
+  }
+
+  .backPage {
+    font-size: 1.5rem;
+  }
+
 }
