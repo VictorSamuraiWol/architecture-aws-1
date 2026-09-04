@@ -11,7 +11,7 @@ import zeroImage from '../../imgs/zero-question.png'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 
 function Main({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
@@ -21,6 +21,8 @@ function Main({
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength } = useContext(DataContext)
+
+    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert } = useOutletContext()
 
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
@@ -102,7 +104,7 @@ function Main({
     function ablePageMulti() { // função que muda a rota da página Main para a página Multi, 
     // só mudará para a página Multi quando o numberPath for igual a '3' e permanecerá na página Main se o numberPath for igual a '1' ou '2',
     // a probabilidade de permanecer na página Main é de 66% (números 1 ou 2) e de ir para a página Multi é de 33% (número 3)
-        let able
+        let able = null
 
         if (listMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && numberPath === 3) {
         // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
@@ -156,14 +158,6 @@ function Main({
                     />
 
                 </div>
-
-                {activePopupRepeatedAlternativesMain && 
-                    <PopupRepeatedAlternatives 
-                        specificStyles={styles.popupRepeatedMain} 
-                        textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
-                        activePopup={setActivePopupRepeatedAlternativesMain}
-                    />
-                }
 
                 <Options
                     optionColorStyle={optionColorStyle}
@@ -225,6 +219,7 @@ function Main({
 
             </>}
 
+            {/* imagem que aparece quando não tem questões disponíveis */}
             {activeZeroImgMain &&
                 <img 
                     src={zeroImage} 
@@ -233,7 +228,16 @@ function Main({
                 />
             }
 
-            {/* {PopupAlertMessage} */}
+            {/* PopupRepeatedAlternatives */}
+            {activePopupRepeatedAlternativesMain && 
+                <PopupRepeatedAlternatives 
+                    specificStyles={styles.popupRepeatedMain} 
+                    textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
+                    activePopup={setActivePopupRepeatedAlternativesMain}
+                />
+            }
+
+            {/* PopupAlertMessage */}
             {answerMainQuestionAlert &&
                 <PopupAlertMessage 
                     text="Oops!!! Please answer the question before moving on to the next one!"
@@ -255,6 +259,14 @@ function Main({
                     text="Add at least one single-choice question to use the app."
                     activePopup={setAddOneSingleChoiceAlert}
                     specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {activePopupZeroTimerMainAlert && 
+                <PopupAlertMessage 
+                    text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                    specificStyles={styles.popupAlertMessage}
+                    activePopup={setActivePopupZeroTimerMainAlert}
                 />
             }
 

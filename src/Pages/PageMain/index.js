@@ -22,10 +22,11 @@ function PageMain() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, listUnicOptionsContextLength, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
+    const { setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
+        activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -53,7 +54,7 @@ function PageMain() {
     }   
 
     useEffect(() => {
-        // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
+        // habilitar os icones de som ao renderizar o conteúdo da página Main
         setRequestData(true)
 
         // tornar a página ativa ao entrar na rota dela
@@ -67,7 +68,7 @@ function PageMain() {
     }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
 
     useEffect(() => {
-        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength) return // se a lista de questões não existir, retorne
+        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength || listUnicQuestionsContextLength === 0) return // se a lista de questões não existir, retorne
 
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMain(listUnicQuestionsContextLength)
@@ -78,7 +79,7 @@ function PageMain() {
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
 
     useEffect(() => {
-        if (!listUnicOptionsContext || !listUnicOptionsContext.length) return // se a lista de opções não existir, retorne
+        if (!listUnicOptionsContext || !listUnicOptionsContextLength || listUnicOptionsContextLength === 0) return // se a lista de opções não existir, retorne
 
         const randomNumbers = [] // armazena a lista de números randômicos
         
@@ -100,11 +101,11 @@ function PageMain() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4]) 
 
-    }, [listUnicOptionsContext, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
+    }, [listUnicOptionsContext, listUnicOptionsContextLength, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão           
-        if (!listUnicQuestionsContext || !questionMain || !listUnicOptionsContext) return
+        if (!listUnicQuestionsContext || !listUnicOptionsContext || !questionMain) return
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -178,57 +179,53 @@ function PageMain() {
 
     return(
         <div className={styles.pageMainStyles}>
-            {requestData && <div 
+            {questionMain &&
+            <div 
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
                 key={questionMain.id}
             >
                 {/* background image */}
-                {(requestData && activePageFormsQuestionsOptions === false) && 
+                {activePageFormsQuestionsOptions === false && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='backgoundIimage'
                 />}
 
-                {questionMain &&
-                <>
-                    <Header title="Architecture Questions - Randomly" />                    
+                <Header title="Architecture Questions - Randomly" />                    
 
-                    <Main 
-                        question={questionMain.questionText}
-                        answer={questionMain.correctAnswer}
-                        imageDescription={questionMain.imageKey}
-                        description={questionMain.description}
-                        questionNumber={questionMain.questionNumber}
-                        elementId={questionMain.id}
-                        answerDescriptionDisplay={answerDescriptionDisplay}
-                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                        descriptionDisplay={descriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}                  
-                        uniqueRandomMain={uniqueRandomMain}
-                        questionMain={questionMain}
-                        setQuestionMain={setQuestionMain}                        
-                        optionMain={optionMain}
-                        optionMainNumberId={optionMainNumberId}
-                        optNum1={optNum1}
-                        optNum2={optNum2}
-                        optNum3={optNum3}
-                        optNum4={optNum4}
-                        optNum5={optNum5}
-                        activeZeroImgMain={activeZeroImgMain}
-                        activePageMain={activePageMain}
-                    />
+                <Main 
+                    question={questionMain.questionText}
+                    answer={questionMain.correctAnswer}
+                    imageDescription={questionMain.imageKey}
+                    description={questionMain.description}
+                    questionNumber={questionMain.questionNumber}
+                    elementId={questionMain.id}
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}                  
+                    uniqueRandomMain={uniqueRandomMain}
+                    questionMain={questionMain}
+                    setQuestionMain={setQuestionMain}                        
+                    optionMain={optionMain}
+                    optionMainNumberId={optionMainNumberId}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                    activeZeroImgMain={activeZeroImgMain}
+                    activePageMain={activePageMain}
+                />
 
-                    <Footer />
-
-                </>
-                }
-
-                {loading && <Loader />}
+                <Footer />
+                
 
             </div>}
 
+            {loading && <Loader />}
 
         </div>
     )

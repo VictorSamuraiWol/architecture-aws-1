@@ -7,16 +7,19 @@ export default function DataProvider({ children }) {
     
     //colocando todas as variáveis que precisam utilizar os dados do backend neste contexto, podendo utilizar todas as variáveis em qualquer lugar do projeto através do 'useContext' 
     const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState([])
-    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState('')
+    const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState(null)
     const [listUnicOptionsContext, setListUnicOptionsContext] = useState([])
+    const [listUnicOptionsContextLength, setListUnicOptionsContextLength] = useState(null)
 
     const [listMultiQuestionsContext, setListMultiQuestionsContext] = useState([])
-    const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState('')
+    const [listMultiQuestionsContextLength, setListMultiQuestionsContextLength] = useState(null)
     const [listMultiOptionsContext, setListMultiOptionsContext] = useState([])
+    const [listMultiOptionsContextLength, setListMultiOptionsContextLength] = useState(null)
 
     const [listThreeMultiQuestionsContext, setListThreeMultiQuestionsContext] = useState([])
-    const [listThreeMultiQuestionsContextLength, setListThreeMultiQuestionsContextLength] = useState('')
+    const [listThreeMultiQuestionsContextLength, setListThreeMultiQuestionsContextLength] = useState(null)
     const [listThreeMultiOptionsContext, setListThreeMultiOptionsContext] = useState([])
+    const [listThreeMultiOptionsContextLength, setListThreeMultiOptionsContextLength] = useState(null)
 
     const [loading, setLoading] = useState(false)
 
@@ -38,8 +41,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-                    setListUnicQuestionsContext(data) // capturando os dados do backend
-                    setListUnicQuestionsContextLength(data.length) // capturando o comprimento dos dados do backend                  
+                    setListUnicQuestionsContext(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber)) // capturando os dados do backend
+                    setListUnicQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                
                     setLoading(false) // desabilitar o loading
 
                 }
@@ -65,7 +68,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-                    setListUnicOptionsContext(data) // capturando os dados do backend
+                    setListUnicOptionsContext(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD)) // capturando os dados do backend
+                    setListUnicOptionsContextLength(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD).length) // capturando o comprimento dos dados do backend
                     setLoading(false) // desabilitar o loading
 
                 }  
@@ -91,8 +95,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
                     
                 } else {
-                    setListMultiQuestionsContext(data) // capturando os dados do backend
-                    setListMultiQuestionsContextLength(data.length) // capturando o comprimento dos dados do backend                           
+                    setListMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber)) // capturando os dados do backend
+                    setListMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                           
                     setLoading(false) // desabilitar o loading
 
                 }   
@@ -118,7 +122,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-                    setListMultiOptionsContext(data) // capturando os dados do backend
+                    setListMultiOptionsContext(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD)) // capturando os dados do backend
+                    setListMultiOptionsContextLength(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD).length) // capturando o comprimento dos dados do backend
                     setLoading(false) // desabilitar o loading
                 
                 }       
@@ -144,8 +149,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
                     
                 } else {
-                    setListThreeMultiQuestionsContext(data) // capturando os dados do backend
-                    setListThreeMultiQuestionsContextLength(data.length) // capturando o comprimento dos dados do backend                           
+                    setListThreeMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber)) // capturando os dados do backend
+                    setListThreeMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                          
                     setLoading(false) // desabilitar o loading
 
                 }   
@@ -171,7 +176,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
 
                 } else {
-                    setListThreeMultiOptionsContext(data) // capturando os dados do backend
+                    setListThreeMultiOptionsContext(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD && e.optionE && e.optionF)) // capturando os dados do backend
+                    setListThreeMultiOptionsContextLength(data.filter(e => e.optionA && e.optionB && e.optionC && e.optionD && e.optionE && e.optionF).length) // capturando o comprimento dos dados do backend
                     setLoading(false) // desabilitar o loading
                 
                 }       
@@ -194,12 +200,15 @@ export default function DataProvider({ children }) {
                 listUnicQuestionsContext,
                 listUnicQuestionsContextLength,
                 listUnicOptionsContext,
+                listUnicOptionsContextLength,
                 listMultiQuestionsContext,
                 listMultiQuestionsContextLength,
                 listMultiOptionsContext,
+                listMultiOptionsContextLength,
                 listThreeMultiQuestionsContext,
                 listThreeMultiQuestionsContextLength,
                 listThreeMultiOptionsContext,
+                listThreeMultiOptionsContextLength,
                 loading,
                 setLoading,
                 postApi,

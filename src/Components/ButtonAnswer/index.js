@@ -582,7 +582,7 @@ function ButtonAnswer({
             {(questionAlreadyAnswerMainAlert || questionAlreadyAnswerMultiAlert || questionAlreadyAnswerThreeMultiAlert) &&
                 <PopupAlertMessage 
                     text="Oops!!! This question has already been answered. Please move on to the next question."
-                    activePopup={setQuestionAlreadyAnswerMainAlert || setQuestionAlreadyAnswerMultiAlert || setQuestionAlreadyAnswerThreeMultiAlert}
+                    activePopup={(questionAlreadyAnswerMainAlert && setQuestionAlreadyAnswerMainAlert) || (questionAlreadyAnswerMultiAlert && setQuestionAlreadyAnswerMultiAlert) || (questionAlreadyAnswerThreeMultiAlert && setQuestionAlreadyAnswerThreeMultiAlert)}
                     specificStyles={styles.popupAlertMessage}
                 />
             }

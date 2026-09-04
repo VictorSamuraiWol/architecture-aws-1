@@ -6,7 +6,6 @@
   position: fixed;
   text-align: center;
   font-weight: bold;
-  text-decoration: underline;
   color: var(--color-first);
   background-color: var(--color-fourth);
   box-shadow: 3px 3px 3px var(--color-third);
@@ -31,4 +30,9 @@
 
 .modalImageDelete:hover {
   transform: scale(0.97); 
+}
+
+.textPopupDefault {
+  text-decoration: underline;
+  line-height: 1.4;
 }

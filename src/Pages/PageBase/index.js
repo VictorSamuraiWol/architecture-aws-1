@@ -18,7 +18,8 @@ function PageBase() {
     const [mute, setMute] = useState(false)
     const [numCorrectOption, setNumCorrectOption] = useState(0) // questões corretas das páginas main e multi
     const [numIncorrectOption, setNumIncorrectOption] = useState(0) // questões corretas das páginas main e multi
-    const [activePopupZeroTimer, setActivePopupZeroTimer] = useState(false)  
+    const [activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert] = useState(false)
+    const [activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert] = useState(false) 
     
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
@@ -95,7 +96,7 @@ function PageBase() {
                         checkAlternativeAnswerDefault, activePageDemo, setActivePageDemo, activePageMain, setActivePageMain, 
                         activePageMulti, setActivePageMulti, activePageThreeMulti, setActivePageThreeMulti, activeZeroImgMain, 
                         setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti,
-                        activePopupZeroTimer, setActivePopupZeroTimer
+                        activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert
                     }} 
                 />                
 

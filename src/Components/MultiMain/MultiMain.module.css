@@ -23,16 +23,6 @@
   color: var(--color-third);
 }
 
-.popupRepeatedMultiMain {
-  left: 80%;
-  bottom: 20%;
-}
-
-.popupAlertMessage {
-  top: 20%;
-  left: 40%;
-}
-
 .optionValidate {
   color: var(--color-correct);
   font-weight: bold;
@@ -129,6 +119,16 @@
   margin-top: 16px;
   border-radius: 16px;
   z-index: 1;
+}
+
+.popupRepeatedMultiMain {
+  left: 80%;
+  bottom: 20%;
+}
+
+.popupAlertMessage {
+  top: 20%;
+  left: 40%;
 }
 
 /* Responsividade */

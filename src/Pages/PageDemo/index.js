@@ -3,13 +3,12 @@ import Header from '../../Components/Header'
 import Main from '../../Components/Main'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import Footer from '../../Components/Footer'
-import PopupDefault from '../../Components/Popups/PopupDefault'
 import { useOutletContext } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
 function PageDemo() {
 
-  const { requestData, setRequestData, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, activePopupZeroTimer, setActivePopupZeroTimer } = useOutletContext()
+  const { setRequestData, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions } = useOutletContext()
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -32,7 +31,7 @@ function PageDemo() {
   const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
   useEffect(() => {
-    // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
+    // habilitar os icones de som ao renderizar o conteúdo da página Demo
     setRequestData(true)
 
     setActivePageDemo(true)
@@ -74,7 +73,7 @@ function PageDemo() {
           key='0'
       >
         {/* background image */}
-        {(requestData && activePageFormsQuestionsOptions === false) && 
+        {activePageFormsQuestionsOptions === false && 
         <img 
             className={`backgroundImageClass ${styles.backgroundImage}`} 
             src={backgroundImage} 
@@ -109,13 +108,6 @@ function PageDemo() {
         />
 
         <Footer />
-
-        {activePopupZeroTimer && 
-          <PopupDefault 
-            text='Oops! Time is up! Please pay attention to the exam time limit.' 
-            specificStyles={styles.popupActivePopupZeroTimer}
-            activePopup={setActivePopupZeroTimer}
-          />}
 
       </div>
 

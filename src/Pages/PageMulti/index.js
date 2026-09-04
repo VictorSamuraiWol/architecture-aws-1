@@ -22,10 +22,10 @@ function PageMulti() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
+    const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, listMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { requestData, setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
+    const { setRequestData, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -50,7 +50,7 @@ function PageMulti() {
     }
 
     useEffect(() => {
-        // habilitar os icones de som, imagem e footer presentes na 'página Base' ao renderizar o conteúdo da página Main
+        // habilitar os icones de som ao renderizar o conteúdo da página Multi
         setRequestData(true)
 
         // tornar a página ativa ao entrar na rota dela
@@ -64,7 +64,7 @@ function PageMulti() {
     }, [setRequestData, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
     
     useEffect(() => {
-        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength) return // se a lista de questões não existir, retorne    
+        if (!listMultiQuestionsContext || !listMultiQuestionsContextLength || listMultiQuestionsContextLength === 0) return // se a lista de questões não existir, retorne    
         
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
         const random = uniqueRandomMulti(listMultiQuestionsContextLength)
@@ -75,7 +75,7 @@ function PageMulti() {
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength])
 
     useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContext.length) return // se a lista de opções não existir, retorne 
+        if (!listMultiOptionsContext || !listMultiOptionsContextLength || listMultiOptionsContextLength === 0) return // se a lista de opções não existir, retorne 
 
         const randomNumbers = [] // armazena a lista de números randômicos
 
@@ -97,12 +97,12 @@ function PageMulti() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
     
-    }, [listMultiOptionsContext])
+    }, [listMultiOptionsContext, listMultiOptionsContextLength])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
 
-        if (!listMultiQuestionsContext || !questionMulti || !listMultiOptionsContext) return     
+        if (!listMultiQuestionsContext || !listMultiOptionsContext || !questionMulti) return     
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
             let matchedOption = null
@@ -162,53 +162,49 @@ function PageMulti() {
 
     return(
         <div>     
-            {requestData && <div
+            {questionMulti &&
+            <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
                 key={questionMulti.id}
             >
                 {/* background image */}
-                {(requestData && activePageFormsQuestionsOptions === false) && 
+                {activePageFormsQuestionsOptions === false && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='backgoundIimage'
                 />} 
 
-                {questionMulti &&
-                <>
-                    <Header title="Architecture Questions - Randomly" />
+                <Header title="Architecture Questions - Randomly" />
 
-                    <MultiMain 
-                        question={questionMulti.questionText} 
-                        answer={questionMulti.correctAnswer}
-                        imageDescription={questionMulti.imageKey}
-                        description={questionMulti.description}
-                        questionNumber={questionMulti.questionNumber}
-                        elementId={questionMulti.id}
-                        answerDescriptionDisplay={answerDescriptionDisplay}
-                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                        descriptionDisplay={descriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}
-                        questionMulti={questionMulti}
-                        optionMulti={optionMulti}
-                        optionMultiNumberId={optionMultiNumberId}
-                        optNum1={optNum1}
-                        optNum2={optNum2}
-                        optNum3={optNum3}
-                        optNum4={optNum4}
-                        optNum5={optNum5}
-                        activeZeroImgMulti={activeZeroImgMulti}
-                    />
+                <MultiMain 
+                    question={questionMulti.questionText} 
+                    answer={questionMulti.correctAnswer}
+                    imageDescription={questionMulti.imageKey}
+                    description={questionMulti.description}
+                    questionNumber={questionMulti.questionNumber}
+                    elementId={questionMulti.id}
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    questionMulti={questionMulti}
+                    optionMulti={optionMulti}
+                    optionMultiNumberId={optionMultiNumberId}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                    activeZeroImgMulti={activeZeroImgMulti}
+                />
 
-                    <Footer />
-
-                </>
-                }
-
-                {loading && <Loader />}           
+                <Footer />
             
             </div>}
+            
+            {loading && <Loader />}           
                
         </div>
 

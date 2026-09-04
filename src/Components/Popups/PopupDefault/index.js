@@ -51,7 +51,7 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
           className={styles.modalImageDelete} 
       />}
 
-      <span>{text}</span>
+      <span className={styles.textPopupDefault}>{text}</span>
       
       {activeModalPopupCheckAlternativeAnswer === true && 
         <ModalPopupCheckAlternativeAnswer 

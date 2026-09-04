@@ -12,7 +12,7 @@ const Timer = () => {
   const timerStartSound = new Audio(timerStart)
   const timerPauseSound = new Audio(timerPause)
 
-  const { mute, setActivePopupZeroTimer } = useOutletContext()
+  const { mute, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
 
   const startTimer = () => {
     if (!isRunning) {
@@ -48,11 +48,16 @@ const Timer = () => {
   useEffect(() => {
     if (time === 0) {
       pauseTimer()
-      setActivePopupZeroTimer(true)
+      
+      setActivePopupZeroTimerMainAlert && setActivePopupZeroTimerMainAlert(true)
+      setTimeout(() => setActivePopupZeroTimerMainAlert(false), 3000) 
+       
+      setActivePopupZeroTimerMultiAlert && setActivePopupZeroTimerMultiAlert(true)
+      setTimeout(() => setActivePopupZeroTimerMultiAlert(false), 3000)
 
     }
 
-  }, [time, setActivePopupZeroTimer])
+  }, [time, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert])
 
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {

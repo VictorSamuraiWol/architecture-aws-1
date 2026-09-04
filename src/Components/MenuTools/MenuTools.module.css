@@ -44,16 +44,6 @@
   cursor: pointer;
 }
 
-.popupDelete {
-  top: 20%;
-  left: 40%;
-}
-
-.popupAlertMessage {
-  top: 40%;
-  left: 40%;
-}
-
 .invisibleAnswerDescription {
     visibility: hidden;
 
@@ -62,6 +52,16 @@
 .invisibleDescription {
     visibility: hidden;
  
+}
+
+.popupDelete {
+  top: 20%;
+  left: 40%;
+}
+
+.popupAlertMessage {
+  top: 40%;
+  left: 40%;
 }
 
 /* Responsividade */

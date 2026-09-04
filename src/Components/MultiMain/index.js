@@ -6,11 +6,11 @@ import ButtonNext from '../ButtonNext'
 import AnswerDescription from '../AnswerDescription'
 import MenuTools from '../MenuTools'
 import ModalResults from '../ModalResults'
-import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import zeroImage from '../../imgs/zero-question.png'
+import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 
 function MultiMain({ 
     question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
@@ -25,6 +25,8 @@ function MultiMain({
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
+    
+    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
 
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
@@ -42,7 +44,7 @@ function MultiMain({
     }
 
     function ablePageMain() { // função que muda a rota da página Multi para a página Main
-        let able
+        let able = null
 
         if (questionAnswerButtonNextMulti) {
         // condição: se a questão da página Multi foi respondida
@@ -70,15 +72,7 @@ function MultiMain({
                         setDescriptionDisplay={setDescriptionDisplay}               
                     />
                 
-                </div>            
-
-                {activePopupRepeatedAlternativesMultiMain === true && 
-                    <PopupRepeatedAlternatives 
-                        specificStyles={styles.popupRepeatedMultiMain} 
-                        textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."}
-                        activePopup={setActivePopupRepeatedAlternativesMultiMain}
-                    />
-                }
+                </div>
          
                 <MultiOptions
                     optionColorStyle={optionColorStyle}
@@ -139,12 +133,21 @@ function MultiMain({
 
             </>}
 
-            {/* somente aparecer a imagem ao tentar encontrar alguma questão disponível em no máximo 10 tentativas */}
+            {/* imagem que aparece quando não tem questões disponíveis */}
             {activeZeroImgMulti && <img 
                 src={zeroImage} 
                 alt='zero img'
                 className={styles.zeroImg}
             />}
+
+            {/* PopupRepeatedAlternatives */}
+            {activePopupRepeatedAlternativesMultiMain === true && 
+                <PopupRepeatedAlternatives 
+                    specificStyles={styles.popupRepeatedMultiMain} 
+                    textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."}
+                    activePopup={setActivePopupRepeatedAlternativesMultiMain}
+                />
+            }
 
             {/* {PopupAlertMessage} */}
             {answerMultiQuestionAlert &&
@@ -152,6 +155,14 @@ function MultiMain({
                     text="Oops!!! Please answer the question before moving on to the next one!"
                     activePopup={setAnswerMultiQuestionAlert}
                     specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {activePopupZeroTimerMultiAlert && 
+                <PopupAlertMessage 
+                    text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                    specificStyles={styles.popupAlertMessage}
+                    activePopup={setActivePopupZeroTimerMultiAlert}
                 />
             }
                        
