@@ -1,23 +1,72 @@
+.containerfieldModalEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
 .fieldModalEdit {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  width: 100%;
 }
 
-.fieldModalEdit label {
+.nameLabelText {
   color: var(--color-fourth);
 }
 
-.fieldModalEdit label:hover {
+.nameErrorLabelText {
+  color: var(--color-incorrect);
+}
+
+.nameLabelText:hover {
   transform: scale(0.97);
 }
 
+.inputFieldModalEdit {
+  border: 1px solid var(--color-fourth);
+}
+
+.inputErrorFieldModalEdit {
+  border: 1px solid var(--color-incorrect);
+}
+
+.errorMessageText {
+  font-size: 0.8rem;
+  color: var(--color-incorrect);
+}
+
 /* Responsiveness */
+@media (min-width: 1700px) {
+  .errorMessageText {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media (max-width: 1700px) {
+  .errorMessageText {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .errorMessageText {
+    font-size: 0.7rem;
+  }
+
+}
+
 @media (max-width: 860px) {
   .fieldModalEdit input {
     height: 50px;
     width: 100%;
+  }
+
+  .errorMessageText {
+    font-size: 0.6rem;
   }
 
 }
@@ -25,10 +74,15 @@
 @media (max-width: 580px) {
   .fieldModalEdit {
     flex-direction: column;
+    width: 95%;
   }
 
   .fieldModalEdit input {
     height: 40px;
+  }
+
+  .errorMessageText {
+    font-size: 0.5rem;
   }
 
 }

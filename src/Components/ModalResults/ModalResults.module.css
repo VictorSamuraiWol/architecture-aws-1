@@ -46,6 +46,10 @@
     z-index: 1;
 }
 
+.modalContent:focus {
+  outline: none;
+}
+
 .correct {
     color: var(--color-correct);
 }

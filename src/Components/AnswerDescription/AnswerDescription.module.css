@@ -15,6 +15,7 @@
 
 .answerDescription::-webkit-scrollbar-thumb {
     background-color: var(--color-fourth);
+    border-radius: 4px;
 }
 
 .answerDisplay {

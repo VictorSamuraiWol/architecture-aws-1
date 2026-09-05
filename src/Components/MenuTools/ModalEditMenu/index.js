@@ -66,8 +66,12 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [staticQuestionEditAlert, setStaticQuestionEditAlert] = useState(false) // ativa o componente PopupAlertMessage
   const [staticQuestionClearDisabledAlert, setStaticQuestionClearDisabledAlert] = useState(false) // ativa o componente PopupAlertMessage
 
+  // variáveis para ativar e desativar a mensagem de erro
+  const [errorMessageModalEdit] = useState("This required field is empty.")
+  const [voidField, setVoidField] = useState([])
+
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo } = useOutletContext()
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti } = useOutletContext()
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setPutApi } = useContext(DataContext)
 
@@ -297,36 +301,44 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       setStaticQuestionEditAlert(true)
 
     } else {
-      if (activePopupAlreadySaved() === true) {
-        setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
+      if (!questionTextMain || !correctAnswerMain || !descriptionMain || !questionNumberMain || !optionAMain ||
+      !optionBMain || !optionCMain || !optionDMain) { // se tiver algum campo obrigatório vazio
+        // setActiveVoidFieldModalEdit(true)
 
       } else {
-        setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
-
-        if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-          setActivePopupcheckAlternativeAnswerModalForms1(true)
+        if (activePopupAlreadySaved() === true) {
+          setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
         } else {
-          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-            setActivePopupRepeatedAlternativesModalEdit(true)
+          setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-            setTimeout(() => {
-              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-            }, 10000)
+          if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
+            setActivePopupcheckAlternativeAnswerModalForms1(true)
 
           } else {
-            onSaveModalQuestion() // salvando a questão única
-            onSaveModalOption() // salvando a opção única
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-            console.log('Saved successfully!')
-            closeModal()
+            if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+              setActivePopupRepeatedAlternativesModalEdit(true)
+
+              setTimeout(() => {
+                setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+              }, 10000)
+
+            } else {
+              onSaveModalQuestion() // salvando a questão única
+              onSaveModalOption() // salvando a opção única
+              setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+              console.log('Saved successfully!')
+              closeModal()
+
+            }
 
           }
 
         }
 
       }
+
     }
 
   }
@@ -368,6 +380,51 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     }
 
   }
+
+  useEffect(() => {
+    function voidFieldModalEdit () { // função para capturar os campos obrigatórios que estão vazios
+      if (activePageMain) {
+        const fields = {
+          questionTextMain,
+          correctAnswerMain,
+          descriptionMain,
+          optionAMain,
+          optionBMain,
+          optionCMain,
+          optionDMain
+        }
+        
+        const voidFieldFilter = Object.entries(fields)
+          .filter(([key, value]) => !value)
+          .map(([key]) => key)
+  
+        setVoidField(voidFieldFilter)
+  
+      } else if (activePageMulti) {
+        const fields = {
+          questionTextMulti,
+          correctAnswerMulti,
+          descriptionMulti,
+          optionAMulti,
+          optionBMulti,
+          optionCMulti,
+          optionDMulti
+        }
+  
+        const voidFieldFilter = Object.entries(fields)
+          .filter(([key, value]) => !value)
+          .map(([key]) => key)
+  
+        setVoidField(voidFieldFilter)
+  
+      }
+
+    }
+
+    voidFieldModalEdit()
+
+  }, [activePageMain, activePageMulti, questionTextMain, correctAnswerMain, descriptionMain, optionAMain, optionBMain, optionCMain, optionDMain, 
+    questionTextMulti, correctAnswerMulti, descriptionMulti, optionAMulti, optionBMulti, optionCMulti, optionDMulti])
 
   // funções para capturar os valores dos campos das questões de única escolha
   function onChangeModalQuestion(event) {
@@ -536,28 +593,33 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             onChangeModal={onChangeModalQuestion}
             name="Question*"
             newValue={questionTextMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'questionTextMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalAnswer}
             name="Answer*"
             newValue={correctAnswerMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'correctAnswerMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalImage}
             name="Image"
             newValue={imageKeyMain}
-
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalDescription}
             name="Description*"
             newValue={descriptionMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'descriptionMain'}
+            voidField={voidField}
           />
 
           {/* todos os campos das opções */}
@@ -565,35 +627,42 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             onChangeModal={onChangeModalOptionA}
             name="OptionA*"
             newValue={optionAMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionAMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionB}
             name="OptionB*"
             newValue={optionBMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionBMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionC}
             name="OptionC*"
             newValue={optionCMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionCMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionD}
             name="OptionD*"
             newValue={optionDMain}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionDMain'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionE}
             name="OptionE"
             newValue={optionEMain}
-
           />
 
           {/* Botões submit e clean */}
@@ -627,28 +696,33 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             onChangeModal={onChangeModalQuestionMulti}
             name="Question*"
             newValue={questionTextMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'questionTextMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalAnswerMulti}
             name="Answer*"
             newValue={correctAnswerMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'correctAnswerMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalImageMulti}
             name="Image"
             newValue={imageKeyMulti}
-
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalDescriptionMulti}
             name="Description*"
             newValue={descriptionMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'descriptionMulti'}
+            voidField={voidField}
           />
 
           {/* todos os campos das opções de múltipla escolha */}
@@ -656,35 +730,42 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             onChangeModal={onChangeModalOptionAMulti}
             name="OptionA*"
             newValue={optionAMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionAMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionBMulti}
             name="OptionB*"
             newValue={optionBMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionBMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionCMulti}
             name="OptionC*"
             newValue={optionCMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionCMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionDMulti}
             name="OptionD*"
             newValue={optionDMulti}
-            required={true}
-
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'optionDMulti'}
+            voidField={voidField}
           />
+
           <FieldModalEdit
             onChangeModal={onChangeModalOptionEMulti}
             name="OptionE"
             newValue={optionEMulti}
-
           />
 
           {/* Botões submit e clean */}

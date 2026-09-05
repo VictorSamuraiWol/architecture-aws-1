@@ -38,6 +38,10 @@
   border-radius: 12px;
 }
 
+.modalContent:focus {
+  outline: none;
+}
+
 .modalContent h1 {
   font-size: 1.8rem;
   font-style: italic;
