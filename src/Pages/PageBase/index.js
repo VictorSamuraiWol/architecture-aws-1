@@ -98,7 +98,7 @@ function PageBase() {
                     }} 
                 />                
 
-                {mute === false && (activePageFormsQuestionsOptions || activePageDemo) &&
+                {mute === false &&
                 // condição: se o mute for false, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeFull // unmute sound icon
                         onClick={validateSound}
@@ -107,7 +107,7 @@ function PageBase() {
                     />
                 }                
 
-                {mute && (activePageFormsQuestionsOptions || activePageDemo) &&
+                {mute &&
                 // condição: se o mute for true, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeMute // mute sound icon
                         onClick={validateSound}
