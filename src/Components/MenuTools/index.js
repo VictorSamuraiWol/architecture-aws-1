@@ -1,5 +1,5 @@
 import styles from './MenuTools.module.css'
-import ModalEditMenu from './ModalEditMenu'
+import ModalEditMenu from '../Modal/ModalEditMenu'
 import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useContext, useState } from 'react'

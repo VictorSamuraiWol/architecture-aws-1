@@ -1,7 +1,7 @@
 import styles from './ModalResults.module.css'
 import Modal from 'react-modal'
-import ButtonDefault from '../ButtonDefault'
-import soundClick from '../../audios/clickAudio.mp3'
+import ButtonDefault from '../../ButtonDefault'
+import soundClick from '../../../audios/clickAudio.mp3'
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { TiDeleteOutline } from "react-icons/ti"
@@ -23,21 +23,19 @@ function ModalResults() {
  
         // setTimeout para dar tempo de capturar as variáveis ao abrir a modal e, em seguida, mudar a cor de acordo com os resultados
         setTimeout(() => {
-            if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
-                const corrects = document.querySelector('#corrects')
-                const pontuations = document.querySelector('#pontuations')
-                const performances = document.querySelector('#performances')
+            const corrects = document.querySelector('#corrects')
+            const pontuations = document.querySelector('#pontuations')
+            const performances = document.querySelector('#performances')
+            const incorrects = document.querySelector('#incorrects')
 
-                corrects?.classList.add(`${styles.correct}`)
+            corrects?.classList.add(`${styles.correct}`)
+            incorrects?.classList.add(`${styles.incorrect}`)
+
+            if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
                 pontuations?.classList.add(`${styles.correct}`)
                 performances?.classList.add(`${styles.correct}`)
 
             } else if (dataResults.numCorrectOption < dataResults.numIncorrectOption) {
-                const incorrects = document.querySelector('#incorrects')
-                const pontuations = document.querySelector('#pontuations')
-                const performances = document.querySelector('#performances')
-
-                incorrects?.classList.add(`${styles.incorrect}`)
                 pontuations?.classList.add(`${styles.incorrect}`)
                 performances?.classList.add(`${styles.incorrect}`)
 
