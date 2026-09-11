@@ -61,7 +61,8 @@ function MultiMain({
                 <div className={styles.containerQuestionMenuTools}>
                     <Question 
                         question={question}
-                        questionNumber={questionNumber}            
+                        questionNumber={questionNumber}
+                        questionMulti={questionMulti}           
                     />
 
                     <MenuTools

@@ -6,6 +6,7 @@
       "imageKey": "storageGateway",
       "description": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.",
       "questionNumber": "1",
+      "imageQuestion": "",
       "id": "91c1"
     },
     {
@@ -14,6 +15,7 @@
       "imageKey": "simpleStoragesService",
       "description": "Once you version-enable a bucket, it can never return to an unversioned state. Versioning can only be suspended once it has been enabled.",
       "questionNumber": "2",
+      "imageQuestion": "",
       "id": "ab6c"
     },
     {
@@ -22,6 +24,7 @@
       "imageKey": "fsxForLustre",
       "description": "FSx for Lustre provides the ability to both process the 'hot data' in a parallel and distributed fashion as well as easily store the 'cold data' on Amazon S3.",
       "questionNumber": "3",
+      "imageQuestion": "",
       "id": "9ee6"
     },
     {
@@ -30,6 +33,7 @@
       "imageKey": "globalAccelerator",
       "description": "AWS Global Accelerator improves performance for a wide range of applications over TCP or UDP by proxying packets at the edge to applications running in one or more AWS Regions. Global Accelerator is a good fit for non-HTTP use cases, such as gaming (UDP), IoT (MQTT), or voice over IP, as well as for HTTP use cases that specifically require static IP addresses or deterministic, fast regional failover.",
       "questionNumber": "4",
+      "imageQuestion": "",
       "id": "1f16"
     },
     {
@@ -38,6 +42,7 @@
       "imageKey": "ec2",
       "description": "For the given use case, you can use Amazon EC2 Reserved Instances for the prodution application as it is run 24*7; This way you can get a 72% discount if you avail a 3-year term. You can use on-demand instances for the dev application since it is only used for up to 8 hours per day. On-demand offers the flexibility to only pay for the Amazon EC2 instance when it is being used (0 to 8 hours for the given use case).",
       "questionNumber": "6",
+      "imageQuestion": "",
       "id": "6a3a"
     },
     {
@@ -46,6 +51,7 @@
       "imageKey": "apiGateway",
       "description": "Amazon API Gateway creates RESTful APIs that: are HTTP-based. Enable stateless client-server communication. Implement standard HTTP methos such as GET, POST, PUT, PATCH, and DELETE. Also, Amazon API Gateway creates WebSocket APIs that: adhere to the WebSocket protocol, which enables stateful, full-duplex communication between client and server. Route incoming messages based on message content. So Amazon API Gateway supports stateless RESTful APIs as well as stateful WebSocket APIs.",
       "questionNumber": "7",
+      "imageQuestion": "",
       "id": "016d"
     },
     {
@@ -54,6 +60,7 @@
       "imageKey": "simpleQueueService",
       "description": "By default, FIFO queues support up to 300 messages per second (300 send, receive, or delete operations per second). When you batch 10 messages per operation (maximum), FIFO queues can support up to 3,000 messages per second. Therefore you need to process 4 messages per operations so that the FIFO queue can support up to 1200 messages per second, which is well within the peak rate.",
       "questionNumber": "8",
+      "imageQuestion": "",
       "id": "891d"
     },
     {
@@ -62,6 +69,7 @@
       "imageKey": "ec2",
       "description": "An AMI provides the information required to launch an instance. You must specify an AMI when you launch an instance. When the new AMI is copied from Region A into Region B, it automatically creates a snapshot in Region B because AMIs are based on the underlying snapshots. Further, an instance is created from this AMI in Region B. Hence, we have 1 EC2, 1AMI and 1 snapshot in Region B.",
       "questionNumber": "9",
+      "imageQuestion": "",
       "id": "5334"
     },
     {
@@ -70,6 +78,7 @@
       "imageKey": "ec2",
       "description": "An instance store provides temporary block-level storage for your instance. This storage is located on disks that are physically attached to the host instance. Instance store is ideal for the temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers. Instance store volumes are included as part of the instance's usage cost. As Instance Store based volumes provide high random I/O performance at low cost (as the storage is part of the instance's usage cost) and the resilient architecture can adjust for the loss of any instance, therefore you should use Instance Store based EC2 instances for this use-case.",
       "questionNumber": "11",
+      "imageQuestion": "",
       "id": "1840"
     },
     {
@@ -78,7 +87,17 @@
       "imageKey": "elasticLoadBalancing",
       "description": "Path-based Routing: you can route a client request based on the URL path of the HTTP header. You can use path conditions to define rules that route request based on the URL in the request (also known as path-based routing). The path pattern is applied only to the URL, not to its query parameters.",
       "questionNumber": "12",
+      "imageQuestion": "",
       "id": "491b"
+    },
+    {
+      "questionText": "Um arquiteto de soluções criou a seguinte política e associou a um grupo do AWS IAM contendo vários usuários administrativos. Qual é o efeito dessa política?",
+      "correctAnswer": "Os administradores podem encerrar uma instância do EC2 na região us-east-1 quando o IP de origem do usuário for 10.1.2.28",
+      "imageKey": "",
+      "description": "O elemento Condition (ou bloco Condition) permite especificar condições para quando uma política está em vigor. O elemento Condition é opcional. No elemento Condition, você cria expressões nas quais usa operadores de condição (igual, menor que, etc.) Nesta declaração de política, o primeiro bloco permite a ação da API 'ec2:TerminateInstances' somente se o endereço IP do solicitante estiver dentro do intervalo '10.1.2.0/24'. Isso é especificado usando a condição 'aws:SourceIp'. O segundo bloco nega todas as ações da API do EC2 com um operador condicional (StringNotEquals) que verifica a região em que a solicitação está sendo feita ('ec2:Region'). Se a região for qualquer valor diferente de us-east-1, a solicitação será negada. Se a região em que a solicitação está sendo feita for us-east-1, a solicitação não será negada.",
+      "questionNumber": "13",
+      "id": "133a",
+      "imageQuestion": "imageQuestion13"
     }
   ],
   "listOptionsMain": [
@@ -89,6 +108,7 @@
       "optionD": "Storage Gateway - Tape Gateway.",
       "optionE": "Instance Store.",
       "optionNumber": "1",
+      "imageQuestion": "",
       "id": "380e"
     },
     {
@@ -98,6 +118,7 @@
       "optionD": "Policies.",
       "optionE": "Static Website Hosting.",
       "optionNumber": "2",
+      "imageQuestion": "",
       "id": "0b08"
     },
     {
@@ -107,6 +128,7 @@
       "optionD": "Amazon FSx for Windows File Server.",
       "optionE": "Amazon FSx for Lustre.",
       "optionNumber": "3",
+      "imageQuestion": "",
       "id": "f785"
     },
     {
@@ -116,6 +138,7 @@
       "optionD": "Global Accelerator.",
       "optionE": "ELB.",
       "optionNumber": "4",
+      "imageQuestion": "",
       "id": "0459"
     },
     {
@@ -125,6 +148,7 @@
       "optionD": "Use only EC2 on-demand instaces for the production and dev.",
       "optionE": "Use on-demand EC2 instances for the production and spot intances for the dev.",
       "optionNumber": "6",
+      "imageQuestion": "",
       "id": "d59e"
     },
     {
@@ -134,6 +158,7 @@
       "optionD": "Amazon API Gateway creates RESTful APIs that enable both stateless and stateful client-server communication.",
       "optionE": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
       "optionNumber": "7",
+      "imageQuestion": "",
       "id": "fb69"
     },
     {
@@ -143,6 +168,7 @@
       "optionD": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
       "optionE": "Use both SQS standard queue and SQS FIFO queue to process the messages.",
       "optionNumber": "8",
+      "imageQuestion": "",
       "id": "1b74"
     },
     {
@@ -152,6 +178,7 @@
       "optionD": "1 EC2 instance and 2 AMIs exist in Region B.",
       "optionE": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
       "optionNumber": "9",
+      "imageQuestion": "",
       "id": "8eb7"
     },
     {
@@ -161,6 +188,7 @@
       "optionD": "Use EC2 instances with EBS and EFS mount points.",
       "optionE": "Use Instance Store based EC2 instances.",
       "optionNumber": "11",
+      "imageQuestion": "",
       "id": "77e6"
     },
     {
@@ -170,7 +198,17 @@
       "optionD": "HTTP method-based routing.",
       "optionE": "HTTP header-based routing.",
       "optionNumber": "12",
+      "imageQuestion": "",
       "id": "82c4"
+    },
+    {
+      "optionA": "Os administradores podem encerrar uma instância do EC2 com o endereço IP 10.1.2.5 na região us-east-1",
+      "optionB": "Os administradores podem encerrar uma instância do EC2 na região us-east-1 quando o IP de origem do usuário for 10.1.2.28",
+      "optionC": "Os administradores não podem encerrar uma instância do EC2 na região us-east-1 quando o IP de origem do usuário for 10.1.2.28",
+      "optionD": "Os administradores podem encerrar uma instância do EC2 em qualquer região da AWS, exceto us-east-1",
+      "optionE": "",
+      "optionNumber": "13",
+      "id": "133b"
     }
   ],
   "listQuestionsMulti": [
@@ -180,6 +218,7 @@
       "imageKey": "simpleStoragesService",
       "description": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes.",
       "questionNumber": "5",
+      "imageQuestion": "",
       "id": "8eca"
     },
     {
@@ -188,6 +227,7 @@
       "imageKey": "ec2",
       "description": "Solid state drive (SSD) backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. Hard disk drive (HDD) backed volumes optimized for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Throughput Optimized HDD (st1) and Cold HDD (sc1) volume types CANNOT be used as a boot volume, so these two options are correct.",
       "questionNumber": "10",
+      "imageQuestion": "",
       "id": "ec16"
     },
     {
@@ -196,6 +236,7 @@
       "imageKey": "identityAndAccessManagement",
       "description": "As per the AWS best practices, it is better to enable Multi Factor Authentication (MFA) for privileged users via an MFA-enabled mobile device or hardware MFA token. AWS recommends to turn on AWS CloudTrail to log all IAM actions for monitoring and audit purposes.",
       "questionNumber": "15",
+      "imageQuestion": "",
       "id": "ac63"
     },
     {
@@ -204,6 +245,7 @@
       "imageKey": "dynamoDB",
       "description": "Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. Amazon ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
       "questionNumber": "20",
+      "imageQuestion": "",
       "id": "5703"
     },
     {
@@ -212,6 +254,7 @@
       "imageKey": "simpleStoragesService",
       "description": "You can place a retention period on an object version either explicitly or through a bucket default setting. When you apply a retention period to an object version explicitly, you specify a Retain Until Date for the object version. Amazon S3 stores the Retain Until Date setting in the object version's metadata and protects the object version until the retention period expires. Like all other Object Lock settings, retention periods apply to individual object versions. Different versions of a single object can have different retention modes and periods.",
       "questionNumber": "25",
+      "imageQuestion": "",
       "id": "1e6b"
     }
   ],
@@ -223,6 +266,7 @@
       "optionD": "S3 Standard-IA => S3 Intelligent-Tiering.",
       "optionE": "S3 Standard-IA => S3 One Zone-IA.",
       "optionNumber": "5",
+      "imageQuestion": "",
       "id": "6023"
     },
     {
@@ -232,6 +276,7 @@
       "optionD": "General Purpose Solid State Drive (gp2).",
       "optionE": "Provisioned IOPS Solid State Drive.",
       "optionNumber": "10",
+      "imageQuestion": "",
       "id": "7634"
     },
     {
@@ -241,6 +286,7 @@
       "optionD": "Create a minimum number of accounts and share these account credentials among employees.",
       "optionE": "Grant maximum privileges to avoid assigning privileges again.",
       "optionNumber": "15",
+      "imageQuestion": "",
       "id": "5d93"
     },
     {
@@ -250,6 +296,7 @@
       "optionD": "Redshift.",
       "optionE": "RDS.",
       "optionNumber": "20",
+      "imageQuestion": "",
       "id": "272f"
     },
     {
@@ -259,6 +306,7 @@
       "optionD": "When you use bucket default setting, you specify a Retain Until Date for the object version.",
       "optionE": "The bucket default settings will override any explicit retention mode or period you request on an object version.",
       "optionNumber": "25",
+      "imageQuestion": "",
       "id": "3681"
     }
   ],
@@ -269,6 +317,7 @@
       "imageKey": "",
       "description": "A security group acts as a virtual firewall that controls the traffic for one or more instances. When you launch an instance, you can specify one or more security groups; otherwise, we use the default security group. You can add rules to each security group that allows traffic to or from its associated instances. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance. The following are the characteristics of security group rules: 1. By default, security groups allow all outbound traffic. 2. Security group rules are always permissive; you can't create rules that deny access. 3. Security groups are stateful PostgreSQL port = 5432 HTTP port = 80 HTTPS port = 443 The traffic goes like this : The client sends an HTTPS request to ALB on port 443. This is handled by the rule - 'The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443' The Application Load Balancer then forwards the request to one of the Amazon EC2 instances. This is handled by the rule - 'The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80' The Amazon EC2 instance further accesses the PostgreSQL database managed by Amazon RDS on port 5432. This is handled by the rule - 'The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 ins ances in the Auto Scaling group on port 5432'",
       "questionNumber": "50",
+      "imageQuestion": "",
       "id": "50eca"
     }
   ],
@@ -281,6 +330,7 @@
       "optionE": "The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 instances in the Auto Scaling group on port 80.",
       "optionF": "The security group of the Application Load Balancer should have an inbound rule from anywhere on port 80",
       "optionNumber": "50",
+      "imageQuestion": "",
       "id": "5023"
     }
   ]

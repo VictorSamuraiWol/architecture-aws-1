@@ -146,7 +146,8 @@ function Main({
                 <div className={styles.containerQuestionMenuTools}>
                     <Question 
                         question={question}
-                        questionNumber={questionNumber}             
+                        questionNumber={questionNumber}
+                        questionMain={questionMain}           
                     />
 
                     <MenuTools 

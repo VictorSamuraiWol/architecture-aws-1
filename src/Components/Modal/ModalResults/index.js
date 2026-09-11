@@ -13,13 +13,13 @@ function ModalResults() {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
     
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
     // pegando os dados do resultado
     const { dataResults, mute } = useOutletContext()
 
     function openModal() {
-        setModalIsOpen(true);
+        setModalIsOpen(true)
  
         // setTimeout para dar tempo de capturar as variáveis ao abrir a modal e, em seguida, mudar a cor de acordo com os resultados
         setTimeout(() => {
@@ -57,7 +57,7 @@ function ModalResults() {
         <div className={styles.container}>
             <div
                 onClick={openModal}
-                className={styles.iconesTextos} 
+                className={styles.iconsTexts} 
             >
 
                 <ButtonDefault
@@ -71,7 +71,7 @@ function ModalResults() {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel="Example Modal"
+                contentLabel="Modal Results"
                 overlayClassName={styles.modalOverlay}
                 className={styles.modalContent}
             >

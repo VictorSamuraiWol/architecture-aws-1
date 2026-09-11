@@ -31,7 +31,7 @@ function Header({ title }) {
     const sound = () => { // ativa o som 'audioClick'
         mute === false && audioClick.play()
     }
-    
+
     return(
         <div className={styles.header}>
             <Link 

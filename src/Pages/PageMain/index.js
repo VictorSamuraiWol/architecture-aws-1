@@ -190,7 +190,9 @@ function PageMain() {
                     alt='backgoundIimage'
                 />}
 
-                <Header title="Architecture Questions - Randomly" />                    
+                <Header 
+                    title="Architecture Questions - Randomly" 
+                />                    
 
                 <Main 
                     question={questionMain.questionText}
