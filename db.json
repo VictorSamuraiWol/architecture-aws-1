@@ -96,8 +96,8 @@
       "imageDescription": "",
       "description": "O elemento Condition (ou bloco Condition) permite especificar condições para quando uma política está em vigor. O elemento Condition é opcional. No elemento Condition, você cria expressões nas quais usa operadores de condição (igual, menor que, etc.) Nesta declaração de política, o primeiro bloco permite a ação da API 'ec2:TerminateInstances' somente se o endereço IP do solicitante estiver dentro do intervalo '10.1.2.0/24'. Isso é especificado usando a condição 'aws:SourceIp'. O segundo bloco nega todas as ações da API do EC2 com um operador condicional (StringNotEquals) que verifica a região em que a solicitação está sendo feita ('ec2:Region'). Se a região for qualquer valor diferente de us-east-1, a solicitação será negada. Se a região em que a solicitação está sendo feita for us-east-1, a solicitação não será negada.",
       "questionNumber": "13",
-      "id": "133a",
-      "imageQuestion": "imageQuestion13"
+      "imageQuestion": "imageQuestion13",
+      "id": "133a"
     }
   ],
   "listOptionsMain": [
@@ -108,7 +108,6 @@
       "optionD": "Storage Gateway - Tape Gateway.",
       "optionE": "Instance Store.",
       "optionNumber": "1",
-      "imageQuestion": "",
       "id": "380e"
     },
     {
@@ -118,7 +117,6 @@
       "optionD": "Policies.",
       "optionE": "Static Website Hosting.",
       "optionNumber": "2",
-      "imageQuestion": "",
       "id": "0b08"
     },
     {
@@ -128,7 +126,6 @@
       "optionD": "Amazon FSx for Windows File Server.",
       "optionE": "Amazon FSx for Lustre.",
       "optionNumber": "3",
-      "imageQuestion": "",
       "id": "f785"
     },
     {
@@ -138,7 +135,6 @@
       "optionD": "Global Accelerator.",
       "optionE": "ELB.",
       "optionNumber": "4",
-      "imageQuestion": "",
       "id": "0459"
     },
     {
@@ -148,7 +144,6 @@
       "optionD": "Use only EC2 on-demand instaces for the production and dev.",
       "optionE": "Use on-demand EC2 instances for the production and spot intances for the dev.",
       "optionNumber": "6",
-      "imageQuestion": "",
       "id": "d59e"
     },
     {
@@ -158,7 +153,6 @@
       "optionD": "Amazon API Gateway creates RESTful APIs that enable both stateless and stateful client-server communication.",
       "optionE": "Amazon API Gateway creates RESTful APIs that enable stateful client-server communication and Amazon API Gateway also creates WebSocket APIs that adhere to the WebSocket protocol, which enables stateless, full duplex communication between client and server.",
       "optionNumber": "7",
-      "imageQuestion": "",
       "id": "fb69"
     },
     {
@@ -168,7 +162,6 @@
       "optionD": "SQS FIFO (Fist-In-Fist-Out) queue in batch mode of 4 messages per operation to process the messages at the peak rate.",
       "optionE": "Use both SQS standard queue and SQS FIFO queue to process the messages.",
       "optionNumber": "8",
-      "imageQuestion": "",
       "id": "1b74"
     },
     {
@@ -178,7 +171,6 @@
       "optionD": "1 EC2 instance and 2 AMIs exist in Region B.",
       "optionE": "1 EC2 instance, 1 AMI and 1 snapshot exist in Region B.",
       "optionNumber": "9",
-      "imageQuestion": "",
       "id": "8eb7"
     },
     {
@@ -188,7 +180,6 @@
       "optionD": "Use EC2 instances with EBS and EFS mount points.",
       "optionE": "Use Instance Store based EC2 instances.",
       "optionNumber": "11",
-      "imageQuestion": "",
       "id": "77e6"
     },
     {
@@ -198,7 +189,6 @@
       "optionD": "HTTP method-based routing.",
       "optionE": "HTTP header-based routing.",
       "optionNumber": "12",
-      "imageQuestion": "",
       "id": "82c4"
     },
     {
@@ -266,7 +256,6 @@
       "optionD": "S3 Standard-IA => S3 Intelligent-Tiering.",
       "optionE": "S3 Standard-IA => S3 One Zone-IA.",
       "optionNumber": "5",
-      "imageQuestion": "",
       "id": "6023"
     },
     {
@@ -276,7 +265,6 @@
       "optionD": "General Purpose Solid State Drive (gp2).",
       "optionE": "Provisioned IOPS Solid State Drive.",
       "optionNumber": "10",
-      "imageQuestion": "",
       "id": "7634"
     },
     {
@@ -286,7 +274,6 @@
       "optionD": "Create a minimum number of accounts and share these account credentials among employees.",
       "optionE": "Grant maximum privileges to avoid assigning privileges again.",
       "optionNumber": "15",
-      "imageQuestion": "",
       "id": "5d93"
     },
     {
@@ -296,7 +283,6 @@
       "optionD": "Redshift.",
       "optionE": "RDS.",
       "optionNumber": "20",
-      "imageQuestion": "",
       "id": "272f"
     },
     {
@@ -306,7 +292,6 @@
       "optionD": "When you use bucket default setting, you specify a Retain Until Date for the object version.",
       "optionE": "The bucket default settings will override any explicit retention mode or period you request on an object version.",
       "optionNumber": "25",
-      "imageQuestion": "",
       "id": "3681"
     }
   ],
@@ -330,7 +315,6 @@
       "optionE": "The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 instances in the Auto Scaling group on port 80.",
       "optionF": "The security group of the Application Load Balancer should have an inbound rule from anywhere on port 80",
       "optionNumber": "50",
-      "imageQuestion": "",
       "id": "5023"
     }
   ]
