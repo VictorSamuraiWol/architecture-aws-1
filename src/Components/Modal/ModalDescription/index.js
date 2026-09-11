@@ -1,4 +1,4 @@
-import styles from './DescriptionModal.module.css'
+import styles from './ModalDescription.module.css'
 import Modal from 'react-modal'
 import { useState } from 'react'
 import { TiDeleteOutline } from "react-icons/ti"
@@ -6,7 +6,7 @@ import { TiDeleteOutline } from "react-icons/ti"
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
 
-function DescriptionModal({ imagesDescriptions, imageDescription, description }) {
+function ModalDescription({ imagesDescriptions, imageDescription, description }) {
     
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -53,7 +53,7 @@ function DescriptionModal({ imagesDescriptions, imageDescription, description })
 
         </div>
 
-        <div className={styles.descriptionModal}>
+        <div className={styles.modalDescription}>
           {imageDescription !== '' && <img className={styles.imageDescriptionStyle} src={imagesDescriptions[imageDescription]} alt='img' />}
           {description}
 
@@ -65,4 +65,4 @@ function DescriptionModal({ imagesDescriptions, imageDescription, description })
   )
 }
 
-export default DescriptionModal;
+export default ModalDescription;

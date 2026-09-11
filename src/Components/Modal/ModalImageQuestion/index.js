@@ -61,11 +61,16 @@ function ModalImageQuestion({ questionMain, questionMulti }) {
         overlayClassName={styles.modalOverlay}
         className={styles.modalContent}
       >
-        {/* imagem delete do react icon */}
-        <TiDeleteOutline
-          onClick={() => {closeModal(); mute === false && audioClick.play()}} 
-          className={styles.modalImageDelete} 
-        />
+        <div className={styles.containerTitleIconDelete}>
+          <span className={styles.titleImage}>Image:</span>
+
+          {/* imagem delete do react icon */}
+          <TiDeleteOutline
+            onClick={() => {closeModal(); mute === false && audioClick.play()}} 
+            className={styles.modalIconDelete} 
+          />
+
+        </div>
 
         {(imagesQuestions[questionMain?.imageQuestion] !== undefined || imagesQuestions[questionMulti?.imageQuestion] !== undefined) ?
         // se tiver encontrado alguma imagem disponível irá aparecer, se não irá aparecer uma imagem com image not found 

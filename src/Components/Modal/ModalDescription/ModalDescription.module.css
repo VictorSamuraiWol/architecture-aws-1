@@ -87,7 +87,7 @@
   transform: scale(0.97);
 }
 
-.descriptionModal {
+.modalDescription {
   text-align: justify;
   line-height: 28px;
   padding-top: 16px;
@@ -169,17 +169,17 @@
     width: 70%;
   }
 
-  .descriptionModal {
+  .modalDescription {
     overflow: auto;
     padding: 0 8px 0 0;
   }
 
-  .descriptionModal::-webkit-scrollbar {
+  .modalDescription::-webkit-scrollbar {
     height: 4px;
     width: 4px;
   }
 
-  .descriptionModal::-webkit-scrollbar-thumb {
+  .modalDescription::-webkit-scrollbar-thumb {
     background-color: var(--color-fourth);
   }
 

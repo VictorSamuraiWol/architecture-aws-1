@@ -9,7 +9,7 @@ import identityAndAccessManagement from '../../imgs/answers-imgs/Identity_and_Ac
 import simpleQueueService from '../../imgs/answers-imgs/Simple_Queue_Service.png'
 import simpleStoragesService from '../../imgs/answers-imgs/Simple_Storage_Service.png'
 import storageGateway from '../../imgs/answers-imgs/Storage_Gateway.png'
-import DescriptionModal from './DescriptionModal'
+import ModalDescription from '../Modal/ModalDescription'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 
@@ -47,7 +47,7 @@ function AnswerDescription({
                 <h3 className={styles.textAnswer}>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer) || (listThreeMultiOptionsContext && answer)}</h3>
             </div>
 
-            <DescriptionModal 
+            <ModalDescription 
                 imagesDescriptions={imagesDescriptions}
                 imageDescription={imageDescription}
                 description={description}
