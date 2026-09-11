@@ -197,7 +197,7 @@ function PageMain() {
                 <Main 
                     question={questionMain.questionText}
                     answer={questionMain.correctAnswer}
-                    imageDescription={questionMain.imageKey}
+                    imageDescription={questionMain.imageDescription}
                     description={questionMain.description}
                     questionNumber={questionMain.questionNumber}
                     elementId={questionMain.id}

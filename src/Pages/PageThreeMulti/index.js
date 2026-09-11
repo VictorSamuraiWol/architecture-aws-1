@@ -182,7 +182,7 @@ function PageThreeMulti() {
                 <MultiMain 
                     question={questionThreeMulti.questionText} 
                     answer={questionThreeMulti.correctAnswer}
-                    imageDescription={questionThreeMulti.imageKey}
+                    imageDescription={questionThreeMulti.imageDescription}
                     description={questionThreeMulti.description}
                     questionNumber={questionThreeMulti.questionNumber}
                     elementId={questionThreeMulti.id}

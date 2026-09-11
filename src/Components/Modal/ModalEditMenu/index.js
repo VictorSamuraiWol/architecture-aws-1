@@ -23,7 +23,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // criando variáveis para todos os atributos das questões
   const [questionTextMain, setQuestionTextMain] = useState(questionMain?.questionText)
   const [correctAnswerMain, setCorrectAnswerMain] = useState(questionMain?.correctAnswer)
-  const [imageKeyMain, setImageKeyMain] = useState(questionMain?.imageKey)
+  const [imageDescriptionMain, setImageDescriptionMain] = useState(questionMain?.imageDescription)
   const [descriptionMain, setDescriptionMain] = useState(questionMain?.description)
   const [questionNumberMain] = useState(questionMain?.questionNumber)
 
@@ -37,7 +37,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // criando variáveis para todos os atributos das questões de múltipla escolha
   const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.questionText)
   const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.correctAnswer)
-  const [imageKeyMulti, setImageKeyMulti] = useState(questionMulti?.imageKey)
+  const [imageDescriptionMulti, setImageDescriptionMulti] = useState(questionMulti?.imageDescription)
   const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.description)
   const [questionNumberMulti] = useState(questionMulti?.questionNumber)
 
@@ -120,7 +120,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const jsonBody = JSON.stringify({
       questionText: questionTextMain,
       correctAnswer: correctAnswerMain,
-      imageKey: imageKeyMain,
+      imageDescription: imageDescriptionMain,
       description: descriptionMain,
       questionNumber: questionMain.questionNumber, // não será alterado
       id: questionMain.id // não será alterado
@@ -190,7 +190,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const jsonBody = JSON.stringify({
       questionText: questionTextMulti,
       correctAnswer: correctAnswerMulti,
-      imageKey: imageKeyMulti,
+      imageDescription: imageDescriptionMulti,
       description: descriptionMulti,
       questionNumber: questionMulti.questionNumber, // não será alterado
       id: questionMulti.id // não será alterado
@@ -257,20 +257,20 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     let active
 
     // formulário 1
-    const questionMainEdit = [questionTextMain, correctAnswerMain, imageKeyMain, descriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const questionMainEdit = [questionTextMain, correctAnswerMain, imageDescriptionMain, descriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
     const optionMainEdit = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
       
-    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageKey, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageDescription, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
     const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
     
     const findQuestionMain = newListUnicQuestionsContext.filter(question => isEqual(question, questionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
     const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
 
     // formulário 2    
-    const questionMultiEdit = [questionTextMulti, correctAnswerMulti, imageKeyMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const questionMultiEdit = [questionTextMulti, correctAnswerMulti, imageDescriptionMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
     const optionMultiEdit = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
-    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageKey, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.imageDescription, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
     const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
 
     const findQuestionMulti = newListMultiQuestionsContext.filter(question => isEqual(question, questionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
@@ -438,7 +438,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   }
 
   function onChangeModalImage(event) {
-    setImageKeyMain(event.target.value)
+    setImageDescriptionMain(event.target.value)
 
   }
 
@@ -485,7 +485,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   }
 
   function onChangeModalImageMulti(event) {
-    setImageKeyMulti(event.target.value)
+    setImageDescriptionMulti(event.target.value)
 
   }
 
@@ -529,7 +529,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       if (questionMain && optionMain) {
         setQuestionTextMain('')
         setCorrectAnswerMain('')
-        setImageKeyMain('')
+        setImageDescriptionMain('')
         setDescriptionMain('')
         setOptionAMain('')
         setOptionBMain('')
@@ -542,7 +542,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       if (questionMulti && optionMulti) {
         setQuestionTextMulti('')
         setCorrectAnswerMulti('')
-        setImageKeyMulti('')
+        setImageDescriptionMulti('')
         setDescriptionMulti('')
         setOptionAMulti('')
         setOptionBMulti('')
@@ -610,7 +610,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <FieldModalEdit
             onChangeModal={onChangeModalImage}
             name="Image"
-            newValue={imageKeyMain}
+            newValue={imageDescriptionMain}
           />
 
           <FieldModalEdit
@@ -713,7 +713,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <FieldModalEdit
             onChangeModal={onChangeModalImageMulti}
             name="Image"
-            newValue={imageKeyMulti}
+            newValue={imageDescriptionMulti}
           />
 
           <FieldModalEdit

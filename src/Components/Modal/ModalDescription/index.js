@@ -54,7 +54,16 @@ function ModalDescription({ imagesDescriptions, imageDescription, description })
         </div>
 
         <div className={styles.modalDescription}>
-          {imageDescription !== '' && <img className={styles.imageDescriptionStyle} src={imagesDescriptions[imageDescription]} alt='img' />}
+          {/* só irá aparecer a imagem na descrição se ela estiver na lista de imagens salvas */}
+          {imagesDescriptions[imageDescription] !== undefined ? 
+            <img 
+              className={styles.imageDescriptionStyle} 
+              src={imagesDescriptions[imageDescription]} 
+              alt='img'
+            /> 
+            : 
+            null
+          }
           {description}
 
         </div>

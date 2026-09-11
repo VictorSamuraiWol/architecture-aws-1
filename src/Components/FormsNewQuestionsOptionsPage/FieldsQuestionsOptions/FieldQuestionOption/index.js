@@ -50,7 +50,7 @@ function FieldQuestionOption({
             
                 labelTarget === "Answer:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMain'
 
-                labelTarget === "Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMain'
+                labelTarget === "Image:" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewImageDescriptionMain'
 
                 labelTarget === "Description:*" && setValueForm1(newValue) // setValueForm1 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMain'
 
@@ -98,7 +98,7 @@ function FieldQuestionOption({
 
                 labelTarget === "Answer:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewCorrectAnswerMulti'
 
-                labelTarget === "Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewImageKeyMulti'
+                labelTarget === "Image:" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewImageDescriptionMulti'
 
                 labelTarget === "Description:*" && setValueForm3(newValue) // setValueForm3 é uma props que, neste caso, corresponde a variável de estado 'setNewDescriptionMulti'
                 
