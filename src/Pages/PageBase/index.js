@@ -3,8 +3,12 @@ import DataProvider from '../../Components/DataContext'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
+import NavigateDefault from '../../Components/NavigateDefault'
 
 function PageBase() {
+
+    const [nameUser, setNameUser] = useState('')
+    const [loginValidate, setLoginValidate] = useState(false)
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
     const [activePageDemo, setActivePageDemo] = useState(false)
@@ -84,21 +88,32 @@ function PageBase() {
     
     }
 
+    // função para retornar um texto curto se o texto for muito grande, até no máximo 15 caracteres
+    function truncatedText(text, numLength) {
+        const stringfy = text.toString()
+        const result = stringfy.length > numLength
+        ? stringfy.slice(0, numLength) + '...'
+        : stringfy
+
+        return result
+
+    }
+
     return(   
         <div className={styles.pageBaseOutlet}>
             <DataProvider>
                 <Outlet 
-                    context={{ mute, numCorrectOption, setNumCorrectOption, numIncorrectOption, 
-                        setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
-                        setActivePageFormsQuestionsOptions, repeatedAlternativesDefault,
-                        checkAlternativeAnswerDefault, activePageDemo, setActivePageDemo, activePageMain, setActivePageMain, 
-                        activePageMulti, setActivePageMulti, activePageThreeMulti, setActivePageThreeMulti, activeZeroImgMain, 
-                        setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti,
-                        activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert
+                    context={{ nameUser, setNameUser, loginValidate, setLoginValidate, mute, numCorrectOption, setNumCorrectOption, 
+                        numIncorrectOption, setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
+                        setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageDemo, 
+                        setActivePageDemo, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti, activePageThreeMulti, 
+                        setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
+                        activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
+                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText
                     }} 
                 />                
 
-                {mute === false &&
+                {loginValidate && mute === false &&
                 // condição: se o mute for false, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeFull // unmute sound icon
                         onClick={validateSound}
@@ -107,7 +122,7 @@ function PageBase() {
                     />
                 }                
 
-                {mute &&
+                {loginValidate && mute &&
                 // condição: se o mute for true, e ter alguma requisição de dados backend ou a página de formulário estiver ativa
                     <BiSolidVolumeMute // mute sound icon
                         onClick={validateSound}
@@ -115,6 +130,8 @@ function PageBase() {
                         className={styles.soundMute}
                     />
                 }
+
+                <NavigateDefault isLogged={loginValidate} />
 
             </DataProvider>
 

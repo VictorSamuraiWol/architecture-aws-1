@@ -13,6 +13,14 @@
  
 }
 
+.bgLogin {
+    height: 77vh;
+    background-image: url(../../imgs/cloud-neon-vibe.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .backgroundImage {
     position: absolute;
     height: 100%;

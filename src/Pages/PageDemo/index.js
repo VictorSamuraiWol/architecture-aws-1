@@ -1,4 +1,5 @@
 import styles from './PageDemo.module.css'
+import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import Main from '../../Components/Main'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
@@ -8,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 
 function PageDemo() {
 
-  const { activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions } = useOutletContext()
+  const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions } = useOutletContext()
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -69,40 +70,51 @@ function PageDemo() {
           className={styles.allQuestionsDemoClass} 
           key='0'
       >
+        {!loginValidate && 
+        <>
+          <HeaderLogin />
+          <main className={styles.bgLogin}></main>
+
+        </>}
+
         {/* background image */}
-        {activePageFormsQuestionsOptions === false && 
+        {loginValidate && activePageFormsQuestionsOptions === false && 
         <img 
             className={`backgroundImageClass ${styles.backgroundImage}`} 
             src={backgroundImage} 
             alt='backgoundIimage'
         />}
 
-        {/* reutilizando componentes da página Main */}
-        <Header title="Architecture Questions - Randomly" />
+        {loginValidate && 
+        <>
+          {/* reutilizando componentes da página Main */}
+          <Header />
 
-        <Main 
-          question="A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?"
-          answer="Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance."
-          imageDescription=''
-          description="A Network Load Balancer functions at the fourth layer of the Open Systems Interconnection (OSI) model. It can handle millions of requests per second. After the load balancer receives a connection request, it selects a target from the target group for the default rule. It attempts to open a TCP connection to the selected target on the port specified in the listener configuration. Request Routing and IP Addresses - If you specify targets using an instance ID, traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance. The load balancer rewrites the destination IP address from the data packet before forwarding it to the target instance. If you specify targets using IP addresses, you can route traffic to an instance using any private IP address from one or more network interfaces. This enables multiple applications on an instance to use the same port. Note that each network interface can have its security group. The load balancer rewrites the destination IP address before forwarding it to the target."
-          questionNumber='0'
-          elementId='0'
-          answerDescriptionDisplay={answerDescriptionDisplay}
-          setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-          descriptionDisplay={descriptionDisplay}
-          setDescriptionDisplay={setDescriptionDisplay}
-          uniqueRandomMain={uniqueRandomDemo}             
-          questionMain={questionDemo}
-          optionMain={optionDemo}                
-          optionMainNumberId={[0, 0]}
-          optNum1={0}
-          optNum2={1}
-          optNum3={2}
-          optNum4={3}
-          optNum5={4}
-          activeZeroImgMain={false}
-          activePageDemo={activePageDemo}
-        />
+          <Main 
+            question="A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?"
+            answer="Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance."
+            imageDescription=''
+            description="A Network Load Balancer functions at the fourth layer of the Open Systems Interconnection (OSI) model. It can handle millions of requests per second. After the load balancer receives a connection request, it selects a target from the target group for the default rule. It attempts to open a TCP connection to the selected target on the port specified in the listener configuration. Request Routing and IP Addresses - If you specify targets using an instance ID, traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance. The load balancer rewrites the destination IP address from the data packet before forwarding it to the target instance. If you specify targets using IP addresses, you can route traffic to an instance using any private IP address from one or more network interfaces. This enables multiple applications on an instance to use the same port. Note that each network interface can have its security group. The load balancer rewrites the destination IP address before forwarding it to the target."
+            questionNumber='0'
+            elementId='0'
+            answerDescriptionDisplay={answerDescriptionDisplay}
+            setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+            descriptionDisplay={descriptionDisplay}
+            setDescriptionDisplay={setDescriptionDisplay}
+            uniqueRandomMain={uniqueRandomDemo}             
+            questionMain={questionDemo}
+            optionMain={optionDemo}                
+            optionMainNumberId={[0, 0]}
+            optNum1={0}
+            optNum2={1}
+            optNum3={2}
+            optNum4={3}
+            optNum5={4}
+            activeZeroImgMain={false}
+            activePageDemo={activePageDemo}
+          />
+
+        </>}
 
         <Footer />
 

@@ -5,9 +5,17 @@
   position: relative;
   gap: 8px;
   background-color: var(--color-first);
-  height: 84%;
+  height: 80%;
   padding: 0 8px;
   box-sizing: border-box;
+}
+
+.textTitle {
+  color: var(--color-fourth);
+  text-decoration: underline;
+  margin: 0;
+  cursor: default;
+  z-index: 1;
 }
 
 .containerQuestionMenuTools {
@@ -132,7 +140,11 @@
 }
 
 /* Responsividade */
-@media (min-width: 1700px) {
+@media (min-width: 1441px) {
+  .textTitle {
+    font-size: 1.3rem;
+  }
+
   .inputMultiOptions {
     padding: 8px;
   }
@@ -147,7 +159,11 @@
 
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1440px) {
+  .textTitle {
+    font-size: 1.3rem;
+  }
+
   .inputMultiOptions {
     padding: 8px;
   }
@@ -163,6 +179,10 @@
 }
 
 @media (max-width: 1100px) {
+  .textTitle {
+    font-size: 1.2rem;
+  }
+
   .inputMultiOptions {
     width: 16px;
     height: 16px;
@@ -196,6 +216,10 @@
 }
 
 @media (max-width: 860px) {
+  .textTitle {
+    font-size: 1.1rem;
+  }
+
   .inputMultiOptions {
     width: 14px;
     height: 14px;
@@ -234,6 +258,10 @@
 }
 
 @media (max-width: 580px) {
+  .textTitle {
+    font-size: 1rem;
+  }
+  
   .inputMultiOptions {
     width: 12px;
     height: 12px;

@@ -1,0 +1,236 @@
+.containerModalLongButton {
+  display: flex;
+  background-color: var(--color-first);
+  box-shadow: 3px 3px 2px var(--color-third);
+}
+
+.containerModalShortButton {
+  display: none;
+  background-color: var(--color-first);
+  box-shadow: 3px 3px 2px var(--color-third);
+}
+
+.modalLoginOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.modalLoginContent {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  gap: 16px;
+  position: absolute;
+  background: var(--color-first);
+  color: var(--color-fourth);
+  width: 80%;
+  padding: 16px 0;
+  border: 1px solid var(--color-fourth);
+  border-radius: 8px;
+}
+
+.modalLoginContent:focus {
+  outline: none;
+}
+
+.containerLoginModalDelete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--color-fourth);
+}
+
+.containerLoginModalDeleteText {
+  margin: 0;
+  cursor: default;
+}
+
+.containerLoginModalDeleteIcon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.containerLoginModalDeleteIcon:hover {
+  transform: scale(0.94);
+}
+
+.loginUsersPasswords {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 6px;
+  cursor: default;
+}
+
+.loginUsersPasswordsUser {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px;
+  background-color: var(--color-second);
+  border: 1px solid var(--color-fourth);
+  border-radius: 8px;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.loginUsersPasswordsUser:hover {
+  color: var(--color-first);
+  background-color: var(--color-fourth);
+  border: 1px solid var(--color-second);
+  transform: scale(0.97);
+}
+
+.loginUsersPasswordsUserName {
+  padding-right: 4px;
+  border-right: 1px solid var(--color-fourth);
+  overflow-wrap: break-word;
+  margin: 0;
+}
+
+.loginUsersPasswordsUser:hover .loginUsersPasswordsUserName {
+  border-right: 1px solid var(--color-first);
+}
+
+.loginUsersPasswordsPassword {
+  padding-left: 2px;
+  margin: 0;
+}
+
+/* Responsiveness */
+@media (min-width: 1440px) {
+  .containerLoginModalDeleteText {
+    font-size: 3.5rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 2rem;
+  }
+
+  .loginUsersPasswords {
+    font-size: 1.125rem;
+  }
+
+}
+
+@media (max-width: 1440px) {
+  .containerLoginModalDeleteText {
+    font-size: 3.5rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 2rem;
+  }
+
+  .loginUsersPasswords {
+    font-size: 1.125rem;
+  }
+
+}
+
+@media (max-width: 1280px) {
+  .containerLoginModalDeleteText {
+    font-size: 3rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 1.8rem;
+  }
+
+  .loginUsersPasswords {
+    font-size: 1rem;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .containerLoginModalDeleteText {
+    font-size: 2.5rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 1.6rem;
+  }
+
+  .loginUsersPasswords {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .containerModalLongButton {
+    display: none;
+  }
+
+  .containerModalShortButton {
+    display: flex;
+  }
+
+  .imageReactModal {
+    display: flex;
+  }
+
+  .showAllNamesAndPasswords {
+    display: flex;
+  }
+
+  .namesAndPasswords {
+    display: none;
+  }
+
+  .containerLoginModalDeleteText {
+    font-size: 2.25rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 1.4rem;
+  }
+
+  .loginUsersPasswords {
+    font-size: 0.8rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .imageReactModal {
+    display: none;
+  }
+
+  .showAllNamesAndPasswords {
+    display: none;
+  }
+
+  .namesAndPasswords {
+    display: flex;
+  }
+
+  .modalLoginContent {
+    width: 90%;
+  }
+
+  .containerLoginModalDeleteText {
+    font-size: 1.75rem;
+  }
+
+  .containerLoginModalDeleteIcon {
+    font-size: 1.2rem;
+  }
+
+  .loginUsersPasswordsUser {
+    padding: 2px;
+  }
+
+}

@@ -1,4 +1,5 @@
 import styles from './PageMain.module.css'
+import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import Main from '../../Components/Main'
 import Loader from '../../Components/Loader'
@@ -25,7 +26,7 @@ function PageMain() {
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, listUnicOptionsContextLength, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
+    const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
         activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
@@ -182,45 +183,53 @@ function PageMain() {
                 className={`${styles.allQuestionsMainClass} allquestions`} 
                 key={questionMain.id}
             >
+                {!loginValidate && 
+                <>
+                    <HeaderLogin />
+                    <main className={styles.bgLogin}></main>
+
+                </>}
+
                 {/* background image */}
-                {activePageFormsQuestionsOptions === false && 
+                {loginValidate && activePageFormsQuestionsOptions === false && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='backgoundIimage'
                 />}
 
-                <Header 
-                    title="Architecture Questions - Randomly" 
-                />                    
+                {loginValidate && 
+                <>
+                    <Header />                    
 
-                <Main 
-                    question={questionMain.questionText}
-                    answer={questionMain.correctAnswer}
-                    imageDescription={questionMain.imageDescription}
-                    description={questionMain.description}
-                    questionNumber={questionMain.questionNumber}
-                    elementId={questionMain.id}
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}                  
-                    uniqueRandomMain={uniqueRandomMain}
-                    questionMain={questionMain}
-                    setQuestionMain={setQuestionMain}                        
-                    optionMain={optionMain}
-                    optionMainNumberId={optionMainNumberId}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                    activeZeroImgMain={activeZeroImgMain}
-                    activePageMain={activePageMain}
-                />
+                    <Main 
+                        question={questionMain.questionText}
+                        answer={questionMain.correctAnswer}
+                        imageDescription={questionMain.imageDescription}
+                        description={questionMain.description}
+                        questionNumber={questionMain.questionNumber}
+                        elementId={questionMain.id}
+                        answerDescriptionDisplay={answerDescriptionDisplay}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}                  
+                        uniqueRandomMain={uniqueRandomMain}
+                        questionMain={questionMain}
+                        setQuestionMain={setQuestionMain}                        
+                        optionMain={optionMain}
+                        optionMainNumberId={optionMainNumberId}
+                        optNum1={optNum1}
+                        optNum2={optNum2}
+                        optNum3={optNum3}
+                        optNum4={optNum4}
+                        optNum5={optNum5}
+                        activeZeroImgMain={activeZeroImgMain}
+                        activePageMain={activePageMain}
+                    />
+
+                </>}
 
                 <Footer />
-                
 
             </div>}
 

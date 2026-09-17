@@ -1,4 +1,5 @@
 import styles from './PageThreeMulti.module.css'
+import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import MultiMain from '../../Components/MultiMain'
 import Loader from '../../Components/Loader'
@@ -26,7 +27,7 @@ function PageThreeMulti() {
     const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti  } = useOutletContext()
+    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti, loginValidate  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -167,40 +168,51 @@ function PageThreeMulti() {
                 className={styles.allQuestionsMultiClass} 
                 key={questionThreeMulti.id}
             >
+                {!loginValidate && 
+                <>
+                    <HeaderLogin />
+                    <main className={styles.bgLogin}></main>
+
+                </>}
+
                 {/* background image */}
-                {activePageFormsQuestionsOptions === false && 
+                {loginValidate && activePageFormsQuestionsOptions === false && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='backgoundIimage'
                 />} 
 
-                {/* reutilizando os componentes da página Multi */}
-                <Header title="Architecture Questions - Randomly" />
+                {loginValidate && 
+                <>
+                    {/* reutilizando os componentes da página Multi */}
+                    <Header />
 
 
-                <MultiMain 
-                    question={questionThreeMulti.questionText} 
-                    answer={questionThreeMulti.correctAnswer}
-                    imageDescription={questionThreeMulti.imageDescription}
-                    description={questionThreeMulti.description}
-                    questionNumber={questionThreeMulti.questionNumber}
-                    elementId={questionThreeMulti.id}
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    questionMulti={questionThreeMulti}
-                    optionMulti={optionThreeMulti}
-                    optionMultiNumberId={optionThreeMultiNumberId}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                    optNum6={optNum6}
-                    activeZeroImgMulti={activeZeroImgThreeMulti}
-                />
+                    <MultiMain 
+                        question={questionThreeMulti.questionText} 
+                        answer={questionThreeMulti.correctAnswer}
+                        imageDescription={questionThreeMulti.imageDescription}
+                        description={questionThreeMulti.description}
+                        questionNumber={questionThreeMulti.questionNumber}
+                        elementId={questionThreeMulti.id}
+                        answerDescriptionDisplay={answerDescriptionDisplay}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}
+                        questionMulti={questionThreeMulti}
+                        optionMulti={optionThreeMulti}
+                        optionMultiNumberId={optionThreeMultiNumberId}
+                        optNum1={optNum1}
+                        optNum2={optNum2}
+                        optNum3={optNum3}
+                        optNum4={optNum4}
+                        optNum5={optNum5}
+                        optNum6={optNum6}
+                        activeZeroImgMulti={activeZeroImgThreeMulti}
+                    />
+                
+                </>}
 
                 <Footer />
             

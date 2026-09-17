@@ -2,15 +2,22 @@ import styles from './Header.module.css'
 import image from '../../imgs/icon-start.png'
 import NavigationItem from './NavigationItem'
 import soundClick from '../../audios/clickAudio.mp3'
+import none from '../../imgs/profiles/none.png'
+import profileVictor from '../../imgs/profiles/profile-victor.png'
+import ButtonDefault from '../ButtonDefault'
 import { Link, useOutletContext } from 'react-router-dom'
 import { GoPlus } from 'react-icons/go'
 import { RxHamburgerMenu } from "react-icons/rx"
+import { useContext, useState } from 'react'
+import { DataContext } from '../DataContext'
 
-function Header({ title }) {
+function Header() {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { mute } = useOutletContext()
+    const { listUsers } = useContext(DataContext)
+
+    const { setLoginValidate, nameUser, setNameUser, truncatedText, mute } = useOutletContext()
 
     const allLinks = document.querySelectorAll('.ulHeader')
 
@@ -32,6 +39,19 @@ function Header({ title }) {
         mute === false && audioClick.play()
     }
 
+    const [imagesDescriptions] = useState({
+        none: none,
+        profileVictor: profileVictor
+
+    })
+
+    function signOut() {
+        setLoginValidate(false)
+        setNameUser('')
+        window.location.reload()
+
+    }
+
     return(
         <div className={styles.header}>
             <Link 
@@ -46,8 +66,7 @@ function Header({ title }) {
                 />
             </Link>
 
-            <h1 className={styles.headerTitle}>{title}</h1>
-
+            {/* barra de navegação */}
             <nav>
                 <RxHamburgerMenu 
                     onClick={ableLinks} 
@@ -55,16 +74,6 @@ function Header({ title }) {
                 /> 
 
                 <ul className={`ulHeader ${styles.ulHeader}`}>
-                    <Link 
-                        to='/'
-                        className={styles.linksNavigation} 
-                    >
-                        <NavigationItem
-                            onClick={sound}
-                            itemName='Home' 
-                        />
-                    </Link>
-
                     <Link
                         to='/page-forms-new-questions-options'
                         className={styles.linksNavigation}
@@ -77,6 +86,36 @@ function Header({ title }) {
                     </Link>                    
                 </ul>
             </nav>
+
+            {/* perfil do usuário logado */}
+            {listUsers
+                .filter(user => user.name.toLowerCase() === nameUser.toLowerCase().trim())
+                .map(user => (
+            <div
+                key={user.name}
+                className={styles.containerLoginSignin}
+            >
+                <div className={styles.containerLoginSigninImageName}>
+                {user.imageProfile && <img 
+                    src={imagesDescriptions[user.imageProfile]}
+                    className={styles.containerLoginSigninImageNameImg}
+                    alt='img perfil'
+                />}
+                    <p className={styles.containerLoginSigninImageNameLongText}>{truncatedText(user.name, 6)}</p>
+
+                </div>
+
+                <Link className={styles.linkContainerButtonSignout} to='/'>
+                    <div className={styles.containerButtonSignout}>
+                        <ButtonDefault
+                            onClick={signOut}
+                            buttonName='SIGN OUT'
+                            specificStyleButton={styles.specificStylesSignoutButton}
+                        />
+                    </div>
+                </Link>
+
+            </div>))}
             
         </div>
     )

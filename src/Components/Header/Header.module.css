@@ -5,7 +5,7 @@
     position: relative;
     color: var(--color-fourth);
     background-color: var(--color-second);
-    height: 8vh;
+    height: 12vh;
     padding: 0 12px;
 }
 
@@ -18,12 +18,7 @@
 }
 
 .iconStart:hover {
-    transform: scale(1.03);
-}
-
-.headerTitle {
-    cursor: default;
-    z-index: 1;
+    transform: scale(0.97);
 }
 
 nav {
@@ -52,21 +47,104 @@ ul {
     text-decoration: none;
 }
 
+.containerLoginSignin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  color: var(--color-fourth);
+  padding: 6px 8px;
+  border: 1px solid var(--color-fourth);
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px var(--color-third);
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.containerLoginSignin:hover {
+  color: var(--color-first);
+  box-shadow: 5px 5px 5px var(--color-first);
+}
+
+.containerLoginSignin:hover .containerLoginSigninImageNameImg {
+  box-shadow: 5px 3px 3px var(--color-first);
+}
+
+.containerLoginSigninImageName {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.containerLoginSigninImageNameImg {
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0;
+  text-shadow: 0;
+  box-shadow: 5px 3px 3px var(--color-fourth);
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.containerLoginSigninImageNameShortText {
+  font-size: 1.3rem;
+  text-shadow: 2px 2px 3px var(--color-third);
+  overflow-wrap: break-word;
+  margin: 0;
+  cursor: default;
+}
+
+.containerLoginSigninImageNameLongText {
+  font-size: 1.3rem;
+  text-shadow: 2px 2px 3px var(--color-third);
+  overflow-wrap: break-word;
+  margin: 0;
+  cursor: default;
+}
+
+.linkContainerButtonSignout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.containerButtonSignout {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+}
+
+.specificStylesSignoutButton {
+    background-color: var(--color-first);
+}
+
 /* Responsividade */
-@media (min-width: 1701px) {
-    .headerTitle {
-        font-size: 1.8rem;
+@media (min-width: 1441px) {
+    .containerLoginSigninImageNameImg {
+        width: 40px;
+    }
+
+    .containerLoginSigninImageNameLongText {
+        font-size: 1.2rem;
     }
 
 }
 
-@media (max-width: 1700px) {
-    .headerTitle {
+@media (max-width: 1440px) {
+    ul {
         font-size: 1.5rem;
     }
 
-    ul {
-        font-size: 1.5rem;
+    .containerLoginSigninImageNameImg {
+        width: 40px;
+    }
+
+    .containerLoginSigninImageNameLongText {
+        font-size: 1.125rem;
     }
 
 }
@@ -75,13 +153,17 @@ ul {
     .iconStart {
         width: 70px;
     }
-    
-    .headerTitle {
-        font-size: 1.2rem;
-    }
 
     ul {
         font-size: 1.2rem;
+    }
+
+    .containerLoginSigninImageNameImg {
+        width: 35px;
+    }
+
+    .containerLoginSigninImageNameLongText {
+        font-size: 1rem;
     }
 
 }
@@ -91,13 +173,24 @@ ul {
         width: 60px;
     }
 
-    .headerTitle {
-        font-size: 1rem;
-        text-align: center;
-    }
-
     ul {
         font-size: 1rem;
+    }
+
+    .containerLoginSignin {
+        gap: 16px;
+    }
+
+    .containerLoginSigninImageNameImg {
+        width: 30px;
+    }
+
+    .containerLoginSigninImageNameLongText {
+        font-size: 0.9rem;
+    }
+
+    .containerButtonSignout {
+        justify-content: center;
     }
 
 }
@@ -138,6 +231,18 @@ ul {
     .hamburger:hover {
         background-color: rgba(0, 0, 0, 80%);
         border-radius: 50%;
-    }   
+    }
+
+    .containerLoginSignin {
+        width: 28%;
+    }
+
+    .containerLoginSigninImageNameImg {
+        width: 25px;
+    }
+
+    .containerLoginSigninImageNameLongText {
+        font-size: 0.8rem;
+    }
     
 }

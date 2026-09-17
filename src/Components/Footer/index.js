@@ -4,12 +4,13 @@ import Timer from '../Timer'
 import { Link, useOutletContext } from 'react-router-dom'
 
 function Footer() {
-    const { activePageFormsQuestionsOptions, activePageDemo, activePageMain, activePageMulti, activeZeroImgMain, activeZeroImgMulti,activePageThreeMulti } = useOutletContext()
+    const { loginValidate, activePageFormsQuestionsOptions, activePageDemo, activePageMain, activePageMulti, activeZeroImgMain, 
+        activeZeroImgMulti,activePageThreeMulti } = useOutletContext()
 
     return(
-        <div className={activePageFormsQuestionsOptions ? styles.footerForms : styles.footer}>
+        <div className={!loginValidate || activePageFormsQuestionsOptions ? styles.footerForms : styles.footer}>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
-            {((activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti))) || activePageDemo || activePageThreeMulti) && <Timer />}
+            {loginValidate && ((activePageFormsQuestionsOptions === false && ((activePageMain && !activeZeroImgMain) || (activePageMulti && !activeZeroImgMulti))) || activePageDemo || activePageThreeMulti) && <Timer />}
             
             <div className={styles.imgText}>
                 <img src={image} alt="icon wolverine" />

@@ -1,4 +1,24 @@
 {
+  "listUsers": [
+    {
+      "name": "Victor",
+      "password": "Victor",
+      "imageProfile": "profileVictor",
+      "id": "0"
+    },
+    {
+      "name": "Example",
+      "password": "Example",
+      "imageProfile": "none",
+      "id": "1"
+    },
+    {
+      "name": "ExampleLongLongLongLongText",
+      "password": "ExampleLongLongLongLongText",
+      "imageProfile": "none",
+      "id": "2"
+    }
+  ],
   "listQuestionsMain": [
     {
       "questionText": "What the most efficient service can integrate data files from its on-premises with AWS Cloud via an NFS interface?",

@@ -1,4 +1,5 @@
 import styles from './PageMulti.module.css'
+import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import MultiMain from '../../Components/MultiMain'
 import Loader from '../../Components/Loader'
@@ -25,7 +26,7 @@ function PageMulti() {
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, listMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo  } = useOutletContext()
+    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activeZeroImgMulti, setActiveZeroImgMulti, setActivePageDemo, loginValidate  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -165,37 +166,48 @@ function PageMulti() {
                 className={styles.allQuestionsMultiClass} 
                 key={questionMulti.id}
             >
+                {!loginValidate && 
+                <>
+                    <HeaderLogin />
+                    <main className={styles.bgLogin}></main>
+
+                </>}
+
                 {/* background image */}
-                {activePageFormsQuestionsOptions === false && 
+                {loginValidate && activePageFormsQuestionsOptions === false && 
                 <img 
                     className={`backgroundImageClass ${styles.backgroundImage}`} 
                     src={backgroundImage} 
                     alt='backgoundIimage'
                 />} 
 
-                <Header title="Architecture Questions - Randomly" />
+                {loginValidate && 
+                <>
+                    <Header />
 
-                <MultiMain 
-                    question={questionMulti.questionText} 
-                    answer={questionMulti.correctAnswer}
-                    imageDescription={questionMulti.imageDescription}
-                    description={questionMulti.description}
-                    questionNumber={questionMulti.questionNumber}
-                    elementId={questionMulti.id}
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    questionMulti={questionMulti}
-                    optionMulti={optionMulti}
-                    optionMultiNumberId={optionMultiNumberId}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                    activeZeroImgMulti={activeZeroImgMulti}
-                />
+                    <MultiMain 
+                        question={questionMulti.questionText} 
+                        answer={questionMulti.correctAnswer}
+                        imageDescription={questionMulti.imageDescription}
+                        description={questionMulti.description}
+                        questionNumber={questionMulti.questionNumber}
+                        elementId={questionMulti.id}
+                        answerDescriptionDisplay={answerDescriptionDisplay}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        descriptionDisplay={descriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}
+                        questionMulti={questionMulti}
+                        optionMulti={optionMulti}
+                        optionMultiNumberId={optionMultiNumberId}
+                        optNum1={optNum1}
+                        optNum2={optNum2}
+                        optNum3={optNum3}
+                        optNum4={optNum4}
+                        optNum5={optNum5}
+                        activeZeroImgMulti={activeZeroImgMulti}
+                    />
+                
+                </>}
 
                 <Footer />
             

@@ -143,6 +143,8 @@ function Main({
         <div className={styles.main}>
             {activeZeroImgMain === false &&
             <>
+                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+
                 <div className={styles.containerQuestionMenuTools}>
                     <Question 
                         question={question}

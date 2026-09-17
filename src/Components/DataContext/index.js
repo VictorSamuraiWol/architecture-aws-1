@@ -6,6 +6,8 @@ export const DataContext = createContext() // criando um contexto
 export default function DataProvider({ children }) {
     
     //colocando todas as variáveis que precisam utilizar os dados do backend neste contexto, podendo utilizar todas as variáveis em qualquer lugar do projeto através do 'useContext' 
+    const [listUsers, setListUsers] = useState('')
+
     const [listUnicQuestionsContext, setListUnicQuestionsContext] = useState([])
     const [listUnicQuestionsContextLength, setListUnicQuestionsContextLength] = useState(null)
     const [listUnicOptionsContext, setListUnicOptionsContext] = useState([])
@@ -30,6 +32,35 @@ export default function DataProvider({ children }) {
     const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
 
     useEffect(() => {
+        // dados dos usuários
+        const fetchDataUsers = async () => {
+            try {
+                setLoading(true) // habilitar o loading
+                const res = await fetch("http://localhost:3001/listUsers")
+                const data = await res.json() 
+
+                if (!data) {
+                    throw new Error("Dados inválidos")
+
+                } else {
+                    setListUsers(data.filter(e => e.name && e.password))             
+                    setLoading(false) // desabilitar o loading
+
+                }
+            
+            } catch (error) {
+                console.error('Error fetching users:', error)                          
+                setLoading(false) // desabilitar o loading 
+
+            }
+        
+        }
+
+        fetchDataUsers()
+
+    }, [])
+
+    useEffect(() => {
         // dados da questão main
         const fetchData1 = async () => {
             try {
@@ -48,7 +79,7 @@ export default function DataProvider({ children }) {
                 }
             
             } catch (error) {
-                console.error('Erro ao buscar as questões:', error)                          
+                console.error('Error fetching questions:', error)                          
                 setLoading(false) // desabilitar o loading 
 
             }
@@ -75,7 +106,7 @@ export default function DataProvider({ children }) {
                 }  
     
             } catch (error) {
-                console.error('Erro ao buscar as opções:', error)                               
+                console.error('Error fetching options:', error)                               
                 setLoading(false) // desabilitar o loading
 
             }
@@ -102,7 +133,7 @@ export default function DataProvider({ children }) {
                 }   
 
             } catch (error) {
-                console.log('Erro ao buscar as questões:', error)                            
+                console.log('Error fetching questions:', error)                            
                 setLoading(false) // desabilitar o loading 
                 
             }
@@ -129,7 +160,7 @@ export default function DataProvider({ children }) {
                 }       
                 
             } catch (error) {
-                console.log('Erro ao buscar as opções:', error)                         
+                console.log('Error fetching questions:', error)                         
                 setLoading(false) // desabilitar o loading
                 
             }
@@ -156,7 +187,7 @@ export default function DataProvider({ children }) {
                 }   
 
             } catch (error) {
-                console.log('Erro ao buscar as questões:', error)                            
+                console.log('Error fetching questions:', error)                            
                 setLoading(false) // desabilitar o loading 
                 
             }
@@ -183,7 +214,7 @@ export default function DataProvider({ children }) {
                 }       
                 
             } catch (error) {
-                console.log('Erro ao buscar as opções:', error)                         
+                console.log('Error fetching options:', error)                         
                 setLoading(false) // desabilitar o loading
                 
             }
@@ -197,6 +228,7 @@ export default function DataProvider({ children }) {
     return (        
         <DataContext.Provider
             value={{
+                listUsers,
                 listUnicQuestionsContext,
                 listUnicQuestionsContextLength,
                 listUnicOptionsContext,
