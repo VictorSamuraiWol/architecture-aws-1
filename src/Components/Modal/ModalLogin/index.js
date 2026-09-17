@@ -6,7 +6,7 @@ import { TiDeleteOutline } from "react-icons/ti"
 
 Modal.setAppElement('#root')
 
-function ModalLogin({ listUsers }) {
+function ModalLogin({ staticListUsers, listUsers }) {
   
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -55,8 +55,8 @@ function ModalLogin({ listUsers }) {
 
         <div className={styles.loginUsersPasswords}>
           {/* list users */}
-          {listUsers && 
-          listUsers.map(user => (
+          {(staticListUsers || listUsers) && 
+          [...staticListUsers, ...listUsers].map(user => (
             <div 
               key={user.id} 
               className={styles.loginUsersPasswordsUsers}

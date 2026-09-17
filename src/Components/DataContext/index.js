@@ -31,6 +31,16 @@ export default function DataProvider({ children }) {
 
     const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
 
+    {/* Static Users */}
+    const [staticListUsers] = useState([
+        {
+            "name": "Victor",
+            "password": "Victor",
+            "imageProfile": "profileVictor",
+            "id": "0"
+        }
+    ])
+
     useEffect(() => {
         // dados dos usuários
         const fetchDataUsers = async () => {
@@ -228,6 +238,7 @@ export default function DataProvider({ children }) {
     return (        
         <DataContext.Provider
             value={{
+                staticListUsers,
                 listUsers,
                 listUnicQuestionsContext,
                 listUnicQuestionsContextLength,

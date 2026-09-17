@@ -6,7 +6,7 @@ import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link, useOutletContext } from 'react-router-dom'
 
-function HeaderLogin({ setActivateNavigateDefault }) {
+function HeaderLogin() {
   
   const [passwordUser, setPasswordUser] = useState('')
 
@@ -14,9 +14,9 @@ function HeaderLogin({ setActivateNavigateDefault }) {
 
   const [ableAlertLoginMessage, setAbleAlertLoginMessage] = useState(false)
 
-  const { listUsers } = useContext(DataContext)
+  const { staticListUsers, listUsers } = useContext(DataContext)
 
-  const { nameUser, setNameUser, setLoginValidate } = useOutletContext()
+  const { nameUser, setNameUser, setLoginValidate, setActivateNavigateDefault } = useOutletContext()
 
   const onLoginValidate = (e) => {
     e.preventDefault()
@@ -24,13 +24,13 @@ function HeaderLogin({ setActivateNavigateDefault }) {
     let matchedUser;
 
     if (nameUser || passwordUser) {
-      matchedUser = listUsers.filter(user =>
+      matchedUser = [...staticListUsers, ...listUsers].filter(user =>
         (user.name.toLowerCase() === nameUser.toLowerCase().trim()) && 
         (user.password.toLowerCase() === passwordUser.toLowerCase().trim()))[0]
 
       if (matchedUser) {
         setLoginValidate(true)
-        // setActivateNavigateDefault(true)
+        setActivateNavigateDefault(true)
 
       } else {
         setLoginValidate(false)
@@ -60,7 +60,10 @@ function HeaderLogin({ setActivateNavigateDefault }) {
         />
       </Link>
 
-      <ModalLogin listUsers={listUsers} />
+      <ModalLogin 
+        staticListUsers={staticListUsers} 
+        listUsers={listUsers} 
+      />
 
       <form 
         onSubmit={onLoginValidate}

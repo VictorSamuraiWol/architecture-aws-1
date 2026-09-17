@@ -9,6 +9,7 @@ function PageBase() {
 
     const [nameUser, setNameUser] = useState('')
     const [loginValidate, setLoginValidate] = useState(false)
+    const [activateNavigateDefault, setActivateNavigateDefault] = useState(false)
 
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
     const [activePageDemo, setActivePageDemo] = useState(false)
@@ -109,7 +110,7 @@ function PageBase() {
                         setActivePageDemo, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti, activePageThreeMulti, 
                         setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
                         activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
-                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText
+                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault
                     }} 
                 />                
 
@@ -131,7 +132,10 @@ function PageBase() {
                     />
                 }
 
-                <NavigateDefault isLogged={loginValidate} />
+                <NavigateDefault 
+                    isLogged={activateNavigateDefault} 
+                    setActivateNavigateDefault={setActivateNavigateDefault}
+                />
 
             </DataProvider>
 

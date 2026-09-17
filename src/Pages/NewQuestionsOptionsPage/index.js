@@ -1,14 +1,16 @@
 import styles from './NewQuestionsOptionsPage.module.css'
+import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
 import Loader from '../../Components/Loader'
+import Footer from '../../Components/Footer'
 import { useContext, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
 function NewQuestionsOptionsPage() {
  
-    const { setActivePageFormsQuestionsOptions } = useOutletContext()
+    const { loginValidate, setActivePageFormsQuestionsOptions } = useOutletContext()
 
     const { loading, setLoading } = useContext(DataContext)
     
@@ -24,9 +26,21 @@ function NewQuestionsOptionsPage() {
 
     return(
         <div className={styles.newQuestionsOptionsPage}>
+            {!loginValidate && 
+            <>
+                <HeaderLogin />
+                <main className={styles.bgLogin}></main>
+
+            </>}
             
-            <Header title='Forms' />
-            <FormsNewQuestionsOptionsPage className={styles.formsNewQuestionsOptionsPage} />
+            {loginValidate &&
+            <>
+                <Header title='Forms' />
+                <FormsNewQuestionsOptionsPage className={styles.formsNewQuestionsOptionsPage} />
+            
+            </>}
+
+            <Footer />
 
             {loading && <Loader />}
 

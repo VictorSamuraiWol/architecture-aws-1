@@ -2,7 +2,7 @@ import './NavigateDefault.module.css'
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-function NavigateDefault({ isLogged }) {
+function NavigateDefault({ isLogged, setActivateNavigateDefault }) {
   
   const navigate = useNavigate()
 
@@ -12,7 +12,9 @@ function NavigateDefault({ isLogged }) {
 
     }
 
-  }, [isLogged, navigate])
+    setActivateNavigateDefault(false)
+
+  }, [isLogged, navigate, setActivateNavigateDefault])
 
 }
 

@@ -159,8 +159,7 @@ function PageMulti() {
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading, setActiveZeroImgMulti])
 
     return(
-        <div>     
-            {questionMulti &&
+        <div>
             <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
@@ -207,11 +206,12 @@ function PageMulti() {
                         activeZeroImgMulti={activeZeroImgMulti}
                     />
                 
-                </>}
+                </>
+                }
 
                 <Footer />
             
-            </div>}
+            </div>
             
             {loading && <Loader />}           
                

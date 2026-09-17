@@ -15,7 +15,7 @@ function Header() {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { listUsers } = useContext(DataContext)
+    const { staticListUsers, listUsers } = useContext(DataContext)
 
     const { setLoginValidate, nameUser, setNameUser, truncatedText, mute } = useOutletContext()
 
@@ -88,7 +88,7 @@ function Header() {
             </nav>
 
             {/* perfil do usuário logado */}
-            {listUsers
+            {[...staticListUsers, ...listUsers]
                 .filter(user => user.name.toLowerCase() === nameUser.toLowerCase().trim())
                 .map(user => (
             <div

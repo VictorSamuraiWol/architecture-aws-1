@@ -1,12 +1,6 @@
 {
   "listUsers": [
     {
-      "name": "Victor",
-      "password": "Victor",
-      "imageProfile": "profileVictor",
-      "id": "0"
-    },
-    {
       "name": "Example",
       "password": "Example",
       "imageProfile": "none",

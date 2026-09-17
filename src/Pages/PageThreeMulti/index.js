@@ -161,8 +161,7 @@ function PageThreeMulti() {
     }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, questionThreeMulti, setQuestionThreeMulti, setOptionThreeMulti, setOptionThreeMultiNumberId, setLoading, setActiveZeroImgThreeMulti])
 
     return(
-        <div>     
-            {questionThreeMulti &&
+        <div>
             <div
                 id='allQuestionsMultiId' 
                 className={styles.allQuestionsMultiClass} 
@@ -216,7 +215,7 @@ function PageThreeMulti() {
 
                 <Footer />
             
-            </div>}
+            </div>
 
             {loading && <Loader />}           
                

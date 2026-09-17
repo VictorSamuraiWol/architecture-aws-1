@@ -177,7 +177,6 @@ function PageMain() {
 
     return(
         <div className={styles.pageMainStyles}>
-            {questionMain &&
             <div 
                 id='allQuestionsMainId' 
                 className={`${styles.allQuestionsMainClass} allquestions`} 
@@ -231,7 +230,7 @@ function PageMain() {
 
                 <Footer />
 
-            </div>}
+            </div>
 
             {loading && <Loader />}
 

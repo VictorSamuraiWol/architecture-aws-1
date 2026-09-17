@@ -4,7 +4,6 @@ import FieldsQuestionsOptions from './FieldsQuestionsOptions'
 import ButtonDefault from '../ButtonDefault'
 import saveAudio from '../../audios/save.mp3'
 import errorAudio from '../../audios/errorForms.mp3'
-import Footer from '../Footer'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../Popups/PopupCheckAlternativeAnswer'
 import PopupCompareAllQuestionsAllOptions from '../Popups/PopupCompareAllQuestionsAllOptions'
@@ -944,7 +943,7 @@ function FormsNewQuestionsOptionsPage() {
     }, [listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, postApi])
 
     return(
-        <div className={styles.formsNewQuestionsOptions}>            
+        <div className={styles.formsNewQuestionsOptions}>
             <img 
                 className={styles.backgroundImage} 
                 src={backgroundImage} 
@@ -1150,8 +1149,6 @@ function FormsNewQuestionsOptionsPage() {
                 </form>
 
             </div>
-
-            <Footer />
 
             {/* PopupMessagesTitlesForms */}
             {activePopupMessagesTitlesForms1and2 && 
