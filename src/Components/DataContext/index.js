@@ -31,7 +31,7 @@ export default function DataProvider({ children }) {
 
     const [ableDisableMenuTools, setAbleDisableMenuTools] = useState(styles.menuIcons) // capturando o estilo habilitado do menu inicialmente, usando contexto para que ele não restorne ao valor inicial, mesmo mudando de questão
 
-    {/* Static Users */}
+    // Static Users
     const [staticListUsers] = useState([
         {
             "name": "Victor",
