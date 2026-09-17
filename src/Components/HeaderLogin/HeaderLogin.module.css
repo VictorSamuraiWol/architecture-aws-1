@@ -64,6 +64,8 @@
   bottom: -50%;
   font-size: 1rem;
   color: var(--color-incorrect);
+  font-style: italic;
+  font-weight: bold;
   text-shadow: 0 0 0;
 }
 
@@ -87,7 +89,8 @@
   }
 
   .alertLoginMessageAble {
-    font-size: 1rem;
+    bottom: -45%;
+    font-size: 0.9rem;
   }
 
 }
@@ -110,7 +113,8 @@
   }
 
   .alertLoginMessageAble {
-    font-size: 0.9rem;
+    bottom: -43%;
+    font-size: 0.8rem;
   }
 
 }
@@ -125,7 +129,7 @@
   }
 
   .formLogin {
-    width: 30%;
+    width: 35%;
     padding: 4px;
   }
 
@@ -134,7 +138,7 @@
   }
 
   .alertLoginMessageAble {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
 }
@@ -149,7 +153,6 @@
   }
 
   .formLogin {
-    width: 35%;
     padding: 2px;
   }
 

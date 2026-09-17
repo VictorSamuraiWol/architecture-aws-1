@@ -17,7 +17,7 @@ function Header() {
 
     const { staticListUsers, listUsers } = useContext(DataContext)
 
-    const { setLoginValidate, nameUser, setNameUser, truncatedText, mute } = useOutletContext()
+    const { setLoginValidate, setActivateNavigateDefault, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions } = useOutletContext()
 
     const allLinks = document.querySelectorAll('.ulHeader')
 
@@ -48,7 +48,7 @@ function Header() {
     function signOut() {
         setLoginValidate(false)
         setNameUser('')
-        window.location.reload()
+        setActivateNavigateDefault(true)
 
     }
 
@@ -67,24 +67,30 @@ function Header() {
             </Link>
 
             {/* barra de navegação */}
-            <nav>
-                <RxHamburgerMenu 
-                    onClick={ableLinks} 
-                    className={styles.hamburger} 
-                /> 
+            <nav className={styles.navigationBar}>
+                {!activePageFormsQuestionsOptions && 
+                    <RxHamburgerMenu 
+                        onClick={ableLinks} 
+                        className={styles.hamburger} 
+                    />
+                }
 
                 <ul className={`ulHeader ${styles.ulHeader}`}>
-                    <Link
-                        to='/page-forms-new-questions-options'
-                        className={styles.linksNavigation}
-                    >
-                        <NavigationItem 
-                            onClick={sound}
-                            component={<GoPlus />} 
-                            itemName='Create' 
-                        />
-                    </Link>                    
+                    {!activePageFormsQuestionsOptions &&
+                        <Link
+                            to='/page-forms-new-questions-options'
+                            className={styles.linksNavigation}
+                        >
+                            <NavigationItem 
+                                onClick={sound}
+                                component={<GoPlus />} 
+                                itemName='create' 
+                            />
+                        </Link> 
+                    } 
+
                 </ul>
+
             </nav>
 
             {/* perfil do usuário logado */}
@@ -112,7 +118,9 @@ function Header() {
                             buttonName='SIGN OUT'
                             specificStyleButton={styles.specificStylesSignoutButton}
                         />
+
                     </div>
+                    
                 </Link>
 
             </div>))}

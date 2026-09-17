@@ -21,7 +21,8 @@
     transform: scale(0.97);
 }
 
-nav {
+.navigationBar {
+    position: relative;
     z-index: 1;
 }
 
@@ -200,10 +201,6 @@ ul {
         width: 50px;
     }
 
-    .nav {
-        position: relative;
-    }
-    
     .ulHeader {
         display: none;      
     }
@@ -212,25 +209,25 @@ ul {
         display: flex;
         flex-direction: column;
         position: absolute;
-        right: 0;
-        bottom: -90px;
+        left: 50px;
+        top: 0;
         font-size: 0.8rem;
-        background-color: rgba(0, 0, 0, 80%);
-        padding: 4px;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
+        background-color: var(--color-fourth);
+        padding: 4px 6px;
+        border-radius: 8px;
+        transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         z-index: 1;
+    }
+
+    .ulAble:hover {
+        color: var(--color-fourth);
+        background-color: var(--color-first);
     }
     
     .hamburger {
         display: flex;
         padding: 8px;
         cursor: pointer;
-    }
-
-    .hamburger:hover {
-        background-color: rgba(0, 0, 0, 80%);
-        border-radius: 50%;
     }
 
     .containerLoginSignin {

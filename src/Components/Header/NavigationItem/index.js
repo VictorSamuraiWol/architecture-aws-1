@@ -6,7 +6,7 @@ function NavigationItem({ component, itemName, onClick }) {
             onClick={onClick}
             className={`link ${styles.link}`}
         >
-                {component}{itemName}
+            {component}{itemName}
         </li>
     )
 }

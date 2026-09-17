@@ -23,7 +23,7 @@ function HeaderLogin() {
 
     let matchedUser;
 
-    if (nameUser || passwordUser) {
+    if (nameUser && passwordUser) {
       matchedUser = [...staticListUsers, ...listUsers].filter(user =>
         (user.name.toLowerCase() === nameUser.toLowerCase().trim()) && 
         (user.password.toLowerCase() === passwordUser.toLowerCase().trim()))[0]
@@ -34,7 +34,7 @@ function HeaderLogin() {
 
       } else {
         setLoginValidate(false)
-        setAlertLoginMessage('Invalid user.')
+        setAlertLoginMessage('Invalid user')
 
         setAbleAlertLoginMessage(true)
         setTimeout(() => setAbleAlertLoginMessage(false), 3000)
@@ -42,7 +42,7 @@ function HeaderLogin() {
       }
 
     } else {
-      setAlertLoginMessage('Please, fill all fields.')
+      setAlertLoginMessage('Fill all fields')
       setAbleAlertLoginMessage(true)
       setTimeout(() => setAbleAlertLoginMessage(false), 3000)
     

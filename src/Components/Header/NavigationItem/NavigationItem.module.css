@@ -2,15 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-first);
-    border: 2px solid var(--color-fourth);
-    padding: 8px;
-    border-radius: 16px;
+    color: var(--color-first);
+    text-decoration: underline;
+    font-style: italic;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .link:hover {
-    color: var(--color-first);
-    background-color: var(--color-third);
-    border: 2px solid var(--color-fourth);
-    transform: scale(1.03);
+    color: var(--color-fourth);
+    transform: scale(0.97);
 }
