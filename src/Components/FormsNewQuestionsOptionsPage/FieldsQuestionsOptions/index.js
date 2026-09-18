@@ -4,11 +4,11 @@ import FieldQuestionOption from './FieldQuestionOption'
 function FieldsQuestionsOptions({ 
     nome1, nome2, nome3, nome4, nome5, nome6, optionClass, labelTarget, setLabelTarget, readyToCleanAll, setReadyToCleanAll, readyToSendForm1, 
     readyToSendForm2, readyToSendForm3, readyToSendForm4,
-    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newCorrectAnswerMain, setNewCorrectAnswerMain, newImageDescriptionMain, setNewImageDescriptionMain, 
+    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newCorrectAnswerMain, setNewCorrectAnswerMain, newIconDescriptionMain, setNewIconDescriptionMain, 
     newDescriptionMain, setNewDescriptionMain, newQuestionNumberMain, setNewQuestionNumberMain, 
     /* campos form2 */ newOptionAMain, setNewOptionAMain, newOptionBMain, setNewOptionBMain, newOptionCMain, setNewOptionCMain, newOptionDMain, 
     setNewOptionDMain, newOptionEMain, setNewOptionEMain, newOptionNumberMain, setNewOptionNumberMain, 
-    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newImageDescriptionMulti, setNewImageDescriptionMulti, 
+    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newIconDescriptionMulti, setNewIconDescriptionMulti, 
     newDescriptionMulti, setNewDescriptionMulti, newQuestionNumberMulti, setNewQuestionNumberMulti,
     /* campos form4 */ newOptionAMulti, setNewOptionAMulti, newOptionBMulti, setNewOptionBMulti, newOptionCMulti, setNewOptionCMulti, newOptionDMulti, 
     setNewOptionDMulti, newOptionEMulti, setNewOptionEMulti, newOptionNumberMulti, setNewOptionNumberMulti
@@ -100,16 +100,16 @@ function FieldsQuestionsOptions({
 
                 // 4 possíveis elementos do campo 3 (4 forms)
                 // campo 3 do form 1
-                valueForm1={newImageDescriptionMain}
-                setValueForm1={setNewImageDescriptionMain}
+                valueForm1={newIconDescriptionMain}
+                setValueForm1={setNewIconDescriptionMain}
 
                 // campo 3 do form 2
                 valueForm2={newOptionCMain}
                 setValueForm2={setNewOptionCMain} 
                 
                 // campo 3 do form 3
-                valueForm3={newImageDescriptionMulti}
-                setValueForm3={setNewImageDescriptionMulti}
+                valueForm3={newIconDescriptionMulti}
+                setValueForm3={setNewIconDescriptionMulti}
 
                 // campo 3 do form 4
                 valueForm4={newOptionCMulti}

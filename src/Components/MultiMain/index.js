@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
 
 function MultiMain({ 
-    question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
+    question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
     setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6, activeZeroImgMulti
 }) {
 
@@ -113,8 +113,9 @@ function MultiMain({
                 />
 
                 <AnswerDescription
+                    questionMulti={questionMulti}
                     answer={answer}
-                    imageDescription={imageDescription}
+                    iconDescription={iconDescription}
                     description={description}
                     answerDescriptionDisplay={answerDescriptionDisplay}
                     setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}

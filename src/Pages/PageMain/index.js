@@ -204,6 +204,7 @@ function PageMain() {
                     <Main 
                         question={questionMain.questionText}
                         answer={questionMain.correctAnswer}
+                        iconDescription={questionMain.iconDescription}
                         imageDescription={questionMain.imageDescription}
                         description={questionMain.description}
                         questionNumber={questionMain.questionNumber}

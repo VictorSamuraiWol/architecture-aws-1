@@ -191,6 +191,7 @@ function PageThreeMulti() {
                     <MultiMain 
                         question={questionThreeMulti.questionText} 
                         answer={questionThreeMulti.correctAnswer}
+                        iconDescription={questionThreeMulti.iconDescription}
                         imageDescription={questionThreeMulti.imageDescription}
                         description={questionThreeMulti.description}
                         questionNumber={questionThreeMulti.questionNumber}

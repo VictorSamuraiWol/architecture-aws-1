@@ -187,6 +187,7 @@ function PageMulti() {
                     <MultiMain 
                         question={questionMulti.questionText} 
                         answer={questionMulti.correctAnswer}
+                        iconDescription={questionMulti.iconDescription}
                         imageDescription={questionMulti.imageDescription}
                         description={questionMulti.description}
                         questionNumber={questionMulti.questionNumber}

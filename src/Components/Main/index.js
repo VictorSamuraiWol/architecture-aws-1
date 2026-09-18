@@ -14,7 +14,7 @@ import { DataContext } from '../DataContext'
 import { Link, useOutletContext } from 'react-router-dom'
 
 function Main({ 
-    question, answer, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
+    question, answer, iconDescription, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
     optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMain, activePageDemo, activePageMain
 }) {
@@ -199,9 +199,10 @@ function Main({
                     setItem={setItem}
                 />
     
-                <AnswerDescription 
+                <AnswerDescription
+                    questionMain={questionMain}
                     answer={answer}
-                    imageDescription={imageDescription} 
+                    iconDescription={iconDescription}
                     description={description}
                     answerDescriptionDisplay={answerDescriptionDisplay}
                     descriptionDisplay={descriptionDisplay}

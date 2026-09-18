@@ -36,7 +36,7 @@ function FormsNewQuestionsOptionsPage() {
     // atributos da questão única (formulário 1):
     const [newQuestionTextMain, setNewQuestionTextMain] = useState('')
     const [newCorrectAnswerMain, setNewCorrectAnswerMain] = useState('')
-    const [newImageDescriptionMain, setNewImageDescriptionMain] = useState('')
+    const [newIconDescriptionMain, setNewIconDescriptionMain] = useState('')
     const [newDescriptionMain, setNewDescriptionMain] = useState('')
     const [newQuestionNumberMain, setNewQuestionNumberMain] = useState('')
 
@@ -51,7 +51,7 @@ function FormsNewQuestionsOptionsPage() {
     // atributos da questão múltipla (formulário 3)
     const [newQuestionTextMulti, setNewQuestionTextMulti] = useState('')
     const [newCorrectAnswerMulti, setNewCorrectAnswerMulti] = useState('')
-    const [newImageDescriptionMulti, setNewImageDescriptionMulti] = useState('')
+    const [newIconDescriptionMulti, setNewIconDescriptionMulti] = useState('')
     const [newDescriptionMulti, setNewDescriptionMulti] = useState('')
     const [newQuestionNumberMulti, setNewQuestionNumberMulti] = useState('')
 
@@ -274,7 +274,7 @@ function FormsNewQuestionsOptionsPage() {
             // form 1
             setNewQuestionTextMain('')
             setNewCorrectAnswerMain('')
-            setNewImageDescriptionMain('')
+            setNewIconDescriptionMain('')
             setNewDescriptionMain('')
             setNewQuestionNumberMain('')
 
@@ -289,7 +289,7 @@ function FormsNewQuestionsOptionsPage() {
             // form 3
             setNewQuestionTextMulti('')
             setNewCorrectAnswerMulti('')
-            setNewImageDescriptionMulti('')
+            setNewIconDescriptionMulti('')
             setNewDescriptionMulti('')
             setNewQuestionNumberMulti('')
 
@@ -338,7 +338,7 @@ function FormsNewQuestionsOptionsPage() {
                 data = {
                     questionText: newQuestionTextMain,
                     correctAnswer: newCorrectAnswerMain,
-                    imageDescription: newImageDescriptionMain, // não obrigatório
+                    iconDescription: newIconDescriptionMain, // não obrigatório
                     description: newDescriptionMain,
                     questionNumber: newQuestionNumberMain,
                     id: uniqueId
@@ -637,7 +637,7 @@ function FormsNewQuestionsOptionsPage() {
                 data = {
                     questionText: newQuestionTextMulti,
                     correctAnswer: newCorrectAnswerMulti,
-                    imageDescription: newImageDescriptionMulti, // não obrigatório
+                    iconDescription: newIconDescriptionMulti, // não obrigatório
                     description: newDescriptionMulti,
                     questionNumber: newQuestionNumberMulti,
                     id: uniqueId
@@ -977,8 +977,8 @@ function FormsNewQuestionsOptionsPage() {
                         setNewQuestionTextMain={setNewQuestionTextMain}
                         newCorrectAnswerMain={newCorrectAnswerMain}
                         setNewCorrectAnswerMain={setNewCorrectAnswerMain}
-                        newImageDescriptionMain={newImageDescriptionMain}
-                        setNewImageDescriptionMain={setNewImageDescriptionMain}
+                        newIconDescriptionMain={newIconDescriptionMain}
+                        setNewIconDescriptionMain={setNewIconDescriptionMain}
                         newDescriptionMain={newDescriptionMain}
                         setNewDescriptionMain={setNewDescriptionMain}
                         newQuestionNumberMain={newQuestionNumberMain}
@@ -1077,8 +1077,8 @@ function FormsNewQuestionsOptionsPage() {
                         setNewQuestionTextMulti={setNewQuestionTextMulti}
                         newCorrectAnswerMulti={newCorrectAnswerMulti}
                         setNewCorrectAnswerMulti={setNewCorrectAnswerMulti}
-                        newImageDescriptionMulti={newImageDescriptionMulti}
-                        setNewImageDescriptionMulti={setNewImageDescriptionMulti}
+                        newIconDescriptionMulti={newIconDescriptionMulti}
+                        setNewIconDescriptionMulti={setNewIconDescriptionMulti}
                         newDescriptionMulti={newDescriptionMulti}
                         setNewDescriptionMulti={setNewDescriptionMulti}
                         newQuestionNumberMulti={newQuestionNumberMulti}

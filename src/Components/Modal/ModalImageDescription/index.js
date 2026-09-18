@@ -1,9 +1,7 @@
-import styles from './ModalImageQuestion.module.css'
+import styles from './ModalImageDescription.module.css'
 import Modal from 'react-modal'
 import soundClick from '../../../audios/clickAudio.mp3'
 import ButtonDefault from '../../ButtonDefault'
-import imageQuestionNotFound from '../../../imgs/imageNotFound.png'
-import imageQuestion13 from '../../../imgs/question-imgs/question13.png';
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { TiDeleteOutline } from "react-icons/ti"
@@ -11,17 +9,11 @@ import { TiDeleteOutline } from "react-icons/ti"
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
-function ModalImageQuestion({ questionMain, questionMulti }) {
+function ModalImageDescription({ questionMain, questionMulti, imagesDescriptions }) {
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
   
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  const [imagesQuestions] = useState({
-    none: imageQuestionNotFound,
-    imageQuestion13: imageQuestion13,
-
-  })
 
   // pegando os dados do resultado
   const { mute } = useOutletContext()
@@ -48,7 +40,7 @@ function ModalImageQuestion({ questionMain, questionMulti }) {
       >
         <ButtonDefault
           onClick={sound}
-          specificStyleButton={styles.buttonImageQuestionModal} 
+          specificStyleButton={styles.buttonImageDescriptionModal} 
           buttonName='View Image'
         />
 
@@ -57,7 +49,7 @@ function ModalImageQuestion({ questionMain, questionMulti }) {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Modal Image Question"
+        contentLabel="Modal Image Description"
         overlayClassName={styles.modalOverlay}
         className={styles.modalContent}
       >
@@ -72,17 +64,17 @@ function ModalImageQuestion({ questionMain, questionMulti }) {
 
         </div>
 
-        {(imagesQuestions[questionMain?.imageQuestion] !== undefined || imagesQuestions[questionMulti?.imageQuestion] !== undefined) ?
+        {(imagesDescriptions[questionMain?.imageDescription] !== undefined || imagesDescriptions[questionMulti?.imageDescription] !== undefined) ?
         // se tiver encontrado alguma imagem disponível irá aparecer, se não irá aparecer uma imagem com image not found 
           <img
-            className={styles.imageQuestion}
-            src={(imagesQuestions[questionMain?.imageQuestion] || imagesQuestions[questionMulti?.imageQuestion])}
+            className={styles.imageDescription}
+            src={(imagesDescriptions[questionMain?.imageDescription] || imagesDescriptions[questionMulti?.imageDescription])}
             alt='img question' 
           />
           :
           <img
-            className={styles.imageQuestion}
-            src={imagesQuestions['none']}
+            className={styles.imageDescription}
+            src={imagesDescriptions['none']}
             alt='img question' 
           />
         }
@@ -95,4 +87,4 @@ function ModalImageQuestion({ questionMain, questionMulti }) {
 
 }
 
-export default ModalImageQuestion;
+export default ModalImageDescription;
