@@ -7,6 +7,7 @@
     background-color: var(--color-second);
     height: 12vh;
     padding: 0 12px;
+    z-index: 2;
 }
 
 .linkHeader {
@@ -26,16 +27,10 @@
     z-index: 1;
 }
 
-.hamburger {
-    display: none;
-    width: 2.5em;
-    height: 2.5em;
-}
-
-ul {
+.navBar {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     font-size: 1.6rem;
     font-weight: bold;
     list-style: none;
@@ -43,9 +38,45 @@ ul {
     margin: 0;
 }
 
-.linksNavigation {   
+.linksNavigation {
     color: var(--color-fourth);
     text-decoration: none;
+}
+
+.navBarHamburguer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: absolute;
+    left: 35px;
+    top: -20px;
+    padding: 0;
+    margin: 0;
+}
+
+.linksNavigationHamburguer {
+    display: none;
+    font-size: 0.8rem;
+    background-color: var(--color-fourth);
+    padding: 4px 6px;
+    margin: 0;
+    border-radius: 8px;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.linksNavigationHamburguer:hover {
+    color: var(--color-fourth);
+    background-color: var(--color-first);
+}
+
+.hamburger {
+    display: none;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .containerLoginSignin {
@@ -136,7 +167,7 @@ ul {
 }
 
 @media (max-width: 1440px) {
-    ul {
+    .navBar {
         font-size: 1.5rem;
     }
 
@@ -155,7 +186,7 @@ ul {
         width: 70px;
     }
 
-    ul {
+    .navBar {
         font-size: 1.2rem;
     }
 
@@ -174,8 +205,12 @@ ul {
         width: 60px;
     }
 
-    ul {
+    .navBar {
         font-size: 1rem;
+    }
+
+    .linksNavigation {
+        display: flex;
     }
 
     .containerLoginSignin {
@@ -200,34 +235,17 @@ ul {
     .iconStart {
         width: 50px;
     }
-
-    .ulHeader {
-        display: none;      
-    }
-    
-    .ulAble {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        left: 50px;
-        top: 0;
-        font-size: 0.8rem;
-        background-color: var(--color-fourth);
-        padding: 4px 6px;
-        border-radius: 8px;
-        transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        z-index: 1;
-    }
-
-    .ulAble:hover {
-        color: var(--color-fourth);
-        background-color: var(--color-first);
-    }
     
     .hamburger {
         display: flex;
-        padding: 8px;
-        cursor: pointer;
+    }
+
+    .linksNavigationHamburguer {
+        display: flex;
+    }
+
+    .linksNavigation {
+        display: none;
     }
 
     .containerLoginSignin {

@@ -19,19 +19,11 @@ function Header() {
 
     const { setLoginValidate, setActivateNavigateDefault, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions } = useOutletContext()
 
-    const allLinks = document.querySelectorAll('.ulHeader')
+    const [activeLinksHamburguer, setActiveLinkesHamburguer] = useState(false)
 
     // habilitar ou não os links de navegação ao clicar quando o menu hamburguer está ativado na resolução até 580px
     function ableLinks() {
-        if (allLinks[0]?.classList.contains(`${styles.ulHeader}`)) {
-            allLinks[0]?.classList.remove(`${styles.ulHeader}`)
-            allLinks[0]?.classList.add(`${styles.ulAble}`)            
-
-        } else {
-            allLinks[0]?.classList.add(`${styles.ulHeader}`)
-            allLinks[0]?.classList.remove(`${styles.ulAble}`)
-
-        }
+        setActiveLinkesHamburguer(!activeLinksHamburguer)
 
     }
 
@@ -69,17 +61,21 @@ function Header() {
             {/* barra de navegação */}
             <nav className={styles.navigationBar}>
                 {!activePageFormsQuestionsOptions && 
-                    <RxHamburgerMenu 
+                    <RxHamburgerMenu
                         onClick={ableLinks} 
                         className={styles.hamburger} 
                     />
                 }
 
-                <ul className={`ulHeader ${styles.ulHeader}`}>
+                <ul className={activeLinksHamburguer ? 
+                                styles.navBarHamburguer
+                                : 
+                                styles.navBar}
+                >
                     {!activePageFormsQuestionsOptions &&
                         <Link
                             to='/page-forms-new-questions-options'
-                            className={styles.linksNavigation}
+                            className={activeLinksHamburguer ? styles.linksNavigationHamburguer: styles.linksNavigation}
                         >
                             <NavigationItem 
                                 onClick={sound}
@@ -87,8 +83,8 @@ function Header() {
                                 itemName='create' 
                             />
                         </Link> 
-                    } 
-
+                    }
+                                   
                 </ul>
 
             </nav>

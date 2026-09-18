@@ -15,33 +15,25 @@ function ModalResults() {
     
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
+    const [activeCorrect, setActiveCorrect] = useState(false)
+    const [activeIncorrect, setActiveIncorrect] = useState(false)
+
     // pegando os dados do resultado
     const { dataResults, mute } = useOutletContext()
 
     function openModal() {
         setModalIsOpen(true)
- 
-        // setTimeout para dar tempo de capturar as variáveis ao abrir a modal e, em seguida, mudar a cor de acordo com os resultados
-        setTimeout(() => {
-            const corrects = document.querySelector('#corrects')
-            const pontuations = document.querySelector('#pontuations')
-            const performances = document.querySelector('#performances')
-            const incorrects = document.querySelector('#incorrects')
 
-            corrects?.classList.add(`${styles.correct}`)
-            incorrects?.classList.add(`${styles.incorrect}`)
+        if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
+            setActiveCorrect(true)
+            setActiveIncorrect(false)
 
-            if (dataResults.numCorrectOption > dataResults.numIncorrectOption) {
-                pontuations?.classList.add(`${styles.correct}`)
-                performances?.classList.add(`${styles.correct}`)
+        } else if (dataResults.numCorrectOption < dataResults.numIncorrectOption) {
+            setActiveIncorrect(true)
+            setActiveCorrect(false)
 
-            } else if (dataResults.numCorrectOption < dataResults.numIncorrectOption) {
-                pontuations?.classList.add(`${styles.incorrect}`)
-                performances?.classList.add(`${styles.incorrect}`)
+        }
 
-            }
-
-        }, 0)
     }
 
     function closeModal() {
@@ -82,11 +74,11 @@ function ModalResults() {
                 />
 
                 <h1>✔REAL-TIME RESULT:</h1>
-                <p id='corrects' className={styles.test}>Correct questions: {dataResults.numCorrectOption}</p>
-                <p id='incorrects'>Incorrect questions: {dataResults.numIncorrectOption}</p>
+                <p id='corrects' className={styles.correct}>Correct questions: {dataResults.numCorrectOption}</p>
+                <p id='incorrects' className={styles.incorrect}>Incorrect questions: {dataResults.numIncorrectOption}</p>
                 <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>
-                <p id='pontuations'>Pontuation: {dataResults.pontuationResults}</p>
-                <p id='performances'>Performance: {dataResults.performanceResults}%</p>
+                <p id='pontuations' className={activeCorrect ? styles.correct : activeIncorrect ? styles.incorrect : null}>Pontuation: {dataResults.pontuationResults}</p>
+                <p id='performances' className={activeCorrect ? styles.correct : activeIncorrect ? styles.incorrect : null}>Performance: {dataResults.performanceResults}%</p>
 
             </Modal>
 
