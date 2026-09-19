@@ -9,6 +9,12 @@
   padding: 0 8px;
 }
 
+.containerTextTitle {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
 .textTitle {
   color: var(--color-fourth);
   text-decoration: underline;

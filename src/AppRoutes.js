@@ -4,8 +4,9 @@ import PageDemo from './Pages/PageDemo'
 import PageMain from './Pages/PageMain'
 import PageMulti from './Pages/PageMulti'
 import PageThreeMulti from './Pages/PageThreeMulti'
+import PageInfo from './Pages/PageInfo'
 import PageNotFound from './Pages/PageNotFound'
-import NewQuestionsOptionsPage from './Pages/NewQuestionsOptionsPage'
+import PageNewQuestionsOptionsPage from './Pages/PageNewQuestionsOptionsPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // npx json-server db.json --port 3001
 
@@ -19,7 +20,8 @@ function AppRoutes() {
           <Route path='/page-main' element={<PageMain />} />
           <Route path='/page-multi' element={<PageMulti />} />
           <Route path='/page-three-multi' element={<PageThreeMulti />} />
-          <Route path='/page-forms-new-questions-options' element={<NewQuestionsOptionsPage />} />
+          <Route path='/page-info' element={<PageInfo />} />
+          <Route path='/page-forms-new-questions-options' element={<PageNewQuestionsOptionsPage />} />
           
         </Route>
         

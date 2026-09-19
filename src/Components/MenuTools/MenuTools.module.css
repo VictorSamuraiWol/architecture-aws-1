@@ -21,6 +21,8 @@
 }
 
 .menuToolsSelector {
+  display: flex;
+  gap: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
 }
@@ -40,7 +42,9 @@
   display: none;
 }
 
-.deleteIcon {
+.deleteIcon, .plusIcon {
+  display: flex;
+  color: var(--color-fourth);
   cursor: pointer;
 }
 

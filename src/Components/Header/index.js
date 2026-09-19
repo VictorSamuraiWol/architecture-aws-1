@@ -6,7 +6,6 @@ import none from '../../imgs/profiles/none.png'
 import profileVictor from '../../imgs/profiles/profile-victor.png'
 import ButtonDefault from '../ButtonDefault'
 import { Link, useOutletContext } from 'react-router-dom'
-import { GoPlus } from 'react-icons/go'
 import { RxHamburgerMenu } from "react-icons/rx"
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
@@ -74,13 +73,12 @@ function Header() {
                 >
                     {!activePageFormsQuestionsOptions &&
                         <Link
-                            to='/page-forms-new-questions-options'
+                            to='/page-info'
                             className={activeLinksHamburguer ? styles.linksNavigationHamburguer: styles.linksNavigation}
                         >
                             <NavigationItem 
                                 onClick={sound}
-                                component={<GoPlus />} 
-                                itemName='create' 
+                                itemName='info'
                             />
                         </Link> 
                     }

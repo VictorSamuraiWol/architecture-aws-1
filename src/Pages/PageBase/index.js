@@ -11,11 +11,12 @@ function PageBase() {
     const [loginValidate, setLoginValidate] = useState(false)
     const [activateNavigateDefault, setActivateNavigateDefault] = useState(false)
 
-    const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false) // verifica se a página Forms está ativa
     const [activePageDemo, setActivePageDemo] = useState(false)
     const [activePageMain, setActivePageMain] = useState(false)
     const [activePageMulti, setActivePageMulti] = useState(false)
     const [activePageThreeMulti, setActivePageThreeMulti] = useState(false)
+    const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
+    const [activePageInfo, setActivePageInfo] = useState(false)
     const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
     const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
     const [activeZeroImgThreeMulti, setActiveZeroImgThreeMulti] = useState(false)
@@ -110,7 +111,8 @@ function PageBase() {
                         setActivePageDemo, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti, activePageThreeMulti, 
                         setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
                         activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
-                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault
+                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault,
+                        activePageInfo, setActivePageInfo
                     }} 
                 />                
 

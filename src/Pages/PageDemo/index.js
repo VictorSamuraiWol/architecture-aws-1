@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 
 function PageDemo() {
 
-  const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions } = useOutletContext()
+  const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageInfo } = useOutletContext()
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -40,8 +40,9 @@ function PageDemo() {
     setActivePageMulti(false) 
     setActivePageThreeMulti(false)
     setActivePageFormsQuestionsOptions(false)
+    setActivePageInfo(false)
 
-  }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+  }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
 
   // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
   // usado na função 'uniqueRandomDemo()'

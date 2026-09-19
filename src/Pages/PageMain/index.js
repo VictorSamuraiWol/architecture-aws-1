@@ -27,7 +27,7 @@ function PageMain() {
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        activeZeroImgMain, setActiveZeroImgMain } = useOutletContext()
+        activeZeroImgMain, setActiveZeroImgMain, setActivePageInfo } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -62,8 +62,9 @@ function PageMain() {
         setActivePageDemo(false)
         setActivePageThreeMulti(false)
         setActivePageFormsQuestionsOptions(false)
+        setActivePageInfo(false)
 
-    }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+    }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
 
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength || listUnicQuestionsContextLength === 0) return // se a lista de questões não existir, retorne

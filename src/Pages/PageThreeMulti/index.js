@@ -27,7 +27,7 @@ function PageThreeMulti() {
     const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
-    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti, loginValidate  } = useOutletContext()
+    const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, activeZeroImgThreeMulti, setActiveZeroImgThreeMulti, setActivePageDemo, setActivePageThreeMulti, loginValidate, setActivePageInfo  } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -59,8 +59,9 @@ function PageThreeMulti() {
         setActivePageMain(false)
         setActivePageDemo(false)
         setActivePageFormsQuestionsOptions(false)
+        setActivePageInfo(false)
 
-    }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+    }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
     
     useEffect(() => {
         if (!listThreeMultiQuestionsContext || !listThreeMultiQuestionsContextLength || listThreeMultiQuestionsContextLength === 0) return // se a lista de questões não existir, retorne

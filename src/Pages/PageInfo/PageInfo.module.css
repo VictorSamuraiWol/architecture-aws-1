@@ -1,0 +1,15 @@
+.bgLogin {
+  height: 77vh;
+  background-image: url(../../imgs/cloud-neon-vibe.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mainPageInfo {
+  height: 80vh;
+  background-image: url(../../imgs/bgPageInfo.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

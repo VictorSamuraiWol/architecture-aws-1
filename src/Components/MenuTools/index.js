@@ -5,7 +5,8 @@ import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
-import { useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
+import { FaPlusCircle } from "react-icons/fa"
 
 function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti, 
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
@@ -214,6 +215,12 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       <div 
         className={`menuToolsSelector ${styles.menuToolsSelector} ${ableDisableMenuTools}`}        
       >
+        {/* icon plus */}
+        <Link to='/page-forms-new-questions-options'>
+          <FaPlusCircle className={styles.plusIcon} />
+        </Link>
+
+        {/* icon edit */}
         <ModalEditMenu 
           questionMain={questionMain} 
           questionMulti={questionMulti}
@@ -223,10 +230,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           optionMultiNumberId={optionMultiNumberId}
         />
 
+        {/* icon delete */}
         <MdDelete
           onClick={() => {setActivePopupDelete(true)}}
           className={styles.deleteIcon}            
-        /> 
+        />
 
         {/* PopupDeleteQuestionOption */}
         {activePopupDelete && 

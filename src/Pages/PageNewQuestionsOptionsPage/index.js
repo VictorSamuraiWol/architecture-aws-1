@@ -1,4 +1,4 @@
-import styles from './NewQuestionsOptionsPage.module.css'
+import styles from './PageNewQuestionsOptionsPage.module.css'
 import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
@@ -8,7 +8,7 @@ import { useContext, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
-function NewQuestionsOptionsPage() {
+function PageNewQuestionsOptionsPage() {
  
     const { loginValidate, setActivePageFormsQuestionsOptions } = useOutletContext()
 
@@ -50,4 +50,4 @@ function NewQuestionsOptionsPage() {
 
 }
 
-export default NewQuestionsOptionsPage
+export default PageNewQuestionsOptionsPage

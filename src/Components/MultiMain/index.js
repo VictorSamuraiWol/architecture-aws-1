@@ -58,7 +58,9 @@ function MultiMain({
         <div className={styles.multiMain}>
             {activeZeroImgMulti === false && 
             <>
-                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+                <div className={styles.containerTextTitle}>
+                    <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+                </div>
                 
                 <div className={styles.containerQuestionMenuTools}>
                     <Question 
