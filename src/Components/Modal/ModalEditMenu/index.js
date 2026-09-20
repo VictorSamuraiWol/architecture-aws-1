@@ -7,6 +7,7 @@ import PopupRepeatedAlternatives from '../../Popups/PopupRepeatedAlternatives'
 import PopupCheckAlternativeAnswer from '../../Popups/PopupCheckAlternativeAnswer'
 import PopupAlreadySavedModalEdit from '../../Popups/PopupAlreadySavedModalEdit'
 import PopupAlertMessage from '../../Popups/PopupAlertMessage'
+import DescriptionIconMenuTools from '../../MenuTools/DescriptionIconMenuTools'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { MdEditSquare } from "react-icons/md"
@@ -18,13 +19,15 @@ import { isEqual } from 'lodash'
 Modal.setAppElement('#root')
 
 function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionMulti, 
-  optionMulti, optionMultiNumberId }) {
+  optionMulti, optionMultiNumberId, activeDescriptionIcon, setActiveDescriptionIcon }) {
 
   // criando variáveis para todos os atributos das questões
   const [questionTextMain, setQuestionTextMain] = useState(questionMain?.questionText)
+  const [imageQuestionMain, setImageQuestionMain] = useState(questionMain?.imageQuestion)
   const [correctAnswerMain, setCorrectAnswerMain] = useState(questionMain?.correctAnswer)
   const [iconDescriptionMain, setIconDescriptionMain] = useState(questionMain?.iconDescription)
   const [descriptionMain, setDescriptionMain] = useState(questionMain?.description)
+  const [imageDescriptionMain, setImageDescriptionMain] = useState(questionMain?.imageDescription)
   const [questionNumberMain] = useState(questionMain?.questionNumber)
 
   // criando variáveis para todos os atributos das opções
@@ -36,9 +39,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   // criando variáveis para todos os atributos das questões de múltipla escolha
   const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.questionText)
+  const [imageQuestionMulti, setImageQuestionMulti] = useState(questionMulti?.imageQuestion)
   const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.correctAnswer)
   const [iconDescriptionMulti, setIconDescriptionMulti] = useState(questionMulti?.iconDescription)
   const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.description)
+  const [imageDescriptionMulti, setImageDescriptionMulti] = useState(questionMulti?.imageDescription)
   const [questionNumberMulti] = useState(questionMulti?.questionNumber)
 
   // criando variáveis para todos os atributos das opções de múltipla escolha
@@ -71,9 +76,9 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [voidField, setVoidField] = useState([])
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti } = useOutletContext()
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti, setActiveModalEditMenu } = useOutletContext()
 
-  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setPutApi } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, putApi, setPutApi } = useContext(DataContext)
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
@@ -115,13 +120,13 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
-    setPutApi(false)
-
     const jsonBody = JSON.stringify({
       questionText: questionTextMain,
+      imageQuestion: imageQuestionMain,
       correctAnswer: correctAnswerMain,
       iconDescription: iconDescriptionMain,
       description: descriptionMain,
+      imageDescription: imageDescriptionMain,
       questionNumber: questionMain.questionNumber, // não será alterado
       id: questionMain.id // não será alterado
 
@@ -138,8 +143,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((data) => {
       console.log(data)
 
-      setPutApi(true)
-
     }) 
     .catch((error) => {
         console.log(error)
@@ -150,8 +153,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as opções na API
   async function onSaveModalOption() {
-    setPutApi(false)
-
     const jsonBody = JSON.stringify({
       optionA: optionAMain,
       optionB: optionBMain,
@@ -173,7 +174,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      setPutApi(true)
 
     }) 
     .catch((error) => {
@@ -185,13 +185,13 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as questões de múltipla escolha na API
   async function onSaveModalMultiQuestion() {
-    setPutApi(false)
-
     const jsonBody = JSON.stringify({
       questionText: questionTextMulti,
+      imageQuestion: imageQuestionMulti,
       correctAnswer: correctAnswerMulti,
       iconDescription: iconDescriptionMulti,
       description: descriptionMulti,
+      imageDescription: imageDescriptionMulti,
       questionNumber: questionMulti.questionNumber, // não será alterado
       id: questionMulti.id // não será alterado
 
@@ -208,7 +208,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      setPutApi(true)
 
     }) 
     .catch((error) => {
@@ -220,8 +219,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as opções de múltipla escolha na API
   async function onSaveModalMultiOption() {
-    setPutApi(false)
-
     const jsonBody = JSON.stringify({
       optionA: optionAMulti,
       optionB: optionBMulti,
@@ -243,7 +240,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      setPutApi(true)
       
     }) 
 
@@ -257,7 +253,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     let active
 
     // formulário 1
-    const questionMainEdit = [questionTextMain, correctAnswerMain, iconDescriptionMain, descriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const questionMainEdit = [questionTextMain, imageQuestionMain, correctAnswerMain, iconDescriptionMain, descriptionMain, imageDescriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
     const optionMainEdit = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
       
     const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.iconDescription, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
@@ -267,7 +263,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
 
     // formulário 2    
-    const questionMultiEdit = [questionTextMulti, correctAnswerMulti, iconDescriptionMulti, descriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const questionMultiEdit = [questionTextMulti, imageQuestionMulti, correctAnswerMulti, iconDescriptionMulti, descriptionMulti, imageDescriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
     const optionMultiEdit = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
     const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.questionText, questions.correctAnswer, questions.iconDescription, questions.description]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
@@ -300,40 +296,41 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     if (activePageDemo) { // se a página demo estiver aberta
       setStaticQuestionEditAlert(true)
 
-    } else {
-      if (!questionTextMain || !correctAnswerMain || !descriptionMain || !questionNumberMain || !optionAMain ||
+    } else if (!questionTextMain || !correctAnswerMain || !descriptionMain || !questionNumberMain || !optionAMain ||
       !optionBMain || !optionCMain || !optionDMain) { // se tiver algum campo obrigatório vazio
-        // setActiveVoidFieldModalEdit(true)
+        console.error("One or more fields are empty.")
+
+    } else {
+      if (activePopupAlreadySaved() === true) {
+        setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
       } else {
-        if (activePopupAlreadySaved() === true) {
-          setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
+        setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
+
+        if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
+          setActivePopupcheckAlternativeAnswerModalForms1(true)
 
         } else {
-          setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
+          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+            setActivePopupRepeatedAlternativesModalEdit(true)
 
-          if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-            setActivePopupcheckAlternativeAnswerModalForms1(true)
+            setTimeout(() => {
+              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+
+            }, 10000)
 
           } else {
-            if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-              setActivePopupRepeatedAlternativesModalEdit(true)
+            onSaveModalQuestion() // salvando a questão única
+            onSaveModalOption() // salvando a opção única
 
-              setTimeout(() => {
-                setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+            console.log('Saved successfully!')
+            setPutApi(!putApi)
+            setActiveModalEditMenu(true) // mostrará que esta Modal está ativada
+            setTimeout(() => setActiveModalEditMenu(false), 300) // mostrará que esta Modal está desativada em 300ms, tempo que atualiza a questão que permanecerá
+            closeModal()
 
-              }, 10000)
-
-            } else {
-              onSaveModalQuestion() // salvando a questão única
-              onSaveModalOption() // salvando a opção única
-              setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-              console.log('Saved successfully!')
-              closeModal()
-
-            }
-
-          }
+          }  
 
         }
 
@@ -347,36 +344,44 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   function multiFunctionsPageMulti(event) {
     event.preventDefault()
 
-    if (activePopupAlreadySaved() === true) {
-      setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
+    if (!questionTextMulti || !correctAnswerMulti || !descriptionMulti || !questionNumberMulti || !optionAMulti ||
+      !optionBMulti || !optionCMulti || !optionDMulti) { // se tiver algum campo obrigatório vazio
+        console.error("One or more fields are empty.")
 
     } else {
-      setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
+      if (activePopupAlreadySaved() === true) {
+        setActivePopupAlreadySavedModalEdit(true) // habilita o 'PopupAlreadySavedModalEdit'
 
-      if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
-          setActivePopupcheckAlternativeAnswerModalForms2(true)
+      } else {
+        setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-        } else {
-        if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
-          setActivePopupRepeatedAlternativesModalEdit(true)
+        if (checkAlternativeAnswerDefault(newOption, newMultiOption, (correctAnswerMain || correctAnswerMulti)) === true) {
+            setActivePopupcheckAlternativeAnswerModalForms2(true)
 
-          setTimeout(() => {
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
+          } else {
+          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+            setActivePopupRepeatedAlternativesModalEdit(true)
 
-          }, 10000)
+            setTimeout(() => {
+              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
 
-        } else {    
-          onSaveModalMultiQuestion() // salvando a questão múltipla
-          onSaveModalMultiOption() // salvando a opção múltipla
-          
-          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-          console.log('Saved successfully!')
-          closeModal()
+            }, 10000)
+
+          } else {    
+            onSaveModalMultiQuestion() // salvando a questão múltipla
+            onSaveModalMultiOption() // salvando a opção múltipla
+            
+            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+            console.log('Saved successfully!')
+            setPutApi(!putApi)
+            closeModal()
+
+          }
 
         }
-
+      
       }
-    
+
     }
 
   }
@@ -426,100 +431,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   }, [activePageMain, activePageMulti, questionTextMain, correctAnswerMain, descriptionMain, optionAMain, optionBMain, optionCMain, optionDMain, 
     questionTextMulti, correctAnswerMulti, descriptionMulti, optionAMulti, optionBMulti, optionCMulti, optionDMulti])
 
-  // funções para capturar os valores dos campos das questões de única escolha
-  function onChangeModalQuestion(event) {
-    setQuestionTextMain(event.target.value)
-
-  }
-
-  function onChangeModalAnswer(event) {
-    setCorrectAnswerMain(event.target.value)
-
-  }
-
-  function onChangeModalImage(event) {
-    setIconDescriptionMain(event.target.value)
-
-  }
-
-  function onChangeModalDescription(event) {
-    setDescriptionMain(event.target.value)
-
-  }
-
-  //funções para capturar os valores dos campos das opções de única escolha
-  function onChangeModalOptionA(event) {
-    setOptionAMain(event.target.value)
-
-  }
-
-  function onChangeModalOptionB(event) {
-    setOptionBMain(event.target.value)
-
-  }
-
-  function onChangeModalOptionC(event) {
-    setOptionCMain(event.target.value)
-
-  }
-
-  function onChangeModalOptionD(event) {
-    setOptionDMain(event.target.value)
-
-  }
-
-  function onChangeModalOptionE(event) {
-    setOptionEMain(event.target.value)
-
-  }
-
-  // funções para capturar os valores dos campos das questões de múltipla escolha
-  function onChangeModalQuestionMulti(event) {
-    setQuestionTextMulti(event.target.value)
-
-  }
-
-  function onChangeModalAnswerMulti(event) {
-    setCorrectAnswerMulti(event.target.value)
-
-  }
-
-  function onChangeModalImageMulti(event) {
-    setIconDescriptionMulti(event.target.value)
-
-  }
-
-  function onChangeModalDescriptionMulti(event) {
-    setDescriptionMulti(event.target.value)
-
-  }
-
-  //funções para capturar os valores dos campos das opções de múltipla escolha
-  function onChangeModalOptionAMulti(event) {
-    setOptionAMulti(event.target.value)
-
-  }
-
-  function onChangeModalOptionBMulti(event) {
-    setOptionBMulti(event.target.value)
-
-  }
-
-  function onChangeModalOptionCMulti(event) {
-    setOptionCMulti(event.target.value)
-
-  }
-
-  function onChangeModalOptionDMulti(event) {
-    setOptionDMulti(event.target.value)
-
-  }
-
-  function onChangeModalOptionEMulti(event) {
-    setOptionEMulti(event.target.value)
-
-  }
-
   // função que limpa todos os campos do formulário
   function cleanForm() {
     if (activePageDemo) {
@@ -528,9 +439,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     } else {
       if (questionMain && optionMain) {
         setQuestionTextMain('')
+        setImageQuestionMain('')
         setCorrectAnswerMain('')
         setIconDescriptionMain('')
         setDescriptionMain('')
+        setImageDescriptionMain('')
         setOptionAMain('')
         setOptionBMain('')
         setOptionCMain('')
@@ -541,9 +454,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
       if (questionMulti && optionMulti) {
         setQuestionTextMulti('')
+        setImageQuestionMulti('')
         setCorrectAnswerMulti('')
         setIconDescriptionMulti('')
         setDescriptionMulti('')
+        setImageDescriptionMulti('')
         setOptionAMulti('')
         setOptionBMulti('')
         setOptionCMulti('')
@@ -560,9 +475,19 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     <div className={styles.container}>
       <div
           onClick={openModal}
-          className={styles.iconsTexts} 
+          className={styles.iconsTexts}
       >
+        {activeDescriptionIcon && 
+          <DescriptionIconMenuTools 
+            activeDescriptionIcon={activeDescriptionIcon} 
+            key={'edit'} 
+            text={'edit'}
+          />
+        }
+
         <MdEditSquare
+        onMouseOver={() => setActiveDescriptionIcon('edit')}
+        onMouseOut={() => setActiveDescriptionIcon('')}
         className={styles.editIcon}
         />                
 
@@ -575,13 +500,16 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           overlayClassName={styles.modalOverlay}
           className={styles.modalContent}
       >
-        {/* imagem delete do react icon */}
-        <TiDeleteOutline
-            onClick={() => {closeModal(); mute === false && audioClick.play()}} 
-            className={styles.modalImageDelete} 
-        />      
+        <div className={styles.containerTitleIconDelete}>
+          <h1>EDIT CARD:</h1>
 
-        <h1>EDIT CARD:</h1>
+          {/* imagem delete do react icon */}
+          <TiDeleteOutline
+              onClick={() => {closeModal(); mute === false && audioClick.play()}} 
+              className={styles.modalImageDelete} 
+          />      
+
+        </div>
 
         {questionMain && optionMain && 
         <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
@@ -590,79 +518,91 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         > 
           {/* todos os campos das questões */}
           <FieldModalEdit
-            onChangeModal={onChangeModalQuestion}
-            name="Question*"
             newValue={questionTextMain}
+            onChangeModal={(e) => setQuestionTextMain(e.target.value)}
+            name="Question*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'questionTextMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalAnswer}
-            name="Answer*"
+            newValue={imageQuestionMain}
+            onChangeModal={(e) => setImageQuestionMain(e.target.value)}
+            name="Image Question"
+          />
+
+          <FieldModalEdit
             newValue={correctAnswerMain}
+            onChangeModal={(e) => setCorrectAnswerMain(e.target.value)}
+            name="Answer*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'correctAnswerMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalImage}
-            name="Image"
             newValue={iconDescriptionMain}
+            onChangeModal={(e) => setIconDescriptionMain(e.target.value)}
+            name="Icon Description"
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalDescription}
-            name="Description*"
             newValue={descriptionMain}
+            onChangeModal={(e) => setDescriptionMain(e.target.value)}
+            name="Description*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'descriptionMain'}
             voidField={voidField}
           />
 
+          <FieldModalEdit
+            newValue={imageDescriptionMain}
+            onChangeModal={(e) => setImageDescriptionMain(e.target.value)}
+            name="Image Description"
+          />
+
           {/* todos os campos das opções */}
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionA}
-            name="OptionA*"
             newValue={optionAMain}
+            onChangeModal={(e) => setOptionAMain(e.target.value)}
+            name="OptionA*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionAMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionB}
-            name="OptionB*"
             newValue={optionBMain}
+            onChangeModal={(e) => setOptionBMain(e.target.value)}
+            name="OptionB*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionBMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionC}
-            name="OptionC*"
             newValue={optionCMain}
+            onChangeModal={(e) => setOptionCMain(e.target.value)}
+            name="OptionC*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionCMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionD}
-            name="OptionD*"
             newValue={optionDMain}
+            onChangeModal={(e) => setOptionDMain(e.target.value)}
+            name="OptionD*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionDMain'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionE}
-            name="OptionE"
             newValue={optionEMain}
+            onChangeModal={(e) => setOptionEMain(e.target.value)}
+            name="OptionE"
           />
 
           {/* Botões submit e clean */}
@@ -693,79 +633,91 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         > 
           {/* todos os campos das questões de múltipla escolha */}
           <FieldModalEdit
-            onChangeModal={onChangeModalQuestionMulti}
-            name="Question*"
             newValue={questionTextMulti}
+            onChangeModal={(e) => setQuestionTextMulti(e.target.value)}
+            name="Question*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'questionTextMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalAnswerMulti}
-            name="Answer*"
+            newValue={imageQuestionMulti}
+            onChangeModal={(e) => setImageQuestionMulti(e.target.value)}
+            name="Image Question"
+          />
+
+          <FieldModalEdit
             newValue={correctAnswerMulti}
+            onChangeModal={(e) => setCorrectAnswerMulti(e.target.value)}
+            name="Answer*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'correctAnswerMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalImageMulti}
-            name="Image"
             newValue={iconDescriptionMulti}
+            onChangeModal={(e) => setIconDescriptionMulti(e.target.value)}
+            name="Icon Description"
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalDescriptionMulti}
-            name="Description*"
             newValue={descriptionMulti}
+            onChangeModal={(e) => setDescriptionMulti(e.target.value)}
+            name="Description*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'descriptionMulti'}
             voidField={voidField}
           />
 
+          <FieldModalEdit
+            newValue={imageDescriptionMulti}
+            onChangeModal={(e) => setImageDescriptionMulti(e.target.value)}
+            name="Image Description"
+          />
+
           {/* todos os campos das opções de múltipla escolha */}
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionAMulti}
-            name="OptionA*"
             newValue={optionAMulti}
+            onChangeModal={(e) => setOptionAMulti(e.target.value)}
+            name="OptionA*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionAMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionBMulti}
-            name="OptionB*"
             newValue={optionBMulti}
+            onChangeModal={(e) => setOptionBMulti(e.target.value)}
+            name="OptionB*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionBMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionCMulti}
-            name="OptionC*"
             newValue={optionCMulti}
+            onChangeModal={(e) => setOptionCMulti(e.target.value)}
+            name="OptionC*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionCMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionDMulti}
-            name="OptionD*"
             newValue={optionDMulti}
+            onChangeModal={(e) => setOptionDMulti(e.target.value)}
+            name="OptionD*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionDMulti'}
             voidField={voidField}
           />
 
           <FieldModalEdit
-            onChangeModal={onChangeModalOptionEMulti}
-            name="OptionE"
             newValue={optionEMulti}
+            onChangeModal={(e) => setOptionEMulti(e.target.value)}
+            name="OptionE"
           />
 
           {/* Botões submit e clean */}

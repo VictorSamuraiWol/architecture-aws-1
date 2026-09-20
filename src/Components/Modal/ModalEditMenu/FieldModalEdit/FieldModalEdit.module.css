@@ -21,12 +21,9 @@
   color: var(--color-incorrect);
 }
 
-.nameLabelText:hover {
-  transform: scale(0.97);
-}
-
 .inputFieldModalEdit {
   border: 1px solid var(--color-fourth);
+  padding: 0 2px;
 }
 
 .inputErrorFieldModalEdit {

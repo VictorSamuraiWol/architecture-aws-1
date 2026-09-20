@@ -27,7 +27,7 @@ function PageMain() {
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        activeZeroImgMain, setActiveZeroImgMain, setActivePageInfo } = useOutletContext()
+        activeZeroImgMain, setActiveZeroImgMain, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -117,7 +117,10 @@ function PageMain() {
                             .filter(options => options.optionNumber !== '')
                             .find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
                         
-                return ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))
+                return (
+                    (!activeModalEditMenu && ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))) // se for procurar uma questão que não se repete e não for editar
+                    || 
+                    (activeModalEditMenu && (option.optionNumber === questionMain.questionNumber))) // se for editar a questão, pois permanecerá na mesma questão
             })
 
             // Se não encontrou, tenta corresponder via lista de questões
@@ -129,7 +132,7 @@ function PageMain() {
                                       .filter(questions => questions.questionNumber !== '')
                                       .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
 
-                        return ((question.questionNumber === option.optionNumber) && (question.questionNumber !== lastNumberMatchedQuestionOptionRef.current))
+                        return ((question.questionNumber === option.optionNumber))
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
@@ -174,7 +177,7 @@ function PageMain() {
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
         questionOptionMatch()
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, setActiveZeroImgMain])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, setActiveZeroImgMain, activeModalEditMenu, setActiveModalEditMenu])
 
     return(
         <div className={styles.pageMainStyles}>

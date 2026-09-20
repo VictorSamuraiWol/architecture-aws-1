@@ -255,8 +255,10 @@ export default function DataProvider({ children }) {
                 loading,
                 setLoading,
                 postApi,
-                setPostApi, 
+                setPostApi,
+                putApi,
                 setPutApi,
+                deleteApi,
                 setDeleteApi,
                 ableDisableMenuTools,
                 setAbleDisableMenuTools

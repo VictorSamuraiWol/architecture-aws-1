@@ -1,6 +1,8 @@
-.container {
-  height: 16px;
-  z-index: 1;
+.iconsTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .editIcon {
@@ -31,7 +33,7 @@
   font-weight: bold;
   width: 80%;
   max-height: 90vh;
-  padding: 20px 12px 40px 12px;
+  padding: 12px;
   border: 2px solid var(--color-fourth);
   border-radius: 12px;
 }
@@ -40,13 +42,29 @@
   outline: none;
 }
 
+.containerTitleIconDelete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .modalContent h1 {
   color: var(--color-fourth);
   text-shadow: 2px 2px 3px var(--color-first);
+  margin: 0;
   cursor: default;
 }
 
-.modalContent h1:hover {
+.modalImageDelete {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modalImageDelete:hover {
   transform: scale(0.97);
 }
 
@@ -56,7 +74,7 @@
   gap: 8px;
   width: 100%;
   max-height: 90vh;
-  padding-right: 4px;
+  padding: 8px 4px 0 0;
   overflow: auto;
 }
 
@@ -68,21 +86,6 @@
 .formModal::-webkit-scrollbar-thumb {    
   background-color: var(--color-fourth);
   border-radius: 4px;
-}
-
-.modalImageDelete {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  height: 2em;
-  width: 2em;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.modalImageDelete:hover {
-  transform: scale(0.97);
 }
 
 .buttons {
@@ -107,13 +110,6 @@
 }
 
 /* Responsividade */
-@media (max-width: 1100px) {
-  .container {
-    height: 13px; /* para ficar do tamanho do conteúdo */
-  }
-
-}
-
 @media (max-width: 860px) {
   .modalContent h1 {
     font-size: 1.5rem;
@@ -127,6 +123,10 @@
 }
 
 @media (max-width: 580px) {
+  .modalContent {
+    padding: 8px;
+  }
+
   .popupRepeatedModalEdit {
     font-size: 0.7rem;
     width: 25%;

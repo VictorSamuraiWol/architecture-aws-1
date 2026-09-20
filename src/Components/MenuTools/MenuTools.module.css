@@ -27,6 +27,14 @@
   padding-bottom: 2px;
 }
 
+.containerDescriptionIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+}
+
 .menuIcons {
   display: flex;
   justify-content: space-between;

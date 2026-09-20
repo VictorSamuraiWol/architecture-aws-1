@@ -1,0 +1,9 @@
+.descriptionIconMenuTools {
+  position: absolute;
+  top: -20px;
+  color: var(--color-first);
+  background-color: var(--color-fourth);
+  padding: 0 2px;
+  border-radius: 6px;
+  z-index: 1;
+}

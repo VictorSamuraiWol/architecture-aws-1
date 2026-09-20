@@ -25,6 +25,7 @@ function PageBase() {
     const [numIncorrectOption, setNumIncorrectOption] = useState(0) // questões corretas das páginas main e multi
     const [activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert] = useState(false)
     const [activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert] = useState(false) 
+    const [activeModalEditMenu, setActiveModalEditMenu] = useState(false) // saber se a ModalEditMenu está ativa ou não
     
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
@@ -112,7 +113,7 @@ function PageBase() {
                         setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
                         activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
                         activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault,
-                        activePageInfo, setActivePageInfo
+                        activePageInfo, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu
                     }} 
                 />                
 

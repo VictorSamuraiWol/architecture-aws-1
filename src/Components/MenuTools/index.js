@@ -2,6 +2,7 @@ import styles from './MenuTools.module.css'
 import ModalEditMenu from '../Modal/ModalEditMenu'
 import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
+import DescriptionIconMenuTools from './DescriptionIconMenuTools'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
@@ -20,6 +21,8 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
   const [fewer3SigleChoice, setFewer3SigleChoice] = useState(false) // ativa o componente PopupAlertMessage
   const [fewer3MultipleChoice, setFewer3MultipleChoice] = useState(false) // ativa o componente PopupAlertMessage
+
+  const [activeDescriptionIcon, setActiveDescriptionIcon] = useState('')
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(questionMain) {
@@ -216,8 +219,20 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         className={`menuToolsSelector ${styles.menuToolsSelector} ${ableDisableMenuTools}`}        
       >
         {/* icon plus */}
-        <Link to='/page-forms-new-questions-options'>
-          <FaPlusCircle className={styles.plusIcon} />
+        <Link className={styles.containerDescriptionIcon} to='/page-forms-new-questions-options'>
+          {activeDescriptionIcon && 
+            <DescriptionIconMenuTools 
+              activeDescriptionIcon={activeDescriptionIcon} 
+              key={'create'} 
+              text={'create'} 
+            />
+          }
+
+          <FaPlusCircle 
+            onMouseOver={() => setActiveDescriptionIcon('create')}
+            onMouseOut={() => setActiveDescriptionIcon('')}
+            className={styles.plusIcon}
+          />
         </Link>
 
         {/* icon edit */}
@@ -228,13 +243,28 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           optionMulti={optionMulti}
           optionMainNumberId={optionMainNumberId}
           optionMultiNumberId={optionMultiNumberId}
+          activeDescriptionIcon={activeDescriptionIcon}
+          setActiveDescriptionIcon={setActiveDescriptionIcon}
         />
 
         {/* icon delete */}
-        <MdDelete
-          onClick={() => {setActivePopupDelete(true)}}
-          className={styles.deleteIcon}            
-        />
+        <div className={styles.containerDescriptionIcon}>
+          {activeDescriptionIcon && 
+            <DescriptionIconMenuTools 
+              activeDescriptionIcon={activeDescriptionIcon} 
+              key={'delete'}
+              text={'delete'} 
+            />
+          }
+
+          <MdDelete
+            onClick={() => {setActivePopupDelete(true)}}
+            onMouseOver={() => setActiveDescriptionIcon('delete')}
+            onMouseOut={() => setActiveDescriptionIcon('')}
+            className={styles.deleteIcon}            
+          />
+
+        </div>
 
         {/* PopupDeleteQuestionOption */}
         {activePopupDelete && 
