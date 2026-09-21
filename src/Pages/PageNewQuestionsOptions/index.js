@@ -1,14 +1,14 @@
-import styles from './PageNewQuestionsOptionsPage.module.css'
+import styles from './PageNewQuestionsOptions.module.css'
 import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
-import FormsNewQuestionsOptionsPage from '../../Components/FormsNewQuestionsOptionsPage'
+import FormsNewQuestionsOptions from '../../Components/FormsNewQuestionsOptions'
 import Loader from '../../Components/Loader'
 import Footer from '../../Components/Footer'
 import { useContext, useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
-function PageNewQuestionsOptionsPage() {
+function PageNewQuestionsOptions() {
  
     const { loginValidate, setActivePageFormsQuestionsOptions } = useOutletContext()
 
@@ -36,7 +36,7 @@ function PageNewQuestionsOptionsPage() {
             {loginValidate &&
             <>
                 <Header title='Forms' />
-                <FormsNewQuestionsOptionsPage className={styles.formsNewQuestionsOptionsPage} />
+                <FormsNewQuestionsOptions className={styles.formsNewQuestionsOptions} />
             
             </>}
 
@@ -50,4 +50,4 @@ function PageNewQuestionsOptionsPage() {
 
 }
 
-export default PageNewQuestionsOptionsPage
+export default PageNewQuestionsOptions

@@ -17,7 +17,7 @@ import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 import { v4 as uuidv4 } from 'uuid'
 
-function FormsNewQuestionsOptionsPage() {
+function FormsNewQuestionsOptions() {
 
     const uniqueId = uuidv4() // gerar uma id aleatória para a questão e a opção correspondente
 
@@ -30,14 +30,13 @@ function FormsNewQuestionsOptionsPage() {
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
     const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute, setActivePageMain, setActivePageMulti, setActivePageDemo } = useOutletContext()
 
-    // capturando o conteúdo da label
-    const [labelTarget, setLabelTarget] = useState("")
-
     // atributos da questão única (formulário 1):
     const [newQuestionTextMain, setNewQuestionTextMain] = useState('')
+    const [newImageQuestionMain, setNewImageQuestionMain] = useState('')
     const [newCorrectAnswerMain, setNewCorrectAnswerMain] = useState('')
     const [newIconDescriptionMain, setNewIconDescriptionMain] = useState('')
     const [newDescriptionMain, setNewDescriptionMain] = useState('')
+    const [newImageDescriptionMain, setNewImageDescriptionMain] = useState('')
     const [newQuestionNumberMain, setNewQuestionNumberMain] = useState('')
 
     // atributos da opção única (formulário 2):
@@ -50,9 +49,11 @@ function FormsNewQuestionsOptionsPage() {
 
     // atributos da questão múltipla (formulário 3)
     const [newQuestionTextMulti, setNewQuestionTextMulti] = useState('')
+    const [newImageQuestionMulti, setNewImageQuestionMulti] = useState('')
     const [newCorrectAnswerMulti, setNewCorrectAnswerMulti] = useState('')
     const [newIconDescriptionMulti, setNewIconDescriptionMulti] = useState('')
     const [newDescriptionMulti, setNewDescriptionMulti] = useState('')
+    const [newImageDescriptionMulti, setNewImageDescriptionMulti] = useState('')
     const [newQuestionNumberMulti, setNewQuestionNumberMulti] = useState('')
 
     // atributos da opção múltipla (formulário 4)
@@ -73,7 +74,6 @@ function FormsNewQuestionsOptionsPage() {
     const [readyToSendForm2, setReadyToSendForm2] = useState(false)
     const [readyToSendForm3, setReadyToSendForm3] = useState(false)
     const [readyToSendForm4, setReadyToSendForm4] = useState(false)
-    const [readyToCleanAll, setReadyToCleanAll] = useState(false)
 
     // capturar a mensagem de alerta para exibir na tela dos formulários
     const [alertMessage, setAlertMessage] = useState('')
@@ -268,42 +268,40 @@ function FormsNewQuestionsOptionsPage() {
 
     }, [setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo])
 
-    function cleanAllForms() {         
-        // zerando os valores aqui e os do componente "CampoQuestionOption" para certificar que todos serão zerados após envio de qualquer formulário
-        if ((readyToSendForm1 === true) || (readyToSendForm2 === true) || (readyToSendForm3 === true) || (readyToSendForm4 === true)) {
-            // form 1
-            setNewQuestionTextMain('')
-            setNewCorrectAnswerMain('')
-            setNewIconDescriptionMain('')
-            setNewDescriptionMain('')
-            setNewQuestionNumberMain('')
+    function cleanAllForms() {
+        // form 1
+        setNewQuestionTextMain('')
+        setNewImageQuestionMain('')
+        setNewCorrectAnswerMain('')
+        setNewIconDescriptionMain('')
+        setNewDescriptionMain('')
+        setNewImageDescriptionMain('')
+        setNewQuestionNumberMain('')
 
-            // form 2
-            setNewOptionAMain('')
-            setNewOptionBMain('')
-            setNewOptionCMain('')
-            setNewOptionDMain('')
-            setNewOptionEMain('')
-            setNewOptionNumberMain('')
+        // form 2
+        setNewOptionAMain('')
+        setNewOptionBMain('')
+        setNewOptionCMain('')
+        setNewOptionDMain('')
+        setNewOptionEMain('')
+        setNewOptionNumberMain('')
 
-            // form 3
-            setNewQuestionTextMulti('')
-            setNewCorrectAnswerMulti('')
-            setNewIconDescriptionMulti('')
-            setNewDescriptionMulti('')
-            setNewQuestionNumberMulti('')
+        // form 3
+        setNewQuestionTextMulti('')
+        setNewImageQuestionMulti('')
+        setNewCorrectAnswerMulti('')
+        setNewIconDescriptionMulti('')
+        setNewDescriptionMulti('')
+        setNewImageDescriptionMulti('')
+        setNewQuestionNumberMulti('')
 
-            // form 4
-            setNewOptionAMulti('')
-            setNewOptionBMulti('')
-            setNewOptionCMulti('')
-            setNewOptionDMulti('')
-            setNewOptionEMulti('')
-            setNewOptionNumberMulti('')
-
-        }
-
-        setReadyToCleanAll(true)
+        // form 4
+        setNewOptionAMulti('')
+        setNewOptionBMulti('')
+        setNewOptionCMulti('')
+        setNewOptionDMulti('')
+        setNewOptionEMulti('')
+        setNewOptionNumberMulti('')
 
     }
 
@@ -337,9 +335,11 @@ function FormsNewQuestionsOptionsPage() {
             if (readyToSendForm1 === true && isValid === true && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newQuestionNumberMain) { 
                 data = {
                     questionText: newQuestionTextMain,
+                    imageQuestion: newImageQuestionMain, // não obrigatório
                     correctAnswer: newCorrectAnswerMain,
                     iconDescription: newIconDescriptionMain, // não obrigatório
                     description: newDescriptionMain,
+                    imageDescription: newImageDescriptionMain, // não obrigatório
                     questionNumber: newQuestionNumberMain,
                     id: uniqueId
                 }
@@ -374,7 +374,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image Question:" && label.innerText !== "Icon Description:" && label.innerText !== "Image Description:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -402,7 +402,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image Question:" && label.innerText !== "Icon Description:" && label.innerText !== "Image Description:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -427,7 +427,7 @@ function FormsNewQuestionsOptionsPage() {
                 if (response.ok) {
                     console.log(data, 'Data successfully submitted from Form 1. Please complete one form at a time.')
                     setActivePopupQuestionSuccessfull1(true)
-                    cleanAllForms() // limpar o formulário                
+                    cleanAllForms() // limpar o formulário             
                     setPostApi(true) // tornar verdadeiro a cada POST
 
                 }
@@ -636,9 +636,11 @@ function FormsNewQuestionsOptionsPage() {
             if (readyToSendForm3 === true && isValid === true && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newQuestionNumberMulti) {  
                 data = {
                     questionText: newQuestionTextMulti,
+                    imageQuestion: newImageQuestionMulti, // não obrigatório
                     correctAnswer: newCorrectAnswerMulti,
                     iconDescription: newIconDescriptionMulti, // não obrigatório
                     description: newDescriptionMulti,
+                    imageDescription: newImageDescriptionMulti, // não obrigatório
                     questionNumber: newQuestionNumberMulti,
                     id: uniqueId
                 }
@@ -671,7 +673,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image Question:" && label.innerText !== "Icon Description:" && label.innerText !== "Image Description:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -697,7 +699,7 @@ function FormsNewQuestionsOptionsPage() {
                         label.style.color = "" // para restaurar a cor inicial das labels antes de verificar os campos
 
                         // marcar em vermelho todos os campos obrigatórios vazios, exceto o não obrigatório
-                        if (textAreaInput.value === "" && label.innerText !== "Image:") {
+                        if (textAreaInput.value === "" && label.innerText !== "Image Question:" && label.innerText !== "Icon Description:" && label.innerText !== "Image Description:") {
                             label.style.color = colorIncorrect // passando a cor incorreta
 
                         }
@@ -965,36 +967,37 @@ function FormsNewQuestionsOptionsPage() {
 
 
                     <FieldsQuestionsOptions
-                        nome1="Question:*"
-                        nome2="Answer:*"
-                        nome3="Image:"
-                        nome4="Description:*" 
-                        nome5="Number:*"
+                        nameText1="Question:*"
+                        nameText2="Image Question:"
+                        nameText3="Answer:*"
+                        nameText4="Icon Description:"
+                        nameText5="Description:*"
+                        nameText6="Image Description:"
+                        nameText7="Number:*"
 
-                        labelTarget={labelTarget} 
-                        setLabelTarget={setLabelTarget}
                         newQuestionTextMain={newQuestionTextMain}
                         setNewQuestionTextMain={setNewQuestionTextMain}
+                        newImageQuestionMain={newImageQuestionMain}
+                        setNewImageQuestionMain={setNewImageQuestionMain}
                         newCorrectAnswerMain={newCorrectAnswerMain}
                         setNewCorrectAnswerMain={setNewCorrectAnswerMain}
                         newIconDescriptionMain={newIconDescriptionMain}
                         setNewIconDescriptionMain={setNewIconDescriptionMain}
                         newDescriptionMain={newDescriptionMain}
                         setNewDescriptionMain={setNewDescriptionMain}
+                        newImageDescriptionMain={newImageDescriptionMain}
+                        setNewImageDescriptionMain={setNewImageDescriptionMain}
                         newQuestionNumberMain={newQuestionNumberMain}
-                        setNewQuestionNumberMain={setNewQuestionNumberMain}     
-                        readyToCleanAll={readyToCleanAll}
-                        setReadyToCleanAll={setReadyToCleanAll}
+                        setNewQuestionNumberMain={setNewQuestionNumberMain}
                         readyToSendForm1={readyToSendForm1}
-
                     />
+
                     <ButtonDefault 
                         // tornar readyToSendForm1 'true' antes de entrar na função onSaveForm1 ao submeter o formulário 1
                         onClick={() => {setReadyToSendForm1(true)}}
                         buttonName='Save' 
                         specificStyleButton={styles.buttonSave}
-                        specificType='submit' 
-
+                        specificType='submit'
                     />
 
                 </form>
@@ -1012,16 +1015,14 @@ function FormsNewQuestionsOptionsPage() {
                     </h1>
 
                     <FieldsQuestionsOptions 
-                        nome1="Option A:*" 
-                        nome2="Option B:*" 
-                        nome3="Option C:*" 
-                        nome4="Option D:*"                
-                        nome5="Option E:" 
-                        nome6="Number:*"
+                        nameText1="Option A:*" 
+                        nameText2="Option B:*" 
+                        nameText3="Option C:*" 
+                        nameText4="Option D:*"                
+                        nameText5="Option E:" 
+                        nameText6="Number:*"
                         optionClass={styles.optionClass}
 
-                        labelTarget={labelTarget}
-                        setLabelTarget={setLabelTarget}
                         newOptionAMain={newOptionAMain} 
                         setNewOptionAMain={setNewOptionAMain}    
                         newOptionBMain={newOptionBMain} 
@@ -1034,21 +1035,19 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOptionEMain={setNewOptionEMain}    
                         newOptionNumberMain={newOptionNumberMain} 
                         setNewOptionNumberMain={setNewOptionNumberMain}
-                        readyToCleanAll={readyToCleanAll}
-                        setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm2={readyToSendForm2}
-
                     />
+
                     <ButtonDefault 
                         // tornar readyToSendForm2 'true' antes de entrar na função onSaveForm2 ao submeter o formulário 2
                         onClick={() => {setReadyToSendForm2(true)}}
                         buttonName='Save' 
                         specificStyleButton={styles.buttonSave}
-                        specificType='submit' 
-         
+                        specificType='submit'
                     />
 
                 </form>
+
             </div>
 
             <div className={styles.forms}>
@@ -1065,29 +1064,31 @@ function FormsNewQuestionsOptionsPage() {
                     </h1>
 
                     <FieldsQuestionsOptions
-                        nome1="Question:*" 
-                        nome2="Answer:*"
-                        nome3="Image:"
-                        nome4="Description:*" 
-                        nome5="Number:*"
-                        
-                        labelTarget={labelTarget}
-                        setLabelTarget={setLabelTarget}
+                        nameText1="Question:*"
+                        nameText2="Image Question:"
+                        nameText3="Answer:*"
+                        nameText4="Icon Description:"
+                        nameText5="Description:*"
+                        nameText6="Image Description:"
+                        nameText7="Number:*"
+
                         newQuestionTextMulti={newQuestionTextMulti}
                         setNewQuestionTextMulti={setNewQuestionTextMulti}
+                        newImageQuestionMulti={newImageQuestionMulti}
+                        setNewImageQuestionMulti={setNewImageQuestionMulti}
                         newCorrectAnswerMulti={newCorrectAnswerMulti}
                         setNewCorrectAnswerMulti={setNewCorrectAnswerMulti}
                         newIconDescriptionMulti={newIconDescriptionMulti}
                         setNewIconDescriptionMulti={setNewIconDescriptionMulti}
                         newDescriptionMulti={newDescriptionMulti}
                         setNewDescriptionMulti={setNewDescriptionMulti}
+                        newImageDescriptionMulti={newImageDescriptionMulti}
+                        setNewImageDescriptionMulti={setNewImageDescriptionMulti}
                         newQuestionNumberMulti={newQuestionNumberMulti}
                         setNewQuestionNumberMulti={setNewQuestionNumberMulti}
-                        readyToCleanAll={readyToCleanAll}
-                        setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm3={readyToSendForm3}
-
                     />
+
                     <ButtonDefault 
                         // tornar readyToSendForm3 'true' antes de entrar na função onSaveForm3 ao submeter o formulário 3
                         onClick={() => {setReadyToSendForm3(true)}}
@@ -1111,16 +1112,14 @@ function FormsNewQuestionsOptionsPage() {
                     </h1>
 
                     <FieldsQuestionsOptions 
-                        nome1="Option A:*" 
-                        nome2="Option B:*" 
-                        nome3="Option C:*" 
-                        nome4="Option D:*"                
-                        nome5="Option E:" 
-                        nome6="Number:*"
+                        nameText1="Option A:*" 
+                        nameText2="Option B:*" 
+                        nameText3="Option C:*" 
+                        nameText4="Option D:*"                
+                        nameText5="Option E:" 
+                        nameText6="Number:*"
                         optionClass={styles.optionClass}
 
-                        labelTarget={labelTarget}
-                        setLabelTarget={setLabelTarget}
                         newOptionAMulti={newOptionAMulti}
                         setNewOptionAMulti={setNewOptionAMulti}
                         newOptionBMulti={newOptionBMulti}
@@ -1133,11 +1132,10 @@ function FormsNewQuestionsOptionsPage() {
                         setNewOptionEMulti={setNewOptionEMulti}
                         newOptionNumberMulti={newOptionNumberMulti}
                         setNewOptionNumberMulti={setNewOptionNumberMulti}
-                        readyToCleanAll={readyToCleanAll}
-                        setReadyToCleanAll={setReadyToCleanAll}
                         readyToSendForm4={readyToSendForm4}
 
                     />
+
                     <ButtonDefault 
                         // tornar readyToSendForm4 'true' antes de entrar na função onSaveForm4 ao submeter o formulário 4
                         onClick={() => {setReadyToSendForm4(true)}}
@@ -1318,4 +1316,4 @@ function FormsNewQuestionsOptionsPage() {
     )
 }
 
-export default FormsNewQuestionsOptionsPage
+export default FormsNewQuestionsOptions;

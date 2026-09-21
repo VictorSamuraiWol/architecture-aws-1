@@ -219,7 +219,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         className={`menuToolsSelector ${styles.menuToolsSelector} ${ableDisableMenuTools}`}        
       >
         {/* icon plus */}
-        <Link className={styles.containerDescriptionIcon} to='/page-forms-new-questions-options'>
+        <Link className={styles.containerDescriptionIcon} to='/page-create'>
           {activeDescriptionIcon && 
             <DescriptionIconMenuTools 
               activeDescriptionIcon={activeDescriptionIcon} 
