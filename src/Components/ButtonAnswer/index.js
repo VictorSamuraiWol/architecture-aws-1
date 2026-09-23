@@ -130,8 +130,8 @@ function ButtonAnswer({
                                 checkedParagraph.parentElement?.classList.remove(optionColorStyle)
                                
                                 // estilizando o input marcado incorretamente
-                                checkedParagraph.parentElement?.parentElement.children[0]?.classList.add(inputInvalidateStyle)
-                                checkedParagraph.parentElement?.parentElement.children[0]?.classList.remove(inputColorStyle)
+                                checkedParagraph.parentElement?.parentElement?.children[0]?.classList.add(inputInvalidateStyle)
+                                checkedParagraph.parentElement?.parentElement?.children[0]?.classList.remove(inputColorStyle)
                 
                                 setterNumIncorrectOption++ // incrementa '1' se responder errado
                                 playErrorSound = true // toca o som de erro

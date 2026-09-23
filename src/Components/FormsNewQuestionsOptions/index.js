@@ -1204,7 +1204,7 @@ function FormsNewQuestionsOptions() {
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3}
                     textPopup={`Your answer does not contain the two correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber}! Please, before creating the question, include both correct alternatives (Option A and Option B) from option ${matchedOptionMultiMainPopupNumber} in the answer, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`Include in the answer to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: ${matchedOptionMultiMainPopupAnswers[0]} and ${matchedOptionMultiMainPopupAnswers[1]}.`}
+                    textModalDescription={`Include in the answer to question ${newQuestionNumberMulti} the two correct alternatives from option ${matchedOptionMultiMainPopupNumber}, highlighted below: (Option: ${matchedOptionMultiMainPopupAnswers[0]}) and (Option: ${matchedOptionMultiMainPopupAnswers[1]}).`}
                 />
             }
 

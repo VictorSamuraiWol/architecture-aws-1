@@ -156,7 +156,7 @@ function PageThreeMulti() {
 
         }
         
-        // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMulti' da página Multi
+        // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionThreeMulti' da página Multi
         questionThreeMultiOptionMatch()
 
     }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, questionThreeMulti, setQuestionThreeMulti, setOptionThreeMulti, setOptionThreeMultiNumberId, setLoading, setActiveZeroImgThreeMulti])
