@@ -42,7 +42,7 @@ function PageBase() {
         
     }
 
-    function repeatedAlternativesDefault(option1, option2) { // função padrão (será reutilizada) que verifica se as alternativas se repetem e retorna os que forem repetidos
+    function repeatedAlternativesDefault(option1, option2, option3) { // função padrão (será reutilizada) que verifica se as alternativas se repetem e retorna os que forem repetidos
         let repeated = '';
         
         if (option1 && ((option1[0] !== undefined && option1[0] !== '') || (option1[1] !== undefined && option1[1] !== '') || (option1[2] !== undefined && option1[2] !== '') || (option1[3] !== undefined && option1[3] !== ''))) {
@@ -54,6 +54,11 @@ function PageBase() {
         // condição: a opção tem que existir e pelo menos uma das alternativas não pode ser indefinida e nem vazia
             repeated = option2.filter((option, index) => 
             (option2.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
+
+        } else if (option3 && ((option3[0] !== undefined && option3[0] !== '') || (option3[1] !== undefined && option3[1] !== '') || (option3[2] !== undefined && option3[2] !== '') || (option3[3] !== undefined && option3[3] !== '') || (option3[4] !== undefined && option3[4] !== '') || (option3[5] !== undefined && option3[5] !== ''))) {
+        // condição: a opção tem que existir e pelo menos uma das alternativas não pode ser indefinida e nem vazia
+            repeated = option3.filter((option, index) => 
+            (option3.indexOf(option) !== index) && option !== ''); // indexOf(option) → primeira posição do item, index → posição atual, se forem diferentes → item repetido.
 
         }
 

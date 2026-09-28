@@ -6,8 +6,9 @@
   height: 15vh;
   color: var(--color-fourth);
   text-shadow: 2px 2px 3px var(--color-third);
+  background-image: url(../../imgs/bg-perfil-header.png);
+  background-position: contain;
   padding: 0 8px;
-  background-color: var(--color-first);
 }
 
 .linkImg {
@@ -33,7 +34,8 @@
   border: 1px solid var(--color-fourth);
   border-radius: 8px;
   box-shadow: 5px 5px 5px var(--border);
-  background-color: var(--color-second);
+  background-image: url(../../imgs/bg-perfil-header.png);
+  background-position: contain;
   transition: all 0.3s ease-in-out;
 }
 

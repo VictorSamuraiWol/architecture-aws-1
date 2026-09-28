@@ -4,8 +4,8 @@ import Timer from '../Timer'
 import { Link, useOutletContext } from 'react-router-dom'
 
 function Footer() {
-    const { loginValidate, activePageFormsQuestionsOptions, activePageInfo, activePageDemo, activePageMain, activePageMulti, activeZeroImgMain, 
-        activeZeroImgMulti,activePageThreeMulti } = useOutletContext()
+    const { loginValidate, activePageFormsQuestionsOptions, activePageInfo, activePageDemo, activePageMain, activePageMulti, 
+        activeZeroImgMain, activeZeroImgMulti,activePageThreeMulti } = useOutletContext()
 
     return(
         <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo ? styles.footerForms : styles.footer}>

@@ -328,22 +328,22 @@
   "listQuestionsThreeMulti": [
     {
       "questionText": "An HTTP application is deployed on an Auto Scaling Group, is accessible from an Application Load Balancer (ALB) that provides HTTPS termination, and accesses a PostgreSQL database managed by Amazon RDS. How should you configure the security groups? (Select three)",
+      "imageQuestion": "",
       "correctAnswer": "The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 instances in the Auto Scaling group on port 5432. // The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80. // The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443.",
       "iconDescription": "",
       "description": "A security group acts as a virtual firewall that controls the traffic for one or more instances. When you launch an instance, you can specify one or more security groups; otherwise, we use the default security group. You can add rules to each security group that allows traffic to or from its associated instances. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance. The following are the characteristics of security group rules: 1. By default, security groups allow all outbound traffic. 2. Security group rules are always permissive; you can't create rules that deny access. 3. Security groups are stateful PostgreSQL port = 5432 HTTP port = 80 HTTPS port = 443 The traffic goes like this : The client sends an HTTPS request to ALB on port 443. This is handled by the rule - 'The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443' The Application Load Balancer then forwards the request to one of the Amazon EC2 instances. This is handled by the rule - 'The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80' The Amazon EC2 instance further accesses the PostgreSQL database managed by Amazon RDS on port 5432. This is handled by the rule - 'The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 ins ances in the Auto Scaling group on port 5432'",
-      "imageQuestion": "",
-      "questionNumber": "50",
       "imageDescription": "",
+      "questionNumber": "50",
       "id": "50ae"
     },
     {
       "questionText": "The DevOps team at an IT company is provisioning a two-tier application in a VPC with a public subnet and a private subnet. The team wants to use either a Network Address Translation (NAT) instance or a Network Address Translation (NAT) gateway in the public subnet to enable instances in the private subnet to initiate outbound IPv4 traffic to the internet but needs some technical assistance in terms of the configuration options available for the Network Address Translation (NAT) instance and the Network Address Translation (NAT) gateway. As a solutions architect, which of the following options would you identify as CORRECT? (Select three)",
+      "imageQuestion": "",
       "correctAnswer": "NAT instance supports port forwarding // NAT instance can be used as a bastion server // Security Groups can be associated with a NAT instance",
       "iconDescription": "",
       "description": "A NAT instance or a NAT Gateway can be used in a public subnet in your VPC to enable instances in the private subnet to initiate outbound IPv4 traffic to the Internet.",
-      "imageQuestion": "",
-      "questionNumber": "100",
       "imageDescription": "description100",
+      "questionNumber": "100",
       "id": "100a"
     }
   ],

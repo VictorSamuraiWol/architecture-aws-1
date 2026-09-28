@@ -3,20 +3,20 @@ import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
-    nameText, optionClass, readyToCleanAll, readyToSendForm1, 
-    readyToSendForm2, readyToSendForm3, readyToSendForm4, valueForm1, setValueForm1, valueForm2, setValueForm2, 
-    valueForm3, setValueForm3, valueForm4, setValueForm4
+    nameText, optionClass, readyToCleanAll, readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2,
+    readyToSendForm3, setReadyToSendForm3, readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, 
+    readyToSendForm6, setReadyToSendForm6, setValueForm1, setValueForm2, setValueForm3, setValueForm4, setValueForm5, setValueForm6
 }) {
-console.log()  
+  
     const uniqueId = uuidv4() // id única para somente para os campos    
     const [newValue, setNewValue] = useState("") // valor capturado do textarea    
     const [formsTitlesTarget, setFormsTitlesTarget] = useState("") // valores dos títulos dos 4 forms
 
     function newValueFunc(e) {
         // capturar o texto do título do form alvo ao mudar os valores dos campos
-        setFormsTitlesTarget(e.target.parentElement.parentElement.parentElement.children[0].textContent)
+        setFormsTitlesTarget(e?.target.parentElement.parentElement.parentElement.children[0].textContent)
 
-        setNewValue(e.target.value)
+        setNewValue(e?.target.value)
 
     } 
 
@@ -78,14 +78,54 @@ console.log()
             
             nameText === "Number:*" && setValueForm4(newValue) // setNewOptionNumberMulti
 
-        }
+        } else if (formsTitlesTarget === "Form 5 (ThreeMultiQuestions)") { // form 5
+            nameText === "Question:*" && setValueForm5(newValue) // setNewQuestionTextMulti
 
-        if (readyToSendForm1 || readyToSendForm2 || readyToSendForm3 || readyToSendForm4) { // apaga os valores dos campos
+            nameText === "Image Question:" && setValueForm5(newValue) // setNewImageQuestionMulti
+
+            nameText === "Answer:*" && setValueForm5(newValue) // setNewCorrectAnswerMulti
+
+            nameText === "Icon Description:" && setValueForm5(newValue) // setNewIconDescriptionMulti
+
+            nameText === "Description:*" && setValueForm5(newValue) // setNewDescriptionMulti
+
+            nameText === "Image Description:" && setValueForm5(newValue) // setNewImageDescriptionMulti
+            
+            nameText === "Number:*" && setValueForm5(newValue) // setNewQuestionNumberMulti
+    
+        } else if (formsTitlesTarget === "Form 6 (ThreeMultiOptions)") { // form 6
+            nameText === "Option A:*" && setValueForm6(newValue) // setNewOptionAThreeMulti
+    
+            nameText === "Option B:*" && setValueForm6(newValue) // setNewOptionBThreeMulti
+            
+            nameText === "Option C:*" && setValueForm6(newValue) // setNewOptionCThreeMulti
+            
+            nameText === "Option D:*" && setValueForm6(newValue) // setNewOptionDThreeMulti
+            
+            nameText === "Option E:*" && setValueForm6(newValue) // setNewOptionEThreeMulti
+
+            nameText === "Option F:*" && setValueForm6(newValue) // setNewOptionFThreeMulti
+            
+            nameText === "Number:*" && setValueForm6(newValue) // setNewOptionNumberThreeMulti
+
+        } 
+
+        if (readyToSendForm1 || readyToSendForm2 || readyToSendForm3 || readyToSendForm4 || readyToSendForm5 || readyToSendForm6) { // apaga os valores dos campos ao salvar
             setNewValue('')
+
+            // retornando as variáveis 'readyToSendForm' ao estado inicial para não resetar os campos novamente
+            setReadyToSendForm1 && setReadyToSendForm1(false)
+            setReadyToSendForm2 && setReadyToSendForm2(false)
+            setReadyToSendForm3 && setReadyToSendForm3(false)
+            setReadyToSendForm4 && setReadyToSendForm4(false)
+            setReadyToSendForm5 && setReadyToSendForm5(false)
+            setReadyToSendForm6 && setReadyToSendForm6(false)
             
         }
 
-    }, [formsTitlesTarget, nameText, readyToCleanAll, newValue, valueForm1, setValueForm1, valueForm2, setValueForm2, valueForm3, setValueForm3, valueForm4, setValueForm4, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4])
+    }, [formsTitlesTarget, nameText, readyToCleanAll, newValue, setValueForm1, setValueForm2, setValueForm3, setValueForm4, setValueForm5, setValueForm6, 
+        readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2, readyToSendForm3, setReadyToSendForm3, readyToSendForm4, setReadyToSendForm4, 
+        readyToSendForm5, setReadyToSendForm5, readyToSendForm6, setReadyToSendForm6])
 
     return(
         <div className={styles.field}>
@@ -94,7 +134,6 @@ console.log()
 
             >
                 <label
-                    // classe optionClass somente estiliza os forms 2 e 4
                     className={optionClass}
                     htmlFor={uniqueId}
                 >

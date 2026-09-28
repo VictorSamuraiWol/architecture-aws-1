@@ -5,10 +5,13 @@
     color: var(--color-first);
     text-decoration: underline;
     font-style: italic;
+    padding: 4px 8px;
+    border-radius: 16px;
     transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .link:hover {
-    color: var(--color-fourth);
+    color: var(--color-second);
     transform: scale(0.97);
+    background: var(--color-first);
 }

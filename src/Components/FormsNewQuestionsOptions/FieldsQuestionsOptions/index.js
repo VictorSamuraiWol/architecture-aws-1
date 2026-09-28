@@ -2,15 +2,21 @@
 import FieldQuestionOption from './FieldQuestionOption'
 
 function FieldsQuestionsOptions({ 
-    nameText1, nameText2, nameText3, nameText4, nameText5, nameText6, nameText7, optionClass, readyToSendForm1, readyToSendForm2, readyToSendForm3, readyToSendForm4,
-    /* campos form1 */ newQuestionTextMain, setNewQuestionTextMain, newImageQuestionMain, setNewImageQuestionMain, newCorrectAnswerMain, setNewCorrectAnswerMain, 
-    newIconDescriptionMain, setNewIconDescriptionMain, newDescriptionMain, setNewDescriptionMain, newImageDescriptionMain, setNewImageDescriptionMain, newQuestionNumberMain, setNewQuestionNumberMain, 
-    /* campos form2 */ newOptionAMain, setNewOptionAMain, newOptionBMain, setNewOptionBMain, newOptionCMain, setNewOptionCMain, newOptionDMain, 
-    setNewOptionDMain, newOptionEMain, setNewOptionEMain, newOptionNumberMain, setNewOptionNumberMain, 
-    /* campos form3 */ newQuestionTextMulti, setNewQuestionTextMulti, newImageQuestionMulti, setNewImageQuestionMulti, newCorrectAnswerMulti, setNewCorrectAnswerMulti, newIconDescriptionMulti, setNewIconDescriptionMulti, 
-    newDescriptionMulti, setNewDescriptionMulti, newImageDescriptionMulti, setNewImageDescriptionMulti, newQuestionNumberMulti, setNewQuestionNumberMulti,
-    /* campos form4 */ newOptionAMulti, setNewOptionAMulti, newOptionBMulti, setNewOptionBMulti, newOptionCMulti, setNewOptionCMulti, newOptionDMulti, 
-    setNewOptionDMulti, newOptionEMulti, setNewOptionEMulti, newOptionNumberMulti, setNewOptionNumberMulti
+    nameText1, nameText2, nameText3, nameText4, nameText5, nameText6, nameText7, optionClass, 
+    readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2, readyToSendForm3, setReadyToSendForm3, 
+    readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, readyToSendForm6, setReadyToSendForm6,
+    /* campos form1 */ setNewQuestionTextMain, setNewImageQuestionMain, setNewCorrectAnswerMain, 
+    setNewIconDescriptionMain, setNewDescriptionMain, setNewImageDescriptionMain, setNewQuestionNumberMain, 
+    /* campos form2 */ setNewOptionAMain, setNewOptionBMain, setNewOptionCMain,  
+    setNewOptionDMain, setNewOptionEMain, setNewOptionNumberMain, 
+    /* campos form3 */ setNewQuestionTextMulti, setNewImageQuestionMulti, setNewCorrectAnswerMulti, setNewIconDescriptionMulti, 
+    setNewDescriptionMulti, setNewImageDescriptionMulti, setNewQuestionNumberMulti,
+    /* campos form4 */ setNewOptionAMulti, setNewOptionBMulti, setNewOptionCMulti,  
+    setNewOptionDMulti, setNewOptionEMulti, setNewOptionNumberMulti,
+    /* campos form5 */ setNewQuestionTextThreeMulti, setNewImageQuestionThreeMulti, setNewCorrectAnswerThreeMulti, 
+    setNewIconDescriptionThreeMulti, setNewDescriptionThreeMulti, setNewImageDescriptionThreeMulti, setNewQuestionNumberThreeMulti,
+    /* campos form6 */ setNewOptionAThreeMulti, setNewOptionBThreeMulti, setNewOptionCThreeMulti,  
+    setNewOptionDThreeMulti, setNewOptionEThreeMulti, setNewOptionFThreeMulti, setNewOptionNumberThreeMulti
 }) {
 
     return(
@@ -20,27 +26,32 @@ function FieldsQuestionsOptions({
                 nameText={nameText1}
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 1 (4 forms)
+                // 6 possíveis elementos do campo 1 (6 forms)
                 // campo 1 do form 1
-                valueForm1={newQuestionTextMain}
                 setValueForm1={setNewQuestionTextMain}
-
                 //campo 1 do form 2
-                valueForm2={newOptionAMain}
                 setValueForm2={setNewOptionAMain}
-
                 //campo 1 do form 3
-                valueForm3={newQuestionTextMulti}
                 setValueForm3={setNewQuestionTextMulti}
-
                 //campo 1 do form 4
-                valueForm4={newOptionAMulti}
                 setValueForm4={setNewOptionAMulti}
+                //campo 1 do form 5
+                setValueForm5={setNewQuestionTextThreeMulti}
+                //campo 1 do form 6
+                setValueForm6={setNewOptionAThreeMulti}
 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
+                setReadyToSendForm3={setReadyToSendForm3}
                 readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}
             />
 
             {/* campo 2, obrigatório (nameText2) */}
@@ -48,27 +59,32 @@ function FieldsQuestionsOptions({
                 nameText={nameText2}
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 2 (4 forms)
+                // 6 possíveis elementos do campo 2 (6 forms)
                 // campo 2 do form 1
-                valueForm1={newImageQuestionMain}
                 setValueForm1={setNewImageQuestionMain}
-
                 // campo 2 do form 2
-                valueForm2={newOptionBMain}
                 setValueForm2={setNewOptionBMain}
-
                 // campo 2 do form 3
-                valueForm3={newImageQuestionMulti}
                 setValueForm3={setNewImageQuestionMulti}
-
                 // campo 2 do form 4
-                valueForm4={newOptionBMulti}
                 setValueForm4={setNewOptionBMulti}
+                // campo 2 do form 5
+                setValueForm5={setNewImageQuestionThreeMulti}
+                // campo 2 do form 6
+                setValueForm6={setNewOptionBThreeMulti}
 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
+                setReadyToSendForm3={setReadyToSendForm3}
                 readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}
             />
 
             {/* campo 3, obrigatório (nameText3) */}
@@ -76,27 +92,32 @@ function FieldsQuestionsOptions({
                 nameText={nameText3} 
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 3 (4 forms)
+                // 6 possíveis elementos do campo 3 (6 forms)
                 // campo 3 do form 1
-                valueForm1={newCorrectAnswerMain}
                 setValueForm1={setNewCorrectAnswerMain}
-
                 // campo 3 do form 2
-                valueForm2={newOptionCMain}
-                setValueForm2={setNewOptionCMain} 
-                
+                setValueForm2={setNewOptionCMain}                
                 // campo 3 do form 3
-                valueForm3={newCorrectAnswerMulti}
                 setValueForm3={setNewCorrectAnswerMulti}
-
                 // campo 3 do form 4
-                valueForm4={newOptionCMulti}
                 setValueForm4={setNewOptionCMulti}
+                // campo 3 do form 5
+                setValueForm5={setNewCorrectAnswerThreeMulti}
+                // campo 3 do form 6
+                setValueForm6={setNewOptionCThreeMulti}
                 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
+                setReadyToSendForm3={setReadyToSendForm3}
                 readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}
             />
 
             {/* campo 4, obrigatório (nameText4) */}
@@ -104,27 +125,32 @@ function FieldsQuestionsOptions({
                 nameText={nameText4} 
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 4 (4 forms)
+                // 6 possíveis elementos do campo 4 (6 forms)
                 // campo 4 do form 1
-                valueForm1={newIconDescriptionMain}
                 setValueForm1={setNewIconDescriptionMain}
-
                 // campo 4 do form 2
-                valueForm2={newOptionDMain}
-                setValueForm2={setNewOptionDMain} 
-                
+                setValueForm2={setNewOptionDMain}                
                 // campo 4 do form 3
-                valueForm3={newIconDescriptionMulti}
                 setValueForm3={setNewIconDescriptionMulti}
-
                 // campo 4 do form 4
-                valueForm4={newOptionDMulti}
                 setValueForm4={setNewOptionDMulti}                
+                // campo 4 do form 5
+                setValueForm5={setNewIconDescriptionThreeMulti}
+                // campo 4 do form 6
+                setValueForm6={setNewOptionDThreeMulti} 
                 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
-                readyToSendForm4={readyToSendForm4}                     
+                setReadyToSendForm3={setReadyToSendForm3}
+                readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}                    
             />
 
             {/* campo 5, obrigatório (nameText5) */}
@@ -132,75 +158,94 @@ function FieldsQuestionsOptions({
                 nameText={nameText5} 
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 5 (4 forms)
+                // 6 possíveis elementos do campo 5 (6 forms)
                 // campo 5 do form 1
-                valueForm1={newDescriptionMain}
                 setValueForm1={setNewDescriptionMain}
-
                 // campo 5 do form 2
-                valueForm2={newOptionEMain}
-                setValueForm2={setNewOptionEMain} 
-                
+                setValueForm2={setNewOptionEMain}                
                 // campo 5 do form 3
-                valueForm3={newDescriptionMulti}
-                setValueForm3={setNewDescriptionMulti}               
-
+                setValueForm3={setNewDescriptionMulti}
                 // campo 5 do form 4
-                valueForm4={newOptionEMulti}
                 setValueForm4={setNewOptionEMulti}                
+                // campo 5 do form 5
+                setValueForm5={setNewDescriptionThreeMulti}
+                // campo 5 do form 6
+                setValueForm6={setNewOptionEThreeMulti}
                 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
-                readyToSendForm4={readyToSendForm4}                
+                setReadyToSendForm3={setReadyToSendForm3}
+                readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}                
             />
 
-            {/* campo 6, só vai existir se for dado algum nameText para a label (nameText6) */}
+            {/* campo 6, obrigatório (nameText6) */}
             <FieldQuestionOption
                 nameText={nameText6} 
                 optionClass={optionClass}
 
-                // 4 possíveis elementos do campo 6 (4 forms)
+                // 6 possíveis elementos do campo 6 (6 forms)
                 // campo 6 do form 1
-                valueForm1={newImageDescriptionMain}
                 setValueForm1={setNewImageDescriptionMain}
-
                 // campo 6 do form 2
-                valueForm2={newOptionNumberMain}
-                setValueForm2={setNewOptionNumberMain} 
-                
+                setValueForm2={setNewOptionNumberMain}                
                 // campo 6 do form 3
-                valueForm3={newImageDescriptionMulti}
-                setValueForm3={setNewImageDescriptionMulti}               
-
+                setValueForm3={setNewImageDescriptionMulti}
                 // campo 6 do form 4
-                valueForm4={newOptionNumberMulti}
-                setValueForm4={setNewOptionNumberMulti}  
+                setValueForm4={setNewOptionNumberMulti}                
+                // campo 6 do form 5
+                setValueForm5={setNewImageDescriptionThreeMulti}
+                // campo 6 do form 6
+                setValueForm6={setNewOptionFThreeMulti}
 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
+                setReadyToSendForm3={setReadyToSendForm3}
                 readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}
             />
 
-            {/* campo 7, obrigatório (nameText7) */}
+            {/* campo 7, só vai existir se for dado algum nameText para a label (nameText7) */}
             {nameText7 && <FieldQuestionOption
                 nameText={nameText7} 
                 optionClass={optionClass}
 
-                // 2 possíveis elementos do campo 7 (2 forms)             
+                // 4 possíveis elementos do campo 7 (4 forms)             
                 // campo 7 do form 1
-                valueForm1={newQuestionNumberMain}
                 setValueForm1={setNewQuestionNumberMain}
-
                 // campo 7 do form 3
-                valueForm3={newQuestionNumberMulti}
                 setValueForm3={setNewQuestionNumberMulti}
+                // campo 7 do form 5
+                setValueForm5={setNewQuestionNumberThreeMulti}
+                // campo 7 do form 6
+                setValueForm6={setNewOptionNumberThreeMulti}
                 
                 readyToSendForm1={readyToSendForm1}
+                setReadyToSendForm1={setReadyToSendForm1}
                 readyToSendForm2={readyToSendForm2}
+                setReadyToSendForm2={setReadyToSendForm2}
                 readyToSendForm3={readyToSendForm3}
+                setReadyToSendForm3={setReadyToSendForm3}
                 readyToSendForm4={readyToSendForm4}
+                setReadyToSendForm4={setReadyToSendForm4}
+                readyToSendForm5={readyToSendForm5}
+                setReadyToSendForm5={setReadyToSendForm5}
+                readyToSendForm6={readyToSendForm6}
+                setReadyToSendForm6={setReadyToSendForm6}
             />}
                    
         </>

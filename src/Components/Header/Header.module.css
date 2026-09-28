@@ -4,7 +4,8 @@
     align-items: center;
     position: relative;
     color: var(--color-fourth);
-    background-color: var(--color-second);
+    background-image: url(../../imgs/bg-perfil-header.png);
+    background-position: contain;
     height: 12vh;
     padding: 0 12px;
     z-index: 2;
@@ -86,6 +87,8 @@
   align-items: center;
   width: 15%;
   color: var(--color-fourth);
+  background-image: url(../../imgs/bg-perfil-header.png);
+  background-position: contain;
   padding: 6px 8px;
   border: 1px solid var(--color-fourth);
   border-radius: 8px;
@@ -95,12 +98,12 @@
 }
 
 .containerLoginSignin:hover {
-  color: var(--color-first);
-  box-shadow: 5px 5px 5px var(--color-first);
+  color: var(--color-second);
+  box-shadow: 5px 5px 5px var(--color-second);
 }
 
 .containerLoginSignin:hover .containerLoginSigninImageNameImg {
-  box-shadow: 5px 3px 3px var(--color-first);
+  box-shadow: 5px 3px 3px var(--color-second);
 }
 
 .containerLoginSigninImageName {
