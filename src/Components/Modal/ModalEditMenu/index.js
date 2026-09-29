@@ -702,8 +702,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
         </div>
 
-        {/* Main form */}
-        {activePageMain && questionMain && optionMain && 
+        {/* Demo e Main form */}
+        {(activePageDemo || activePageMain) && questionMain && optionMain && 
         <form // form1, este form só aparecerá se tiver uma questão e opção da PageMain
           onSubmit={(event) => multiFunctionsNewPageMain(event)}
           className={styles.formModal}
@@ -818,7 +818,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         
         </form>}
 
-        {/* multi form */}
+        {/* Multi form */}
         {activePageMulti && questionMulti && optionMulti && 
         <form // form2, este form só aparecerá se tiver uma questão e opção da PageMulti
           onSubmit={multiFunctionsPageMulti}
