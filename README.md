@@ -36,7 +36,6 @@
 - [Pixabay](https://pixabay.com/pt/)
 - [ChatGPT](https://chatgpt.com/)
 - [Germini](https://gemini.google.com/app?hl=pt-BR)
-- [Lexica](https://lexica.art/)
 - [Github](https://github.com/)
 - [Github Actions](https://github.com/features/actions)
 - [Docker](https://www.docker.com/)

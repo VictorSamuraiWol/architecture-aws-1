@@ -1,7 +1,7 @@
-// import styles from './PopupQuestionSuccessfully.module.css'
+// import styles from './PopupSuccessfully.module.css'
 import PopupDefault from '../PopupDefault'
 
-function PopupQuestionSuccessfully({ text, activePopup, specificStyles }) {
+function PopupSuccessfully({ text, activePopup, specificStyles }) {
 
   return (
     <PopupDefault 
@@ -13,4 +13,4 @@ function PopupQuestionSuccessfully({ text, activePopup, specificStyles }) {
 
 }
 
-export default PopupQuestionSuccessfully
+export default PopupSuccessfully;

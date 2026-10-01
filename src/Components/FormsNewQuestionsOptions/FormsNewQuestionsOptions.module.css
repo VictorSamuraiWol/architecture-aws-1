@@ -35,7 +35,15 @@
     padding: 0 12px;
 }
 
+.containerTitleForm {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
 .titleForm {
+    font-style: italic;
     cursor: pointer;
     margin: 0;
     z-index: 1;
@@ -43,6 +51,12 @@
 
 .optionClass {
     max-width: max-content;
+}
+
+.containerButtonSave {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .buttonSave {
@@ -74,7 +88,14 @@
 }
 
 /* responsividade */
-@media (min-width: 1661px) {
+@media (min-width: 1921px) {
+    .forms {
+        background-size: cover;
+    }
+
+}
+
+@media (max-width: 1920px) {
     .form {
         width: 25%;
     }
@@ -83,7 +104,7 @@
 
 @media (max-width: 1660px) {
     .form {
-        width: 35%;
+        width: 34%;
     }
 
 }

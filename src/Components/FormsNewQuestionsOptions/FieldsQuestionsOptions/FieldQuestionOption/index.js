@@ -7,7 +7,7 @@ function FieldQuestionOption({
     readyToSendForm3, setReadyToSendForm3, readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, 
     readyToSendForm6, setReadyToSendForm6, setValueForm1, setValueForm2, setValueForm3, setValueForm4, setValueForm5, setValueForm6
 }) {
-  
+
     const uniqueId = uuidv4() // id única para somente para os campos    
     const [newValue, setNewValue] = useState("") // valor capturado do textarea    
     const [formsTitlesTarget, setFormsTitlesTarget] = useState("") // valores dos títulos dos 4 forms
@@ -21,8 +21,8 @@ function FieldQuestionOption({
     } 
 
     //atualizando os valores e certificando que todos estão capturados antes de salvar os dados dos forms
-    useEffect(() => {   
-        if (formsTitlesTarget  === "Form 1 (Questions)") { // form 1
+    useEffect(() => { 
+        if (formsTitlesTarget  === "MainQuestions:") { // forms 1
             nameText === "Question:*" && setValueForm1(newValue) // setNewQuestionTextMain
 
             nameText === "Image Question:" && setValueForm1(newValue) // setNewImageQuestionMain
@@ -35,9 +35,9 @@ function FieldQuestionOption({
 
             nameText === "Image Description:" && setValueForm1(newValue) // setNewImageDescriptionMain
 
-            nameText === "Number:*" && setValueForm1(newValue) // setNewQuestionNumberMain      
-
-        }  else if (formsTitlesTarget === "Form 2 (Options)") { // form 2
+            // nameText === "Number:*" && setValueForm1(newValue) // setNewQuestionNumberMain
+            
+        }  else if (formsTitlesTarget === "MainOptions:") { // form 2
             nameText === "Option A:*" && setValueForm2(newValue) // setNewOptionAMain
 
             nameText === "Option B:*" && setValueForm2(newValue) // setNewOptionBMain
@@ -50,7 +50,7 @@ function FieldQuestionOption({
 
             nameText === "Number:*" && setValueForm2(newValue) // setNewOptionNumberMain
         
-        } else if (formsTitlesTarget === "Form 3 (MultiQuestions)") { // form 3
+        } else if (formsTitlesTarget === "MultiQuestions:") { // form 3
             nameText === "Question:*" && setValueForm3(newValue) // setNewQuestionTextMulti
 
             nameText === "Image Question:" && setValueForm3(newValue) // setNewImageQuestionMulti
@@ -63,9 +63,9 @@ function FieldQuestionOption({
 
             nameText === "Image Description:" && setValueForm3(newValue) // setNewImageDescriptionMulti
             
-            nameText === "Number:*" && setValueForm3(newValue) // setNewQuestionNumberMulti
+            // nameText === "Number:*" && setValueForm3(newValue) // setNewQuestionNumberMulti
     
-        } else if (formsTitlesTarget === "Form 4 (MultiOptions)") { // form 4
+        } else if (formsTitlesTarget === "MultiOptions:") { // form 4
             nameText === "Option A:*" && setValueForm4(newValue) // setNewOptionAMulti
     
             nameText === "Option B:*" && setValueForm4(newValue) // setNewOptionBMulti
@@ -78,22 +78,22 @@ function FieldQuestionOption({
             
             nameText === "Number:*" && setValueForm4(newValue) // setNewOptionNumberMulti
 
-        } else if (formsTitlesTarget === "Form 5 (ThreeMultiQuestions)") { // form 5
-            nameText === "Question:*" && setValueForm5(newValue) // setNewQuestionTextMulti
+        } else if (formsTitlesTarget === "ThreeMultiQuestions:") { // form 5
+            nameText === "Question:*" && setValueForm5(newValue) // setNewQuestionTextThreeMulti
 
-            nameText === "Image Question:" && setValueForm5(newValue) // setNewImageQuestionMulti
+            nameText === "Image Question:" && setValueForm5(newValue) // setNewImageQuestionThreeMulti
 
-            nameText === "Answer:*" && setValueForm5(newValue) // setNewCorrectAnswerMulti
+            nameText === "Answer:*" && setValueForm5(newValue) // setNewCorrectAnswerThreeMulti
 
-            nameText === "Icon Description:" && setValueForm5(newValue) // setNewIconDescriptionMulti
+            nameText === "Icon Description:" && setValueForm5(newValue) // setNewIconDescriptionThreeMulti
 
-            nameText === "Description:*" && setValueForm5(newValue) // setNewDescriptionMulti
+            nameText === "Description:*" && setValueForm5(newValue) // setNewDescriptionThreeMulti
 
-            nameText === "Image Description:" && setValueForm5(newValue) // setNewImageDescriptionMulti
+            nameText === "Image Description:" && setValueForm5(newValue) // setNewImageDescriptionThreeMulti
             
-            nameText === "Number:*" && setValueForm5(newValue) // setNewQuestionNumberMulti
+            // nameText === "Number:*" && setValueForm5(newValue) // setNewQuestionNumberThreeMulti
     
-        } else if (formsTitlesTarget === "Form 6 (ThreeMultiOptions)") { // form 6
+        } else if (formsTitlesTarget === "ThreeMultiOptions:") { // form 6
             nameText === "Option A:*" && setValueForm6(newValue) // setNewOptionAThreeMulti
     
             nameText === "Option B:*" && setValueForm6(newValue) // setNewOptionBThreeMulti
@@ -108,7 +108,7 @@ function FieldQuestionOption({
             
             nameText === "Number:*" && setValueForm6(newValue) // setNewOptionNumberThreeMulti
 
-        } 
+        }
 
         if (readyToSendForm1 || readyToSendForm2 || readyToSendForm3 || readyToSendForm4 || readyToSendForm5 || readyToSendForm6) { // apaga os valores dos campos ao salvar
             setNewValue('')
