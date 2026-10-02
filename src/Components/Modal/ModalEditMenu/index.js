@@ -692,7 +692,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           className={styles.modalContent}
       >
         <div className={styles.containerTitleIconDelete}>
-          <h1>EDIT CARD:</h1>
+          <h1>EDIT CARD</h1>
 
           {/* imagem delete do react icon */}
           <TiDeleteOutline

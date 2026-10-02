@@ -26,15 +26,15 @@
 .modalLoginContent {
   display: flex;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   gap: 16px;
   position: absolute;
-  background: var(--color-first);
+  background-image: url(../../../imgs/bg-perfil-header.png);
   color: var(--color-fourth);
   width: 80%;
   padding: 16px 0;
-  border: 1px solid var(--color-fourth);
+  border: 1px solid var(--color-third);
   border-radius: 8px;
 }
 
@@ -46,7 +46,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 98%;
+  padding: 0 12px;
   border-bottom: 1px solid var(--color-fourth);
 }
 
@@ -57,6 +58,9 @@
 
 .containerLoginModalDeleteIcon {
   font-size: 1.5rem;
+  background-color: var(--color-second);
+  border: 1px solid var(--color-third);
+  border-radius: 50%;
   cursor: pointer;
 }
 
@@ -69,8 +73,10 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 100%;
+  width: 98%;
   gap: 6px;
+  padding: 0 12px;
+  color: var(--color-first);
   cursor: default;
 }
 
@@ -94,7 +100,7 @@
 
 .loginUsersPasswordsUserName {
   padding-right: 4px;
-  border-right: 1px solid var(--color-fourth);
+  border-right: 1px solid var(--color-first);
   overflow-wrap: break-word;
   margin: 0;
 }

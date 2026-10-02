@@ -48,7 +48,7 @@
 
 .modalContent {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   position: absolute;
@@ -56,9 +56,31 @@
   background-color: var(--color-first);
   font-weight: bold;
   width: 90%;
-  padding: 16px;
-  border: 2px solid var(--color-fourth);
+  max-height: 60%;
+  padding-bottom: 8px;
   border-radius: 12px;
+}
+
+.heroImage {
+  height: 180px;
+  width: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.containerTitleIconDeleteDescription {
+  max-height: 70%;
+  overflow: auto;
+}
+
+.containerTitleIconDeleteDescription::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.containerTitleIconDeleteDescription::-webkit-scrollbar-thumb {
+  background-color: var(--color-fourth);
+  border-radius: 6px;
 }
 
 .containerTextIcon {
@@ -70,6 +92,7 @@
 
 .containerTextIcon span {
   text-decoration: underline;
+  padding: 0 8px;
 }
 
 .modalImageDelete {
@@ -85,10 +108,10 @@
 .modalDescription {
   text-align: justify;
   line-height: 28px;
-  padding-top: 16px;
+  padding: 8px;
   margin: 0;
+  max-height: 60%;
   overflow-wrap: break-word;
-  overflow: auto;
   transition: 0.1s;
   cursor: default;
 }
@@ -164,18 +187,13 @@
     width: 70%;
   }
 
-  .modalDescription {
-    overflow: auto;
-    padding: 0 8px 0 0;
-  }
-
-  .modalDescription::-webkit-scrollbar {
+  .containerTitleIconDeleteDescription::-webkit-scrollbar {
     height: 4px;
     width: 4px;
   }
 
-  .modalDescription::-webkit-scrollbar-thumb {
-    background-color: var(--color-fourth);
+  .modalDescription {
+    padding: 0 8px 0 0;
   }
 
   .iconDescriptionStyle {
@@ -197,7 +215,14 @@
 
   .modalContent {
     font-size: 0.8rem;
-    max-height: 300px;
+  }
+
+  .heroImage {
+    height: 20%;
+  }
+
+  .containerTitleIconDeleteDescription {
+    height: 80%;
   }
 
   .modalImageDelete {

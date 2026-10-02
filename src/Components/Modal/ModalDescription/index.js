@@ -1,6 +1,7 @@
 import styles from './ModalDescription.module.css'
 import Modal from 'react-modal'
 import ModalImageDescription from '../ModalImageDescription'
+import heroImage from '../../../imgs/hero-top-image.png'
 import { useState } from 'react'
 import { TiDeleteOutline } from "react-icons/ti"
 
@@ -44,44 +45,53 @@ function ModalDescription({ questionMain, questionMulti, iconsDescriptions, icon
         overlayClassName={styles.modalOverlay}
         className={styles.modalContent}
       >
-        <div className={styles.containerTextIcon}>
-          <span>Description</span>
+        <img 
+          className={styles.heroImage} 
+          src={heroImage} 
+          alt='bg-img' 
+        />
 
-          <TiDeleteOutline
-            onClick={closeModal}
-            className={styles.modalImageDelete} 
-          />
+        <div className={styles.containerTitleIconDeleteDescription}>
+          <div className={styles.containerTextIcon}>
+            <span>Description</span>
 
-        </div>
-
-        <div className={styles.modalDescription}>
-          {/* só irá aparecer a imagem na descrição se ela estiver na lista de imagens salvas */}
-          {iconsDescriptions[iconDescription] !== undefined ? 
-            <img 
-              className={styles.iconDescriptionStyle} 
-              src={iconsDescriptions[iconDescription]} 
-              alt='img'
-            /> 
-            :
-            iconDescription && iconsDescriptions[iconDescription] === undefined ? // se tiver algo digitado no atributo iconDescription, mas não encontra a imagem correspondente 
-            <img 
-              className={styles.iconDescriptionStyle} 
-              src={iconsDescriptions['iconNotFound']} 
-              alt='img'
+            <TiDeleteOutline
+              onClick={closeModal}
+              className={styles.modalImageDelete} 
             />
-            :
-            null // se não tiver nada digitado no atributo iconDescription não aparecerá nada
-          }
-          {description}
 
-          {/* esta modal só irá aparecer se tiver uma imagem na questão para mostrar */}
-          {(questionMain?.imageDescription || questionMulti?.imageDescription) && 
-            <ModalImageDescription 
-              questionMain={questionMain} 
-              questionMulti={questionMulti}
-              imagesDescriptions={imagesDescriptions}
-            />
-          }
+          </div>
+
+          <div className={styles.modalDescription}>
+            {/* só irá aparecer a imagem na descrição se ela estiver na lista de imagens salvas */}
+            {iconsDescriptions[iconDescription] !== undefined ? 
+              <img 
+                className={styles.iconDescriptionStyle} 
+                src={iconsDescriptions[iconDescription]} 
+                alt='img'
+              /> 
+              :
+              iconDescription && iconsDescriptions[iconDescription] === undefined ? // se tiver algo digitado no atributo iconDescription, mas não encontra a imagem correspondente 
+              <img 
+                className={styles.iconDescriptionStyle} 
+                src={iconsDescriptions['iconNotFound']} 
+                alt='img'
+              />
+              :
+              null // se não tiver nada digitado no atributo iconDescription não aparecerá nada
+            }
+            {description}
+
+            {/* esta modal só irá aparecer se tiver uma imagem na questão para mostrar */}
+            {(questionMain?.imageDescription || questionMulti?.imageDescription) && 
+              <ModalImageDescription 
+                questionMain={questionMain} 
+                questionMulti={questionMulti}
+                imagesDescriptions={imagesDescriptions}
+              />
+            }
+
+          </div>
 
         </div>
 

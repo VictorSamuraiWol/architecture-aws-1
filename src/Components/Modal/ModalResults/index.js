@@ -73,7 +73,7 @@ function ModalResults() {
                     className={styles.modalImageDelete} 
                 />
 
-                <h1>✔REAL-TIME RESULT:</h1>
+                <h1>✔REAL-TIME RESULT</h1>
                 <p id='corrects' className={styles.correct}>Correct questions: {dataResults.numCorrectOption}</p>
                 <p id='incorrects' className={styles.incorrect}>Incorrect questions: {dataResults.numIncorrectOption}</p>
                 <p id='correctsIncorrects'>All questions: {dataResults.allCorrectIncorrectResults}</p>

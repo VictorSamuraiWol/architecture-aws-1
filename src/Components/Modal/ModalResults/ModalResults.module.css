@@ -37,11 +37,11 @@
     flex-direction: column;
     position: absolute;
     color: var(--color-fourth);
-    background-color: var(--color-first);
+    background-image: url(../../../imgs/bg-perfil-header.png);
     font-weight: bold;
     width: 50%;
     padding: 20px 12px 40px 12px;
-    border: 2px solid var(--color-fourth);
+    border: 1px solid var(--color-third);
     border-radius: 12px;
 }
 
@@ -49,37 +49,16 @@
   outline: none;
 }
 
-.correct {
-    color: var(--color-correct);
-}
-
-.incorrect {
-    color: var(--color-incorrect);
-}
-
 .modalContent h1 {
     font-size: 2rem;
-    padding: 4px;
-    border: 3px dotted var(--color-third);
+    padding: 8px;
+    background-color: var(--color-second);
+    border: 1px solid var(--color-third);
     border-radius: 16px;
     cursor: default;
 }
 
 .modalContent h1:hover {
-    transform: scale(0.97);
-}
-
-.modalContent p {
-    font-size: 1.8rem;
-    font-style: italic;
-    text-decoration: underline;
-    padding: 4px;
-    border: 3px dotted var(--color-third);
-    border-radius: 16px;
-    cursor: default;
-}
-
-.modalContent p:hover {
     transform: scale(0.97);
 }
 
@@ -89,6 +68,8 @@
     right: 5px;
     height: 2em;
     width: 2em;
+    background-color: var(--color-second);
+    border: 1px solid var(--color-third);
     border-radius: 50%;
     cursor: pointer;
     z-index: 1;
@@ -96,6 +77,29 @@
 
 .modalImageDelete:hover {
     transform: scale(0.97);
+}
+
+.modalContent p {
+    font-size: 1.8rem;
+    font-style: italic;
+    text-decoration: underline;
+    padding: 8px;
+    background-color: var(--color-second);
+    border: 1px solid var(--color-third);
+    border-radius: 16px;
+    cursor: default;
+}
+
+.modalContent p:hover {
+    transform: scale(0.97);
+}
+
+.correct {
+    color: var(--color-correct);
+}
+
+.incorrect {
+    color: var(--color-incorrect);
 }
 
 /* Responsividade */
