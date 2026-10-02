@@ -21,7 +21,7 @@ function FormsNewQuestionsOptions() {
 
     const errorSound = new Audio(errorAudio) // som ao tentar salvar incorretamente
 
-    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, postApi, setPostApi } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
     const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti  } = useOutletContext()
