@@ -12,7 +12,7 @@ const Timer = () => {
   const timerStartSound = new Audio(timerStart)
   const timerPauseSound = new Audio(timerPause)
 
-  const { mute, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
+  const { mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
 
   const startTimer = () => {
     if (!isRunning) {
@@ -48,16 +48,16 @@ const Timer = () => {
   useEffect(() => {
     if (time === 0) {
       pauseTimer()
-      
-      setActivePopupZeroTimerMainAlert && setActivePopupZeroTimerMainAlert(true)
-      setTimeout(() => setActivePopupZeroTimerMainAlert(false), 3000) 
-       
-      setActivePopupZeroTimerMultiAlert && setActivePopupZeroTimerMultiAlert(true)
-      setTimeout(() => setActivePopupZeroTimerMultiAlert(false), 3000)
+    
+      // ativa o popup PopupAlertMessage do componente Main, Multi e ThreeMulti
+      activePageDemo && setActivePopupZeroTimerMainAlert(true)
+      activePageMain && setActivePopupZeroTimerMainAlert(true)
+      activePageMulti && setActivePopupZeroTimerMultiAlert(true)
+      activePageThreeMulti && setActivePopupZeroTimerMultiAlert(true)
 
     }
 
-  }, [time, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert])
+  }, [time, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert])
 
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {
