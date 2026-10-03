@@ -31,15 +31,8 @@
 
 @media (max-width: 860px) {
     .question {
-        font-size: 0.9rem;
+        font-size: 1rem;
         line-height: 28px;
     }
 
-}
-
-@media (max-width: 580px) {
-    .question {
-        font-size: 0.8rem;
-    }
-    
 }

@@ -125,19 +125,20 @@
     }
 
     .textMultiOptions {
-        font-size: 0.9rem;
+        font-size: 1rem;
         width: 100%;
         overflow-x: auto;
         white-space: nowrap;
     }
 
     .textMultiOptions::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;
+        width: 4px;
+        height: 4px;
     }
 
     .textMultiOptions::-webkit-scrollbar-thumb {
         background-color: var(--color-fourth);
+        border-radius: 6px;
     }
 
 }
@@ -145,11 +146,6 @@
 @media (max-width: 580px) {
     .multiOptions {
         padding: 2px 0;
-    }
-
-    .multiOptions::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;  
     }
 
     .alternativeMultiOptions {
@@ -170,7 +166,12 @@
     }
 
     .textMultiOptions {
-        font-size: 0.8rem;
+        padding: 2px 6px;
+    }
+
+    .textMultiOptions::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
     }
 
 }

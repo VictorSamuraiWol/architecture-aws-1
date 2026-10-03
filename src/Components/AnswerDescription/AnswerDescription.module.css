@@ -1,7 +1,7 @@
 .answerDescription {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 8px;
     color: var(--color-fourth);
     padding: 0 8px;
@@ -74,7 +74,7 @@
     }
 
     .item, .itens, .textAnswer {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .textAnswer {
@@ -95,12 +95,7 @@
 }
 
 @media (max-width: 580px) {
-    .item, .itens {
-        font-size: 0.8rem;
-    }
-
     .textAnswer {
-        font-size: 0.8rem;
         height: 110px;
     }
 

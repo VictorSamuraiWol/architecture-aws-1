@@ -16,3 +16,26 @@
   top: 20%;
   left: 40%;
 }
+
+/* Responsividade */
+@media (max-width: 1100px) {
+  .popupAlertMessage {
+    left: 37%;
+  }
+
+}
+
+
+@media (max-width: 860px) {
+  .popupAlertMessage {
+    left: 35%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .popupAlertMessage {
+    left: 25%;
+  }
+
+}

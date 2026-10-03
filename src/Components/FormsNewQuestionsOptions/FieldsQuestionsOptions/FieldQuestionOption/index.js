@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
-    nameText, optionClass, readyToCleanAll, readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2,
+    nameText, specificStylesLabel, readyToCleanAll, readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2,
     readyToSendForm3, setReadyToSendForm3, readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, 
     readyToSendForm6, setReadyToSendForm6, setValueForm1, setValueForm2, setValueForm3, setValueForm4, setValueForm5, setValueForm6
 }) {
@@ -130,11 +130,11 @@ function FieldQuestionOption({
     return(
         <div className={styles.field}>
             <div
-                className={`labelTextarea ${styles.labelTextarea}`}
+                className={`labelTextarea ${styles.containerField}`}
 
             >
                 <label
-                    className={optionClass}
+                    className={specificStylesLabel}
                     htmlFor={uniqueId}
                 >
                     {nameText}

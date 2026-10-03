@@ -2,7 +2,7 @@
 import FieldQuestionOption from './FieldQuestionOption'
 
 function FieldsQuestionsOptions({ 
-    nameText1, nameText2, nameText3, nameText4, nameText5, nameText6, nameText7, optionClass, 
+    nameText1, nameText2, nameText3, nameText4, nameText5, nameText6, nameText7, specificStylesLabel, 
     readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2, readyToSendForm3, setReadyToSendForm3, 
     readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, readyToSendForm6, setReadyToSendForm6,
     /* campos form1 */ setNewQuestionTextMain, setNewImageQuestionMain, setNewCorrectAnswerMain, 
@@ -24,7 +24,7 @@ function FieldsQuestionsOptions({
             {/* campo 1, obrigatório (nameText1) */}
             <FieldQuestionOption
                 nameText={nameText1}
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 1 (6 forms)                
                 setValueForm1={setNewQuestionTextMain} // campo 1 do form 1   
@@ -51,7 +51,7 @@ function FieldsQuestionsOptions({
             {/* campo 2, obrigatório (nameText2) */}
             <FieldQuestionOption
                 nameText={nameText2}
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 2 (6 forms)      
                 setValueForm1={setNewImageQuestionMain} // campo 2 do form 1             
@@ -78,7 +78,7 @@ function FieldsQuestionsOptions({
             {/* campo 3, obrigatório (nameText3) */}
             <FieldQuestionOption
                 nameText={nameText3} 
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 3 (6 forms)               
                 setValueForm1={setNewCorrectAnswerMain} // campo 3 do form 1               
@@ -105,7 +105,7 @@ function FieldsQuestionsOptions({
             {/* campo 4, obrigatório (nameText4) */}
             <FieldQuestionOption
                 nameText={nameText4} 
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 4 (6 forms)               
                 setValueForm1={setNewIconDescriptionMain} // campo 4 do form 1   
@@ -132,7 +132,7 @@ function FieldsQuestionsOptions({
             {/* campo 5, obrigatório (nameText5) */}
             <FieldQuestionOption
                 nameText={nameText5} 
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 5 (6 forms)            
                 setValueForm1={setNewDescriptionMain} // campo 5 do form 1    
@@ -159,7 +159,7 @@ function FieldsQuestionsOptions({
             {/* campo 6, obrigatório (nameText6) */}
             <FieldQuestionOption
                 nameText={nameText6} 
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 6 possíveis elementos do campo 6 (6 forms)         
                 setValueForm1={setNewImageDescriptionMain} // campo 6 do form 1             
@@ -186,7 +186,7 @@ function FieldsQuestionsOptions({
             {/* campo 7, só vai existir se for dado algum nameText para a label (nameText7) */}
             {nameText7 && <FieldQuestionOption
                 nameText={nameText7} 
-                optionClass={optionClass}
+                specificStylesLabel={specificStylesLabel}
 
                 // 4 possíveis elementos do campo 7 (4 forms)                         
                 setValueForm1={setNewQuestionNumberMain} // campo 7 do form 1              

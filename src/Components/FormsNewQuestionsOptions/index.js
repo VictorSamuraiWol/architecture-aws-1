@@ -534,6 +534,7 @@ function FormsNewQuestionsOptions() {
                         nameText4="Icon Description:"
                         nameText5="Description:*"
                         nameText6="Image Description:"
+                        specificStylesLabel={styles.specificStylesLabel}
 
                         setNewQuestionTextMain={setNewQuestionTextMain}
                         setNewImageQuestionMain={setNewImageQuestionMain}
@@ -568,7 +569,7 @@ function FormsNewQuestionsOptions() {
                         nameText4="Option D:*"                
                         nameText5="Option E:" 
                         nameText6="Number:*"
-                        optionClass={styles.optionClass}
+                        specificStylesLabel={styles.specificStylesLabel}
  
                         setNewOptionAMain={setNewOptionAMain}    
                         setNewOptionBMain={setNewOptionBMain}     
@@ -613,6 +614,7 @@ function FormsNewQuestionsOptions() {
                         nameText4="Icon Description:"
                         nameText5="Description:*"
                         nameText6="Image Description:"
+                        specificStylesLabel={styles.specificStylesLabel}
 
                         setNewQuestionTextMulti={setNewQuestionTextMulti}
                         setNewImageQuestionMulti={setNewImageQuestionMulti}
@@ -647,7 +649,7 @@ function FormsNewQuestionsOptions() {
                         nameText4="Option D:*"                
                         nameText5="Option E:" 
                         nameText6="Number:*"
-                        optionClass={styles.optionClass}
+                        specificStylesLabel={styles.specificStylesLabel}
 
                         setNewOptionAMulti={setNewOptionAMulti}
                         setNewOptionBMulti={setNewOptionBMulti}
@@ -690,6 +692,7 @@ function FormsNewQuestionsOptions() {
                         nameText4="Icon Description:"
                         nameText5="Description:*"
                         nameText6="Image Description:"
+                        specificStylesLabel={styles.specificStylesLabel}
 
                         setNewQuestionTextThreeMulti={setNewQuestionTextThreeMulti}
                         setNewImageQuestionThreeMulti={setNewImageQuestionThreeMulti}
@@ -725,7 +728,7 @@ function FormsNewQuestionsOptions() {
                         nameText5="Option E:*"
                         nameText6="Option F:*" 
                         nameText7="Number:*"
-                        optionClass={styles.optionClass}
+                        specificStylesLabel={styles.specificStylesLabel}
 
                         setNewOptionAThreeMulti={setNewOptionAThreeMulti}
                         setNewOptionBThreeMulti={setNewOptionBThreeMulti}

@@ -29,7 +29,7 @@
   flex-direction: column;
   position: absolute;
   color: var(--color-fourth);
-  background-image: url(../../../imgs/bg-perfil-header.png);
+  background-image: url(../../../imgs/bg-popups.png);
   background-position: center;
   background-size: cover;
   font-weight: bold;
@@ -54,6 +54,11 @@
 .modalContent h1 {
   color: var(--color-fourth);
   text-shadow: 2px 2px 3px var(--color-second);
+  font-style: italic;
+  background-color: var(--color-first);
+  padding: 4px;
+  border: 1px solid var(--color-third);
+  border-radius: 8px;
   margin: 0;
   cursor: default;
 }
@@ -61,7 +66,7 @@
 .modalImageDelete {
   height: 2em;
   width: 2em;
-  background-color: var(--color-second);
+  background-color: var(--color-first);
   border: 1px solid var(--color-third);
   border-radius: 50%;
   cursor: pointer;

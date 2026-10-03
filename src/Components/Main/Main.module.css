@@ -219,6 +219,10 @@
     padding: 7px;
   }
 
+  .popupAlertMessage {
+    left: 37%;
+  }
+
 }
 
 
@@ -265,13 +269,13 @@
     width: 20%;
   }
 
+  .popupAlertMessage {
+    left: 35%;
+  }
+
 }
 
 @media (max-width: 580px) {
-  .textTitle {
-    font-size: 1rem;
-  }
-
   .inputOptions {
     width: 12px;
     height: 12px;
@@ -308,6 +312,10 @@
   .popupRepeatedMain {
     font-size: 0.7rem;
     width: 25%;
+  }
+
+  .popupAlertMessage {
+    left: 25%;
   }
 
 }

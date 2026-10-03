@@ -57,7 +57,6 @@
   font-weight: bold;
   width: 90%;
   max-height: 60%;
-  padding-bottom: 8px;
   border-radius: 12px;
 }
 
@@ -183,17 +182,13 @@
   }
   
   .modalContent {
-    font-size: 0.9rem;
+    font-size: 1rem;
     width: 70%;
   }
 
   .containerTitleIconDeleteDescription::-webkit-scrollbar {
     height: 4px;
     width: 4px;
-  }
-
-  .modalDescription {
-    padding: 0 8px 0 0;
   }
 
   .iconDescriptionStyle {
@@ -213,10 +208,6 @@
     display: flex;
   }
 
-  .modalContent {
-    font-size: 0.8rem;
-  }
-
   .heroImage {
     height: 20%;
   }
@@ -226,8 +217,8 @@
   }
 
   .modalImageDelete {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.3rem;
+    width: 1.3rem;
   }
 
   .iconDescriptionStyle {
