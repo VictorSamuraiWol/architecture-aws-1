@@ -36,10 +36,3 @@
     }
 
 }
-
-@media (max-width: 580px) {
-    .buttonDefault {
-        padding: 4px;
-    }
-
-}

@@ -61,6 +61,7 @@
 }
 
 .buttonSave {
+    font-size: 1rem;
     background-color: var(--color-second);
     z-index: 1;
 }
@@ -119,15 +120,12 @@
 
 @media (max-width: 860px) {
     .form {
+        gap: 6px;
         width: 45%;
     }
 
     .titleForm {
         font-size: 1.3rem;
-    }
-    
-    .buttonSubmit {
-        padding: 12px;
     }
 
     .popupRepeatedForms {
@@ -144,15 +142,12 @@
 
 @media (max-width: 580px) {
     .form {
+        gap: 4px;
         width: 40%;
     }
 
     .titleForm {
         font-size: 1rem;
-    }
-
-    .buttonSubmit {
-        padding: 8px;
     }
 
     .popupRepeatedForms {

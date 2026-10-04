@@ -10,7 +10,6 @@ function PageBase() {
     const [nameUser, setNameUser] = useState('')
     const [loginValidate, setLoginValidate] = useState(false)
     const [activateNavigateDefault, setActivateNavigateDefault] = useState(false)
-
     const [activePageDemo, setActivePageDemo] = useState(false)
     const [activePageMain, setActivePageMain] = useState(false)
     const [activePageMulti, setActivePageMulti] = useState(false)
@@ -26,6 +25,9 @@ function PageBase() {
     const [activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert] = useState(false)
     const [activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert] = useState(false) 
     const [activeModalEditMenu, setActiveModalEditMenu] = useState(false) // saber se a ModalEditMenu está ativa ou não
+    const [listImagesQuestions, setListImagesQuestions] = useState([])
+    const [listIconsDescriptions, setListIconsDescriptions] = useState([])
+    const [listImagesDescriptions, setListImagesDescriptions] = useState([])
     
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
@@ -118,7 +120,9 @@ function PageBase() {
                         setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
                         activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
                         activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault,
-                        activePageInfo, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu
+                        activePageInfo, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu,
+                        listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
+                        listImagesDescriptions, setListImagesDescriptions
                     }} 
                 />                
 

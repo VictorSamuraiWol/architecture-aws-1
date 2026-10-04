@@ -13,14 +13,17 @@ import simpleStoragesService from '../../imgs/answers-imgs/description/icons/Sim
 import storageGateway from '../../imgs/answers-imgs/description/icons/Storage_Gateway.png'
 import none from '../../imgs/imageNotFound.png'
 import description100 from '../../imgs/answers-imgs/description/detailsDescriptions/description100.png'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
+import { useOutletContext } from 'react-router-dom'
 
 function AnswerDescription({ 
     questionMain, questionMulti, answer, description, iconDescription, answerDescriptionDisplay, item, itens
 }) {
 
     const { listUnicOptionsContext, listMultiOptionsContext, listThreeMultiOptionsContext } = useContext(DataContext)
+
+    const { setListIconsDescriptions, setListImagesDescriptions } = useOutletContext()
 
     // todos os icons das descrições das respostas
     const [iconsDescriptions] = useState({
@@ -42,6 +45,12 @@ function AnswerDescription({
         none: none, 
         description100: description100
     })
+
+    useEffect(() => {
+        setListIconsDescriptions(Object.keys(iconsDescriptions)) // captura todos os valores de iconsDescriptions
+        setListImagesDescriptions(Object.keys(imagesDescriptions)) // captura todos os valores de imagesDescriptions
+
+    }, [setListIconsDescriptions, iconsDescriptions, setListImagesDescriptions, imagesDescriptions])
 
     return(
         <section            

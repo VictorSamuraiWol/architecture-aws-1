@@ -1,5 +1,6 @@
 import styles from './FieldQuestionOption.module.css'
 import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
@@ -11,9 +12,15 @@ function FieldQuestionOption({
     const uniqueId = uuidv4() // id única para somente para os campos    
     const [newValue, setNewValue] = useState("") // valor capturado do textarea    
     const [formsTitlesTarget, setFormsTitlesTarget] = useState("") // valores dos títulos dos 4 forms
+    const [openSelect, setOpenSelect] = useState(false); // variável usada no select
+
+    const { listImagesQuestions, listIconsDescriptions, listImagesDescriptions } = useOutletContext()
 
     function newValueFunc(e) {
+        (nameText === "Image Question:" || nameText === "Icon Description:" || nameText === "Image Description:") ? // se for select sobe mais um elemento pai para poder capturar
         // capturar o texto do título do form alvo ao mudar os valores dos campos
+        setFormsTitlesTarget(e?.target.parentElement.parentElement.parentElement.parentElement.children[0].textContent)
+        :
         setFormsTitlesTarget(e?.target.parentElement.parentElement.parentElement.children[0].textContent)
 
         setNewValue(e?.target.value)
@@ -34,8 +41,6 @@ function FieldQuestionOption({
             nameText === "Description:*" && setValueForm1(newValue) // setNewDescriptionMain
 
             nameText === "Image Description:" && setValueForm1(newValue) // setNewImageDescriptionMain
-
-            // nameText === "Number:*" && setValueForm1(newValue) // setNewQuestionNumberMain
             
         }  else if (formsTitlesTarget === "MainOptions:") { // form 2
             nameText === "Option A:*" && setValueForm2(newValue) // setNewOptionAMain
@@ -62,8 +67,6 @@ function FieldQuestionOption({
             nameText === "Description:*" && setValueForm3(newValue) // setNewDescriptionMulti
 
             nameText === "Image Description:" && setValueForm3(newValue) // setNewImageDescriptionMulti
-            
-            // nameText === "Number:*" && setValueForm3(newValue) // setNewQuestionNumberMulti
     
         } else if (formsTitlesTarget === "MultiOptions:") { // form 4
             nameText === "Option A:*" && setValueForm4(newValue) // setNewOptionAMulti
@@ -90,8 +93,6 @@ function FieldQuestionOption({
             nameText === "Description:*" && setValueForm5(newValue) // setNewDescriptionThreeMulti
 
             nameText === "Image Description:" && setValueForm5(newValue) // setNewImageDescriptionThreeMulti
-            
-            // nameText === "Number:*" && setValueForm5(newValue) // setNewQuestionNumberThreeMulti
     
         } else if (formsTitlesTarget === "ThreeMultiOptions:") { // form 6
             nameText === "Option A:*" && setValueForm6(newValue) // setNewOptionAThreeMulti
@@ -130,8 +131,10 @@ function FieldQuestionOption({
     return(
         <div className={styles.field}>
             <div
-                className={`labelTextarea ${styles.containerField}`}
-
+                className={`labelTextarea ${(nameText === "Image Question:" || nameText === "Icon Description:" || nameText === "Image Description:") ? 
+                    styles.containerFieldSelect 
+                    : 
+                    styles.containerField}`}
             >
                 <label
                     className={specificStylesLabel}
@@ -148,12 +151,44 @@ function FieldQuestionOption({
                         id={uniqueId}
                     />
                     :
+                    (nameText === "Image Question:" || nameText === "Icon Description:" || nameText === "Image Description:") ? // aparece select se for campos de escolha
+                    <div className={`${styles.selectWrap} ${openSelect ? styles.openSelect : ""}`}>
+                        <select
+                            value={newValue} 
+                            onChange={(e) => {
+                                newValueFunc(e)
+                                setOpenSelect(false)                               
+                            }}
+                            onBlur={() => setOpenSelect(false)}
+                            onMouseDown={() => setOpenSelect(open => !open)}
+                        >                            
+                            <option
+                                value='' 
+                                disabled 
+                            >
+                                Select an option
+                            </option>
+
+                            {nameText === "Image Question:" && 
+                                listImagesQuestions.map(image => <option key={image} value={image}>{image}</option>)
+                            }
+                            {nameText === "Icon Description:" && 
+                                listIconsDescriptions.map(icon => <option key={icon} value={icon}>{icon}</option>)
+                            }
+                            {nameText === "Image Description:" && 
+                                listImagesDescriptions.map(image => <option key={image} value={image}>{image}</option>)
+                            }
+                        </select>
+
+                    </div>
+                    :
                     // aparecer o campo do tipo textarea se for string
                     <textarea 
                         value={newValue}
                         onChange={(e) => newValueFunc(e)}
                         id={uniqueId}
                     />
+
                 }
 
             </div>

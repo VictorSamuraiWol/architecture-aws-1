@@ -2,8 +2,6 @@ import styles from './ModalImageQuestion.module.css'
 import Modal from 'react-modal'
 import soundClick from '../../../audios/clickAudio.mp3'
 import ButtonDefault from '../../ButtonDefault'
-import imageQuestionNotFound from '../../../imgs/imageNotFound.png'
-import imageQuestion13 from '../../../imgs/question-imgs/question13.png';
 import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { TiDeleteOutline } from "react-icons/ti"
@@ -11,17 +9,11 @@ import { TiDeleteOutline } from "react-icons/ti"
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root');
 
-function ModalImageQuestion({ questionMain, questionMulti }) {
+function ModalImageQuestion({ questionMain, questionMulti, imagesQuestions }) {
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
   
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  const [imagesQuestions] = useState({
-    none: imageQuestionNotFound,
-    imageQuestion13: imageQuestion13,
-
-  })
 
   // pegando os dados do resultado
   const { mute } = useOutletContext()

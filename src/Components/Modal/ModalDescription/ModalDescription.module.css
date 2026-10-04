@@ -55,7 +55,7 @@
   color: var(--color-fourth);
   background-color: var(--color-first);
   font-weight: bold;
-  width: 90%;
+  width: 80%;
   max-height: 60%;
   border-radius: 12px;
 }
@@ -68,6 +68,7 @@
 }
 
 .containerTitleIconDeleteDescription {
+  width: 100%;
   max-height: 70%;
   overflow: auto;
 }
