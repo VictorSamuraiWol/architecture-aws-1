@@ -8,6 +8,7 @@ import PopupCheckAlternativeAnswer from '../Popups/PopupCheckAlternativeAnswer'
 import PopupCheckNumbers from '../Popups/PopupCheckNumbers'
 import PopupCheckRequiredFields from '../Popups/PopupCheckRequiredFields'
 import PopupSuccessfully from '../Popups/PopupSuccessfully'
+import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
@@ -113,6 +114,8 @@ function FormsNewQuestionsOptions() {
 
     // ativa ou desativa o componente 'PopupSuccessfully'
     const [activePopupSuccessfull, setActivePopupSuccessfull] = useState(false)
+
+    const [noDataAlertForm, setNoDataAlertForm] = useState(false) // ativa o componente PopupAlertMessage
     
     const [colorIncorrect] = useState('#B71C1C') // passando a cor incorreta
 
@@ -212,87 +215,94 @@ function FormsNewQuestionsOptions() {
 
     const onSaveMainQuestionsOptions = async (e) => {
         e.preventDefault()
-        let dataMainQuestion = ''
-        let dataMainOption = ''
-        setPostApi(false) // volta ao estado inicial
 
-        if (!newQuestionTextMain || !newCorrectAnswerMain || !newDescriptionMain || !newOptionAMain || !newOptionBMain || !newOptionCMain || !newOptionDMain || newOptionNumberMain === "") {
-            // mantém newOptionNumberMain === "", pois é tipo número, se usar !newOptionNumberMain e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
-            redVoidFieldForm('form1', 'form2')
-
-            mute === false && errorSound.play() // toca o som 'errorSound'                
-            console.error('Error in data received from Forms 1 and 2!')
-            setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+        if (listUnicQuestionsContext.length === 0  || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) {
+            setNoDataAlertForm(true) // ativa o PopupAlertMessage
 
         } else {
-            if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberMain) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
-                setActivePopupCheckNumbers(true)
+            let dataMainQuestion = ''
+            let dataMainOption = ''
+            setPostApi(false) // volta ao estado inicial
+
+            if (!newQuestionTextMain || !newCorrectAnswerMain || !newDescriptionMain || !newOptionAMain || !newOptionBMain || !newOptionCMain || !newOptionDMain || newOptionNumberMain === "") {
+                // mantém newOptionNumberMain === "", pois é tipo número, se usar !newOptionNumberMain e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form1', 'form2')
-                    
-            } else if (repeatedAlternativesDefault(optionForm2).length > 0) {
-                // condição: checa se as alternativas se repetem
-                setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
-                redVoidFieldForm('form1', 'form2')
-            
-            } else if (checkAlternativeAnswer() === true && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain) {
-                setActivePopupcheckAlternativeAnswerForms1and2(true) // ativa o popup
-                redVoidFieldForm('form1', 'form2')
-
-            } else if (checkAlternativeAnswer() === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain) {
-                dataMainQuestion = {
-                    questionText: newQuestionTextMain,
-                    imageQuestion: newImageQuestionMain, // não obrigatório
-                    correctAnswer: newCorrectAnswerMain,
-                    iconDescription: newIconDescriptionMain, // não obrigatório
-                    description: newDescriptionMain,
-                    imageDescription: newImageDescriptionMain, // não obrigatório
-                    questionNumber: newQuestionNumberMain, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMain)
-                    id: uniqueId
-                }
-
-                dataMainOption = {
-                    optionA: newOptionAMain,
-                    optionB: newOptionBMain,
-                    optionC: newOptionCMain,
-                    optionD: newOptionDMain,
-                    optionE: newOptionEMain, // não obrigatório
-                    optionNumber: newOptionNumberMain,
-                    id: uniqueId
-                }
-
-                redVoidFieldForm('form1', 'form2')
-                mute === false && saveSound.play() // toca o som 'saveSound'
-
-            }
-            
-            try {
-                const responseMainQuestion = await fetch('http://localhost:3001/listQuestionsMain', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataMainQuestion)                
-                })
-
-                const responseMainOption = await fetch('http://localhost:3001/listOptionsMain', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataMainOption)
-                }) 
-                            
-                if (responseMainQuestion.ok && responseMainOption.ok) {
-                    console.log(dataMainQuestion, dataMainOption, 'Data successfully submitted.')
-                    setActivePopupSuccessfull(true)
-                    setReadyToSendForm1(true)
-                    setReadyToSendForm2(true)
-                    setReadyToSendForm3(true)
-                    setReadyToSendForm4(true)
-                    setReadyToSendForm5(true)
-                    setReadyToSendForm6(true)          
-                    setPostApi(true) // tornar verdadeiro a cada POST
+    
+                mute === false && errorSound.play() // toca o som 'errorSound'                
+                console.error('Error in data received from Forms 1 and 2!')
+                setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+    
+            } else {
+                if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberMain) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
+                    setActivePopupCheckNumbers(true)
+                    redVoidFieldForm('form1', 'form2')
+                        
+                } else if (repeatedAlternativesDefault(optionForm2).length > 0) {
+                    // condição: checa se as alternativas se repetem
+                    setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
+                    redVoidFieldForm('form1', 'form2')
+                
+                } else if (checkAlternativeAnswer() === true && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain) {
+                    setActivePopupcheckAlternativeAnswerForms1and2(true) // ativa o popup
+                    redVoidFieldForm('form1', 'form2')
+    
+                } else if (checkAlternativeAnswer() === false && newQuestionTextMain && newCorrectAnswerMain && newDescriptionMain && newOptionAMain && newOptionBMain && newOptionCMain && newOptionDMain && newOptionNumberMain) {
+                    dataMainQuestion = {
+                        questionText: newQuestionTextMain,
+                        imageQuestion: newImageQuestionMain, // não obrigatório
+                        correctAnswer: newCorrectAnswerMain,
+                        iconDescription: newIconDescriptionMain, // não obrigatório
+                        description: newDescriptionMain,
+                        imageDescription: newImageDescriptionMain, // não obrigatório
+                        questionNumber: newQuestionNumberMain, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMain)
+                        id: uniqueId
+                    }
+    
+                    dataMainOption = {
+                        optionA: newOptionAMain,
+                        optionB: newOptionBMain,
+                        optionC: newOptionCMain,
+                        optionD: newOptionDMain,
+                        optionE: newOptionEMain, // não obrigatório
+                        optionNumber: newOptionNumberMain,
+                        id: uniqueId
+                    }
+    
+                    redVoidFieldForm('form1', 'form2')
+                    mute === false && saveSound.play() // toca o som 'saveSound'
     
                 }
                 
-            } catch(error) {
-                console.error('Error while submitting data', error)
+                try {
+                    const responseMainQuestion = await fetch('http://localhost:3001/listQuestionsMain', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataMainQuestion)                
+                    })
+    
+                    const responseMainOption = await fetch('http://localhost:3001/listOptionsMain', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataMainOption)
+                    }) 
+                                
+                    if (responseMainQuestion.ok && responseMainOption.ok) {
+                        console.log(dataMainQuestion, dataMainOption, 'Data successfully submitted.')
+                        setActivePopupSuccessfull(true)
+                        setReadyToSendForm1(true)
+                        setReadyToSendForm2(true)
+                        setReadyToSendForm3(true)
+                        setReadyToSendForm4(true)
+                        setReadyToSendForm5(true)
+                        setReadyToSendForm6(true)          
+                        setPostApi(true) // tornar verdadeiro a cada POST
+        
+                    }
+                    
+                } catch(error) {
+                    console.error('Error while submitting data', error)
+        
+                }
     
             }
 
@@ -302,87 +312,94 @@ function FormsNewQuestionsOptions() {
 
     const onSaveMultiQuestionsOptions = async (e) => {
         e.preventDefault()
-        let dataMultiQuestion = ''
-        let dataMultiOption = ''
-        setPostApi(false) // volta ao estado inicial
 
-        if (!newQuestionTextMulti || !newCorrectAnswerMulti || !newDescriptionMulti || !newOptionAMulti || !newOptionBMulti || !newOptionCMulti || !newOptionDMulti || newOptionNumberMulti === "") {
-            // mantém newOptionNumberMulti === "", pois é tipo número, se usar !newOptionNumberMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
-            redVoidFieldForm('form3', 'form4')
-
-            mute === false && errorSound.play() // toca o som 'errorSound'                
-            console.error('Error in data received from Forms 3 and 4!')
-            setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+        if (listUnicQuestionsContext.length === 0  || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) {
+            setNoDataAlertForm(true) // ativa o PopupAlertMessage
 
         } else {
-            if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberMulti) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
-                setActivePopupCheckNumbers(true)
+            let dataMultiQuestion = ''
+            let dataMultiOption = ''
+            setPostApi(false) // volta ao estado inicial
+    
+            if (!newQuestionTextMulti || !newCorrectAnswerMulti || !newDescriptionMulti || !newOptionAMulti || !newOptionBMulti || !newOptionCMulti || !newOptionDMulti || newOptionNumberMulti === "") {
+                // mantém newOptionNumberMulti === "", pois é tipo número, se usar !newOptionNumberMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form3', 'form4')
-                    
-            } else if (repeatedAlternativesDefault(null, optionForm4).length > 0) {
-                // condição: checa se as alternativas se repetem
-                setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
-                redVoidFieldForm('form3', 'form4')
-            
-            } else if (checkAlternativeAnswer() === true && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
-                setActivePopupcheckAlternativeAnswerForms3and4(true) // ativa o popup
-                redVoidFieldForm('form3', 'form4')
-
-            } else if (checkAlternativeAnswer() === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
-                dataMultiQuestion = {
-                    questionText: newQuestionTextMulti,
-                    imageQuestion: newImageQuestionMulti, // não obrigatório
-                    correctAnswer: newCorrectAnswerMulti,
-                    iconDescription: newIconDescriptionMulti, // não obrigatório
-                    description: newDescriptionMulti,
-                    imageDescription: newImageDescriptionMulti, // não obrigatório
-                    questionNumber: newQuestionNumberMulti, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMulti)
-                    id: uniqueId
-                }
-
-                dataMultiOption = {
-                    optionA: newOptionAMulti,
-                    optionB: newOptionBMulti,
-                    optionC: newOptionCMulti,
-                    optionD: newOptionDMulti,
-                    optionE: newOptionEMulti, // não obrigatório
-                    optionNumber: newOptionNumberMulti,
-                    id: uniqueId
-                }
-
-                redVoidFieldForm('form3', 'form4')
-                mute === false && saveSound.play() // toca o som 'saveSound'
-
-            }
-            
-            try {
-                const responseMultiQuestion = await fetch('http://localhost:3001/listQuestionsMulti', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataMultiQuestion)                
-                })
-
-                const responseMultiOption = await fetch('http://localhost:3001/listOptionsMulti', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataMultiOption)
-                }) 
-                            
-                if (responseMultiQuestion.ok && responseMultiOption.ok) {
-                    console.log(dataMultiQuestion, dataMultiOption, 'Data successfully submitted.')
-                    setActivePopupSuccessfull(true)
-                    setReadyToSendForm1(true)
-                    setReadyToSendForm2(true)
-                    setReadyToSendForm3(true)
-                    setReadyToSendForm4(true)
-                    setReadyToSendForm5(true)
-                    setReadyToSendForm6(true)          
-                    setPostApi(true) // tornar verdadeiro a cada POST
+    
+                mute === false && errorSound.play() // toca o som 'errorSound'                
+                console.error('Error in data received from Forms 3 and 4!')
+                setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+    
+            } else {
+                if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberMulti) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
+                    setActivePopupCheckNumbers(true)
+                    redVoidFieldForm('form3', 'form4')
+                        
+                } else if (repeatedAlternativesDefault(null, optionForm4).length > 0) {
+                    // condição: checa se as alternativas se repetem
+                    setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
+                    redVoidFieldForm('form3', 'form4')
+                
+                } else if (checkAlternativeAnswer() === true && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
+                    setActivePopupcheckAlternativeAnswerForms3and4(true) // ativa o popup
+                    redVoidFieldForm('form3', 'form4')
+    
+                } else if (checkAlternativeAnswer() === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
+                    dataMultiQuestion = {
+                        questionText: newQuestionTextMulti,
+                        imageQuestion: newImageQuestionMulti, // não obrigatório
+                        correctAnswer: newCorrectAnswerMulti,
+                        iconDescription: newIconDescriptionMulti, // não obrigatório
+                        description: newDescriptionMulti,
+                        imageDescription: newImageDescriptionMulti, // não obrigatório
+                        questionNumber: newQuestionNumberMulti, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMulti)
+                        id: uniqueId
+                    }
+    
+                    dataMultiOption = {
+                        optionA: newOptionAMulti,
+                        optionB: newOptionBMulti,
+                        optionC: newOptionCMulti,
+                        optionD: newOptionDMulti,
+                        optionE: newOptionEMulti, // não obrigatório
+                        optionNumber: newOptionNumberMulti,
+                        id: uniqueId
+                    }
+    
+                    redVoidFieldForm('form3', 'form4')
+                    mute === false && saveSound.play() // toca o som 'saveSound'
     
                 }
                 
-            } catch(error) {
-                console.error('Error while submitting data', error)
+                try {
+                    const responseMultiQuestion = await fetch('http://localhost:3001/listQuestionsMulti', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataMultiQuestion)                
+                    })
+    
+                    const responseMultiOption = await fetch('http://localhost:3001/listOptionsMulti', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataMultiOption)
+                    }) 
+                                
+                    if (responseMultiQuestion.ok && responseMultiOption.ok) {
+                        console.log(dataMultiQuestion, dataMultiOption, 'Data successfully submitted.')
+                        setActivePopupSuccessfull(true)
+                        setReadyToSendForm1(true)
+                        setReadyToSendForm2(true)
+                        setReadyToSendForm3(true)
+                        setReadyToSendForm4(true)
+                        setReadyToSendForm5(true)
+                        setReadyToSendForm6(true)          
+                        setPostApi(true) // tornar verdadeiro a cada POST
+        
+                    }
+                    
+                } catch(error) {
+                    console.error('Error while submitting data', error)
+        
+                }
     
             }
 
@@ -392,88 +409,95 @@ function FormsNewQuestionsOptions() {
 
     const onSaveThreeMultiQuestionsOptions = async (e) => {
         e.preventDefault()
-        let dataThreeMultiQuestion = ''
-        let dataThreeMultiOption = ''
-        setPostApi(false) // volta ao estado inicial
 
-        if (!newQuestionTextThreeMulti || !newCorrectAnswerThreeMulti || !newDescriptionThreeMulti || !newOptionAThreeMulti || !newOptionBThreeMulti || !newOptionCThreeMulti || !newOptionDThreeMulti || !newOptionEThreeMulti || !newOptionFThreeMulti || newOptionNumberThreeMulti === "") {
-            // mantém newOptionNumberThreeMulti === "", pois é tipo número, se usar !newOptionNumberThreeMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
-            redVoidFieldForm('form5', 'form6')
-
-            mute === false && errorSound.play() // toca o som 'errorSound'                
-            console.error('Error in data received from Forms 5 and 6!')
-            setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+        if (listUnicQuestionsContext.length === 0  || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) {
+            setNoDataAlertForm(true) // ativa o PopupAlertMessage
 
         } else {
-            if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberThreeMulti) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
-                setActivePopupCheckNumbers(true)
+            let dataThreeMultiQuestion = ''
+            let dataThreeMultiOption = ''
+            setPostApi(false) // volta ao estado inicial
+    
+            if (!newQuestionTextThreeMulti || !newCorrectAnswerThreeMulti || !newDescriptionThreeMulti || !newOptionAThreeMulti || !newOptionBThreeMulti || !newOptionCThreeMulti || !newOptionDThreeMulti || !newOptionEThreeMulti || !newOptionFThreeMulti || newOptionNumberThreeMulti === "") {
+                // mantém newOptionNumberThreeMulti === "", pois é tipo número, se usar !newOptionNumberThreeMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form5', 'form6')
-                    
-            } else if (repeatedAlternativesDefault(null, null, optionForm6).length > 0) {
-                // condição: checa se as alternativas se repetem
-                setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
-                redVoidFieldForm('form5', 'form6')
-            
-            } else if (checkAlternativeAnswer() === true && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
-                setActivePopupcheckAlternativeAnswerForms5and6(true) // ativa o popup
-                redVoidFieldForm('form5', 'form6')
-
-            } else if (checkAlternativeAnswer() === false && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
-                dataThreeMultiQuestion = {
-                    questionText: newQuestionTextThreeMulti,
-                    imageQuestion: newImageQuestionThreeMulti, // não obrigatório
-                    correctAnswer: newCorrectAnswerThreeMulti,
-                    iconDescription: newIconDescriptionThreeMulti, // não obrigatório
-                    description: newDescriptionThreeMulti,
-                    imageDescription: newImageDescriptionThreeMulti, // não obrigatório
-                    questionNumber: newQuestionNumberThreeMulti, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMulti)
-                    id: uniqueId
-                }
-
-                dataThreeMultiOption = {
-                    optionA: newOptionAThreeMulti,
-                    optionB: newOptionBThreeMulti,
-                    optionC: newOptionCThreeMulti,
-                    optionD: newOptionDThreeMulti,
-                    optionE: newOptionEThreeMulti,
-                    optionF: newOptionFThreeMulti,
-                    optionNumber: newOptionNumberThreeMulti,
-                    id: uniqueId
-                }
-
-                redVoidFieldForm('form5', 'form6')
-                mute === false && saveSound.play() // toca o som 'saveSound'
-
-            }
-            
-            try {
-                const responseThreeMultiQuestion = await fetch('http://localhost:3001/listQuestionsThreeMulti', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataThreeMultiQuestion)                
-                })
-
-                const responseThreeMultiOption = await fetch('http://localhost:3001/listOptionsThreeMulti', {
-                    method: 'POST',
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(dataThreeMultiOption)
-                }) 
-                            
-                if (responseThreeMultiQuestion.ok && responseThreeMultiOption.ok) {
-                    console.log(dataThreeMultiQuestion, dataThreeMultiOption, 'Data successfully submitted.')
-                    setActivePopupSuccessfull(true)
-                    setReadyToSendForm1(true)
-                    setReadyToSendForm2(true)
-                    setReadyToSendForm3(true)
-                    setReadyToSendForm4(true)
-                    setReadyToSendForm5(true)
-                    setReadyToSendForm6(true)          
-                    setPostApi(true) // tornar verdadeiro a cada POST
+    
+                mute === false && errorSound.play() // toca o som 'errorSound'                
+                console.error('Error in data received from Forms 5 and 6!')
+                setActivePopupCheckRequiredFields(true) // ativa o 'PopupCheckRequiredFields'
+    
+            } else {
+                if (numberValidationForms(listNumbersForms2and4and6, newOptionNumberThreeMulti) === false) { // se o número da questão for repetido ativa o 'PopupCheckNumbers'
+                    setActivePopupCheckNumbers(true)
+                    redVoidFieldForm('form5', 'form6')
+                        
+                } else if (repeatedAlternativesDefault(null, null, optionForm6).length > 0) {
+                    // condição: checa se as alternativas se repetem
+                    setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
+                    redVoidFieldForm('form5', 'form6')
+                
+                } else if (checkAlternativeAnswer() === true && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
+                    setActivePopupcheckAlternativeAnswerForms5and6(true) // ativa o popup
+                    redVoidFieldForm('form5', 'form6')
+    
+                } else if (checkAlternativeAnswer() === false && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
+                    dataThreeMultiQuestion = {
+                        questionText: newQuestionTextThreeMulti,
+                        imageQuestion: newImageQuestionThreeMulti, // não obrigatório
+                        correctAnswer: newCorrectAnswerThreeMulti,
+                        iconDescription: newIconDescriptionThreeMulti, // não obrigatório
+                        description: newDescriptionThreeMulti,
+                        imageDescription: newImageDescriptionThreeMulti, // não obrigatório
+                        questionNumber: newQuestionNumberThreeMulti, // o número da questão vai ser o mesmo número colocado no número da opção (newOptionNumberMulti)
+                        id: uniqueId
+                    }
+    
+                    dataThreeMultiOption = {
+                        optionA: newOptionAThreeMulti,
+                        optionB: newOptionBThreeMulti,
+                        optionC: newOptionCThreeMulti,
+                        optionD: newOptionDThreeMulti,
+                        optionE: newOptionEThreeMulti,
+                        optionF: newOptionFThreeMulti,
+                        optionNumber: newOptionNumberThreeMulti,
+                        id: uniqueId
+                    }
+    
+                    redVoidFieldForm('form5', 'form6')
+                    mute === false && saveSound.play() // toca o som 'saveSound'
     
                 }
                 
-            } catch(error) {
-                console.error('Error while submitting data', error)
+                try {
+                    const responseThreeMultiQuestion = await fetch('http://localhost:3001/listQuestionsThreeMulti', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataThreeMultiQuestion)                
+                    })
+    
+                    const responseThreeMultiOption = await fetch('http://localhost:3001/listOptionsThreeMulti', {
+                        method: 'POST',
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify(dataThreeMultiOption)
+                    }) 
+                                
+                    if (responseThreeMultiQuestion.ok && responseThreeMultiOption.ok) {
+                        console.log(dataThreeMultiQuestion, dataThreeMultiOption, 'Data successfully submitted.')
+                        setActivePopupSuccessfull(true)
+                        setReadyToSendForm1(true)
+                        setReadyToSendForm2(true)
+                        setReadyToSendForm3(true)
+                        setReadyToSendForm4(true)
+                        setReadyToSendForm5(true)
+                        setReadyToSendForm6(true)          
+                        setPostApi(true) // tornar verdadeiro a cada POST
+        
+                    }
+                    
+                } catch(error) {
+                    console.error('Error while submitting data', error)
+        
+                }
     
             }
 
@@ -815,6 +839,15 @@ function FormsNewQuestionsOptions() {
                 specificStyles={styles.popupSuccessfully}
                     text='Sent successfully.' 
                     activePopup={setActivePopupSuccessfull}
+                />
+            }
+
+            {/* PopupAlertMessage */}
+            {noDataAlertForm &&
+                <PopupAlertMessage 
+                    text="No data found. Need to mock the API."
+                    activePopup={setNoDataAlertForm}
+                    specificStyles={styles.popupAlertMessage}
                 />
             }
 
