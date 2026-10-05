@@ -2,22 +2,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
 }
 
 .fieldModalEdit {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 8px;
   width: 100%;
   color: var(--color-first);
+  padding: 1px;
+}
+
+.fieldSelectModalEdit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  color: var(--color-first);
+  height: 30px;
 }
 
 .nameLabelText {
   color: var(--color-fourth);
   background-color: var(--color-first);
-  padding: 4px;
+  padding: 5px;
   border: 1px solid var(--color-third);
   border-radius: 8px;
 }
@@ -29,14 +38,56 @@
 .inputFieldModalEdit {
   color: var(--color-fourth);
   background-color: var(--color-first);
-  padding: 0 2px;
   border: 1px solid var(--color-third);
+  width: 99%;
 }
 
 .inputErrorFieldModalEdit {
   color: var(--color-first);
   background-color: var(--color-first);
   border: 1px solid var(--color-third);
+}
+
+.selectWrap {
+  position: relative;
+  width: 160px;
+  background-color: var(--color-first);
+  border: 1px solid var(--color-third);
+  border-radius: 10px;
+  height: 30px;
+}
+
+.selectWrap::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-fourth);
+  border-bottom: 2px solid var(--color-fourth);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.selectWrap.openSelect::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+select {
+  color: var(--color-fourth);
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 6px 32px 6px 6px;
+  height: 100%;
+  border-radius: 8px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .errorMessageText {
@@ -66,9 +117,12 @@
 }
 
 @media (max-width: 860px) {
-  .fieldModalEdit input {
+  .inputFieldModalEdit {
     height: 50px;
-    width: 100%;
+  }
+
+  .selectWrap {
+    width: 100px;
   }
 
   .errorMessageText {
@@ -80,11 +134,23 @@
 @media (max-width: 580px) {
   .fieldModalEdit {
     flex-direction: column;
-    width: 95%;
+    width: 98%;
+    border: 1px solid var(--color-second);
+    border-radius: 8px;
   }
 
-  .fieldModalEdit input {
+  .fieldSelectModalEdit {
+    width: max-content;
+    border: 1px solid var(--color-second);
+    border-radius: 8px;
+  }
+
+  .inputFieldModalEdit {
     height: 40px;
+  }
+
+  .selectWrap {
+    width: 40px;
   }
 
   .errorMessageText {

@@ -25,12 +25,21 @@
     background-position: center;
 }
 
-.form {
+.formQuestion {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 8px;
+    width: 28%;
+    padding: 0 12px;
+}
+
+.formOption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 28%;
     padding: 0 12px;
 }
@@ -103,21 +112,21 @@
 }
 
 @media (max-width: 1920px) {
-    .form {
+    .formQuestion, .formOption {
         width: 25%;
     }
 
 }
 
 @media (max-width: 1660px) {
-    .form {
+    .formQuestion, .formOption {
         width: 34%;
     }
 
 }
 
 @media (max-width: 1440px) {
-    .form {
+    .formQuestion, .formOption {
         width: 40%;
     }
 
@@ -131,8 +140,12 @@
 }
 
 @media (max-width: 860px) {
-    .form {
+    .formQuestion {
         gap: 6px;
+        width: 45%;
+    }
+
+    .formOption {
         width: 45%;
     }
 
@@ -157,8 +170,12 @@
 }
 
 @media (max-width: 580px) {
-    .form {
+    .formQuestion {
         gap: 4px;
+        width: 40%;
+    }
+
+    .formOption {
         width: 40%;
     }
 

@@ -52,6 +52,10 @@
   gap: 6px;
 }
 
+.passShortText {
+  display: none;
+}
+
 .inputStyle {
   height: 2rem;
 }
@@ -133,6 +137,14 @@
   .formLogin {
     width: 35%;
     padding: 4px;
+  }
+
+  .passLongText {
+    display: none;
+  }
+
+  .passShortText {
+    display: flex;
   }
 
   .inputStyle {

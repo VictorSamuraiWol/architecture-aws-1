@@ -85,7 +85,18 @@ function HeaderLogin() {
           </div>
 
           <div className={styles.formLabelInput}>
-            <label htmlFor='password'>Password:</label>
+            <label 
+              className={styles.passLongText} 
+              htmlFor='password'
+            >
+              Password:
+            </label>
+            <label 
+              className={styles.passShortText} 
+              htmlFor='password'
+            >
+              Pass:
+            </label>
 
             <input 
               onChange={(e) => setPasswordUser(e.target.value)}

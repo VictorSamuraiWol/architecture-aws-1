@@ -541,7 +541,7 @@ function FormsNewQuestionsOptions() {
             <div className={styles.forms}>
                 {/* Form 1 (Questions) */}
                 <form 
-                    className={styles.form}
+                    className={styles.formQuestion}
                     id='form1'
                 >
                     <div className={styles.containerTitleForm}>
@@ -576,7 +576,7 @@ function FormsNewQuestionsOptions() {
                 {/* Form 2 (Options) */}
                 <form
                     onSubmit={onSaveMainQuestionsOptions}
-                    className={styles.form}
+                    className={styles.formOption}
                     id='form2'
                 >
                     <div className={styles.containerTitleForm}>
@@ -621,7 +621,7 @@ function FormsNewQuestionsOptions() {
             <div className={styles.forms}>
                 {/* Form 3 (MultiQuestions) */}
                 <form
-                    className={styles.form}
+                    className={styles.formQuestion}
                     id='form3'
                 >
                     <div className={styles.containerTitleForm}>
@@ -656,7 +656,7 @@ function FormsNewQuestionsOptions() {
                 {/* Form 4 (MultiOptions) */}
                 <form 
                     onSubmit={onSaveMultiQuestionsOptions} 
-                    className={styles.form}
+                    className={styles.formOption}
                     id='form4'
                 >
                     <div className={styles.containerTitleForm}>
@@ -699,7 +699,7 @@ function FormsNewQuestionsOptions() {
             <div className={styles.forms}>
                 {/* Form 5 (ThreeMultiQuestions) */}
                 <form
-                    className={styles.form}
+                    className={styles.formQuestion}
                     id='form5'
                 >
                     <div className={styles.containerTitleForm}>
@@ -734,7 +734,7 @@ function FormsNewQuestionsOptions() {
                 {/* Form 6 (ThreeMultiOptions) */}
                 <form 
                     onSubmit={onSaveThreeMultiQuestionsOptions}
-                    className={styles.form}
+                    className={styles.formOption}
                     id='form6'
                 >
                     <div className={styles.containerTitleForm}>
