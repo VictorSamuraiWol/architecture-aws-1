@@ -7,12 +7,12 @@ import { useOutletContext } from 'react-router-dom'
 
 function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheckAlternativeAnswer, 
   textModalForMoreInformation, textModalDescription, activeButtons, questionMain, questionMulti, 
-  multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption, specificStyleButton,
+  deleteMain, deleteMulti, deleteThreeMulti, specificStyleButton,
   specificStyleButtons }) {
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-  const { mute } = useOutletContext()
+  const { activePageMain, activePageMulti, activePageThreeMulti, mute } = useOutletContext()
 
   function closePopup() { // função para desativar o popup ao clicar no icone delete    
     activePopup(false)
@@ -21,12 +21,15 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
 
   }
 
-  function handleClick() { // função que irá deletar a questão e opção correspondentes, exclusivo do componente 'PopupDeleteQuestionOption'
-    if (questionMain !== undefined) {
-      multiDeleteQuestionOption() // deleta a questão e opção correspondentes da 'PageMain' 
+  function deleteQuestion() { // função que irá deletar a questão e opção correspondentes, exclusivo do componente 'PopupDeleteQuestionOption'
+    if (activePageMain && questionMain) {
+      deleteMain() // deleta a questão e opção correspondentes da 'PageMain' 
       
-    } else if (questionMulti !== undefined) {
-      multiDeleteMultiQuestionMultiOption() // deleta a questão e opção correspondentes da 'PageMulti' 
+    } else if (activePageMulti && questionMulti) {
+      deleteMulti() // deleta a questão e opção correspondentes da 'PageMulti' 
+
+    } else if (activePageThreeMulti && questionMulti) {
+      deleteThreeMulti() // deleta a questão e opção correspondentes da 'PageThreeMulti' 
 
     }
 
@@ -64,7 +67,7 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
       {/* Os botões serão ativados somente quando o 'PopupDeleteQuestionOption' estiver ativo. */}
       {activeButtons === true && <div className={specificStyleButtons}>
         <ButtonDefault
-          onClick={handleClick}
+          onClick={deleteQuestion}
           buttonName='Yes'
           specificStyleButton={specificStyleButton} 
         />

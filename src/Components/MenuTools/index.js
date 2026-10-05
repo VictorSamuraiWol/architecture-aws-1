@@ -13,9 +13,9 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
-  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
-  const { activePageDemo } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
@@ -136,28 +136,91 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   }
 
-  function listMatchedQuestionsOptions() { // função que mostra todas as questões e opções correspondentes da Main e MultiMain
-    const listNumbersQuestionsMain = listUnicQuestionsContext.map(question => question.questionNumber)    
-    const listNumbersOptionsMain = listUnicOptionsContext.map(option => option.optionNumber) 
+  // função que deleta a questão de múltipla escolha atual
+  async function onDeleteQuestionThreeMulti(questionMulti) {
+    const url = `http://localhost:3001/listQuestionsThreeMulti/${questionMulti.id}`
 
-    const listNumbersQuestionsMulti = listMultiQuestionsContext.map(question => question.questionNumber)    
-    const listNumbersOptionsMulti = listMultiOptionsContext.map(option => option.optionNumber) 
- 
+    const options = {
+        method: "DELETE",
+    }
+
+    setDeleteApi(false)
+
+    await fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error deleting')
+
+      } else {
+        response.json()
+        setDeleteApi(true)
+
+      }
+
+    })
+    .catch((error) => {
+        console.error('Erro:', error)
+    })
+
+  }
+
+  // função que deleta a opção de múltipla escolha atual
+  async function onDeleteOptionThreeMulti(optionMultiNumberId) {
+    const url = `http://localhost:3001/listOptionsThreeMulti/${optionMultiNumberId[1]}`
+
+    const options = {
+        method: "DELETE",
+    }
+
+    setDeleteApi(false)
+
+    await fetch(url, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error deleting')
+
+      } else {
+        response.json()
+        setDeleteApi(true)
+
+      }
+
+    })
+    .catch((error) => {
+        console.error('Erro:', error)
+    })
+
+  }
+
+  function listMatchedQuestionsOptions() { // função que mostra todas as questões e opções correspondentes da Main e MultiMain
     let matched = null
 
-    if (questionMain) {      
+    // Main
+    const listNumbersQuestionsMain = listUnicQuestionsContext.map(question => question.questionNumber)    
+    const listNumbersOptionsMain = listUnicOptionsContext.map(option => option.optionNumber)
+    // Multi
+    const listNumbersQuestionsMulti = listMultiQuestionsContext.map(question => question.questionNumber)    
+    const listNumbersOptionsMulti = listMultiOptionsContext.map(option => option.optionNumber)    
+    // ThreeMulti
+    const listNumbersQuestionsThreeMulti = listThreeMultiQuestionsContext.map(question => question.questionNumber)    
+    const listNumbersOptionsThreeMulti = listThreeMultiOptionsContext.map(option => option.optionNumber)
+ 
+    if (activePageMain && questionMain) {      
       matched = listNumbersQuestionsMain.filter(question => listNumbersOptionsMain.includes(question))
 
-    } else if (questionMulti) {
+    } else if (activePageMulti && questionMulti) {
       matched = listNumbersQuestionsMulti.filter(question => listNumbersOptionsMulti.includes(question))
 
+    } else if (activePageThreeMulti && questionMulti) {
+      matched = listNumbersQuestionsThreeMulti.filter(question => listNumbersOptionsThreeMulti.includes(question))
+
     }
-        
+      
     return matched
 
   }
 
-  function multiDeleteQuestionOption() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
+  function deleteMain() { // função que deleta a questão e opção correspondente da página 'NewPageMain'
     if (activePageDemo) {
       setStaticQuestionAlert(true)
       setActivePopupDelete(false)
@@ -177,10 +240,10 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       }
 
     }
-
+    
   }
 
-  function multiDeleteMultiQuestionMultiOption() { // função que deleta a questão e opção correspondente da página 'PageMulti'
+  function deleteMulti() { // função que deleta a questão e opção correspondente da página 'PageMulti'
     if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
@@ -194,7 +257,23 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
     
     }
 
-  }  
+  }
+  
+  function deleteThreeMulti() { // função que deleta a questão e opção correspondente da página 'PageMulti'
+    if (listThreeMultiQuestionsContext.length >= 3 && listThreeMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
+      onDeleteQuestionThreeMulti(questionMulti)
+      onDeleteOptionThreeMulti(optionMultiNumberId)
+      setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+      setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+      console.log('Deleted successfully!')
+    
+    } else {
+      setFewer3MultipleChoice(true)
+      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption'
+    
+    }
+
+  } 
 
   // função para habilitar e desabilitar o Menu
   function ableDisableMenu() {
@@ -275,8 +354,9 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           activeButtons={activePopupDelete}
           questionMain={questionMain}
           questionMulti={questionMulti}
-          multiDeleteQuestionOption={multiDeleteQuestionOption}
-          multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
+          deleteMain={deleteMain}
+          deleteMulti={deleteMulti}
+          deleteThreeMulti={deleteThreeMulti}
         />}
 
         {/* PopupAlertMessage */}

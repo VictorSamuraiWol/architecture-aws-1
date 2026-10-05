@@ -2,7 +2,7 @@ import styles from './PopupDeleteQuestionOption.module.css'
 import PopupDefault from '../PopupDefault'
 
 function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, activeButtons, questionMain, 
-  questionMulti, multiDeleteQuestionOption, multiDeleteMultiQuestionMultiOption }) {
+  questionMulti, deleteMain, deleteMulti, deleteThreeMulti }) {
   
   return (
     <PopupDefault 
@@ -12,8 +12,9 @@ function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, act
       activeButtons={activeButtons}
       questionMain={questionMain}
       questionMulti={questionMulti}
-      multiDeleteQuestionOption={multiDeleteQuestionOption}
-      multiDeleteMultiQuestionMultiOption={multiDeleteMultiQuestionMultiOption}
+      deleteMain={deleteMain}
+      deleteMulti={deleteMulti}
+      deleteThreeMulti={deleteThreeMulti}
       specificStyleButtons={styles.buttons}
       specificStyleButton={styles.button}
     />
