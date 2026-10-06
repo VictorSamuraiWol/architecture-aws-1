@@ -6,7 +6,6 @@ import ButtonNext from '../ButtonNext'
 import AnswerDescription from '../AnswerDescription'
 import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
-import zeroImage from '../../imgs/zero-question.png'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import { useCallback, useContext, useEffect, useState } from 'react'
@@ -16,7 +15,7 @@ import { Link, useOutletContext } from 'react-router-dom'
 function Main({ 
     question, answer, iconDescription, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
-    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activeZeroImgMain, activePageDemo, activePageMain
+    optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activePageDemo, activePageMain
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -99,9 +98,28 @@ function Main({
 
         }
 
+        // setActivePopupZeroTimerMainAlert(false)
+
     }
 
-    function ablePageMulti() { // função que muda a rota da página Main para a página Multi, 
+    function ablePageMain() {
+        let able = null
+
+        if (questionAnswerButtonNextMain === true && listUnicQuestionsContextLength > 0) {
+            able = '/page-main'
+
+        } else if (!listUnicQuestionsContextLength) {
+            able = '/'
+
+        }
+
+        // setActivePopupZeroTimerMainAlert(false)
+
+        return able
+
+    }
+
+    function ablePageMultiAndThreeMulti() { // função que muda a rota da página Main para a página Multi, 
     // só mudará para a página Multi quando o numberPath for igual a '3' e permanecerá na página Main se o numberPath for igual a '1' ou '2',
     // a probabilidade de permanecer na página Main é de 66% (números 1 ou 2) e de ir para a página Multi é de 33% (número 3)
         let able = null
@@ -120,119 +138,93 @@ function Main({
 
         }
 
-        return able
-
-    }
-
-    function ablePageMain() {
-        let able = null
-
-        if (questionAnswerButtonNextMain === true && listUnicQuestionsContextLength > 0) {
-            able = '/page-main'
-
-        } else if (!listUnicQuestionsContextLength) {
-            able = '/'
-
-        }
+        // setActivePopupZeroTimerMainAlert(false)
 
         return able
 
     }
 
     return(
-        <div className={styles.main}>
-            {activeZeroImgMain === false &&
-            <>
-                <div className={styles.containerTextTitle}>
-                    <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
-                </div>
+        <div className={styles.main}> 
+            <div className={styles.containerTextTitle}>
+                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+            </div>
 
-                <div className={styles.containerQuestionMenuTools}>
-                    <Question 
-                        question={question}
-                        questionNumber={questionNumber}
-                        questionMain={questionMain}           
-                    />
-
-                    <MenuTools 
-                        questionMain={questionMain} 
-                        optionMain={optionMain}
-                        optionMainNumberId={optionMainNumberId}
-                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}              
-                    />
-
-                </div>
-
-                <Options
-                    optionColorStyle={optionColorStyle}
-                    inputColorStyle={inputColorStyle}   
-                    setCaptureValue={setCaptureValue}
-                    optionMain={optionMain}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                />
-       
-                <ButtonAnswer            
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    answer={answer}
+            <div className={styles.containerQuestionMenuTools}>
+                <Question 
+                    question={question}
                     questionNumber={questionNumber}
-                    optionColorStyle={optionColorStyle}
-                    optionValidateStyle={optionValidateStyle}
-                    optionInvalidateStyle={optionInvalidateStyle}
-                    inputColorStyle={inputColorStyle}
-                    inputValidateStyle={inputValidateStyle}
-                    inputInvalidateStyle={inputInvalidateStyle}                      
-                    captureValue={captureValue}
+                    questionMain={questionMain}           
+                />
+
+                <MenuTools 
+                    questionMain={questionMain} 
                     optionMain={optionMain}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                    setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
-                    activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
-                    setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
-                    setItem={setItem}
+                    optionMainNumberId={optionMainNumberId}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}              
                 />
-    
-                <AnswerDescription
-                    questionMain={questionMain}
-                    answer={answer}
-                    iconDescription={iconDescription}
-                    description={description}
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    item={item}
-                />
-    
-                <Link
-                    to={activePageDemo ? ablePageMain() : ablePageMulti()} // se 'numberPath' é igual a '3' ou '4' executa essa função 'ablePageMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
-                >
-                    <ButtonNext
-                        onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' ou '4' executa a função 'ablePageMulti()' do Link  
-                        questionAnswerButtonNextMain={questionAnswerButtonNextMain}
-                    />
-                </Link>
-            
-                <ModalResults />
 
-            </>}
+            </div>
 
-            {/* imagem que aparece quando não tem questões disponíveis */}
-            {activeZeroImgMain &&
-                <img 
-                    src={zeroImage} 
-                    alt='zero img'
-                    className={styles.zeroImg}
+            <Options
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}   
+                setCaptureValue={setCaptureValue}
+                optionMain={optionMain}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
+            />
+    
+            <ButtonAnswer            
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                descriptionDisplay={descriptionDisplay}
+                answer={answer}
+                questionNumber={questionNumber}
+                optionColorStyle={optionColorStyle}
+                optionValidateStyle={optionValidateStyle}
+                optionInvalidateStyle={optionInvalidateStyle}
+                inputColorStyle={inputColorStyle}
+                inputValidateStyle={inputValidateStyle}
+                inputInvalidateStyle={inputInvalidateStyle}                      
+                captureValue={captureValue}
+                optionMain={optionMain}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
+                setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
+                activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
+                setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
+                setItem={setItem}
+            />
+
+            <AnswerDescription
+                questionMain={questionMain}
+                answer={answer}
+                iconDescription={iconDescription}
+                description={description}
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                descriptionDisplay={descriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}
+                item={item}
+            />
+
+            <Link
+                to={activePageDemo ? ablePageMain() : ablePageMultiAndThreeMulti()} // se 'numberPath' é igual a '3' ou '4' executa essa função 'ablePageMultiAndThreeMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
+            >
+                <ButtonNext
+                    onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' ou '4' executa a função 'ablePageMultiAndThreeMulti()' do Link  
+                    questionAnswerButtonNextMain={questionAnswerButtonNextMain}
                 />
-            }
+            </Link>
+        
+            <ModalResults />
 
             {/* PopupRepeatedAlternatives */}
             {activePopupRepeatedAlternativesMain && 

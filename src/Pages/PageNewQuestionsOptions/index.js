@@ -10,19 +10,23 @@ import { DataContext } from '../../Components/DataContext'
 
 function PageNewQuestionsOptions() {
  
-    const { loginValidate, setActivePageFormsQuestionsOptions } = useOutletContext()
+    const { loginValidate, setActivePageFormsQuestionsOptions, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
+        setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
 
-    const { loading, setLoading } = useContext(DataContext)
-    
+    const { loading } = useContext(DataContext)
+
     useEffect(() => {
-
-        // tornar a página ativa ao entrar na rota dela
+        // tornar a página ativa ao entrar na rota dela e desativa as demais
         setActivePageFormsQuestionsOptions(true)
         
-        // desabilitar o loading
-        setLoading(false)
+        setActivePageDemo(false)
+        setActivePageMain(false)
+        setActivePageMulti(false)
+        setActivePageThreeMulti(false)
+        setActivePageInfo(false)
+        setActivePageQuizBuilder(false)
 
-    }, [setActivePageFormsQuestionsOptions, setLoading])
+    }, [setActivePageFormsQuestionsOptions, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageInfo, setActivePageQuizBuilder])
 
     return(
         <div className={styles.newQuestionsOptionsPage}>

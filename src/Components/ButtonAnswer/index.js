@@ -531,8 +531,8 @@ function ButtonAnswer({
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMain}
-                    textPopup={`No alternative matching the answer to question ${questionNumber} was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
-                    textModalDescription={`Choose one: (1)Include in the answer to question ${questionNumber} the correct alternative from the option highlighted below: ${optionMain[0]}, ${optionMain[1]}, ${optionMain[2]}, ${optionMain[3]}${optionMain[4] !== '' ? ` or ${optionMain[4]}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${questionNumber}, highlighted below: ${answer}.`}
+                    textPopup={`No alternative matching the answer to question was found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that one alternative exactly matches the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`(Solution 1) Include in the answer to question the correct alternative from the option highlighted below: (Option: ${optionMain[0]}), (Option: ${optionMain[1]}), (Option: ${optionMain[2]}), (Option: ${optionMain[3]})${optionMain[4] !== '' ? ` or (Option: ${optionMain[4]}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer to question, highlighted below: (Answer: ${answer}).`}
                 />
             }
 
@@ -540,8 +540,8 @@ function ButtonAnswer({
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerMulti}
-                    textPopup={`The two alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A and Option B exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
-                    textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the two correct alternatives from the option highlighted below: ${optionMulti[0]} e ${optionMulti[1]}. (2)Include in the first two alternatives (Option A and Option B) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}. `}
+                    textPopup={`The two alternatives included in the answer to question were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A and Option B exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`(Solution 1) Include in the answer of question the two correct alternatives from the option highlighted below: (Option: ${optionMulti[0]}) and (Option: ${optionMulti[1]}). (Solution 2) Include in the first two alternatives (Option A and Option B) of this option the answer included in question, highlighted below: (Answer: ${answer}).`}
                 />
             }
 
@@ -549,8 +549,8 @@ function ButtonAnswer({
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckButtonAnswer} 
                     activePopup={setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti}
-                    textPopup={`The three alternatives included in the answer to question ${questionNumber} were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A, Option B and Option C exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
-                    textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumber} the three correct alternatives from the option highlighted below: ${optionMulti[0]}, ${optionMulti[1]} e ${optionMulti[2]}. (2)Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question ${questionNumber}, highlighted below: ${answer}.`}
+                    textPopup={`The three alternatives included in the answer to question were not found. Please ensure that, before answering the respective question, you edit the question and the option in the menu so that Option A, Option B and Option C exactly match those included in the answer to the question. Then proceed with answering the question and the option. For more information, click the phrase below.`} 
+                    textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option: ${optionMulti[0]}), (Option: ${optionMulti[1]}) and (Option: ${optionMulti[2]}). (Solution 2) Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question, highlighted below: (Answer: ${answer}).`}
                 />
             }
 

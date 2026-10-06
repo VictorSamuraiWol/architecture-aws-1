@@ -226,7 +226,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setActivePopupDelete(false)
 
     } else {
-      if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de uma única escolha disponíveis       
+      if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Main       
           onDeleteQuestion(questionMain)
           onDeleteOption(optionMainNumberId)
           setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
@@ -244,7 +244,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   }
 
   function deleteMulti() { // função que deleta a questão e opção correspondente da página 'PageMulti'
-    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
+    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Multi
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
@@ -259,8 +259,8 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
 
   }
   
-  function deleteThreeMulti() { // função que deleta a questão e opção correspondente da página 'PageMulti'
-    if (listThreeMultiQuestionsContext.length >= 3 && listThreeMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções de múltipla escolha disponíveis
+  function deleteThreeMulti() { // função que deleta a questão e opção correspondente da página 'PageThreeMulti'
+    if (listThreeMultiQuestionsContext.length >= 3 && listThreeMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página ThreeMulti
       onDeleteQuestionThreeMulti(questionMulti)
       onDeleteOptionThreeMulti(optionMultiNumberId)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível

@@ -72,6 +72,8 @@ function Header() {
                                 styles.navBar}
                 >
                     {!activePageFormsQuestionsOptions &&
+                    <>
+                        {/* página info */}
                         <Link
                             to='/page-info'
                             className={activeLinksHamburguer ? styles.linksNavigationHamburguer: styles.linksNavigation}
@@ -80,7 +82,20 @@ function Header() {
                                 onClick={sound}
                                 itemName='info'
                             />
-                        </Link> 
+                        </Link>
+
+                        {/* página quiz builder */}
+                        <Link
+                            to='/page-quiz-builder'
+                            className={activeLinksHamburguer ? styles.linksNavigationHamburguer: styles.linksNavigation}
+                        >
+                            <NavigationItem 
+                                onClick={sound}
+                                itemName='quiz builder'
+                            />
+                        </Link>
+
+                    </>
                     }
                                    
                 </ul>

@@ -23,6 +23,7 @@ const Timer = () => {
       }, 1000); // 1000 ms
 
     } 
+
     mute === false && timerStartSound.play() //toca o audio
 
   }
@@ -43,6 +44,15 @@ const Timer = () => {
     return () => clearInterval(timerRef.current) // Limpa o intervalo ao desmontar o componente
 
   }, [])
+
+  useEffect(() => {
+    // desativa o popup PopupAlertMessage do componente Main, Multi e ThreeMulti ao entrar nas páginas
+    activePageDemo && setActivePopupZeroTimerMainAlert(false)
+    activePageMain && setActivePopupZeroTimerMainAlert(false)
+    activePageMulti && setActivePopupZeroTimerMultiAlert(false)
+    activePageThreeMulti && setActivePopupZeroTimerMultiAlert(false)
+
+  }, [activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert])
 
   // Para o cronômetro quando chegar a 0
   useEffect(() => {

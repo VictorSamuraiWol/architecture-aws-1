@@ -25,7 +25,7 @@ function FormsNewQuestionsOptions() {
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
-    const { setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, mute, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti  } = useOutletContext()
+    const { repeatedAlternativesDefault, mute } = useOutletContext()
 
     // atributos da questão única (formulário 1):
     const [newQuestionTextMain, setNewQuestionTextMain] = useState('')
@@ -118,16 +118,6 @@ function FormsNewQuestionsOptions() {
     const [noDataAlertForm, setNoDataAlertForm] = useState(false) // ativa o componente PopupAlertMessage
     
     const [colorIncorrect] = useState('#B71C1C') // passando a cor incorreta
-
-    useEffect(() => {
-        setActivePageFormsQuestionsOptions(true) // verifica se a página Forms está ativa
-        
-        setActivePageDemo(false)
-        setActivePageMain(false)
-        setActivePageMulti(false)
-        setActivePageThreeMulti(false)
-
-    }, [setActivePageFormsQuestionsOptions, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti])
 
     useEffect(() => {        
         // capturando o número de todas as opções presentes nos formulários 2 e 4

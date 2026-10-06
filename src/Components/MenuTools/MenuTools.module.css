@@ -84,6 +84,10 @@
     width: 80%;
   }
 
+  .popupDelete {
+    left: 37%;
+  }
+
 }
 
 @media (max-width: 860px) {
@@ -93,6 +97,17 @@
 
   .menuToolsSelector {
     font-size: 1rem;
+  }
+
+  .popupDelete {
+    left: 35%;
+  }
+
+}
+
+@media (max-width: 580px) {
+  .popupDelete {
+    left: 27%;
   }
 
 }

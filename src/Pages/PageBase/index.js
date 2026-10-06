@@ -16,9 +16,7 @@ function PageBase() {
     const [activePageThreeMulti, setActivePageThreeMulti] = useState(false)
     const [activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions] = useState(false)
     const [activePageInfo, setActivePageInfo] = useState(false)
-    const [activeZeroImgMain, setActiveZeroImgMain] = useState(false)
-    const [activeZeroImgMulti, setActiveZeroImgMulti] = useState(false)
-    const [activeZeroImgThreeMulti, setActiveZeroImgThreeMulti] = useState(false)
+    const [activePageQuizBuilder, setActivePageQuizBuilder] = useState(false)
     const [mute, setMute] = useState(false)
     const [numCorrectOption, setNumCorrectOption] = useState(0) // questões corretas das páginas main e multi
     const [numIncorrectOption, setNumIncorrectOption] = useState(0) // questões corretas das páginas main e multi
@@ -28,6 +26,7 @@ function PageBase() {
     const [listImagesQuestions, setListImagesQuestions] = useState([])
     const [listIconsDescriptions, setListIconsDescriptions] = useState([])
     const [listImagesDescriptions, setListImagesDescriptions] = useState([])
+    // const [activeZeroImg, setActiveZeroImg] = useState(false)
     
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
@@ -117,10 +116,9 @@ function PageBase() {
                         numIncorrectOption, setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageDemo, 
                         setActivePageDemo, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti, activePageThreeMulti, 
-                        setActivePageThreeMulti, activeZeroImgMain, setActiveZeroImgMain, activeZeroImgMulti,  setActiveZeroImgMulti, 
-                        activeZeroImgThreeMulti,  setActiveZeroImgThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
+                        setActivePageThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
                         activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault,
-                        activePageInfo, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu,
+                        activePageInfo, setActivePageInfo, activePageQuizBuilder, setActivePageQuizBuilder, activeModalEditMenu, setActiveModalEditMenu,
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions
                     }} 

@@ -14,7 +14,7 @@ import { Link, useOutletContext } from 'react-router-dom'
 
 function MultiMain({ 
     question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
-    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6, activeZeroImgMulti
+    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -56,95 +56,84 @@ function MultiMain({
 
     return (
         <div className={styles.multiMain}>
-            {activeZeroImgMulti === false && 
-            <>
-                <div className={styles.containerTextTitle}>
-                    <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
-                </div>
-                
-                <div className={styles.containerQuestionMenuTools}>
-                    <Question 
-                        question={question}
-                        questionNumber={questionNumber}
-                        questionMulti={questionMulti}           
-                    />
-
-                    <MenuTools
-                        questionMulti={questionMulti} 
-                        optionMulti={optionMulti} 
-                        optionMultiNumberId={optionMultiNumberId}
-                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}               
-                    />
-                
-                </div>
-         
-                <MultiOptions
-                    optionColorStyle={optionColorStyle}
-                    inputColorStyle={inputColorStyle}
-                    setCaptureValueMulti={setCaptureValueMulti}
-                    captureValueMulti={captureValueMulti}
-                    optionMulti={optionMulti}
-                    optNum1={optNum1}
-                    optNum2={optNum2}
-                    optNum3={optNum3}
-                    optNum4={optNum4}
-                    optNum5={optNum5}
-                    optNum6={optNum6}
-                />
-   
-                <ButtonAnswer            
-                    answerDescriptionDisplay={answerDescriptionDisplay}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}              
-                    answer={answer}
+            <div className={styles.containerTextTitle}>
+                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+            </div>
+            
+            <div className={styles.containerQuestionMenuTools}>
+                <Question 
+                    question={question}
                     questionNumber={questionNumber}
-                    optionValidateStyle={optionValidateStyle}
-                    optionInvalidateStyle={optionInvalidateStyle}
-                    optionColorStyle={optionColorStyle}
-                    inputColorStyle={inputColorStyle}
-                    inputValidateStyle={inputValidateStyle}
-                    inputInvalidateStyle={inputInvalidateStyle}
-                    captureValueMulti={captureValueMulti}
-                    optionMulti={optionMulti}
-                    setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
-                    activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
-                    setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
-                    setItens={setItens}
+                    questionMulti={questionMulti}           
                 />
 
-                <AnswerDescription
-                    questionMulti={questionMulti}
-                    answer={answer}
-                    iconDescription={iconDescription}
-                    description={description}
-                    answerDescriptionDisplay={answerDescriptionDisplay}
+                <MenuTools
+                    questionMulti={questionMulti} 
+                    optionMulti={optionMulti} 
+                    optionMultiNumberId={optionMultiNumberId}
                     setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    descriptionDisplay={descriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}
-                    itens={itens}             
+                    setDescriptionDisplay={setDescriptionDisplay}               
                 />
+            
+            </div>
+        
+            <MultiOptions
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}
+                setCaptureValueMulti={setCaptureValueMulti}
+                captureValueMulti={captureValueMulti}
+                optionMulti={optionMulti}
+                optNum1={optNum1}
+                optNum2={optNum2}
+                optNum3={optNum3}
+                optNum4={optNum4}
+                optNum5={optNum5}
+                optNum6={optNum6}
+            />
 
-                <Link
-                    to={ablePageMain()} 
-                >
-                    <ButtonNext 
-                        onClick={alertQuestionAnswerButtonNextMulti}
-                        questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
-                    />
-                </Link>
+            <ButtonAnswer            
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                descriptionDisplay={descriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}              
+                answer={answer}
+                questionNumber={questionNumber}
+                optionValidateStyle={optionValidateStyle}
+                optionInvalidateStyle={optionInvalidateStyle}
+                optionColorStyle={optionColorStyle}
+                inputColorStyle={inputColorStyle}
+                inputValidateStyle={inputValidateStyle}
+                inputInvalidateStyle={inputInvalidateStyle}
+                captureValueMulti={captureValueMulti}
+                optionMulti={optionMulti}
+                setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
+                activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
+                setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
+                setItens={setItens}
+            />
 
-                <ModalResults />
+            <AnswerDescription
+                questionMulti={questionMulti}
+                answer={answer}
+                iconDescription={iconDescription}
+                description={description}
+                answerDescriptionDisplay={answerDescriptionDisplay}
+                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                descriptionDisplay={descriptionDisplay}
+                setDescriptionDisplay={setDescriptionDisplay}
+                itens={itens}             
+            />
 
-            </>}
+            <Link
+                to={ablePageMain()} 
+            >
+                <ButtonNext 
+                    onClick={alertQuestionAnswerButtonNextMulti}
+                    questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
+                />
+            </Link>
 
-            {/* imagem que aparece quando não tem questões disponíveis */}
-            {activeZeroImgMulti && <img 
-                src={zeroImage} 
-                alt='zero img'
-                className={styles.zeroImg}
-            />}
+            <ModalResults />
 
             {/* PopupRepeatedAlternatives */}
             {activePopupRepeatedAlternativesMultiMain === true && 

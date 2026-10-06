@@ -422,13 +422,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           setActivePopupcheckAlternativeAnswerModalForms1(true)
 
         } else {
-          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+          if (repeatedAlternativesDefault(newOption).length > 0) {
             setActivePopupRepeatedAlternativesModalEdit(true)
-
-            setTimeout(() => {
-              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-            }, 10000)
 
           } else {
             onSaveModalQuestion() // salvando a questão única
@@ -470,13 +465,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             setActivePopupcheckAlternativeAnswerModalForms2(true)
 
           } else {
-          if (repeatedAlternativesDefault(newOption, newMultiOption).length > 0) {
+          if (repeatedAlternativesDefault(null, newMultiOption).length > 0) {
             setActivePopupRepeatedAlternativesModalEdit(true)
-
-            setTimeout(() => {
-              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-            }, 10000)
 
           } else {    
             onSaveModalMultiQuestion() // salvando a questão múltipla
@@ -516,13 +506,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
             setActivePopupcheckAlternativeAnswerModalForms3(true)
 
           } else {
-          if (repeatedAlternativesDefault(newOption, newThreeMultiOption).length > 0) {
+          if (repeatedAlternativesDefault(null, null, newThreeMultiOption).length > 0) {
             setActivePopupRepeatedAlternativesModalEdit(true)
-
-            setTimeout(() => {
-              setActivePopupRepeatedAlternativesModalEdit(false) // desativa o popup em 10s
-
-            }, 10000)
 
           } else {    
             onSaveModalThreeMultiQuestion() // salvando a questão múltipla
@@ -1072,8 +1057,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
-            textPopup={`No alternative matching the answer to question ${questionNumberMain} was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`Choose one: (1)Include in the answer to question ${questionNumberMain} the correct alternative from the option highlighted below: ${optionAMain}, ${optionBMain}, ${optionCMain}, ${optionDMain}${optionEMain !== '' ? ` or ${optionEMain}.` : `.`} (2)Include in one of the alternatives of this option the answer to question ${questionNumberMain}, highlighted below: ${correctAnswerMain}.`}
+            textPopup={`No alternative matching the answer to question was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answer to question the correct alternative from the option highlighted below: (Option: ${optionAMain}), (Option: ${optionBMain}), (Option: ${optionCMain}), (Option: ${optionDMain})${optionEMain !== '' ? ` or (Option: ${optionEMain}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer, highlighted below: (Answer: ${correctAnswerMain}).`}
           />
         }
 
@@ -1081,8 +1066,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
-            textPopup={`The two alternatives included in the answer of question ${questionNumberMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberMulti} the two correct alternatives from the option highlighted below: (Option: ${optionAMulti}) and (Option:${optionBMulti}). (2)Include in the first two alternatives (Option A and Option B) of this option the answer included in question ${questionNumberMulti}, highlighted below: ${correctAnswerMulti}. `}
+            textPopup={`The two alternatives included in the answer of question were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answer of question the two correct alternatives from the option highlighted below: (Option: ${optionAMulti}) and (Option:${optionBMulti}). (Solution 2) Include in the first two alternatives (Option A and Option B) of this option the answer included in question, highlighted below: (Answer: ${correctAnswerMulti}). `}
           />
         }
 
@@ -1090,8 +1075,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms3}
-            textPopup={`The three alternatives included in the answer of question ${questionNumberThreeMulti} were not found. Please ensure that, before editing the question and the option, the alternatives Option 1, Option 2 and Option 3 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`Choose One: (1)Include in the answer of question ${questionNumberThreeMulti} the three correct alternatives from the option highlighted below: (Option: ${optionAThreeMulti}), (Option: ${optionBThreeMulti}) and (Option: ${optionCThreeMulti}). (2)Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question ${questionNumberThreeMulti}, highlighted below: ${correctAnswerThreeMulti}. `}
+            textPopup={`The three alternatives included in the answer of question were not found. Please ensure that, before editing the question and the option, the alternatives Option 1, Option 2 and Option 3 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option: ${optionAThreeMulti}), (Option: ${optionBThreeMulti}) and (Option: ${optionCThreeMulti}). (Solution 2) Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question, highlighted below: (Answer: ${correctAnswerThreeMulti}).`}
           />
         }
 

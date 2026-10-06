@@ -1,4 +1,4 @@
-import styles from './PageInfo.module.css'
+import styles from './PageQuizBuilder.module.css'
 import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
 import Footer from '../../Components/Footer'
@@ -8,7 +8,7 @@ import { useContext, useEffect } from 'react'
 import { DataContext } from '../../Components/DataContext'
 import { useOutletContext } from 'react-router-dom'
 
-function PageInfo() {
+function PageQuizBuilder() {
 
   const { loading } = useContext(DataContext)  
   const { loginValidate, setActivePageMulti, setActivePageMain, setActivePageDemo, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, 
@@ -16,19 +16,20 @@ function PageInfo() {
 
   useEffect(() => {
     // tornar a página ativa ao entrar na rota dela e desativa as demais
-    setActivePageInfo(true)
+    setActivePageQuizBuilder(true)
 
     setActivePageDemo(false)
     setActivePageMain(false)
     setActivePageMulti(false)
     setActivePageThreeMulti(false)
     setActivePageFormsQuestionsOptions(false)
-    setActivePageQuizBuilder(false)
+    setActivePageInfo(false)
 
-  }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageQuizBuilder])
+  }, [setActivePageQuizBuilder, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo])
 
   return (
-    <div className={styles.pageInfo}>
+    <div className={styles.quizBuilder}>
+      {/* criar este componente já que se repete muito */}
       {!loginValidate && 
         <>
           <HeaderLogin />
@@ -40,9 +41,8 @@ function PageInfo() {
       {loginValidate && 
         <>
           <Header />
-
-          <main className={styles.mainPageInfo}>
-            <h1 className={styles.titlePage}>Info</h1>
+          <main className={styles.mainPageQuizBuilder}>
+            <h1 className={styles.titlePage}>Quiz Builder</h1>
 
             <img 
               className={styles.imageContentSoon}
@@ -63,4 +63,4 @@ function PageInfo() {
 
 }
 
-export default PageInfo
+export default PageQuizBuilder;

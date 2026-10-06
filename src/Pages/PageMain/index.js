@@ -27,7 +27,7 @@ function PageMain() {
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        activeZeroImgMain, setActiveZeroImgMain, setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu } = useOutletContext()
+        setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMain()'
@@ -55,16 +55,17 @@ function PageMain() {
     }   
 
     useEffect(() => {
-        // tornar a página ativa ao entrar na rota dela
+        // tornar a página ativa ao entrar na rota dela e desativa as demais
         setActivePageMain(true)
-
-        setActivePageMulti(false)
+             
         setActivePageDemo(false)
+        setActivePageMulti(false)
         setActivePageThreeMulti(false)
         setActivePageFormsQuestionsOptions(false)
         setActivePageInfo(false)
+        setActivePageQuizBuilder(false)
 
-    }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+    }, [setActivePageMain, setActivePageDemo, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
 
     useEffect(() => {
         if (!listUnicQuestionsContext || !listUnicQuestionsContextLength || listUnicQuestionsContextLength === 0) return // se a lista de questões não existir, retorne
@@ -154,9 +155,6 @@ function PageMain() {
                     }
 
                 })
-
-                // se não encontrar uma questão e opção correspondentes, mostrará uma imagem de zero questão
-                !matchedOption && !matchedQuestion && setActiveZeroImgMain(true)
       
             } else if (matchedOption) { // se tiver opção, não precisa mudar a questão
                 // atualizando a opção correspondente
@@ -165,7 +163,6 @@ function PageMain() {
                 matchedQuestion = questionMain // matchedQuestion recebe o valor 'questionMain'                
                 setLoading(false) // desabilita o componente 'Loader'
                 lastNumberMatchedQuestionOptionRef.current = matchedQuestion.questionNumber // armazena o número da questão correspondente
-                setActiveZeroImgMain(false)
 
             } else {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
@@ -177,7 +174,7 @@ function PageMain() {
         // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
         questionOptionMatch()
 
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, setActiveZeroImgMain, activeModalEditMenu, setActiveModalEditMenu])
+    }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, activeModalEditMenu, setActiveModalEditMenu])
 
     return(
         <div className={styles.pageMainStyles}>
@@ -227,7 +224,6 @@ function PageMain() {
                         optNum3={optNum3}
                         optNum4={optNum4}
                         optNum5={optNum5}
-                        activeZeroImgMain={activeZeroImgMain}
                         activePageMain={activePageMain}
                     />
 

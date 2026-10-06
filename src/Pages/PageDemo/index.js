@@ -9,7 +9,8 @@ import { useEffect, useRef, useState } from 'react'
 
 function PageDemo() {
 
-  const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageInfo } = useOutletContext()
+  const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, 
+    setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -34,6 +35,7 @@ function PageDemo() {
   const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
   useEffect(() => {
+    // tornar a página ativa ao entrar na rota dela e desativa as demais
     setActivePageDemo(true)
 
     setActivePageMain(false) 
@@ -41,8 +43,9 @@ function PageDemo() {
     setActivePageThreeMulti(false)
     setActivePageFormsQuestionsOptions(false)
     setActivePageInfo(false)
+    setActivePageQuizBuilder(false)
 
-  }, [setActivePageInfo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions])
+  }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
 
   // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
   // usado na função 'uniqueRandomDemo()'
@@ -114,7 +117,6 @@ function PageDemo() {
             optNum3={2}
             optNum4={3}
             optNum5={4}
-            activeZeroImgMain={false}
             activePageDemo={activePageDemo}
           />
 
