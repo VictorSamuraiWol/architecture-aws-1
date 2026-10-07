@@ -13,7 +13,7 @@ function PageDemo() {
   const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, 
     setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
 
-  const { getApi, setGetApi } = useContext(DataContext)
+  const { setGetApi } = useContext(DataContext)
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
