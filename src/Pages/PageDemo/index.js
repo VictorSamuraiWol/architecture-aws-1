@@ -51,9 +51,10 @@ function PageDemo() {
   }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
 
   useEffect(() => {
-    setGetApi(!getApi)
+    setGetApi(true)
+    setTimeout(() => setGetApi(false), 300)
 
-  }, [])
+  }, [setGetApi])
 
   // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
   // usado na função 'uniqueRandomDemo()'

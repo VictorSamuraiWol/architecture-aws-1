@@ -24,6 +24,7 @@
 .imageContentSoon {
   width: 50%;
   border-radius: 16px;
+  box-shadow: 5px 5px 3px var(--color-third);
 }
 
 /* Responsividade */

@@ -30,7 +30,6 @@ function PageBase() {
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada, será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
     const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
-    // const [activeZeroImg, setActiveZeroImg] = useState(false)
     
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
