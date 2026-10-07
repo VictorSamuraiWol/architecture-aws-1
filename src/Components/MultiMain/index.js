@@ -44,7 +44,7 @@ function MultiMain({
 
     }
 
-    function ableNextPage() { // função que muda a rota da página Multi para a página Main
+    function ableNextPage() { // função que habilita a próxima rota
         let able = null
 
         if (listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 && questionAnswerButtonNextMulti) {

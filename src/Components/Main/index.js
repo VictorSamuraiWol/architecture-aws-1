@@ -113,7 +113,7 @@ function Main({
 
     }
 
-    function ableNextPage() {
+    function ableNextPage() { // função que habilita a próxima rota
         let able = null
         // numberPath => 1 ou 2 ('/page-main'), 3 ('/page-multi') e 4 ('/page-three-multi')
 

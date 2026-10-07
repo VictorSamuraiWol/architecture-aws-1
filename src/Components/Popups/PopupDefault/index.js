@@ -4,6 +4,8 @@ import soundClick from '../../../audios/clickAudio.mp3'
 import ModalPopupCheckAlternativeAnswer from '../../Modal/ModalPopupCheckAlternativeAnswer'
 import { TiDeleteOutline } from "react-icons/ti"
 import { useOutletContext } from 'react-router-dom'
+import PopupAlertMessage from '../PopupAlertMessage'
+import { useState } from 'react'
 
 function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheckAlternativeAnswer, 
   textModalForMoreInformation, textModalDescription, activeButtons, questionMain, questionMulti, 
@@ -12,7 +14,9 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-  const { activePageMain, activePageMulti, activePageThreeMulti, mute } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, mute } = useOutletContext()
+
+  const [activeDeletePopupAlertMessege, setActiveDeletePopupAlertMessege] = useState(false)
 
   function closePopup() { // função para desativar o popup ao clicar no icone delete    
     activePopup(false)
@@ -22,7 +26,10 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
   }
 
   function deleteQuestion() { // função que irá deletar a questão e opção correspondentes, exclusivo do componente 'PopupDeleteQuestionOption'
-    if (activePageMain && questionMain) {
+    if (activePageDemo) {
+      setActiveDeletePopupAlertMessege(true)
+
+    } else if (activePageMain && questionMain) {
       deleteMain() // deleta a questão e opção correspondentes da 'PageMain' 
       
     } else if (activePageMulti && questionMulti) {
@@ -79,6 +86,15 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
         />
 
       </div>}
+
+      {/* PopupAlertMessage */}
+      {activeDeletePopupAlertMessege &&
+        <PopupAlertMessage 
+            text="This question is static and cannot be deleted."
+            activePopup={setActiveDeletePopupAlertMessege}
+            specificStyles={styles.popupAlertMessage}
+        />
+      }
 
     </div>
   )
