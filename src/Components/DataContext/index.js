@@ -25,6 +25,7 @@ export default function DataProvider({ children }) {
 
     const [loading, setLoading] = useState(false)
 
+    const [getApi, setGetApi] = useState(false)
     const [postApi, setPostApi] = useState(false)
     const [putApi, setPutApi] = useState(false)
     const [deleteApi, setDeleteApi] = useState(false)
@@ -233,8 +234,8 @@ export default function DataProvider({ children }) {
 
         fetchData6()
 
-    }, [postApi, putApi, deleteApi])
-
+    }, [getApi, postApi, putApi, deleteApi])
+    
     return (        
         <DataContext.Provider
             value={{
@@ -254,6 +255,8 @@ export default function DataProvider({ children }) {
                 listThreeMultiOptionsContextLength,
                 loading,
                 setLoading,
+                getApi, 
+                setGetApi,
                 postApi,
                 setPostApi,
                 putApi,

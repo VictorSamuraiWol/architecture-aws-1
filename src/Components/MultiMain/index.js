@@ -8,8 +8,9 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
+import { DataContext } from '../DataContext'
 
 function MultiMain({ 
     question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
@@ -25,10 +26,11 @@ function MultiMain({
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
     
-    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
+    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMulti, 
+        setQuestionAnswerButtonNextMulti } = useOutletContext()
 
-    // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página multi, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
-    const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
+    const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
+        listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
     const [itens, setItens] = useState('') // captura os itens corretos
 
@@ -42,15 +44,55 @@ function MultiMain({
 
     }
 
-    function ablePageMain() { // função que muda a rota da página Multi para a página Main
+    function ableNextPage() { // função que muda a rota da página Multi para a página Main
         let able = null
 
-        if (questionAnswerButtonNextMulti) {
-        // condição: se a questão da página Multi foi respondida
+        if (listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 && questionAnswerButtonNextMulti) {
+        // condição: se tiver questões Main disponíveis e a questão da página Multi for respondida
             able = '/page-main'
-        } 
+
+        } else if (activePageThreeMulti && listThreeMultiQuestionsContextLength === 1 && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMulti) {
+            if (listMultiQuestionsContextLength >= 1 && listMultiOptionsContextLength >= 1) {
+                able = '/page-multi'
+
+            } else {
+                able = '/'
+
+            }
+
+        } else if (listMultiQuestionsContextLength >= 1 && listMultiOptionsContextLength >= 1 && listThreeMultiQuestionsContextLength >= 1 
+        && listThreeMultiOptionsContextLength >= 1 && questionAnswerButtonNextMulti) {
+            if (activePageMulti) {
+                able = '/page-three-multi'
+
+            } else if (activePageThreeMulti)
+                able = '/page-multi'
+            
+            else {
+                able = '/'
+
+            }
+
+        } else if (listMultiQuestionsContextLength === 1 && listMultiOptionsContextLength === 1 && listThreeMultiQuestionsContextLength === 0
+        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMulti) {
+            able = '/'
+
+        } else if (listMultiQuestionsContextLength > 1 && listMultiOptionsContextLength > 1 && listThreeMultiQuestionsContextLength === 0 
+        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMulti) {
+            able = '/page-multi'
+
+        } else if (listMultiQuestionsContextLength === 0 && listMultiOptionsContextLength === 0 && listThreeMultiQuestionsContextLength === 1 
+        && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMulti) {
+            able = '/'
+            
+        } else if (listMultiQuestionsContextLength === 0 && listMultiOptionsContextLength === 0 && listThreeMultiQuestionsContextLength > 1 
+        && listThreeMultiOptionsContextLength > 1 && questionAnswerButtonNextMulti) {
+            able = '/page-three-multi'
+            
+        }
 
         return able
+
     }
 
     return (
@@ -124,7 +166,7 @@ function MultiMain({
             />
 
             <Link
-                to={ablePageMain()} 
+                to={ableNextPage()}
             >
                 <ButtonNext 
                     onClick={alertQuestionAnswerButtonNextMulti}

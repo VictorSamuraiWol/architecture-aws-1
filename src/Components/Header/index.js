@@ -14,9 +14,9 @@ function Header() {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { staticListUsers, listUsers } = useContext(DataContext)
+    const { staticListUsers, listUsers,  getApi, setGetApi } = useContext(DataContext)
 
-    const { setLoginValidate, setActivateNavigateDefault, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions } = useOutletContext()
+    const { setLoginValidate, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions } = useOutletContext()
 
     const [activeLinksHamburguer, setActiveLinkesHamburguer] = useState(false)
 
@@ -39,7 +39,6 @@ function Header() {
     function signOut() {
         setLoginValidate(false)
         setNameUser('')
-        setActivateNavigateDefault(true)
 
     }
 
@@ -50,7 +49,7 @@ function Header() {
                 className={styles.linkHeader} 
             >
                 <img
-                    onClick={sound}
+                    onClick={() => {sound(); setGetApi(!getApi)}}
                     className={styles.iconStart} 
                     src={image}
                     alt='icon-start' 

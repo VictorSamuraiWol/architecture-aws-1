@@ -23,7 +23,7 @@ function PageMulti() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, listMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
+    const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
@@ -76,8 +76,6 @@ function PageMulti() {
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength])
 
     useEffect(() => {
-        if (!listMultiOptionsContext || !listMultiOptionsContextLength || listMultiOptionsContextLength === 0) return // se a lista de opções não existir, retorne 
-
         const randomNumbers = [] // armazena a lista de números randômicos
 
         // gerando um número para randomizar toda vez que renderizar
@@ -90,15 +88,14 @@ function PageMulti() {
             }
 
         }
-        
-        // gerando números radômicos para alterar a ordem das opções
+
         setOptNum1(randomNumbers[0])
         setOptNum2(randomNumbers[1])
         setOptNum3(randomNumbers[2])
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
-    
-    }, [listMultiOptionsContext, listMultiOptionsContextLength])
+
+    }, [])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
@@ -106,8 +103,8 @@ function PageMulti() {
         if (!listMultiQuestionsContext || !listMultiOptionsContext || !questionMulti) return     
 
         function questionMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null
             let matchedQuestion = null
+            let matchedOption = null
 
             setLoading(true) // habilita o componente 'Loader'
 

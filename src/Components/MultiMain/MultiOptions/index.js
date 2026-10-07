@@ -70,7 +70,7 @@ function MultiOptions({
         itemOrderSelection()
         
     }, [optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6])
-    
+       
     return (
         optionMulti && <div className={styles.multiOptions}>
             {optionMulti[optNum1] && <div className={`optionNextMulti ${optionColorStyle} ${styles.alternativeMultiOptions}`}> {/* esta alternativa da opção múltipla só irá aparecer se 'optionMulti[optNum1]' existir */}

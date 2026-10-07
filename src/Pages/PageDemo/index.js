@@ -1,16 +1,19 @@
 import styles from './PageDemo.module.css'
 import HeaderLogin from '../../Components/HeaderLogin'
 import Header from '../../Components/Header'
-import Main from '../../Components/Main'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
+import Main from '../../Components/Main'
 import Footer from '../../Components/Footer'
 import { useOutletContext } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { DataContext } from '../../Components/DataContext'
 
 function PageDemo() {
 
   const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, 
     setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
+
+  const { getApi, setGetApi } = useContext(DataContext)
 
   const [questionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
@@ -46,6 +49,11 @@ function PageDemo() {
     setActivePageQuizBuilder(false)
 
   }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
+
+  useEffect(() => {
+    setGetApi(!getApi)
+
+  }, [])
 
   // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
   // usado na função 'uniqueRandomDemo()'

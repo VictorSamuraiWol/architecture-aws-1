@@ -12,7 +12,7 @@ function ButtonNext({
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
     const { mute } = useOutletContext()
 
-    const { listUnicQuestionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContextLength, getApi, setGetApi } = useContext(DataContext)
 
     const newSoundNextPage = new Audio(audioNextPage) // som 'newSoundNextPage'
     
@@ -25,7 +25,7 @@ function ButtonNext({
     
     return(
         <ButtonDefault
-            onClick={() => {onClick(); soundNextPage()}}
+            onClick={() => {onClick(); soundNextPage(); setGetApi(!getApi)}}
             specificStyleButton={styles.buttonNext}
             buttonName='Next'
         />

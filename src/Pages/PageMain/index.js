@@ -23,7 +23,7 @@ function PageMain() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, listUnicOptionsContextLength, loading, setLoading } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
     
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
@@ -79,8 +79,6 @@ function PageMain() {
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
 
     useEffect(() => {
-        if (!listUnicOptionsContext || !listUnicOptionsContextLength || listUnicOptionsContextLength === 0) return // se a lista de opções não existir, retorne
-
         const randomNumbers = [] // armazena a lista de números randômicos
         
         // gerando um número para randomizar toda vez que renderizar
@@ -93,7 +91,7 @@ function PageMain() {
             }
 
         }
-        
+
         // gerando números radômicos para alterar a ordem das opções
         setOptNum1(randomNumbers[0])
         setOptNum2(randomNumbers[1])
@@ -101,15 +99,15 @@ function PageMain() {
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4]) 
 
-    }, [listUnicOptionsContext, listUnicOptionsContextLength, setOptNum1, setOptNum2, setOptNum3, setOptNum4, setOptNum5])
+    }, [])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão           
         if (!listUnicQuestionsContext || !listUnicOptionsContext || !questionMain) return
 
         function questionOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null
             let matchedQuestion = null
+            let matchedOption = null
 
             setLoading(true) // habilita o componente 'Loader'
 

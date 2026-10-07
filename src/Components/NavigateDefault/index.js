@@ -2,20 +2,17 @@ import './NavigateDefault.module.css'
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-function NavigateDefault({ isLogged, setActivateNavigateDefault }) {
+function NavigateDefault({ path, setActivateNavigateDefault }) {
   
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isLogged) {
-      navigate("/")
-
-    }
+    navigate(path)
 
     setActivateNavigateDefault(false)
 
-  }, [isLogged, navigate, setActivateNavigateDefault])
+  }, [navigate, path, setActivateNavigateDefault])
 
 }
 
-export default NavigateDefault
+export default NavigateDefault;

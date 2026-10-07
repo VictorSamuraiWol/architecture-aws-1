@@ -7,6 +7,7 @@ function Footer() {
     const { loginValidate, activePageFormsQuestionsOptions, activePageInfo, activePageQuizBuilder, activePageDemo, activePageMain, activePageMulti, 
         activePageThreeMulti } = useOutletContext()
 
+
     return(
         <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo || activePageQuizBuilder ? styles.footerForms : styles.footer}>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
@@ -24,4 +25,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default Footer;

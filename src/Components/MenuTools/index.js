@@ -13,15 +13,12 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
-  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, deleteApi, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
-  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
-  const [fewer3SigleChoice, setFewer3SigleChoice] = useState(false) // ativa o componente PopupAlertMessage
-  const [fewer3MultipleChoice, setFewer3MultipleChoice] = useState(false) // ativa o componente PopupAlertMessage
-
   const [activeDescriptionIcon, setActiveDescriptionIcon] = useState('')
 
   // função que deleta a questão de única escolha atual
@@ -226,54 +223,111 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setActivePopupDelete(false)
 
     } else {
-      if (listUnicQuestionsContext.length >= 3 && listUnicOptionsContext.length >= 3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Main       
-          onDeleteQuestion(questionMain)
-          onDeleteOption(optionMainNumberId)
-          setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
-          setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
-          console.log('Deleted successfully!')
-      
-      } else {
-        setFewer3SigleChoice(true)
-        setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption' 
-      
-      }
+      if (listMatchedQuestionsOptions().length === 1) {
+        onDeleteQuestion(questionMain)
+        onDeleteOption(optionMainNumberId)
+        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+        setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+        console.log('Deleted successfully!')
+        setDeleteApi(!deleteApi)
 
+        if (listMultiQuestionsContext.length >= 1) {
+          setPathNavigate('/page-multi')
+          setActivateNavigateDefault(true)
+
+        } else if (listThreeMultiQuestionsContext.length >= 1) {
+          setPathNavigate('/page-three-multi')
+          setActivateNavigateDefault(true)
+
+        } else {
+          setPathNavigate('/')
+          setActivateNavigateDefault(true)
+
+        }
+
+      } else if (listMatchedQuestionsOptions().length > 1) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Main       
+        onDeleteQuestion(questionMain)
+        onDeleteOption(optionMainNumberId)
+        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+        setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+        console.log('Deleted successfully!')
+        setDeleteApi(!deleteApi)
+      
+      } 
+      
     }
     
   }
 
   function deleteMulti() { // função que deleta a questão e opção correspondente da página 'PageMulti'
-    if (listMultiQuestionsContext.length >= 3 && listMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Multi
+    if (listMatchedQuestionsOptions().length === 1) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Multi
       onDeleteQuestionMulti(questionMulti)
       onDeleteOptionMulti(optionMultiNumberId)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
+      setDeleteApi(!deleteApi)
+
+      if (listUnicQuestionsContext.length >= 1) {
+        setPathNavigate('/page-main')
+        setActivateNavigateDefault(true)
+
+      } else if (listThreeMultiQuestionsContext.length >= 1) {
+        setPathNavigate('/page-three-multi')
+        setActivateNavigateDefault(true)
+
+      } else {
+        setPathNavigate('/')
+        setActivateNavigateDefault(true)
+
+      }
     
-    } else {
-      setFewer3MultipleChoice(true)
-      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption'
+    } else if (listMatchedQuestionsOptions().length > 1) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Main       
+      onDeleteQuestionMulti(questionMulti)
+      onDeleteOptionMulti(optionMultiNumberId)
+      setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+      setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+      console.log('Deleted successfully!')
+      setDeleteApi(!deleteApi)
     
-    }
+    } 
 
   }
   
   function deleteThreeMulti() { // função que deleta a questão e opção correspondente da página 'PageThreeMulti'
-    if (listThreeMultiQuestionsContext.length >= 3 && listThreeMultiOptionsContext.length >=3 && listMatchedQuestionsOptions().length >= 3) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página ThreeMulti
+    if (listMatchedQuestionsOptions().length === 1) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Multi
       onDeleteQuestionThreeMulti(questionMulti)
       onDeleteOptionThreeMulti(optionMultiNumberId)
       setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
+      setDeleteApi(!deleteApi)
+
+      if (listUnicQuestionsContext.length >= 1) {
+        setPathNavigate('/page-main')
+        setActivateNavigateDefault(true)
+
+      } else if (listMultiQuestionsContext.length >= 1) {
+        setPathNavigate('/page-multi')
+        setActivateNavigateDefault(true)
+
+      } else {
+        setPathNavigate('/')
+        setActivateNavigateDefault(true)
+
+      } 
     
-    } else {
-      setFewer3MultipleChoice(true)
-      setActivePopupDelete(false) // fecha o 'PopupDeleteQuestionOption'
+    } else if (listMatchedQuestionsOptions().length > 1) { // só deletar se tiver pelo menos 3 ou mais questões e opções da página Main       
+      onDeleteQuestionThreeMulti(questionMulti)
+      onDeleteOptionThreeMulti(optionMultiNumberId)
+      setAnswerDescriptionDisplay(styles.invisibleAnswerDescription) // tornar a resposta da próxima questão invisível
+      setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
+      console.log('Deleted successfully!')
+      setDeleteApi(!deleteApi)
     
     }
 
-  } 
+  }
 
   // função para habilitar e desabilitar o Menu
   function ableDisableMenu() {
@@ -364,22 +418,6 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
           <PopupAlertMessage
             text="This is a static question and cannot be removed."
             activePopup={setStaticQuestionAlert}
-            specificStyles={styles.popupAlertMessage}
-          /> 
-        }
-
-        {fewer3SigleChoice && 
-          <PopupAlertMessage 
-            text="There are fewer than 3 single-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!"
-            activePopup={setFewer3SigleChoice}
-            specificStyles={styles.popupAlertMessage}
-          /> 
-        }
-
-        {fewer3MultipleChoice && 
-          <PopupAlertMessage 
-            text="There are fewer than 3 multiple-choice questions remaining. The minimum limit has been reached. Please create new questions before deleting any further ones!"
-            activePopup={setFewer3MultipleChoice}
             specificStyles={styles.popupAlertMessage}
           /> 
         }

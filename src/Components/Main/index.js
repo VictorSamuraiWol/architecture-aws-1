@@ -19,9 +19,11 @@ function Main({
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContextLength, listMultiOptionsContextLength, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
-    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert } = useOutletContext()
+    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, setPathNavigate, setActivateNavigateDefault,
+        questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain
+    } = useOutletContext()
 
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
@@ -32,11 +34,7 @@ function Main({
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
     const [answerMainQuestionAlert, setAnswerMainQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
-    const [noDataAlert, setNoDataAlert] = useState(false) // ativa o componente PopupAlertMessage
-    const [addOneSingleChoiceAlert, setAddOneSingleChoiceAlert] = useState(false) // ativa o componente PopupAlertMessage
-
-    // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada na página main, como na variável booleana 'questionAnwer', será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
-    const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
+    const [noDataAlert, setNoDataAlert] = useState(false) // ativa o componente PopupAlertMessage 
 
     const [item, setItem] = useState('') // captura o item correto
 
@@ -49,9 +47,6 @@ function Main({
     if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
         able = (Math.floor(Math.random() * 4) + 1)
 
-    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
-        able = (Math.floor(Math.random() * 2) + 1)
-
     } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
         listNumbers = [1, 2, 3]
         able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
@@ -60,7 +55,20 @@ function Main({
         listNumbers = [1, 2, 4]
         able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-    }
+    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+        listNumbers = [3, 4]
+        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
+        able = (Math.floor(Math.random() * 2) + 1)
+
+    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+        able = 3
+
+    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+        able = 4
+
+    } 
 
     return able
 
@@ -81,67 +89,102 @@ function Main({
     }
 
     function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
-        if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain === true && (numberPath === 1 || numberPath === 2)) {
+        if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain && (numberPath === 1 || numberPath === 2)) {
         // condição: se a questão da página Main já foi respondida 
             generateNewQuestionMain()
             setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
             setDescriptionDisplay(styles.invisibleDescription)
 
-        } else if (questionAnswerButtonNextMain === false) {
+        } else if (!questionAnswerButtonNextMain) {
             setAnswerMainQuestionAlert(true)
+
+        }  else if (activePageDemo && !listUnicQuestionsContextLength && listMultiQuestionsContextLength > 0) {
+            setPathNavigate('/page-multi')
+            setActivateNavigateDefault(true)
+
+        } else if (activePageDemo && !listUnicQuestionsContextLength && listThreeMultiQuestionsContextLength > 0) {
+            setPathNavigate('/page-three-multi')
+            setActivateNavigateDefault(true)
 
         } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
             setNoDataAlert(true)
 
-        } else if (activePageDemo && !listUnicQuestionsContextLength && (listMultiQuestionsContextLength > 0 || listThreeMultiQuestionsContextLength > 0)) {
-            setAddOneSingleChoiceAlert(true)
-
         }
-
-        // setActivePopupZeroTimerMainAlert(false)
 
     }
 
-    function ablePageMain() {
+    function ableNextPage() {
         let able = null
+        // numberPath => 1 ou 2 ('/page-main'), 3 ('/page-multi') e 4 ('/page-three-multi')
 
-        if (questionAnswerButtonNextMain === true && listUnicQuestionsContextLength > 0) {
+        if (activePageDemo && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 
+        && questionAnswerButtonNextMain) {
             able = '/page-main'
 
-        } else if (!listUnicQuestionsContextLength) {
+        } if (activePageDemo && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 0 && listUnicOptionsContextLength === 0 
+        && questionAnswerButtonNextMain) {
+            if (listMultiQuestionsContextLength > 0 && listMultiOptionsContextLength > 0) {
+                able = '/page-multi'
+
+            } else if (listThreeMultiQuestionsContextLength > 0 && listThreeMultiOptionsContextLength > 0) {
+                able = '/page-three-multi'
+
+            } else {
+                able = '/'
+
+            }
+
+        } else if (activePageMain && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 1 && listUnicOptionsContextLength === 1 
+        && questionAnswerButtonNextMain) {
+            if (listMultiQuestionsContextLength > 0 && listMultiOptionsContextLength > 0) {
+                able = '/page-multi'
+
+            } else if (listThreeMultiQuestionsContextLength > 0 && listThreeMultiOptionsContextLength > 0) {
+                able = '/page-three-multi'
+                
+            } else {
+                able = '/'
+
+            }
+
+        } else if (activePageMain && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 0 && listUnicOptionsContextLength === 0 
+        && questionAnswerButtonNextMain) {
+            if (listMultiQuestionsContextLength > 0 && listMultiOptionsContextLength > 0) {
+                able = '/page-multi'
+
+            } else if (listThreeMultiQuestionsContextLength > 0 && listThreeMultiOptionsContextLength > 0) {
+                able = '/page-three-multi'
+                
+            } else {
+                able = '/'
+
+            }
+
+        } else if (activePageMain && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength > 1 && listUnicOptionsContextLength > 1 
+        && questionAnswerButtonNextMain) {
+            able = '/page-main'
+
+        } else if (numberPath === 3 && listMultiQuestionsContextLength > 0 && listMultiOptionsContextLength > 0 && questionAnswerButtonNextMain) {
+            able = '/page-multi'
+
+        } else if (numberPath === 3 && listMultiQuestionsContextLength === 0 && listMultiOptionsContextLength === 0 && questionAnswerButtonNextMain) {
+            if (listThreeMultiQuestionsContextLength > 0 && listThreeMultiOptionsContextLength > 0) {
+                able = '/page-three-multi'
+
+            } else {
+                able = '/'
+
+            }
+
+        } else if (numberPath === 4 && listThreeMultiQuestionsContextLength > 0 && listThreeMultiOptionsContextLength > 0 && questionAnswerButtonNextMain) {
+            able = '/page-three-multi'
+
+        } else if (numberPath === 4 && listThreeMultiQuestionsContextLength === 0 && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMain) {
             able = '/'
 
         }
-
-        // setActivePopupZeroTimerMainAlert(false)
-
+                        
         return able
-
-    }
-
-    function ablePageMultiAndThreeMulti() { // função que muda a rota da página Main para a página Multi, 
-    // só mudará para a página Multi quando o numberPath for igual a '3' e permanecerá na página Main se o numberPath for igual a '1' ou '2',
-    // a probabilidade de permanecer na página Main é de 66% (números 1 ou 2) e de ir para a página Multi é de 33% (número 3)
-        let able = null
-
-        if (listMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && numberPath === 3) {
-        // condição: se a questão da página Main foi respondida e o numberPath for igual a '3' 
-            able = '/page-multi'
-
-        } else if (listMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength < 2) {
-        // condição: se a questão da página Main foi respondida e o numberPath for igual a '1' ou '2' e tiver menos de 2 questões únicas
-            able = '/page-multi'
-
-        } else if (listThreeMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain === true && numberPath === 4) {
-        // condição: se a questão da página Main foi respondida e o numberPath for igual a '4'
-            able = '/page-three-multi'
-
-        }
-
-        // setActivePopupZeroTimerMainAlert(false)
-
-        return able
-
     }
 
     return(
@@ -216,7 +259,7 @@ function Main({
             />
 
             <Link
-                to={activePageDemo ? ablePageMain() : ablePageMultiAndThreeMulti()} // se 'numberPath' é igual a '3' ou '4' executa essa função 'ablePageMultiAndThreeMulti()', se for '1' ou '2' executa a função da props onClick 'numbersOneTwoGenerateNewQuestionMain'
+                to={ableNextPage()}
             >
                 <ButtonNext
                     onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' ou '4' executa a função 'ablePageMultiAndThreeMulti()' do Link  
@@ -248,14 +291,6 @@ function Main({
                 <PopupAlertMessage 
                     text="No data found. Need to mock the API."
                     activePopup={setNoDataAlert}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
-
-            {addOneSingleChoiceAlert &&
-                <PopupAlertMessage 
-                    text="Add at least one single-choice question to use the app."
-                    activePopup={setAddOneSingleChoiceAlert}
                     specificStyles={styles.popupAlertMessage}
                 />
             }

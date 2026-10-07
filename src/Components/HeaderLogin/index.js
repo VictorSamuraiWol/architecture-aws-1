@@ -14,9 +14,9 @@ function HeaderLogin() {
 
   const [ableAlertLoginMessage, setAbleAlertLoginMessage] = useState(false)
 
-  const { staticListUsers, listUsers } = useContext(DataContext)
+  const { staticListUsers, listUsers, getApi, setGetApi } = useContext(DataContext)
 
-  const { nameUser, setNameUser, setLoginValidate, setActivateNavigateDefault } = useOutletContext()
+  const { nameUser, setNameUser, setLoginValidate, setPathNavigate, setActivateNavigateDefault } = useOutletContext()
 
   const onLoginValidate = (e) => {
     e.preventDefault()
@@ -30,6 +30,9 @@ function HeaderLogin() {
 
       if (matchedUser) {
         setLoginValidate(true)
+        setGetApi(!getApi)
+
+        setPathNavigate('/')
         setActivateNavigateDefault(true)
 
       } else {

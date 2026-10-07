@@ -1,9 +1,9 @@
 import styles from './PageBase.module.css'
 import DataProvider from '../../Components/DataContext'
+import NavigateDefault from '../../Components/NavigateDefault'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
-import NavigateDefault from '../../Components/NavigateDefault'
 
 function PageBase() {
 
@@ -26,6 +26,10 @@ function PageBase() {
     const [listImagesQuestions, setListImagesQuestions] = useState([])
     const [listIconsDescriptions, setListIconsDescriptions] = useState([])
     const [listImagesDescriptions, setListImagesDescriptions] = useState([])
+    const [pathNavigate, setPathNavigate] = useState('')
+    // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada, será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
+    const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
+    const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
     // const [activeZeroImg, setActiveZeroImg] = useState(false)
     
     const dataResults = { // resultados estatísticos
@@ -117,11 +121,12 @@ function PageBase() {
                         setActivePageFormsQuestionsOptions, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageDemo, 
                         setActivePageDemo, activePageMain, setActivePageMain, activePageMulti, setActivePageMulti, activePageThreeMulti, 
                         setActivePageThreeMulti, activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, 
-                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setActivateNavigateDefault,
+                        activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, truncatedText, setPathNavigate, setActivateNavigateDefault,
                         activePageInfo, setActivePageInfo, activePageQuizBuilder, setActivePageQuizBuilder, activeModalEditMenu, setActiveModalEditMenu,
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
-                        listImagesDescriptions, setListImagesDescriptions
-                    }} 
+                        listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
+                        questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti
+                    }}
                 />                
 
                 {loginValidate && mute === false &&
@@ -142,10 +147,13 @@ function PageBase() {
                     />
                 }
 
-                <NavigateDefault 
-                    isLogged={activateNavigateDefault} 
-                    setActivateNavigateDefault={setActivateNavigateDefault}
-                />
+                {/* ativar NavigateDefault */}
+                {activateNavigateDefault &&
+                    <NavigateDefault
+                        path={pathNavigate}
+                        setActivateNavigateDefault={setActivateNavigateDefault}
+                    />
+                }
 
             </DataProvider>
 
@@ -154,4 +162,4 @@ function PageBase() {
     )
 }
 
-export default PageBase
+export default PageBase;

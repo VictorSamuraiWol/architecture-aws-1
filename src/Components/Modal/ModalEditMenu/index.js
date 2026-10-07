@@ -164,7 +164,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listQuestionsMain/${questionMain.id}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
 
@@ -196,7 +196,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listOptionsMain/${optionMainNumberId[1]}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
     })
@@ -229,7 +229,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listQuestionsMulti/${questionMulti.id}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
 
@@ -262,7 +262,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listOptionsMulti/${optionMultiNumberId[1]}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
 
@@ -295,7 +295,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listQuestionsThreeMulti/${questionMulti.id}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
 
@@ -329,7 +329,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     await fetch(`http://localhost:3001/listOptionsThreeMulti/${optionMultiNumberId[1]}`, {
       method: 'PUT',
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json"
       },
       body: jsonBody
 
@@ -350,44 +350,44 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     let active
 
     // formulário 1
-    const questionMainEdit = [questionTextMain, imageQuestionMain, correctAnswerMain, iconDescriptionMain, descriptionMain, imageDescriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
-    const optionMainEdit = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
-      
-    const newListUnicQuestionsContext = listUnicQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const newListUnicOptionsContext = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    const questionMainEdit = listUnicQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionMainEdit = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+
+    const newListUnicQuestionsContext = [questionTextMain, imageQuestionMain, correctAnswerMain, iconDescriptionMain, descriptionMain, imageDescriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const newListUnicOptionsContext = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
     
-    const findQuestionMain = newListUnicQuestionsContext.filter(question => isEqual(question, questionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionMain = newListUnicOptionsContext.filter(question => isEqual(question, optionMainEdit))[0] // comparação usando a biblioteca 'isEqual'
+    const findQuestionMain = questionMainEdit.filter(question => isEqual(question, newListUnicQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMain = optionMainEdit.filter(question => isEqual(question, newListUnicOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
 
     // formulário 2    
-    const questionMultiEdit = [questionTextMulti, imageQuestionMulti, correctAnswerMulti, iconDescriptionMulti, descriptionMulti, imageDescriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
-    const optionMultiEdit = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+    const questionMultiEdit = listMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionMultiEdit = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
 
-    const newListMultiQuestionsContext = listMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const newListMultiOptionsContext = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    const newListMultiQuestionsContext = [questionTextMulti, imageQuestionMulti, correctAnswerMulti, iconDescriptionMulti, descriptionMulti, imageDescriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const newListMultiOptionsContext = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
-    const findQuestionMulti = newListMultiQuestionsContext.filter(question => isEqual(question, questionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionMulti = newListMultiOptionsContext.filter(question => isEqual(question, optionMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
+    const findQuestionMulti = questionMultiEdit.filter(question => isEqual(question, newListMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMulti = optionMultiEdit.filter(question => isEqual(question, newListMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
 
     // formulário 3    
-    const questionThreeMultiEdit = [questionTextThreeMulti, imageQuestionThreeMulti, correctAnswerThreeMulti, iconDescriptionThreeMulti, descriptionThreeMulti, imageDescriptionThreeMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
-    const optionThreeMultiEdit = [optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+    const questionThreeMultiEdit = listThreeMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionThreeMultiEdit  = listThreeMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE, options.optionF]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
 
-    const newListThreeMultiQuestionsContext = listThreeMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const newListThreeMultiOptionsContext = listThreeMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE, options.optionF]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+    const newListThreeMultiQuestionsContext  = [questionTextThreeMulti, imageQuestionThreeMulti, correctAnswerThreeMulti, iconDescriptionThreeMulti, descriptionThreeMulti, imageDescriptionThreeMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const newListThreeMultiOptionsContext = [optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
 
-    const findQuestionThreeMulti = newListThreeMultiQuestionsContext.filter(question => isEqual(question, questionThreeMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionThreeMulti = newListThreeMultiOptionsContext.filter(question => isEqual(question, optionThreeMultiEdit))[0] // comparação usando a biblioteca 'isEqual'
+    const findQuestionThreeMulti = questionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionThreeMulti = optionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
 
-    if (findQuestionMain && findOptionMain) {
+    if (activePageMain && findQuestionMain && findOptionMain) {
     // condição: se a questão ou opção única editada já existe no 'backend'
       active = true
 
-    } else if (findQuestionMulti && findOptionMulti) {
+    } else if (activePageMulti && findQuestionMulti && findOptionMulti) {
     // condição: se a questão ou opção múltipla editada já existe no 'backend'
       active = true
 
-    } else if (findQuestionThreeMulti && findOptionThreeMulti) {
+    } else if (activePageThreeMulti && findQuestionThreeMulti && findOptionThreeMulti) {
     // condição: se a questão ou opção múltipla editada já existe no 'backend'
       active = true
 

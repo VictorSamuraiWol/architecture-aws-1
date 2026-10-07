@@ -24,11 +24,11 @@ function PageThreeMulti() {
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength, loading, setLoading } = useContext(DataContext)
+    const { listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo, setActivePageThreeMulti, 
-        loginValidate, setActivePageInfo, setActivePageQuizBuilder  } = useOutletContext()
+        loginValidate, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
 
     // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
     // usado na função 'uniqueRandomMulti'
@@ -77,8 +77,6 @@ function PageThreeMulti() {
     }, [listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength])
 
     useEffect(() => {
-        if (!listThreeMultiOptionsContext || !listThreeMultiOptionsContextLength || listThreeMultiOptionsContextLength === 0) return // se a lista de opções não existir, retorne 
-
         const randomNumbers = [] // armazena a lista de números randômicos
 
         // gerando um número para randomizar toda vez que renderizar
@@ -91,16 +89,15 @@ function PageThreeMulti() {
             }
 
         }
-        
-        // gerando números radômicos para alterar a ordem das opções
+
         setOptNum1(randomNumbers[0])
         setOptNum2(randomNumbers[1])
         setOptNum3(randomNumbers[2])
         setOptNum4(randomNumbers[3])
         setOptNum5(randomNumbers[4])
         setOptNum6(randomNumbers[5])
-    
-    }, [listThreeMultiOptionsContext, listThreeMultiOptionsContextLength])
+
+    }, [])
 
     useEffect(() => { // mapeando todas as opções para procurar a opção que possue o mesmo número da questão e mostra-la na tela junto com a questão        
         // para garantir que todos os atributos sejam capturados antes de mostrar na tela e sejam 'opções' para a questão
@@ -108,8 +105,8 @@ function PageThreeMulti() {
         if (!listThreeMultiQuestionsContext || !listThreeMultiOptionsContext || !questionThreeMulti) return     
 
         function questionThreeMultiOptionMatch() { // função que procura uma questão com sua opção correspondente, evitando aparcer uma questão que não tenha opção
-            let matchedOption = null
             let matchedQuestion = null
+            let matchedOption = null
 
             setLoading(true) // habilita o componente 'Loader'
 
