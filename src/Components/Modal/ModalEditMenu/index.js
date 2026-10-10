@@ -40,7 +40,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // questionMulti
   const [questionTextMulti, setQuestionTextMulti] = useState(questionMulti?.questionText)
   const [imageQuestionMulti, setImageQuestionMulti] = useState(questionMulti?.imageQuestion)
-  const [correctAnswerMulti, setCorrectAnswerMulti] = useState(questionMulti?.correctAnswer)
+  const [correctAnswerMulti1, setCorrectAnswerMulti1] = useState(questionMulti?.correctAnswer1)
+  const [correctAnswerMulti2, setCorrectAnswerMulti2] = useState(questionMulti?.correctAnswer2)
   const [iconDescriptionMulti, setIconDescriptionMulti] = useState(questionMulti?.iconDescription)
   const [descriptionMulti, setDescriptionMulti] = useState(questionMulti?.description)
   const [imageDescriptionMulti, setImageDescriptionMulti] = useState(questionMulti?.imageDescription)
@@ -56,7 +57,9 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   // questionThreeMulti
   const [questionTextThreeMulti, setQuestionTextThreeMulti] = useState(questionMulti?.questionText)
   const [imageQuestionThreeMulti, setImageQuestionThreeMulti] = useState(questionMulti?.imageQuestion)
-  const [correctAnswerThreeMulti, setCorrectAnswerThreeMulti] = useState(questionMulti?.correctAnswer)
+  const [correctAnswerThreeMulti1, setCorrectAnswerThreeMulti1] = useState(questionMulti?.correctAnswer1)
+  const [correctAnswerThreeMulti2, setCorrectAnswerThreeMulti2] = useState(questionMulti?.correctAnswer2)
+  const [correctAnswerThreeMulti3, setCorrectAnswerThreeMulti3] = useState(questionMulti?.correctAnswer3)
   const [iconDescriptionThreeMulti, setIconDescriptionThreeMulti] = useState(questionMulti?.iconDescription)
   const [descriptionThreeMulti, setDescriptionThreeMulti] = useState(questionMulti?.description)
   const [imageDescriptionThreeMulti, setImageDescriptionThreeMulti] = useState(questionMulti?.imageDescription)
@@ -148,6 +151,185 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   }
 
+  useEffect(() => {
+    function voidFieldModalEdit () { // função para capturar os campos obrigatórios que estão vazios
+      if (activePageMain) {
+        const fields = {
+          questionTextMain,
+          correctAnswerMain,
+          descriptionMain,
+          optionAMain,
+          optionBMain,
+          optionCMain,
+          optionDMain
+        }
+        
+        const voidFieldFilter = Object.entries(fields)
+          .filter(([key, value]) => !value)
+          .map(([key]) => key)
+  
+        setVoidField(voidFieldFilter)
+  
+      } else if (activePageMulti) {
+        const fields = {
+          questionTextMulti,
+          correctAnswerMulti1,
+          correctAnswerMulti2,
+          descriptionMulti,
+          optionAMulti,
+          optionBMulti,
+          optionCMulti,
+          optionDMulti
+        }
+  
+        const voidFieldFilter = Object.entries(fields)
+          .filter(([key, value]) => !value)
+          .map(([key]) => key)
+  
+        setVoidField(voidFieldFilter)
+  
+      } else if (activePageThreeMulti) {
+        const fields = {
+          questionTextThreeMulti,
+          correctAnswerThreeMulti1, 
+          correctAnswerThreeMulti2,
+          correctAnswerThreeMulti3,
+          descriptionThreeMulti,
+          optionAThreeMulti,
+          optionBThreeMulti,
+          optionCThreeMulti,
+          optionDThreeMulti,
+          optionEThreeMulti,
+          optionFThreeMulti
+        }
+  
+        const voidFieldFilter = Object.entries(fields)
+          .filter(([key, value]) => !value)
+          .map(([key]) => key)
+  
+        setVoidField(voidFieldFilter)
+  
+      }
+
+    }
+
+    voidFieldModalEdit()
+
+  }, [activePageMain, activePageMulti, activePageThreeMulti, 
+    questionTextMain, correctAnswerMain, descriptionMain, optionAMain, optionBMain, optionCMain, optionDMain, 
+    questionTextMulti, correctAnswerMulti1, correctAnswerMulti2, descriptionMulti, optionAMulti, optionBMulti, optionCMulti, optionDMulti,
+    questionTextThreeMulti, correctAnswerThreeMulti1, correctAnswerThreeMulti2, correctAnswerThreeMulti3, descriptionThreeMulti, optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti
+    ])
+
+  // função que limpa todos os campos do formulário
+  function cleanForm() {
+    if (activePageDemo) {
+      setStaticQuestionClearDisabledAlert(true)
+
+    } else {
+      if (activePageMain && questionMain && optionMain) {
+        setQuestionTextMain('')
+        setImageQuestionMain('')
+        setCorrectAnswerMain('')
+        setIconDescriptionMain('')
+        setDescriptionMain('')
+        setImageDescriptionMain('')
+        setOptionAMain('')
+        setOptionBMain('')
+        setOptionCMain('')
+        setOptionDMain('')
+        setOptionEMain('')
+
+      } else if (activePageMulti && questionMulti && optionMulti) {
+        setQuestionTextMulti('')
+        setImageQuestionMulti('')
+        setCorrectAnswerMulti1('')
+        setCorrectAnswerMulti2('')
+        setIconDescriptionMulti('')
+        setDescriptionMulti('')
+        setImageDescriptionMulti('')
+        setOptionAMulti('')
+        setOptionBMulti('')
+        setOptionCMulti('')
+        setOptionDMulti('')
+        setOptionEMulti('')
+
+      } else if (activePageThreeMulti && questionMulti && optionMulti) {
+        setQuestionTextThreeMulti('')
+        setImageQuestionThreeMulti('')
+        setCorrectAnswerThreeMulti1('')
+        setCorrectAnswerThreeMulti2('')
+        setCorrectAnswerThreeMulti3('')
+        setIconDescriptionThreeMulti('')
+        setDescriptionThreeMulti('')
+        setImageDescriptionThreeMulti('')
+        setOptionAThreeMulti('')
+        setOptionBThreeMulti('')
+        setOptionCThreeMulti('')
+        setOptionDThreeMulti('')
+        setOptionEThreeMulti('')
+        setOptionFThreeMulti('')
+
+      }
+    
+    }
+      
+  }
+
+  function activePopupAlreadySaved() {
+    let active
+
+    // formulário 1
+    const questionMainEdit = listUnicQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionMainEdit = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+
+    const newListUnicQuestionsContext = [questionTextMain, imageQuestionMain, correctAnswerMain, iconDescriptionMain, descriptionMain, imageDescriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
+    const newListUnicOptionsContext = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
+    
+    const findQuestionMain = questionMainEdit.filter(question => isEqual(question, newListUnicQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMain = optionMainEdit.filter(question => isEqual(question, newListUnicOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
+
+    // formulário 2    
+    const questionMultiEdit = listMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer1, questions.correctAnswer2, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionMultiEdit = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+
+    const newListMultiQuestionsContext = [questionTextMulti, imageQuestionMulti, correctAnswerMulti1, correctAnswerMulti2, iconDescriptionMulti, descriptionMulti, imageDescriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const newListMultiOptionsContext = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+
+    const findQuestionMulti = questionMultiEdit.filter(question => isEqual(question, newListMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionMulti = optionMultiEdit.filter(question => isEqual(question, newListMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
+
+    // formulário 3    
+    const questionThreeMultiEdit = listThreeMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer1, questions.correctAnswer2, questions.correctAnswer3, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
+    const optionThreeMultiEdit  = listThreeMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE, options.optionF]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
+
+    const newListThreeMultiQuestionsContext  = [questionTextThreeMulti, imageQuestionThreeMulti, correctAnswerThreeMulti1, correctAnswerThreeMulti2, correctAnswerThreeMulti3, iconDescriptionThreeMulti, descriptionThreeMulti, imageDescriptionThreeMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
+    const newListThreeMultiOptionsContext = [optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
+
+    const findQuestionThreeMulti = questionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
+    const findOptionThreeMulti = optionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
+
+    if (activePageMain && findQuestionMain && findOptionMain) {
+    // condição: se a questão ou opção única editada já existe no 'backend'
+      active = true
+
+    } else if (activePageMulti && findQuestionMulti && findOptionMulti) {
+    // condição: se a questão ou opção múltipla editada já existe no 'backend'
+      active = true
+
+    } else if (activePageThreeMulti && findQuestionThreeMulti && findOptionThreeMulti) {
+    // condição: se a questão ou opção múltipla editada já existe no 'backend'
+      active = true
+
+    } else {
+      active = false
+      
+    }
+    
+    return active
+
+  }
+
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
     const jsonBody = JSON.stringify({
@@ -218,7 +400,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const jsonBody = JSON.stringify({
       questionText: questionTextMulti,
       imageQuestion: imageQuestionMulti,
-      correctAnswer: correctAnswerMulti,
+      correctAnswer1: correctAnswerMulti1,
+      correctAnswer2: correctAnswerMulti2,
       iconDescription: iconDescriptionMulti,
       description: descriptionMulti,
       imageDescription: imageDescriptionMulti,
@@ -284,7 +467,9 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     const jsonBody = JSON.stringify({
       questionText: questionTextThreeMulti,
       imageQuestion: imageQuestionThreeMulti,
-      correctAnswer: correctAnswerThreeMulti,
+      correctAnswer1: correctAnswerThreeMulti1,
+      correctAnswer2: correctAnswerThreeMulti2,
+      correctAnswer3: correctAnswerThreeMulti3,
       iconDescription: iconDescriptionThreeMulti,
       description: descriptionThreeMulti,
       imageDescription: imageDescriptionThreeMulti,
@@ -346,60 +531,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   }
 
-  function activePopupAlreadySaved() {
-    let active
-
-    // formulário 1
-    const questionMainEdit = listUnicQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const optionMainEdit = listUnicOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
-
-    const newListUnicQuestionsContext = [questionTextMain, imageQuestionMain, correctAnswerMain, iconDescriptionMain, descriptionMain, imageDescriptionMain] // armazenando os valores dos campos da questão única editada da 'ModalEdit'
-    const newListUnicOptionsContext = [optionAMain, optionBMain, optionCMain, optionDMain, optionEMain] // armazenando os valores dos campos da opção única editada da 'ModalEdit'
-    
-    const findQuestionMain = questionMainEdit.filter(question => isEqual(question, newListUnicQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionMain = optionMainEdit.filter(question => isEqual(question, newListUnicOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
-
-    // formulário 2    
-    const questionMultiEdit = listMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const optionMultiEdit = listMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
-
-    const newListMultiQuestionsContext = [questionTextMulti, imageQuestionMulti, correctAnswerMulti, iconDescriptionMulti, descriptionMulti, imageDescriptionMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
-    const newListMultiOptionsContext = [optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
-
-    const findQuestionMulti = questionMultiEdit.filter(question => isEqual(question, newListMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionMulti = optionMultiEdit.filter(question => isEqual(question, newListMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
-
-    // formulário 3    
-    const questionThreeMultiEdit = listThreeMultiQuestionsContext.map(questions => [questions.questionText, questions.imageQuestion, questions.correctAnswer, questions.iconDescription, questions.description, questions.imageDescription]) // armazenando uma nova lista de questões do 'backend', sem o número das questões
-    const optionThreeMultiEdit  = listThreeMultiOptionsContext.map(options => [options.optionA, options.optionB, options.optionC, options.optionD, options.optionE, options.optionF]) // armazenando uma nova lista de opções do 'backend', sem o número das opções
-
-    const newListThreeMultiQuestionsContext  = [questionTextThreeMulti, imageQuestionThreeMulti, correctAnswerThreeMulti, iconDescriptionThreeMulti, descriptionThreeMulti, imageDescriptionThreeMulti] // armazenando os valores dos campos da questão múltipla editada da 'ModalEdit'
-    const newListThreeMultiOptionsContext = [optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti] // armazenando os valores dos campos da opção múltipla editada da 'ModalEdit'
-
-    const findQuestionThreeMulti = questionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiQuestionsContext))[0] // comparação usando a biblioteca 'isEqual'
-    const findOptionThreeMulti = optionThreeMultiEdit.filter(question => isEqual(question, newListThreeMultiOptionsContext))[0] // comparação usando a biblioteca 'isEqual'
-
-    if (activePageMain && findQuestionMain && findOptionMain) {
-    // condição: se a questão ou opção única editada já existe no 'backend'
-      active = true
-
-    } else if (activePageMulti && findQuestionMulti && findOptionMulti) {
-    // condição: se a questão ou opção múltipla editada já existe no 'backend'
-      active = true
-
-    } else if (activePageThreeMulti && findQuestionThreeMulti && findOptionThreeMulti) {
-    // condição: se a questão ou opção múltipla editada já existe no 'backend'
-      active = true
-
-    } else {
-      active = false
-      
-    }
-    
-    return active
-
-  }
-
   // função que vai salvar quaisquer alterações feitas na questão e opção atual (função usada para ativar duas funções 'fetch de método PUT')
   function multiFunctionsNewPageMain(event) {
     event.preventDefault()
@@ -418,7 +549,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       } else {
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-        if (checkAlternativeAnswerDefault(newOption, newMultiOption, correctAnswerMain) === true) {
+        if (checkAlternativeAnswerDefault(newOption, null, null, correctAnswerMain) === true) {
           setActivePopupcheckAlternativeAnswerModalForms1(true)
 
         } else {
@@ -450,7 +581,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   function multiFunctionsPageMulti(event) {
     event.preventDefault()
 
-    if (!questionTextMulti || !correctAnswerMulti || !descriptionMulti || !questionNumberMulti || !optionAMulti ||
+    if (!questionTextMulti || !correctAnswerMulti1 || !correctAnswerMulti2 || !descriptionMulti || !questionNumberMulti || !optionAMulti ||
       !optionBMulti || !optionCMulti || !optionDMulti) { // se tiver algum campo obrigatório vazio
         console.error("One or more fields are empty.")
 
@@ -461,7 +592,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       } else {
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-        if (checkAlternativeAnswerDefault(newOption, newMultiOption, correctAnswerMulti) === true) {
+        if (checkAlternativeAnswerDefault(null, newMultiOption, null, [correctAnswerMulti1, correctAnswerMulti2]) === true) {
             setActivePopupcheckAlternativeAnswerModalForms2(true)
 
           } else {
@@ -491,7 +622,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   function multiFunctionsPageThreeMulti(event) {
     event.preventDefault()
 
-    if (!questionTextThreeMulti || !correctAnswerThreeMulti || !descriptionThreeMulti || !questionNumberThreeMulti || !optionAThreeMulti ||
+    if (!questionTextThreeMulti || !correctAnswerThreeMulti1 || !correctAnswerThreeMulti2 || !correctAnswerThreeMulti3 || !descriptionThreeMulti || !questionNumberThreeMulti || !optionAThreeMulti ||
       !optionBThreeMulti || !optionCThreeMulti || !optionDThreeMulti || !optionEThreeMulti || !optionFThreeMulti) { // se tiver algum campo obrigatório vazio
         console.error("One or more fields are empty.")
 
@@ -502,7 +633,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       } else {
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
-        if (checkAlternativeAnswerDefault(newOption, newThreeMultiOption, correctAnswerThreeMulti) === true) {
+        if (checkAlternativeAnswerDefault(null, null, newThreeMultiOption, [correctAnswerThreeMulti1, correctAnswerThreeMulti2, correctAnswerThreeMulti3]) === true) {
             setActivePopupcheckAlternativeAnswerModalForms3(true)
 
           } else {
@@ -526,125 +657,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
     }
 
-  }
-
-  useEffect(() => {
-    function voidFieldModalEdit () { // função para capturar os campos obrigatórios que estão vazios
-      if (activePageMain) {
-        const fields = {
-          questionTextMain,
-          correctAnswerMain,
-          descriptionMain,
-          optionAMain,
-          optionBMain,
-          optionCMain,
-          optionDMain
-        }
-        
-        const voidFieldFilter = Object.entries(fields)
-          .filter(([key, value]) => !value)
-          .map(([key]) => key)
-  
-        setVoidField(voidFieldFilter)
-  
-      } else if (activePageMulti) {
-        const fields = {
-          questionTextMulti,
-          correctAnswerMulti,
-          descriptionMulti,
-          optionAMulti,
-          optionBMulti,
-          optionCMulti,
-          optionDMulti
-        }
-  
-        const voidFieldFilter = Object.entries(fields)
-          .filter(([key, value]) => !value)
-          .map(([key]) => key)
-  
-        setVoidField(voidFieldFilter)
-  
-      } else if (activePageThreeMulti) {
-        const fields = {
-          questionTextThreeMulti,
-          correctAnswerThreeMulti,
-          descriptionThreeMulti,
-          optionAThreeMulti,
-          optionBThreeMulti,
-          optionCThreeMulti,
-          optionDThreeMulti,
-          optionEThreeMulti,
-          optionFThreeMulti
-        }
-  
-        const voidFieldFilter = Object.entries(fields)
-          .filter(([key, value]) => !value)
-          .map(([key]) => key)
-  
-        setVoidField(voidFieldFilter)
-  
-      }
-
-    }
-
-    voidFieldModalEdit()
-
-  }, [activePageMain, activePageMulti, activePageThreeMulti, 
-    questionTextMain, correctAnswerMain, descriptionMain, optionAMain, optionBMain, optionCMain, optionDMain, 
-    questionTextMulti, correctAnswerMulti, descriptionMulti, optionAMulti, optionBMulti, optionCMulti, optionDMulti,
-    questionTextThreeMulti, correctAnswerThreeMulti, descriptionThreeMulti, optionAThreeMulti, optionBThreeMulti, optionCThreeMulti, optionDThreeMulti, optionEThreeMulti, optionFThreeMulti
-    ])
-
-  // função que limpa todos os campos do formulário
-  function cleanForm() {
-    if (activePageDemo) {
-      setStaticQuestionClearDisabledAlert(true)
-
-    } else {
-      if (activePageMain && questionMain && optionMain) {
-        setQuestionTextMain('')
-        setImageQuestionMain('')
-        setCorrectAnswerMain('')
-        setIconDescriptionMain('')
-        setDescriptionMain('')
-        setImageDescriptionMain('')
-        setOptionAMain('')
-        setOptionBMain('')
-        setOptionCMain('')
-        setOptionDMain('')
-        setOptionEMain('')
-
-      } else if (activePageMulti && questionMulti && optionMulti) {
-        setQuestionTextMulti('')
-        setImageQuestionMulti('')
-        setCorrectAnswerMulti('')
-        setIconDescriptionMulti('')
-        setDescriptionMulti('')
-        setImageDescriptionMulti('')
-        setOptionAMulti('')
-        setOptionBMulti('')
-        setOptionCMulti('')
-        setOptionDMulti('')
-        setOptionEMulti('')
-
-      } else if (activePageThreeMulti && questionMulti && optionMulti) {
-        setQuestionTextThreeMulti('')
-        setImageQuestionThreeMulti('')
-        setCorrectAnswerThreeMulti('')
-        setIconDescriptionThreeMulti('')
-        setDescriptionThreeMulti('')
-        setImageDescriptionThreeMulti('')
-        setOptionAThreeMulti('')
-        setOptionBThreeMulti('')
-        setOptionCThreeMulti('')
-        setOptionDThreeMulti('')
-        setOptionEThreeMulti('')
-        setOptionFThreeMulti('')
-
-      }
-    
-    }
-      
   }
 
   return (
@@ -826,11 +838,20 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           />
 
           <FieldModalEdit
-            newValue={correctAnswerMulti}
-            onChangeModal={(e) => setCorrectAnswerMulti(e.target.value)}
-            name="Answer:*"
+            newValue={correctAnswerMulti1}
+            onChangeModal={(e) => setCorrectAnswerMulti1(e.target.value)}
+            name="Answer1:*"
             errorMessageText={errorMessageModalEdit}
-            errorTargetLabel={'correctAnswerMulti'}
+            errorTargetLabel={'correctAnswerMulti1'}
+            voidField={voidField}
+          />
+
+          <FieldModalEdit
+            newValue={correctAnswerMulti2}
+            onChangeModal={(e) => setCorrectAnswerMulti2(e.target.value)}
+            name="Answer2:*"
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'correctAnswerMulti2'}
             voidField={voidField}
           />
 
@@ -940,11 +961,29 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           />
 
           <FieldModalEdit
-            newValue={correctAnswerThreeMulti}
-            onChangeModal={(e) => setCorrectAnswerThreeMulti(e.target.value)}
-            name="Answer:*"
+            newValue={correctAnswerThreeMulti1}
+            onChangeModal={(e) => setCorrectAnswerThreeMulti1(e.target.value)}
+            name="Answer1:*"
             errorMessageText={errorMessageModalEdit}
-            errorTargetLabel={'correctAnswerThreeMulti'}
+            errorTargetLabel={'correctAnswerThreeMulti1'}
+            voidField={voidField}
+          />
+
+          <FieldModalEdit
+            newValue={correctAnswerThreeMulti2}
+            onChangeModal={(e) => setCorrectAnswerThreeMulti2(e.target.value)}
+            name="Answer2:*"
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'correctAnswerThreeMulti2'}
+            voidField={voidField}
+          />
+
+          <FieldModalEdit
+            newValue={correctAnswerThreeMulti3}
+            onChangeModal={(e) => setCorrectAnswerThreeMulti3(e.target.value)}
+            name="Answer3:*"
+            errorMessageText={errorMessageModalEdit}
+            errorTargetLabel={'correctAnswerThreeMulti3'}
             voidField={voidField}
           />
 
@@ -1057,8 +1096,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
-            textPopup={`No alternative matching the answer to question was found. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answer to question the correct alternative from the option highlighted below: (Option: ${optionAMain}), (Option: ${optionBMain}), (Option: ${optionCMain}), (Option: ${optionDMain})${optionEMain !== '' ? ` or (Option: ${optionEMain}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer, highlighted below: (Answer: ${correctAnswerMain}).`}
+            textPopup={`No alternative matching the answer (Answer : ${correctAnswerMain}) to question was found in the options. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answer (Answer : ${correctAnswerMain}) to question the correct alternative from the option highlighted below: (Option A: ${optionAMain}), (Option B: ${optionBMain}), (Option C: ${optionCMain}), (Option D: ${optionDMain})${optionEMain !== '' ? ` or (Option E: ${optionEMain}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer, highlighted below: (Answer: ${correctAnswerMain}).`}
           />
         }
 
@@ -1066,8 +1105,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
-            textPopup={`The two alternatives included in the answer of question were not found. Please ensure that, before editing the question and the option, the alternatives Option 1 and Option 2 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answer of question the two correct alternatives from the option highlighted below: (Option: ${optionAMulti}) and (Option:${optionBMulti}). (Solution 2) Include in the first two alternatives (Option A and Option B) of this option the answer included in question, highlighted below: (Answer: ${correctAnswerMulti}). `}
+            textPopup={`The two answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAMulti} and (Option B: ${optionBMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answers of question the two correct alternatives from the option highlighted below: (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}). (Solution 2) Include in the first two alternatives (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}).`}
           />
         }
 
@@ -1075,8 +1114,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupCheckAlternativeAnswer 
             specificStyles={styles.popupCheckModalForm} 
             activePopup={setActivePopupcheckAlternativeAnswerModalForms3}
-            textPopup={`The three alternatives included in the answer of question were not found. Please ensure that, before editing the question and the option, the alternatives Option 1, Option 2 and Option 3 are exactly the same as those included in the answer of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option: ${optionAThreeMulti}), (Option: ${optionBThreeMulti}) and (Option: ${optionCThreeMulti}). (Solution 2) Include in the first three alternatives (Option A, Option B and Option C) of this option the answer included in question, highlighted below: (Answer: ${correctAnswerThreeMulti}).`}
+            textPopup={`The three answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAThreeMulti}, (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+            textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}). (Solution 2) Include in the first three alternatives (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}).`}
           />
         }
 

@@ -13,7 +13,7 @@ import { DataContext } from '../DataContext'
 import { Link, useOutletContext } from 'react-router-dom'
 
 function Main({ 
-    question, answer, iconDescription, imageDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
+    question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
     setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
     optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activePageDemo, activePageMain
 }) {
@@ -78,6 +78,11 @@ function Main({
         setNumberPath(numberRandomPath())
 
     }, [numberRandomPath])
+
+    useEffect(() => {
+        setQuestionAnswerButtonNextMain(false)
+
+    }, [setQuestionAnswerButtonNextMain])
 
     function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
         // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
@@ -227,7 +232,6 @@ function Main({
                 setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
                 answer={answer}
-                questionNumber={questionNumber}
                 optionColorStyle={optionColorStyle}
                 optionValidateStyle={optionValidateStyle}
                 optionInvalidateStyle={optionInvalidateStyle}

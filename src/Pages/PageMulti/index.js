@@ -181,10 +181,11 @@ function PageMulti() {
                     <Header />
 
                     <MultiMain 
-                        question={questionMulti.questionText} 
-                        answer={questionMulti.correctAnswer}
+                        questionMulti={questionMulti}
+                        optionMulti={optionMulti}
+                        optionMultiNumberId={optionMultiNumberId}
+                        question={questionMulti.questionText}
                         iconDescription={questionMulti.iconDescription}
-                        imageDescription={questionMulti.imageDescription}
                         description={questionMulti.description}
                         questionNumber={questionMulti.questionNumber}
                         elementId={questionMulti.id}
@@ -192,9 +193,6 @@ function PageMulti() {
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        questionMulti={questionMulti}
-                        optionMulti={optionMulti}
-                        optionMultiNumberId={optionMultiNumberId}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}

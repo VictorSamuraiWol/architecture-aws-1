@@ -137,8 +137,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
                     
                 } else {
-                    setListMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber)) // capturando os dados do backend
-                    setListMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                           
+                    setListMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer1 && e.correctAnswer2 && e.description && e.questionNumber)) // capturando os dados do backend
+                    setListMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer1 && e.correctAnswer2 && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                           
                     setLoading(false) // desabilitar o loading
 
                 }   
@@ -191,8 +191,8 @@ export default function DataProvider({ children }) {
                     throw new Error("Dados inválidos")
                     
                 } else {
-                    setListThreeMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber)) // capturando os dados do backend
-                    setListThreeMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                          
+                    setListThreeMultiQuestionsContext(data.filter(e => e.questionText && e.correctAnswer1 && e.correctAnswer2 && e.correctAnswer3 && e.description && e.questionNumber)) // capturando os dados do backend
+                    setListThreeMultiQuestionsContextLength(data.filter(e => e.questionText && e.correctAnswer1 && e.correctAnswer2 && e.correctAnswer3 && e.description && e.questionNumber).length) // capturando o comprimento dos dados do backend                          
                     setLoading(false) // desabilitar o loading
 
                 }   
@@ -235,7 +235,7 @@ export default function DataProvider({ children }) {
         fetchData6()
 
     }, [getApi, postApi, putApi, deleteApi])
-    
+   
     return (        
         <DataContext.Provider
             value={{

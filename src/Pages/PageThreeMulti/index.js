@@ -183,10 +183,11 @@ function PageThreeMulti() {
                     {/* reutilizando os componentes da página Multi */}
                     <Header />
 
-
                     <MultiMain 
-                        question={questionThreeMulti.questionText} 
-                        answer={questionThreeMulti.correctAnswer}
+                        questionMulti={questionThreeMulti}
+                        optionMulti={optionThreeMulti}
+                        optionMultiNumberId={optionThreeMultiNumberId}
+                        question={questionThreeMulti.questionText}
                         iconDescription={questionThreeMulti.iconDescription}
                         imageDescription={questionThreeMulti.imageDescription}
                         description={questionThreeMulti.description}
@@ -196,9 +197,6 @@ function PageThreeMulti() {
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}
-                        questionMulti={questionThreeMulti}
-                        optionMulti={optionThreeMulti}
-                        optionMultiNumberId={optionThreeMultiNumberId}
                         optNum1={optNum1}
                         optNum2={optNum2}
                         optNum3={optNum3}

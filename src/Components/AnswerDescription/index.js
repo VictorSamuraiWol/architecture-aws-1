@@ -13,17 +13,16 @@ import simpleStoragesService from '../../imgs/answers-imgs/description/icons/Sim
 import storageGateway from '../../imgs/answers-imgs/description/icons/Storage_Gateway.png'
 import none from '../../imgs/imageNotFound.png'
 import description100 from '../../imgs/answers-imgs/description/detailsDescriptions/description100.png'
-import { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../DataContext'
+import { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 function AnswerDescription({ 
-    questionMain, questionMulti, answer, description, iconDescription, answerDescriptionDisplay, item, itens
+    questionMain, questionMulti, answer, description, iconDescription, answerDescriptionDisplay, 
+    item, itens, listCorrectAnswers
 }) {
 
-    const { listUnicOptionsContext, listMultiOptionsContext, listThreeMultiOptionsContext } = useContext(DataContext)
-
-    const { setListIconsDescriptions, setListImagesDescriptions } = useOutletContext()
+    const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setListIconsDescriptions, 
+        setListImagesDescriptions } = useOutletContext()
 
     // todos os icons das descrições das respostas
     const [iconsDescriptions] = useState({
@@ -56,14 +55,17 @@ function AnswerDescription({
         <section            
             id='answerId' 
             className={`${styles.answerDescription} ${answerDescriptionDisplay}`}
-        > 
-            {itens && <h3 className={styles.itens}>{itens}</h3>} {/* itens que serão mostrados na PageMulti */}   
+        >
             <div
                 id='answerTitle'                
                 className={styles.answerDisplay}
             >
-                {item && <span className={styles.item}>{item}</span>} {/* item que será mostrado na PageMain */}
-                <h3 className={styles.textAnswer}>{(listUnicOptionsContext && answer) || (listMultiOptionsContext && answer) || (listThreeMultiOptionsContext && answer)}</h3>
+                <h3 className={styles.textAnswer}>
+                    {((activePageDemo || activePageMain) && `${item} ${answer}`) || 
+                    (activePageMulti && itens && `${itens[0]} ${listCorrectAnswers[0]} | ${itens[1]} ${listCorrectAnswers[1]}`) ||
+                    (activePageThreeMulti && itens && `${itens[0]} ${listCorrectAnswers[0]} | ${itens[1]} ${listCorrectAnswers[1]} | ${itens[2]} ${listCorrectAnswers[2]}`)}
+                </h3>
+
             </div>
 
             <ModalDescription 
@@ -79,4 +81,4 @@ function AnswerDescription({
     )
 }
 
-export default AnswerDescription
+export default AnswerDescription;

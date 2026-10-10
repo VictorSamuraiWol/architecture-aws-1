@@ -29,8 +29,8 @@ function PageBase() {
     const [pathNavigate, setPathNavigate] = useState('')
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada, será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
-    const [questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti] = useState(false)
-    
+    const [questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti] = useState(false)
+
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
         numIncorrectOption, 
@@ -70,29 +70,35 @@ function PageBase() {
   
     }
 
-    function checkAlternativeAnswerDefault(option, multiOption, answer) { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
+    function checkAlternativeAnswerDefault(optionMain, optionMulti, optionThreeMulti, answer) { // função que verifica se há correspondência das alternativas da opção com a resposta da questão    
         let matchedOptionMain = null // variáveis usadas ao preencher o formulário 1    
-        let matchedOptionMultiMain = null // variáveis usadas para preencher o formulário 2
-        let matchedOptionThreeMultiMain = null // variáveis usadas para preencher o formulário 3  
+        let matchedOptionMulti = null // variáveis usadas para preencher o formulário 2
+        let matchedOptionThreeMulti = null // variáveis usadas para preencher o formulário 3  
         let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
         
         // filtra a opção única correspondente
-        matchedOptionMain = option && option.filter(option => option === answer)[0]
+        matchedOptionMain = optionMain && optionMain.filter(option => option === answer)[0]
         
         // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla
-        matchedOptionMultiMain = activePageMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
+        // matchedOptionMultiMain = activePageMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
+        matchedOptionMulti = activePageMulti && answer && (answer[0] === optionMulti[0] || answer[0] === optionMulti[1]) && (answer[1] === optionMulti[0] || answer[1] === optionMulti[1])
 
         // retorna 'true' se os valores de 'Option1', 'Option2' e 'Option3' estiverem incluídos na resposta da questão múltipla
-        matchedOptionThreeMultiMain = activePageThreeMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1]) && answer.includes(multiOption && multiOption[2])
-        
-        if (answer && option && (option[0] !== undefined && option[1] !== undefined && option[2] !== undefined && option[3] !== undefined) && matchedOptionMain === undefined) {
-        checkWithoutMatched = true
-        
-        } else if (activePageMulti && answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionMultiMain === false) {
-        checkWithoutMatched = true
+        matchedOptionThreeMulti = activePageThreeMulti && answer && (answer[0] === optionThreeMulti[0] || answer[0] === optionThreeMulti[1] || answer[0] === optionThreeMulti[2]) 
+        && (answer[1] === optionThreeMulti[0] || answer[1] === optionThreeMulti[1] || answer[1] === optionThreeMulti[2]) &&
+        (answer[2] === optionThreeMulti[0] || answer[2] === optionThreeMulti[1] || answer[2] === optionThreeMulti[2])
 
-        } else if (activePageThreeMulti && answer && multiOption && (multiOption[0] !== undefined && multiOption[1] !== undefined && multiOption[2] !== undefined && multiOption[3] !== undefined) && matchedOptionThreeMultiMain === false) {
-        checkWithoutMatched = true
+        if (answer && optionMain && (optionMain[0] && optionMain[1] && optionMain[2] && optionMain[3]) && matchedOptionMain === undefined) {
+            checkWithoutMatched = true
+        
+        } else if (activePageMulti && answer && optionMulti && (optionMulti[0] && optionMulti[1] && optionMulti[2] && optionMulti[3]) 
+            && matchedOptionMulti === false) {
+            checkWithoutMatched = true
+            console.log(answer, 97)
+
+        } else if (activePageThreeMulti && answer && optionThreeMulti && (optionThreeMulti[0] && optionThreeMulti[1] && optionThreeMulti[2] && optionThreeMulti[3]) 
+            && matchedOptionThreeMulti === false) {
+            checkWithoutMatched = true
 
         }
 
@@ -124,7 +130,7 @@ function PageBase() {
                         activePageInfo, setActivePageInfo, activePageQuizBuilder, setActivePageQuizBuilder, activeModalEditMenu, setActiveModalEditMenu,
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
-                        questionAnswerButtonNextMulti, setQuestionAnswerButtonNextMulti
+                        questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti
                     }}
                 />                
 

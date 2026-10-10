@@ -22,7 +22,8 @@ function FormsNewQuestionsOptions() {
 
     const errorSound = new Audio(errorAudio) // som ao tentar salvar incorretamente
 
-    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, setPostApi } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, 
+        listThreeMultiOptionsContext, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
     const { repeatedAlternativesDefault, mute } = useOutletContext()
@@ -201,6 +202,37 @@ function FormsNewQuestionsOptions() {
 
         return isValid
 
+    }
+
+    // obs: não usar o checkAlternativeAnswerDefault da PageBase usando o 'useOutletContext' neste forms, pois são necessárias outras variáveis condições
+    function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão        
+        let matchedAnswerOptionMain = null // variáveis usadas ao preencher o formulário 1        
+        let matchedAnswerOptionMulti = null // variáveis usadas ao preencher o formulário 2        
+        let matchedAnswerOptionThreeMulti = null // variáveis usadas ao preencher o formulário 3     
+        let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
+
+        // MainOption
+        matchedAnswerOptionMain = optionForm2?.filter(option => option === newCorrectAnswerMain)
+
+        // MultiOption
+        matchedAnswerOptionMulti = newCorrectAnswerMulti?.includes(newOptionAMulti) && newCorrectAnswerMulti?.includes(newOptionBMulti)
+
+        // ThreeMultiOption
+        matchedAnswerOptionThreeMulti = newCorrectAnswerThreeMulti?.includes(newOptionAThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionBThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionCThreeMulti)
+
+        if (matchedAnswerOptionMain?.length === 0) {
+            checkWithoutMatched = true
+
+        } else if (!matchedAnswerOptionMulti) {
+            checkWithoutMatched = true
+
+        } else if (!matchedAnswerOptionThreeMulti) {
+            checkWithoutMatched = true
+
+        } 
+
+        return checkWithoutMatched
+  
     }
 
     const onSaveMainQuestionsOptions = async (e) => {
@@ -493,37 +525,6 @@ function FormsNewQuestionsOptions() {
 
         }
 
-    }
-
-    // obs: não usar o checkAlternativeAnswerDefault da PageBase usando o 'useOutletContext' neste forms, pois são necessárias outras variáveis condições
-    function checkAlternativeAnswer() { // função que verifica se há correspondência das alternativas da opção com a resposta da questão        
-        let matchedAnswerOptionMain = null // variáveis usadas ao preencher o formulário 1        
-        let matchedAnswerOptionMulti = null // variáveis usadas ao preencher o formulário 2        
-        let matchedAnswerOptionThreeMulti = null // variáveis usadas ao preencher o formulário 3     
-        let checkWithoutMatched = false // variável utilizada ao preencher todos os formulários
-
-        // MainOption
-        matchedAnswerOptionMain = optionForm2?.filter(option => option === newCorrectAnswerMain)
-
-        // MultiOption
-        matchedAnswerOptionMulti = newCorrectAnswerMulti?.includes(newOptionAMulti) && newCorrectAnswerMulti?.includes(newOptionBMulti)
-
-        // ThreeMultiOption
-        matchedAnswerOptionThreeMulti = newCorrectAnswerThreeMulti?.includes(newOptionAThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionBThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionCThreeMulti)
-
-        if (matchedAnswerOptionMain?.length === 0) {
-            checkWithoutMatched = true
-
-        } else if (!matchedAnswerOptionMulti) {
-            checkWithoutMatched = true
-
-        } else if (!matchedAnswerOptionThreeMulti) {
-            checkWithoutMatched = true
-
-        } 
-
-        return checkWithoutMatched
-  
     }
 
     return(

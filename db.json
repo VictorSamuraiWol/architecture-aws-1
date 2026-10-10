@@ -229,7 +229,8 @@
   "listQuestionsMulti": [
     {
       "questionText": "About S3, the developers were asked to identify the invalid storage class lifecycle transitions for objects stored on S3. Can you spot the INVALID lifecycle transitions from the options below? Select two.",
-      "correctAnswer": "S3 Intelligent-Tiering => S3 Standard. // S3 One Zone-IA => S3 Standard-IA.",
+      "correctAnswer1": "S3 Intelligent-Tiering => S3 Standard.",
+      "correctAnswer2": "S3 One Zone-IA => S3 Standard-IA.",
       "iconDescription": "simpleStoragesService",
       "description": "Following are the unsupported life cycle transitions for S3 storage classes, any storage class to the S3 Standard storage class. S3 Intelligent-Tiering storage class to the S3 Standard-IA storage class. S3 One Zone-IA storage class to the S3 Standard-IA or S3 Intelligent-Tiering storage classes.",
       "questionNumber": "5",
@@ -239,7 +240,8 @@
     },
     {
       "questionText": "E-commerce company is documenting the process flow to provision EC2 via the Amazon EC2 API. These instances are to be used for an internal application. Can you indentify the storage volume types that CANNOT be used as boot volumes while creating the instances? Select two.",
-      "correctAnswer": "Throughput Optimized Hard Disk Drive (st1). // Cold Hard Disk Drive (sc1).",
+      "correctAnswer1": "Throughput Optimized Hard Disk Drive (st1).",
+      "correctAnswer2": "Cold Hard Disk Drive (sc1).",
       "iconDescription": "ec2",
       "description": "Solid state drive (SSD) backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS. Hard disk drive (HDD) backed volumes optimized for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Throughput Optimized HDD (st1) and Cold HDD (sc1) volume types CANNOT be used as a boot volume, so these two options are correct.",
       "questionNumber": "10",
@@ -249,7 +251,8 @@
     },
     {
       "questionText": "The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
-      "correctAnswer": "Enable AWS Multi-Factor Authentication (MFA) for privileged users. // Configure AWS CloudTrail to log all AWS IAM actions.",
+      "correctAnswer1": "Enable AWS Multi-Factor Authentication (MFA) for privileged users.",
+      "correctAnswer2": "Configure AWS CloudTrail to log all AWS IAM actions.",
       "iconDescription": "identityAndAccessManagement",
       "description": "As per the AWS best practices, it is better to enable Multi Factor Authentication (MFA) for privileged users via an MFA-enabled mobile device or hardware MFA token. AWS recommends to turn on AWS CloudTrail to log all IAM actions for monitoring and audit purposes.",
       "questionNumber": "15",
@@ -259,7 +262,8 @@
     },
     {
       "questionText": "A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
-      "correctAnswer": "Amazon ElastiCache. // Amazon DynamoDB Accelerator (DAX).",
+      "correctAnswer1": "Amazon ElastiCache.",
+      "correctAnswer2": "Amazon DynamoDB Accelerator (DAX).",
       "iconDescription": "dynamoDB",
       "description": "Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. Amazon ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
       "questionNumber": "20",
@@ -269,7 +273,8 @@
     },
     {
       "questionText": "The company has defined different retention periods for different objects present in the S3, but the retention rules do not seem to work as expected. Which of the following options represent a valid configuration for setting up retention periods for objects. Select two.",
-      "correctAnswer": "Different versions of a single object can have different retention modes and periods. // When you apply a retention period to an object version explicity, you specify a Retain Until Date for the object version.",
+      "correctAnswer1": "Different versions of a single object can have different retention modes and periods.",
+      "correctAnswer2": "When you apply a retention period to an object version explicity, you specify a Retain Until Date for the object version.",
       "iconDescription": "simpleStoragesService",
       "description": "You can place a retention period on an object version either explicitly or through a bucket default setting. When you apply a retention period to an object version explicitly, you specify a Retain Until Date for the object version. Amazon S3 stores the Retain Until Date setting in the object version's metadata and protects the object version until the retention period expires. Like all other Object Lock settings, retention periods apply to individual object versions. Different versions of a single object can have different retention modes and periods.",
       "questionNumber": "25",
@@ -329,7 +334,9 @@
     {
       "questionText": "An HTTP application is deployed on an Auto Scaling Group, is accessible from an Application Load Balancer (ALB) that provides HTTPS termination, and accesses a PostgreSQL database managed by Amazon RDS. How should you configure the security groups? (Select three)",
       "imageQuestion": "",
-      "correctAnswer": "The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 instances in the Auto Scaling group on port 5432. // The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80. // The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443.",
+      "correctAnswer1": "The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 instances in the Auto Scaling group on port 5432.",
+      "correctAnswer2": "The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80.",
+      "correctAnswer3": "The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443.",
       "iconDescription": "",
       "description": "A security group acts as a virtual firewall that controls the traffic for one or more instances. When you launch an instance, you can specify one or more security groups; otherwise, we use the default security group. You can add rules to each security group that allows traffic to or from its associated instances. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance. The following are the characteristics of security group rules: 1. By default, security groups allow all outbound traffic. 2. Security group rules are always permissive; you can't create rules that deny access. 3. Security groups are stateful PostgreSQL port = 5432 HTTP port = 80 HTTPS port = 443 The traffic goes like this : The client sends an HTTPS request to ALB on port 443. This is handled by the rule - 'The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443' The Application Load Balancer then forwards the request to one of the Amazon EC2 instances. This is handled by the rule - 'The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80' The Amazon EC2 instance further accesses the PostgreSQL database managed by Amazon RDS on port 5432. This is handled by the rule - 'The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 ins ances in the Auto Scaling group on port 5432'",
       "imageDescription": "",
@@ -339,7 +346,9 @@
     {
       "questionText": "The DevOps team at an IT company is provisioning a two-tier application in a VPC with a public subnet and a private subnet. The team wants to use either a Network Address Translation (NAT) instance or a Network Address Translation (NAT) gateway in the public subnet to enable instances in the private subnet to initiate outbound IPv4 traffic to the internet but needs some technical assistance in terms of the configuration options available for the Network Address Translation (NAT) instance and the Network Address Translation (NAT) gateway. As a solutions architect, which of the following options would you identify as CORRECT? (Select three)",
       "imageQuestion": "",
-      "correctAnswer": "NAT instance supports port forwarding // NAT instance can be used as a bastion server // Security Groups can be associated with a NAT instance",
+      "correctAnswer1": "NAT instance supports port forwarding",
+      "correctAnswer2": "NAT instance can be used as a bastion server",
+      "correctAnswer3": "Security Groups can be associated with a NAT instance",
       "iconDescription": "",
       "description": "A NAT instance or a NAT Gateway can be used in a public subnet in your VPC to enable instances in the private subnet to initiate outbound IPv4 traffic to the Internet.",
       "imageDescription": "description100",

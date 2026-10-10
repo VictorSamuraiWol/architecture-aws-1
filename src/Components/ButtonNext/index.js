@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { DataContext } from '../DataContext'
 
 function ButtonNext({ 
-    questionAnswerButtonNextMain, questionAnswerButtonNextMulti, onClick
+    questionAnswerButtonNextMain, questionAnswerButtonNextMultiAndThreeMulti, onClick
 }) {
 
     // pegando a variável booleana para habilitar ou desabilitar o som usando 'useOutletContext()' da página base
@@ -15,11 +15,11 @@ function ButtonNext({
     const { listUnicQuestionsContextLength, getApi, setGetApi } = useContext(DataContext)
 
     const newSoundNextPage = new Audio(audioNextPage) // som 'newSoundNextPage'
-    
+   
     // som ao mudar de questão e opção na página Main e MultiMain
     function soundNextPage() {
-        mute === false && questionAnswerButtonNextMain === true &&  listUnicQuestionsContextLength && newSoundNextPage.play()
-        mute === false && questionAnswerButtonNextMulti === true && listUnicQuestionsContextLength && newSoundNextPage.play() 
+        mute === false && questionAnswerButtonNextMain && listUnicQuestionsContextLength && newSoundNextPage.play()
+        mute === false && questionAnswerButtonNextMultiAndThreeMulti && listUnicQuestionsContextLength && newSoundNextPage.play() 
 
     }
     

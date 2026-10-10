@@ -8,12 +8,12 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 
 function MultiMain({ 
-    question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
+    question, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
     setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
 }) {
 
@@ -26,18 +26,24 @@ function MultiMain({
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
     
-    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMulti, 
-        setQuestionAnswerButtonNextMulti } = useOutletContext()
+    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
+        setQuestionAnswerButtonNextMultiAndThreeMulti } = useOutletContext()
 
     const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
         listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
     const [itens, setItens] = useState('') // captura os itens corretos
+    const [listCorrectAnswers, setListCorrectAnswers] = useState([]) // lista das respostas corretas
 
     const [answerMultiQuestionAlert, setAnswerMultiQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
 
-    function alertQuestionAnswerButtonNextMulti() {
-        if (questionAnswerButtonNextMulti === false) {
+    useEffect(() => {
+        setQuestionAnswerButtonNextMultiAndThreeMulti(false)
+
+    }, [setQuestionAnswerButtonNextMultiAndThreeMulti])
+
+    function alertQuestionAnswerButtonNextMultiAndThreeMulti() {
+        if (questionAnswerButtonNextMultiAndThreeMulti === false) {
             setAnswerMultiQuestionAlert(true)
 
         }
@@ -47,11 +53,11 @@ function MultiMain({
     function ableNextPage() { // função que habilita a próxima rota
         let able = null
 
-        if (listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 && questionAnswerButtonNextMulti) {
+        if (listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 && questionAnswerButtonNextMultiAndThreeMulti) {
         // condição: se tiver questões Main disponíveis e a questão da página Multi for respondida
             able = '/page-main'
 
-        } else if (activePageThreeMulti && listThreeMultiQuestionsContextLength === 1 && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMulti) {
+        } else if (activePageThreeMulti && listThreeMultiQuestionsContextLength === 1 && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMultiAndThreeMulti) {
             if (listMultiQuestionsContextLength >= 1 && listMultiOptionsContextLength >= 1) {
                 able = '/page-multi'
 
@@ -61,7 +67,7 @@ function MultiMain({
             }
 
         } else if (listMultiQuestionsContextLength >= 1 && listMultiOptionsContextLength >= 1 && listThreeMultiQuestionsContextLength >= 1 
-        && listThreeMultiOptionsContextLength >= 1 && questionAnswerButtonNextMulti) {
+        && listThreeMultiOptionsContextLength >= 1 && questionAnswerButtonNextMultiAndThreeMulti) {
             if (activePageMulti) {
                 able = '/page-three-multi'
 
@@ -74,19 +80,19 @@ function MultiMain({
             }
 
         } else if (listMultiQuestionsContextLength === 1 && listMultiOptionsContextLength === 1 && listThreeMultiQuestionsContextLength === 0
-        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMulti) {
+        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMultiAndThreeMulti) {
             able = '/'
 
         } else if (listMultiQuestionsContextLength > 1 && listMultiOptionsContextLength > 1 && listThreeMultiQuestionsContextLength === 0 
-        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMulti) {
+        && listThreeMultiOptionsContextLength === 0 && questionAnswerButtonNextMultiAndThreeMulti) {
             able = '/page-multi'
 
         } else if (listMultiQuestionsContextLength === 0 && listMultiOptionsContextLength === 0 && listThreeMultiQuestionsContextLength === 1 
-        && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMulti) {
+        && listThreeMultiOptionsContextLength === 1 && questionAnswerButtonNextMultiAndThreeMulti) {
             able = '/'
             
         } else if (listMultiQuestionsContextLength === 0 && listMultiOptionsContextLength === 0 && listThreeMultiQuestionsContextLength > 1 
-        && listThreeMultiOptionsContextLength > 1 && questionAnswerButtonNextMulti) {
+        && listThreeMultiOptionsContextLength > 1 && questionAnswerButtonNextMultiAndThreeMulti) {
             able = '/page-three-multi'
             
         }
@@ -136,9 +142,11 @@ function MultiMain({
                 answerDescriptionDisplay={answerDescriptionDisplay}
                 setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                 descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}              
-                answer={answer}
-                questionNumber={questionNumber}
+                setDescriptionDisplay={setDescriptionDisplay}
+                answer1={questionMulti.correctAnswer1}
+                answer2={questionMulti.correctAnswer2}
+                answer3={questionMulti.correctAnswer3}
+                setListCorrectAnswers={setListCorrectAnswers}
                 optionValidateStyle={optionValidateStyle}
                 optionInvalidateStyle={optionInvalidateStyle}
                 optionColorStyle={optionColorStyle}
@@ -147,7 +155,7 @@ function MultiMain({
                 inputInvalidateStyle={inputInvalidateStyle}
                 captureValueMulti={captureValueMulti}
                 optionMulti={optionMulti}
-                setQuestionAnswerButtonNextMulti={setQuestionAnswerButtonNextMulti}
+                setQuestionAnswerButtonNextMultiAndThreeMulti={setQuestionAnswerButtonNextMultiAndThreeMulti}
                 activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
                 setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
                 setItens={setItens}
@@ -155,7 +163,7 @@ function MultiMain({
 
             <AnswerDescription
                 questionMulti={questionMulti}
-                answer={answer}
+                listCorrectAnswers={listCorrectAnswers}
                 iconDescription={iconDescription}
                 description={description}
                 answerDescriptionDisplay={answerDescriptionDisplay}
@@ -169,8 +177,8 @@ function MultiMain({
                 to={ableNextPage()}
             >
                 <ButtonNext 
-                    onClick={alertQuestionAnswerButtonNextMulti}
-                    questionAnswerButtonNextMulti={questionAnswerButtonNextMulti}
+                    onClick={alertQuestionAnswerButtonNextMultiAndThreeMulti}
+                    questionAnswerButtonNextMultiAndThreeMulti={questionAnswerButtonNextMultiAndThreeMulti}
                 />
             </Link>
 
