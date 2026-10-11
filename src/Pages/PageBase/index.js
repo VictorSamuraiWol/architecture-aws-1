@@ -81,12 +81,16 @@ function PageBase() {
         
         // retorna 'true' se os valores de 'Option1' e 'Option2' estiverem incluídos na resposta da questão múltipla
         // matchedOptionMultiMain = activePageMulti && answer && answer.includes(multiOption && multiOption[0]) && answer.includes(multiOption && multiOption[1])
-        matchedOptionMulti = activePageMulti && answer && (answer[0] === optionMulti[0] || answer[0] === optionMulti[1]) && (answer[1] === optionMulti[0] || answer[1] === optionMulti[1])
+        matchedOptionMulti = activePageMulti && answer && ((answer[0] === optionMulti[0] && answer[1] === optionMulti[1]) || (answer[0] === optionMulti[1] && answer[1] === optionMulti[0]))
 
         // retorna 'true' se os valores de 'Option1', 'Option2' e 'Option3' estiverem incluídos na resposta da questão múltipla
-        matchedOptionThreeMulti = activePageThreeMulti && answer && (answer[0] === optionThreeMulti[0] || answer[0] === optionThreeMulti[1] || answer[0] === optionThreeMulti[2]) 
-        && (answer[1] === optionThreeMulti[0] || answer[1] === optionThreeMulti[1] || answer[1] === optionThreeMulti[2]) &&
-        (answer[2] === optionThreeMulti[0] || answer[2] === optionThreeMulti[1] || answer[2] === optionThreeMulti[2])
+        matchedOptionThreeMulti = activePageThreeMulti && answer && 
+            ((answer[0] === optionThreeMulti[0] && answer[1] === optionThreeMulti[1] && answer[2] === optionThreeMulti[2]) || 
+             (answer[0] === optionThreeMulti[0] && answer[1] === optionThreeMulti[2] && answer[2] === optionThreeMulti[1]) ||
+             (answer[1] === optionThreeMulti[0] && answer[0] === optionThreeMulti[1] && answer[2] === optionThreeMulti[2]) ||
+             (answer[1] === optionThreeMulti[0] && answer[0] === optionThreeMulti[2] && answer[2] === optionThreeMulti[1]) ||
+             (answer[2] === optionThreeMulti[0] && answer[0] === optionThreeMulti[1] && answer[1] === optionThreeMulti[2]) ||
+             (answer[2] === optionThreeMulti[0] && answer[0] === optionThreeMulti[2] && answer[1] === optionThreeMulti[1]))
 
         if (answer && optionMain && (optionMain[0] && optionMain[1] && optionMain[2] && optionMain[3]) && matchedOptionMain === undefined) {
             checkWithoutMatched = true

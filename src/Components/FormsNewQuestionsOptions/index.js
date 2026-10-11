@@ -17,9 +17,7 @@ import { v4 as uuidv4 } from 'uuid'
 function FormsNewQuestionsOptions() {
 
     const uniqueId = uuidv4() // gerar uma id aleatória para a questão e a opção correspondente
-
     const saveSound = new Audio(saveAudio) // som ao salvar corretamente
-
     const errorSound = new Audio(errorAudio) // som ao tentar salvar incorretamente
 
     const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, 
@@ -48,7 +46,8 @@ function FormsNewQuestionsOptions() {
     // atributos da questão múltipla (formulário 3)
     const [newQuestionTextMulti, setNewQuestionTextMulti] = useState('')
     const [newImageQuestionMulti, setNewImageQuestionMulti] = useState('')
-    const [newCorrectAnswerMulti, setNewCorrectAnswerMulti] = useState('')
+    const [newCorrectAnswerMulti1, setNewCorrectAnswerMulti1] = useState('')
+    const [newCorrectAnswerMulti2, setNewCorrectAnswerMulti2] = useState('')
     const [newIconDescriptionMulti, setNewIconDescriptionMulti] = useState('')
     const [newDescriptionMulti, setNewDescriptionMulti] = useState('')
     const [newImageDescriptionMulti, setNewImageDescriptionMulti] = useState('')
@@ -65,7 +64,9 @@ function FormsNewQuestionsOptions() {
     // atributos da questão múltipla (formulário 5)
     const [newQuestionTextThreeMulti, setNewQuestionTextThreeMulti] = useState('')
     const [newImageQuestionThreeMulti, setNewImageQuestionThreeMulti] = useState('')
-    const [newCorrectAnswerThreeMulti, setNewCorrectAnswerThreeMulti] = useState('')
+    const [newCorrectAnswerThreeMulti1, setNewCorrectAnswerThreeMulti1] = useState('')
+    const [newCorrectAnswerThreeMulti2, setNewCorrectAnswerThreeMulti2] = useState('')
+    const [newCorrectAnswerThreeMulti3, setNewCorrectAnswerThreeMulti3] = useState('')
     const [newIconDescriptionThreeMulti, setNewIconDescriptionThreeMulti] = useState('')
     const [newDescriptionThreeMulti, setNewDescriptionThreeMulti] = useState('')
     const [newImageDescriptionThreeMulti, setNewImageDescriptionThreeMulti] = useState('')
@@ -80,14 +81,10 @@ function FormsNewQuestionsOptions() {
     const [newOptionFThreeMulti, setNewOptionFThreeMulti] = useState('')
     const [newOptionNumberThreeMulti, setNewOptionNumberThreeMulti] = useState('')
 
-    // lista de todas as alternativas da opção única (formulário 2)
-    const [optionForm2, setOptionForm2] = useState('')
-
-    // lista de todas as alternativas da opção múltipla (formulário 4)
-    const [optionForm4, setOptionForm4] = useState('')
-
-    // lista de todas as alternativas da opção múltipla (formulário 6)
-    const [optionForm6, setOptionForm6] = useState('')
+    
+    const [optionForm2, setOptionForm2] = useState('') // lista de todas as alternativas da opção única (formulário 2)   
+    const [optionForm4, setOptionForm4] = useState('') // lista de todas as alternativas da opção múltipla (formulário 4)
+    const [optionForm6, setOptionForm6] = useState('') // lista de todas as alternativas da opção múltipla (formulário 6)
 
     const [readyToSendForm1, setReadyToSendForm1] = useState(false)
     const [readyToSendForm2, setReadyToSendForm2] = useState(false)
@@ -167,8 +164,9 @@ function FormsNewQuestionsOptions() {
                 && label.innerText !== "Image Description:") {
                 label.style.color = colorIncorrect // passando a cor incorreta
 
+                
             }
-
+            
         }
 
         // formOption
@@ -215,11 +213,16 @@ function FormsNewQuestionsOptions() {
         matchedAnswerOptionMain = optionForm2?.filter(option => option === newCorrectAnswerMain)
 
         // MultiOption
-        matchedAnswerOptionMulti = newCorrectAnswerMulti?.includes(newOptionAMulti) && newCorrectAnswerMulti?.includes(newOptionBMulti)
+        matchedAnswerOptionMulti = (newCorrectAnswerMulti1 === newOptionAMulti && newCorrectAnswerMulti2 === newOptionBMulti) || (newCorrectAnswerMulti1 === newOptionBMulti && newCorrectAnswerMulti2 === newOptionAMulti)
 
         // ThreeMultiOption
-        matchedAnswerOptionThreeMulti = newCorrectAnswerThreeMulti?.includes(newOptionAThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionBThreeMulti) && newCorrectAnswerThreeMulti?.includes(newOptionCThreeMulti)
-
+        matchedAnswerOptionThreeMulti = (newCorrectAnswerThreeMulti1 === newOptionAThreeMulti && newCorrectAnswerThreeMulti2 === newOptionBThreeMulti && newCorrectAnswerThreeMulti3 === newOptionCThreeMulti) || 
+        (newCorrectAnswerThreeMulti1 === newOptionAThreeMulti && newCorrectAnswerThreeMulti2 === newOptionCThreeMulti && newCorrectAnswerThreeMulti3 === newOptionBThreeMulti) ||
+        (newCorrectAnswerThreeMulti2 === newOptionAThreeMulti && newCorrectAnswerThreeMulti1 === newOptionBThreeMulti && newCorrectAnswerThreeMulti3 === newOptionCThreeMulti) ||
+        (newCorrectAnswerThreeMulti2 === newOptionAThreeMulti && newCorrectAnswerThreeMulti1 === newOptionCThreeMulti && newCorrectAnswerThreeMulti3 === newOptionBThreeMulti) ||
+        (newCorrectAnswerThreeMulti3 === newOptionAThreeMulti && newCorrectAnswerThreeMulti1 === newOptionBThreeMulti && newCorrectAnswerThreeMulti2 === newOptionCThreeMulti) ||
+        (newCorrectAnswerThreeMulti3 === newOptionAThreeMulti && newCorrectAnswerThreeMulti1 === newOptionCThreeMulti && newCorrectAnswerThreeMulti2 === newOptionBThreeMulti)
+        
         if (matchedAnswerOptionMain?.length === 0) {
             checkWithoutMatched = true
 
@@ -229,7 +232,7 @@ function FormsNewQuestionsOptions() {
         } else if (!matchedAnswerOptionThreeMulti) {
             checkWithoutMatched = true
 
-        } 
+        }
 
         return checkWithoutMatched
   
@@ -343,7 +346,7 @@ function FormsNewQuestionsOptions() {
             let dataMultiOption = ''
             setPostApi(false) // volta ao estado inicial
     
-            if (!newQuestionTextMulti || !newCorrectAnswerMulti || !newDescriptionMulti || !newOptionAMulti || !newOptionBMulti || !newOptionCMulti || !newOptionDMulti || newOptionNumberMulti === "") {
+            if (!newQuestionTextMulti || !newCorrectAnswerMulti1 || !newCorrectAnswerMulti2 || !newDescriptionMulti || !newOptionAMulti || !newOptionBMulti || !newOptionCMulti || !newOptionDMulti || newOptionNumberMulti === "") {
                 // mantém newOptionNumberMulti === "", pois é tipo número, se usar !newOptionNumberMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form3', 'form4')
     
@@ -361,15 +364,16 @@ function FormsNewQuestionsOptions() {
                     setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
                     redVoidFieldForm('form3', 'form4')
                 
-                } else if (checkAlternativeAnswer() === true && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
+                } else if (checkAlternativeAnswer() === true && newQuestionTextMulti && newCorrectAnswerMulti1 && newCorrectAnswerMulti2 && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
                     setActivePopupcheckAlternativeAnswerForms3and4(true) // ativa o popup
                     redVoidFieldForm('form3', 'form4')
     
-                } else if (checkAlternativeAnswer() === false && newQuestionTextMulti && newCorrectAnswerMulti && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
+                } else if (checkAlternativeAnswer() === false && newQuestionTextMulti && newCorrectAnswerMulti1 && newCorrectAnswerMulti2 && newDescriptionMulti && newOptionAMulti && newOptionBMulti && newOptionCMulti && newOptionDMulti && newOptionNumberMulti) {
                     dataMultiQuestion = {
                         questionText: newQuestionTextMulti,
                         imageQuestion: newImageQuestionMulti, // não obrigatório
-                        correctAnswer: newCorrectAnswerMulti,
+                        correctAnswer1: newCorrectAnswerMulti1,
+                        correctAnswer2: newCorrectAnswerMulti2,
                         iconDescription: newIconDescriptionMulti, // não obrigatório
                         description: newDescriptionMulti,
                         imageDescription: newImageDescriptionMulti, // não obrigatório
@@ -440,7 +444,7 @@ function FormsNewQuestionsOptions() {
             let dataThreeMultiOption = ''
             setPostApi(false) // volta ao estado inicial
     
-            if (!newQuestionTextThreeMulti || !newCorrectAnswerThreeMulti || !newDescriptionThreeMulti || !newOptionAThreeMulti || !newOptionBThreeMulti || !newOptionCThreeMulti || !newOptionDThreeMulti || !newOptionEThreeMulti || !newOptionFThreeMulti || newOptionNumberThreeMulti === "") {
+            if (!newQuestionTextThreeMulti || !newCorrectAnswerThreeMulti1 || !newCorrectAnswerThreeMulti2 || !newCorrectAnswerThreeMulti3 || !newDescriptionThreeMulti || !newOptionAThreeMulti || !newOptionBThreeMulti || !newOptionCThreeMulti || !newOptionDThreeMulti || !newOptionEThreeMulti || !newOptionFThreeMulti || newOptionNumberThreeMulti === "") {
                 // mantém newOptionNumberThreeMulti === "", pois é tipo número, se usar !newOptionNumberThreeMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form5', 'form6')
     
@@ -458,15 +462,17 @@ function FormsNewQuestionsOptions() {
                     setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
                     redVoidFieldForm('form5', 'form6')
                 
-                } else if (checkAlternativeAnswer() === true && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
+                } else if (checkAlternativeAnswer() === true && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti1 && newCorrectAnswerThreeMulti2 && newCorrectAnswerThreeMulti3 && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
                     setActivePopupcheckAlternativeAnswerForms5and6(true) // ativa o popup
                     redVoidFieldForm('form5', 'form6')
     
-                } else if (checkAlternativeAnswer() === false && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
+                } else if (checkAlternativeAnswer() === false && newQuestionTextThreeMulti && newCorrectAnswerThreeMulti1 && newCorrectAnswerThreeMulti2 && newCorrectAnswerThreeMulti3 && newDescriptionThreeMulti && newOptionAThreeMulti && newOptionBThreeMulti && newOptionCThreeMulti && newOptionDThreeMulti && newOptionEThreeMulti && newOptionFThreeMulti && newOptionNumberThreeMulti) {
                     dataThreeMultiQuestion = {
                         questionText: newQuestionTextThreeMulti,
                         imageQuestion: newImageQuestionThreeMulti, // não obrigatório
-                        correctAnswer: newCorrectAnswerThreeMulti,
+                        correctAnswer1: newCorrectAnswerThreeMulti1,
+                        correctAnswer2: newCorrectAnswerThreeMulti2,
+                        correctAnswer3: newCorrectAnswerThreeMulti3,
                         iconDescription: newIconDescriptionThreeMulti, // não obrigatório
                         description: newDescriptionThreeMulti,
                         imageDescription: newImageDescriptionThreeMulti, // não obrigatório
@@ -550,7 +556,6 @@ function FormsNewQuestionsOptions() {
                         nameText5="Description:*"
                         nameText6="Image Description:"
                         specificStylesLabel={styles.specificStylesLabel}
-
                         setNewQuestionTextMain={setNewQuestionTextMain}
                         setNewImageQuestionMain={setNewImageQuestionMain}
                         setNewCorrectAnswerMain={setNewCorrectAnswerMain}
@@ -585,7 +590,6 @@ function FormsNewQuestionsOptions() {
                         nameText5="Option E:" 
                         nameText6="Number:*"
                         specificStylesLabel={styles.specificStylesLabel}
- 
                         setNewOptionAMain={setNewOptionAMain}    
                         setNewOptionBMain={setNewOptionBMain}     
                         setNewOptionCMain={setNewOptionCMain}    
@@ -625,19 +629,19 @@ function FormsNewQuestionsOptions() {
                     <FieldsQuestionsOptions
                         nameText1="Question:*"
                         nameText2="Image Question:"
-                        nameText3="Answer:*"
-                        nameText4="Icon Description:"
-                        nameText5="Description:*"
-                        nameText6="Image Description:"
+                        nameText3="Answer1:*"
+                        nameText4="Answer2:*"
+                        nameText5="Icon Description:"
+                        nameText6="Description:*"
+                        nameText7="Image Description:"
                         specificStylesLabel={styles.specificStylesLabel}
-
                         setNewQuestionTextMulti={setNewQuestionTextMulti}
                         setNewImageQuestionMulti={setNewImageQuestionMulti}
-                        setNewCorrectAnswerMulti={setNewCorrectAnswerMulti}
+                        setNewCorrectAnswerMulti1={setNewCorrectAnswerMulti1}
+                        setNewCorrectAnswerMulti2={setNewCorrectAnswerMulti2}
                         setNewIconDescriptionMulti={setNewIconDescriptionMulti}
                         setNewDescriptionMulti={setNewDescriptionMulti}
                         setNewImageDescriptionMulti={setNewImageDescriptionMulti}
-                        setNewQuestionNumberMulti={setNewQuestionNumberMulti}
                         readyToSendForm3={readyToSendForm3}
                         setReadyToSendForm3={setReadyToSendForm3}
                     />
@@ -665,7 +669,6 @@ function FormsNewQuestionsOptions() {
                         nameText5="Option E:" 
                         nameText6="Number:*"
                         specificStylesLabel={styles.specificStylesLabel}
-
                         setNewOptionAMulti={setNewOptionAMulti}
                         setNewOptionBMulti={setNewOptionBMulti}
                         setNewOptionCMulti={setNewOptionCMulti}
@@ -703,19 +706,21 @@ function FormsNewQuestionsOptions() {
                     <FieldsQuestionsOptions
                         nameText1="Question:*"
                         nameText2="Image Question:"
-                        nameText3="Answer:*"
-                        nameText4="Icon Description:"
-                        nameText5="Description:*"
-                        nameText6="Image Description:"
+                        nameText3="Answer1:*"
+                        nameText4="Answer2:*"
+                        nameText5="Answer3:*"
+                        nameText6="Icon Description:"
+                        nameText7="Description:*"
+                        nameText8="Image Description:"
                         specificStylesLabel={styles.specificStylesLabel}
-
                         setNewQuestionTextThreeMulti={setNewQuestionTextThreeMulti}
                         setNewImageQuestionThreeMulti={setNewImageQuestionThreeMulti}
-                        setNewCorrectAnswerThreeMulti={setNewCorrectAnswerThreeMulti}
+                        setNewCorrectAnswerThreeMulti1={setNewCorrectAnswerThreeMulti1}
+                        setNewCorrectAnswerThreeMulti2={setNewCorrectAnswerThreeMulti2}
+                        setNewCorrectAnswerThreeMulti3={setNewCorrectAnswerThreeMulti3}
                         setNewIconDescriptionThreeMulti={setNewIconDescriptionThreeMulti}
                         setNewDescriptionThreeMulti={setNewDescriptionThreeMulti}
                         setNewImageDescriptionThreeMulti={setNewImageDescriptionThreeMulti}
-                        setNewQuestionNumberThreeMulti={setNewQuestionNumberThreeMulti}
                         readyToSendForm5={readyToSendForm5}
                         setReadyToSendForm5={setReadyToSendForm5}
                     />
@@ -744,7 +749,6 @@ function FormsNewQuestionsOptions() {
                         nameText6="Option F:*" 
                         nameText7="Number:*"
                         specificStylesLabel={styles.specificStylesLabel}
-
                         setNewOptionAThreeMulti={setNewOptionAThreeMulti}
                         setNewOptionBThreeMulti={setNewOptionBThreeMulti}
                         setNewOptionCThreeMulti={setNewOptionCThreeMulti}
@@ -799,9 +803,9 @@ function FormsNewQuestionsOptions() {
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms3and4}
-                    textPopup={`Your answer does not contain the two correct alternatives (Option A and Option B) from option! Please, before creating the question, include both correct alternatives (Option A and Option B) from option in the answer, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`(Solution 1) Include in the answer to question the two correct alternatives from option, highlighted below: (Option: ${newOptionAMulti}) and (Option: ${newOptionBMulti}).
-                        (Solution 2) Include in the first two alternatives (Option A and Option B) of option the answers included in question, highlighted below: (Answer: ${newCorrectAnswerMulti}).`}
+                    textPopup={`Your answers (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) does not contain the two correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option! Please, before creating the question, include both correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
+                    textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) the two correct alternatives from option, highlighted below: (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}).
+                        (Solution 2) Include in the first two alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}).`}
                 />
             }
 
@@ -809,9 +813,9 @@ function FormsNewQuestionsOptions() {
                 <PopupCheckAlternativeAnswer 
                     specificStyles={styles.popupCheckForm} 
                     activePopup={setActivePopupcheckAlternativeAnswerForms5and6}
-                    textPopup={`Your answer does not contain the three correct alternatives (Option A, Option B and Option C) from option! Please, before creating the question, include three correct alternatives (Option A, Option B and Option C) from option in the answer, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`(Solution 1) Include in the answer to question the three correct alternatives from option, highlighted below: (Option: ${newOptionAThreeMulti}), (Option: ${newOptionBThreeMulti}) and (Option: ${newOptionCThreeMulti}).
-                        (Solution 2) Include in the first three alternatives (Option A, Option B and Option C) of option the answers included in question, highlighted below: (Answer: ${newCorrectAnswerThreeMulti}).`}
+                    textPopup={`Your answers (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) does not contain the three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option! Please, before creating the question, include three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
+                    textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) the three correct alternatives from option, highlighted below: (Option A: ${newOptionAThreeMulti}), (Option B ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}).
+                        (Solution 2) Include in the first three alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}).`}
                 />
             }
 

@@ -141,6 +141,56 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   function openModal() {
     setModalIsOpen(true)
 
+    // voltando ao estado original de todas as variáveis ao abrir a modal
+    // questionMain
+    setQuestionTextMain(questionMain?.questionText)
+    setImageQuestionMain(questionMain?.imageQuestion)
+    setCorrectAnswerMain(questionMain?.correctAnswer)
+    setIconDescriptionMain(questionMain?.iconDescription)
+    setDescriptionMain(questionMain?.description)
+    setImageDescriptionMain(questionMain?.imageDescription)
+
+    // optionMain
+    setOptionAMain(optionMain && optionMain[0])
+    setOptionBMain(optionMain && optionMain[1])
+    setOptionCMain(optionMain && optionMain[2])
+    setOptionDMain(optionMain && optionMain[3])
+    setOptionEMain(optionMain && optionMain[4])
+
+    // questionMulti
+    setQuestionTextMulti(questionMulti?.questionText)
+    setImageQuestionMulti(questionMulti?.imageQuestion)
+    setCorrectAnswerMulti1(questionMulti?.correctAnswer1)
+    setCorrectAnswerMulti2(questionMulti?.correctAnswer2)
+    setIconDescriptionMulti(questionMulti?.iconDescription)
+    setDescriptionMulti(questionMulti?.description)
+    setImageDescriptionMulti(questionMulti?.imageDescription)
+
+    // optionMulti
+    setOptionAMulti(optionMulti && optionMulti[0])
+    setOptionBMulti(optionMulti && optionMulti[1])
+    setOptionCMulti(optionMulti && optionMulti[2])
+    setOptionDMulti(optionMulti && optionMulti[3])
+    setOptionEMulti(optionMulti && optionMulti[4])
+
+    // questionThreeMulti
+    setQuestionTextThreeMulti(questionMulti?.questionText)
+    setImageQuestionThreeMulti(questionMulti?.imageQuestion)
+    setCorrectAnswerThreeMulti1(questionMulti?.correctAnswer1)
+    setCorrectAnswerThreeMulti2(questionMulti?.correctAnswer2)
+    setCorrectAnswerThreeMulti3(questionMulti?.correctAnswer3)
+    setIconDescriptionThreeMulti(questionMulti?.iconDescription)
+    setDescriptionThreeMulti(questionMulti?.description)
+    setImageDescriptionThreeMulti(questionMulti?.imageDescription)
+
+    // optionThreeMulti
+    setOptionAThreeMulti(optionMulti && optionMulti[0])
+    setOptionBThreeMulti(optionMulti && optionMulti[1])
+    setOptionCThreeMulti(optionMulti && optionMulti[2])
+    setOptionDThreeMulti(optionMulti && optionMulti[3])
+    setOptionEThreeMulti(optionMulti && optionMulti[4])
+    setOptionFThreeMulti(optionMulti && optionMulti[5])
+
   }
 
   function closeModal() {

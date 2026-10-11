@@ -60,7 +60,9 @@ function FieldQuestionOption({
 
             nameText === "Image Question:" && setValueForm3(newValue) // setNewImageQuestionMulti
 
-            nameText === "Answer:*" && setValueForm3(newValue) // setNewCorrectAnswerMulti
+            nameText === "Answer1:*" && setValueForm3(newValue) // setNewCorrectAnswerMulti1
+
+            nameText === "Answer2:*" && setValueForm3(newValue) // setNewCorrectAnswerMulti2
 
             nameText === "Icon Description:" && setValueForm3(newValue) // setNewIconDescriptionMulti
 
@@ -86,7 +88,11 @@ function FieldQuestionOption({
 
             nameText === "Image Question:" && setValueForm5(newValue) // setNewImageQuestionThreeMulti
 
-            nameText === "Answer:*" && setValueForm5(newValue) // setNewCorrectAnswerThreeMulti
+            nameText === "Answer1:*" && setValueForm5(newValue) // setNewCorrectAnswerThreeMulti1
+
+            nameText === "Answer2:*" && setValueForm5(newValue) // setNewCorrectAnswerThreeMulti2
+            
+            nameText === "Answer3:*" && setValueForm5(newValue) // setNewCorrectAnswerThreeMulti3
 
             nameText === "Icon Description:" && setValueForm5(newValue) // setNewIconDescriptionThreeMulti
 
