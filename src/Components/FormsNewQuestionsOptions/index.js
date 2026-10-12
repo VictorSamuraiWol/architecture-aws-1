@@ -24,7 +24,7 @@ function FormsNewQuestionsOptions() {
         listThreeMultiOptionsContext, setPostApi } = useContext(DataContext)
 
     // chamando a função 'repeatedAlternativesDefault' através do 'useOutletContext' criada na PageBase
-    const { repeatedAlternativesDefault, mute } = useOutletContext()
+    const { repeatedAlternativesDefault, mute, checkAnswers } = useOutletContext()
 
     // atributos da questão única (formulário 1):
     const [newQuestionTextMain, setNewQuestionTextMain] = useState('')
@@ -116,6 +116,9 @@ function FormsNewQuestionsOptions() {
     const [noDataAlertForm, setNoDataAlertForm] = useState(false) // ativa o componente PopupAlertMessage
     
     const [colorIncorrect] = useState('#B71C1C') // passando a cor incorreta
+
+    const [checkEqualAnswersMulti, setCheckEqualAnswersMulti] = useState(false)
+    const [checkEqualAnswersThreeMulti, setCheckEqualAnswersThreeMulti] = useState(false)
 
     useEffect(() => {        
         // capturando o número de todas as opções presentes nos formulários 2 e 4
@@ -240,6 +243,7 @@ function FormsNewQuestionsOptions() {
 
     const onSaveMainQuestionsOptions = async (e) => {
         e.preventDefault()
+        checkAnswers()
 
         if (listUnicQuestionsContext.length === 0  || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) {
             setNoDataAlertForm(true) // ativa o PopupAlertMessage
@@ -315,11 +319,7 @@ function FormsNewQuestionsOptions() {
                         console.log(dataMainQuestion, dataMainOption, 'Data successfully submitted.')
                         setActivePopupSuccessfull(true)
                         setReadyToSendForm1(true)
-                        setReadyToSendForm2(true)
-                        setReadyToSendForm3(true)
-                        setReadyToSendForm4(true)
-                        setReadyToSendForm5(true)
-                        setReadyToSendForm6(true)          
+                        setReadyToSendForm2(true)        
                         setPostApi(true) // tornar verdadeiro a cada POST
         
                     }
@@ -330,7 +330,7 @@ function FormsNewQuestionsOptions() {
                 }
     
             }
-
+            
         }
 
     }
@@ -345,7 +345,7 @@ function FormsNewQuestionsOptions() {
             let dataMultiQuestion = ''
             let dataMultiOption = ''
             setPostApi(false) // volta ao estado inicial
-    
+
             if (!newQuestionTextMulti || !newCorrectAnswerMulti1 || !newCorrectAnswerMulti2 || !newDescriptionMulti || !newOptionAMulti || !newOptionBMulti || !newOptionCMulti || !newOptionDMulti || newOptionNumberMulti === "") {
                 // mantém newOptionNumberMulti === "", pois é tipo número, se usar !newOptionNumberMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form3', 'form4')
@@ -359,6 +359,10 @@ function FormsNewQuestionsOptions() {
                     setActivePopupCheckNumbers(true)
                     redVoidFieldForm('form3', 'form4')
                         
+                } else if (checkAnswers(newCorrectAnswerMulti1, newCorrectAnswerMulti2)[0] === true) {
+                    setCheckEqualAnswersMulti(true)
+                    redVoidFieldForm('form3', 'form4')
+
                 } else if (repeatedAlternativesDefault(null, optionForm4).length > 0) {
                     // condição: checa se as alternativas se repetem
                     setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
@@ -412,12 +416,8 @@ function FormsNewQuestionsOptions() {
                     if (responseMultiQuestion.ok && responseMultiOption.ok) {
                         console.log(dataMultiQuestion, dataMultiOption, 'Data successfully submitted.')
                         setActivePopupSuccessfull(true)
-                        setReadyToSendForm1(true)
-                        setReadyToSendForm2(true)
                         setReadyToSendForm3(true)
-                        setReadyToSendForm4(true)
-                        setReadyToSendForm5(true)
-                        setReadyToSendForm6(true)          
+                        setReadyToSendForm4(true)        
                         setPostApi(true) // tornar verdadeiro a cada POST
         
                     }
@@ -428,7 +428,7 @@ function FormsNewQuestionsOptions() {
                 }
     
             }
-
+    
         }
 
     }
@@ -443,7 +443,7 @@ function FormsNewQuestionsOptions() {
             let dataThreeMultiQuestion = ''
             let dataThreeMultiOption = ''
             setPostApi(false) // volta ao estado inicial
-    
+
             if (!newQuestionTextThreeMulti || !newCorrectAnswerThreeMulti1 || !newCorrectAnswerThreeMulti2 || !newCorrectAnswerThreeMulti3 || !newDescriptionThreeMulti || !newOptionAThreeMulti || !newOptionBThreeMulti || !newOptionCThreeMulti || !newOptionDThreeMulti || !newOptionEThreeMulti || !newOptionFThreeMulti || newOptionNumberThreeMulti === "") {
                 // mantém newOptionNumberThreeMulti === "", pois é tipo número, se usar !newOptionNumberThreeMulti e a variável for 0 vira "inválido" mesmo sendo um valor numérico legítimo neste caso
                 redVoidFieldForm('form5', 'form6')
@@ -457,6 +457,10 @@ function FormsNewQuestionsOptions() {
                     setActivePopupCheckNumbers(true)
                     redVoidFieldForm('form5', 'form6')
                         
+                } else if (checkAnswers(null, null, newCorrectAnswerThreeMulti1, newCorrectAnswerThreeMulti2, newCorrectAnswerThreeMulti3)[1] === true) {
+                    setCheckEqualAnswersThreeMulti(true)
+                    redVoidFieldForm('form5', 'form6')
+
                 } else if (repeatedAlternativesDefault(null, null, optionForm6).length > 0) {
                     // condição: checa se as alternativas se repetem
                     setActivePopupRepeatedAlternativesForms(true) // para mostrar o popup na tela
@@ -512,10 +516,6 @@ function FormsNewQuestionsOptions() {
                     if (responseThreeMultiQuestion.ok && responseThreeMultiOption.ok) {
                         console.log(dataThreeMultiQuestion, dataThreeMultiOption, 'Data successfully submitted.')
                         setActivePopupSuccessfull(true)
-                        setReadyToSendForm1(true)
-                        setReadyToSendForm2(true)
-                        setReadyToSendForm3(true)
-                        setReadyToSendForm4(true)
                         setReadyToSendForm5(true)
                         setReadyToSendForm6(true)          
                         setPostApi(true) // tornar verdadeiro a cada POST
@@ -527,7 +527,7 @@ function FormsNewQuestionsOptions() {
         
                 }
     
-            }
+            }      
 
         }
 
@@ -842,6 +842,27 @@ function FormsNewQuestionsOptions() {
                 <PopupAlertMessage 
                     text="No data found. Need to mock the API."
                     activePopup={setNoDataAlertForm}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {checkEqualAnswersMulti &&
+                <PopupAlertMessage 
+                    text={`The answers for this question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) are all the same. Please revise them.`}
+                    activePopup={setCheckEqualAnswersMulti}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {checkEqualAnswersThreeMulti &&
+                <PopupAlertMessage 
+                    text={`The answers for this question ${(newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2) && (newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3) && (newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3) ? 
+                        `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
+                        newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2})` : 
+                        newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
+                        newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3 ? `(Answer 2: ${newCorrectAnswerThreeMulti2}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : null} 
+                        are all the same. Please revise them.`}
+                    activePopup={setCheckEqualAnswersThreeMulti}
                     specificStyles={styles.popupAlertMessage}
                 />
             }

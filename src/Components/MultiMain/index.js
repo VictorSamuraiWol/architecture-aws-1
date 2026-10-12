@@ -24,7 +24,7 @@ function MultiMain({
     const [inputValidateStyle] = useState(styles.inputValidate)
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
-    const [activePopupRepeatedAlternativesMultiMain, setActivePopupRepeatedAlternativesMultiMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
+    const [activePopupRepeatedAlternativesMulti, setActivePopupRepeatedAlternativesMulti] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
     
     const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
         setQuestionAnswerButtonNextMultiAndThreeMulti } = useOutletContext()
@@ -156,8 +156,8 @@ function MultiMain({
                 captureValueMulti={captureValueMulti}
                 optionMulti={optionMulti}
                 setQuestionAnswerButtonNextMultiAndThreeMulti={setQuestionAnswerButtonNextMultiAndThreeMulti}
-                activePopupRepeatedAlternativesMultiMain={activePopupRepeatedAlternativesMultiMain}
-                setActivePopupRepeatedAlternativesMultiMain={setActivePopupRepeatedAlternativesMultiMain}
+                activePopupRepeatedAlternativesMulti={activePopupRepeatedAlternativesMulti}
+                setActivePopupRepeatedAlternativesMulti={setActivePopupRepeatedAlternativesMulti}
                 setItens={setItens}
             />
 
@@ -185,11 +185,11 @@ function MultiMain({
             <ModalResults />
 
             {/* PopupRepeatedAlternatives */}
-            {activePopupRepeatedAlternativesMultiMain === true && 
+            {activePopupRepeatedAlternativesMulti === true && 
                 <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupRepeatedMultiMain} 
-                    textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."}
-                    activePopup={setActivePopupRepeatedAlternativesMultiMain}
+                    specificStyles={styles.popupRepeatedMulti} 
+                    textPopup={"There are duplicate alternatives and answers. Please, before answering, update the alternatives and answers in the Menu so that each one is unique, and then proceed with your response."}
+                    activePopup={setActivePopupRepeatedAlternativesMulti}
                 />
             }
 

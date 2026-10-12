@@ -11,7 +11,7 @@ function ButtonAnswer({
     answerDescriptionDisplay, setAnswerDescriptionDisplay, captureValue, optionColorStyle, optionValidateStyle, optionInvalidateStyle,
     inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, answer1, answer2, answer3, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5,
     setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMultiAndThreeMulti, optionMain, optionMulti,
-    setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMultiMain, setItem,
+    setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMulti, setItem,
     setItens, setListCorrectAnswers
 }) {
 
@@ -88,11 +88,6 @@ function ButtonAnswer({
         } else {
             if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
                 setActivePopupRepeatedAlternativesMain(true)
-
-                setTimeout(() => {
-                    setActivePopupRepeatedAlternativesMain(false) // desativa o popup em 10s
-
-                }, 10000)
 
             } else {
                 // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
@@ -226,12 +221,7 @@ function ButtonAnswer({
 
         } else {
             if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
-                setActivePopupRepeatedAlternativesMultiMain(true)
-
-                setTimeout(() => {
-                    setActivePopupRepeatedAlternativesMultiMain(false) // desativa o popup em 10s
-
-                }, 10000)
+                setActivePopupRepeatedAlternativesMulti(true)
 
             } else {
                 if(questionAnswer === true) {           
@@ -391,12 +381,7 @@ function ButtonAnswer({
 
         } else {
             if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
-                setActivePopupRepeatedAlternativesMultiMain(true)
-
-                setTimeout(() => {
-                    setActivePopupRepeatedAlternativesMultiMain(false) // desativa o popup em 10s
-
-                }, 10000)
+                setActivePopupRepeatedAlternativesMulti(true)
 
             } else {
                 if(questionAnswer === true) {           

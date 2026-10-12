@@ -95,8 +95,12 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [errorMessageModalEdit] = useState("This required field is empty.")
   const [voidField, setVoidField] = useState([])
 
+  // variáveis para checar as respostas repetidas
+  const [checkEqualAnswersMulti, setCheckEqualAnswersMulti] = useState(false) 
+  const [checkEqualAnswersThreeMulti, setCheckEqualAnswersThreeMulti] = useState(false)
+
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActiveModalEditMenu } = useOutletContext()
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActiveModalEditMenu, checkAnswers } = useOutletContext()
 
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, putApi, setPutApi } = useContext(DataContext)
 
@@ -602,24 +606,21 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         if (checkAlternativeAnswerDefault(newOption, null, null, correctAnswerMain) === true) {
           setActivePopupcheckAlternativeAnswerModalForms1(true)
 
+        } else if (repeatedAlternativesDefault(newOption).length > 0) {
+          setActivePopupRepeatedAlternativesModalEdit(true)
+
         } else {
-          if (repeatedAlternativesDefault(newOption).length > 0) {
-            setActivePopupRepeatedAlternativesModalEdit(true)
+          onSaveModalQuestion() // salvando a questão única
+          onSaveModalOption() // salvando a opção única
 
-          } else {
-            onSaveModalQuestion() // salvando a questão única
-            onSaveModalOption() // salvando a opção única
+          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+          console.log('Saved successfully!')
+          setPutApi(!putApi)
+          setActiveModalEditMenu(true) // mostrará que esta Modal está ativada
+          setTimeout(() => setActiveModalEditMenu(false), 300) // mostrará que esta Modal está desativada em 300ms, tempo que atualiza a questão que permanecerá
+          closeModal()
 
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-            console.log('Saved successfully!')
-            setPutApi(!putApi)
-            setActiveModalEditMenu(true) // mostrará que esta Modal está ativada
-            setTimeout(() => setActiveModalEditMenu(false), 300) // mostrará que esta Modal está desativada em 300ms, tempo que atualiza a questão que permanecerá
-            closeModal()
-
-          }  
-
-        }
+        } 
 
       }
 
@@ -643,22 +644,22 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
         if (checkAlternativeAnswerDefault(null, newMultiOption, null, [correctAnswerMulti1, correctAnswerMulti2]) === true) {
-            setActivePopupcheckAlternativeAnswerModalForms2(true)
+          setActivePopupcheckAlternativeAnswerModalForms2(true)
 
-          } else {
-          if (repeatedAlternativesDefault(null, newMultiOption).length > 0) {
-            setActivePopupRepeatedAlternativesModalEdit(true)
+        } else if (checkAnswers(correctAnswerMulti1, correctAnswerMulti2)[0] === true) {
+          setCheckEqualAnswersMulti(true)
 
-          } else {    
-            onSaveModalMultiQuestion() // salvando a questão múltipla
-            onSaveModalMultiOption() // salvando a opção múltipla
-            
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-            console.log('Saved successfully!')
-            setPutApi(!putApi)
-            closeModal()
+        } else if (repeatedAlternativesDefault(null, newMultiOption).length > 0) {
+          setActivePopupRepeatedAlternativesModalEdit(true)
 
-          }
+        } else {    
+          onSaveModalMultiQuestion() // salvando a questão múltipla
+          onSaveModalMultiOption() // salvando a opção múltipla
+          
+          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+          console.log('Saved successfully!')
+          setPutApi(!putApi)
+          closeModal()
 
         }
       
@@ -684,24 +685,24 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
         setActivePopupAlreadySavedModalEdit(false) // desabilita o 'PopupAlreadySavedModalEdit'
 
         if (checkAlternativeAnswerDefault(null, null, newThreeMultiOption, [correctAnswerThreeMulti1, correctAnswerThreeMulti2, correctAnswerThreeMulti3]) === true) {
-            setActivePopupcheckAlternativeAnswerModalForms3(true)
+          setActivePopupcheckAlternativeAnswerModalForms3(true)
 
-          } else {
-          if (repeatedAlternativesDefault(null, null, newThreeMultiOption).length > 0) {
-            setActivePopupRepeatedAlternativesModalEdit(true)
+        } else if (checkAnswers(null, null, correctAnswerThreeMulti1, correctAnswerThreeMulti2, correctAnswerThreeMulti3)[1] === true) {
+          setCheckEqualAnswersThreeMulti(true)
 
-          } else {    
-            onSaveModalThreeMultiQuestion() // salvando a questão múltipla
-            onSaveModalThreeMultiOption() // salvando a opção múltipla
-            
-            setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
-            console.log('Saved successfully!')
-            setPutApi(!putApi)
-            closeModal()
+        } else if (repeatedAlternativesDefault(null, null, newThreeMultiOption).length > 0) {
+          setActivePopupRepeatedAlternativesModalEdit(true)
 
-          }
+        } else {    
+          onSaveModalThreeMultiQuestion() // salvando a questão múltipla
+          onSaveModalThreeMultiOption() // salvando a opção múltipla
+          
+          setActivePopupRepeatedAlternativesModalEdit(false) // desativar o popup, caso esteja visível na tela
+          console.log('Saved successfully!')
+          setPutApi(!putApi)
+          closeModal()
 
-        }
+        } 
       
       }
 
@@ -1191,6 +1192,27 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           <PopupAlertMessage 
             text="This is a static question and clearing is disabled."
             activePopup={setStaticQuestionClearDisabledAlert}
+            specificStyles={styles.popupAlertMessage}
+          />
+        }
+
+        {checkEqualAnswersMulti &&
+          <PopupAlertMessage 
+            text={`The answers for this question (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) are all the same. Please revise them.`}
+            activePopup={setCheckEqualAnswersMulti}
+            specificStyles={styles.popupAlertMessage}
+          />
+        }
+
+        {checkEqualAnswersThreeMulti &&
+          <PopupAlertMessage 
+            text={`The answers for this question ${(correctAnswerThreeMulti1 === correctAnswerThreeMulti2) && (correctAnswerThreeMulti1 === correctAnswerThreeMulti3) && (correctAnswerThreeMulti2 === correctAnswerThreeMulti3) ? 
+              `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3})` : 
+              correctAnswerThreeMulti1 === correctAnswerThreeMulti2 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2})` : 
+              correctAnswerThreeMulti1 === correctAnswerThreeMulti3 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 3: ${correctAnswerThreeMulti3})` : 
+              correctAnswerThreeMulti2 === correctAnswerThreeMulti3 ? `(Answer 2: ${correctAnswerThreeMulti2}), (Answer 3: ${correctAnswerThreeMulti3})` : null} 
+              are all the same. Please revise them.`}
+            activePopup={setCheckEqualAnswersThreeMulti}
             specificStyles={styles.popupAlertMessage}
           />
         }

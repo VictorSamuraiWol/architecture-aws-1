@@ -110,6 +110,31 @@ function PageBase() {
     
     }
 
+    function checkAnswers(answerMulti1, answerMulti2, answerThreeMulti1, answerThreeMulti2, answerThreeMulti3) { // verifica se as respostas da questão são iguais
+        let checkMulti
+        let checkThreeMulti
+
+        if (answerMulti1 && answerMulti2) {
+        if (answerMulti1 === answerMulti2) {
+            checkMulti = true
+            
+        }
+
+        } 
+        
+        if (answerThreeMulti1 && answerThreeMulti2 && answerThreeMulti3) {
+        if ((answerThreeMulti1 === answerThreeMulti2) || (answerThreeMulti1 === answerThreeMulti3) ||
+        answerThreeMulti2 === answerThreeMulti3) {
+            checkThreeMulti = true
+
+        }
+
+        }
+
+        return [checkMulti, checkThreeMulti]
+
+    }
+
     // função para retornar um texto curto se o texto for muito grande, até no máximo 15 caracteres
     function truncatedText(text, numLength) {
         const stringfy = text.toString()
@@ -134,7 +159,7 @@ function PageBase() {
                         activePageInfo, setActivePageInfo, activePageQuizBuilder, setActivePageQuizBuilder, activeModalEditMenu, setActiveModalEditMenu,
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
-                        questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti
+                        questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti, checkAnswers
                     }}
                 />                
 
