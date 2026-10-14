@@ -25,6 +25,7 @@ function MultiMain({
     const [inputInvalidateStyle] = useState(styles.inputInvalidate)
     const [captureValueMulti, setCaptureValueMulti] = useState([])
     const [activePopupRepeatedAlternativesMulti, setActivePopupRepeatedAlternativesMulti] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
+    const [deactiveAnswerBool, setDeactiveAnswerBool] = useState(false) // desativa a palavra 'true' das opções
     
     const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
         setQuestionAnswerButtonNextMultiAndThreeMulti } = useOutletContext()
@@ -42,11 +43,18 @@ function MultiMain({
 
     }, [setQuestionAnswerButtonNextMultiAndThreeMulti])
 
+    useEffect(() => {
+        setDeactiveAnswerBool(false) // retorna a palavra 'true' das opções ao estado inicial
+
+    }, [])
+
     function alertQuestionAnswerButtonNextMultiAndThreeMulti() {
         if (questionAnswerButtonNextMultiAndThreeMulti === false) {
             setAnswerMultiQuestionAlert(true)
 
         }
+
+        setDeactiveAnswerBool(false) // retorna a palavra 'true' das opções ao estado inicial
 
     }
 
@@ -136,6 +144,7 @@ function MultiMain({
                 optNum4={optNum4}
                 optNum5={optNum5}
                 optNum6={optNum6}
+                deactiveAnswerBool={deactiveAnswerBool}
             />
 
             <ButtonAnswer            
@@ -159,6 +168,7 @@ function MultiMain({
                 activePopupRepeatedAlternativesMulti={activePopupRepeatedAlternativesMulti}
                 setActivePopupRepeatedAlternativesMulti={setActivePopupRepeatedAlternativesMulti}
                 setItens={setItens}
+                setDeactiveAnswerBool={setDeactiveAnswerBool}
             />
 
             <AnswerDescription

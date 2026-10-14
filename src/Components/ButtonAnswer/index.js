@@ -12,7 +12,7 @@ function ButtonAnswer({
     inputColorStyle, inputValidateStyle, inputInvalidateStyle, answer, answer1, answer2, answer3, captureValueMulti, optNum1, optNum2, optNum3, optNum4, optNum5,
     setQuestionAnswerButtonNextMain, setQuestionAnswerButtonNextMultiAndThreeMulti, optionMain, optionMulti,
     setActivePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMulti, setItem,
-    setItens, setListCorrectAnswers
+    setItens, setListCorrectAnswers, setDeactiveAnswerBool
 }) {
 
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
@@ -331,6 +331,7 @@ function ButtonAnswer({
                     sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)
                     setItens([sortedItems[0], sortedItems[1]]) // armazena os itens corretos
                     setListCorrectAnswers([listCorrectText[0], listCorrectText[1]])
+                    setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
 
                 }
 
@@ -492,6 +493,7 @@ function ButtonAnswer({
                     sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d, e ou f)
                     setItens([sortedItems[0], sortedItems[1], sortedItems[2]]) // armazena os itens corretos
                     setListCorrectAnswers([listCorrectText[0], listCorrectText[1], listCorrectText[2]])
+                    setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
 
                 }
 

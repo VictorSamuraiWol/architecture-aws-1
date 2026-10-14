@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom'
 
 function MultiOptions({ 
     optionColorStyle, inputColorStyle, setCaptureValueMulti, captureValueMulti, 
-    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
+    optionMulti, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6, deactiveAnswerBool
 }) {
 
     const [itemA, setItemA] = useState('') // valor do item A
@@ -94,7 +94,10 @@ function MultiOptions({
                     <p>                        
                         {optionMulti[optNum1]}
 
-                        <span className={styles.answerBool} id='answerBool1'>
+                        <span 
+                            id='answerBool1'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum1 === 0 || optNum1 === 1 || optNum1 === 2) && 'true' 
                                 :
@@ -128,7 +131,10 @@ function MultiOptions({
                     <p>
                         {optionMulti[optNum2]}
 
-                        <span className={styles.answerBool} id='answerBool2'>
+                        <span 
+                            id='answerBool2'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum2 === 0 || optNum2 === 1 || optNum2 === 2) && 'true' 
                                 :
@@ -162,7 +168,10 @@ function MultiOptions({
                     <p>
                         {optionMulti[optNum3]}
 
-                        <span className={styles.answerBool} id='answerBool3'>
+                        <span 
+                            id='answerBool3'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum3 === 0 || optNum3 === 1 || optNum3 === 2) && 'true' 
                                 :
@@ -196,7 +205,10 @@ function MultiOptions({
                     <p>
                         {optionMulti[optNum4]}
 
-                        <span className={styles.answerBool} id='answerBool4'>
+                        <span 
+                            id='answerBool4'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum4 === 0 || optNum4 === 1 || optNum4 === 2) && 'true' 
                                 :
@@ -230,7 +242,10 @@ function MultiOptions({
                     <p>
                         {optionMulti[optNum5]}
 
-                        <span className={styles.answerBool} id='answerBool5'>
+                        <span 
+                            id='answerBool5'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum5 === 0 || optNum5 === 1 || optNum5 === 2) && 'true' 
                                 :
@@ -264,7 +279,10 @@ function MultiOptions({
                     <p>
                         {optionMulti[optNum6]}
 
-                        <span className={styles.answerBool} id='answerBool6'>
+                        <span 
+                            id='answerBool6'
+                            className={deactiveAnswerBool ? styles.invisible : styles.answerBool} 
+                        >
                             {activePageThreeMulti ? 
                                 (optNum6 === 0 || optNum6 === 1 || optNum6 === 2) && 'true' 
                                 :

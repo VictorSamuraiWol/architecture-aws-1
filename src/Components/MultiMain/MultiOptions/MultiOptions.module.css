@@ -44,6 +44,10 @@
     opacity: 0; /* deixar invisíveis as palavras 'true' que estão em 2 das 5 opções mostradas */
 }
 
+.invisible {
+    display: none;
+}
+
 /* Responsividade */
 @media (min-width: 1701px) {
     .itemAlternativeMulti {
