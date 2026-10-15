@@ -100,9 +100,11 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const [checkEqualAnswersThreeMulti, setCheckEqualAnswersThreeMulti] = useState(false)
 
   // chamando as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActiveModalEditMenu, checkAnswers } = useOutletContext()
+  const { repeatedAlternativesDefault, checkAlternativeAnswerDefault, mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActiveModalEditMenu, 
+    checkAnswers } = useOutletContext()
 
-  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, putApi, setPutApi } = useContext(DataContext)
+  const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, 
+    listThreeMultiOptionsContext, putApi, setPutApi } = useContext(DataContext)
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 

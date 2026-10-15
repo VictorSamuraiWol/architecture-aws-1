@@ -15,7 +15,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, deleteApi, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
-  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate, setActivePauseTimer } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
@@ -230,6 +230,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
         console.log('Deleted successfully!')
         setDeleteApi(!deleteApi)
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
         if (listMultiQuestionsContext.length >= 1) {
           setPathNavigate('/page-multi')
@@ -252,6 +253,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
         console.log('Deleted successfully!')
         setDeleteApi(!deleteApi)
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
       
       } 
       
@@ -267,6 +269,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
       setDeleteApi(!deleteApi)
+      setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
       if (listUnicQuestionsContext.length >= 1) {
         setPathNavigate('/page-main')
@@ -289,6 +292,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
       setDeleteApi(!deleteApi)
+      setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
     
     } 
 
@@ -302,6 +306,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
       setDeleteApi(!deleteApi)
+      setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
       if (listUnicQuestionsContext.length >= 1) {
         setPathNavigate('/page-main')
@@ -324,6 +329,7 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
       setDescriptionDisplay(styles.invisibleDescription) // tornar a descrição da próxima questão invisível
       console.log('Deleted successfully!')
       setDeleteApi(!deleteApi)
+      setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
     
     }
 

@@ -86,7 +86,10 @@ const Timer = () => {
   }
 
   return (
-    <div id='timerPagesId' className={styles.timer}>
+    <div 
+      id='timerPagesId' 
+      className={styles.timer}
+    >
       <h1>{formatTime(time)}</h1>
 
       <div>
