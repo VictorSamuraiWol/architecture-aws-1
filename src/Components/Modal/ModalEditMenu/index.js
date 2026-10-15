@@ -848,7 +848,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(newOption); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
@@ -973,7 +973,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption, newMultiOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(null, newMultiOption); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
@@ -1117,7 +1117,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption, newThreeMultiOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(null, null, newThreeMultiOption); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}

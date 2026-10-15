@@ -16,7 +16,8 @@ function ButtonAnswer({
 }) {
 
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
-    const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageMain, activePageMulti, activePageThreeMulti } = useOutletContext()
+    const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageDemo, activePageMain, activePageMulti, 
+        activePageThreeMulti } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
@@ -42,20 +43,24 @@ function ButtonAnswer({
 
     }
 
-    function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente na página Main e Multi 
-        if (optionMain && captureValue === '') {
-            setSelect1OptionAlert(true) 
+    function alertOption() { // alerta quando as alternativas estiverem desmarcadas ou marcadas incorretamente na página Main e Multi
+        let alert
+
+        if ((activePageDemo || activePageMain) && optionMain && captureValue === '') {
+            alert = true
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         } else if (activePageMulti && ((optionMulti && captureValueMulti.length < 2) || (optionMulti && captureValueMulti.length > 2))) {
-            setSelect2OptionAlert(true) 
+            alert = true
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         } else if (activePageThreeMulti && ((optionMulti && captureValueMulti.length < 3) || (optionMulti && captureValueMulti.length > 3))) {
-            setSelect3OptionAlert(true)
+            alert = true
             answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.invisible)
 
         }
+
+        return alert
 
     }
 
@@ -80,102 +85,100 @@ function ButtonAnswer({
         let playCorrectSound = false
         let playErrorSound = false
 
-        alertOption() // alertar quando tiver nenhuma alternativa marcada na página Main
+        if (alertOption() === true) { // alertar quando tiver nenhuma alternativa marcada na página Main
+            setSelect1OptionAlert(true) 
 
-        if (checkAlternativeAnswerDefault(optionMain, null, null, answer) === true) {
+        } else if (checkAlternativeAnswerDefault(optionMain, null, null, answer) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMain(true)
 
+        } else if (repeatedAlternativesDefault(optionMain).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
+            setActivePopupRepeatedAlternativesMain(true)
+
         } else {
-            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base                      
-                setActivePopupRepeatedAlternativesMain(true)
+            // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
+            if(questionAnswer === true) {
+                // para manter a resposta sempre visível
+                answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer)
+                
+                // alerta avisando para passar para a próxima questão
+                setQuestionAlreadyAnswerMainAlert(true)
 
             } else {
-                // observação 1: poderia usar a captura do elemento, por exemplo no evento 'onClick' para pegar o valor e depois comparar com a resposta correta, como a seguir: e.target.parentElement.childNodes[1].innerText.includes(`${answer}`) em vez de usar o for para iterar sobre todas as opções, se preferir.
-                if(questionAnswer === true) {
-                    // para manter a resposta sempre visível
-                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer)
-                    
-                    // alerta avisando para passar para a próxima questão
-                    setQuestionAlreadyAnswerMainAlert(true)
+                for(let i=0; i < convertObjArray.length; i++) {
+                    if (optionMain && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
+                        // adicionando a validação na opção correta
+                        const correctOption = document.querySelectorAll('.optionNext div')[i]
+                        const correctOptionItem = document.querySelectorAll('.optionNext .item')[i]?.innerText
+                        const correctOptionInput = document.querySelectorAll('.optionNext input')[i]
+                        
+                        // estilizando o parágrafo correto
+                        correctOption?.classList.add(optionValidateStyle)
+                        correctOption?.classList.remove(optionColorStyle)
 
-                } else {
-                    for(let i=0; i < convertObjArray.length; i++) {
-                        if (optionMain && (convertObjArray[i] === answer) && (captureValue !== '')) { // para a opção correta ser exatamente o valor da resposta
-                            // adicionando a validação na opção correta
-                            const correctOption = document.querySelectorAll('.optionNext div')[i]
-                            const correctOptionItem = document.querySelectorAll('.optionNext .item')[i]?.innerText
-                            const correctOptionInput = document.querySelectorAll('.optionNext input')[i]
+                        // estilizando o input correto
+                        correctOptionInput?.classList.add(inputValidateStyle)
+                        correctOptionInput?.classList.remove(inputColorStyle)
+
+                        correctItem = correctOptionItem // capturar o item correto
+                        setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                        setterQuestionAnswerButtonNextMain = true // ao clicar no botão next e já estiver respondido se torna 'true'
+
+                        // adicionando a invalidação nas opções incorretas
+                        if ((checkedParagraph?.innerText !== answer) && captureValue !== '') {
+                            // estilizando o parágrafo marcado incorretamente
+                            checkedParagraph.parentElement?.classList.add(optionInvalidateStyle) 
+                            checkedParagraph.parentElement?.classList.remove(optionColorStyle)
                             
-                            // estilizando o parágrafo correto
-                            correctOption?.classList.add(optionValidateStyle)
-                            correctOption?.classList.remove(optionColorStyle)
+                            // estilizando o input marcado incorretamente
+                            checkedParagraph.parentElement?.parentElement?.children[0]?.classList.add(inputInvalidateStyle)
+                            checkedParagraph.parentElement?.parentElement?.children[0]?.classList.remove(inputColorStyle)
+            
+                            setterNumIncorrectOption++ // incrementa '1' se responder errado
+                            playErrorSound = true // toca o som de erro
 
-                            // estilizando o input correto
-                            correctOptionInput?.classList.add(inputValidateStyle)
-                            correctOptionInput?.classList.remove(inputColorStyle)
+                        } else {
+                            setterNumCorrectOption++ // incrementa '1' se responder correto
+                            playCorrectSound = true // toca o som de acerto
 
-                            correctItem = correctOptionItem // capturar o item correto
-                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMain = true // ao clicar no botão next e já estiver respondido se torna 'true'
-
-                            // adicionando a invalidação nas opções incorretas
-                            if ((checkedParagraph?.innerText !== answer) && captureValue !== '') {
-                                // estilizando o parágrafo marcado incorretamente
-                                checkedParagraph.parentElement?.classList.add(optionInvalidateStyle) 
-                                checkedParagraph.parentElement?.classList.remove(optionColorStyle)
-                               
-                                // estilizando o input marcado incorretamente
-                                checkedParagraph.parentElement?.parentElement?.children[0]?.classList.add(inputInvalidateStyle)
-                                checkedParagraph.parentElement?.parentElement?.children[0]?.classList.remove(inputColorStyle)
-                
-                                setterNumIncorrectOption++ // incrementa '1' se responder errado
-                                playErrorSound = true // toca o som de erro
-
-                            } else {
-                                setterNumCorrectOption++ // incrementa '1' se responder correto
-                                playCorrectSound = true // toca o som de acerto
-
-                            }
                         }
                     }
+                }
 
-                    if (correctItem) {
-                        setItem(correctItem) // capturar o item correto
+                if (correctItem) {
+                    setItem(correctItem) // capturar o item correto
 
-                    }
-            
-                    // usando setters fora do loop 'for'
-                    if (setterQuestionAnswer) {
-                        setQuestionAnswer(setterQuestionAnswer)
+                }
+        
+                // usando setters fora do loop 'for'
+                if (setterQuestionAnswer) {
+                    setQuestionAnswer(setterQuestionAnswer)
 
-                    }
+                }
 
-                    if (setterQuestionAnswerButtonNextMain) {
-                        setQuestionAnswerButtonNextMain(setterQuestionAnswerButtonNextMain)
+                if (setterQuestionAnswerButtonNextMain) {
+                    setQuestionAnswerButtonNextMain(setterQuestionAnswerButtonNextMain)
 
-                    }
+                }
 
-                    if (setterNumIncorrectOption > 0) {
-                        setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
+                if (setterNumIncorrectOption > 0) {
+                    setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
 
-                    }
+                }
 
-                    if (setterNumCorrectOption > 0) {
-                        setNumCorrectOption(prev => prev + setterNumCorrectOption)
+                if (setterNumCorrectOption > 0) {
+                    setNumCorrectOption(prev => prev + setterNumCorrectOption)
 
-                    }
+                }
 
-                    if (mute === false) {
-                        playCorrectSound && correctSound.play()
-                        playErrorSound && errorSound.play()
-
-                    }
+                if (mute === false) {
+                    playCorrectSound && correctSound.play()
+                    playErrorSound && errorSound.play()
 
                 }
 
             }
 
-        }
+        }        
 
     }
 
@@ -214,130 +217,128 @@ function ButtonAnswer({
         let playErrorSound = false
         let listCorrectText = [] // capturar os textos das duas respostas corretas
 
-        alertOption() // alertar quando menos de 2 alternativas ou mais de 2 alternativas estiverem marcadas na página múltipla
+        if (alertOption() === true) { // alertar quando menos de 2 alternativas ou mais de 2 alternativas estiverem marcadas na página Multi
+            setSelect2OptionAlert(true) 
 
-        if (checkAlternativeAnswerDefault(null, optionMulti, null, [answer1, answer2]) === true) {
+        } else if (checkAlternativeAnswerDefault(null, optionMulti, null, [answer1, answer2]) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerMulti(true)
 
+        } else if (repeatedAlternativesDefault(null, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
+            setActivePopupRepeatedAlternativesMulti(true)
+
         } else {
-            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
-                setActivePopupRepeatedAlternativesMulti(true)
+            if(questionAnswer === true) {           
+                answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                
+                // alerta avisando para passar para a próxima questão
+                setQuestionAlreadyAnswerMultiAlert(true)
 
             } else {
-                if(questionAnswer === true) {           
-                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                for(let i=0; i<checkedValuesInput.length; i++) {
+                    if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
+                        // estilizando os parágrafos marcados corretamente
+                        checkedParagraph[i].classList.add(optionValidateStyle)
+                        checkedParagraph[i].classList.remove(optionColorStyle)
+
+                        // estilizando os inputs marcados corretamente
+                        checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                        checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
+
+                        correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
+                        setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                        setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
+
+                        if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {
+                            playCorrectSound = true // toca o som de acerto
+
+                            listCorrectText = ([checkedParagraph[0].children[2].innerText.replace("true", ""),
+                                            checkedParagraph[1].children[2].innerText.replace("true", "")    
+                                        ]) // replace será utilizado para remover o texto "true"
+
+                        }
+
+                    } else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
+                        // estilizando os parágrafos marcados incorretamente
+                        checkedParagraph[i].classList.add(optionInvalidateStyle)
+                        checkedParagraph[i].classList.remove(optionColorStyle)
+
+                        // estilizando os inputs marcados incorretamente
+                        checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
+                        checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
+
+                        setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                        setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
                     
-                    // alerta avisando para passar para a próxima questão
-                    setQuestionAlreadyAnswerMultiAlert(true)
+                        for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
+                            if (allParagraph[i].childNodes[3].innerText.includes('true')) {
+                                // estilizando os parágrafos corretos
+                                allParagraph[i].classList.add(optionValidateStyle)
+                                allParagraph[i].classList.remove(optionColorStyle)
 
-                } else {
-                    for(let i=0; i<checkedValuesInput.length; i++) {
-                        if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
-                            // estilizando os parágrafos marcados corretamente
-                            checkedParagraph[i].classList.add(optionValidateStyle)
-                            checkedParagraph[i].classList.remove(optionColorStyle)
+                                // estilizando os inputs corretos
+                                allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                                allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
-                            // estilizando os inputs marcados corretamente
-                            checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
-                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
+                                correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
+                                listCorrectText.push(allParagraph[i].children[2].innerText.replace("true", ""))
 
-                            correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
-                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
+                            } 
 
-                            if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true')) {
-                                playCorrectSound = true // toca o som de acerto
+                        }
 
-                                listCorrectText = ([checkedParagraph[0].children[2].innerText.replace("true", ""),
-                                                checkedParagraph[1].children[2].innerText.replace("true", "")    
-                                            ]) // replace será utilizado para remover o texto "true"
+                        uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista                            
+                        setItens([uniqueItens[0], uniqueItens[1]]) // armazena os itens corretos
+                        playErrorSound = true // toca o som de erro
 
-                            }
-
-                        } else if (checkedParagraph.length === 2 && checkedParagraph[i].innerText.includes('true') === false) { 
-                            // estilizando os parágrafos marcados incorretamente
-                            checkedParagraph[i].classList.add(optionInvalidateStyle)
-                            checkedParagraph[i].classList.remove(optionColorStyle)
-
-                            // estilizando os inputs marcados incorretamente
-                            checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
-                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
-
-                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
-                       
-                            for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
-                                if (allParagraph[i].childNodes[3].innerText.includes('true')) {
-                                    // estilizando os parágrafos corretos
-                                    allParagraph[i].classList.add(optionValidateStyle)
-                                    allParagraph[i].classList.remove(optionColorStyle)
-
-                                    // estilizando os inputs corretos
-                                    allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
-                                    allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
-
-                                    correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
-                                    listCorrectText.push(allParagraph[i].children[2].innerText.replace("true", ""))
-
-                                } 
-
-                            }
-
-                            uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista                            
-                            setItens([uniqueItens[0], uniqueItens[1]]) // armazena os itens corretos
-                            playErrorSound = true // toca o som de erro
-
-                        } 
-
-                    }
-
-                    // incremento da resposta correta ou errada
-                    if (playCorrectSound) {
-                        setterNumCorrectOption++ // incrementa '1' se responder correto
-
-                    } else if (playErrorSound) {
-                        setterNumIncorrectOption++ // incrementa '1' se responder errado
-
-                    }
-
-                    // usando setters fora do loop 'for'
-                    if (setterQuestionAnswer) {
-                        setQuestionAnswer(setterQuestionAnswer)
-
-                    }
-
-                    if (setterQuestionAnswerButtonNextMulti) {
-                        setQuestionAnswerButtonNextMultiAndThreeMulti(setterQuestionAnswerButtonNextMulti)
-
-                    }
-
-                    if (setterNumIncorrectOption > 0) {
-                        setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
-
-                    }
-
-                    if (setterNumCorrectOption > 0) {
-                        setNumCorrectOption(prev => prev + setterNumCorrectOption)
-
-                    }
-
-                    if (mute === false) {
-                        playCorrectSound && correctSound.play()
-                        playErrorSound && errorSound.play()
-
-                    }
-                    
-                    uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)
-                    setItens([sortedItems[0], sortedItems[1]]) // armazena os itens corretos
-                    setListCorrectAnswers([listCorrectText[0], listCorrectText[1]])
-                    setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
+                    } 
 
                 }
 
+                // incremento da resposta correta ou errada
+                if (playCorrectSound) {
+                    setterNumCorrectOption++ // incrementa '1' se responder correto
+
+                } else if (playErrorSound) {
+                    setterNumIncorrectOption++ // incrementa '1' se responder errado
+
+                }
+
+                // usando setters fora do loop 'for'
+                if (setterQuestionAnswer) {
+                    setQuestionAnswer(setterQuestionAnswer)
+
+                }
+
+                if (setterQuestionAnswerButtonNextMulti) {
+                    setQuestionAnswerButtonNextMultiAndThreeMulti(setterQuestionAnswerButtonNextMulti)
+
+                }
+
+                if (setterNumIncorrectOption > 0) {
+                    setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
+
+                }
+
+                if (setterNumCorrectOption > 0) {
+                    setNumCorrectOption(prev => prev + setterNumCorrectOption)
+
+                }
+
+                if (mute === false) {
+                    playCorrectSound && correctSound.play()
+                    playErrorSound && errorSound.play()
+
+                }
+                
+                uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
+                sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d ou e)
+                setItens([sortedItems[0], sortedItems[1]]) // armazena os itens corretos
+                setListCorrectAnswers([listCorrectText[0], listCorrectText[1]])
+                setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
+
             }
-        
-        }
+
+        }        
    
     }
 
@@ -375,130 +376,128 @@ function ButtonAnswer({
         let playErrorSound = false
         let listCorrectText = [] // capturar os textos das duas respostas corretas
 
-        alertOption() // alertar quando menos de 3 alternativas ou mais de 3 alternativas estiverem marcadas na página múltipla
+        if (alertOption() === true) { // alertar quando menos de 3 alternativas ou mais de 3 alternativas estiverem marcadas na página ThreeMulti
+            setSelect3OptionAlert(true)
 
-        if (checkAlternativeAnswerDefault(null, null, optionMulti, [answer1, answer2, answer3]) === true) {
+        } else if (checkAlternativeAnswerDefault(null, null, optionMulti, [answer1, answer2, answer3]) === true) {
             setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti(true)
 
+        } else if (repeatedAlternativesDefault(null, null, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
+            setActivePopupRepeatedAlternativesMulti(true)
+
         } else {
-            if (repeatedAlternativesDefault(optionMain, optionMulti).length > 0) { // antes de responder qualquer questão, é verificado se as alternativas não se repetem, chamando a função que está na página base
-                setActivePopupRepeatedAlternativesMulti(true)
+            if(questionAnswer === true) {           
+                answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
+                
+                // alerta avisando para passar para a próxima questão
+                setQuestionAlreadyAnswerThreeMultiAlert(true)
 
             } else {
-                if(questionAnswer === true) {           
-                    answerDescriptionDisplay && setAnswerDescriptionDisplay(styles.visibleAnswer) // para manter a resposta sempre visível
-                    
-                    // alerta avisando para passar para a próxima questão
-                    setQuestionAlreadyAnswerThreeMultiAlert(true)
+                for(let i=0; i<checkedValuesInput.length; i++) {
+                    if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
+                        // estilizando os parágrafos marcados corretamente
+                        checkedParagraph[i].classList.add(optionValidateStyle)
+                        checkedParagraph[i].classList.remove(optionColorStyle)
 
-                } else {
-                    for(let i=0; i<checkedValuesInput.length; i++) {
-                        if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true')) { // verificando quais opções tem a palavra 'true' para validação
-                            // estilizando os parágrafos marcados corretamente
-                            checkedParagraph[i].classList.add(optionValidateStyle)
-                            checkedParagraph[i].classList.remove(optionColorStyle)
+                        // estilizando os inputs marcados corretamente
+                        checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                        checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
-                            // estilizando os inputs marcados corretamente
-                            checkedParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
-                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
+                        correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
+                        setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                        setterQuestionAnswerButtonNextThreeMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
-                            correctItens.push(checkedItens[i].innerText) // armazena os dois itens marcados corretamente
-                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextThreeMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
+                        if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true') && checkedParagraph[2].innerText.includes('true')) {
+                            playCorrectSound = true // toca o som de acerto
 
-                            if (checkedParagraph[0].innerText.includes('true') && checkedParagraph[1].innerText.includes('true') && checkedParagraph[2].innerText.includes('true')) {
-                                playCorrectSound = true // toca o som de acerto
-
-                                listCorrectText = ([checkedParagraph[0].children[2].innerText.replace("true", ""),
-                                                checkedParagraph[1].children[2].innerText.replace("true", ""),
-                                                checkedParagraph[2].children[2].innerText.replace("true", "")    
-                                            ]) // replace será utilizado para remover o texto "true"
-
-                            }
-
-                        } else if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true') === false) { 
-                            // estilizando os parágrafos marcados incorretamente
-                            checkedParagraph[i].classList.add(optionInvalidateStyle)
-                            checkedParagraph[i].classList.remove(optionColorStyle)
-
-                            // estilizando os inputs marcados incorretamente
-                            checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
-                            checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
-
-                            setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
-                            setterQuestionAnswerButtonNextThreeMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
-
-                            for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
-                                if (allParagraph[i].childNodes[3].innerText.includes('true')) {
-                                    // estilizando os parágrafos corretos
-                                    allParagraph[i].classList.add(optionValidateStyle)
-                                    allParagraph[i].classList.remove(optionColorStyle)
-
-                                    // estilizando os inputs corretos
-                                    allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
-                                    allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
-
-                                    correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
-                                    listCorrectText.push(allParagraph[i].children[2].innerText.replace("true", ""))
-
-                                } 
-                                
-                            } 
-
-                            uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                            setItens([uniqueItens[0], uniqueItens[1]], uniqueItens[2]) // armazena os itens corretos
-                            playErrorSound = true // toca o som de erro
+                            listCorrectText = ([checkedParagraph[0].children[2].innerText.replace("true", ""),
+                                            checkedParagraph[1].children[2].innerText.replace("true", ""),
+                                            checkedParagraph[2].children[2].innerText.replace("true", "")    
+                                        ]) // replace será utilizado para remover o texto "true"
 
                         }
 
-                    }
+                    } else if (checkedParagraph.length === 3 && checkedParagraph[i].innerText.includes('true') === false) { 
+                        // estilizando os parágrafos marcados incorretamente
+                        checkedParagraph[i].classList.add(optionInvalidateStyle)
+                        checkedParagraph[i].classList.remove(optionColorStyle)
 
-                    // incremento da resposta correta ou errada
-                    if (playCorrectSound) {
-                        setterNumCorrectOption++ // incrementa '1' se responder correto
+                        // estilizando os inputs marcados incorretamente
+                        checkedParagraph[i].parentElement?.children[0].classList.add(inputInvalidateStyle)
+                        checkedParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
-                    } else if (playErrorSound) {
-                        setterNumIncorrectOption++ // incrementa '1' se responder errado
+                        setterQuestionAnswer = true // ao clicar no botão answer se torna 'true'                            
+                        setterQuestionAnswerButtonNextThreeMulti = true // ao clicar no botão next e já estiver respondido se torna 'true'
 
-                    }
+                        for(let i=0; i<allParagraph.length; i++) { // ao ter marcado alternativas erradas, destacar as que estão corretas
+                            if (allParagraph[i].childNodes[3].innerText.includes('true')) {
+                                // estilizando os parágrafos corretos
+                                allParagraph[i].classList.add(optionValidateStyle)
+                                allParagraph[i].classList.remove(optionColorStyle)
 
-                    // usando setters fora do loop 'for'
-                    if (setterQuestionAnswer) {
-                        setQuestionAnswer(setterQuestionAnswer)
+                                // estilizando os inputs corretos
+                                allParagraph[i].parentElement?.children[0].classList.add(inputValidateStyle)
+                                allParagraph[i].parentElement?.children[0].classList.remove(inputColorStyle)
 
-                    }
+                                correctItens.push(allItens[i].innerText) // captura os valores dos itens corretos
+                                listCorrectText.push(allParagraph[i].children[2].innerText.replace("true", ""))
 
-                    if (setterQuestionAnswerButtonNextThreeMulti) {
-                        setQuestionAnswerButtonNextMultiAndThreeMulti(setterQuestionAnswerButtonNextThreeMulti)
+                            } 
+                            
+                        } 
 
-                    }
-
-                    if (setterNumIncorrectOption > 0) {
-                        setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
-
-                    }
-
-                    if (setterNumCorrectOption > 0) {
-                        setNumCorrectOption(prev => prev + setterNumCorrectOption)
-
-                    }
-
-                    if (mute === false) {
-                        playCorrectSound && correctSound.play()
-                        playErrorSound && errorSound.play()
+                        uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
+                        setItens([uniqueItens[0], uniqueItens[1]], uniqueItens[2]) // armazena os itens corretos
+                        playErrorSound = true // toca o som de erro
 
                     }
-                    
-                    uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
-                    sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d, e ou f)
-                    setItens([sortedItems[0], sortedItems[1], sortedItems[2]]) // armazena os itens corretos
-                    setListCorrectAnswers([listCorrectText[0], listCorrectText[1], listCorrectText[2]])
-                    setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
 
                 }
 
+                // incremento da resposta correta ou errada
+                if (playCorrectSound) {
+                    setterNumCorrectOption++ // incrementa '1' se responder correto
+
+                } else if (playErrorSound) {
+                    setterNumIncorrectOption++ // incrementa '1' se responder errado
+
+                }
+
+                // usando setters fora do loop 'for'
+                if (setterQuestionAnswer) {
+                    setQuestionAnswer(setterQuestionAnswer)
+
+                }
+
+                if (setterQuestionAnswerButtonNextThreeMulti) {
+                    setQuestionAnswerButtonNextMultiAndThreeMulti(setterQuestionAnswerButtonNextThreeMulti)
+
+                }
+
+                if (setterNumIncorrectOption > 0) {
+                    setNumIncorrectOption(prev => prev + setterNumIncorrectOption)
+
+                }
+
+                if (setterNumCorrectOption > 0) {
+                    setNumCorrectOption(prev => prev + setterNumCorrectOption)
+
+                }
+
+                if (mute === false) {
+                    playCorrectSound && correctSound.play()
+                    playErrorSound && errorSound.play()
+
+                }
+                
+                uniqueItens = [...new Set(correctItens)] // verifica e elimina itens duplicados da lista
+                sortedItems = [...uniqueItens].sort() // ordenar os itens (a, b, c, d, e ou f)
+                setItens([sortedItems[0], sortedItems[1], sortedItems[2]]) // armazena os itens corretos
+                setListCorrectAnswers([listCorrectText[0], listCorrectText[1], listCorrectText[2]])
+                setDeactiveAnswerBool(true) // desativar a palavra 'true' das opções, que estar opaca, para estilizar somente as opções visíveis ao responder
+
             }
-        
+
         }
 
     }
@@ -509,9 +508,9 @@ function ButtonAnswer({
         optionMulti && activePageThreeMulti && validateAnswerPageThreeMulti()
 
         // enquanto tiver alternativas repetidas, não será mostrado a resposta na tela 
-        if ((optionMain && !optionMulti && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValue !== '') || 
-        (activePageMulti && optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 2) || 
-        (activePageThreeMulti && optionMulti && !optionMain && repeatedAlternativesDefault(optionMain, optionMulti).length === 0 && captureValueMulti.length === 3)) {
+        if ((optionMain && !optionMulti && repeatedAlternativesDefault(optionMain).length === 0 && captureValue !== '') || 
+        (activePageMulti && optionMulti && !optionMain && repeatedAlternativesDefault(null, optionMulti).length === 0 && captureValueMulti.length === 2) || 
+        (activePageThreeMulti && optionMulti && !optionMain && repeatedAlternativesDefault(null, null, optionMulti).length === 0 && captureValueMulti.length === 3)) {
         // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
 

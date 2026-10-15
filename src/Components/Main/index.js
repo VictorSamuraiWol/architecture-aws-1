@@ -14,16 +14,16 @@ import { Link, useOutletContext } from 'react-router-dom'
 
 function Main({ 
     question, answer, iconDescription, description, questionNumber, answerDescriptionDisplay, descriptionDisplay, 
-    setAnswerDescriptionDisplay, setDescriptionDisplay, uniqueRandomMain, questionMain, setQuestionMain, 
+    setAnswerDescriptionDisplay, setDescriptionDisplay, questionMain, setQuestionMain, 
     optionMain, optionMainNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, activePageDemo, activePageMain
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContextLength, listMultiOptionsContextLength, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContextLength, 
+        listMultiQuestionsContextLength, listMultiOptionsContextLength, 
+        listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
-    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, setPathNavigate, setActivateNavigateDefault,
-        questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain
-    } = useOutletContext()
+    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain } = useOutletContext()
 
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
@@ -41,36 +41,36 @@ function Main({
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
 
     const numberRandomPath = useCallback(() => {
-    let listNumbers
-    let able
+        let listNumbers
+        let able
 
-    if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-        able = (Math.floor(Math.random() * 4) + 1)
+        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = (Math.floor(Math.random() * 4) + 1)
 
-    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-        listNumbers = [1, 2, 3]
-        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            listNumbers = [1, 2, 3]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-        listNumbers = [1, 2, 4]
-        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [1, 2, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-        listNumbers = [3, 4]
-        able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [3, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
 
-    } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
-        able = (Math.floor(Math.random() * 2) + 1)
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = (Math.floor(Math.random() * 2) + 1)
 
-    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-        able = 3
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = 3
 
-    } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-        able = 4
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = 4
 
-    } 
+        } 
 
-    return able
+        return able
 
     }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
 
@@ -84,32 +84,23 @@ function Main({
 
     }, [setQuestionAnswerButtonNextMain])
 
-    function generateNewQuestionMain() { // função para gerar uma nova questão para a página Main
-        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-        const random = uniqueRandomMain(listUnicQuestionsContextLength)
-        const next = listUnicQuestionsContext[random]
+    function generateNextQuestion() { // função para gerar uma nova questão para a página Main
+        const listFilterMain = listUnicQuestionsContext
+            .filter(question => question.questionNumber !== questionMain.questionNumber)
 
-        activePageMain && setQuestionMain(next) // nova questão
+        activePageMain && setQuestionMain(listFilterMain[Math.floor(Math.random() * listFilterMain.length)]) // nova questão
+        
+        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
+        setDescriptionDisplay(styles.invisibleDescription)
 
     }
 
-    function numbersOneTwoGenerateNewQuestionMain() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
+    function numbersOneTwoGenerateNewQuestion() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
         if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain && (numberPath === 1 || numberPath === 2)) {
-        // condição: se a questão da página Main já foi respondida 
-            generateNewQuestionMain()
-            setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
-            setDescriptionDisplay(styles.invisibleDescription)
+            generateNextQuestion()
 
-        } else if (!questionAnswerButtonNextMain) {
+        } else if (!questionAnswerButtonNextMain) { // condição: se a questão da página Main não foi respondida
             setAnswerMainQuestionAlert(true)
-
-        }  else if (activePageDemo && !listUnicQuestionsContextLength && listMultiQuestionsContextLength > 0) {
-            setPathNavigate('/page-multi')
-            setActivateNavigateDefault(true)
-
-        } else if (activePageDemo && !listUnicQuestionsContextLength && listThreeMultiQuestionsContextLength > 0) {
-            setPathNavigate('/page-three-multi')
-            setActivateNavigateDefault(true)
 
         } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
             setNoDataAlert(true)
@@ -126,7 +117,7 @@ function Main({
         && questionAnswerButtonNextMain) {
             able = '/page-main'
 
-        } if (activePageDemo && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 0 && listUnicOptionsContextLength === 0 
+        } else if (activePageDemo && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 0 && listUnicOptionsContextLength === 0 
         && questionAnswerButtonNextMain) {
             if (listMultiQuestionsContextLength > 0 && listMultiOptionsContextLength > 0) {
                 able = '/page-multi'
@@ -138,6 +129,12 @@ function Main({
                 able = '/'
 
             }
+ 
+        } else if (activePageDemo && numberPath === 3 && listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0 && questionAnswerButtonNextMain) {
+            able = '/page-multi'
+
+        } else if (activePageDemo && numberPath === 4 && listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0 && questionAnswerButtonNextMain) {
+            able = '/page-three-multi'
 
         } else if (activePageMain && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength === 1 && listUnicOptionsContextLength === 1 
         && questionAnswerButtonNextMain) {
@@ -266,7 +263,7 @@ function Main({
                 to={ableNextPage()}
             >
                 <ButtonNext
-                    onClick={numbersOneTwoGenerateNewQuestionMain} // se 'numberPath' for '1' ou '2' executa essa função 'numbersOneTwoGenerateNewQuestionMain', se for '3' ou '4' executa a função 'ablePageMultiAndThreeMulti()' do Link  
+                    onClick={numbersOneTwoGenerateNewQuestion} 
                     questionAnswerButtonNextMain={questionAnswerButtonNextMain}
                 />
             </Link>

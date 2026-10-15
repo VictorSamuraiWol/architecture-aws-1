@@ -5,7 +5,7 @@ import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import Main from '../../Components/Main'
 import Footer from '../../Components/Footer'
 import { useOutletContext } from 'react-router-dom'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../../Components/DataContext'
 
 function PageDemo() {
@@ -56,28 +56,6 @@ function PageDemo() {
 
   }, [setGetApi])
 
-  // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
-  // usado na função 'uniqueRandomDemo()'
-  const lastRandomMainRef = useRef(null)
-  
-  // função para garantir que o novo número aleatório seja sempre diferente do anterior
-  const uniqueRandomDemo = (dataLength) => { // função para obter um número randômico diferente do anterior, evitando repetição
-    if (dataLength <= 1) return 0
-
-    let random
-
-    do {
-        random = Math.floor(Math.random() * dataLength)
-
-    }
-    while (random === lastRandomMainRef.current) // repete até obter um número diferente
-
-    lastRandomMainRef.current = random
-
-    return random            
-  
-  } 
-
   return (
     <div className={styles.pageDemoStyles}>
       <div 
@@ -116,8 +94,7 @@ function PageDemo() {
             answerDescriptionDisplay={answerDescriptionDisplay}
             setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
             descriptionDisplay={descriptionDisplay}
-            setDescriptionDisplay={setDescriptionDisplay}
-            uniqueRandomMain={uniqueRandomDemo}             
+            setDescriptionDisplay={setDescriptionDisplay}             
             questionMain={questionDemo}
             optionMain={optionDemo}                
             optionMainNumberId={[0, 0]}

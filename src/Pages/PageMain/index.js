@@ -5,13 +5,12 @@ import Main from '../../Components/Main'
 import Loader from '../../Components/Loader'
 import backgroundImage from '../../imgs/cloud-neon-vibe.png'
 import Footer from '../../Components/Footer'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { DataContext } from '../../Components/DataContext'
 
 function PageMain() {
-
-    const [questionMain, setQuestionMain] = useState('')
+      
     const [optNum1, setOptNum1] = useState('')
     const [optNum2, setOptNum2] = useState('')
     const [optNum3, setOptNum3] = useState('')
@@ -21,38 +20,15 @@ function PageMain() {
     const [optionMainNumberId, setOptionMainNumberId] = useState([]) // capturar o número e a ID da opção atual do componente Main
     const [answerDescriptionDisplay, setAnswerDescriptionDisplay] = useState(styles.invisibleAnswerDescription)
     const [descriptionDisplay, setDescriptionDisplay] = useState(styles.invisibleDescription)
-
+    
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
-    
+
+    const [questionMain, setQuestionMain] = useState(listUnicQuestionsContext[Math.floor(Math.random() * listUnicQuestionsContextLength)]) // mostrar uma questão ao entrar na página Main
+
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
         setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder } = useOutletContext()
-
-    // O useRef serve para armazenar um valor mutável que persiste entre renders sem provocar re-render do componente, neste caso, guarda o último número randômico
-    // usado na função 'uniqueRandomMain()'
-    const lastRandomMainRef = useRef(null)
-
-    // usado na função 'questionOptionMatch()'
-    const lastNumberMatchedQuestionOptionRef = useRef(null) // guarda o último número da questão e opção correspondentes
-    
-    // função para garantir que o novo número aleatório seja sempre diferente do anterior
-    const uniqueRandomMain = (dataLength) => { // função para obter um número randômico diferente do anterior, evitando repetição
-        if (dataLength <= 1) return 0
-
-        let random
-
-        do {
-            random = Math.floor(Math.random() * dataLength)
-
-        }
-        while (random === lastRandomMainRef.current) // repete até obter um número diferente
-
-        lastRandomMainRef.current = random
-
-        return random            
-    
-    }   
 
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela e desativa as demais
@@ -66,20 +42,9 @@ function PageMain() {
         setActivePageQuizBuilder(false)
 
     }, [setActivePageMain, setActivePageDemo, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
-
+    
     useEffect(() => {
-        if (!listUnicQuestionsContext || !listUnicQuestionsContextLength || listUnicQuestionsContextLength === 0) return // se a lista de questões não existir, retorne
-
-        // atribuindo um número random, mas diferente do anterior para não se repetir após mudar a página, repetir somente depois
-        const random = uniqueRandomMain(listUnicQuestionsContextLength)
-        const next = listUnicQuestionsContext[random]
-
-        setQuestionMain(next) // armazena a questão que será mostrada na página Main
-        
-    }, [listUnicQuestionsContext, listUnicQuestionsContextLength])
-
-    useEffect(() => {
-        const randomNumbers = [] // armazena a lista de números randômicos
+        const randomNumbers = [] // armazena a lista de números randômicos para as opções
         
         // gerando um número para randomizar toda vez que renderizar
         while (randomNumbers.length < 5) { // o comprimento deve ser no máximo o número de opções disponíveis, neste caso '5'
@@ -113,13 +78,11 @@ function PageMain() {
 
             // busca uma opção que corresponde diretamente com a questão atual
             matchedOption = listUnicOptionsContext
-                            .filter(options => options.optionNumber !== '')
-                            .find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
+                .filter(options => options.optionNumber !== '')
+                .find(option => { // retorna uma opção que tenha uma questão correspondente e que não seja igual a anterior
                         
-                return (
-                    (!activeModalEditMenu && ((option.optionNumber === questionMain.questionNumber) && (option.optionNumber !== lastNumberMatchedQuestionOptionRef.current))) // se for procurar uma questão que não se repete e não for editar
-                    || 
-                    (activeModalEditMenu && (option.optionNumber === questionMain.questionNumber))) // se for editar a questão, pois permanecerá na mesma questão
+                return (option.optionNumber === questionMain.questionNumber)
+
             })
 
             // Se não encontrou, tenta corresponder via lista de questões
@@ -128,10 +91,11 @@ function PageMain() {
                 .filter(options => options.optionNumber !== '')
                 .forEach(option => {
                     matchedQuestion = listUnicQuestionsContext
-                                      .filter(questions => questions.questionNumber !== '')
-                                      .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
+                        .filter(questions => questions.questionNumber !== '')
+                        .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
 
                         return ((question.questionNumber === option.optionNumber))
+
                     })
 
                     if (matchedQuestion) { // se a questão tiver uma opção correspondente, captura a opção                      
@@ -141,13 +105,14 @@ function PageMain() {
 
                     } else {
                         listUnicOptionsContext
-                        .filter(options => options.optionNumber !== '')
-                        .forEach(option => {
-                            matchedQuestion = listUnicQuestionsContext
-                                            .filter(questions => questions.questionNumber !== '')
-                                            .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
+                            .filter(options => options.optionNumber !== '')
+                            .forEach(option => {
+                                matchedQuestion = listUnicQuestionsContext
+                                    .filter(questions => questions.questionNumber !== '')
+                                    .find(question => { // retorna uma questão que tenha uma opção correspondente e que não seja igual a anterior
 
-                                return (question.questionNumber === option.optionNumber) // tenta mais uma vez, desta vez sem utilizar a variável que verifica o último número 'lastNumberMatchedQuestionOptionRef.current'
+                                    return (question.questionNumber === option.optionNumber)
+
                             })})
                         
                     }
@@ -160,7 +125,6 @@ function PageMain() {
                 setOptionMainNumberId([matchedOption.optionNumber, matchedOption.id]) // capturar o número e o id da opção atual
                 matchedQuestion = questionMain // matchedQuestion recebe o valor 'questionMain'                
                 setLoading(false) // desabilita o componente 'Loader'
-                lastNumberMatchedQuestionOptionRef.current = matchedQuestion.questionNumber // armazena o número da questão correspondente
 
             } else {
                 console.error('No option with a corresponding question was found. Create a new question or option using the same number to ensure proper mapping.')
@@ -169,8 +133,7 @@ function PageMain() {
 
         }
 
-        // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
-        questionOptionMatch()
+        questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
 
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, activeModalEditMenu, setActiveModalEditMenu])
 
@@ -211,7 +174,7 @@ function PageMain() {
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}                  
-                        uniqueRandomMain={uniqueRandomMain}
+                        // uniqueRandomMain={uniqueRandomMain}
                         questionMain={questionMain}
                         setQuestionMain={setQuestionMain}                        
                         optionMain={optionMain}

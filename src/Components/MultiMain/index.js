@@ -8,13 +8,13 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 
 function MultiMain({ 
     question, iconDescription, description, questionNumber, answerDescriptionDisplay, setAnswerDescriptionDisplay, descriptionDisplay, 
-    setDescriptionDisplay, questionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
+    setDescriptionDisplay, questionMulti, setQuestionMulti, optionMulti, optionMultiNumberId, optNum1, optNum2, optNum3, optNum4, optNum5, optNum6
 }) {
 
     const [optionColorStyle] = useState(styles.optionColorMulti)
@@ -30,13 +30,53 @@ function MultiMain({
     const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
         setQuestionAnswerButtonNextMultiAndThreeMulti } = useOutletContext()
 
-    const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
-        listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
+        listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
     const [itens, setItens] = useState('') // captura os itens corretos
     const [listCorrectAnswers, setListCorrectAnswers] = useState([]) // lista das respostas corretas
-
     const [answerMultiQuestionAlert, setAnswerMultiQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
+
+    const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
+  
+    const numberRandomPath = useCallback(() => {
+        let listNumbers
+        let able
+
+        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = (Math.floor(Math.random() * 4) + 1)
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            listNumbers = [1, 2, 3]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [1, 2, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [3, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = (Math.floor(Math.random() * 2) + 1)
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = 3
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = 4
+
+        } 
+
+        return able
+
+    }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
+
+    useEffect(() => {
+        setNumberPath(numberRandomPath())
+
+    }, [numberRandomPath])
 
     useEffect(() => {
         setQuestionAnswerButtonNextMultiAndThreeMulti(false)
@@ -55,6 +95,43 @@ function MultiMain({
         }
 
         setDeactiveAnswerBool(false) // retorna a palavra 'true' das opções ao estado inicial
+
+    }
+
+    function generateNextQuestion() { // função para gerar uma nova questão para a página Multi
+        let listFilterMultiThreeMulti
+
+        if (activePageMulti) {
+            listFilterMultiThreeMulti = listMultiQuestionsContext
+                .filter(question => question.questionNumber !== questionMulti.questionNumber)
+
+        } else if (activePageThreeMulti) {
+            listFilterMultiThreeMulti = listThreeMultiQuestionsContext
+                .filter(question => question.questionNumber !== questionMulti.questionNumber)
+
+        }
+
+        (activePageMulti || activePageThreeMulti) && setQuestionMulti(listFilterMultiThreeMulti[Math.floor(Math.random() * listFilterMultiThreeMulti.length)]) // nova questão
+        
+        setAnswerDescriptionDisplay(styles.invisibleAnswerDescription)
+        setDescriptionDisplay(styles.invisibleDescription)
+
+    }
+
+    function numbersThreeFourGenerateNewQuestion() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
+        if (listMultiQuestionsContextLength >= 2 && questionAnswerButtonNextMultiAndThreeMulti && (numberPath === 3)) {
+            generateNextQuestion()
+
+        } else if (listThreeMultiQuestionsContextLength >= 2 && questionAnswerButtonNextMultiAndThreeMulti && (numberPath === 4)) {
+            generateNextQuestion()
+
+        } else if (!questionAnswerButtonNextMultiAndThreeMulti) { // condição: se a questão da página Main não foi respondida
+            setAnswerMultiQuestionAlert(true)
+
+        } else if (!questionAnswerButtonNextMultiAndThreeMulti) { // condição: se a questão da página Main não foi respondida
+            setAnswerMultiQuestionAlert(true)
+
+        }
 
     }
 
@@ -187,7 +264,7 @@ function MultiMain({
                 to={ableNextPage()}
             >
                 <ButtonNext 
-                    onClick={alertQuestionAnswerButtonNextMultiAndThreeMulti}
+                    onClick={() => {alertQuestionAnswerButtonNextMultiAndThreeMulti(); numbersThreeFourGenerateNewQuestion()}}
                     questionAnswerButtonNextMultiAndThreeMulti={questionAnswerButtonNextMultiAndThreeMulti}
                 />
             </Link>
