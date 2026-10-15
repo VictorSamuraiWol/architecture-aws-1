@@ -11,7 +11,7 @@ import { DataContext } from '../../Components/DataContext'
 function PageDemo() {
 
   const { loginValidate, activePageDemo, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, activePageFormsQuestionsOptions, 
-    setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
+    setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder, setActivePauseTimer } = useOutletContext()
 
   const { setGetApi } = useContext(DataContext)
 
@@ -48,7 +48,10 @@ function PageDemo() {
     setActivePageInfo(false)
     setActivePageQuizBuilder(false)
 
-  }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
+    setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
+
+  }, [setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, 
+    setActivePageQuizBuilder, setActivePauseTimer])
 
   useEffect(() => {
     setGetApi(true)

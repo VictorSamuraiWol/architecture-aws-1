@@ -9,27 +9,30 @@ import PageNotFound from './Pages/PageNotFound'
 import PageQuizBuilder from './Pages/PageQuizBuilder'
 import PageInfo from './Pages/PageInfo'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import DataProvider from './Components/DataContext'
 // npx json-server db.json --port 3001
 
 function AppRoutes() {
   
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PageBase />}>
-          <Route index element={<PageDemo />} />
-          <Route path='/page-main' element={<PageMain />} />
-          <Route path='/page-multi' element={<PageMulti />} />
-          <Route path='/page-three-multi' element={<PageThreeMulti />} />
-          <Route path='/page-create' element={<PageNewQuestionsOptions />} />
-          <Route path='/page-info' element={<PageInfo />} />
-          <Route path='/page-quiz-builder' element={<PageQuizBuilder />} />
+    <DataProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PageBase />}>
+            <Route index element={<PageDemo />} />
+            <Route path='/page-main' element={<PageMain />} />
+            <Route path='/page-multi' element={<PageMulti />} />
+            <Route path='/page-three-multi' element={<PageThreeMulti />} />
+            <Route path='/page-create' element={<PageNewQuestionsOptions />} />
+            <Route path='/page-info' element={<PageInfo />} />
+            <Route path='/page-quiz-builder' element={<PageQuizBuilder />} />
+            
+          </Route>
           
-        </Route>
-        
-        <Route path='*' element={<PageNotFound />} />    
-      </Routes>
-    </BrowserRouter>
+          <Route path='*' element={<PageNotFound />} />    
+        </Routes>
+      </BrowserRouter>
+    </DataProvider>
   )
 }
 

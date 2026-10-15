@@ -28,7 +28,7 @@ function PageMain() {
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder } = useOutletContext()
+        setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder, setActivePauseTimer } = useOutletContext()
 
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela e desativa as demais
@@ -41,7 +41,10 @@ function PageMain() {
         setActivePageInfo(false)
         setActivePageQuizBuilder(false)
 
-    }, [setActivePageMain, setActivePageDemo, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
+
+    }, [setActivePageMain, setActivePageDemo, setActivePageMulti, setActivePageThreeMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, 
+        setActivePageQuizBuilder, setActivePauseTimer])
     
     useEffect(() => {
         const randomNumbers = [] // armazena a lista de números randômicos para as opções
@@ -173,8 +176,7 @@ function PageMain() {
                         answerDescriptionDisplay={answerDescriptionDisplay}
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         descriptionDisplay={descriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}                  
-                        // uniqueRandomMain={uniqueRandomMain}
+                        setDescriptionDisplay={setDescriptionDisplay}
                         questionMain={questionMain}
                         setQuestionMain={setQuestionMain}                        
                         optionMain={optionMain}

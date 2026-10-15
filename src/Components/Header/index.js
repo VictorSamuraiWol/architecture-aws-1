@@ -14,9 +14,9 @@ function Header() {
 
     const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
-    const { staticListUsers, listUsers,  getApi, setGetApi } = useContext(DataContext)
+    const { staticListUsers, listUsers, getApi, setGetApi } = useContext(DataContext)
 
-    const { setLoginValidate, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions } = useOutletContext()
+    const { setLoginValidate, nameUser, setNameUser, truncatedText, mute, activePageFormsQuestionsOptions, setActivePauseTimer } = useOutletContext()
 
     const [activeLinksHamburguer, setActiveLinkesHamburguer] = useState(false)
 
@@ -42,6 +42,13 @@ function Header() {
 
     }
 
+    function clickIcon() {
+        setGetApi(!getApi)
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
+        sound()
+
+    }
+
     return(
         <div className={styles.header}>
             <Link 
@@ -49,7 +56,7 @@ function Header() {
                 className={styles.linkHeader} 
             >
                 <img
-                    onClick={() => {sound(); setGetApi(!getApi)}}
+                    onClick={clickIcon}
                     className={styles.iconStart} 
                     src={image}
                     alt='icon-start' 

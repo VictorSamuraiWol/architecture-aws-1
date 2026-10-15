@@ -8,7 +8,7 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
 import { DataContext } from '../DataContext'
 
@@ -28,7 +28,7 @@ function MultiMain({
     const [deactiveAnswerBool, setDeactiveAnswerBool] = useState(false) // desativa a palavra 'true' das opções
     
     const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
-        setQuestionAnswerButtonNextMultiAndThreeMulti } = useOutletContext()
+        setQuestionAnswerButtonNextMultiAndThreeMulti, numberRandomPath, setActivePauseTimer } = useOutletContext()
 
     const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
         listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
@@ -38,40 +38,6 @@ function MultiMain({
     const [answerMultiQuestionAlert, setAnswerMultiQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
 
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
-  
-    const numberRandomPath = useCallback(() => {
-        let listNumbers
-        let able
-
-        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-            able = (Math.floor(Math.random() * 4) + 1)
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-            listNumbers = [1, 2, 3]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-            listNumbers = [1, 2, 4]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-            listNumbers = [3, 4]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
-            able = (Math.floor(Math.random() * 2) + 1)
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-            able = 3
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-            able = 4
-
-        } 
-
-        return able
-
-    }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
 
     useEffect(() => {
         setNumberPath(numberRandomPath())
@@ -132,6 +98,8 @@ function MultiMain({
             setAnswerMultiQuestionAlert(true)
 
         }
+
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
     }
 
@@ -264,7 +232,7 @@ function MultiMain({
                 to={ableNextPage()}
             >
                 <ButtonNext 
-                    onClick={() => {alertQuestionAnswerButtonNextMultiAndThreeMulti(); numbersThreeFourGenerateNewQuestion()}}
+                    onClick={() => {numbersThreeFourGenerateNewQuestion(); alertQuestionAnswerButtonNextMultiAndThreeMulti()}}
                     questionAnswerButtonNextMultiAndThreeMulti={questionAnswerButtonNextMultiAndThreeMulti}
                 />
             </Link>

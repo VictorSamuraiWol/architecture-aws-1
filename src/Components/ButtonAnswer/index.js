@@ -17,18 +17,14 @@ function ButtonAnswer({
 
     // chamando algumas variáveis e as funções 'repeatedAlternativesDefault' e 'checkAlternativeAnswerDefault' através do 'useOutletContext' criada na PageBase
     const { mute, setNumCorrectOption, setNumIncorrectOption, repeatedAlternativesDefault, checkAlternativeAnswerDefault, activePageDemo, activePageMain, activePageMulti, 
-        activePageThreeMulti } = useOutletContext()
+        activePageThreeMulti, setActivePauseTimer } = useOutletContext()
 
     // variável para saber se foi ou não respondida a questão
     const [questionAnswer, setQuestionAnswer] = useState(false)
 
     // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMain, setActivePopupCheckAlternativeAnswerButtonAnswerMain] = useState(false)
-
-    // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerMulti, setActivePopupCheckAlternativeAnswerButtonAnswerMulti] = useState(false)
-
-    // ativa ou desativa o componente PopupCheckAlternativeAnswer
     const [activePopupCheckAlternativeAnswerButtonAnswerThreeMulti, setActivePopupCheckAlternativeAnswerButtonAnswerThreeMulti] = useState(false)
 
     const [select1OptionAlert, setSelect1OptionAlert] = useState(false) // ativa o componente PopupAlertMessage
@@ -513,8 +509,10 @@ function ButtonAnswer({
         (activePageThreeMulti && optionMulti && !optionMain && repeatedAlternativesDefault(null, null, optionMulti).length === 0 && captureValueMulti.length === 3)) {
         // condição: irá depender da opção existir, se as alternativas não se repetem e se tem alternativas marcadas
             display()
+            setActivePauseTimer(true) // ativa o pause do Timer ao responder
 
         }
+
 
     }
 

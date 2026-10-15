@@ -8,7 +8,7 @@ import MenuTools from '../MenuTools'
 import ModalResults from '../Modal/ModalResults'
 import PopupRepeatedAlternatives from '../Popups/PopupRepeatedAlternatives'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { Link, useOutletContext } from 'react-router-dom'
 
@@ -23,7 +23,8 @@ function Main({
         listMultiQuestionsContextLength, listMultiOptionsContextLength, 
         listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
-    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain } = useOutletContext()
+    const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, numberRandomPath, 
+        setActivePauseTimer } = useOutletContext()
 
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
@@ -39,40 +40,6 @@ function Main({
     const [item, setItem] = useState('') // captura o item correto
 
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
-
-    const numberRandomPath = useCallback(() => {
-        let listNumbers
-        let able
-
-        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-            able = (Math.floor(Math.random() * 4) + 1)
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-            listNumbers = [1, 2, 3]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-            listNumbers = [1, 2, 4]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
-            listNumbers = [3, 4]
-            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
-
-        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
-            able = (Math.floor(Math.random() * 2) + 1)
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
-            able = 3
-
-        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
-            able = 4
-
-        } 
-
-        return able
-
-    }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
 
     useEffect(() => {
         setNumberPath(numberRandomPath())
@@ -106,6 +73,8 @@ function Main({
             setNoDataAlert(true)
 
         }
+
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
     }
 

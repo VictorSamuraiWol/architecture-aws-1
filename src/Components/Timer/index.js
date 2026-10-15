@@ -12,7 +12,9 @@ const Timer = () => {
   const timerStartSound = new Audio(timerStart)
   const timerPauseSound = new Audio(timerPause)
 
-  const { mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert } = useOutletContext()
+  const { mute, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert,
+    activePauseTimer
+   } = useOutletContext()
 
   const startTimer = () => {
     if (!isRunning) {
@@ -69,6 +71,11 @@ const Timer = () => {
 
   }, [time, activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivePopupZeroTimerMainAlert, setActivePopupZeroTimerMultiAlert])
 
+  useEffect(() => {
+    activePauseTimer && pauseTimer() // toda vez que responder a questão o Timer pausa
+    
+  }, [activePauseTimer])
+
   // Formatando o cronômetro em minutos e segundos
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60); // Calcula minutos inteiros
@@ -93,4 +100,4 @@ const Timer = () => {
 
 }
 
-export default Timer
+export default Timer;

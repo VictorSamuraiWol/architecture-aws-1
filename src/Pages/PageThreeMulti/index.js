@@ -29,7 +29,7 @@ function PageThreeMulti() {
 
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageDemo, setActivePageThreeMulti, 
-        loginValidate, setActivePageInfo, setActivePageQuizBuilder } = useOutletContext()
+        loginValidate, setActivePageInfo, setActivePageQuizBuilder, setActivePauseTimer } = useOutletContext()
 
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela e desativa as demais
@@ -42,7 +42,10 @@ function PageThreeMulti() {
         setActivePageInfo(false)
         setActivePageQuizBuilder(false)
 
-    }, [setActivePageThreeMulti, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, setActivePageQuizBuilder])
+        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
+
+    }, [setActivePageThreeMulti, setActivePageDemo, setActivePageMain, setActivePageMulti, setActivePageFormsQuestionsOptions, setActivePageInfo, 
+        setActivePageQuizBuilder, setActivePauseTimer])
 
     useEffect(() => {
         const randomNumbers = [] // armazena a lista de números randômicos para as opções

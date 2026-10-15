@@ -1,7 +1,7 @@
 import styles from './PageBase.module.css'
-import DataProvider from '../../Components/DataContext'
 import NavigateDefault from '../../Components/NavigateDefault'
-import { useState } from 'react'
+import { DataContext } from '../../Components/DataContext'
+import { useCallback, useContext, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { BiSolidVolumeFull, BiSolidVolumeMute } from "react-icons/bi"
 
@@ -30,6 +30,10 @@ function PageBase() {
     // pegar o estado da variável booleana que torna 'true' toda vez que responder, seja na opção correta ou errada, será utilizada no componente 'ButtonNext' para saber se pode ir para a próxima página somente depois de responder
     const [questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain] = useState(false)
     const [questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti] = useState(false)
+
+    const [activePauseTimer, setActivePauseTimer] = useState(false) // ativa o pause do Timer
+
+    const { listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength } = useContext(DataContext)
 
     const dataResults = { // resultados estatísticos
         numCorrectOption, 
@@ -146,9 +150,44 @@ function PageBase() {
 
     }
 
+    const numberRandomPath = useCallback(() => {
+        let listNumbers
+        let able
+
+        if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = (Math.floor(Math.random() * 4) + 1)
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            listNumbers = [1, 2, 3]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [1, 2, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength > 0) {
+            listNumbers = [3, 4]
+            able = listNumbers[Math.floor(Math.random() * listNumbers.length)]
+
+        } else if (listUnicQuestionsContextLength > 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = (Math.floor(Math.random() * 2) + 1)
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength > 0 && listThreeMultiQuestionsContextLength === 0) {
+            able = 3
+
+        } else if (listUnicQuestionsContextLength === 0 && listMultiQuestionsContextLength === 0 && listThreeMultiQuestionsContextLength > 0) {
+            able = 4
+
+        } 
+
+        return able
+
+    }, [listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength])
+
     return(   
         <div className={styles.pageBaseOutlet}>
-            <DataProvider>
+            {/* <DataProvider> */}
+            <>
                 <Outlet 
                     context={{ nameUser, setNameUser, loginValidate, setLoginValidate, mute, numCorrectOption, setNumCorrectOption, 
                         numIncorrectOption, setNumIncorrectOption, dataResults, activePageFormsQuestionsOptions, 
@@ -159,7 +198,8 @@ function PageBase() {
                         activePageInfo, setActivePageInfo, activePageQuizBuilder, setActivePageQuizBuilder, activeModalEditMenu, setActiveModalEditMenu,
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
-                        questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti, checkAnswers
+                        questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti, checkAnswers, numberRandomPath,
+                        activePauseTimer, setActivePauseTimer
                     }}
                 />                
 
@@ -189,7 +229,9 @@ function PageBase() {
                     />
                 }
 
-            </DataProvider>
+            </>
+
+            {/* </DataProvider> */}
 
         </div>
        
