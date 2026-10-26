@@ -19,9 +19,9 @@ function Main({
 }) {
 
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
-    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContextLength, 
-        listMultiQuestionsContextLength, listMultiOptionsContextLength, 
-        listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
+    const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, listUnicOptionsContextLength, 
+        listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, listMultiOptionsContextLength, 
+        listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
     const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, numberRandomPath, 
         setActivePauseTimer } = useOutletContext()
@@ -36,6 +36,7 @@ function Main({
     const [activePopupRepeatedAlternativesMain, setActivePopupRepeatedAlternativesMain] = useState(false) // ativa o componente PopupRepeatedAlternatives na Main
     const [answerMainQuestionAlert, setAnswerMainQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
     const [noDataAlert, setNoDataAlert] = useState(false) // ativa o componente PopupAlertMessage 
+    const [repeatedIdsList, setRepeatedIdsList] = useState(false) // ativa o componente PopupAlertMessage
 
     const [item, setItem] = useState('') // captura o item correto
 
@@ -51,6 +52,45 @@ function Main({
 
     }, [setQuestionAnswerButtonNextMain])
 
+    function repeatedIds(idsQuestions, idsOptions) { // função que verifica se existem IDs repetidos no banco de dados
+        const countQuestions = {};
+        const countOptions = {};
+
+
+        idsQuestions.forEach(n => {
+            countQuestions[n] = (countQuestions[n] || 0) + 1;
+
+        })
+
+        idsOptions.forEach(n => {
+            countOptions[n] = (countOptions[n] || 0) + 1;
+
+        })
+
+        const repetedsQuestions = Object.keys(countQuestions)
+            .filter(n => countQuestions[n] > 1)
+            .map(Number) // mesma coisa de .map((n) => Number(n))
+
+        const repetedsOptions = Object.keys(countOptions)
+            .filter(n => countOptions[n] > 1)
+            .map(Number) // mesma coisa de .map((n) => Number(n))
+
+        const repetedsList = [...repetedsQuestions, ...repetedsOptions]
+
+        return repetedsList
+
+    }
+
+    function uniqueIds() {
+        const newSetList = [...new Set(repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)], 
+            [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]))] // tirar as repetições
+
+        const sortNewSetList = [...newSetList].sort((a, b) => a - b) // deixar em ordem crescente
+
+        return sortNewSetList
+
+    }
+
     function generateNextQuestion() { // função para gerar uma nova questão para a página Main
         const listFilterMain = listUnicQuestionsContext
             .filter(question => question.questionNumber !== questionMain.questionNumber)
@@ -63,18 +103,26 @@ function Main({
     }
 
     function numbersOneTwoGenerateNewQuestion() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
-        if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain && (numberPath === 1 || numberPath === 2)) {
-            generateNextQuestion()
-
-        } else if (!questionAnswerButtonNextMain) { // condição: se a questão da página Main não foi respondida
-            setAnswerMainQuestionAlert(true)
-
-        } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
-            setNoDataAlert(true)
+        if (repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)],
+        [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]).length > 0) { 
+            // utilizando a função que checa as IDs
+            setRepeatedIdsList(true)
+        
+        } else {
+            if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain && (numberPath === 1 || numberPath === 2)) {
+                generateNextQuestion()
+    
+            } else if (!questionAnswerButtonNextMain) { // condição: se a questão da página Main não foi respondida
+                setAnswerMainQuestionAlert(true)
+    
+            } else if (activePageDemo && !listUnicQuestionsContextLength && !listMultiQuestionsContextLength && !listThreeMultiQuestionsContextLength) {
+                setNoDataAlert(true)
+    
+            }
+    
+            setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
         }
-
-        setActivePauseTimer(false) // desativa o pause do Timer ao mudar de página, retorna ao valor inicial
 
     }
 
@@ -156,6 +204,7 @@ function Main({
         }
                         
         return able
+
     }
 
     return(
@@ -229,7 +278,8 @@ function Main({
             />
 
             <Link
-                to={ableNextPage()}
+                to={repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)],
+                    [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]).length > 0 ? null : ableNextPage()} // se tiver IDS repetidas não mudará de questão até ajustar o banco de dados
             >
                 <ButtonNext
                     onClick={numbersOneTwoGenerateNewQuestion} 
@@ -270,6 +320,14 @@ function Main({
                     text='Oops! Time is up! Please pay attention to the exam time limit.' 
                     specificStyles={styles.popupAlertMessage}
                     activePopup={setActivePopupZeroTimerMainAlert}
+                />
+            }
+
+            {repeatedIdsList &&
+                <PopupAlertMessage 
+                    text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
+                    activePopup={setRepeatedIdsList}
+                    specificStyles={styles.popupAlertMessage}
                 />
             }
 
