@@ -249,6 +249,7 @@ function Main({
 
                     <MenuTools 
                         questionMain={questionMain} 
+                        setQuestionMain={setQuestionMain} 
                         optionMain={optionMain}
                         optionMainNumberId={optionMainNumberId}
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}

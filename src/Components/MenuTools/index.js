@@ -9,7 +9,7 @@ import { MdDelete } from "react-icons/md"
 import { Link, useOutletContext } from 'react-router-dom'
 import { FaPlusCircle } from "react-icons/fa"
 
-function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti, 
+function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumberId, questionMulti, setQuestionMulti, 
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
 
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
@@ -375,9 +375,11 @@ function MenuTools({ questionMain, optionMain, optionMainNumberId, questionMulti
         </Link>
 
         {/* icon edit */}
-        <ModalEditMenu 
-          questionMain={questionMain} 
+        <ModalEditMenu
+          questionMain={questionMain}
+          setQuestionMain={setQuestionMain} 
           questionMulti={questionMulti}
+          setQuestionMulti={setQuestionMulti}
           optionMain={optionMain} 
           optionMulti={optionMulti}
           optionMainNumberId={optionMainNumberId}

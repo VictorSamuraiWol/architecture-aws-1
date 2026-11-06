@@ -18,7 +18,7 @@ import { isEqual } from 'lodash'
 // certifique-se de vincular o modal ao seu appElement
 Modal.setAppElement('#root')
 
-function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionMulti, 
+function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNumberId, questionMulti, setQuestionMulti, 
   optionMulti, optionMultiNumberId, activeDescriptionIcon, setActiveDescriptionIcon }) {
 
   // questionMain
@@ -109,28 +109,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  
-  useEffect(() => {
-    setOptionAMain(optionMain && optionMain[0])
-    setOptionBMain(optionMain && optionMain[1])
-    setOptionCMain(optionMain && optionMain[2])
-    setOptionDMain(optionMain && optionMain[3])
-    setOptionEMain(optionMain && optionMain[4])
-
-    setOptionAMulti(optionMulti && optionMulti[0])
-    setOptionBMulti(optionMulti && optionMulti[1])
-    setOptionCMulti(optionMulti && optionMulti[2])
-    setOptionDMulti(optionMulti && optionMulti[3])
-    setOptionEMulti(optionMulti && optionMulti[4])
-
-    setOptionAThreeMulti(optionMulti && optionMulti[0])
-    setOptionBThreeMulti(optionMulti && optionMulti[1])
-    setOptionCThreeMulti(optionMulti && optionMulti[2])
-    setOptionDThreeMulti(optionMulti && optionMulti[3])
-    setOptionEThreeMulti(optionMulti && optionMulti[4])
-    setOptionFThreeMulti(optionMulti && optionMulti[5])
-
-  }, [optionMain, optionMulti]) // sempre atualizar as opções quando houver mudança
 
   useEffect(() => {
     setNewOption([optionAMain, optionBMain, optionCMain, optionDMain, optionEMain])
@@ -146,56 +124,6 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   function openModal() {
     setModalIsOpen(true)
-
-    // voltando ao estado original de todas as variáveis ao abrir a modal
-    // questionMain
-    setQuestionTextMain(questionMain?.questionText)
-    setImageQuestionMain(questionMain?.imageQuestion)
-    setCorrectAnswerMain(questionMain?.correctAnswer)
-    setIconDescriptionMain(questionMain?.iconDescription)
-    setDescriptionMain(questionMain?.description)
-    setImageDescriptionMain(questionMain?.imageDescription)
-
-    // optionMain
-    setOptionAMain(optionMain && optionMain[0])
-    setOptionBMain(optionMain && optionMain[1])
-    setOptionCMain(optionMain && optionMain[2])
-    setOptionDMain(optionMain && optionMain[3])
-    setOptionEMain(optionMain && optionMain[4])
-
-    // questionMulti
-    setQuestionTextMulti(questionMulti?.questionText)
-    setImageQuestionMulti(questionMulti?.imageQuestion)
-    setCorrectAnswerMulti1(questionMulti?.correctAnswer1)
-    setCorrectAnswerMulti2(questionMulti?.correctAnswer2)
-    setIconDescriptionMulti(questionMulti?.iconDescription)
-    setDescriptionMulti(questionMulti?.description)
-    setImageDescriptionMulti(questionMulti?.imageDescription)
-
-    // optionMulti
-    setOptionAMulti(optionMulti && optionMulti[0])
-    setOptionBMulti(optionMulti && optionMulti[1])
-    setOptionCMulti(optionMulti && optionMulti[2])
-    setOptionDMulti(optionMulti && optionMulti[3])
-    setOptionEMulti(optionMulti && optionMulti[4])
-
-    // questionThreeMulti
-    setQuestionTextThreeMulti(questionMulti?.questionText)
-    setImageQuestionThreeMulti(questionMulti?.imageQuestion)
-    setCorrectAnswerThreeMulti1(questionMulti?.correctAnswer1)
-    setCorrectAnswerThreeMulti2(questionMulti?.correctAnswer2)
-    setCorrectAnswerThreeMulti3(questionMulti?.correctAnswer3)
-    setIconDescriptionThreeMulti(questionMulti?.iconDescription)
-    setDescriptionThreeMulti(questionMulti?.description)
-    setImageDescriptionThreeMulti(questionMulti?.imageDescription)
-
-    // optionThreeMulti
-    setOptionAThreeMulti(optionMulti && optionMulti[0])
-    setOptionBThreeMulti(optionMulti && optionMulti[1])
-    setOptionCThreeMulti(optionMulti && optionMulti[2])
-    setOptionDThreeMulti(optionMulti && optionMulti[3])
-    setOptionEThreeMulti(optionMulti && optionMulti[4])
-    setOptionFThreeMulti(optionMulti && optionMulti[5])
 
   }
 
@@ -388,7 +316,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
 
   //função utilizando PUT para alterar as questões na API
   async function onSaveModalQuestion() {
-    const jsonBody = JSON.stringify({
+    const jsonBody = JSON.stringify({      
       questionText: questionTextMain,
       imageQuestion: imageQuestionMain,
       correctAnswer: correctAnswerMain,
@@ -396,7 +324,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
       description: descriptionMain,
       imageDescription: imageDescriptionMain,
       questionNumber: questionMain.questionNumber, // não será alterado
-      id: questionMain.id // não será alterado
+      id: questionMain.id // não será alterado  
 
     })
     await fetch(`http://localhost:3001/listQuestionsMain/${questionMain.id}`, {
@@ -410,6 +338,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
+      
+      data && setQuestionMain(data)
 
     }) 
     .catch((error) => {
@@ -478,6 +408,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((data) => {
       console.log(data)
 
+      data && setQuestionMulti(data)
+
     }) 
     .catch((error) => {
       console.log(error)
@@ -545,6 +477,8 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
+
+      data && setQuestionMulti(data)
 
     }) 
     .catch((error) => {
@@ -850,7 +784,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(newOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(optionMain); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
@@ -975,7 +909,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(null, newMultiOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(null, optionMulti); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
@@ -1119,7 +1053,7 @@ function ModalEditMenu({ questionMain, optionMain, optionMainNumberId, questionM
           {/* Botões submit e clean */}
           <div className={styles.buttons}>
             <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(null, null, newThreeMultiOption); mute === false && audioClick.play()}}
+              onClick={() => {repeatedAlternativesDefault(null, null, optionMulti); mute === false && audioClick.play()}}
               buttonName='Save' 
               specificType='submit'
               specificStyleButton={styles.button}
