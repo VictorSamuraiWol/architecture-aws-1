@@ -37,10 +37,20 @@ function Main({
     const [answerMainQuestionAlert, setAnswerMainQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
     const [noDataAlert, setNoDataAlert] = useState(false) // ativa o componente PopupAlertMessage 
     const [repeatedIdsList, setRepeatedIdsList] = useState(false) // ativa o componente PopupAlertMessage
+    const [repeatedNumbersList, setRepeatedNumbersList] = useState(false) // ativa o componente PopupAlertMessage
+
 
     const [item, setItem] = useState('') // captura o item correto
 
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
+
+    const [listAllIdsQuestions] = useState([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)])
+
+    const [listAllIdsOptions] = useState([...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)])
+
+    const [listAllNumbersQuestions] = useState([...listUnicQuestionsContext.map(q => q.questionNumber), ...listMultiQuestionsContext.map(q => q.questionNumber), ...listThreeMultiQuestionsContext.map(q => q.questionNumber)])
+
+    const [listAllNumbersOptions] = useState([...listUnicOptionsContext.map(o => o.optionNumber), ...listMultiOptionsContext.map(o => o.optionNumber), ...listThreeMultiOptionsContext.map(o => o.optionNumber)])
 
     useEffect(() => {
         setNumberPath(numberRandomPath())
@@ -52,7 +62,7 @@ function Main({
 
     }, [setQuestionAnswerButtonNextMain])
 
-    function repeatedIds(idsQuestions, idsOptions) { // função que verifica se existem IDs repetidos no banco de dados
+    function repeatedIdsNumbers(idsQuestions, idsOptions) { // função que verifica se existem IDs repetidos no banco de dados
         const countQuestions = {};
         const countOptions = {};
 
@@ -82,8 +92,16 @@ function Main({
     }
 
     function uniqueIds() {
-        const newSetList = [...new Set(repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)], 
-            [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]))] // tirar as repetições
+        const newSetList = [...new Set(repeatedIdsNumbers(listAllIdsQuestions, listAllIdsOptions))] // tirar as repetições
+
+        const sortNewSetList = [...newSetList].sort((a, b) => a - b) // deixar em ordem crescente
+
+        return sortNewSetList
+
+    }
+
+    function uniqueNumbers() {
+        const newSetList = [...new Set(repeatedIdsNumbers(listAllNumbersQuestions, listAllNumbersOptions))] // tirar as repetições
 
         const sortNewSetList = [...newSetList].sort((a, b) => a - b) // deixar em ordem crescente
 
@@ -103,11 +121,14 @@ function Main({
     }
 
     function numbersOneTwoGenerateNewQuestion() { // se numberPath for igual a 1 ou 2 executará a função 'generateNewQuestionMain()' ao clicar 
-        if (repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)],
-        [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]).length > 0) { 
-            // utilizando a função que checa as IDs
+        if (repeatedIdsNumbers(listAllIdsQuestions, listAllIdsOptions).length > 0) { 
+            // utilizando a função que checa as IDs das questões e opções
             setRepeatedIdsList(true)
         
+        } else if (repeatedIdsNumbers(listAllNumbersQuestions, listAllNumbersOptions).length > 0) { 
+            // utilizando a função que checa os números das questões e opções
+            setRepeatedNumbersList(true)
+
         } else {
             if (listUnicQuestionsContextLength >= 2 && questionAnswerButtonNextMain && (numberPath === 1 || numberPath === 2)) {
                 generateNextQuestion()
@@ -128,7 +149,7 @@ function Main({
 
     function ableNextPage() { // função que habilita a próxima rota
         let able = null
-        // numberPath => 1 ou 2 ('/page-main'), 3 ('/page-multi') e 4 ('/page-three-multi')
+        // obs: numberPath => 1 ou 2 ('/page-main'), 3 ('/page-multi') e 4 ('/page-three-multi')
 
         if (activePageDemo && (numberPath === 1 || numberPath === 2) && listUnicQuestionsContextLength > 0 && listUnicOptionsContextLength > 0 
         && questionAnswerButtonNextMain) {
@@ -278,8 +299,13 @@ function Main({
             />
 
             <Link
-                to={repeatedIds([...listUnicQuestionsContext.map(q => q.id), ...listMultiQuestionsContext.map(q => q.id), ...listThreeMultiQuestionsContext.map(q => q.id)],
-                    [...listUnicOptionsContext.map(o => o.id), ...listMultiOptionsContext.map(o => o.id), ...listThreeMultiOptionsContext.map(o => o.id)]).length > 0 ? null : ableNextPage()} // se tiver IDS repetidas não mudará de questão até ajustar o banco de dados
+                to={(repeatedIdsNumbers(listAllIdsQuestions, listAllIdsOptions).length > 0 || repeatedIdsNumbers(listAllNumbersQuestions, listAllNumbersOptions).length > 0) // primeiro checa se tem algum número ou ID repetidos no banco de dados
+                    ? 
+                    null 
+                    : 
+                    ableNextPage()
+                } 
+                    // se tiver IDs repetidas não mudará de questão até ajustar o banco de dados
             >
                 <ButtonNext
                     onClick={numbersOneTwoGenerateNewQuestion} 
@@ -327,6 +353,14 @@ function Main({
                 <PopupAlertMessage 
                     text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
                     activePopup={setRepeatedIdsList}
+                    specificStyles={styles.popupAlertMessage}
+                />
+            }
+
+            {repeatedNumbersList &&
+                <PopupAlertMessage 
+                    text={`Duplicate numbers found (Numbers: ${uniqueNumbers()}) in your database. Please fix them.`}
+                    activePopup={setRepeatedNumbersList}
                     specificStyles={styles.popupAlertMessage}
                 />
             }
