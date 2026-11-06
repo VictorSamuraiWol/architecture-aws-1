@@ -19,7 +19,7 @@
       "imageQuestion": "",
       "correctAnswer": "Storage Gateway - File Gateway.",
       "iconDescription": "storageGateway",
-      "description": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.",     
+      "description": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.",
       "imageDescription": "",
       "questionNumber": "1",
       "id": "91c1"
@@ -262,13 +262,13 @@
     },
     {
       "questionText": "A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
-      "correctAnswer1": "Amazon ElastiCache.",
-      "correctAnswer2": "Amazon DynamoDB Accelerator (DAX).",
-      "iconDescription": "dynamoDB",
-      "description": "Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. Amazon ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
-      "questionNumber": "20",
       "imageQuestion": "",
+      "correctAnswer1": "ElastiCache.",
+      "correctAnswer2": "DynamoDB Accelerator (DAX).",
+      "iconDescription": "dynamoDB",
+      "description": "DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
       "imageDescription": "",
+      "questionNumber": "20",
       "id": "5703"
     },
     {

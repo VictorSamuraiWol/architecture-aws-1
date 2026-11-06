@@ -1,5 +1,6 @@
 import styles from './PageBase.module.css'
 import NavigateDefault from '../../Components/NavigateDefault'
+import zeroImage from '../../imgs/zero-question.png'
 import { DataContext } from '../../Components/DataContext'
 import { useCallback, useContext, useState } from 'react'
 import { Outlet } from 'react-router-dom'
@@ -102,7 +103,6 @@ function PageBase() {
         } else if (activePageMulti && answer && optionMulti && (optionMulti[0] && optionMulti[1] && optionMulti[2] && optionMulti[3]) 
             && matchedOptionMulti === false) {
             checkWithoutMatched = true
-            console.log(answer, 97)
 
         } else if (activePageThreeMulti && answer && optionThreeMulti && (optionThreeMulti[0] && optionThreeMulti[1] && optionThreeMulti[2] && optionThreeMulti[3]) 
             && matchedOptionThreeMulti === false) {
@@ -199,7 +199,7 @@ function PageBase() {
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
                         questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti, checkAnswers, numberRandomPath,
-                        activePauseTimer, setActivePauseTimer
+                        activePauseTimer, setActivePauseTimer, zeroImage
                     }}
                 />                
 

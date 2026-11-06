@@ -27,11 +27,11 @@ function MultiMain({
     const [activePopupRepeatedAlternativesMulti, setActivePopupRepeatedAlternativesMulti] = useState(false) // ativa o componente PopupRepeatedAlternatives na MultiMain
     const [deactiveAnswerBool, setDeactiveAnswerBool] = useState(false) // desativa a palavra 'true' das opções
     
-    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
-        setQuestionAnswerButtonNextMultiAndThreeMulti, numberRandomPath, setActivePauseTimer } = useOutletContext()
-
     const { listUnicQuestionsContextLength, listUnicOptionsContextLength, listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContextLength, 
         listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContextLength } = useContext(DataContext)
+
+    const { activePopupZeroTimerMultiAlert, setActivePopupZeroTimerMultiAlert, activePageMulti, activePageThreeMulti, questionAnswerButtonNextMultiAndThreeMulti, 
+        setQuestionAnswerButtonNextMultiAndThreeMulti, numberRandomPath, setActivePauseTimer, zeroImage } = useOutletContext()
 
     const [itens, setItens] = useState('') // captura os itens corretos
     const [listCorrectAnswers, setListCorrectAnswers] = useState([]) // lista das respostas corretas
@@ -156,114 +156,122 @@ function MultiMain({
 
     return (
         <div className={styles.multiMain}>
-            <div className={styles.containerTextTitle}>
-                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
-            </div>
+            {((questionMulti && optionMulti.length === 0) || (!questionMulti && optionMulti.length > 0)) && // imagem zero irá aparecer se não tiver pergunta e opção correspondente
+                <img src={zeroImage} alt='zero-image' className={styles.zeroImg} />
+            }
+
+            {questionMulti && optionMulti.length > 0 && 
+            <>
+                <div className={styles.containerTextTitle}>
+                    <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+                </div>
+                
+                <div className={styles.containerQuestionMenuTools}>
+                    <Question 
+                        question={question}
+                        questionNumber={questionNumber}
+                        questionMulti={questionMulti}           
+                    />
+
+                    <MenuTools
+                        questionMulti={questionMulti} 
+                        optionMulti={optionMulti} 
+                        optionMultiNumberId={optionMultiNumberId}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}               
+                    />
+                
+                </div>
             
-            <div className={styles.containerQuestionMenuTools}>
-                <Question 
-                    question={question}
-                    questionNumber={questionNumber}
-                    questionMulti={questionMulti}           
+                <MultiOptions
+                    optionColorStyle={optionColorStyle}
+                    inputColorStyle={inputColorStyle}
+                    setCaptureValueMulti={setCaptureValueMulti}
+                    captureValueMulti={captureValueMulti}
+                    optionMulti={optionMulti}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                    optNum6={optNum6}
+                    deactiveAnswerBool={deactiveAnswerBool}
                 />
 
-                <MenuTools
-                    questionMulti={questionMulti} 
-                    optionMulti={optionMulti} 
-                    optionMultiNumberId={optionMultiNumberId}
+                <ButtonAnswer            
+                    answerDescriptionDisplay={answerDescriptionDisplay}
                     setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}               
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    answer1={questionMulti.correctAnswer1}
+                    answer2={questionMulti.correctAnswer2}
+                    answer3={questionMulti.correctAnswer3}
+                    setListCorrectAnswers={setListCorrectAnswers}
+                    optionValidateStyle={optionValidateStyle}
+                    optionInvalidateStyle={optionInvalidateStyle}
+                    optionColorStyle={optionColorStyle}
+                    inputColorStyle={inputColorStyle}
+                    inputValidateStyle={inputValidateStyle}
+                    inputInvalidateStyle={inputInvalidateStyle}
+                    captureValueMulti={captureValueMulti}
+                    optionMulti={optionMulti}
+                    setQuestionAnswerButtonNextMultiAndThreeMulti={setQuestionAnswerButtonNextMultiAndThreeMulti}
+                    activePopupRepeatedAlternativesMulti={activePopupRepeatedAlternativesMulti}
+                    setActivePopupRepeatedAlternativesMulti={setActivePopupRepeatedAlternativesMulti}
+                    setItens={setItens}
+                    setDeactiveAnswerBool={setDeactiveAnswerBool}
                 />
-            
-            </div>
-        
-            <MultiOptions
-                optionColorStyle={optionColorStyle}
-                inputColorStyle={inputColorStyle}
-                setCaptureValueMulti={setCaptureValueMulti}
-                captureValueMulti={captureValueMulti}
-                optionMulti={optionMulti}
-                optNum1={optNum1}
-                optNum2={optNum2}
-                optNum3={optNum3}
-                optNum4={optNum4}
-                optNum5={optNum5}
-                optNum6={optNum6}
-                deactiveAnswerBool={deactiveAnswerBool}
-            />
 
-            <ButtonAnswer            
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
-                answer1={questionMulti.correctAnswer1}
-                answer2={questionMulti.correctAnswer2}
-                answer3={questionMulti.correctAnswer3}
-                setListCorrectAnswers={setListCorrectAnswers}
-                optionValidateStyle={optionValidateStyle}
-                optionInvalidateStyle={optionInvalidateStyle}
-                optionColorStyle={optionColorStyle}
-                inputColorStyle={inputColorStyle}
-                inputValidateStyle={inputValidateStyle}
-                inputInvalidateStyle={inputInvalidateStyle}
-                captureValueMulti={captureValueMulti}
-                optionMulti={optionMulti}
-                setQuestionAnswerButtonNextMultiAndThreeMulti={setQuestionAnswerButtonNextMultiAndThreeMulti}
-                activePopupRepeatedAlternativesMulti={activePopupRepeatedAlternativesMulti}
-                setActivePopupRepeatedAlternativesMulti={setActivePopupRepeatedAlternativesMulti}
-                setItens={setItens}
-                setDeactiveAnswerBool={setDeactiveAnswerBool}
-            />
-
-            <AnswerDescription
-                questionMulti={questionMulti}
-                listCorrectAnswers={listCorrectAnswers}
-                iconDescription={iconDescription}
-                description={description}
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
-                itens={itens}             
-            />
-
-            <Link
-                to={ableNextPage()}
-            >
-                <ButtonNext 
-                    onClick={() => {numbersThreeFourGenerateNewQuestion(); alertQuestionAnswerButtonNextMultiAndThreeMulti()}}
-                    questionAnswerButtonNextMultiAndThreeMulti={questionAnswerButtonNextMultiAndThreeMulti}
+                <AnswerDescription
+                    questionMulti={questionMulti}
+                    listCorrectAnswers={listCorrectAnswers}
+                    iconDescription={iconDescription}
+                    description={description}
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    itens={itens}             
                 />
-            </Link>
 
-            <ModalResults />
+                <Link
+                    to={ableNextPage()}
+                >
+                    <ButtonNext 
+                        onClick={() => {numbersThreeFourGenerateNewQuestion(); alertQuestionAnswerButtonNextMultiAndThreeMulti()}}
+                        questionAnswerButtonNextMultiAndThreeMulti={questionAnswerButtonNextMultiAndThreeMulti}
+                    />
+                </Link>
 
-            {/* PopupRepeatedAlternatives */}
-            {activePopupRepeatedAlternativesMulti === true && 
-                <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupRepeatedMulti} 
-                    textPopup={"There are duplicate alternatives and answers. Please, before answering, update the alternatives and answers in the Menu so that each one is unique, and then proceed with your response."}
-                    activePopup={setActivePopupRepeatedAlternativesMulti}
-                />
-            }
+                <ModalResults />
 
-            {/* {PopupAlertMessage} */}
-            {answerMultiQuestionAlert &&
-                <PopupAlertMessage 
-                    text="Oops!!! Please answer the question before moving on to the next one!"
-                    activePopup={setAnswerMultiQuestionAlert}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {/* PopupRepeatedAlternatives */}
+                {activePopupRepeatedAlternativesMulti === true && 
+                    <PopupRepeatedAlternatives 
+                        specificStyles={styles.popupRepeatedMulti} 
+                        textPopup={"There are duplicate alternatives and answers. Please, before answering, update the alternatives and answers in the Menu so that each one is unique, and then proceed with your response."}
+                        activePopup={setActivePopupRepeatedAlternativesMulti}
+                    />
+                }
 
-            {activePopupZeroTimerMultiAlert && 
-                <PopupAlertMessage 
-                    text='Oops! Time is up! Please pay attention to the exam time limit.' 
-                    specificStyles={styles.popupAlertMessage}
-                    activePopup={setActivePopupZeroTimerMultiAlert}
-                />
-            }
+                {/* {PopupAlertMessage} */}
+                {answerMultiQuestionAlert &&
+                    <PopupAlertMessage 
+                        text="Oops!!! Please answer the question before moving on to the next one!"
+                        activePopup={setAnswerMultiQuestionAlert}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
+
+                {activePopupZeroTimerMultiAlert && 
+                    <PopupAlertMessage 
+                        text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                        specificStyles={styles.popupAlertMessage}
+                        activePopup={setActivePopupZeroTimerMultiAlert}
+                    />
+                }
+
+            </>}
                        
         </div>
     )

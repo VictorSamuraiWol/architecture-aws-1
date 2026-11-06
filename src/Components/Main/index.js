@@ -24,7 +24,7 @@ function Main({
         listThreeMultiQuestionsContext, listThreeMultiQuestionsContextLength, listThreeMultiOptionsContext, listThreeMultiOptionsContextLength } = useContext(DataContext)
 
     const { activePopupZeroTimerMainAlert, setActivePopupZeroTimerMainAlert, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, numberRandomPath, 
-        setActivePauseTimer } = useOutletContext()
+        setActivePauseTimer, zeroImage } = useOutletContext()
 
     const [captureValue, setCaptureValue] = useState('')
     const [optionColorStyle] = useState(styles.optionColorMain)
@@ -229,143 +229,150 @@ function Main({
     }
 
     return(
-        <div className={styles.main}> 
-            <div className={styles.containerTextTitle}>
-                <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
-            </div>
+        <div className={styles.main}>
+            {((questionMain && optionMain.length === 0) || (!questionMain && optionMain.length > 0)) && // imagem zero irá aparecer se não tiver pergunta e opção correspondente
+                <img src={zeroImage} alt='zero-image' className={styles.zeroImg} />
+            }
 
-            <div className={styles.containerQuestionMenuTools}>
-                <Question 
-                    question={question}
-                    questionNumber={questionNumber}
-                    questionMain={questionMain}           
-                />
+            {questionMain && optionMain.length > 0 && 
+            <>
+                <div className={styles.containerTextTitle}>
+                    <h1 className={styles.textTitle}>Architecture Questions - Randomly</h1>
+                </div>
 
-                <MenuTools 
-                    questionMain={questionMain} 
+                <div className={styles.containerQuestionMenuTools}>
+                    <Question 
+                        question={question}
+                        questionNumber={questionNumber}
+                        questionMain={questionMain}           
+                    />
+
+                    <MenuTools 
+                        questionMain={questionMain} 
+                        optionMain={optionMain}
+                        optionMainNumberId={optionMainNumberId}
+                        setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                        setDescriptionDisplay={setDescriptionDisplay}              
+                    />
+
+                </div>
+
+                <Options
+                    optionColorStyle={optionColorStyle}
+                    inputColorStyle={inputColorStyle}   
+                    setCaptureValue={setCaptureValue}
                     optionMain={optionMain}
-                    optionMainNumberId={optionMainNumberId}
-                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                    setDescriptionDisplay={setDescriptionDisplay}              
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
                 />
-
-            </div>
-
-            <Options
-                optionColorStyle={optionColorStyle}
-                inputColorStyle={inputColorStyle}   
-                setCaptureValue={setCaptureValue}
-                optionMain={optionMain}
-                optNum1={optNum1}
-                optNum2={optNum2}
-                optNum3={optNum3}
-                optNum4={optNum4}
-                optNum5={optNum5}
-            />
-    
-            <ButtonAnswer            
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                answer={answer}
-                optionColorStyle={optionColorStyle}
-                optionValidateStyle={optionValidateStyle}
-                optionInvalidateStyle={optionInvalidateStyle}
-                inputColorStyle={inputColorStyle}
-                inputValidateStyle={inputValidateStyle}
-                inputInvalidateStyle={inputInvalidateStyle}                      
-                captureValue={captureValue}
-                optionMain={optionMain}
-                optNum1={optNum1}
-                optNum2={optNum2}
-                optNum3={optNum3}
-                optNum4={optNum4}
-                optNum5={optNum5}
-                setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
-                activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
-                setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
-                setItem={setItem}
-            />
-
-            <AnswerDescription
-                questionMain={questionMain}
-                answer={answer}
-                iconDescription={iconDescription}
-                description={description}
-                answerDescriptionDisplay={answerDescriptionDisplay}
-                descriptionDisplay={descriptionDisplay}
-                setDescriptionDisplay={setDescriptionDisplay}
-                item={item}
-            />
-
-            <Link
-                to={(repeatedIdsNumbers(listAllIdsQuestions, listAllIdsOptions).length > 0 || repeatedIdsNumbers(listAllNumbersQuestions, listAllNumbersOptions).length > 0) // primeiro checa se tem algum número ou ID repetidos no banco de dados
-                    ? 
-                    null 
-                    : 
-                    ableNextPage()
-                } 
-                    // se tiver IDs repetidas não mudará de questão até ajustar o banco de dados
-            >
-                <ButtonNext
-                    onClick={numbersOneTwoGenerateNewQuestion} 
-                    questionAnswerButtonNextMain={questionAnswerButtonNextMain}
-                />
-            </Link>
         
-            <ModalResults />
-
-            {/* PopupRepeatedAlternatives */}
-            {activePopupRepeatedAlternativesMain && 
-                <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupRepeatedMain} 
-                    textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
-                    activePopup={setActivePopupRepeatedAlternativesMain}
+                <ButtonAnswer            
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    answer={answer}
+                    optionColorStyle={optionColorStyle}
+                    optionValidateStyle={optionValidateStyle}
+                    optionInvalidateStyle={optionInvalidateStyle}
+                    inputColorStyle={inputColorStyle}
+                    inputValidateStyle={inputValidateStyle}
+                    inputInvalidateStyle={inputInvalidateStyle}                      
+                    captureValue={captureValue}
+                    optionMain={optionMain}
+                    optNum1={optNum1}
+                    optNum2={optNum2}
+                    optNum3={optNum3}
+                    optNum4={optNum4}
+                    optNum5={optNum5}
+                    setQuestionAnswerButtonNextMain={setQuestionAnswerButtonNextMain}
+                    activePopupRepeatedAlternativesMain={activePopupRepeatedAlternativesMain}
+                    setActivePopupRepeatedAlternativesMain={setActivePopupRepeatedAlternativesMain}
+                    setItem={setItem}
                 />
-            }
 
-            {/* PopupAlertMessage */}
-            {answerMainQuestionAlert &&
-                <PopupAlertMessage 
-                    text="Oops!!! Please answer the question before moving on to the next one!"
-                    activePopup={setAnswerMainQuestionAlert}
-                    specificStyles={styles.popupAlertMessage}
+                <AnswerDescription
+                    questionMain={questionMain}
+                    answer={answer}
+                    iconDescription={iconDescription}
+                    description={description}
+                    answerDescriptionDisplay={answerDescriptionDisplay}
+                    descriptionDisplay={descriptionDisplay}
+                    setDescriptionDisplay={setDescriptionDisplay}
+                    item={item}
                 />
-            }
 
-            {noDataAlert &&
-                <PopupAlertMessage 
-                    text="No data found. Need to mock the API."
-                    activePopup={setNoDataAlert}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                <Link
+                    to={(repeatedIdsNumbers(listAllIdsQuestions, listAllIdsOptions).length > 0 || repeatedIdsNumbers(listAllNumbersQuestions, listAllNumbersOptions).length > 0) // primeiro checa se tem algum número ou ID repetidos no banco de dados
+                        ? 
+                        null 
+                        : 
+                        ableNextPage()
+                    } 
+                        // se tiver IDs repetidas não mudará de questão até ajustar o banco de dados
+                >
+                    <ButtonNext
+                        onClick={numbersOneTwoGenerateNewQuestion} 
+                        questionAnswerButtonNextMain={questionAnswerButtonNextMain}
+                    />
+                </Link>
+            
+                <ModalResults />
 
-            {activePopupZeroTimerMainAlert && 
-                <PopupAlertMessage 
-                    text='Oops! Time is up! Please pay attention to the exam time limit.' 
-                    specificStyles={styles.popupAlertMessage}
-                    activePopup={setActivePopupZeroTimerMainAlert}
-                />
-            }
+                {/* PopupRepeatedAlternatives */}
+                {activePopupRepeatedAlternativesMain && 
+                    <PopupRepeatedAlternatives 
+                        specificStyles={styles.popupRepeatedMain} 
+                        textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
+                        activePopup={setActivePopupRepeatedAlternativesMain}
+                    />
+                }
 
-            {repeatedIdsList &&
-                <PopupAlertMessage 
-                    text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
-                    activePopup={setRepeatedIdsList}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {/* PopupAlertMessage */}
+                {answerMainQuestionAlert &&
+                    <PopupAlertMessage 
+                        text="Oops!!! Please answer the question before moving on to the next one!"
+                        activePopup={setAnswerMainQuestionAlert}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
 
-            {repeatedNumbersList &&
-                <PopupAlertMessage 
-                    text={`Duplicate numbers found (Numbers: ${uniqueNumbers()}) in your database. Please fix them.`}
-                    activePopup={setRepeatedNumbersList}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {noDataAlert &&
+                    <PopupAlertMessage 
+                        text="No data found. Need to mock the API."
+                        activePopup={setNoDataAlert}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
 
-                                  
+                {activePopupZeroTimerMainAlert && 
+                    <PopupAlertMessage 
+                        text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                        specificStyles={styles.popupAlertMessage}
+                        activePopup={setActivePopupZeroTimerMainAlert}
+                    />
+                }
+
+                {repeatedIdsList &&
+                    <PopupAlertMessage 
+                        text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
+                        activePopup={setRepeatedIdsList}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
+
+                {repeatedNumbersList &&
+                    <PopupAlertMessage 
+                        text={`Duplicate numbers found (Numbers: ${uniqueNumbers()}) in your database. Please fix them.`}
+                        activePopup={setRepeatedNumbersList}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
+
+            </>}
+                     
         </div>
     )
 

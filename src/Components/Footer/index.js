@@ -3,15 +3,22 @@ import image from '../../imgs/icone-wolverine-sem-fundo.png'
 import Timer from '../Timer'
 import { Link, useOutletContext } from 'react-router-dom'
 
-function Footer() {
+function Footer({ question, option }) {
     const { loginValidate, activePageFormsQuestionsOptions, activePageInfo, activePageQuizBuilder, activePageDemo, activePageMain, activePageMulti, 
         activePageThreeMulti } = useOutletContext()
 
 
     return(
-        <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo || activePageQuizBuilder ? styles.footerForms : styles.footer}>
+        <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo || activePageQuizBuilder || ((question && option.length === 0) || (!question && option.length > 0)) 
+        ? 
+        styles.footerForms 
+        : 
+        styles.footer}>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
-            {loginValidate && activePageFormsQuestionsOptions === false && (activePageMain || activePageMulti || activePageThreeMulti || activePageDemo) && <Timer />}
+            {loginValidate && activePageFormsQuestionsOptions === false && (activePageMain || activePageMulti || activePageThreeMulti || activePageDemo) &&
+            (question && option.length > 0) &&
+                <Timer />
+            }
             
             <div className={styles.imgText}>
                 <img src={image} alt="icon wolverine" />

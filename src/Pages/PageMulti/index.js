@@ -177,7 +177,10 @@ function PageMulti() {
                 </>
                 }
 
-                <Footer />
+                <Footer 
+                    question={questionMulti} 
+                    option={optionMulti} 
+                />
             
             </div>
             

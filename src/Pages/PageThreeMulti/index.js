@@ -180,7 +180,10 @@ function PageThreeMulti() {
                 
                 </>}
 
-                <Footer />
+                <Footer
+                    question={questionThreeMulti}
+                    option={optionThreeMulti}
+                />
             
             </div>
 

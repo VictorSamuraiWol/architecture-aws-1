@@ -111,7 +111,10 @@ function PageDemo() {
 
         </>}
 
-        <Footer />
+        <Footer
+          question={questionDemo} 
+          option={optionDemo}
+        />
 
       </div>
 

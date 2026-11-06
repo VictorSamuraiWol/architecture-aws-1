@@ -191,7 +191,10 @@ function PageMain() {
 
                 </>}
 
-                <Footer />
+                <Footer
+                    question={questionMain}
+                    option={optionMain}
+                />
 
             </div>
 
