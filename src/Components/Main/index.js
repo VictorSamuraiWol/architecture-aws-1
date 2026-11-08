@@ -39,7 +39,6 @@ function Main({
     const [repeatedIdsList, setRepeatedIdsList] = useState(false) // ativa o componente PopupAlertMessage
     const [repeatedNumbersList, setRepeatedNumbersList] = useState(false) // ativa o componente PopupAlertMessage
 
-
     const [item, setItem] = useState('') // captura o item correto
 
     const [numberPath, setNumberPath] = useState(null) // Gera um número aleatório entre 1 e 4 dependendo dos tipos de questões disponíveis
@@ -250,10 +249,10 @@ function Main({
                     <MenuTools 
                         questionMain={questionMain} 
                         setQuestionMain={setQuestionMain} 
-                        optionMain={optionMain}
+                        optionMain={optionMain}            
                         optionMainNumberId={optionMainNumberId}
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
-                        setDescriptionDisplay={setDescriptionDisplay}              
+                        setDescriptionDisplay={setDescriptionDisplay}
                     />
 
                 </div>

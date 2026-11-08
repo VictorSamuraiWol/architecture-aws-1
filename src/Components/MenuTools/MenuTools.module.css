@@ -30,10 +30,10 @@
 }
 
 .containerDescriptionIcon {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   text-decoration: none;
 }
 
@@ -59,13 +59,11 @@
 }
 
 .invisibleAnswerDescription {
-    visibility: hidden;
-
+  visibility: hidden;
 }
 
 .invisibleDescription {
-    visibility: hidden;
- 
+  visibility: hidden;
 }
 
 .popupDelete {

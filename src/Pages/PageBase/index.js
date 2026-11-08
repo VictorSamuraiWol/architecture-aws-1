@@ -34,6 +34,10 @@ function PageBase() {
 
     const [activePauseTimer, setActivePauseTimer] = useState(false) // ativa o pause do Timer
 
+    const [questionFilter, setQuestionFilter] = useState('') // filtrar o número buscado na ModalSearchTools
+
+    const [activeSearchTools, setActiveSearchTools] = useState(false) // ativado quando estiver buscando um número pela ModalSearchTools
+
     const { listUnicQuestionsContextLength, listMultiQuestionsContextLength, listThreeMultiQuestionsContextLength } = useContext(DataContext)
 
     const dataResults = { // resultados estatísticos
@@ -199,7 +203,7 @@ function PageBase() {
                         listImagesQuestions, setListImagesQuestions, listIconsDescriptions, setListIconsDescriptions,
                         listImagesDescriptions, setListImagesDescriptions, questionAnswerButtonNextMain, setQuestionAnswerButtonNextMain, 
                         questionAnswerButtonNextMultiAndThreeMulti, setQuestionAnswerButtonNextMultiAndThreeMulti, checkAnswers, numberRandomPath,
-                        activePauseTimer, setActivePauseTimer, zeroImage
+                        activePauseTimer, setActivePauseTimer, zeroImage, questionFilter, setQuestionFilter, activeSearchTools, setActiveSearchTools
                     }}
                 />                
 

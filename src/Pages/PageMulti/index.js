@@ -24,11 +24,26 @@ function PageMulti() {
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, loading, setLoading } = useContext(DataContext)
 
-    const [questionMulti, setQuestionMulti] = useState(listMultiQuestionsContext[Math.floor(Math.random() * listMultiQuestionsContextLength)]) // mostrar uma questão ao entrar na página Multi
-
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        setActivePageDemo, loginValidate, setActivePageInfo, setActivePageQuizBuilder, setActivePauseTimer  } = useOutletContext()
+        setActivePageDemo, loginValidate, setActivePageInfo, setActivePageQuizBuilder, setActivePauseTimer, questionFilter, activeSearchTools, setActiveSearchTools  } = useOutletContext()
+
+    function whatNextQuestionMulti() { // qual a próxima questão, se é pela pesquisa no Menu ou pelo sistema randômico
+        let question
+
+        if (activeSearchTools) {
+            question = questionFilter // pesquisa no Menu
+
+        }  else {
+            question = listMultiQuestionsContext[Math.floor(Math.random() * listMultiQuestionsContextLength)] // sistema randômico
+
+        }
+
+        return question
+
+    }
+
+    const [questionMulti, setQuestionMulti] = useState(whatNextQuestionMulti()) // mostrar uma questão ao entrar na página Multi
 
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela e desativa as demais
@@ -126,6 +141,11 @@ function PageMulti() {
         questionMultiOptionMatch()
 
     }, [listMultiQuestionsContext, listMultiQuestionsContextLength, listMultiOptionsContext, questionMulti, setQuestionMulti, setOptionMulti, setOptionMultiNumberId, setLoading])
+
+    useEffect(() => {
+        setActiveSearchTools(false) // desativa a questão capturada pela pesquisa no menu, logo após renderizar a página, uma vez que foi utilizada
+
+    }, [setActiveSearchTools]) 
 
     return(
         <div>

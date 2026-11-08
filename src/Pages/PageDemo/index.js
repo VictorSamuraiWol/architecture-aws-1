@@ -15,7 +15,7 @@ function PageDemo() {
 
   const { setGetApi } = useContext(DataContext)
 
-  const [questionDemo] = useState({
+  const [questionDemo, setQuestionDemo] = useState({
     "questionText": "A leading online gaming company is migrating its flagship application to AWS Cloud for delivering its online games to users across the world. The company would like to use a Network Load Balancer to handle millions of requests per second. The engineering team has provisioned multiple instances in a public subnet and specified these instance IDs as the targets for the NLB. As a solutions architect, can you help the engineering team understand the correct routing mechanism for these target instances?",
     "correctAnswer": "Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance.",
     "iconDescription": "",
@@ -26,7 +26,7 @@ function PageDemo() {
     "id": "0"
   })
 
-  const [optionDemo] = useState([
+  const [optionDemo, setOptionDemo] = useState([
     "Traffic is routed to instances using the primary elastic IP address specified in the primary network interface for the instance.",
     "Traffic is routed to instances using the instance ID specified in the primary network interface for the instance.",
     "Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance.",
@@ -99,6 +99,8 @@ function PageDemo() {
             descriptionDisplay={descriptionDisplay}
             setDescriptionDisplay={setDescriptionDisplay}             
             questionMain={questionDemo}
+            setQuestionMain={setQuestionDemo}
+            setQuestionMulti={setQuestionDemo}
             optionMain={optionDemo}                
             optionMainNumberId={[0, 0]}
             optNum1={0}
@@ -124,4 +126,4 @@ function PageDemo() {
 
 }
 
-export default PageDemo
+export default PageDemo;

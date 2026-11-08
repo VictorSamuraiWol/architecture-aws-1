@@ -176,7 +176,7 @@ function MultiMain({
                     <MenuTools
                         questionMulti={questionMulti}
                         setQuestionMulti={setQuestionMulti}
-                        optionMulti={optionMulti} 
+                        optionMulti={optionMulti}
                         optionMultiNumberId={optionMultiNumberId}
                         setAnswerDescriptionDisplay={setAnswerDescriptionDisplay}
                         setDescriptionDisplay={setDescriptionDisplay}               

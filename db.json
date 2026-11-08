@@ -22,7 +22,8 @@
       "description": "AWS Storage Gateway's file interface, or file gateway, offers you a seamless way to connect to the cloud in order to store application data files and backup images as durable objects on Amazon S3 cloud storage. File gateway offers SMB or NFS-based access to data in Amazon S3 with local caching.",
       "imageDescription": "",
       "questionNumber": "1",
-      "id": "91c1"
+      "id": "91c1",
+      "tags": ["main"]
     },
     {
       "questionText": "What feature of an Amazon S3 bucket only be suspended and not disabled once it have been enabled?",
@@ -32,7 +33,8 @@
       "questionNumber": "2",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "ab6c"
+      "id": "ab6c",
+      "tags": ["main"]
     },
     {
       "questionText": "Massive volumes of data that can be divided into two categories. The 'hot data' need to be both processed and stored quickly in a parallel and distributed fashion. The 'cold data need to be kept for reference with quick access for reads and updates at a low cost. What AWS services is BEST suited to accelerate the process?",
@@ -42,7 +44,8 @@
       "questionNumber": "3",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "9ee6"
+      "id": "9ee6",
+      "tags": ["main"]
     },
     {
       "questionText": "A company utilizes User Datagram Protocol and needs to support fast regional failover in case an AWS Region goes down. The company wants to continue using its own custom Domain Name System (DNS) service. What AWS service represent the best solution?",
@@ -52,7 +55,8 @@
       "questionNumber": "4",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "1f16"
+      "id": "1f16",
+      "tags": ["main"]
     },
     {
       "questionText": "A company has a web application that runs 24*7 in the production environment. The company runs a clone of the same application in the dev environment for up to 8 hours every day. The company wants to build the MOST cost-optimal solution by deploying these applications using the best-fit pricing options for EC2 instances. What would you recommend?",
@@ -62,7 +66,8 @@
       "questionNumber": "6",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "6a3a"
+      "id": "6a3a",
+      "tags": ["main"]
     },
     {
       "questionText": "A market need to support both stateful and stateless client-server communications via the application programming interface (APIs) developed using its platform. You have been hired by the startup to build a solution to fulfill this market need using Amazon API Gateway.",
@@ -72,7 +77,8 @@
       "questionNumber": "7",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "016d"
+      "id": "016d",
+      "tags": ["main"]
     },
     {
       "questionText": "Amazon SQS is used for migrate several core applications to the cloud to ensure high availability and cost efficiency. The development team expects a peak rate of about 1000 messages per second to be processed via SQS. It is important that the messages are processed in order. Which option can be used to implement this system?",
@@ -82,7 +88,8 @@
       "questionNumber": "8",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "891d"
+      "id": "891d",
+      "tags": ["main"]
     },
     {
       "questionText": "An EC2 instance 1A is running in AWS Region A. Later, it was created a new Amazon Machine Image (AMI) in Region A from a snapshot. This AMI is then copied into another Region B. It was provisioned an instance 1B in Region B using this new AMI in Region B. What entities exist in Region B?",
@@ -92,7 +99,8 @@
       "questionNumber": "9",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "5334"
+      "id": "5334",
+      "tags": ["main"]
     },
     {
       "questionText": "A Fleet of EC2 instances realized a specialized task that must deliver high random I/O performance. Each instance in the fleet would have access to a dataset that is replicated across the instances by the application itself. Because of the resilient application architecture, the specialized task would continue to be processed even if any instance goes down, as the underlying application would ensure the replacement instance has access to the required dataset. Which of the following options is the MOST cost-optimal and resource-efficient solution to build this fleet of EC2 instances?",
@@ -102,7 +110,8 @@
       "questionNumber": "11",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "1840"
+      "id": "1840",
+      "tags": ["main"]
     },
     {
       "questionText": "Multiple microservices running on EC2 instances under an ALB. The team wants ti route traffic to multiple back-end services based on the URL path of the HTTP header. So it wants request for https://www.test.com/orders to go to a specific microservice and request for https://www.test.com/products to go to another microservice. Which of the following features of ALB can be used?",
@@ -112,7 +121,8 @@
       "questionNumber": "12",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "491b"
+      "id": "491b",
+      "tags": ["main"]
     },
     {
       "questionText": "Um arquiteto de soluções criou a seguinte política e associou a um grupo do AWS IAM contendo vários usuários administrativos. Qual é o efeito dessa política?",
@@ -122,7 +132,8 @@
       "questionNumber": "13",
       "imageQuestion": "imageQuestion13",
       "imageDescription": "",
-      "id": "133a"
+      "id": "133a",
+      "tags": ["main"]
     }
   ],
   "listOptionsMain": [
@@ -236,7 +247,8 @@
       "questionNumber": "5",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "8eca"
+      "id": "8eca",
+      "tags": ["multi"]
     },
     {
       "questionText": "E-commerce company is documenting the process flow to provision EC2 via the Amazon EC2 API. These instances are to be used for an internal application. Can you indentify the storage volume types that CANNOT be used as boot volumes while creating the instances? Select two.",
@@ -247,7 +259,8 @@
       "questionNumber": "10",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "ec16"
+      "id": "ec16",
+      "tags": ["multi"]
     },
     {
       "questionText": "The IT department is conducting a review of the checklist for tasks related to AWS IAM. Which best practices would you recommend? Select two.",
@@ -258,7 +271,8 @@
       "questionNumber": "15",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "ac63"
+      "id": "ac63",
+      "tags": ["multi"]
     },
     {
       "questionText": "A company uses DynamoDB as a data store for various kinds of customer data. Some of these use-cases require a high request rate, low predictable latency, and reliability. The company wants to add a caching layer to support high read volumes.Which of the following AWS services would you recommend as a caching layer? Select two.",
@@ -269,7 +283,8 @@
       "description": "DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement – from milliseconds to microseconds – even at millions of requests per second. DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables, without requiring developers to manage cache invalidation, data population, or cluster management. ElastiCache for Memcached is an ideal front-end for data stores like Amazon RDS or Amazon DynamoDB, providing a high-performance middle tier for applications with extremely high request rates and/or low latency requirements.",
       "imageDescription": "",
       "questionNumber": "20",
-      "id": "5703"
+      "id": "5703",
+      "tags": ["multi"]
     },
     {
       "questionText": "The company has defined different retention periods for different objects present in the S3, but the retention rules do not seem to work as expected. Which of the following options represent a valid configuration for setting up retention periods for objects. Select two.",
@@ -280,7 +295,8 @@
       "questionNumber": "25",
       "imageQuestion": "",
       "imageDescription": "",
-      "id": "1e6b"
+      "id": "1e6b",
+      "tags": ["multi"]
     }
   ],
   "listOptionsMulti": [
@@ -341,7 +357,8 @@
       "description": "A security group acts as a virtual firewall that controls the traffic for one or more instances. When you launch an instance, you can specify one or more security groups; otherwise, we use the default security group. You can add rules to each security group that allows traffic to or from its associated instances. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance. The following are the characteristics of security group rules: 1. By default, security groups allow all outbound traffic. 2. Security group rules are always permissive; you can't create rules that deny access. 3. Security groups are stateful PostgreSQL port = 5432 HTTP port = 80 HTTPS port = 443 The traffic goes like this : The client sends an HTTPS request to ALB on port 443. This is handled by the rule - 'The security group of the Application Load Balancer should have an inbound rule from anywhere on port 443' The Application Load Balancer then forwards the request to one of the Amazon EC2 instances. This is handled by the rule - 'The security group of the Amazon EC2 instances should have an inbound rule from the security group of the Application Load Balancer on port 80' The Amazon EC2 instance further accesses the PostgreSQL database managed by Amazon RDS on port 5432. This is handled by the rule - 'The security group of Amazon RDS should have an inbound rule from the security group of the Amazon EC2 ins ances in the Auto Scaling group on port 5432'",
       "imageDescription": "",
       "questionNumber": "50",
-      "id": "50ae"
+      "id": "50ae",
+      "tags": ["threeMulti"]
     },
     {
       "questionText": "The DevOps team at an IT company is provisioning a two-tier application in a VPC with a public subnet and a private subnet. The team wants to use either a Network Address Translation (NAT) instance or a Network Address Translation (NAT) gateway in the public subnet to enable instances in the private subnet to initiate outbound IPv4 traffic to the internet but needs some technical assistance in terms of the configuration options available for the Network Address Translation (NAT) instance and the Network Address Translation (NAT) gateway. As a solutions architect, which of the following options would you identify as CORRECT? (Select three)",
@@ -353,7 +370,8 @@
       "description": "A NAT instance or a NAT Gateway can be used in a public subnet in your VPC to enable instances in the private subnet to initiate outbound IPv4 traffic to the Internet.",
       "imageDescription": "description100",
       "questionNumber": "100",
-      "id": "100a"
+      "id": "100a",
+      "tags": ["threeMulti"]
     }
   ],
   "listOptionsThreeMulti": [

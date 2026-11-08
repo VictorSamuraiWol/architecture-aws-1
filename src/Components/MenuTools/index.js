@@ -3,6 +3,8 @@ import ModalEditMenu from '../Modal/ModalEditMenu'
 import PopupDeleteQuestionOption from '../Popups/PopupDeleteQuestionOption'
 import PopupAlertMessage from '../Popups/PopupAlertMessage'
 import DescriptionIconMenuTools from './DescriptionIconMenuTools'
+import ModalSearchTools from '../Modal/ModalSearchTools'
+import soundClick from '../../audios/clickAudio.mp3'
 import { useContext, useState } from 'react'
 import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
@@ -15,11 +17,16 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, deleteApi, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
-  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate, setActivePauseTimer } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate, setActivePauseTimer, mute } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
   const [activeDescriptionIcon, setActiveDescriptionIcon] = useState('')
+  const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
+
+  const sound = () => { // ativa o som 'audioClick'
+    mute === false && audioClick.play()
+  }
 
   // função que deleta a questão de única escolha atual
   async function onDeleteQuestion(questionMain) {
@@ -367,7 +374,8 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
             />
           }
 
-          <FaPlusCircle 
+          <FaPlusCircle
+            onClick={sound}
             onMouseOver={() => setActiveDescriptionIcon('create')}
             onMouseOut={() => setActiveDescriptionIcon('')}
             className={styles.plusIcon}
@@ -388,6 +396,31 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
           setActiveDescriptionIcon={setActiveDescriptionIcon}
         />
 
+        {/* icon search */}
+        <div className={styles.containerDescriptionIcon}>
+          {activeDescriptionIcon && 
+            <DescriptionIconMenuTools 
+              activeDescriptionIcon={activeDescriptionIcon} 
+              key={'search'}
+              text={'search'} 
+            />
+          }
+
+          <ModalSearchTools
+            activeDescriptionIcon={activeDescriptionIcon}
+            setActiveDescriptionIcon={setActiveDescriptionIcon}
+            listUnicQuestionsContext={listUnicQuestionsContext}
+            listMultiQuestionsContext={listMultiQuestionsContext}
+            listThreeMultiQuestionsContext={listThreeMultiQuestionsContext}
+            listUnicOptionsContext={listUnicOptionsContext}
+            listMultiOptionsContext={listMultiOptionsContext}
+            listThreeMultiOptionsContext={listThreeMultiOptionsContext}
+            setQuestionMain={setQuestionMain}
+            setQuestionMulti={setQuestionMulti}
+          />
+
+        </div>
+
         {/* icon delete */}
         <div className={styles.containerDescriptionIcon}>
           {activeDescriptionIcon && 
@@ -399,7 +432,7 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
           }
 
           <MdDelete
-            onClick={() => {setActivePopupDelete(true)}}
+            onClick={() => {setActivePopupDelete(true); sound()}}
             onMouseOver={() => setActiveDescriptionIcon('delete')}
             onMouseOut={() => setActiveDescriptionIcon('')}
             className={styles.deleteIcon}            

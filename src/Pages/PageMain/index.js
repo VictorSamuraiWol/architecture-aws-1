@@ -24,11 +24,26 @@ function PageMain() {
     // pegando as variáveis através do 'useContext' do componente 'DataContext'
     const { listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, loading, setLoading } = useContext(DataContext)
 
-    const [questionMain, setQuestionMain] = useState(listUnicQuestionsContext[Math.floor(Math.random() * listUnicQuestionsContextLength)]) // mostrar uma questão ao entrar na página Main
-
     // pegando a variável booleana para habilitar ou desabilitar tudo quando tiver conectado ou não com a api usando 'useOutletContext()' da página base e o número random da questão anterior que foi respondida
     const { loginValidate, activePageFormsQuestionsOptions, setActivePageFormsQuestionsOptions, setActivePageDemo, activePageMain, setActivePageMain, setActivePageMulti, setActivePageThreeMulti, 
-        setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder, setActivePauseTimer } = useOutletContext()
+        setActivePageInfo, activeModalEditMenu, setActiveModalEditMenu, setActivePageQuizBuilder, setActivePauseTimer, questionFilter, activeSearchTools, setActiveSearchTools } = useOutletContext()
+
+    function whatNextQuestionMain() { // qual a próxima questão, se é pela pesquisa no Menu ou pelo sistema randômico
+        let question
+
+        if (activeSearchTools) {
+            question = questionFilter // pesquisa no Menu
+
+        }  else {
+            question = listUnicQuestionsContext[Math.floor(Math.random() * listUnicQuestionsContextLength)] // sistema randômico
+
+        }
+
+        return question
+
+    }
+
+    const [questionMain, setQuestionMain] = useState(whatNextQuestionMain()) // mostrar uma questão ao entrar na página Main
 
     useEffect(() => {
         // tornar a página ativa ao entrar na rota dela e desativa as demais
@@ -139,6 +154,11 @@ function PageMain() {
         questionOptionMatch() // chamando a função que busca uma questão e a opção correspondentes, com base na 'questionMain' da página Main
 
     }, [listUnicQuestionsContext, listUnicQuestionsContextLength, listUnicOptionsContext, questionMain, setQuestionMain, setOptionMain, setOptionMainNumberId, setLoading, activeModalEditMenu, setActiveModalEditMenu])
+
+    useEffect(() => {
+        setActiveSearchTools(false) // desativa a questão capturada pela pesquisa no menu, logo após renderizar a página, uma vez que foi utilizada
+
+    }, [setActiveSearchTools])
 
     return(
         <div className={styles.pageMainStyles}>

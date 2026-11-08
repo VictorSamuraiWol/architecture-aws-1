@@ -135,6 +135,10 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
 
   }
 
+  const sound = () => { // ativa o som 'audioClick'
+    mute === false && audioClick.play()
+  }
+
   useEffect(() => {
     function voidFieldModalEdit () { // função para capturar os campos obrigatórios que estão vazios
       if (activePageMain) {
@@ -661,9 +665,10 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
         }
 
         <MdEditSquare
-        onMouseOver={() => setActiveDescriptionIcon('edit')}
-        onMouseOut={() => setActiveDescriptionIcon('')}
-        className={styles.editIcon}
+          onClick={sound}
+          onMouseOver={() => setActiveDescriptionIcon('edit')}
+          onMouseOut={() => setActiveDescriptionIcon('')}
+          className={styles.editIcon}
         />                
 
       </div>
