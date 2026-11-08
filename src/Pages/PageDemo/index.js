@@ -26,7 +26,7 @@ function PageDemo() {
     "id": "0"
   })
 
-  const [optionDemo, setOptionDemo] = useState([
+  const [optionDemo] = useState([
     "Traffic is routed to instances using the primary elastic IP address specified in the primary network interface for the instance.",
     "Traffic is routed to instances using the instance ID specified in the primary network interface for the instance.",
     "Traffic is routed to instances using the primary private IP address specified in the primary network interface for the instance.",
@@ -99,8 +99,6 @@ function PageDemo() {
             descriptionDisplay={descriptionDisplay}
             setDescriptionDisplay={setDescriptionDisplay}             
             questionMain={questionDemo}
-            setQuestionMain={setQuestionDemo}
-            setQuestionMulti={setQuestionDemo}
             optionMain={optionDemo}                
             optionMainNumberId={[0, 0]}
             optNum1={0}
