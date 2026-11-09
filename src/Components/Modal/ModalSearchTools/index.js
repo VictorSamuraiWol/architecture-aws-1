@@ -2,8 +2,8 @@ import styles from './ModalSearchTools.module.css'
 import Modal from 'react-modal'
 import soundClick from '../../../audios/clickAudio.mp3'
 import DescriptionIconMenuTools from '../../MenuTools/DescriptionIconMenuTools'
-import numberNotFoundBg from '../../../imgs/numberNotFoundBg.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { DataContext } from '../../DataContext'
 import { useOutletContext } from 'react-router-dom'
 import { TiDeleteOutline } from "react-icons/ti"
 import { FaSearch } from "react-icons/fa";
@@ -19,7 +19,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 Modal.setAppElement('#root');
 
 function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, listUnicQuestionsContext, listMultiQuestionsContext, listThreeMultiQuestionsContext,
-  listUnicOptionsContext, listMultiOptionsContext, listThreeMultiOptionsContext, setQuestionMain, setQuestionMulti
+  listUnicOptionsContext, listMultiOptionsContext, listThreeMultiOptionsContext, questionMain, setQuestionMain, questionMulti, setQuestionMulti
  }) {
 
   const audioClick = new Audio(soundClick) // armazena o som 'soundClick'
@@ -32,13 +32,23 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
 
   const [allListsOptions] = useState([...listUnicOptionsContext, ...listMultiOptionsContext, ...listThreeMultiOptionsContext])
 
-
   const [optionFilter, setOptionFilter] = useState('')
 
-  const { mute, setActivateNavigateDefault, setPathNavigate, questionFilter, setQuestionFilter, setActiveSearchTools, activePageMain, activePageMulti, activePageThreeMulti } = useOutletContext()
+  const [activeErrorMessageInput, setActiveErrorMessageInput] = useState(false)
+
+  const [errorMessageText, setErrorMessageText] = useState(false)
+
+  const { questionDemo, optionDemo } = useContext(DataContext)
+
+  const { mute, setActivateNavigateDefault, setPathNavigate, questionFilter, setQuestionFilter, setActiveSearchTools, activePageDemo, activePageMain, activePageMulti, 
+    activePageThreeMulti } = useOutletContext()
 
   function openModal() {
     setModalIsOpen(true)
+    setValueNumber('')
+    setQuestionFilter('')
+    setOptionFilter('')
+    setActiveErrorMessageInput(false)
 
   }
 
@@ -57,7 +67,11 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
     value = e.target.value
     setValueNumber(e.target.value)
 
-    if (value) {
+    if (value === '0' && questionDemo.questionNumber === '0') { // se a pesquisa for o número 0
+      setQuestionFilter(questionDemo)
+      setOptionFilter({optionA: optionDemo[0], optionB: optionDemo[1], optionC: optionDemo[2], optionD: optionDemo[3]})
+
+    } else if (value) {
       setQuestionFilter(allListsQuestions.filter(e => e.questionNumber === value)[0])
       setOptionFilter(allListsOptions.filter(e => e.optionNumber === value)[0])
 
@@ -75,12 +89,43 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
 
     if (questionFilter && optionFilter) {
       tags = questionFilter.tags
-      tagFilter = tags?.filter(tag => tag === 'main' || tag === 'multi' || tag === 'threeMulti')[0] // filtra as tags descritas
+      tagFilter = tags?.filter(tag => tag === 'demo' || tag === 'main' || tag === 'multi' || tag === 'threeMulti')[0] // filtra as tags descritas
 
     }
 
-    if (tagFilter) {
-      if (tagFilter === 'main') {
+    if (valueNumber === '') { // se o campo tiver vazio
+      setActiveErrorMessageInput(true)
+      setErrorMessageText("Please fill in this field.")
+
+      setTimeout(() => {
+        setActiveErrorMessageInput(false)
+
+      }, 3000)
+
+    } else if (listUnicQuestionsContext.length === 0 || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) { // se não tiver com o banco de dados ativo
+      setActiveErrorMessageInput(true)
+      setErrorMessageText("No data found. You need to mock an API to use this search tool.")
+
+      setTimeout(() => {
+        setActiveErrorMessageInput(false)
+
+      }, 3000)
+
+    } else if (tagFilter) {
+      if ((activePageDemo && questionDemo?.questionNumber === valueNumber) || questionMain?.questionNumber === valueNumber || questionMulti?.questionNumber === valueNumber) {
+        setActiveErrorMessageInput(true)
+        setErrorMessageText("Please choose a number different from the current page.")
+
+        setTimeout(() => {
+          setActiveErrorMessageInput(false)
+
+        }, 3000)
+
+      } else if (tagFilter === 'demo') {
+        setActivateNavigateDefault(true)
+        setPathNavigate('/')
+
+      } else if (tagFilter === 'main') {
         setActivateNavigateDefault(true)
         setPathNavigate('/page-main')
         activePageMain && setQuestionMain(questionFilter) // se tiver na mesma página atualizar por aqui
@@ -157,8 +202,15 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
               onChange={(e) => onChangeNumber(e)}
               className={styles.styleInput}
             />
-
           </div>
+
+          <span className={activeErrorMessageInput ? 
+            styles.errorMessageInput 
+            :
+            styles.hiddenErrorMessageInput}
+          >
+            {errorMessageText}
+          </span>
 
         </div>
 
@@ -204,11 +256,7 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
           </>}
 
           {!questionFilter && valueNumber !== '' && 
-          <img
-            className={styles.numberNotFoundBg}
-            src={numberNotFoundBg} 
-            alt='number not found bg' 
-          />}
+          <span className={styles.numberNotFound}>Number not found.</span>}
           
         </div>
 

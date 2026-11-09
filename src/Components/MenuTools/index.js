@@ -415,7 +415,9 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
             listUnicOptionsContext={listUnicOptionsContext}
             listMultiOptionsContext={listMultiOptionsContext}
             listThreeMultiOptionsContext={listThreeMultiOptionsContext}
+            questionMain={questionMain}
             setQuestionMain={setQuestionMain}
+            questionMulti={questionMulti}
             setQuestionMulti={setQuestionMulti}
           />
 

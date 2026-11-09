@@ -5,6 +5,7 @@
   --color-fourth: #430A5D;
   --color-correct: #4CAF50; /* tom verde vibrante */
   --color-incorrect: #B71C1C; /* tom vermelho mais escuro e forte */
+  --color-placeholder: #6e6259;
 }
 
 body {
