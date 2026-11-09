@@ -102,6 +102,15 @@ function ModalSearchTools({ activeDescriptionIcon, setActiveDescriptionIcon, lis
 
       }, 3000)
 
+    } else if (activePageDemo && valueNumber === '0' && (listUnicQuestionsContext.length === 0 || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0)) { // se não tiver com o banco de dados ativo
+      setActiveErrorMessageInput(true)
+      setErrorMessageText("Please choose a number different from the current page.")
+
+      setTimeout(() => {
+        setActiveErrorMessageInput(false)
+
+      }, 3000)
+
     } else if (listUnicQuestionsContext.length === 0 || listMultiQuestionsContext.length === 0 || listThreeMultiQuestionsContext.length === 0) { // se não tiver com o banco de dados ativo
       setActiveErrorMessageInput(true)
       setErrorMessageText("No data found. You need to mock an API to use this search tool.")
