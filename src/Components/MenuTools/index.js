@@ -10,6 +10,7 @@ import { DataContext } from '../DataContext'
 import { MdDelete } from "react-icons/md"
 import { Link, useOutletContext } from 'react-router-dom'
 import { FaPlusCircle } from "react-icons/fa"
+import { IoTimerSharp } from "react-icons/io5"
 
 function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumberId, questionMulti, setQuestionMulti, 
   optionMulti, optionMultiNumberId, setAnswerDescriptionDisplay, setDescriptionDisplay }) {
@@ -17,7 +18,9 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
   // pegando as variáveis através do 'useContext' do componente 'DataContext'
   const { listUnicQuestionsContext, listUnicOptionsContext, listMultiQuestionsContext, listMultiOptionsContext, listThreeMultiQuestionsContext, listThreeMultiOptionsContext, deleteApi, setDeleteApi, ableDisableMenuTools, setAbleDisableMenuTools } = useContext(DataContext)
 
-  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate, setActivePauseTimer, mute } = useOutletContext()
+  const { activePageDemo, activePageMain, activePageMulti, activePageThreeMulti, setActivateNavigateDefault, setPathNavigate, setActivePauseTimer, mute,
+    activeTimerTools, setActiveTimerTools
+   } = useOutletContext()
 
   const [activePopupDelete, setActivePopupDelete] = useState(false) // ativa o componente 'PopupDeleteQuestionOption'
   const [staticQuestionAlert, setStaticQuestionAlert] = useState(false) // ativa o componente PopupAlertMessage
@@ -419,6 +422,25 @@ function MenuTools({ questionMain, setQuestionMain, optionMain, optionMainNumber
             setQuestionMain={setQuestionMain}
             questionMulti={questionMulti}
             setQuestionMulti={setQuestionMulti}
+          />
+
+        </div>
+
+        {/* icon timer */}
+        <div className={styles.containerDescriptionIcon}>
+          {activeDescriptionIcon && 
+            <DescriptionIconMenuTools 
+              activeDescriptionIcon={activeDescriptionIcon} 
+              key={'timer'}
+              text={'timer'} 
+            />
+          }
+
+          <IoTimerSharp
+            onClick={() => {setActiveTimerTools(!activeTimerTools); sound()}}
+            onMouseOver={() => setActiveDescriptionIcon('timer')}
+            onMouseOut={() => setActiveDescriptionIcon('')}
+            className={styles.timerIcon}   
           />
 
         </div>

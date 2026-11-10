@@ -52,7 +52,7 @@
   display: none;
 }
 
-.deleteIcon, .plusIcon {
+.deleteIcon, .timerIcon, .plusIcon {
   display: flex;
   color: var(--color-fourth);
   cursor: pointer;

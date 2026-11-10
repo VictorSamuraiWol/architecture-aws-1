@@ -5,18 +5,17 @@ import { Link, useOutletContext } from 'react-router-dom'
 
 function Footer({ question, option }) {
     const { loginValidate, activePageFormsQuestionsOptions, activePageInfo, activePageQuizBuilder, activePageDemo, activePageMain, activePageMulti, 
-        activePageThreeMulti } = useOutletContext()
-
+        activePageThreeMulti, activeTimerTools } = useOutletContext()
 
     return(
-        <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo || activePageQuizBuilder || ((question && option?.length === 0) || (!question && option?.length > 0)) 
+        <div className={!loginValidate || activePageFormsQuestionsOptions || activePageInfo || activePageQuizBuilder || !activeTimerTools || ((question && option?.length === 0) || (!question && option?.length > 0)) 
         ? 
-        styles.footerForms 
+        styles.footerNotTimer 
         : 
         styles.footer}>
             {/* Cronômetro no componente header para renderizar toda vez que mudar de página, permitindo assim reiniciar a contagem do tempo */}
             {loginValidate && activePageFormsQuestionsOptions === false && (activePageMain || activePageMulti || activePageThreeMulti || activePageDemo) &&
-            (question && option?.length > 0) &&
+            (question && option?.length > 0) && activeTimerTools &&
                 <Timer />
             }
             

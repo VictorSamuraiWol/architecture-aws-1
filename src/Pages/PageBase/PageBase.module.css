@@ -1,21 +1,21 @@
 .soundFull {
     position: fixed;
+    top: 0;
     left: 2px;
-    bottom: 0;
-    color: var(--color-first);
+    color: var(--color-fourth);
     width: 1.1rem;
     height: 1.1rem;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
 .soundMute {
     position: fixed;
+    top: 0;
     left: 2px;
-    bottom: 0;
-    color: var(--color-first);
+    color: var(--color-fourth);
     width: 1.1rem;
     height: 1.1rem;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
