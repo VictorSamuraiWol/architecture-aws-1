@@ -87,19 +87,27 @@
 }
 
 .styleInput {
-  color: var(--color-fourth);
-  background-color: var(--color-first);
-  border: 2px solid var(--color-third);
-  width: 100%;
-  height: 100%;
   font-size: 1rem;
   font-weight: bold;
+  color: var(--color-fourth);
+  background-color: var(--color-first);
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-third);
   border-radius: 8px;
   box-sizing: border-box;
+  outline: none;
 }
 
 .styleInput::placeholder {
   color: var(--color-placeholder);
+}
+
+/* esconder os spinners (setas de incremento/decremento) nos navegadores */
+.styleInput[type="number"]::-webkit-inner-spin-button,
+.styleInput[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .errorMessageInput {
@@ -247,8 +255,5 @@
   label, .styleInput, .idSearch, .numberSearch, .questionTitleSearch, .questionSearch, .optionsSearch, .optionSearch {
     font-size: 0.9rem;
   }
-
-
-  
 
 }

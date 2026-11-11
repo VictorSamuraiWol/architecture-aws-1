@@ -136,4 +136,4 @@ function HeaderLogin() {
   )
 }
 
-export default HeaderLogin
+export default HeaderLogin;

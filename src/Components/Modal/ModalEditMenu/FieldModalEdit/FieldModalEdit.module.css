@@ -36,10 +36,15 @@
 }
 
 .inputFieldModalEdit {
+  font-size: 1rem;
   color: var(--color-fourth);
   background-color: var(--color-first);
+  width: 100%;
+  height: 50px;
   border: 1px solid var(--color-third);
-  width: 99%;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .inputErrorFieldModalEdit {
@@ -75,19 +80,26 @@
   transform: translateY(-30%) rotate(-135deg);
 }
 
-select {
-  color: var(--color-fourth);
-  width: 100%;
-  font-size: 0.9rem;
-  padding: 6px 32px 6px 6px;
-  height: 100%;
-  border-radius: 8px;
-  outline: none;
+.selectEdit {
   appearance: none;
   -webkit-appearance: none;
-  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-fourth);
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding: 6px 32px 6px 6px;
+  border: 1px solid var(--color-second);
+  border-radius: 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+.optionEdit {
+  color: var(--color-first);
+  background-color: var(--color-third);
 }
 
 .errorMessageText {
@@ -117,10 +129,6 @@ select {
 }
 
 @media (max-width: 860px) {
-  .inputFieldModalEdit {
-    height: 50px;
-  }
-
   .selectWrap {
     width: 100px;
   }

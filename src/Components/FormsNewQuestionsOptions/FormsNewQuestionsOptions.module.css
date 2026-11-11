@@ -5,6 +5,53 @@
     background-size: contain;
 }
 
+.containerLabelsInputsRadios {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--color-first);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.containerLabelInputRadio {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.labelRadioForm {
+    color: var(--color-fourth);
+}
+
+.inputRadioForm {
+    position: relative;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 1px solid var(--color-fourth);
+    border-radius: 50%;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out, border 0.3s ease-in-out, text-shadow 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin: 0;
+    cursor: pointer;
+}
+
+.inputRadioForm:checked::after { 
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-fourth);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .backgroundImage { 
     position: absolute;
     height: 100%;
@@ -58,11 +105,6 @@
     z-index: 1;
 }
 
-.specificStylesLabel {
-    font-weight: bold;
-    max-width: max-content;
-}
-
 .containerButtonSave {
     display: flex;
     justify-content: center;
@@ -73,6 +115,10 @@
     font-size: 1rem;
     background-color: var(--color-second);
     z-index: 1;
+}
+
+.invisible {
+    display: none;
 }
 
 .popupCheckForm {
@@ -140,6 +186,24 @@
 }
 
 @media (max-width: 860px) {
+    .containerLabelsInputsRadios {
+        gap: 8px;
+    }
+
+    .labelRadioForm {
+        font-size: 0.9rem;
+    }
+
+    .inputRadioForm {
+        width: 14px;
+        height: 14px;
+    }
+
+    .inputRadioForm:checked::after { 
+        width: 7px;
+        height: 7px;
+    }
+
     .formQuestion {
         gap: 6px;
         width: 45%;
@@ -170,6 +234,20 @@
 }
 
 @media (max-width: 580px) {
+    .labelRadioForm {
+        font-size: 0.8rem;
+    }
+
+    .inputRadioForm {
+        width: 12px;
+        height: 12px;
+    }
+
+    .inputRadioForm:checked::after { 
+        width: 6px;
+        height: 6px;
+    }
+
     .formQuestion {
         gap: 4px;
         width: 40%;

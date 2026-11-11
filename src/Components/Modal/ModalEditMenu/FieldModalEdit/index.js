@@ -27,22 +27,24 @@ function FieldModalEdit({ name, newValue, onChangeModal, required, errorMessageT
             onChange={(e) => {onChangeModal(e); setOpenSelect(false)}}
             onBlur={() => setOpenSelect(false)}
             onMouseDown={() => setOpenSelect(open => !open)}
+            className={styles.selectEdit}
           >                            
             <option
-                value='' 
-                disabled 
+              value='' 
+              disabled
+              className={styles.optionEdit}
             >
-                Select an option
+              Select an option
             </option>
 
             {name === "Image Question:" && 
-                listImagesQuestions.map(image => <option key={image} value={image}>{image}</option>)
+              listImagesQuestions.map(image => <option key={image} value={image} className={styles.optionEdit}>{image}</option>)
             }
             {name === "Icon Description:" && 
-                listIconsDescriptions.map(icon => <option key={icon} value={icon}>{icon}</option>)
+              listIconsDescriptions.map(icon => <option key={icon} value={icon} className={styles.optionEdit}>{icon}</option>)
             }
             {name === "Image Description:" && 
-                listImagesDescriptions.map(image => <option key={image} value={image}>{image}</option>)
+              listImagesDescriptions.map(image => <option key={image} value={image} className={styles.optionEdit}>{image}</option>)
             }
           </select>
 

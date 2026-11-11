@@ -120,6 +120,12 @@ function FormsNewQuestionsOptions() {
     const [checkEqualAnswersMulti, setCheckEqualAnswersMulti] = useState(false)
     const [checkEqualAnswersThreeMulti, setCheckEqualAnswersThreeMulti] = useState(false)
 
+    // variáveis usadas no input radio
+    const [activeAll, setActiveAll] = useState(true) 
+    const [activeMain, setActiveMain] = useState(false)
+    const [activeMulti, setActiveMulti] = useState(false)
+    const [activeThreeMulti, setActiveThreeMulti] = useState(false)
+
     useEffect(() => {        
         // capturando o número de todas as opções presentes nos formulários 2 e 4
         listUnicOptionsContext && listMultiOptionsContext && listThreeMultiOptionsContext && 
@@ -145,6 +151,34 @@ function FormsNewQuestionsOptions() {
 
 
     }, [newOptionNumberMain, newOptionNumberMulti, newOptionNumberThreeMulti])
+
+    function ableQuestion(value) { // função para habilitar ou desabilitar as questões através do input radio
+        if (value === 'all') {
+            setActiveAll(true)
+            setActiveMain(false)
+            setActiveMulti(false)
+            setActiveThreeMulti(false)
+
+        } else if (value === 'main') {
+            setActiveMain(true)
+            setActiveAll(false)
+            setActiveMulti(false)
+            setActiveThreeMulti(false)
+
+        } else if (value === 'multi') {
+            setActiveMulti(true)
+            setActiveAll(false)
+            setActiveMain(false)
+            setActiveThreeMulti(false)
+
+        } else if (value === 'threeMulti') {
+            setActiveThreeMulti(true)
+            setActiveAll(false)
+            setActiveMain(false)
+            setActiveMulti(false)
+        }
+
+    }
 
     // função para tornar todos os campos obrigatórios vazios em destaque de vermelho (cor Material Design Red 900)
     function redVoidFieldForm(formX, formY) {
@@ -535,7 +569,62 @@ function FormsNewQuestionsOptions() {
 
     return(
         <div className={styles.formsNewQuestionsOptions}>
-            <div className={styles.forms}>
+            <div className={styles.containerLabelsInputsRadios}>
+                <div className={styles.containerLabelInputRadio}>
+                    <label className={styles.labelRadioForm} htmlFor='0'>All</label>
+
+                    <input 
+                        onChange={e => ableQuestion(e.target.value)}
+                        value='all'
+                        id='0' 
+                        type='radio' 
+                        name='create-questions' 
+                        className={styles.inputRadioForm}
+                        checked={activeAll ? true : false}
+                    />
+                </div>
+
+                <div className={styles.containerLabelInputRadio}>
+                    <label className={styles.labelRadioForm} htmlFor='1'>Main</label>
+
+                    <input
+                        onChange={e => ableQuestion(e.target.value)}
+                        value='main' 
+                        id='1' 
+                        type='radio' 
+                        name='create-questions' 
+                        className={styles.inputRadioForm}  
+                    />
+                </div>
+
+                <div className={styles.containerLabelInputRadio}>
+                    <label className={styles.labelRadioForm} htmlFor='2'>Multi</label>
+
+                    <input
+                        onChange={e => ableQuestion(e.target.value)}
+                        value='multi' 
+                        id='2' 
+                        type='radio' 
+                        name='create-questions' 
+                        className={styles.inputRadioForm} 
+                    />
+                </div>
+
+                <div className={styles.containerLabelInputRadio}>
+                    <label className={styles.labelRadioForm} htmlFor='3'>ThreeMulti</label>
+
+                    <input
+                        onChange={e => ableQuestion(e.target.value)} 
+                        value='threeMulti' 
+                        id='3' 
+                        type='radio' 
+                        name='create-questions' 
+                        className={styles.inputRadioForm} 
+                    />
+                </div>
+            </div>
+
+            <div className={(activeAll || activeMain) ? styles.forms : styles.invisible}>
                 {/* Form 1 (Questions) */}
                 <form 
                     className={styles.formQuestion}
@@ -555,7 +644,6 @@ function FormsNewQuestionsOptions() {
                         nameText4="Icon Description:"
                         nameText5="Description:*"
                         nameText6="Image Description:"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewQuestionTextMain={setNewQuestionTextMain}
                         setNewImageQuestionMain={setNewImageQuestionMain}
                         setNewCorrectAnswerMain={setNewCorrectAnswerMain}
@@ -572,7 +660,7 @@ function FormsNewQuestionsOptions() {
                 {/* Form 2 (Options) */}
                 <form
                     onSubmit={onSaveMainQuestionsOptions}
-                    className={styles.formOption}
+                    className={styles.formQuestion}
                     id='form2'
                 >
                     <div className={styles.containerTitleForm}>
@@ -589,7 +677,6 @@ function FormsNewQuestionsOptions() {
                         nameText4="Option D:*"                
                         nameText5="Option E:" 
                         nameText6="Number:*"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewOptionAMain={setNewOptionAMain}    
                         setNewOptionBMain={setNewOptionBMain}     
                         setNewOptionCMain={setNewOptionCMain}    
@@ -613,7 +700,7 @@ function FormsNewQuestionsOptions() {
 
             </div>
 
-            <div className={styles.forms}>
+            <div className={(activeAll || activeMulti) ? styles.forms : styles.invisible}>
                 {/* Form 3 (MultiQuestions) */}
                 <form
                     className={styles.formQuestion}
@@ -634,7 +721,6 @@ function FormsNewQuestionsOptions() {
                         nameText5="Icon Description:"
                         nameText6="Description:*"
                         nameText7="Image Description:"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewQuestionTextMulti={setNewQuestionTextMulti}
                         setNewImageQuestionMulti={setNewImageQuestionMulti}
                         setNewCorrectAnswerMulti1={setNewCorrectAnswerMulti1}
@@ -668,7 +754,6 @@ function FormsNewQuestionsOptions() {
                         nameText4="Option D:*"                
                         nameText5="Option E:" 
                         nameText6="Number:*"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewOptionAMulti={setNewOptionAMulti}
                         setNewOptionBMulti={setNewOptionBMulti}
                         setNewOptionCMulti={setNewOptionCMulti}
@@ -690,7 +775,7 @@ function FormsNewQuestionsOptions() {
 
             </div>
 
-            <div className={styles.forms}>
+            <div className={(activeAll || activeThreeMulti) ? styles.forms : styles.invisible}>
                 {/* Form 5 (ThreeMultiQuestions) */}
                 <form
                     className={styles.formQuestion}
@@ -712,7 +797,6 @@ function FormsNewQuestionsOptions() {
                         nameText6="Icon Description:"
                         nameText7="Description:*"
                         nameText8="Image Description:"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewQuestionTextThreeMulti={setNewQuestionTextThreeMulti}
                         setNewImageQuestionThreeMulti={setNewImageQuestionThreeMulti}
                         setNewCorrectAnswerThreeMulti1={setNewCorrectAnswerThreeMulti1}
@@ -748,7 +832,6 @@ function FormsNewQuestionsOptions() {
                         nameText5="Option E:*"
                         nameText6="Option F:*" 
                         nameText7="Number:*"
-                        specificStylesLabel={styles.specificStylesLabel}
                         setNewOptionAThreeMulti={setNewOptionAThreeMulti}
                         setNewOptionBThreeMulti={setNewOptionBThreeMulti}
                         setNewOptionCThreeMulti={setNewOptionCThreeMulti}

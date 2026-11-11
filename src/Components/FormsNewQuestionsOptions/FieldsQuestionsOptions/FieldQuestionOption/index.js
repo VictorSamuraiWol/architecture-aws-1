@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
 function FieldQuestionOption({ 
-    nameText, specificStylesLabel, readyToCleanAll, readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2,
+    nameText, readyToCleanAll, readyToSendForm1, setReadyToSendForm1, readyToSendForm2, setReadyToSendForm2,
     readyToSendForm3, setReadyToSendForm3, readyToSendForm4, setReadyToSendForm4, readyToSendForm5, setReadyToSendForm5, 
     readyToSendForm6, setReadyToSendForm6, setValueForm1, setValueForm2, setValueForm3, setValueForm4, setValueForm5, setValueForm6
 }) {
@@ -143,7 +143,7 @@ function FieldQuestionOption({
                     styles.containerField}`}
             >
                 <label
-                    className={specificStylesLabel}
+                    className={styles.labelCreateForm}
                     htmlFor={uniqueId}
                 >
                     {nameText}
@@ -155,6 +155,7 @@ function FieldQuestionOption({
                         onChange={(e) => newValueFunc(e)}
                         type='number'
                         id={uniqueId}
+                        className={styles.inputCreateForm}
                     />
                     :
                     (nameText === "Image Question:" || nameText === "Icon Description:" || nameText === "Image Description:") ? // aparece select se for campos de escolha
@@ -167,22 +168,24 @@ function FieldQuestionOption({
                             }}
                             onBlur={() => setOpenSelect(false)}
                             onMouseDown={() => setOpenSelect(open => !open)}
+                            className={styles.selectCreateForm}
                         >                            
                             <option
                                 value='' 
-                                disabled 
+                                disabled
+                                className={styles.optionCreateForm} 
                             >
                                 Select an option
                             </option>
 
                             {nameText === "Image Question:" && 
-                                listImagesQuestions.map(image => <option key={image} value={image}>{image}</option>)
+                                listImagesQuestions.map(image => <option key={image} value={image} className={styles.optionCreateForm}>{image}</option>)
                             }
                             {nameText === "Icon Description:" && 
-                                listIconsDescriptions.map(icon => <option key={icon} value={icon}>{icon}</option>)
+                                listIconsDescriptions.map(icon => <option key={icon} value={icon} className={styles.optionCreateForm}>{icon}</option>)
                             }
                             {nameText === "Image Description:" && 
-                                listImagesDescriptions.map(image => <option key={image} value={image}>{image}</option>)
+                                listImagesDescriptions.map(image => <option key={image} value={image} className={styles.optionCreateForm}>{image}</option>)
                             }
                         </select>
 
@@ -193,6 +196,7 @@ function FieldQuestionOption({
                         value={newValue}
                         onChange={(e) => newValueFunc(e)}
                         id={uniqueId}
+                        className={styles.textAreaCreateForm}
                     />
 
                 }
