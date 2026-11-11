@@ -111,6 +111,33 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
+    if (optionMain) {
+      setOptionAMain(optionMain[0])
+      setOptionBMain(optionMain[1])
+      setOptionCMain(optionMain[2])
+      setOptionDMain(optionMain[3])
+      setOptionEMain(optionMain[4])
+
+    } else if (optionMulti && activePageMulti) {
+      setOptionAMulti(optionMulti[0])
+      setOptionBMulti(optionMulti[1])
+      setOptionCMulti(optionMulti[2])
+      setOptionDMulti(optionMulti[3])
+      setOptionEMulti(optionMulti[4])
+
+    } else if (optionMulti && activePageThreeMulti) {
+      setOptionAThreeMulti(optionMulti[0])
+      setOptionBThreeMulti(optionMulti[1])
+      setOptionCThreeMulti(optionMulti[2])
+      setOptionDThreeMulti(optionMulti[3])
+      setOptionEThreeMulti(optionMulti[4])
+      setOptionFThreeMulti(optionMulti[5])
+
+    }
+
+  }, [optionMain, optionMulti, activePageMulti, activePageThreeMulti])
+
+  useEffect(() => {
     setNewOption([optionAMain, optionBMain, optionCMain, optionDMain, optionEMain])
 
     setNewMultiOption([optionAMulti, optionBMulti, optionCMulti, optionDMulti, optionEMulti])
