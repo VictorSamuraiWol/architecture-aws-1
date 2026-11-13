@@ -40,7 +40,7 @@ function PageNewQuestionsOptions() {
             {loginValidate &&
             <>
                 <Header title='Forms' />
-                <FormsNewQuestionsOptions className={styles.formsNewQuestionsOptions} />
+                <FormsNewQuestionsOptions />
             
             </>}
 

@@ -8,16 +8,6 @@
     z-index: 1;
 }
 
-.answerDescription::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
-}
-
-.answerDescription::-webkit-scrollbar-thumb {
-    background-color: var(--color-fourth);
-    border-radius: 4px;
-}
-
 .answerDisplay {
     display: flex;
     gap: 6px;

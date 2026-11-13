@@ -1,3 +1,8 @@
+.pageBaseOutlet::-webkit-scrollbar-thumb {
+    background-color: var(--color-fourth);
+    border-radius: 4px;
+}
+
 .soundFull {
     position: fixed;
     top: 0;
