@@ -51,36 +51,15 @@
   justify-content: start;
   align-items: center;
   flex-direction: column;
+  gap: 16px;
   position: absolute;
-  color: var(--color-fourth);
-  background-color: var(--color-first);
-  font-weight: bold;
+  color: var(--color-first);
+  background-color: var(--color-third);
+  box-shadow: 6px 6px 3px var(--color-fourth);
   width: 80%;
   max-height: 60%;
   border-radius: 12px;
-}
-
-.heroImage {
-  height: 180px;
-  width: 100%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.containerTitleIconDeleteDescription {
-  width: 100%;
-  max-height: 70%;
-  overflow: auto;
-}
-
-.containerTitleIconDeleteDescription::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-
-.containerTitleIconDeleteDescription::-webkit-scrollbar-thumb {
-  background-color: var(--color-fourth);
-  border-radius: 6px;
+  padding: 16px;
 }
 
 .containerTextIcon {
@@ -88,10 +67,12 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-weight: bold;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-second);
 }
 
-.containerTextIcon span {
-  text-decoration: underline;
+.textTitle {
   padding: 0 8px;
 }
 
@@ -108,12 +89,26 @@
 .modalDescription {
   text-align: justify;
   line-height: 28px;
-  padding: 8px;
+  color: var(--color-fourth);
+  background-color: var(--color-first);
+  padding: 16px;
+  border-radius: 16px;
   margin: 0;
   max-height: 60%;
   overflow-wrap: break-word;
   transition: 0.1s;
   cursor: default;
+  overflow: auto;
+}
+
+.modalDescription::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.modalDescription::-webkit-scrollbar-thumb {
+  background-color: var(--color-fourth);
+  border-radius: 6px;
 }
 
 .iconDescriptionStyle {
@@ -187,7 +182,7 @@
     width: 70%;
   }
 
-  .containerTitleIconDeleteDescription::-webkit-scrollbar {
+  .modalDescription::-webkit-scrollbar {
     height: 4px;
     width: 4px;
   }
@@ -207,14 +202,6 @@
   .shortTextModal {
     font-size: 0.6rem;
     display: flex;
-  }
-
-  .heroImage {
-    height: 20%;
-  }
-
-  .containerTitleIconDeleteDescription {
-    height: 80%;
   }
 
   .modalImageDelete {
