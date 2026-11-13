@@ -23,4 +23,4 @@ function PopupDeleteQuestionOption({ specificStyles, textPopup, activePopup, act
 
 }
 
-export default PopupDeleteQuestionOption
+export default PopupDeleteQuestionOption;

@@ -143,14 +143,11 @@
   z-index: 1;
 }
 
-.popupRepeatedMulti {
-  left: 80%;
-  bottom: 20%;
-}
-
-.popupAlertMessage {
-  top: 20%;
-  left: 40%;
+.containerPopups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 /* Responsividade */
@@ -227,10 +224,6 @@
     font-size: 12px;
   }
 
-  .popupAlertMessage {
-    left: 37%;
-  }
-
 }
 
 @media (max-width: 860px) {
@@ -268,15 +261,6 @@
     font-size: 10px;
   }
 
-  .popupRepeatedMulti {
-    font-size: 0.8rem;
-    width: 20%;
-  }
-
-  .popupAlertMessage {
-    left: 35%;
-  }
-
 }
 
 @media (max-width: 580px) {  
@@ -308,15 +292,6 @@
 
   .inputInvalidate:checked::after {
     font-size: 9px;
-  }
-
-  .popupRepeatedMulti {
-    font-size: 0.7rem;
-    width: 25%;
-  }
-
-  .popupAlertMessage {
-    left: 25%;
   }
 
 }

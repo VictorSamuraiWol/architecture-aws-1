@@ -321,55 +321,58 @@ function Main({
             
                 <ModalResults />
 
-                {/* PopupRepeatedAlternatives */}
-                {activePopupRepeatedAlternativesMain && 
-                    <PopupRepeatedAlternatives 
-                        specificStyles={styles.popupRepeatedMain} 
-                        textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
-                        activePopup={setActivePopupRepeatedAlternativesMain}
-                    />
-                }
+                <div className={styles.containerPopups}>          
+                    {/* PopupRepeatedAlternatives */}
+                    {activePopupRepeatedAlternativesMain && 
+                        <PopupRepeatedAlternatives 
+                            specificStyles={styles.popupRepeatedMain} 
+                            textPopup={"There are duplicate alternatives. Please, before answering, update the alternatives in the Menu so that each one is unique, and then proceed with your response."} 
+                            activePopup={setActivePopupRepeatedAlternativesMain}
+                        />
+                    }
 
-                {/* PopupAlertMessage */}
-                {answerMainQuestionAlert &&
-                    <PopupAlertMessage 
-                        text="Oops!!! Please answer the question before moving on to the next one!"
-                        activePopup={setAnswerMainQuestionAlert}
-                        specificStyles={styles.popupAlertMessage}
-                    />
-                }
+                    {/* PopupAlertMessage */}
+                    {answerMainQuestionAlert &&
+                        <PopupAlertMessage 
+                            text="Oops!!! Please answer the question before moving on to the next one!"
+                            activePopup={setAnswerMainQuestionAlert}
+                            specificStyles={styles.popupAlertMessage}
+                        />
+                    }
 
-                {noDataAlert &&
-                    <PopupAlertMessage 
-                        text="No data found. Need to mock the API."
-                        activePopup={setNoDataAlert}
-                        specificStyles={styles.popupAlertMessage}
-                    />
-                }
+                    {noDataAlert &&
+                        <PopupAlertMessage 
+                            text="No data found. Need to mock the API."
+                            activePopup={setNoDataAlert}
+                            specificStyles={styles.popupAlertMessage}
+                        />
+                    }
 
-                {activePopupZeroTimerMainAlert && 
-                    <PopupAlertMessage 
-                        text='Oops! Time is up! Please pay attention to the exam time limit.' 
-                        specificStyles={styles.popupAlertMessage}
-                        activePopup={setActivePopupZeroTimerMainAlert}
-                    />
-                }
+                    {activePopupZeroTimerMainAlert && 
+                        <PopupAlertMessage 
+                            text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                            specificStyles={styles.popupAlertMessage}
+                            activePopup={setActivePopupZeroTimerMainAlert}
+                        />
+                    }
 
-                {repeatedIdsList &&
-                    <PopupAlertMessage 
-                        text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
-                        activePopup={setRepeatedIdsList}
-                        specificStyles={styles.popupAlertMessage}
-                    />
-                }
+                    {repeatedIdsList &&
+                        <PopupAlertMessage 
+                            text={`Duplicate IDs found (IDs: ${uniqueIds()}) in your database. Please fix them.`}
+                            activePopup={setRepeatedIdsList}
+                            specificStyles={styles.popupAlertMessage}
+                        />
+                    }
 
-                {repeatedNumbersList &&
-                    <PopupAlertMessage 
-                        text={`Duplicate numbers found (Numbers: ${uniqueNumbers()}) in your database. Please fix them.`}
-                        activePopup={setRepeatedNumbersList}
-                        specificStyles={styles.popupAlertMessage}
-                    />
-                }
+                    {repeatedNumbersList &&
+                        <PopupAlertMessage 
+                            text={`Duplicate numbers found (Numbers: ${uniqueNumbers()}) in your database. Please fix them.`}
+                            activePopup={setRepeatedNumbersList}
+                            specificStyles={styles.popupAlertMessage}
+                        />
+                    }
+
+                </div>
 
             </>}
                      

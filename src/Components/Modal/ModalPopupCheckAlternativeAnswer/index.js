@@ -19,30 +19,33 @@ function ModalPopupCheckAlternativeAnswer({ textModalForMoreInformation, textMod
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerModalPopupCheckALternativeAnswer}>
       <div
-          onClick={openModal}
+        onClick={openModal}
       >
         <span className={styles.clickModal}>{textModalForMoreInformation}</span>
 
       </div>
 
       <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          contentLabel="Example Modal"
-          overlayClassName={styles.modalOverlay}
-          className={styles.modalContent}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        overlayClassName={styles.modalOverlay}
+        className={styles.modalContent}
       >
-        {/* imagem delete do react icon */}
-        <TiDeleteOutline
+        <div className={styles.containerTextIconDelete}>
+          <h1 className={styles.textTitle}>MORE INFORMATION:</h1>
+
+          {/* imagem delete do react icon */}
+          <TiDeleteOutline
             onClick={closeModal} 
             className={styles.modalImageDelete} 
-        />      
+          />      
 
-        <h1>INFORMATION:</h1>
+        </div>
           
-        <p>{textModalDescription}</p>
+        <p className={styles.textModalDescription}>{textModalDescription}</p>
       
       </Modal>
 

@@ -13,4 +13,4 @@ function PopupAlertMessage({ text, activePopup, specificStyles }) {
 
 }
 
-export default PopupAlertMessage
+export default PopupAlertMessage;

@@ -13,4 +13,4 @@ function PopupAlreadySavedModalEdit({ textPopup, activePopup, specificStyles}) {
 
 }
 
-export default PopupAlreadySavedModalEdit
+export default PopupAlreadySavedModalEdit;

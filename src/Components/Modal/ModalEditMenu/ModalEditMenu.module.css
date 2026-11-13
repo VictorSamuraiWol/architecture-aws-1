@@ -128,14 +128,11 @@
   background-color: var(--color-first);
 }
 
-.popupRepeatedModalEdit, .popupCheckModalForm {
-  top: 20%;
-  left: 40%;
-}
-
-.popupAlreadySaved, .popupAlertMessage {
-  top: 40%;
-  left: 40%;
+.containerPopups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 /* Responsividade */
@@ -153,11 +150,6 @@
     font-size: 0.9rem;
   }
 
-  .popupRepeatedModalEdit {
-    font-size: 0.8rem;
-    width: 20%;
-  }
-
   .textRequiredFields {
     font-size: 0.7rem;
   }
@@ -167,11 +159,6 @@
 @media (max-width: 580px) {
   .nameLabelText {
     font-size: 0.8rem;
-  }
-
-  .popupRepeatedModalEdit {
-    font-size: 0.7rem;
-    width: 25%;
   }
 
   .textRequiredFields {

@@ -246,31 +246,34 @@ function MultiMain({
 
                 <ModalResults />
 
-                {/* PopupRepeatedAlternatives */}
-                {activePopupRepeatedAlternativesMulti === true && 
-                    <PopupRepeatedAlternatives 
-                        specificStyles={styles.popupRepeatedMulti} 
-                        textPopup={"There are duplicate alternatives and answers. Please, before answering, update the alternatives and answers in the Menu so that each one is unique, and then proceed with your response."}
-                        activePopup={setActivePopupRepeatedAlternativesMulti}
-                    />
-                }
+                <div className={styles.containerPopups}>
+                    {/* PopupRepeatedAlternatives */}
+                    {activePopupRepeatedAlternativesMulti === true && 
+                        <PopupRepeatedAlternatives 
+                            specificStyles={styles.popupRepeatedMulti} 
+                            textPopup={"There are duplicate alternatives and answers. Please, before answering, update the alternatives and answers in the Menu so that each one is unique, and then proceed with your response."}
+                            activePopup={setActivePopupRepeatedAlternativesMulti}
+                        />
+                    }
 
-                {/* {PopupAlertMessage} */}
-                {answerMultiQuestionAlert &&
-                    <PopupAlertMessage 
-                        text="Oops!!! Please answer the question before moving on to the next one!"
-                        activePopup={setAnswerMultiQuestionAlert}
-                        specificStyles={styles.popupAlertMessage}
-                    />
-                }
+                    {/* {PopupAlertMessage} */}
+                    {answerMultiQuestionAlert &&
+                        <PopupAlertMessage 
+                            text="Oops!!! Please answer the question before moving on to the next one!"
+                            activePopup={setAnswerMultiQuestionAlert}
+                            specificStyles={styles.popupAlertMessage}
+                        />
+                    }
 
-                {activePopupZeroTimerMultiAlert && 
-                    <PopupAlertMessage 
-                        text='Oops! Time is up! Please pay attention to the exam time limit.' 
-                        specificStyles={styles.popupAlertMessage}
-                        activePopup={setActivePopupZeroTimerMultiAlert}
-                    />
-                }
+                    {activePopupZeroTimerMultiAlert && 
+                        <PopupAlertMessage 
+                            text='Oops! Time is up! Please pay attention to the exam time limit.' 
+                            specificStyles={styles.popupAlertMessage}
+                            activePopup={setActivePopupZeroTimerMultiAlert}
+                        />
+                    }
+
+                </div>
 
             </>}
                        

@@ -13,4 +13,4 @@ function PopupCheckRequiredFields({ text, specificStyles, activePopup }) {
 
 }
 
-export default PopupCheckRequiredFields
+export default PopupCheckRequiredFields;

@@ -853,102 +853,105 @@ function FormsNewQuestionsOptions() {
 
             </div>
 
-            {/* PopupCheckRequiredFields */}
-            {activePopupCheckRequiredFields &&
-                <PopupCheckRequiredFields
-                    specificStyles={styles.popupCheckRequiredFields}
-                    text={'Please fill in all required fields!'}
-                    activePopup={setActivePopupCheckRequiredFields}
-                />                
-            }
+            <div className={styles.containerPopups}>
+                {/* PopupCheckRequiredFields */}
+                {activePopupCheckRequiredFields &&
+                    <PopupCheckRequiredFields
+                        specificStyles={styles.popupCheckRequiredFields}
+                        text={'Please fill in all required fields!'}
+                        activePopup={setActivePopupCheckRequiredFields}
+                    />                
+                }
 
-            {/* PopupCheckNumbers */}
-            {activePopupCheckNumbers &&
-                <PopupCheckNumbers
-                    specificStyles={styles.popupCheckNumbers}
-                    text={'This number has already been used in previous question and option. Please use a number that has not been used yet.'}
-                    activePopup={setActivePopupCheckNumbers}
-                />
-            }
+                {/* PopupCheckNumbers */}
+                {activePopupCheckNumbers &&
+                    <PopupCheckNumbers
+                        specificStyles={styles.popupCheckNumbers}
+                        text={'This number has already been used in previous question and option. Please use a number that has not been used yet.'}
+                        activePopup={setActivePopupCheckNumbers}
+                    />
+                }
 
-            {/* PopupCheckAlternativeAnswer */}
-            {activePopupcheckAlternativeAnswerForms1and2 && 
-                <PopupCheckAlternativeAnswer 
-                    specificStyles={styles.popupCheckForm} 
-                    activePopup={setActivePopupcheckAlternativeAnswerForms1and2}
-                    textPopup={`Your answer does not contain any alternative from option! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option, and then proceed with creating the question. For more information, click the phrase below.`}
-                    textModalDescription={`(Solution 1) Include in the answer to question the correct alternative from option, highlighted below: (Option: ${newOptionAMain}), (Option: ${newOptionBMain}), (Option: ${newOptionCMain})${newOptionEMain ? `, (Option: ${newOptionDMain}) or (Option: ${newOptionEMain}).` : ` or (Option: ${newOptionDMain}).`}
-                        (Solution 2) Include in one of the alternatives of option the answer to question, highlighted below: (Answer: ${newCorrectAnswerMain}).`}
-                />
-            }
+                {/* PopupCheckAlternativeAnswer */}
+                {activePopupcheckAlternativeAnswerForms1and2 && 
+                    <PopupCheckAlternativeAnswer 
+                        specificStyles={styles.popupCheckForm} 
+                        activePopup={setActivePopupcheckAlternativeAnswerForms1and2}
+                        textPopup={`Your answer does not contain any alternative from option! Please, before creating the question, make sure the answer is exactly the same as the correct alternative of option, and then proceed with creating the question. For more information, click the phrase below.`}
+                        textModalDescription={`(Solution 1) Include in the answer to question the correct alternative from option, highlighted below: (Option: ${newOptionAMain}), (Option: ${newOptionBMain}), (Option: ${newOptionCMain})${newOptionEMain ? `, (Option: ${newOptionDMain}) or (Option: ${newOptionEMain}).` : ` or (Option: ${newOptionDMain}).`}
+                            (Solution 2) Include in one of the alternatives of option the answer to question, highlighted below: (Answer: ${newCorrectAnswerMain}).`}
+                    />
+                }
 
-            {activePopupcheckAlternativeAnswerForms3and4 && 
-                <PopupCheckAlternativeAnswer 
-                    specificStyles={styles.popupCheckForm} 
-                    activePopup={setActivePopupcheckAlternativeAnswerForms3and4}
-                    textPopup={`Your answers (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) does not contain the two correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option! Please, before creating the question, include both correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) the two correct alternatives from option, highlighted below: (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}).
-                        (Solution 2) Include in the first two alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}).`}
-                />
-            }
+                {activePopupcheckAlternativeAnswerForms3and4 && 
+                    <PopupCheckAlternativeAnswer 
+                        specificStyles={styles.popupCheckForm} 
+                        activePopup={setActivePopupcheckAlternativeAnswerForms3and4}
+                        textPopup={`Your answers (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) does not contain the two correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option! Please, before creating the question, include both correct alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
+                        textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) the two correct alternatives from option, highlighted below: (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}).
+                            (Solution 2) Include in the first two alternatives (Option A: ${newOptionAMulti}) and (Option B: ${newOptionBMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}).`}
+                    />
+                }
 
-            {activePopupcheckAlternativeAnswerForms5and6 && 
-                <PopupCheckAlternativeAnswer 
-                    specificStyles={styles.popupCheckForm} 
-                    activePopup={setActivePopupcheckAlternativeAnswerForms5and6}
-                    textPopup={`Your answers (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) does not contain the three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option! Please, before creating the question, include three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
-                    textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) the three correct alternatives from option, highlighted below: (Option A: ${newOptionAThreeMulti}), (Option B ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}).
-                        (Solution 2) Include in the first three alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}).`}
-                />
-            }
+                {activePopupcheckAlternativeAnswerForms5and6 && 
+                    <PopupCheckAlternativeAnswer 
+                        specificStyles={styles.popupCheckForm} 
+                        activePopup={setActivePopupcheckAlternativeAnswerForms5and6}
+                        textPopup={`Your answers (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) does not contain the three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option! Please, before creating the question, include three correct alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) from option in the answers, and then proceed with creating the question. For more information, click the phrase below.`} 
+                        textModalDescription={`(Solution 1) Include in the answers to question (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}) the three correct alternatives from option, highlighted below: (Option A: ${newOptionAThreeMulti}), (Option B ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}).
+                            (Solution 2) Include in the first three alternatives (Option A: ${newOptionAThreeMulti}), (Option B: ${newOptionBThreeMulti}) and (Option C: ${newOptionCThreeMulti}) of option the answers included in question, highlighted below: (Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3}).`}
+                    />
+                }
 
-            {/* PopupRepeatedAlternatives */}
-            {activePopupRepeatedAlternativesForms && 
-                <PopupRepeatedAlternatives 
-                    specificStyles={styles.popupRepeatedForms} 
-                    textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives so that all of them are different, and then proceed with creating the option."} 
-                    activePopup={setActivePopupRepeatedAlternativesForms}                    
-                />
-            }
+                {/* PopupRepeatedAlternatives */}
+                {activePopupRepeatedAlternativesForms && 
+                    <PopupRepeatedAlternatives 
+                        specificStyles={styles.popupRepeatedForms} 
+                        textPopup={"There are duplicate alternatives. Please, before creating the option, update the alternatives so that all of them are different, and then proceed with creating the option."} 
+                        activePopup={setActivePopupRepeatedAlternativesForms}                    
+                    />
+                }
 
-            {/* PopupSuccessfully */}
-            {activePopupSuccessfull &&
-                <PopupSuccessfully 
-                specificStyles={styles.popupSuccessfully}
-                    text='Sent successfully.' 
-                    activePopup={setActivePopupSuccessfull}
-                />
-            }
+                {/* PopupSuccessfully */}
+                {activePopupSuccessfull &&
+                    <PopupSuccessfully 
+                    specificStyles={styles.popupSuccessfully}
+                        text='Sent successfully.' 
+                        activePopup={setActivePopupSuccessfull}
+                    />
+                }
 
-            {/* PopupAlertMessage */}
-            {noDataAlertForm &&
-                <PopupAlertMessage 
-                    text="No data found. Need to mock the API."
-                    activePopup={setNoDataAlertForm}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {/* PopupAlertMessage */}
+                {noDataAlertForm &&
+                    <PopupAlertMessage 
+                        text="No data found. Need to mock the API."
+                        activePopup={setNoDataAlertForm}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
 
-            {checkEqualAnswersMulti &&
-                <PopupAlertMessage 
-                    text={`The answers for this question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) are all the same. Please revise them.`}
-                    activePopup={setCheckEqualAnswersMulti}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {checkEqualAnswersMulti &&
+                    <PopupAlertMessage 
+                        text={`The answers for this question (Answer 1: ${newCorrectAnswerMulti1}) and (Answer 2: ${newCorrectAnswerMulti2}) are all the same. Please revise them.`}
+                        activePopup={setCheckEqualAnswersMulti}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
 
-            {checkEqualAnswersThreeMulti &&
-                <PopupAlertMessage 
-                    text={`The answers for this question ${(newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2) && (newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3) && (newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3) ? 
-                        `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
-                        newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2})` : 
-                        newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
-                        newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3 ? `(Answer 2: ${newCorrectAnswerThreeMulti2}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : null} 
-                        are all the same. Please revise them.`}
-                    activePopup={setCheckEqualAnswersThreeMulti}
-                    specificStyles={styles.popupAlertMessage}
-                />
-            }
+                {checkEqualAnswersThreeMulti &&
+                    <PopupAlertMessage 
+                        text={`The answers for this question ${(newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2) && (newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3) && (newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3) ? 
+                            `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2}) and (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
+                            newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti2 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 2: ${newCorrectAnswerThreeMulti2})` : 
+                            newCorrectAnswerThreeMulti1 === newCorrectAnswerThreeMulti3 ? `(Answer 1: ${newCorrectAnswerThreeMulti1}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : 
+                            newCorrectAnswerThreeMulti2 === newCorrectAnswerThreeMulti3 ? `(Answer 2: ${newCorrectAnswerThreeMulti2}), (Answer 3: ${newCorrectAnswerThreeMulti3})` : null} 
+                            are all the same. Please revise them.`}
+                        activePopup={setCheckEqualAnswersThreeMulti}
+                        specificStyles={styles.popupAlertMessage}
+                    />
+                }
+
+            </div>
 
         </div>
     )

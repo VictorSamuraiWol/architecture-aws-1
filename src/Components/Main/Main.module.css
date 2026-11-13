@@ -147,14 +147,11 @@
   z-index: 1;
 }
 
-.popupRepeatedMain {
-  left: 80%;
-  bottom: 20%;
-}
-
-.popupAlertMessage {
-  top: 20%;
-  left: 40%;
+.containerPopups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 /* Responsividade */
@@ -219,10 +216,6 @@
     padding: 7px;
   }
 
-  .popupAlertMessage {
-    left: 37%;
-  }
-
 }
 
 
@@ -264,15 +257,6 @@
     height: 8px;
   }
 
-  .popupRepeatedMain {
-    font-size: 0.8rem;
-    width: 20%;
-  }
-
-  .popupAlertMessage {
-    left: 35%;
-  }
-
 }
 
 @media (max-width: 580px) {
@@ -307,15 +291,6 @@
   .inputInvalidate:checked::after {
     width: 6px;
     height: 6px;
-  }
-
-  .popupRepeatedMain {
-    font-size: 0.7rem;
-    width: 25%;
-  }
-
-  .popupAlertMessage {
-    left: 25%;
   }
 
 }

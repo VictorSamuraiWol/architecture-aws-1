@@ -2,9 +2,9 @@ import styles from './PopupDefault.module.css'
 import ButtonDefault from '../../ButtonDefault'
 import soundClick from '../../../audios/clickAudio.mp3'
 import ModalPopupCheckAlternativeAnswer from '../../Modal/ModalPopupCheckAlternativeAnswer'
+import PopupAlertMessage from '../PopupAlertMessage'
 import { TiDeleteOutline } from "react-icons/ti"
 import { useOutletContext } from 'react-router-dom'
-import PopupAlertMessage from '../PopupAlertMessage'
 import { useState } from 'react'
 
 function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheckAlternativeAnswer, 
@@ -54,12 +54,17 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
   return (
     <div
       className={`${styles.popupDefault} ${specificStyles}`}
-    > 
-      {/* imagem delete do react icon */}
-      {activePopup && <TiDeleteOutline
-          onClick={closePopup}
-          className={styles.modalImageDelete} 
-      />}
+    >
+      <div className={styles.containerTextIconDelete}>
+        <span>Alert popups</span>
+
+        {/* imagem delete do react icon */}
+        {activePopup && <TiDeleteOutline
+            onClick={closePopup}
+            className={styles.modalImageDelete} 
+        />}
+
+      </div>
 
       <span className={styles.textPopupDefault}>{text}</span>
       
@@ -100,4 +105,4 @@ function PopupDefault({ specificStyles, text, activePopup, activeModalPopupCheck
   )
 }
 
-export default PopupDefault
+export default PopupDefault;

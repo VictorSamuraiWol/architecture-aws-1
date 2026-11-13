@@ -13,4 +13,4 @@ function PopupCheckNumbers({ text, specificStyles, activePopup }) {
 
 }
 
-export default PopupCheckNumbers
+export default PopupCheckNumbers;

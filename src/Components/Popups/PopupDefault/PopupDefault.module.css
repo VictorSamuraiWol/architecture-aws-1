@@ -2,63 +2,81 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   position: fixed;
-  text-align: center;
+  top:30%;
   font-weight: bold;
   color: var(--color-first);
-  background-image: url(../../../imgs/bg-popups.png);
-  background-position: center;
+  background-color: var(--color-fourth);
   box-shadow: 3px 3px 3px var(--color-third);
-  width: 15%;
-  padding: 20px 12px 12px 12px;
+  max-width: 70%;
+  max-height: 40%;
+  padding: 16px;
   border: 1px solid var(--color-third);
   border-radius: 8px;
-  z-index: 2; /* para estar a frente do conteúdo principal ao aparecer */
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.popupDefault::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.popupDefault::-webkit-scrollbar-thumb {
+  background-color: var(--color-first);
+  border-radius: 6px;
+}
+
+.containerTextIconDelete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-second);
 }
 
 .modalImageDelete {
-  position: absolute;
-  top: 2px;
-  right: 2px;
   height: 1.1em;
   width: 1.1em;
-  background-color: var(--color-second);
-  border-radius: 50%;
   cursor: pointer;
-  z-index: 1;
 }
 
 .modalImageDelete:hover {
   transform: scale(0.97); 
 }
 
+.containerIconTextPopup {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  width: 100%;
+}
+
 .textPopupDefault {
-  text-decoration: underline;
+  font-size: 1rem;
+  text-align: justify;
   line-height: 1.5;
 }
 
 /* Responsividade */
-@media (max-width: 1100px) {
-  .popupDefault {
-    width: 20%;
-
-  }
-
-}
-
 @media (max-width: 860px) {
   .popupDefault {
-    width: 25%;
-
+    max-width: 80%;
   }
-    
+
+  .textPopupDefault {
+    font-size: 0.9rem;
+  }
+
 }
 
 @media (max-width: 580px) {
-  .popupDefault {
-    width: 40%;
-
+  .textPopupDefault {
+    font-size: 0.8rem;
   }
 
 }

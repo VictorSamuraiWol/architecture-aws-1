@@ -1174,89 +1174,92 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
         
         </form>}
 
-        {/* PopupRepeatedAlternatives */}
-        {activePopupRepeatedAlternativesModalEdit && 
-          <PopupRepeatedAlternatives 
-            specificStyles={styles.popupRepeatedModalEdit} 
-            textPopup={"There are repeated alternatives. Please, before editing the option, modify the duplicated alternatives and then proceed with editing the question and the option."} 
-            activePopup={setActivePopupRepeatedAlternativesModalEdit}            
-          />
-        }
+        <div className={styles.containerPopups}>
+          {/* PopupRepeatedAlternatives */}
+          {activePopupRepeatedAlternativesModalEdit && 
+            <PopupRepeatedAlternatives 
+              specificStyles={styles.popupRepeatedModalEdit} 
+              textPopup={"There are repeated alternatives. Please, before editing the option, modify the duplicated alternatives and then proceed with editing the question and the option."} 
+              activePopup={setActivePopupRepeatedAlternativesModalEdit}            
+            />
+          }
 
-        {/* PopupCheckAlternativeAnswer */}
-        {activePopupcheckAlternativeAnswerModalForms1 && 
-          <PopupCheckAlternativeAnswer 
-            specificStyles={styles.popupCheckModalForm} 
-            activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
-            textPopup={`No alternative matching the answer (Answer : ${correctAnswerMain}) to question was found in the options. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answer (Answer : ${correctAnswerMain}) to question the correct alternative from the option highlighted below: (Option A: ${optionAMain}), (Option B: ${optionBMain}), (Option C: ${optionCMain}), (Option D: ${optionDMain})${optionEMain !== '' ? ` or (Option E: ${optionEMain}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer, highlighted below: (Answer: ${correctAnswerMain}).`}
-          />
-        }
+          {/* PopupCheckAlternativeAnswer */}
+          {activePopupcheckAlternativeAnswerModalForms1 && 
+            <PopupCheckAlternativeAnswer 
+              specificStyles={styles.popupCheckModalForm} 
+              activePopup={setActivePopupcheckAlternativeAnswerModalForms1}
+              textPopup={`No alternative matching the answer (Answer : ${correctAnswerMain}) to question was found in the options. Please ensure that, before editing the question and the option, one of the alternatives is exactly the same as the answer to question. Then proceed with editing this question and the option. For more information, click the phrase below.`} 
+              textModalDescription={`(Solution 1) Include in the answer (Answer : ${correctAnswerMain}) to question the correct alternative from the option highlighted below: (Option A: ${optionAMain}), (Option B: ${optionBMain}), (Option C: ${optionCMain}), (Option D: ${optionDMain})${optionEMain !== '' ? ` or (Option E: ${optionEMain}).` : `.`} (Solution 2) Include in one of the alternatives of this option the answer, highlighted below: (Answer: ${correctAnswerMain}).`}
+            />
+          }
 
-        {activePopupcheckAlternativeAnswerModalForms2 && 
-          <PopupCheckAlternativeAnswer 
-            specificStyles={styles.popupCheckModalForm} 
-            activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
-            textPopup={`The two answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAMulti} and (Option B: ${optionBMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answers of question the two correct alternatives from the option highlighted below: (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}). (Solution 2) Include in the first two alternatives (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}).`}
-          />
-        }
+          {activePopupcheckAlternativeAnswerModalForms2 && 
+            <PopupCheckAlternativeAnswer 
+              specificStyles={styles.popupCheckModalForm} 
+              activePopup={setActivePopupcheckAlternativeAnswerModalForms2}
+              textPopup={`The two answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAMulti} and (Option B: ${optionBMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+              textModalDescription={`(Solution 1) Include in the answers of question the two correct alternatives from the option highlighted below: (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}). (Solution 2) Include in the first two alternatives (Option A: ${optionAMulti}) and (Option B: ${optionBMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}).`}
+            />
+          }
 
-        {activePopupcheckAlternativeAnswerModalForms3 && 
-          <PopupCheckAlternativeAnswer 
-            specificStyles={styles.popupCheckModalForm} 
-            activePopup={setActivePopupcheckAlternativeAnswerModalForms3}
-            textPopup={`The three answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAThreeMulti}, (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
-            textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}). (Solution 2) Include in the first three alternatives (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}).`}
-          />
-        }
+          {activePopupcheckAlternativeAnswerModalForms3 && 
+            <PopupCheckAlternativeAnswer 
+              specificStyles={styles.popupCheckModalForm} 
+              activePopup={setActivePopupcheckAlternativeAnswerModalForms3}
+              textPopup={`The three answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question were not found in the options. Please ensure that, before editing the question and the option, the alternatives (Option A: ${optionAThreeMulti}, (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) are exactly the same as those included in the answers (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}) of question. Then proceed with editing the question and the option. For more information, click the phrase below.`} 
+              textModalDescription={`(Solution 1) Include in the answer of question the three correct alternatives from the option highlighted below: (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}). (Solution 2) Include in the first three alternatives (Option A: ${optionAThreeMulti}), (Option B: ${optionBThreeMulti}) and (Option C: ${optionCThreeMulti}) of this option the answers included in question, highlighted below: (Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3}).`}
+            />
+          }
 
-        {/* PopupAlreadySavedModalEdit */}
-        {activePopupAlreadySavedModalEdit &&  
-          <PopupAlreadySavedModalEdit
-            specificStyles={styles.popupAlreadySaved} 
-            activePopup={setActivePopupAlreadySavedModalEdit}
-            textPopup={'No changes detected. Please update one or more fields and try saving again.'}
-          />
-        }
+          {/* PopupAlreadySavedModalEdit */}
+          {activePopupAlreadySavedModalEdit &&  
+            <PopupAlreadySavedModalEdit
+              specificStyles={styles.popupAlreadySaved} 
+              activePopup={setActivePopupAlreadySavedModalEdit}
+              textPopup={'No changes detected. Please update one or more fields and try saving again.'}
+            />
+          }
 
-        {/* {PopupAlertMessage} */}
-        {staticQuestionEditAlert &&
-          <PopupAlertMessage 
-            text="This is a static question and cannot be edited here."
-            activePopup={setStaticQuestionEditAlert}
-            specificStyles={styles.popupAlertMessage}
-          />
-        }
+          {/* {PopupAlertMessage} */}
+          {staticQuestionEditAlert &&
+            <PopupAlertMessage 
+              text="This is a static question and cannot be edited here."
+              activePopup={setStaticQuestionEditAlert}
+              specificStyles={styles.popupAlertMessage}
+            />
+          }
 
-        {staticQuestionClearDisabledAlert &&
-          <PopupAlertMessage 
-            text="This is a static question and clearing is disabled."
-            activePopup={setStaticQuestionClearDisabledAlert}
-            specificStyles={styles.popupAlertMessage}
-          />
-        }
+          {staticQuestionClearDisabledAlert &&
+            <PopupAlertMessage 
+              text="This is a static question and clearing is disabled."
+              activePopup={setStaticQuestionClearDisabledAlert}
+              specificStyles={styles.popupAlertMessage}
+            />
+          }
 
-        {checkEqualAnswersMulti &&
-          <PopupAlertMessage 
-            text={`The answers for this question (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) are all the same. Please revise them.`}
-            activePopup={setCheckEqualAnswersMulti}
-            specificStyles={styles.popupAlertMessage}
-          />
-        }
+          {checkEqualAnswersMulti &&
+            <PopupAlertMessage 
+              text={`The answers for this question (Answer 1: ${correctAnswerMulti1}) and (Answer 2: ${correctAnswerMulti2}) are all the same. Please revise them.`}
+              activePopup={setCheckEqualAnswersMulti}
+              specificStyles={styles.popupAlertMessage}
+            />
+          }
 
-        {checkEqualAnswersThreeMulti &&
-          <PopupAlertMessage 
-            text={`The answers for this question ${(correctAnswerThreeMulti1 === correctAnswerThreeMulti2) && (correctAnswerThreeMulti1 === correctAnswerThreeMulti3) && (correctAnswerThreeMulti2 === correctAnswerThreeMulti3) ? 
-              `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3})` : 
-              correctAnswerThreeMulti1 === correctAnswerThreeMulti2 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2})` : 
-              correctAnswerThreeMulti1 === correctAnswerThreeMulti3 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 3: ${correctAnswerThreeMulti3})` : 
-              correctAnswerThreeMulti2 === correctAnswerThreeMulti3 ? `(Answer 2: ${correctAnswerThreeMulti2}), (Answer 3: ${correctAnswerThreeMulti3})` : null} 
-              are all the same. Please revise them.`}
-            activePopup={setCheckEqualAnswersThreeMulti}
-            specificStyles={styles.popupAlertMessage}
-          />
-        }
+          {checkEqualAnswersThreeMulti &&
+            <PopupAlertMessage 
+              text={`The answers for this question ${(correctAnswerThreeMulti1 === correctAnswerThreeMulti2) && (correctAnswerThreeMulti1 === correctAnswerThreeMulti3) && (correctAnswerThreeMulti2 === correctAnswerThreeMulti3) ? 
+                `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2}) and (Answer 3: ${correctAnswerThreeMulti3})` : 
+                correctAnswerThreeMulti1 === correctAnswerThreeMulti2 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 2: ${correctAnswerThreeMulti2})` : 
+                correctAnswerThreeMulti1 === correctAnswerThreeMulti3 ? `(Answer 1: ${correctAnswerThreeMulti1}), (Answer 3: ${correctAnswerThreeMulti3})` : 
+                correctAnswerThreeMulti2 === correctAnswerThreeMulti3 ? `(Answer 2: ${correctAnswerThreeMulti2}), (Answer 3: ${correctAnswerThreeMulti3})` : null} 
+                are all the same. Please revise them.`}
+              activePopup={setCheckEqualAnswersThreeMulti}
+              specificStyles={styles.popupAlertMessage}
+            />
+          }
+
+        </div>
       
       </Modal>
 
