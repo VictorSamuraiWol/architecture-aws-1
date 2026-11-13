@@ -16,7 +16,7 @@ function FieldModalEdit({ name, newValue, onChangeModal, required, errorMessageT
         <label className={voidField?.includes(errorTargetLabel) ? 
           styles.nameErrorLabelText 
           : 
-          styles.nameLabelText}
+          styles.nameLabelTextSelect}
         >
           {name}
         </label>
@@ -54,13 +54,13 @@ function FieldModalEdit({ name, newValue, onChangeModal, required, errorMessageT
       :
       // se for campo input
       <div className={styles.fieldModalEdit}>
-        <label className={voidField?.includes(errorTargetLabel) ? 
+        {name && <label className={voidField?.includes(errorTargetLabel) ? 
           styles.nameErrorLabelText 
           : 
           styles.nameLabelText}
         >
           {name}
-        </label>
+        </label>}
         
         <input
           className={voidField?.includes(errorTargetLabel) ?

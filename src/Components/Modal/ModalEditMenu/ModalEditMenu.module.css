@@ -24,51 +24,43 @@
 
 .modalContent {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   flex-direction: column;
+  gap: 16px;
   position: absolute;
-  color: var(--color-fourth);
-  background-image: url(../../../imgs/bg-popups.png);
-  background-position: center;
-  background-size: cover;
+  color: var(--color-first);
+  background-color: var(--color-third);
+  box-shadow: 6px 6px 3px var(--color-fourth);
   font-weight: bold;
   width: 80%;
   max-height: 90vh;
-  padding: 12px;
+  padding: 16px;
   border: 1px solid var(--color-third);
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .modalContent:focus {
   outline: none;
 }
 
-.containerTitleIconDelete {
+.containerTextIcon {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-second);
 }
 
-.modalContent h1 {
-  color: var(--color-fourth);
-  text-shadow: 2px 2px 3px var(--color-second);
-  font-style: italic;
-  background-color: var(--color-first);
-  padding: 4px;
-  border: 1px solid var(--color-third);
-  border-radius: 8px;
+.textTitle {
   margin: 0;
-  cursor: default;
 }
 
 .modalImageDelete {
+  color: var(--color-first);
   height: 2em;
   width: 2em;
-  background-color: var(--color-first);
-  border: 1px solid var(--color-third);
-  border-radius: 50%;
   cursor: pointer;
   z-index: 1;
 }
@@ -80,11 +72,13 @@
 .formModal {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   max-height: 90vh;
-  padding: 8px 4px 0 0;
-  overflow: auto;
+  padding: 8px 16px 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .formModal::-webkit-scrollbar {
@@ -95,6 +89,30 @@
 .formModal::-webkit-scrollbar-thumb {    
   background-color: var(--color-first);
   border-radius: 4px;
+}
+
+.nameLabelText {
+  color: var(--color-first);
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid var(--color-second);
+}
+
+.containerSelects{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+}
+
+.containerSpanButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textRequiredFields {
+  color: var(--color-second);
+  font-size: 0.8rem;
 }
 
 .buttons {

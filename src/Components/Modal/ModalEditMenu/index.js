@@ -152,6 +152,56 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
   function openModal() {
     setModalIsOpen(true)
 
+    // sempre que abrir a modal reseta os valores
+    // questionMain
+    setQuestionTextMain(questionMain?.questionText)
+    setImageQuestionMain(questionMain?.imageQuestion)
+    setCorrectAnswerMain(questionMain?.correctAnswer)
+    setIconDescriptionMain(questionMain?.iconDescription)
+    setDescriptionMain(questionMain?.description)
+    setImageDescriptionMain(questionMain?.imageDescription)
+
+    // optionMain
+    setOptionAMain(optionMain && optionMain[0])
+    setOptionBMain(optionMain && optionMain[1])
+    setOptionCMain(optionMain && optionMain[2])
+    setOptionDMain(optionMain && optionMain[3])
+    setOptionEMain(optionMain && optionMain[4])
+
+    // questionMulti
+    setQuestionTextMulti(questionMulti?.questionText)
+    setImageQuestionMulti(questionMulti?.imageQuestion)
+    setCorrectAnswerMulti1(questionMulti?.correctAnswer1)
+    setCorrectAnswerMulti2(questionMulti?.correctAnswer2)
+    setIconDescriptionMulti(questionMulti?.iconDescription)
+    setDescriptionMulti(questionMulti?.description)
+    setImageDescriptionMulti(questionMulti?.imageDescription)
+
+    // optionMulti
+    setOptionAMulti(optionMulti && optionMulti[0])
+    setOptionBMulti(optionMulti && optionMulti[1])
+    setOptionCMulti(optionMulti && optionMulti[2])
+    setOptionDMulti(optionMulti && optionMulti[3])
+    setOptionEMulti(optionMulti && optionMulti[4])
+
+    // questionThreeMulti
+    setQuestionTextThreeMulti(questionMulti?.questionText)
+    setImageQuestionThreeMulti(questionMulti?.imageQuestion)
+    setCorrectAnswerThreeMulti1(questionMulti?.correctAnswer1)
+    setCorrectAnswerThreeMulti2(questionMulti?.correctAnswer2)
+    setCorrectAnswerThreeMulti3(questionMulti?.correctAnswer3)
+    setIconDescriptionThreeMulti(questionMulti?.iconDescription)
+    setDescriptionThreeMulti(questionMulti?.description)
+    setImageDescriptionThreeMulti(questionMulti?.imageDescription)
+
+    // optionThreeMulti
+    setOptionAThreeMulti(optionMulti && optionMulti[0])
+    setOptionBThreeMulti(optionMulti && optionMulti[1])
+    setOptionCThreeMulti(optionMulti && optionMulti[2])
+    setOptionDThreeMulti(optionMulti && optionMulti[3])
+    setOptionEThreeMulti(optionMulti && optionMulti[4])
+    setOptionFThreeMulti(optionMulti && optionMulti[5])
+
   }
 
   function closeModal() {
@@ -707,8 +757,8 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           overlayClassName={styles.modalOverlay}
           className={styles.modalContent}
       >
-        <div className={styles.containerTitleIconDelete}>
-          <h1>EDIT CARD</h1>
+        <div className={styles.containerTextIcon}>
+          <h1 className={styles.textTitle}>EDIT CARD</h1>
 
           {/* imagem delete do react icon */}
           <TiDeleteOutline
@@ -735,24 +785,12 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           />
 
           <FieldModalEdit
-            newValue={imageQuestionMain}
-            onChangeModal={(e) => setImageQuestionMain(e.target.value)}
-            name="Image Question:"
-          />
-
-          <FieldModalEdit
             newValue={correctAnswerMain}
             onChangeModal={(e) => setCorrectAnswerMain(e.target.value)}
             name="Answer:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'correctAnswerMain'}
             voidField={voidField}
-          />
-
-          <FieldModalEdit
-            newValue={iconDescriptionMain}
-            onChangeModal={(e) => setIconDescriptionMain(e.target.value)}
-            name="Icon Description:"
           />
 
           <FieldModalEdit
@@ -764,17 +802,35 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
             voidField={voidField}
           />
 
-          <FieldModalEdit
-            newValue={imageDescriptionMain}
-            onChangeModal={(e) => setImageDescriptionMain(e.target.value)}
-            name="Image Description:"
-          />
+          <label className={styles.nameLabelText}>Media</label>
+
+          <div className={styles.containerSelects}>
+            <FieldModalEdit
+              newValue={imageQuestionMain}
+              onChangeModal={(e) => setImageQuestionMain(e.target.value)}
+              name="Image Question:"
+            />
+
+            <FieldModalEdit
+              newValue={iconDescriptionMain}
+              onChangeModal={(e) => setIconDescriptionMain(e.target.value)}
+              name="Icon Description:"
+            />          
+
+            <FieldModalEdit
+              newValue={imageDescriptionMain}
+              onChangeModal={(e) => setImageDescriptionMain(e.target.value)}
+              name="Image Description:"
+            />
+
+          </div>
+
+          <label className={styles.nameLabelText}>Options*</label>
 
           {/* todos os campos das opções */}
           <FieldModalEdit
             newValue={optionAMain}
             onChangeModal={(e) => setOptionAMain(e.target.value)}
-            name="OptionA:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionAMain'}
             voidField={voidField}
@@ -783,7 +839,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionBMain}
             onChangeModal={(e) => setOptionBMain(e.target.value)}
-            name="OptionB:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionBMain'}
             voidField={voidField}
@@ -792,7 +847,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionCMain}
             onChangeModal={(e) => setOptionCMain(e.target.value)}
-            name="OptionC:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionCMain'}
             voidField={voidField}
@@ -801,7 +855,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionDMain}
             onChangeModal={(e) => setOptionDMain(e.target.value)}
-            name="OptionD:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionDMain'}
             voidField={voidField}
@@ -810,25 +863,30 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionEMain}
             onChangeModal={(e) => setOptionEMain(e.target.value)}
-            name="OptionE:"
           />
 
-          {/* Botões submit e clean */}
-          <div className={styles.buttons}>
-            <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(optionMain); mute === false && audioClick.play()}}
-              buttonName='Save' 
-              specificType='submit'
-              specificStyleButton={styles.button}
+          <div className={styles.containerSpanButtons}>
+            <span className={styles.textRequiredFields}>*Required fields</span>
 
-            />
-            <ButtonDefault 
-              onClick={() => {cleanForm(); mute === false && audioClick.play()}}
-              buttonName='Clean' 
-              specificType='button'
-              specificStyleButton={styles.button}
-              
-            />
+            {/* Botões submit e clean */}
+            <div className={styles.buttons}>
+              <ButtonDefault 
+                onClick={() => {cleanForm(); mute === false && audioClick.play()}}
+                buttonName='Clean' 
+                specificType='button'
+                specificStyleButton={styles.button}
+                
+              />
+
+              <ButtonDefault
+                onClick={() => {repeatedAlternativesDefault(optionMain); mute === false && audioClick.play()}}
+                buttonName='Save' 
+                specificType='submit'
+                specificStyleButton={styles.button}
+
+              />
+
+            </div>
 
           </div>
         
@@ -851,12 +909,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           />
 
           <FieldModalEdit
-            newValue={imageQuestionMulti}
-            onChangeModal={(e) => setImageQuestionMulti(e.target.value)}
-            name="Image Question:"
-          />
-
-          <FieldModalEdit
             newValue={correctAnswerMulti1}
             onChangeModal={(e) => setCorrectAnswerMulti1(e.target.value)}
             name="Answer1:*"
@@ -875,12 +927,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           />
 
           <FieldModalEdit
-            newValue={iconDescriptionMulti}
-            onChangeModal={(e) => setIconDescriptionMulti(e.target.value)}
-            name="Icon Description:"
-          />
-
-          <FieldModalEdit
             newValue={descriptionMulti}
             onChangeModal={(e) => setDescriptionMulti(e.target.value)}
             name="Description:*"
@@ -889,17 +935,35 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
             voidField={voidField}
           />
 
-          <FieldModalEdit
-            newValue={imageDescriptionMulti}
-            onChangeModal={(e) => setImageDescriptionMulti(e.target.value)}
-            name="Image Description:"
-          />
+          <label className={styles.nameLabelText}>Media</label>
+
+          <div className={styles.containerSelects}>
+            <FieldModalEdit
+              newValue={imageQuestionMulti}
+              onChangeModal={(e) => setImageQuestionMulti(e.target.value)}
+              name="Image Question:"
+            />
+
+            <FieldModalEdit
+              newValue={iconDescriptionMulti}
+              onChangeModal={(e) => setIconDescriptionMulti(e.target.value)}
+              name="Icon Description:"
+            />
+
+            <FieldModalEdit
+              newValue={imageDescriptionMulti}
+              onChangeModal={(e) => setImageDescriptionMulti(e.target.value)}
+              name="Image Description:"
+            />
+
+          </div>          
+
+          <label className={styles.nameLabelText}>Options*</label>
 
           {/* todos os campos das opções de múltipla escolha */}
           <FieldModalEdit
             newValue={optionAMulti}
             onChangeModal={(e) => setOptionAMulti(e.target.value)}
-            name="OptionA:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionAMulti'}
             voidField={voidField}
@@ -908,7 +972,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionBMulti}
             onChangeModal={(e) => setOptionBMulti(e.target.value)}
-            name="OptionB:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionBMulti'}
             voidField={voidField}
@@ -917,7 +980,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionCMulti}
             onChangeModal={(e) => setOptionCMulti(e.target.value)}
-            name="OptionC:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionCMulti'}
             voidField={voidField}
@@ -926,7 +988,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionDMulti}
             onChangeModal={(e) => setOptionDMulti(e.target.value)}
-            name="OptionD:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionDMulti'}
             voidField={voidField}
@@ -935,23 +996,28 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionEMulti}
             onChangeModal={(e) => setOptionEMulti(e.target.value)}
-            name="OptionE:"
           />
 
-          {/* Botões submit e clean */}
-          <div className={styles.buttons}>
-            <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(null, optionMulti); mute === false && audioClick.play()}}
-              buttonName='Save' 
-              specificType='submit'
-              specificStyleButton={styles.button}
-            />
-            <ButtonDefault
-              onClick={() => {cleanForm(); mute === false && audioClick.play()}}
-              buttonName='Clean' 
-              specificType='button'
-              specificStyleButton={styles.button}   
-            />
+          <div className={styles.containerSpanButtons}>
+            <span className={styles.textRequiredFields}>*Required fields</span>
+          
+            {/* Botões submit e clean */}
+            <div className={styles.buttons}>
+              <ButtonDefault
+                onClick={() => {cleanForm(); mute === false && audioClick.play()}}
+                buttonName='Clean' 
+                specificType='button'
+                specificStyleButton={styles.button}   
+              />
+
+              <ButtonDefault
+                onClick={() => {repeatedAlternativesDefault(null, optionMulti); mute === false && audioClick.play()}}
+                buttonName='Save' 
+                specificType='submit'
+                specificStyleButton={styles.button}
+              />
+              
+            </div>
 
           </div>
         
@@ -971,12 +1037,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'questionTextThreeMulti'}
             voidField={voidField}
-          />
-
-          <FieldModalEdit
-            newValue={imageQuestionThreeMulti}
-            onChangeModal={(e) => setImageQuestionThreeMulti(e.target.value)}
-            name="Image Question:"
           />
 
           <FieldModalEdit
@@ -1007,12 +1067,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           />
 
           <FieldModalEdit
-            newValue={iconDescriptionThreeMulti}
-            onChangeModal={(e) => setIconDescriptionThreeMulti(e.target.value)}
-            name="Icon Description:"
-          />
-
-          <FieldModalEdit
             newValue={descriptionThreeMulti}
             onChangeModal={(e) => setDescriptionThreeMulti(e.target.value)}
             name="Description:*"
@@ -1021,17 +1075,35 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
             voidField={voidField}
           />
 
-          <FieldModalEdit
-            newValue={imageDescriptionThreeMulti}
-            onChangeModal={(e) => setImageDescriptionThreeMulti(e.target.value)}
-            name="Image Description:"
-          />
+          <label className={styles.nameLabelText}>Media</label>
+
+          <div className={styles.containerSelects}>
+            <FieldModalEdit
+              newValue={imageQuestionThreeMulti}
+              onChangeModal={(e) => setImageQuestionThreeMulti(e.target.value)}
+              name="Image Question:"
+            />
+
+            <FieldModalEdit
+              newValue={iconDescriptionThreeMulti}
+              onChangeModal={(e) => setIconDescriptionThreeMulti(e.target.value)}
+              name="Icon Description:"
+            />
+
+            <FieldModalEdit
+              newValue={imageDescriptionThreeMulti}
+              onChangeModal={(e) => setImageDescriptionThreeMulti(e.target.value)}
+              name="Image Description:"
+            />
+
+          </div>
+
+          <label className={styles.nameLabelText}>Options*</label>
 
           {/* todos os campos das opções de múltipla escolha */}
           <FieldModalEdit
             newValue={optionAThreeMulti}
             onChangeModal={(e) => setOptionAThreeMulti(e.target.value)}
-            name="OptionA:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionAThreeMulti'}
             voidField={voidField}
@@ -1040,7 +1112,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionBThreeMulti}
             onChangeModal={(e) => setOptionBThreeMulti(e.target.value)}
-            name="OptionB:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionBThreeMulti'}
             voidField={voidField}
@@ -1049,7 +1120,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionCThreeMulti}
             onChangeModal={(e) => setOptionCThreeMulti(e.target.value)}
-            name="OptionC:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionCThreeMulti'}
             voidField={voidField}
@@ -1058,7 +1128,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionDThreeMulti}
             onChangeModal={(e) => setOptionDThreeMulti(e.target.value)}
-            name="OptionD:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionDThreeMulti'}
             voidField={voidField}
@@ -1067,7 +1136,6 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionEThreeMulti}
             onChangeModal={(e) => setOptionEThreeMulti(e.target.value)}
-            name="OptionE:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionEThreeMulti'}
             voidField={voidField}
@@ -1076,26 +1144,31 @@ function ModalEditMenu({ questionMain, setQuestionMain, optionMain, optionMainNu
           <FieldModalEdit
             newValue={optionFThreeMulti}
             onChangeModal={(e) => setOptionFThreeMulti(e.target.value)}
-            name="OptionF:*"
             errorMessageText={errorMessageModalEdit}
             errorTargetLabel={'optionFThreeMulti'}
             voidField={voidField}
           />
 
-          {/* Botões submit e clean */}
-          <div className={styles.buttons}>
-            <ButtonDefault
-              onClick={() => {repeatedAlternativesDefault(null, null, optionMulti); mute === false && audioClick.play()}}
-              buttonName='Save' 
-              specificType='submit'
-              specificStyleButton={styles.button}
-            />
-            <ButtonDefault
-              onClick={() => {cleanForm(); mute === false && audioClick.play()}}
-              buttonName='Clean' 
-              specificType='button'
-              specificStyleButton={styles.button}   
-            />
+          <div className={styles.containerSpanButtons}>
+            <span className={styles.textRequiredFields}>*Required fields</span>
+
+            {/* Botões submit e clean */}
+            <div className={styles.buttons}>
+              <ButtonDefault
+                onClick={() => {cleanForm(); mute === false && audioClick.play()}}
+                buttonName='Clean' 
+                specificType='button'
+                specificStyleButton={styles.button}   
+              />
+
+              <ButtonDefault
+                onClick={() => {repeatedAlternativesDefault(null, null, optionMulti); mute === false && audioClick.play()}}
+                buttonName='Save' 
+                specificType='submit'
+                specificStyleButton={styles.button}
+              />
+
+            </div>
 
           </div>
         
