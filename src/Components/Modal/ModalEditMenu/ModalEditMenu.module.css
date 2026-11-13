@@ -75,7 +75,7 @@
   gap: 16px;
   width: 100%;
   max-height: 90vh;
-  padding: 8px 16px 0 0;
+  padding-right: 6px;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -102,6 +102,8 @@
   display: flex;
   justify-content: space-evenly;
   align-items: start;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .containerSpanButtons {
@@ -138,8 +140,17 @@
 
 /* Responsividade */
 @media (max-width: 860px) {
-  .modalContent h1 {
+  .modalImageDelete {
+    height: 1.5em;
+    width: 1.5em;
+  }
+
+  .textTitle {
     font-size: 1.5rem;
+  }
+
+  .nameLabelText {
+    font-size: 0.9rem;
   }
 
   .popupRepeatedModalEdit {
@@ -147,12 +158,28 @@
     width: 20%;
   }
 
+  .textRequiredFields {
+    font-size: 0.7rem;
+  }
+
 }
 
 @media (max-width: 580px) {
+  .nameLabelText {
+    font-size: 0.8rem;
+  }
+
   .popupRepeatedModalEdit {
     font-size: 0.7rem;
     width: 25%;
+  }
+
+  .textRequiredFields {
+    font-size: 0.6rem;
+  }
+
+  .buttons {
+    gap: 8px;
   }
 
 }

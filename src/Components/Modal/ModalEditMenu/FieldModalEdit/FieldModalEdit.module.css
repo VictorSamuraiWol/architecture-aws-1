@@ -144,6 +144,10 @@
 }
 
 @media (max-width: 860px) {
+  .nameLabelText, .nameLabelTextSelect, .inputFieldModalEdit {
+    font-size: 0.9rem;
+  }
+
   .selectWrap {
     width: 100px;
   }
@@ -157,19 +161,21 @@
 @media (max-width: 580px) {
   .fieldModalEdit {
     flex-direction: column;
-    width: 98%;
-    border: 1px solid var(--color-second);
-    border-radius: 8px;
+    width: 100%;
   }
 
   .fieldSelectModalEdit {
+    flex-direction: row;
+    align-items: center;
     width: max-content;
-    border: 1px solid var(--color-second);
-    border-radius: 8px;
   }
 
   .inputFieldModalEdit {
     height: 40px;
+  }
+
+  .nameLabelText, .nameLabelTextSelect, .inputFieldModalEdit {
+    font-size: 0.8rem;
   }
 
   .selectWrap {
